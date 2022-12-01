@@ -32,13 +32,17 @@ namespace Client
             Use shared_ptr because unique_ptr is not copy-constructible, and a "packed" task for the Executor interface
               is represented by a std::function object (that must be copy-constructible). */
         std::shared_ptr<RequestT> pRequest = request.Clone();
-        pExecutor->Submit( [operationFunc, clientThis, pRequest, handler, context]()
-                           {
-                               handler(clientThis,
-                                       *pRequest,
-                                       (clientThis->*operationFunc)(*pRequest),
-                                       context);
-                           } );
+
+        std::function<void()> asyncTask =
+            [operationFunc, clientThis, pRequest, handler, context]()
+            {
+                handler(clientThis,
+                        *pRequest,
+                        (clientThis->*operationFunc)(*pRequest),
+                        context);
+            };
+
+        pExecutor->Submit(std::move(asyncTask));
     }
 
     /**
@@ -60,13 +64,16 @@ namespace Client
                                             const HandlerContextT& context,
                                             ExecutorT* pExecutor)
     {
-        pExecutor->Submit( [operationFunc, clientThis, &request, handler, context]()  // note capture by ref
-                           {
-                               handler(clientThis,
-                                       request,
-                                       (clientThis->*operationFunc)(request),
-                                       context);
-                           } );
+        std::function<void()> asyncTask =
+            [operationFunc, clientThis, &request, handler, context]() // note capture by ref
+            {
+                handler(clientThis,
+                        request,
+                        (clientThis->*operationFunc)(request),
+                        context);
+            };
+
+        pExecutor->Submit(std::move(asyncTask));
     }
 
     /**
@@ -94,8 +101,9 @@ namespace Client
                     return (clientThis->*operationFunc)(*pRequest);
                 } );
 
-        auto packagedFunction = [task]() { (*task)(); };
-        pExecutor->Submit(packagedFunction);
+        std::function<void()> packagedFunction =
+                [task]() { (*task)(); };
+        pExecutor->Submit(std::move(packagedFunction));
         return task->get_future();
     }
 
@@ -124,8 +132,9 @@ namespace Client
                     return (clientThis->*operationFunc)(request);
                 } );
 
-        auto packagedFunction = [task]() { (*task)(); };
-        pExecutor->Submit(packagedFunction);
+        std::function<void()> packagedFunction =
+                [task]() { (*task)(); };
+        pExecutor->Submit(std::move(packagedFunction));
         return task->get_future();
     }
 } // namespace Client
