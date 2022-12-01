@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -161,17 +162,11 @@ GetMediaOutcome KinesisVideoMediaClient::GetMedia(const GetMediaRequest& request
 
 GetMediaOutcomeCallable KinesisVideoMediaClient::GetMediaCallable(const GetMediaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetMediaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetMedia(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisVideoMediaClient::GetMedia, this, request, m_executor.get());
 }
 
 void KinesisVideoMediaClient::GetMediaAsync(const GetMediaRequest& request, const GetMediaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetMedia(request), context);
-    } );
+  MakeAsyncOperation(&KinesisVideoMediaClient::GetMedia, this, request, handler, context, m_executor.get());
 }
 

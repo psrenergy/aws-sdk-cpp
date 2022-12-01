@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -168,18 +169,12 @@ CreateEnvironmentOutcome FinspaceClient::CreateEnvironment(const CreateEnvironme
 
 CreateEnvironmentOutcomeCallable FinspaceClient::CreateEnvironmentCallable(const CreateEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::CreateEnvironment, this, request, m_executor.get());
 }
 
 void FinspaceClient::CreateEnvironmentAsync(const CreateEnvironmentRequest& request, const CreateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::CreateEnvironment, this, request, handler, context, m_executor.get());
 }
 
 DeleteEnvironmentOutcome FinspaceClient::DeleteEnvironment(const DeleteEnvironmentRequest& request) const
@@ -199,18 +194,12 @@ DeleteEnvironmentOutcome FinspaceClient::DeleteEnvironment(const DeleteEnvironme
 
 DeleteEnvironmentOutcomeCallable FinspaceClient::DeleteEnvironmentCallable(const DeleteEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::DeleteEnvironment, this, request, m_executor.get());
 }
 
 void FinspaceClient::DeleteEnvironmentAsync(const DeleteEnvironmentRequest& request, const DeleteEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::DeleteEnvironment, this, request, handler, context, m_executor.get());
 }
 
 GetEnvironmentOutcome FinspaceClient::GetEnvironment(const GetEnvironmentRequest& request) const
@@ -230,18 +219,12 @@ GetEnvironmentOutcome FinspaceClient::GetEnvironment(const GetEnvironmentRequest
 
 GetEnvironmentOutcomeCallable FinspaceClient::GetEnvironmentCallable(const GetEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::GetEnvironment, this, request, m_executor.get());
 }
 
 void FinspaceClient::GetEnvironmentAsync(const GetEnvironmentRequest& request, const GetEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::GetEnvironment, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentsOutcome FinspaceClient::ListEnvironments(const ListEnvironmentsRequest& request) const
@@ -255,18 +238,12 @@ ListEnvironmentsOutcome FinspaceClient::ListEnvironments(const ListEnvironmentsR
 
 ListEnvironmentsOutcomeCallable FinspaceClient::ListEnvironmentsCallable(const ListEnvironmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::ListEnvironments, this, request, m_executor.get());
 }
 
 void FinspaceClient::ListEnvironmentsAsync(const ListEnvironmentsRequest& request, const ListEnvironmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironments(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::ListEnvironments, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome FinspaceClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -286,18 +263,12 @@ ListTagsForResourceOutcome FinspaceClient::ListTagsForResource(const ListTagsFor
 
 ListTagsForResourceOutcomeCallable FinspaceClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void FinspaceClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome FinspaceClient::TagResource(const TagResourceRequest& request) const
@@ -317,18 +288,12 @@ TagResourceOutcome FinspaceClient::TagResource(const TagResourceRequest& request
 
 TagResourceOutcomeCallable FinspaceClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::TagResource, this, request, m_executor.get());
 }
 
 void FinspaceClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome FinspaceClient::UntagResource(const UntagResourceRequest& request) const
@@ -353,18 +318,12 @@ UntagResourceOutcome FinspaceClient::UntagResource(const UntagResourceRequest& r
 
 UntagResourceOutcomeCallable FinspaceClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::UntagResource, this, request, m_executor.get());
 }
 
 void FinspaceClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateEnvironmentOutcome FinspaceClient::UpdateEnvironment(const UpdateEnvironmentRequest& request) const
@@ -384,17 +343,11 @@ UpdateEnvironmentOutcome FinspaceClient::UpdateEnvironment(const UpdateEnvironme
 
 UpdateEnvironmentOutcomeCallable FinspaceClient::UpdateEnvironmentCallable(const UpdateEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FinspaceClient::UpdateEnvironment, this, request, m_executor.get());
 }
 
 void FinspaceClient::UpdateEnvironmentAsync(const UpdateEnvironmentRequest& request, const UpdateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&FinspaceClient::UpdateEnvironment, this, request, handler, context, m_executor.get());
 }
 

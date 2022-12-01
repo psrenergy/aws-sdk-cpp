@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -665,20 +666,13 @@ AbortMultipartUploadOutcome S3CrtClient::AbortMultipartUpload(const AbortMultipa
 
 AbortMultipartUploadOutcomeCallable S3CrtClient::AbortMultipartUploadCallable(const AbortMultipartUploadRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AbortMultipartUploadOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AbortMultipartUpload(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::AbortMultipartUpload, this, request, m_executor.get());
 }
 
 void S3CrtClient::AbortMultipartUploadAsync(const AbortMultipartUploadRequest& request, const AbortMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AbortMultipartUpload(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::AbortMultipartUpload, this, request, handler, context, m_executor.get());
 }
-
 CompleteMultipartUploadOutcome S3CrtClient::CompleteMultipartUpload(const CompleteMultipartUploadRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CompleteMultipartUpload, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -705,20 +699,13 @@ CompleteMultipartUploadOutcome S3CrtClient::CompleteMultipartUpload(const Comple
 
 CompleteMultipartUploadOutcomeCallable S3CrtClient::CompleteMultipartUploadCallable(const CompleteMultipartUploadRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CompleteMultipartUploadOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CompleteMultipartUpload(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::CompleteMultipartUpload, this, request, m_executor.get());
 }
 
 void S3CrtClient::CompleteMultipartUploadAsync(const CompleteMultipartUploadRequest& request, const CompleteMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CompleteMultipartUpload(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::CompleteMultipartUpload, this, request, handler, context, m_executor.get());
 }
-
 CopyObjectOutcome S3CrtClient::CopyObject(const CopyObjectRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CopyObject, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -745,20 +732,13 @@ CopyObjectOutcome S3CrtClient::CopyObject(const CopyObjectRequest& request) cons
 
 CopyObjectOutcomeCallable S3CrtClient::CopyObjectCallable(const CopyObjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CopyObjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CopyObject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::CopyObject, this, request, m_executor.get());
 }
 
 void S3CrtClient::CopyObjectAsync(const CopyObjectRequest& request, const CopyObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CopyObject(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::CopyObject, this, request, handler, context, m_executor.get());
 }
-
 CreateBucketOutcome S3CrtClient::CreateBucket(const CreateBucketRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateBucket, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -774,20 +754,13 @@ CreateBucketOutcome S3CrtClient::CreateBucket(const CreateBucketRequest& request
 
 CreateBucketOutcomeCallable S3CrtClient::CreateBucketCallable(const CreateBucketRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateBucketOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateBucket(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::CreateBucket, this, request, m_executor.get());
 }
 
 void S3CrtClient::CreateBucketAsync(const CreateBucketRequest& request, const CreateBucketResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateBucket(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::CreateBucket, this, request, handler, context, m_executor.get());
 }
-
 CreateMultipartUploadOutcome S3CrtClient::CreateMultipartUpload(const CreateMultipartUploadRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateMultipartUpload, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -812,20 +785,13 @@ CreateMultipartUploadOutcome S3CrtClient::CreateMultipartUpload(const CreateMult
 
 CreateMultipartUploadOutcomeCallable S3CrtClient::CreateMultipartUploadCallable(const CreateMultipartUploadRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateMultipartUploadOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateMultipartUpload(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::CreateMultipartUpload, this, request, m_executor.get());
 }
 
 void S3CrtClient::CreateMultipartUploadAsync(const CreateMultipartUploadRequest& request, const CreateMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateMultipartUpload(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::CreateMultipartUpload, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketOutcome S3CrtClient::DeleteBucket(const DeleteBucketRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucket, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -841,20 +807,13 @@ DeleteBucketOutcome S3CrtClient::DeleteBucket(const DeleteBucketRequest& request
 
 DeleteBucketOutcomeCallable S3CrtClient::DeleteBucketCallable(const DeleteBucketRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucket(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucket, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketAsync(const DeleteBucketRequest& request, const DeleteBucketResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucket(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucket, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketAnalyticsConfigurationOutcome S3CrtClient::DeleteBucketAnalyticsConfiguration(const DeleteBucketAnalyticsConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketAnalyticsConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -878,20 +837,13 @@ DeleteBucketAnalyticsConfigurationOutcome S3CrtClient::DeleteBucketAnalyticsConf
 
 DeleteBucketAnalyticsConfigurationOutcomeCallable S3CrtClient::DeleteBucketAnalyticsConfigurationCallable(const DeleteBucketAnalyticsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketAnalyticsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketAnalyticsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketAnalyticsConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketAnalyticsConfigurationAsync(const DeleteBucketAnalyticsConfigurationRequest& request, const DeleteBucketAnalyticsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketAnalyticsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketAnalyticsConfiguration, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketCorsOutcome S3CrtClient::DeleteBucketCors(const DeleteBucketCorsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketCors, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -910,20 +862,13 @@ DeleteBucketCorsOutcome S3CrtClient::DeleteBucketCors(const DeleteBucketCorsRequ
 
 DeleteBucketCorsOutcomeCallable S3CrtClient::DeleteBucketCorsCallable(const DeleteBucketCorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketCorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketCors(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketCors, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketCorsAsync(const DeleteBucketCorsRequest& request, const DeleteBucketCorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketCors(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketCors, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketEncryptionOutcome S3CrtClient::DeleteBucketEncryption(const DeleteBucketEncryptionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketEncryption, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -942,20 +887,13 @@ DeleteBucketEncryptionOutcome S3CrtClient::DeleteBucketEncryption(const DeleteBu
 
 DeleteBucketEncryptionOutcomeCallable S3CrtClient::DeleteBucketEncryptionCallable(const DeleteBucketEncryptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketEncryptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketEncryption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketEncryption, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketEncryptionAsync(const DeleteBucketEncryptionRequest& request, const DeleteBucketEncryptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketEncryption(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketEncryption, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketIntelligentTieringConfigurationOutcome S3CrtClient::DeleteBucketIntelligentTieringConfiguration(const DeleteBucketIntelligentTieringConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketIntelligentTieringConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -979,20 +917,13 @@ DeleteBucketIntelligentTieringConfigurationOutcome S3CrtClient::DeleteBucketInte
 
 DeleteBucketIntelligentTieringConfigurationOutcomeCallable S3CrtClient::DeleteBucketIntelligentTieringConfigurationCallable(const DeleteBucketIntelligentTieringConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketIntelligentTieringConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketIntelligentTieringConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketIntelligentTieringConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketIntelligentTieringConfigurationAsync(const DeleteBucketIntelligentTieringConfigurationRequest& request, const DeleteBucketIntelligentTieringConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketIntelligentTieringConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketIntelligentTieringConfiguration, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketInventoryConfigurationOutcome S3CrtClient::DeleteBucketInventoryConfiguration(const DeleteBucketInventoryConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketInventoryConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1016,20 +947,13 @@ DeleteBucketInventoryConfigurationOutcome S3CrtClient::DeleteBucketInventoryConf
 
 DeleteBucketInventoryConfigurationOutcomeCallable S3CrtClient::DeleteBucketInventoryConfigurationCallable(const DeleteBucketInventoryConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketInventoryConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketInventoryConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketInventoryConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketInventoryConfigurationAsync(const DeleteBucketInventoryConfigurationRequest& request, const DeleteBucketInventoryConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketInventoryConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketInventoryConfiguration, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketLifecycleOutcome S3CrtClient::DeleteBucketLifecycle(const DeleteBucketLifecycleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketLifecycle, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1048,20 +972,13 @@ DeleteBucketLifecycleOutcome S3CrtClient::DeleteBucketLifecycle(const DeleteBuck
 
 DeleteBucketLifecycleOutcomeCallable S3CrtClient::DeleteBucketLifecycleCallable(const DeleteBucketLifecycleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketLifecycleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketLifecycle(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketLifecycle, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketLifecycleAsync(const DeleteBucketLifecycleRequest& request, const DeleteBucketLifecycleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketLifecycle(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketLifecycle, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketMetricsConfigurationOutcome S3CrtClient::DeleteBucketMetricsConfiguration(const DeleteBucketMetricsConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketMetricsConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1085,20 +1002,13 @@ DeleteBucketMetricsConfigurationOutcome S3CrtClient::DeleteBucketMetricsConfigur
 
 DeleteBucketMetricsConfigurationOutcomeCallable S3CrtClient::DeleteBucketMetricsConfigurationCallable(const DeleteBucketMetricsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketMetricsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketMetricsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketMetricsConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketMetricsConfigurationAsync(const DeleteBucketMetricsConfigurationRequest& request, const DeleteBucketMetricsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketMetricsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketMetricsConfiguration, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketOwnershipControlsOutcome S3CrtClient::DeleteBucketOwnershipControls(const DeleteBucketOwnershipControlsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketOwnershipControls, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1117,20 +1027,13 @@ DeleteBucketOwnershipControlsOutcome S3CrtClient::DeleteBucketOwnershipControls(
 
 DeleteBucketOwnershipControlsOutcomeCallable S3CrtClient::DeleteBucketOwnershipControlsCallable(const DeleteBucketOwnershipControlsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketOwnershipControlsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketOwnershipControls(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketOwnershipControls, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketOwnershipControlsAsync(const DeleteBucketOwnershipControlsRequest& request, const DeleteBucketOwnershipControlsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketOwnershipControls(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketOwnershipControls, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketPolicyOutcome S3CrtClient::DeleteBucketPolicy(const DeleteBucketPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1149,20 +1052,13 @@ DeleteBucketPolicyOutcome S3CrtClient::DeleteBucketPolicy(const DeleteBucketPoli
 
 DeleteBucketPolicyOutcomeCallable S3CrtClient::DeleteBucketPolicyCallable(const DeleteBucketPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketPolicy, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketPolicyAsync(const DeleteBucketPolicyRequest& request, const DeleteBucketPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketPolicy(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketPolicy, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketReplicationOutcome S3CrtClient::DeleteBucketReplication(const DeleteBucketReplicationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketReplication, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1181,20 +1077,13 @@ DeleteBucketReplicationOutcome S3CrtClient::DeleteBucketReplication(const Delete
 
 DeleteBucketReplicationOutcomeCallable S3CrtClient::DeleteBucketReplicationCallable(const DeleteBucketReplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketReplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketReplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketReplication, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketReplicationAsync(const DeleteBucketReplicationRequest& request, const DeleteBucketReplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketReplication(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketReplication, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketTaggingOutcome S3CrtClient::DeleteBucketTagging(const DeleteBucketTaggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketTagging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1213,20 +1102,13 @@ DeleteBucketTaggingOutcome S3CrtClient::DeleteBucketTagging(const DeleteBucketTa
 
 DeleteBucketTaggingOutcomeCallable S3CrtClient::DeleteBucketTaggingCallable(const DeleteBucketTaggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketTaggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketTagging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketTagging, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketTaggingAsync(const DeleteBucketTaggingRequest& request, const DeleteBucketTaggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketTagging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketTagging, this, request, handler, context, m_executor.get());
 }
-
 DeleteBucketWebsiteOutcome S3CrtClient::DeleteBucketWebsite(const DeleteBucketWebsiteRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteBucketWebsite, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1245,20 +1127,13 @@ DeleteBucketWebsiteOutcome S3CrtClient::DeleteBucketWebsite(const DeleteBucketWe
 
 DeleteBucketWebsiteOutcomeCallable S3CrtClient::DeleteBucketWebsiteCallable(const DeleteBucketWebsiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBucketWebsiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBucketWebsite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteBucketWebsite, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteBucketWebsiteAsync(const DeleteBucketWebsiteRequest& request, const DeleteBucketWebsiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBucketWebsite(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteBucketWebsite, this, request, handler, context, m_executor.get());
 }
-
 DeleteObjectOutcome S3CrtClient::DeleteObject(const DeleteObjectRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteObject, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1280,20 +1155,13 @@ DeleteObjectOutcome S3CrtClient::DeleteObject(const DeleteObjectRequest& request
 
 DeleteObjectOutcomeCallable S3CrtClient::DeleteObjectCallable(const DeleteObjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteObjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteObject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteObject, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteObjectAsync(const DeleteObjectRequest& request, const DeleteObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteObject(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteObject, this, request, handler, context, m_executor.get());
 }
-
 DeleteObjectTaggingOutcome S3CrtClient::DeleteObjectTagging(const DeleteObjectTaggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteObjectTagging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1318,20 +1186,13 @@ DeleteObjectTaggingOutcome S3CrtClient::DeleteObjectTagging(const DeleteObjectTa
 
 DeleteObjectTaggingOutcomeCallable S3CrtClient::DeleteObjectTaggingCallable(const DeleteObjectTaggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteObjectTaggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteObjectTagging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteObjectTagging, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteObjectTaggingAsync(const DeleteObjectTaggingRequest& request, const DeleteObjectTaggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteObjectTagging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteObjectTagging, this, request, handler, context, m_executor.get());
 }
-
 DeleteObjectsOutcome S3CrtClient::DeleteObjects(const DeleteObjectsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteObjects, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1350,20 +1211,13 @@ DeleteObjectsOutcome S3CrtClient::DeleteObjects(const DeleteObjectsRequest& requ
 
 DeleteObjectsOutcomeCallable S3CrtClient::DeleteObjectsCallable(const DeleteObjectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteObjectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteObjects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeleteObjects, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeleteObjectsAsync(const DeleteObjectsRequest& request, const DeleteObjectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteObjects(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeleteObjects, this, request, handler, context, m_executor.get());
 }
-
 DeletePublicAccessBlockOutcome S3CrtClient::DeletePublicAccessBlock(const DeletePublicAccessBlockRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeletePublicAccessBlock, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1382,20 +1236,13 @@ DeletePublicAccessBlockOutcome S3CrtClient::DeletePublicAccessBlock(const Delete
 
 DeletePublicAccessBlockOutcomeCallable S3CrtClient::DeletePublicAccessBlockCallable(const DeletePublicAccessBlockRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePublicAccessBlockOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePublicAccessBlock(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::DeletePublicAccessBlock, this, request, m_executor.get());
 }
 
 void S3CrtClient::DeletePublicAccessBlockAsync(const DeletePublicAccessBlockRequest& request, const DeletePublicAccessBlockResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePublicAccessBlock(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::DeletePublicAccessBlock, this, request, handler, context, m_executor.get());
 }
-
 GetBucketAccelerateConfigurationOutcome S3CrtClient::GetBucketAccelerateConfiguration(const GetBucketAccelerateConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketAccelerateConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1414,20 +1261,13 @@ GetBucketAccelerateConfigurationOutcome S3CrtClient::GetBucketAccelerateConfigur
 
 GetBucketAccelerateConfigurationOutcomeCallable S3CrtClient::GetBucketAccelerateConfigurationCallable(const GetBucketAccelerateConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketAccelerateConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketAccelerateConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketAccelerateConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketAccelerateConfigurationAsync(const GetBucketAccelerateConfigurationRequest& request, const GetBucketAccelerateConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketAccelerateConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketAccelerateConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetBucketAclOutcome S3CrtClient::GetBucketAcl(const GetBucketAclRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketAcl, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1446,20 +1286,13 @@ GetBucketAclOutcome S3CrtClient::GetBucketAcl(const GetBucketAclRequest& request
 
 GetBucketAclOutcomeCallable S3CrtClient::GetBucketAclCallable(const GetBucketAclRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketAclOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketAcl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketAcl, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketAclAsync(const GetBucketAclRequest& request, const GetBucketAclResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketAcl(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketAcl, this, request, handler, context, m_executor.get());
 }
-
 GetBucketAnalyticsConfigurationOutcome S3CrtClient::GetBucketAnalyticsConfiguration(const GetBucketAnalyticsConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketAnalyticsConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1483,20 +1316,13 @@ GetBucketAnalyticsConfigurationOutcome S3CrtClient::GetBucketAnalyticsConfigurat
 
 GetBucketAnalyticsConfigurationOutcomeCallable S3CrtClient::GetBucketAnalyticsConfigurationCallable(const GetBucketAnalyticsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketAnalyticsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketAnalyticsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketAnalyticsConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketAnalyticsConfigurationAsync(const GetBucketAnalyticsConfigurationRequest& request, const GetBucketAnalyticsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketAnalyticsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketAnalyticsConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetBucketCorsOutcome S3CrtClient::GetBucketCors(const GetBucketCorsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketCors, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1515,20 +1341,13 @@ GetBucketCorsOutcome S3CrtClient::GetBucketCors(const GetBucketCorsRequest& requ
 
 GetBucketCorsOutcomeCallable S3CrtClient::GetBucketCorsCallable(const GetBucketCorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketCorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketCors(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketCors, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketCorsAsync(const GetBucketCorsRequest& request, const GetBucketCorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketCors(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketCors, this, request, handler, context, m_executor.get());
 }
-
 GetBucketEncryptionOutcome S3CrtClient::GetBucketEncryption(const GetBucketEncryptionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketEncryption, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1547,20 +1366,13 @@ GetBucketEncryptionOutcome S3CrtClient::GetBucketEncryption(const GetBucketEncry
 
 GetBucketEncryptionOutcomeCallable S3CrtClient::GetBucketEncryptionCallable(const GetBucketEncryptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketEncryptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketEncryption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketEncryption, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketEncryptionAsync(const GetBucketEncryptionRequest& request, const GetBucketEncryptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketEncryption(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketEncryption, this, request, handler, context, m_executor.get());
 }
-
 GetBucketIntelligentTieringConfigurationOutcome S3CrtClient::GetBucketIntelligentTieringConfiguration(const GetBucketIntelligentTieringConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketIntelligentTieringConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1584,20 +1396,13 @@ GetBucketIntelligentTieringConfigurationOutcome S3CrtClient::GetBucketIntelligen
 
 GetBucketIntelligentTieringConfigurationOutcomeCallable S3CrtClient::GetBucketIntelligentTieringConfigurationCallable(const GetBucketIntelligentTieringConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketIntelligentTieringConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketIntelligentTieringConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketIntelligentTieringConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketIntelligentTieringConfigurationAsync(const GetBucketIntelligentTieringConfigurationRequest& request, const GetBucketIntelligentTieringConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketIntelligentTieringConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketIntelligentTieringConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetBucketInventoryConfigurationOutcome S3CrtClient::GetBucketInventoryConfiguration(const GetBucketInventoryConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketInventoryConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1621,20 +1426,13 @@ GetBucketInventoryConfigurationOutcome S3CrtClient::GetBucketInventoryConfigurat
 
 GetBucketInventoryConfigurationOutcomeCallable S3CrtClient::GetBucketInventoryConfigurationCallable(const GetBucketInventoryConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketInventoryConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketInventoryConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketInventoryConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketInventoryConfigurationAsync(const GetBucketInventoryConfigurationRequest& request, const GetBucketInventoryConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketInventoryConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketInventoryConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetBucketLifecycleConfigurationOutcome S3CrtClient::GetBucketLifecycleConfiguration(const GetBucketLifecycleConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketLifecycleConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1653,20 +1451,13 @@ GetBucketLifecycleConfigurationOutcome S3CrtClient::GetBucketLifecycleConfigurat
 
 GetBucketLifecycleConfigurationOutcomeCallable S3CrtClient::GetBucketLifecycleConfigurationCallable(const GetBucketLifecycleConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketLifecycleConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketLifecycleConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketLifecycleConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketLifecycleConfigurationAsync(const GetBucketLifecycleConfigurationRequest& request, const GetBucketLifecycleConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketLifecycleConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketLifecycleConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetBucketLocationOutcome S3CrtClient::GetBucketLocation(const GetBucketLocationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketLocation, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1685,20 +1476,13 @@ GetBucketLocationOutcome S3CrtClient::GetBucketLocation(const GetBucketLocationR
 
 GetBucketLocationOutcomeCallable S3CrtClient::GetBucketLocationCallable(const GetBucketLocationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketLocationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketLocation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketLocation, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketLocationAsync(const GetBucketLocationRequest& request, const GetBucketLocationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketLocation(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketLocation, this, request, handler, context, m_executor.get());
 }
-
 GetBucketLoggingOutcome S3CrtClient::GetBucketLogging(const GetBucketLoggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketLogging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1717,20 +1501,13 @@ GetBucketLoggingOutcome S3CrtClient::GetBucketLogging(const GetBucketLoggingRequ
 
 GetBucketLoggingOutcomeCallable S3CrtClient::GetBucketLoggingCallable(const GetBucketLoggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketLoggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketLogging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketLogging, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketLoggingAsync(const GetBucketLoggingRequest& request, const GetBucketLoggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketLogging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketLogging, this, request, handler, context, m_executor.get());
 }
-
 GetBucketMetricsConfigurationOutcome S3CrtClient::GetBucketMetricsConfiguration(const GetBucketMetricsConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketMetricsConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1754,20 +1531,13 @@ GetBucketMetricsConfigurationOutcome S3CrtClient::GetBucketMetricsConfiguration(
 
 GetBucketMetricsConfigurationOutcomeCallable S3CrtClient::GetBucketMetricsConfigurationCallable(const GetBucketMetricsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketMetricsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketMetricsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketMetricsConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketMetricsConfigurationAsync(const GetBucketMetricsConfigurationRequest& request, const GetBucketMetricsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketMetricsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketMetricsConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetBucketNotificationConfigurationOutcome S3CrtClient::GetBucketNotificationConfiguration(const GetBucketNotificationConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketNotificationConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1786,20 +1556,13 @@ GetBucketNotificationConfigurationOutcome S3CrtClient::GetBucketNotificationConf
 
 GetBucketNotificationConfigurationOutcomeCallable S3CrtClient::GetBucketNotificationConfigurationCallable(const GetBucketNotificationConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketNotificationConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketNotificationConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketNotificationConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketNotificationConfigurationAsync(const GetBucketNotificationConfigurationRequest& request, const GetBucketNotificationConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketNotificationConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketNotificationConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetBucketOwnershipControlsOutcome S3CrtClient::GetBucketOwnershipControls(const GetBucketOwnershipControlsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketOwnershipControls, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1818,20 +1581,13 @@ GetBucketOwnershipControlsOutcome S3CrtClient::GetBucketOwnershipControls(const 
 
 GetBucketOwnershipControlsOutcomeCallable S3CrtClient::GetBucketOwnershipControlsCallable(const GetBucketOwnershipControlsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketOwnershipControlsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketOwnershipControls(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketOwnershipControls, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketOwnershipControlsAsync(const GetBucketOwnershipControlsRequest& request, const GetBucketOwnershipControlsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketOwnershipControls(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketOwnershipControls, this, request, handler, context, m_executor.get());
 }
-
 GetBucketPolicyOutcome S3CrtClient::GetBucketPolicy(const GetBucketPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1850,20 +1606,13 @@ GetBucketPolicyOutcome S3CrtClient::GetBucketPolicy(const GetBucketPolicyRequest
 
 GetBucketPolicyOutcomeCallable S3CrtClient::GetBucketPolicyCallable(const GetBucketPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketPolicy, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketPolicyAsync(const GetBucketPolicyRequest& request, const GetBucketPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketPolicy(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketPolicy, this, request, handler, context, m_executor.get());
 }
-
 GetBucketPolicyStatusOutcome S3CrtClient::GetBucketPolicyStatus(const GetBucketPolicyStatusRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketPolicyStatus, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1882,20 +1631,13 @@ GetBucketPolicyStatusOutcome S3CrtClient::GetBucketPolicyStatus(const GetBucketP
 
 GetBucketPolicyStatusOutcomeCallable S3CrtClient::GetBucketPolicyStatusCallable(const GetBucketPolicyStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketPolicyStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketPolicyStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketPolicyStatus, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketPolicyStatusAsync(const GetBucketPolicyStatusRequest& request, const GetBucketPolicyStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketPolicyStatus(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketPolicyStatus, this, request, handler, context, m_executor.get());
 }
-
 GetBucketReplicationOutcome S3CrtClient::GetBucketReplication(const GetBucketReplicationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketReplication, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1914,20 +1656,13 @@ GetBucketReplicationOutcome S3CrtClient::GetBucketReplication(const GetBucketRep
 
 GetBucketReplicationOutcomeCallable S3CrtClient::GetBucketReplicationCallable(const GetBucketReplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketReplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketReplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketReplication, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketReplicationAsync(const GetBucketReplicationRequest& request, const GetBucketReplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketReplication(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketReplication, this, request, handler, context, m_executor.get());
 }
-
 GetBucketRequestPaymentOutcome S3CrtClient::GetBucketRequestPayment(const GetBucketRequestPaymentRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketRequestPayment, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1946,20 +1681,13 @@ GetBucketRequestPaymentOutcome S3CrtClient::GetBucketRequestPayment(const GetBuc
 
 GetBucketRequestPaymentOutcomeCallable S3CrtClient::GetBucketRequestPaymentCallable(const GetBucketRequestPaymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketRequestPaymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketRequestPayment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketRequestPayment, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketRequestPaymentAsync(const GetBucketRequestPaymentRequest& request, const GetBucketRequestPaymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketRequestPayment(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketRequestPayment, this, request, handler, context, m_executor.get());
 }
-
 GetBucketTaggingOutcome S3CrtClient::GetBucketTagging(const GetBucketTaggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketTagging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1978,20 +1706,13 @@ GetBucketTaggingOutcome S3CrtClient::GetBucketTagging(const GetBucketTaggingRequ
 
 GetBucketTaggingOutcomeCallable S3CrtClient::GetBucketTaggingCallable(const GetBucketTaggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketTaggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketTagging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketTagging, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketTaggingAsync(const GetBucketTaggingRequest& request, const GetBucketTaggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketTagging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketTagging, this, request, handler, context, m_executor.get());
 }
-
 GetBucketVersioningOutcome S3CrtClient::GetBucketVersioning(const GetBucketVersioningRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketVersioning, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2010,20 +1731,13 @@ GetBucketVersioningOutcome S3CrtClient::GetBucketVersioning(const GetBucketVersi
 
 GetBucketVersioningOutcomeCallable S3CrtClient::GetBucketVersioningCallable(const GetBucketVersioningRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketVersioningOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketVersioning(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketVersioning, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketVersioningAsync(const GetBucketVersioningRequest& request, const GetBucketVersioningResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketVersioning(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketVersioning, this, request, handler, context, m_executor.get());
 }
-
 GetBucketWebsiteOutcome S3CrtClient::GetBucketWebsite(const GetBucketWebsiteRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetBucketWebsite, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2042,20 +1756,13 @@ GetBucketWebsiteOutcome S3CrtClient::GetBucketWebsite(const GetBucketWebsiteRequ
 
 GetBucketWebsiteOutcomeCallable S3CrtClient::GetBucketWebsiteCallable(const GetBucketWebsiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketWebsiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketWebsite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetBucketWebsite, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetBucketWebsiteAsync(const GetBucketWebsiteRequest& request, const GetBucketWebsiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketWebsite(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetBucketWebsite, this, request, handler, context, m_executor.get());
 }
-
 GetObjectAclOutcome S3CrtClient::GetObjectAcl(const GetObjectAclRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetObjectAcl, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2080,20 +1787,13 @@ GetObjectAclOutcome S3CrtClient::GetObjectAcl(const GetObjectAclRequest& request
 
 GetObjectAclOutcomeCallable S3CrtClient::GetObjectAclCallable(const GetObjectAclRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectAclOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectAcl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetObjectAcl, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetObjectAclAsync(const GetObjectAclRequest& request, const GetObjectAclResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectAcl(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetObjectAcl, this, request, handler, context, m_executor.get());
 }
-
 GetObjectAttributesOutcome S3CrtClient::GetObjectAttributes(const GetObjectAttributesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetObjectAttributes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2123,20 +1823,13 @@ GetObjectAttributesOutcome S3CrtClient::GetObjectAttributes(const GetObjectAttri
 
 GetObjectAttributesOutcomeCallable S3CrtClient::GetObjectAttributesCallable(const GetObjectAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetObjectAttributes, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetObjectAttributesAsync(const GetObjectAttributesRequest& request, const GetObjectAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectAttributes(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetObjectAttributes, this, request, handler, context, m_executor.get());
 }
-
 GetObjectLegalHoldOutcome S3CrtClient::GetObjectLegalHold(const GetObjectLegalHoldRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetObjectLegalHold, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2161,20 +1854,13 @@ GetObjectLegalHoldOutcome S3CrtClient::GetObjectLegalHold(const GetObjectLegalHo
 
 GetObjectLegalHoldOutcomeCallable S3CrtClient::GetObjectLegalHoldCallable(const GetObjectLegalHoldRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectLegalHoldOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectLegalHold(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetObjectLegalHold, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetObjectLegalHoldAsync(const GetObjectLegalHoldRequest& request, const GetObjectLegalHoldResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectLegalHold(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetObjectLegalHold, this, request, handler, context, m_executor.get());
 }
-
 GetObjectLockConfigurationOutcome S3CrtClient::GetObjectLockConfiguration(const GetObjectLockConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetObjectLockConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2193,20 +1879,13 @@ GetObjectLockConfigurationOutcome S3CrtClient::GetObjectLockConfiguration(const 
 
 GetObjectLockConfigurationOutcomeCallable S3CrtClient::GetObjectLockConfigurationCallable(const GetObjectLockConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectLockConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectLockConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetObjectLockConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetObjectLockConfigurationAsync(const GetObjectLockConfigurationRequest& request, const GetObjectLockConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectLockConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetObjectLockConfiguration, this, request, handler, context, m_executor.get());
 }
-
 GetObjectRetentionOutcome S3CrtClient::GetObjectRetention(const GetObjectRetentionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetObjectRetention, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2231,20 +1910,13 @@ GetObjectRetentionOutcome S3CrtClient::GetObjectRetention(const GetObjectRetenti
 
 GetObjectRetentionOutcomeCallable S3CrtClient::GetObjectRetentionCallable(const GetObjectRetentionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectRetentionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectRetention(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetObjectRetention, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetObjectRetentionAsync(const GetObjectRetentionRequest& request, const GetObjectRetentionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectRetention(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetObjectRetention, this, request, handler, context, m_executor.get());
 }
-
 GetObjectTaggingOutcome S3CrtClient::GetObjectTagging(const GetObjectTaggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetObjectTagging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2269,20 +1941,13 @@ GetObjectTaggingOutcome S3CrtClient::GetObjectTagging(const GetObjectTaggingRequ
 
 GetObjectTaggingOutcomeCallable S3CrtClient::GetObjectTaggingCallable(const GetObjectTaggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectTaggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectTagging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetObjectTagging, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetObjectTaggingAsync(const GetObjectTaggingRequest& request, const GetObjectTaggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectTagging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetObjectTagging, this, request, handler, context, m_executor.get());
 }
-
 GetObjectTorrentOutcome S3CrtClient::GetObjectTorrent(const GetObjectTorrentRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetObjectTorrent, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2307,20 +1972,13 @@ GetObjectTorrentOutcome S3CrtClient::GetObjectTorrent(const GetObjectTorrentRequ
 
 GetObjectTorrentOutcomeCallable S3CrtClient::GetObjectTorrentCallable(const GetObjectTorrentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectTorrentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectTorrent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetObjectTorrent, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetObjectTorrentAsync(const GetObjectTorrentRequest& request, const GetObjectTorrentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectTorrent(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetObjectTorrent, this, request, handler, context, m_executor.get());
 }
-
 GetPublicAccessBlockOutcome S3CrtClient::GetPublicAccessBlock(const GetPublicAccessBlockRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetPublicAccessBlock, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2339,20 +1997,13 @@ GetPublicAccessBlockOutcome S3CrtClient::GetPublicAccessBlock(const GetPublicAcc
 
 GetPublicAccessBlockOutcomeCallable S3CrtClient::GetPublicAccessBlockCallable(const GetPublicAccessBlockRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPublicAccessBlockOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPublicAccessBlock(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::GetPublicAccessBlock, this, request, m_executor.get());
 }
 
 void S3CrtClient::GetPublicAccessBlockAsync(const GetPublicAccessBlockRequest& request, const GetPublicAccessBlockResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPublicAccessBlock(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::GetPublicAccessBlock, this, request, handler, context, m_executor.get());
 }
-
 HeadBucketOutcome S3CrtClient::HeadBucket(const HeadBucketRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, HeadBucket, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2368,20 +2019,13 @@ HeadBucketOutcome S3CrtClient::HeadBucket(const HeadBucketRequest& request) cons
 
 HeadBucketOutcomeCallable S3CrtClient::HeadBucketCallable(const HeadBucketRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< HeadBucketOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->HeadBucket(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::HeadBucket, this, request, m_executor.get());
 }
 
 void S3CrtClient::HeadBucketAsync(const HeadBucketRequest& request, const HeadBucketResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, HeadBucket(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::HeadBucket, this, request, handler, context, m_executor.get());
 }
-
 HeadObjectOutcome S3CrtClient::HeadObject(const HeadObjectRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, HeadObject, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2403,20 +2047,13 @@ HeadObjectOutcome S3CrtClient::HeadObject(const HeadObjectRequest& request) cons
 
 HeadObjectOutcomeCallable S3CrtClient::HeadObjectCallable(const HeadObjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< HeadObjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->HeadObject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::HeadObject, this, request, m_executor.get());
 }
 
 void S3CrtClient::HeadObjectAsync(const HeadObjectRequest& request, const HeadObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, HeadObject(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::HeadObject, this, request, handler, context, m_executor.get());
 }
-
 ListBucketAnalyticsConfigurationsOutcome S3CrtClient::ListBucketAnalyticsConfigurations(const ListBucketAnalyticsConfigurationsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListBucketAnalyticsConfigurations, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2435,20 +2072,13 @@ ListBucketAnalyticsConfigurationsOutcome S3CrtClient::ListBucketAnalyticsConfigu
 
 ListBucketAnalyticsConfigurationsOutcomeCallable S3CrtClient::ListBucketAnalyticsConfigurationsCallable(const ListBucketAnalyticsConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBucketAnalyticsConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBucketAnalyticsConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListBucketAnalyticsConfigurations, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListBucketAnalyticsConfigurationsAsync(const ListBucketAnalyticsConfigurationsRequest& request, const ListBucketAnalyticsConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBucketAnalyticsConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListBucketAnalyticsConfigurations, this, request, handler, context, m_executor.get());
 }
-
 ListBucketIntelligentTieringConfigurationsOutcome S3CrtClient::ListBucketIntelligentTieringConfigurations(const ListBucketIntelligentTieringConfigurationsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListBucketIntelligentTieringConfigurations, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2467,20 +2097,13 @@ ListBucketIntelligentTieringConfigurationsOutcome S3CrtClient::ListBucketIntelli
 
 ListBucketIntelligentTieringConfigurationsOutcomeCallable S3CrtClient::ListBucketIntelligentTieringConfigurationsCallable(const ListBucketIntelligentTieringConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBucketIntelligentTieringConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBucketIntelligentTieringConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListBucketIntelligentTieringConfigurations, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListBucketIntelligentTieringConfigurationsAsync(const ListBucketIntelligentTieringConfigurationsRequest& request, const ListBucketIntelligentTieringConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBucketIntelligentTieringConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListBucketIntelligentTieringConfigurations, this, request, handler, context, m_executor.get());
 }
-
 ListBucketInventoryConfigurationsOutcome S3CrtClient::ListBucketInventoryConfigurations(const ListBucketInventoryConfigurationsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListBucketInventoryConfigurations, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2499,20 +2122,13 @@ ListBucketInventoryConfigurationsOutcome S3CrtClient::ListBucketInventoryConfigu
 
 ListBucketInventoryConfigurationsOutcomeCallable S3CrtClient::ListBucketInventoryConfigurationsCallable(const ListBucketInventoryConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBucketInventoryConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBucketInventoryConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListBucketInventoryConfigurations, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListBucketInventoryConfigurationsAsync(const ListBucketInventoryConfigurationsRequest& request, const ListBucketInventoryConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBucketInventoryConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListBucketInventoryConfigurations, this, request, handler, context, m_executor.get());
 }
-
 ListBucketMetricsConfigurationsOutcome S3CrtClient::ListBucketMetricsConfigurations(const ListBucketMetricsConfigurationsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListBucketMetricsConfigurations, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2531,20 +2147,13 @@ ListBucketMetricsConfigurationsOutcome S3CrtClient::ListBucketMetricsConfigurati
 
 ListBucketMetricsConfigurationsOutcomeCallable S3CrtClient::ListBucketMetricsConfigurationsCallable(const ListBucketMetricsConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBucketMetricsConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBucketMetricsConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListBucketMetricsConfigurations, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListBucketMetricsConfigurationsAsync(const ListBucketMetricsConfigurationsRequest& request, const ListBucketMetricsConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBucketMetricsConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListBucketMetricsConfigurations, this, request, handler, context, m_executor.get());
 }
-
 ListBucketsOutcome S3CrtClient::ListBuckets() const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListBuckets, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2588,20 +2197,13 @@ ListMultipartUploadsOutcome S3CrtClient::ListMultipartUploads(const ListMultipar
 
 ListMultipartUploadsOutcomeCallable S3CrtClient::ListMultipartUploadsCallable(const ListMultipartUploadsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMultipartUploadsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMultipartUploads(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListMultipartUploads, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListMultipartUploadsAsync(const ListMultipartUploadsRequest& request, const ListMultipartUploadsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMultipartUploads(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListMultipartUploads, this, request, handler, context, m_executor.get());
 }
-
 ListObjectVersionsOutcome S3CrtClient::ListObjectVersions(const ListObjectVersionsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListObjectVersions, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2620,20 +2222,13 @@ ListObjectVersionsOutcome S3CrtClient::ListObjectVersions(const ListObjectVersio
 
 ListObjectVersionsOutcomeCallable S3CrtClient::ListObjectVersionsCallable(const ListObjectVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListObjectVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListObjectVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListObjectVersions, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListObjectVersionsAsync(const ListObjectVersionsRequest& request, const ListObjectVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListObjectVersions(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListObjectVersions, this, request, handler, context, m_executor.get());
 }
-
 ListObjectsOutcome S3CrtClient::ListObjects(const ListObjectsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListObjects, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2649,20 +2244,13 @@ ListObjectsOutcome S3CrtClient::ListObjects(const ListObjectsRequest& request) c
 
 ListObjectsOutcomeCallable S3CrtClient::ListObjectsCallable(const ListObjectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListObjectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListObjects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListObjects, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListObjectsAsync(const ListObjectsRequest& request, const ListObjectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListObjects(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListObjects, this, request, handler, context, m_executor.get());
 }
-
 ListObjectsV2Outcome S3CrtClient::ListObjectsV2(const ListObjectsV2Request& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListObjectsV2, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2681,20 +2269,13 @@ ListObjectsV2Outcome S3CrtClient::ListObjectsV2(const ListObjectsV2Request& requ
 
 ListObjectsV2OutcomeCallable S3CrtClient::ListObjectsV2Callable(const ListObjectsV2Request& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListObjectsV2Outcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListObjectsV2(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListObjectsV2, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListObjectsV2Async(const ListObjectsV2Request& request, const ListObjectsV2ResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListObjectsV2(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListObjectsV2, this, request, handler, context, m_executor.get());
 }
-
 ListPartsOutcome S3CrtClient::ListParts(const ListPartsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListParts, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2721,20 +2302,13 @@ ListPartsOutcome S3CrtClient::ListParts(const ListPartsRequest& request) const
 
 ListPartsOutcomeCallable S3CrtClient::ListPartsCallable(const ListPartsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPartsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListParts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::ListParts, this, request, m_executor.get());
 }
 
 void S3CrtClient::ListPartsAsync(const ListPartsRequest& request, const ListPartsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListParts(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::ListParts, this, request, handler, context, m_executor.get());
 }
-
 PutBucketAccelerateConfigurationOutcome S3CrtClient::PutBucketAccelerateConfiguration(const PutBucketAccelerateConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketAccelerateConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2753,20 +2327,13 @@ PutBucketAccelerateConfigurationOutcome S3CrtClient::PutBucketAccelerateConfigur
 
 PutBucketAccelerateConfigurationOutcomeCallable S3CrtClient::PutBucketAccelerateConfigurationCallable(const PutBucketAccelerateConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketAccelerateConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketAccelerateConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketAccelerateConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketAccelerateConfigurationAsync(const PutBucketAccelerateConfigurationRequest& request, const PutBucketAccelerateConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketAccelerateConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketAccelerateConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutBucketAclOutcome S3CrtClient::PutBucketAcl(const PutBucketAclRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketAcl, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2785,20 +2352,13 @@ PutBucketAclOutcome S3CrtClient::PutBucketAcl(const PutBucketAclRequest& request
 
 PutBucketAclOutcomeCallable S3CrtClient::PutBucketAclCallable(const PutBucketAclRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketAclOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketAcl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketAcl, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketAclAsync(const PutBucketAclRequest& request, const PutBucketAclResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketAcl(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketAcl, this, request, handler, context, m_executor.get());
 }
-
 PutBucketAnalyticsConfigurationOutcome S3CrtClient::PutBucketAnalyticsConfiguration(const PutBucketAnalyticsConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketAnalyticsConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2822,20 +2382,13 @@ PutBucketAnalyticsConfigurationOutcome S3CrtClient::PutBucketAnalyticsConfigurat
 
 PutBucketAnalyticsConfigurationOutcomeCallable S3CrtClient::PutBucketAnalyticsConfigurationCallable(const PutBucketAnalyticsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketAnalyticsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketAnalyticsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketAnalyticsConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketAnalyticsConfigurationAsync(const PutBucketAnalyticsConfigurationRequest& request, const PutBucketAnalyticsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketAnalyticsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketAnalyticsConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutBucketCorsOutcome S3CrtClient::PutBucketCors(const PutBucketCorsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketCors, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2854,20 +2407,13 @@ PutBucketCorsOutcome S3CrtClient::PutBucketCors(const PutBucketCorsRequest& requ
 
 PutBucketCorsOutcomeCallable S3CrtClient::PutBucketCorsCallable(const PutBucketCorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketCorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketCors(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketCors, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketCorsAsync(const PutBucketCorsRequest& request, const PutBucketCorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketCors(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketCors, this, request, handler, context, m_executor.get());
 }
-
 PutBucketEncryptionOutcome S3CrtClient::PutBucketEncryption(const PutBucketEncryptionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketEncryption, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2886,20 +2432,13 @@ PutBucketEncryptionOutcome S3CrtClient::PutBucketEncryption(const PutBucketEncry
 
 PutBucketEncryptionOutcomeCallable S3CrtClient::PutBucketEncryptionCallable(const PutBucketEncryptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketEncryptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketEncryption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketEncryption, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketEncryptionAsync(const PutBucketEncryptionRequest& request, const PutBucketEncryptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketEncryption(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketEncryption, this, request, handler, context, m_executor.get());
 }
-
 PutBucketIntelligentTieringConfigurationOutcome S3CrtClient::PutBucketIntelligentTieringConfiguration(const PutBucketIntelligentTieringConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketIntelligentTieringConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2923,20 +2462,13 @@ PutBucketIntelligentTieringConfigurationOutcome S3CrtClient::PutBucketIntelligen
 
 PutBucketIntelligentTieringConfigurationOutcomeCallable S3CrtClient::PutBucketIntelligentTieringConfigurationCallable(const PutBucketIntelligentTieringConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketIntelligentTieringConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketIntelligentTieringConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketIntelligentTieringConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketIntelligentTieringConfigurationAsync(const PutBucketIntelligentTieringConfigurationRequest& request, const PutBucketIntelligentTieringConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketIntelligentTieringConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketIntelligentTieringConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutBucketInventoryConfigurationOutcome S3CrtClient::PutBucketInventoryConfiguration(const PutBucketInventoryConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketInventoryConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2960,20 +2492,13 @@ PutBucketInventoryConfigurationOutcome S3CrtClient::PutBucketInventoryConfigurat
 
 PutBucketInventoryConfigurationOutcomeCallable S3CrtClient::PutBucketInventoryConfigurationCallable(const PutBucketInventoryConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketInventoryConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketInventoryConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketInventoryConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketInventoryConfigurationAsync(const PutBucketInventoryConfigurationRequest& request, const PutBucketInventoryConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketInventoryConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketInventoryConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutBucketLifecycleConfigurationOutcome S3CrtClient::PutBucketLifecycleConfiguration(const PutBucketLifecycleConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketLifecycleConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2992,20 +2517,13 @@ PutBucketLifecycleConfigurationOutcome S3CrtClient::PutBucketLifecycleConfigurat
 
 PutBucketLifecycleConfigurationOutcomeCallable S3CrtClient::PutBucketLifecycleConfigurationCallable(const PutBucketLifecycleConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketLifecycleConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketLifecycleConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketLifecycleConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketLifecycleConfigurationAsync(const PutBucketLifecycleConfigurationRequest& request, const PutBucketLifecycleConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketLifecycleConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketLifecycleConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutBucketLoggingOutcome S3CrtClient::PutBucketLogging(const PutBucketLoggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketLogging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3024,20 +2542,13 @@ PutBucketLoggingOutcome S3CrtClient::PutBucketLogging(const PutBucketLoggingRequ
 
 PutBucketLoggingOutcomeCallable S3CrtClient::PutBucketLoggingCallable(const PutBucketLoggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketLoggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketLogging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketLogging, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketLoggingAsync(const PutBucketLoggingRequest& request, const PutBucketLoggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketLogging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketLogging, this, request, handler, context, m_executor.get());
 }
-
 PutBucketMetricsConfigurationOutcome S3CrtClient::PutBucketMetricsConfiguration(const PutBucketMetricsConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketMetricsConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3061,20 +2572,13 @@ PutBucketMetricsConfigurationOutcome S3CrtClient::PutBucketMetricsConfiguration(
 
 PutBucketMetricsConfigurationOutcomeCallable S3CrtClient::PutBucketMetricsConfigurationCallable(const PutBucketMetricsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketMetricsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketMetricsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketMetricsConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketMetricsConfigurationAsync(const PutBucketMetricsConfigurationRequest& request, const PutBucketMetricsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketMetricsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketMetricsConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutBucketNotificationConfigurationOutcome S3CrtClient::PutBucketNotificationConfiguration(const PutBucketNotificationConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketNotificationConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3093,20 +2597,13 @@ PutBucketNotificationConfigurationOutcome S3CrtClient::PutBucketNotificationConf
 
 PutBucketNotificationConfigurationOutcomeCallable S3CrtClient::PutBucketNotificationConfigurationCallable(const PutBucketNotificationConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketNotificationConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketNotificationConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketNotificationConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketNotificationConfigurationAsync(const PutBucketNotificationConfigurationRequest& request, const PutBucketNotificationConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketNotificationConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketNotificationConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutBucketOwnershipControlsOutcome S3CrtClient::PutBucketOwnershipControls(const PutBucketOwnershipControlsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketOwnershipControls, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3125,20 +2622,13 @@ PutBucketOwnershipControlsOutcome S3CrtClient::PutBucketOwnershipControls(const 
 
 PutBucketOwnershipControlsOutcomeCallable S3CrtClient::PutBucketOwnershipControlsCallable(const PutBucketOwnershipControlsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketOwnershipControlsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketOwnershipControls(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketOwnershipControls, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketOwnershipControlsAsync(const PutBucketOwnershipControlsRequest& request, const PutBucketOwnershipControlsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketOwnershipControls(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketOwnershipControls, this, request, handler, context, m_executor.get());
 }
-
 PutBucketPolicyOutcome S3CrtClient::PutBucketPolicy(const PutBucketPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3157,20 +2647,13 @@ PutBucketPolicyOutcome S3CrtClient::PutBucketPolicy(const PutBucketPolicyRequest
 
 PutBucketPolicyOutcomeCallable S3CrtClient::PutBucketPolicyCallable(const PutBucketPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketPolicy, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketPolicyAsync(const PutBucketPolicyRequest& request, const PutBucketPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketPolicy(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketPolicy, this, request, handler, context, m_executor.get());
 }
-
 PutBucketReplicationOutcome S3CrtClient::PutBucketReplication(const PutBucketReplicationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketReplication, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3189,20 +2672,13 @@ PutBucketReplicationOutcome S3CrtClient::PutBucketReplication(const PutBucketRep
 
 PutBucketReplicationOutcomeCallable S3CrtClient::PutBucketReplicationCallable(const PutBucketReplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketReplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketReplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketReplication, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketReplicationAsync(const PutBucketReplicationRequest& request, const PutBucketReplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketReplication(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketReplication, this, request, handler, context, m_executor.get());
 }
-
 PutBucketRequestPaymentOutcome S3CrtClient::PutBucketRequestPayment(const PutBucketRequestPaymentRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketRequestPayment, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3221,20 +2697,13 @@ PutBucketRequestPaymentOutcome S3CrtClient::PutBucketRequestPayment(const PutBuc
 
 PutBucketRequestPaymentOutcomeCallable S3CrtClient::PutBucketRequestPaymentCallable(const PutBucketRequestPaymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketRequestPaymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketRequestPayment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketRequestPayment, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketRequestPaymentAsync(const PutBucketRequestPaymentRequest& request, const PutBucketRequestPaymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketRequestPayment(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketRequestPayment, this, request, handler, context, m_executor.get());
 }
-
 PutBucketTaggingOutcome S3CrtClient::PutBucketTagging(const PutBucketTaggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketTagging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3253,20 +2722,13 @@ PutBucketTaggingOutcome S3CrtClient::PutBucketTagging(const PutBucketTaggingRequ
 
 PutBucketTaggingOutcomeCallable S3CrtClient::PutBucketTaggingCallable(const PutBucketTaggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketTaggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketTagging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketTagging, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketTaggingAsync(const PutBucketTaggingRequest& request, const PutBucketTaggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketTagging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketTagging, this, request, handler, context, m_executor.get());
 }
-
 PutBucketVersioningOutcome S3CrtClient::PutBucketVersioning(const PutBucketVersioningRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketVersioning, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3285,20 +2747,13 @@ PutBucketVersioningOutcome S3CrtClient::PutBucketVersioning(const PutBucketVersi
 
 PutBucketVersioningOutcomeCallable S3CrtClient::PutBucketVersioningCallable(const PutBucketVersioningRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketVersioningOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketVersioning(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketVersioning, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketVersioningAsync(const PutBucketVersioningRequest& request, const PutBucketVersioningResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketVersioning(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketVersioning, this, request, handler, context, m_executor.get());
 }
-
 PutBucketWebsiteOutcome S3CrtClient::PutBucketWebsite(const PutBucketWebsiteRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutBucketWebsite, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3317,20 +2772,13 @@ PutBucketWebsiteOutcome S3CrtClient::PutBucketWebsite(const PutBucketWebsiteRequ
 
 PutBucketWebsiteOutcomeCallable S3CrtClient::PutBucketWebsiteCallable(const PutBucketWebsiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutBucketWebsiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutBucketWebsite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutBucketWebsite, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutBucketWebsiteAsync(const PutBucketWebsiteRequest& request, const PutBucketWebsiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutBucketWebsite(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutBucketWebsite, this, request, handler, context, m_executor.get());
 }
-
 PutObjectAclOutcome S3CrtClient::PutObjectAcl(const PutObjectAclRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutObjectAcl, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3355,20 +2803,13 @@ PutObjectAclOutcome S3CrtClient::PutObjectAcl(const PutObjectAclRequest& request
 
 PutObjectAclOutcomeCallable S3CrtClient::PutObjectAclCallable(const PutObjectAclRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutObjectAclOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutObjectAcl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutObjectAcl, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutObjectAclAsync(const PutObjectAclRequest& request, const PutObjectAclResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutObjectAcl(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutObjectAcl, this, request, handler, context, m_executor.get());
 }
-
 PutObjectLegalHoldOutcome S3CrtClient::PutObjectLegalHold(const PutObjectLegalHoldRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutObjectLegalHold, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3393,20 +2834,13 @@ PutObjectLegalHoldOutcome S3CrtClient::PutObjectLegalHold(const PutObjectLegalHo
 
 PutObjectLegalHoldOutcomeCallable S3CrtClient::PutObjectLegalHoldCallable(const PutObjectLegalHoldRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutObjectLegalHoldOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutObjectLegalHold(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutObjectLegalHold, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutObjectLegalHoldAsync(const PutObjectLegalHoldRequest& request, const PutObjectLegalHoldResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutObjectLegalHold(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutObjectLegalHold, this, request, handler, context, m_executor.get());
 }
-
 PutObjectLockConfigurationOutcome S3CrtClient::PutObjectLockConfiguration(const PutObjectLockConfigurationRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutObjectLockConfiguration, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3425,20 +2859,13 @@ PutObjectLockConfigurationOutcome S3CrtClient::PutObjectLockConfiguration(const 
 
 PutObjectLockConfigurationOutcomeCallable S3CrtClient::PutObjectLockConfigurationCallable(const PutObjectLockConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutObjectLockConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutObjectLockConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutObjectLockConfiguration, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutObjectLockConfigurationAsync(const PutObjectLockConfigurationRequest& request, const PutObjectLockConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutObjectLockConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutObjectLockConfiguration, this, request, handler, context, m_executor.get());
 }
-
 PutObjectRetentionOutcome S3CrtClient::PutObjectRetention(const PutObjectRetentionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutObjectRetention, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3463,20 +2890,13 @@ PutObjectRetentionOutcome S3CrtClient::PutObjectRetention(const PutObjectRetenti
 
 PutObjectRetentionOutcomeCallable S3CrtClient::PutObjectRetentionCallable(const PutObjectRetentionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutObjectRetentionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutObjectRetention(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutObjectRetention, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutObjectRetentionAsync(const PutObjectRetentionRequest& request, const PutObjectRetentionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutObjectRetention(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutObjectRetention, this, request, handler, context, m_executor.get());
 }
-
 PutObjectTaggingOutcome S3CrtClient::PutObjectTagging(const PutObjectTaggingRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutObjectTagging, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3501,20 +2921,13 @@ PutObjectTaggingOutcome S3CrtClient::PutObjectTagging(const PutObjectTaggingRequ
 
 PutObjectTaggingOutcomeCallable S3CrtClient::PutObjectTaggingCallable(const PutObjectTaggingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutObjectTaggingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutObjectTagging(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutObjectTagging, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutObjectTaggingAsync(const PutObjectTaggingRequest& request, const PutObjectTaggingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutObjectTagging(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutObjectTagging, this, request, handler, context, m_executor.get());
 }
-
 PutPublicAccessBlockOutcome S3CrtClient::PutPublicAccessBlock(const PutPublicAccessBlockRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutPublicAccessBlock, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3533,20 +2946,13 @@ PutPublicAccessBlockOutcome S3CrtClient::PutPublicAccessBlock(const PutPublicAcc
 
 PutPublicAccessBlockOutcomeCallable S3CrtClient::PutPublicAccessBlockCallable(const PutPublicAccessBlockRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutPublicAccessBlockOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutPublicAccessBlock(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::PutPublicAccessBlock, this, request, m_executor.get());
 }
 
 void S3CrtClient::PutPublicAccessBlockAsync(const PutPublicAccessBlockRequest& request, const PutPublicAccessBlockResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutPublicAccessBlock(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::PutPublicAccessBlock, this, request, handler, context, m_executor.get());
 }
-
 RestoreObjectOutcome S3CrtClient::RestoreObject(const RestoreObjectRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, RestoreObject, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3571,20 +2977,13 @@ RestoreObjectOutcome S3CrtClient::RestoreObject(const RestoreObjectRequest& requ
 
 RestoreObjectOutcomeCallable S3CrtClient::RestoreObjectCallable(const RestoreObjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RestoreObjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RestoreObject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::RestoreObject, this, request, m_executor.get());
 }
 
 void S3CrtClient::RestoreObjectAsync(const RestoreObjectRequest& request, const RestoreObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RestoreObject(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::RestoreObject, this, request, handler, context, m_executor.get());
 }
-
 SelectObjectContentOutcome S3CrtClient::SelectObjectContent(SelectObjectContentRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SelectObjectContent, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3612,20 +3011,13 @@ SelectObjectContentOutcome S3CrtClient::SelectObjectContent(SelectObjectContentR
 
 SelectObjectContentOutcomeCallable S3CrtClient::SelectObjectContentCallable(SelectObjectContentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SelectObjectContentOutcome() > >(ALLOCATION_TAG, [this, &request](){ return this->SelectObjectContent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableStreamingOperation(ALLOCATION_TAG, &S3CrtClient::SelectObjectContent, this, request, m_executor.get());
 }
 
 void S3CrtClient::SelectObjectContentAsync(SelectObjectContentRequest& request, const SelectObjectContentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, &request, handler, context]()
-    {
-      handler(this, request, SelectObjectContent(request), context);
-    } );
+  MakeAsyncStreamingOperation(&S3CrtClient::SelectObjectContent, this, request, handler, context, m_executor.get());
 }
-
 UploadPartOutcome S3CrtClient::UploadPart(const UploadPartRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UploadPart, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3657,20 +3049,13 @@ UploadPartOutcome S3CrtClient::UploadPart(const UploadPartRequest& request) cons
 
 UploadPartOutcomeCallable S3CrtClient::UploadPartCallable(const UploadPartRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UploadPartOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UploadPart(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::UploadPart, this, request, m_executor.get());
 }
 
 void S3CrtClient::UploadPartAsync(const UploadPartRequest& request, const UploadPartResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UploadPart(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::UploadPart, this, request, handler, context, m_executor.get());
 }
-
 UploadPartCopyOutcome S3CrtClient::UploadPartCopy(const UploadPartCopyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UploadPartCopy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3707,20 +3092,13 @@ UploadPartCopyOutcome S3CrtClient::UploadPartCopy(const UploadPartCopyRequest& r
 
 UploadPartCopyOutcomeCallable S3CrtClient::UploadPartCopyCallable(const UploadPartCopyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UploadPartCopyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UploadPartCopy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::UploadPartCopy, this, request, m_executor.get());
 }
 
 void S3CrtClient::UploadPartCopyAsync(const UploadPartCopyRequest& request, const UploadPartCopyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UploadPartCopy(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::UploadPartCopy, this, request, handler, context, m_executor.get());
 }
-
 WriteGetObjectResponseOutcome S3CrtClient::WriteGetObjectResponse(const WriteGetObjectResponseRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, WriteGetObjectResponse, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3744,20 +3122,13 @@ WriteGetObjectResponseOutcome S3CrtClient::WriteGetObjectResponse(const WriteGet
 
 WriteGetObjectResponseOutcomeCallable S3CrtClient::WriteGetObjectResponseCallable(const WriteGetObjectResponseRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< WriteGetObjectResponseOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->WriteGetObjectResponse(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &S3CrtClient::WriteGetObjectResponse, this, request, m_executor.get());
 }
 
 void S3CrtClient::WriteGetObjectResponseAsync(const WriteGetObjectResponseRequest& request, const WriteGetObjectResponseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, WriteGetObjectResponse(request), context);
-    } );
+  MakeAsyncOperation(&S3CrtClient::WriteGetObjectResponse, this, request, handler, context, m_executor.get());
 }
-
 
 
 #include<aws/core/utils/HashingUtils.h>

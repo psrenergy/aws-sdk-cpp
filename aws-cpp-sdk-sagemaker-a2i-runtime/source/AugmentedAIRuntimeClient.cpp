@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -171,18 +172,12 @@ DeleteHumanLoopOutcome AugmentedAIRuntimeClient::DeleteHumanLoop(const DeleteHum
 
 DeleteHumanLoopOutcomeCallable AugmentedAIRuntimeClient::DeleteHumanLoopCallable(const DeleteHumanLoopRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteHumanLoopOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteHumanLoop(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AugmentedAIRuntimeClient::DeleteHumanLoop, this, request, m_executor.get());
 }
 
 void AugmentedAIRuntimeClient::DeleteHumanLoopAsync(const DeleteHumanLoopRequest& request, const DeleteHumanLoopResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteHumanLoop(request), context);
-    } );
+  MakeAsyncOperation(&AugmentedAIRuntimeClient::DeleteHumanLoop, this, request, handler, context, m_executor.get());
 }
 
 DescribeHumanLoopOutcome AugmentedAIRuntimeClient::DescribeHumanLoop(const DescribeHumanLoopRequest& request) const
@@ -202,18 +197,12 @@ DescribeHumanLoopOutcome AugmentedAIRuntimeClient::DescribeHumanLoop(const Descr
 
 DescribeHumanLoopOutcomeCallable AugmentedAIRuntimeClient::DescribeHumanLoopCallable(const DescribeHumanLoopRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeHumanLoopOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeHumanLoop(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AugmentedAIRuntimeClient::DescribeHumanLoop, this, request, m_executor.get());
 }
 
 void AugmentedAIRuntimeClient::DescribeHumanLoopAsync(const DescribeHumanLoopRequest& request, const DescribeHumanLoopResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeHumanLoop(request), context);
-    } );
+  MakeAsyncOperation(&AugmentedAIRuntimeClient::DescribeHumanLoop, this, request, handler, context, m_executor.get());
 }
 
 ListHumanLoopsOutcome AugmentedAIRuntimeClient::ListHumanLoops(const ListHumanLoopsRequest& request) const
@@ -232,18 +221,12 @@ ListHumanLoopsOutcome AugmentedAIRuntimeClient::ListHumanLoops(const ListHumanLo
 
 ListHumanLoopsOutcomeCallable AugmentedAIRuntimeClient::ListHumanLoopsCallable(const ListHumanLoopsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListHumanLoopsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListHumanLoops(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AugmentedAIRuntimeClient::ListHumanLoops, this, request, m_executor.get());
 }
 
 void AugmentedAIRuntimeClient::ListHumanLoopsAsync(const ListHumanLoopsRequest& request, const ListHumanLoopsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListHumanLoops(request), context);
-    } );
+  MakeAsyncOperation(&AugmentedAIRuntimeClient::ListHumanLoops, this, request, handler, context, m_executor.get());
 }
 
 StartHumanLoopOutcome AugmentedAIRuntimeClient::StartHumanLoop(const StartHumanLoopRequest& request) const
@@ -257,18 +240,12 @@ StartHumanLoopOutcome AugmentedAIRuntimeClient::StartHumanLoop(const StartHumanL
 
 StartHumanLoopOutcomeCallable AugmentedAIRuntimeClient::StartHumanLoopCallable(const StartHumanLoopRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartHumanLoopOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartHumanLoop(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AugmentedAIRuntimeClient::StartHumanLoop, this, request, m_executor.get());
 }
 
 void AugmentedAIRuntimeClient::StartHumanLoopAsync(const StartHumanLoopRequest& request, const StartHumanLoopResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartHumanLoop(request), context);
-    } );
+  MakeAsyncOperation(&AugmentedAIRuntimeClient::StartHumanLoop, this, request, handler, context, m_executor.get());
 }
 
 StopHumanLoopOutcome AugmentedAIRuntimeClient::StopHumanLoop(const StopHumanLoopRequest& request) const
@@ -282,17 +259,11 @@ StopHumanLoopOutcome AugmentedAIRuntimeClient::StopHumanLoop(const StopHumanLoop
 
 StopHumanLoopOutcomeCallable AugmentedAIRuntimeClient::StopHumanLoopCallable(const StopHumanLoopRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopHumanLoopOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopHumanLoop(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AugmentedAIRuntimeClient::StopHumanLoop, this, request, m_executor.get());
 }
 
 void AugmentedAIRuntimeClient::StopHumanLoopAsync(const StopHumanLoopRequest& request, const StopHumanLoopResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopHumanLoop(request), context);
-    } );
+  MakeAsyncOperation(&AugmentedAIRuntimeClient::StopHumanLoop, this, request, handler, context, m_executor.get());
 }
 

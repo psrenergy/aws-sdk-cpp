@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -201,18 +202,12 @@ AssociateKmsKeyOutcome CloudWatchLogsClient::AssociateKmsKey(const AssociateKmsK
 
 AssociateKmsKeyOutcomeCallable CloudWatchLogsClient::AssociateKmsKeyCallable(const AssociateKmsKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateKmsKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateKmsKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::AssociateKmsKey, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::AssociateKmsKeyAsync(const AssociateKmsKeyRequest& request, const AssociateKmsKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateKmsKey(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::AssociateKmsKey, this, request, handler, context, m_executor.get());
 }
 
 CancelExportTaskOutcome CloudWatchLogsClient::CancelExportTask(const CancelExportTaskRequest& request) const
@@ -225,18 +220,12 @@ CancelExportTaskOutcome CloudWatchLogsClient::CancelExportTask(const CancelExpor
 
 CancelExportTaskOutcomeCallable CloudWatchLogsClient::CancelExportTaskCallable(const CancelExportTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelExportTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelExportTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::CancelExportTask, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::CancelExportTaskAsync(const CancelExportTaskRequest& request, const CancelExportTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelExportTask(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::CancelExportTask, this, request, handler, context, m_executor.get());
 }
 
 CreateExportTaskOutcome CloudWatchLogsClient::CreateExportTask(const CreateExportTaskRequest& request) const
@@ -249,18 +238,12 @@ CreateExportTaskOutcome CloudWatchLogsClient::CreateExportTask(const CreateExpor
 
 CreateExportTaskOutcomeCallable CloudWatchLogsClient::CreateExportTaskCallable(const CreateExportTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateExportTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateExportTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::CreateExportTask, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::CreateExportTaskAsync(const CreateExportTaskRequest& request, const CreateExportTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateExportTask(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::CreateExportTask, this, request, handler, context, m_executor.get());
 }
 
 CreateLogGroupOutcome CloudWatchLogsClient::CreateLogGroup(const CreateLogGroupRequest& request) const
@@ -273,18 +256,12 @@ CreateLogGroupOutcome CloudWatchLogsClient::CreateLogGroup(const CreateLogGroupR
 
 CreateLogGroupOutcomeCallable CloudWatchLogsClient::CreateLogGroupCallable(const CreateLogGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLogGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLogGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::CreateLogGroup, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::CreateLogGroupAsync(const CreateLogGroupRequest& request, const CreateLogGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLogGroup(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::CreateLogGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateLogStreamOutcome CloudWatchLogsClient::CreateLogStream(const CreateLogStreamRequest& request) const
@@ -297,18 +274,12 @@ CreateLogStreamOutcome CloudWatchLogsClient::CreateLogStream(const CreateLogStre
 
 CreateLogStreamOutcomeCallable CloudWatchLogsClient::CreateLogStreamCallable(const CreateLogStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLogStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLogStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::CreateLogStream, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::CreateLogStreamAsync(const CreateLogStreamRequest& request, const CreateLogStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLogStream(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::CreateLogStream, this, request, handler, context, m_executor.get());
 }
 
 DeleteDestinationOutcome CloudWatchLogsClient::DeleteDestination(const DeleteDestinationRequest& request) const
@@ -321,18 +292,12 @@ DeleteDestinationOutcome CloudWatchLogsClient::DeleteDestination(const DeleteDes
 
 DeleteDestinationOutcomeCallable CloudWatchLogsClient::DeleteDestinationCallable(const DeleteDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteDestination, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteDestinationAsync(const DeleteDestinationRequest& request, const DeleteDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDestination(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteDestination, this, request, handler, context, m_executor.get());
 }
 
 DeleteLogGroupOutcome CloudWatchLogsClient::DeleteLogGroup(const DeleteLogGroupRequest& request) const
@@ -345,18 +310,12 @@ DeleteLogGroupOutcome CloudWatchLogsClient::DeleteLogGroup(const DeleteLogGroupR
 
 DeleteLogGroupOutcomeCallable CloudWatchLogsClient::DeleteLogGroupCallable(const DeleteLogGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLogGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLogGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteLogGroup, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteLogGroupAsync(const DeleteLogGroupRequest& request, const DeleteLogGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLogGroup(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteLogGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteLogStreamOutcome CloudWatchLogsClient::DeleteLogStream(const DeleteLogStreamRequest& request) const
@@ -369,18 +328,12 @@ DeleteLogStreamOutcome CloudWatchLogsClient::DeleteLogStream(const DeleteLogStre
 
 DeleteLogStreamOutcomeCallable CloudWatchLogsClient::DeleteLogStreamCallable(const DeleteLogStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLogStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLogStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteLogStream, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteLogStreamAsync(const DeleteLogStreamRequest& request, const DeleteLogStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLogStream(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteLogStream, this, request, handler, context, m_executor.get());
 }
 
 DeleteMetricFilterOutcome CloudWatchLogsClient::DeleteMetricFilter(const DeleteMetricFilterRequest& request) const
@@ -393,18 +346,12 @@ DeleteMetricFilterOutcome CloudWatchLogsClient::DeleteMetricFilter(const DeleteM
 
 DeleteMetricFilterOutcomeCallable CloudWatchLogsClient::DeleteMetricFilterCallable(const DeleteMetricFilterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteMetricFilterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteMetricFilter(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteMetricFilter, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteMetricFilterAsync(const DeleteMetricFilterRequest& request, const DeleteMetricFilterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteMetricFilter(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteMetricFilter, this, request, handler, context, m_executor.get());
 }
 
 DeleteQueryDefinitionOutcome CloudWatchLogsClient::DeleteQueryDefinition(const DeleteQueryDefinitionRequest& request) const
@@ -417,18 +364,12 @@ DeleteQueryDefinitionOutcome CloudWatchLogsClient::DeleteQueryDefinition(const D
 
 DeleteQueryDefinitionOutcomeCallable CloudWatchLogsClient::DeleteQueryDefinitionCallable(const DeleteQueryDefinitionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteQueryDefinitionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteQueryDefinition(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteQueryDefinition, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteQueryDefinitionAsync(const DeleteQueryDefinitionRequest& request, const DeleteQueryDefinitionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteQueryDefinition(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteQueryDefinition, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourcePolicyOutcome CloudWatchLogsClient::DeleteResourcePolicy(const DeleteResourcePolicyRequest& request) const
@@ -441,18 +382,12 @@ DeleteResourcePolicyOutcome CloudWatchLogsClient::DeleteResourcePolicy(const Del
 
 DeleteResourcePolicyOutcomeCallable CloudWatchLogsClient::DeleteResourcePolicyCallable(const DeleteResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteResourcePolicy, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteResourcePolicyAsync(const DeleteResourcePolicyRequest& request, const DeleteResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteRetentionPolicyOutcome CloudWatchLogsClient::DeleteRetentionPolicy(const DeleteRetentionPolicyRequest& request) const
@@ -465,18 +400,12 @@ DeleteRetentionPolicyOutcome CloudWatchLogsClient::DeleteRetentionPolicy(const D
 
 DeleteRetentionPolicyOutcomeCallable CloudWatchLogsClient::DeleteRetentionPolicyCallable(const DeleteRetentionPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRetentionPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRetentionPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteRetentionPolicy, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteRetentionPolicyAsync(const DeleteRetentionPolicyRequest& request, const DeleteRetentionPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRetentionPolicy(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteRetentionPolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteSubscriptionFilterOutcome CloudWatchLogsClient::DeleteSubscriptionFilter(const DeleteSubscriptionFilterRequest& request) const
@@ -489,18 +418,12 @@ DeleteSubscriptionFilterOutcome CloudWatchLogsClient::DeleteSubscriptionFilter(c
 
 DeleteSubscriptionFilterOutcomeCallable CloudWatchLogsClient::DeleteSubscriptionFilterCallable(const DeleteSubscriptionFilterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSubscriptionFilterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSubscriptionFilter(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DeleteSubscriptionFilter, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DeleteSubscriptionFilterAsync(const DeleteSubscriptionFilterRequest& request, const DeleteSubscriptionFilterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSubscriptionFilter(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DeleteSubscriptionFilter, this, request, handler, context, m_executor.get());
 }
 
 DescribeDestinationsOutcome CloudWatchLogsClient::DescribeDestinations(const DescribeDestinationsRequest& request) const
@@ -513,18 +436,12 @@ DescribeDestinationsOutcome CloudWatchLogsClient::DescribeDestinations(const Des
 
 DescribeDestinationsOutcomeCallable CloudWatchLogsClient::DescribeDestinationsCallable(const DescribeDestinationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDestinationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDestinations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeDestinations, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeDestinationsAsync(const DescribeDestinationsRequest& request, const DescribeDestinationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDestinations(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeDestinations, this, request, handler, context, m_executor.get());
 }
 
 DescribeExportTasksOutcome CloudWatchLogsClient::DescribeExportTasks(const DescribeExportTasksRequest& request) const
@@ -537,18 +454,12 @@ DescribeExportTasksOutcome CloudWatchLogsClient::DescribeExportTasks(const Descr
 
 DescribeExportTasksOutcomeCallable CloudWatchLogsClient::DescribeExportTasksCallable(const DescribeExportTasksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeExportTasksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeExportTasks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeExportTasks, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeExportTasksAsync(const DescribeExportTasksRequest& request, const DescribeExportTasksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeExportTasks(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeExportTasks, this, request, handler, context, m_executor.get());
 }
 
 DescribeLogGroupsOutcome CloudWatchLogsClient::DescribeLogGroups(const DescribeLogGroupsRequest& request) const
@@ -561,18 +472,12 @@ DescribeLogGroupsOutcome CloudWatchLogsClient::DescribeLogGroups(const DescribeL
 
 DescribeLogGroupsOutcomeCallable CloudWatchLogsClient::DescribeLogGroupsCallable(const DescribeLogGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLogGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLogGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeLogGroups, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeLogGroupsAsync(const DescribeLogGroupsRequest& request, const DescribeLogGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLogGroups(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeLogGroups, this, request, handler, context, m_executor.get());
 }
 
 DescribeLogStreamsOutcome CloudWatchLogsClient::DescribeLogStreams(const DescribeLogStreamsRequest& request) const
@@ -585,18 +490,12 @@ DescribeLogStreamsOutcome CloudWatchLogsClient::DescribeLogStreams(const Describ
 
 DescribeLogStreamsOutcomeCallable CloudWatchLogsClient::DescribeLogStreamsCallable(const DescribeLogStreamsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLogStreamsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLogStreams(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeLogStreams, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeLogStreamsAsync(const DescribeLogStreamsRequest& request, const DescribeLogStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLogStreams(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeLogStreams, this, request, handler, context, m_executor.get());
 }
 
 DescribeMetricFiltersOutcome CloudWatchLogsClient::DescribeMetricFilters(const DescribeMetricFiltersRequest& request) const
@@ -609,18 +508,12 @@ DescribeMetricFiltersOutcome CloudWatchLogsClient::DescribeMetricFilters(const D
 
 DescribeMetricFiltersOutcomeCallable CloudWatchLogsClient::DescribeMetricFiltersCallable(const DescribeMetricFiltersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeMetricFiltersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeMetricFilters(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeMetricFilters, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeMetricFiltersAsync(const DescribeMetricFiltersRequest& request, const DescribeMetricFiltersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeMetricFilters(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeMetricFilters, this, request, handler, context, m_executor.get());
 }
 
 DescribeQueriesOutcome CloudWatchLogsClient::DescribeQueries(const DescribeQueriesRequest& request) const
@@ -633,18 +526,12 @@ DescribeQueriesOutcome CloudWatchLogsClient::DescribeQueries(const DescribeQueri
 
 DescribeQueriesOutcomeCallable CloudWatchLogsClient::DescribeQueriesCallable(const DescribeQueriesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeQueriesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeQueries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeQueries, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeQueriesAsync(const DescribeQueriesRequest& request, const DescribeQueriesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeQueries(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeQueries, this, request, handler, context, m_executor.get());
 }
 
 DescribeQueryDefinitionsOutcome CloudWatchLogsClient::DescribeQueryDefinitions(const DescribeQueryDefinitionsRequest& request) const
@@ -657,18 +544,12 @@ DescribeQueryDefinitionsOutcome CloudWatchLogsClient::DescribeQueryDefinitions(c
 
 DescribeQueryDefinitionsOutcomeCallable CloudWatchLogsClient::DescribeQueryDefinitionsCallable(const DescribeQueryDefinitionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeQueryDefinitionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeQueryDefinitions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeQueryDefinitions, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeQueryDefinitionsAsync(const DescribeQueryDefinitionsRequest& request, const DescribeQueryDefinitionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeQueryDefinitions(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeQueryDefinitions, this, request, handler, context, m_executor.get());
 }
 
 DescribeResourcePoliciesOutcome CloudWatchLogsClient::DescribeResourcePolicies(const DescribeResourcePoliciesRequest& request) const
@@ -681,18 +562,12 @@ DescribeResourcePoliciesOutcome CloudWatchLogsClient::DescribeResourcePolicies(c
 
 DescribeResourcePoliciesOutcomeCallable CloudWatchLogsClient::DescribeResourcePoliciesCallable(const DescribeResourcePoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeResourcePoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeResourcePolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeResourcePolicies, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeResourcePoliciesAsync(const DescribeResourcePoliciesRequest& request, const DescribeResourcePoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeResourcePolicies(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeResourcePolicies, this, request, handler, context, m_executor.get());
 }
 
 DescribeSubscriptionFiltersOutcome CloudWatchLogsClient::DescribeSubscriptionFilters(const DescribeSubscriptionFiltersRequest& request) const
@@ -705,18 +580,12 @@ DescribeSubscriptionFiltersOutcome CloudWatchLogsClient::DescribeSubscriptionFil
 
 DescribeSubscriptionFiltersOutcomeCallable CloudWatchLogsClient::DescribeSubscriptionFiltersCallable(const DescribeSubscriptionFiltersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSubscriptionFiltersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSubscriptionFilters(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DescribeSubscriptionFilters, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DescribeSubscriptionFiltersAsync(const DescribeSubscriptionFiltersRequest& request, const DescribeSubscriptionFiltersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSubscriptionFilters(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DescribeSubscriptionFilters, this, request, handler, context, m_executor.get());
 }
 
 DisassociateKmsKeyOutcome CloudWatchLogsClient::DisassociateKmsKey(const DisassociateKmsKeyRequest& request) const
@@ -729,18 +598,12 @@ DisassociateKmsKeyOutcome CloudWatchLogsClient::DisassociateKmsKey(const Disasso
 
 DisassociateKmsKeyOutcomeCallable CloudWatchLogsClient::DisassociateKmsKeyCallable(const DisassociateKmsKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateKmsKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateKmsKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::DisassociateKmsKey, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::DisassociateKmsKeyAsync(const DisassociateKmsKeyRequest& request, const DisassociateKmsKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateKmsKey(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::DisassociateKmsKey, this, request, handler, context, m_executor.get());
 }
 
 FilterLogEventsOutcome CloudWatchLogsClient::FilterLogEvents(const FilterLogEventsRequest& request) const
@@ -753,18 +616,12 @@ FilterLogEventsOutcome CloudWatchLogsClient::FilterLogEvents(const FilterLogEven
 
 FilterLogEventsOutcomeCallable CloudWatchLogsClient::FilterLogEventsCallable(const FilterLogEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< FilterLogEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->FilterLogEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::FilterLogEvents, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::FilterLogEventsAsync(const FilterLogEventsRequest& request, const FilterLogEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, FilterLogEvents(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::FilterLogEvents, this, request, handler, context, m_executor.get());
 }
 
 GetLogEventsOutcome CloudWatchLogsClient::GetLogEvents(const GetLogEventsRequest& request) const
@@ -777,18 +634,12 @@ GetLogEventsOutcome CloudWatchLogsClient::GetLogEvents(const GetLogEventsRequest
 
 GetLogEventsOutcomeCallable CloudWatchLogsClient::GetLogEventsCallable(const GetLogEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLogEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLogEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::GetLogEvents, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::GetLogEventsAsync(const GetLogEventsRequest& request, const GetLogEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLogEvents(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::GetLogEvents, this, request, handler, context, m_executor.get());
 }
 
 GetLogGroupFieldsOutcome CloudWatchLogsClient::GetLogGroupFields(const GetLogGroupFieldsRequest& request) const
@@ -801,18 +652,12 @@ GetLogGroupFieldsOutcome CloudWatchLogsClient::GetLogGroupFields(const GetLogGro
 
 GetLogGroupFieldsOutcomeCallable CloudWatchLogsClient::GetLogGroupFieldsCallable(const GetLogGroupFieldsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLogGroupFieldsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLogGroupFields(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::GetLogGroupFields, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::GetLogGroupFieldsAsync(const GetLogGroupFieldsRequest& request, const GetLogGroupFieldsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLogGroupFields(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::GetLogGroupFields, this, request, handler, context, m_executor.get());
 }
 
 GetLogRecordOutcome CloudWatchLogsClient::GetLogRecord(const GetLogRecordRequest& request) const
@@ -825,18 +670,12 @@ GetLogRecordOutcome CloudWatchLogsClient::GetLogRecord(const GetLogRecordRequest
 
 GetLogRecordOutcomeCallable CloudWatchLogsClient::GetLogRecordCallable(const GetLogRecordRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLogRecordOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLogRecord(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::GetLogRecord, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::GetLogRecordAsync(const GetLogRecordRequest& request, const GetLogRecordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLogRecord(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::GetLogRecord, this, request, handler, context, m_executor.get());
 }
 
 GetQueryResultsOutcome CloudWatchLogsClient::GetQueryResults(const GetQueryResultsRequest& request) const
@@ -849,18 +688,12 @@ GetQueryResultsOutcome CloudWatchLogsClient::GetQueryResults(const GetQueryResul
 
 GetQueryResultsOutcomeCallable CloudWatchLogsClient::GetQueryResultsCallable(const GetQueryResultsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetQueryResultsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetQueryResults(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::GetQueryResults, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::GetQueryResultsAsync(const GetQueryResultsRequest& request, const GetQueryResultsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetQueryResults(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::GetQueryResults, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome CloudWatchLogsClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -873,18 +706,12 @@ ListTagsForResourceOutcome CloudWatchLogsClient::ListTagsForResource(const ListT
 
 ListTagsForResourceOutcomeCallable CloudWatchLogsClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutDestinationOutcome CloudWatchLogsClient::PutDestination(const PutDestinationRequest& request) const
@@ -897,18 +724,12 @@ PutDestinationOutcome CloudWatchLogsClient::PutDestination(const PutDestinationR
 
 PutDestinationOutcomeCallable CloudWatchLogsClient::PutDestinationCallable(const PutDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutDestination, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutDestinationAsync(const PutDestinationRequest& request, const PutDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutDestination(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutDestination, this, request, handler, context, m_executor.get());
 }
 
 PutDestinationPolicyOutcome CloudWatchLogsClient::PutDestinationPolicy(const PutDestinationPolicyRequest& request) const
@@ -921,18 +742,12 @@ PutDestinationPolicyOutcome CloudWatchLogsClient::PutDestinationPolicy(const Put
 
 PutDestinationPolicyOutcomeCallable CloudWatchLogsClient::PutDestinationPolicyCallable(const PutDestinationPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutDestinationPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutDestinationPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutDestinationPolicy, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutDestinationPolicyAsync(const PutDestinationPolicyRequest& request, const PutDestinationPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutDestinationPolicy(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutDestinationPolicy, this, request, handler, context, m_executor.get());
 }
 
 PutLogEventsOutcome CloudWatchLogsClient::PutLogEvents(const PutLogEventsRequest& request) const
@@ -945,18 +760,12 @@ PutLogEventsOutcome CloudWatchLogsClient::PutLogEvents(const PutLogEventsRequest
 
 PutLogEventsOutcomeCallable CloudWatchLogsClient::PutLogEventsCallable(const PutLogEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutLogEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutLogEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutLogEvents, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutLogEventsAsync(const PutLogEventsRequest& request, const PutLogEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutLogEvents(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutLogEvents, this, request, handler, context, m_executor.get());
 }
 
 PutMetricFilterOutcome CloudWatchLogsClient::PutMetricFilter(const PutMetricFilterRequest& request) const
@@ -969,18 +778,12 @@ PutMetricFilterOutcome CloudWatchLogsClient::PutMetricFilter(const PutMetricFilt
 
 PutMetricFilterOutcomeCallable CloudWatchLogsClient::PutMetricFilterCallable(const PutMetricFilterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutMetricFilterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutMetricFilter(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutMetricFilter, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutMetricFilterAsync(const PutMetricFilterRequest& request, const PutMetricFilterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutMetricFilter(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutMetricFilter, this, request, handler, context, m_executor.get());
 }
 
 PutQueryDefinitionOutcome CloudWatchLogsClient::PutQueryDefinition(const PutQueryDefinitionRequest& request) const
@@ -993,18 +796,12 @@ PutQueryDefinitionOutcome CloudWatchLogsClient::PutQueryDefinition(const PutQuer
 
 PutQueryDefinitionOutcomeCallable CloudWatchLogsClient::PutQueryDefinitionCallable(const PutQueryDefinitionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutQueryDefinitionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutQueryDefinition(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutQueryDefinition, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutQueryDefinitionAsync(const PutQueryDefinitionRequest& request, const PutQueryDefinitionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutQueryDefinition(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutQueryDefinition, this, request, handler, context, m_executor.get());
 }
 
 PutResourcePolicyOutcome CloudWatchLogsClient::PutResourcePolicy(const PutResourcePolicyRequest& request) const
@@ -1017,18 +814,12 @@ PutResourcePolicyOutcome CloudWatchLogsClient::PutResourcePolicy(const PutResour
 
 PutResourcePolicyOutcomeCallable CloudWatchLogsClient::PutResourcePolicyCallable(const PutResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutResourcePolicy, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutResourcePolicyAsync(const PutResourcePolicyRequest& request, const PutResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 PutRetentionPolicyOutcome CloudWatchLogsClient::PutRetentionPolicy(const PutRetentionPolicyRequest& request) const
@@ -1041,18 +832,12 @@ PutRetentionPolicyOutcome CloudWatchLogsClient::PutRetentionPolicy(const PutRete
 
 PutRetentionPolicyOutcomeCallable CloudWatchLogsClient::PutRetentionPolicyCallable(const PutRetentionPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRetentionPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRetentionPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutRetentionPolicy, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutRetentionPolicyAsync(const PutRetentionPolicyRequest& request, const PutRetentionPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRetentionPolicy(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutRetentionPolicy, this, request, handler, context, m_executor.get());
 }
 
 PutSubscriptionFilterOutcome CloudWatchLogsClient::PutSubscriptionFilter(const PutSubscriptionFilterRequest& request) const
@@ -1065,18 +850,12 @@ PutSubscriptionFilterOutcome CloudWatchLogsClient::PutSubscriptionFilter(const P
 
 PutSubscriptionFilterOutcomeCallable CloudWatchLogsClient::PutSubscriptionFilterCallable(const PutSubscriptionFilterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutSubscriptionFilterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutSubscriptionFilter(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::PutSubscriptionFilter, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::PutSubscriptionFilterAsync(const PutSubscriptionFilterRequest& request, const PutSubscriptionFilterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutSubscriptionFilter(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::PutSubscriptionFilter, this, request, handler, context, m_executor.get());
 }
 
 StartQueryOutcome CloudWatchLogsClient::StartQuery(const StartQueryRequest& request) const
@@ -1089,18 +868,12 @@ StartQueryOutcome CloudWatchLogsClient::StartQuery(const StartQueryRequest& requ
 
 StartQueryOutcomeCallable CloudWatchLogsClient::StartQueryCallable(const StartQueryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartQueryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartQuery(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::StartQuery, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::StartQueryAsync(const StartQueryRequest& request, const StartQueryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartQuery(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::StartQuery, this, request, handler, context, m_executor.get());
 }
 
 StopQueryOutcome CloudWatchLogsClient::StopQuery(const StopQueryRequest& request) const
@@ -1113,18 +886,12 @@ StopQueryOutcome CloudWatchLogsClient::StopQuery(const StopQueryRequest& request
 
 StopQueryOutcomeCallable CloudWatchLogsClient::StopQueryCallable(const StopQueryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopQueryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopQuery(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::StopQuery, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::StopQueryAsync(const StopQueryRequest& request, const StopQueryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopQuery(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::StopQuery, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome CloudWatchLogsClient::TagResource(const TagResourceRequest& request) const
@@ -1137,18 +904,12 @@ TagResourceOutcome CloudWatchLogsClient::TagResource(const TagResourceRequest& r
 
 TagResourceOutcomeCallable CloudWatchLogsClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::TagResource, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 TestMetricFilterOutcome CloudWatchLogsClient::TestMetricFilter(const TestMetricFilterRequest& request) const
@@ -1161,18 +922,12 @@ TestMetricFilterOutcome CloudWatchLogsClient::TestMetricFilter(const TestMetricF
 
 TestMetricFilterOutcomeCallable CloudWatchLogsClient::TestMetricFilterCallable(const TestMetricFilterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TestMetricFilterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TestMetricFilter(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::TestMetricFilter, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::TestMetricFilterAsync(const TestMetricFilterRequest& request, const TestMetricFilterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TestMetricFilter(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::TestMetricFilter, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome CloudWatchLogsClient::UntagResource(const UntagResourceRequest& request) const
@@ -1185,17 +940,11 @@ UntagResourceOutcome CloudWatchLogsClient::UntagResource(const UntagResourceRequ
 
 UntagResourceOutcomeCallable CloudWatchLogsClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchLogsClient::UntagResource, this, request, m_executor.get());
 }
 
 void CloudWatchLogsClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchLogsClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 

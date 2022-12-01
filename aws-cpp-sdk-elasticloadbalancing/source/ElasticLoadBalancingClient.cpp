@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -211,20 +212,13 @@ AddTagsOutcome ElasticLoadBalancingClient::AddTags(const AddTagsRequest& request
 
 AddTagsOutcomeCallable ElasticLoadBalancingClient::AddTagsCallable(const AddTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::AddTags, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::AddTagsAsync(const AddTagsRequest& request, const AddTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddTags(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::AddTags, this, request, handler, context, m_executor.get());
 }
-
 ApplySecurityGroupsToLoadBalancerOutcome ElasticLoadBalancingClient::ApplySecurityGroupsToLoadBalancer(const ApplySecurityGroupsToLoadBalancerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ApplySecurityGroupsToLoadBalancer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -235,20 +229,13 @@ ApplySecurityGroupsToLoadBalancerOutcome ElasticLoadBalancingClient::ApplySecuri
 
 ApplySecurityGroupsToLoadBalancerOutcomeCallable ElasticLoadBalancingClient::ApplySecurityGroupsToLoadBalancerCallable(const ApplySecurityGroupsToLoadBalancerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ApplySecurityGroupsToLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ApplySecurityGroupsToLoadBalancer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::ApplySecurityGroupsToLoadBalancer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::ApplySecurityGroupsToLoadBalancerAsync(const ApplySecurityGroupsToLoadBalancerRequest& request, const ApplySecurityGroupsToLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ApplySecurityGroupsToLoadBalancer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::ApplySecurityGroupsToLoadBalancer, this, request, handler, context, m_executor.get());
 }
-
 AttachLoadBalancerToSubnetsOutcome ElasticLoadBalancingClient::AttachLoadBalancerToSubnets(const AttachLoadBalancerToSubnetsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, AttachLoadBalancerToSubnets, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -259,20 +246,13 @@ AttachLoadBalancerToSubnetsOutcome ElasticLoadBalancingClient::AttachLoadBalance
 
 AttachLoadBalancerToSubnetsOutcomeCallable ElasticLoadBalancingClient::AttachLoadBalancerToSubnetsCallable(const AttachLoadBalancerToSubnetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachLoadBalancerToSubnetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachLoadBalancerToSubnets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::AttachLoadBalancerToSubnets, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::AttachLoadBalancerToSubnetsAsync(const AttachLoadBalancerToSubnetsRequest& request, const AttachLoadBalancerToSubnetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachLoadBalancerToSubnets(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::AttachLoadBalancerToSubnets, this, request, handler, context, m_executor.get());
 }
-
 ConfigureHealthCheckOutcome ElasticLoadBalancingClient::ConfigureHealthCheck(const ConfigureHealthCheckRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ConfigureHealthCheck, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -283,20 +263,13 @@ ConfigureHealthCheckOutcome ElasticLoadBalancingClient::ConfigureHealthCheck(con
 
 ConfigureHealthCheckOutcomeCallable ElasticLoadBalancingClient::ConfigureHealthCheckCallable(const ConfigureHealthCheckRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfigureHealthCheckOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfigureHealthCheck(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::ConfigureHealthCheck, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::ConfigureHealthCheckAsync(const ConfigureHealthCheckRequest& request, const ConfigureHealthCheckResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfigureHealthCheck(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::ConfigureHealthCheck, this, request, handler, context, m_executor.get());
 }
-
 CreateAppCookieStickinessPolicyOutcome ElasticLoadBalancingClient::CreateAppCookieStickinessPolicy(const CreateAppCookieStickinessPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateAppCookieStickinessPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -307,20 +280,13 @@ CreateAppCookieStickinessPolicyOutcome ElasticLoadBalancingClient::CreateAppCook
 
 CreateAppCookieStickinessPolicyOutcomeCallable ElasticLoadBalancingClient::CreateAppCookieStickinessPolicyCallable(const CreateAppCookieStickinessPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAppCookieStickinessPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAppCookieStickinessPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::CreateAppCookieStickinessPolicy, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::CreateAppCookieStickinessPolicyAsync(const CreateAppCookieStickinessPolicyRequest& request, const CreateAppCookieStickinessPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAppCookieStickinessPolicy(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::CreateAppCookieStickinessPolicy, this, request, handler, context, m_executor.get());
 }
-
 CreateLBCookieStickinessPolicyOutcome ElasticLoadBalancingClient::CreateLBCookieStickinessPolicy(const CreateLBCookieStickinessPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateLBCookieStickinessPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -331,20 +297,13 @@ CreateLBCookieStickinessPolicyOutcome ElasticLoadBalancingClient::CreateLBCookie
 
 CreateLBCookieStickinessPolicyOutcomeCallable ElasticLoadBalancingClient::CreateLBCookieStickinessPolicyCallable(const CreateLBCookieStickinessPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLBCookieStickinessPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLBCookieStickinessPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::CreateLBCookieStickinessPolicy, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::CreateLBCookieStickinessPolicyAsync(const CreateLBCookieStickinessPolicyRequest& request, const CreateLBCookieStickinessPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLBCookieStickinessPolicy(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::CreateLBCookieStickinessPolicy, this, request, handler, context, m_executor.get());
 }
-
 CreateLoadBalancerOutcome ElasticLoadBalancingClient::CreateLoadBalancer(const CreateLoadBalancerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateLoadBalancer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -355,20 +314,13 @@ CreateLoadBalancerOutcome ElasticLoadBalancingClient::CreateLoadBalancer(const C
 
 CreateLoadBalancerOutcomeCallable ElasticLoadBalancingClient::CreateLoadBalancerCallable(const CreateLoadBalancerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLoadBalancer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::CreateLoadBalancer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::CreateLoadBalancerAsync(const CreateLoadBalancerRequest& request, const CreateLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLoadBalancer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::CreateLoadBalancer, this, request, handler, context, m_executor.get());
 }
-
 CreateLoadBalancerListenersOutcome ElasticLoadBalancingClient::CreateLoadBalancerListeners(const CreateLoadBalancerListenersRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateLoadBalancerListeners, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -379,20 +331,13 @@ CreateLoadBalancerListenersOutcome ElasticLoadBalancingClient::CreateLoadBalance
 
 CreateLoadBalancerListenersOutcomeCallable ElasticLoadBalancingClient::CreateLoadBalancerListenersCallable(const CreateLoadBalancerListenersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLoadBalancerListenersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLoadBalancerListeners(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::CreateLoadBalancerListeners, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::CreateLoadBalancerListenersAsync(const CreateLoadBalancerListenersRequest& request, const CreateLoadBalancerListenersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLoadBalancerListeners(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::CreateLoadBalancerListeners, this, request, handler, context, m_executor.get());
 }
-
 CreateLoadBalancerPolicyOutcome ElasticLoadBalancingClient::CreateLoadBalancerPolicy(const CreateLoadBalancerPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateLoadBalancerPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -403,20 +348,13 @@ CreateLoadBalancerPolicyOutcome ElasticLoadBalancingClient::CreateLoadBalancerPo
 
 CreateLoadBalancerPolicyOutcomeCallable ElasticLoadBalancingClient::CreateLoadBalancerPolicyCallable(const CreateLoadBalancerPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLoadBalancerPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLoadBalancerPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::CreateLoadBalancerPolicy, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::CreateLoadBalancerPolicyAsync(const CreateLoadBalancerPolicyRequest& request, const CreateLoadBalancerPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLoadBalancerPolicy(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::CreateLoadBalancerPolicy, this, request, handler, context, m_executor.get());
 }
-
 DeleteLoadBalancerOutcome ElasticLoadBalancingClient::DeleteLoadBalancer(const DeleteLoadBalancerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteLoadBalancer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -427,20 +365,13 @@ DeleteLoadBalancerOutcome ElasticLoadBalancingClient::DeleteLoadBalancer(const D
 
 DeleteLoadBalancerOutcomeCallable ElasticLoadBalancingClient::DeleteLoadBalancerCallable(const DeleteLoadBalancerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLoadBalancer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DeleteLoadBalancer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DeleteLoadBalancerAsync(const DeleteLoadBalancerRequest& request, const DeleteLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLoadBalancer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DeleteLoadBalancer, this, request, handler, context, m_executor.get());
 }
-
 DeleteLoadBalancerListenersOutcome ElasticLoadBalancingClient::DeleteLoadBalancerListeners(const DeleteLoadBalancerListenersRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteLoadBalancerListeners, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -451,20 +382,13 @@ DeleteLoadBalancerListenersOutcome ElasticLoadBalancingClient::DeleteLoadBalance
 
 DeleteLoadBalancerListenersOutcomeCallable ElasticLoadBalancingClient::DeleteLoadBalancerListenersCallable(const DeleteLoadBalancerListenersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLoadBalancerListenersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLoadBalancerListeners(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DeleteLoadBalancerListeners, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DeleteLoadBalancerListenersAsync(const DeleteLoadBalancerListenersRequest& request, const DeleteLoadBalancerListenersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLoadBalancerListeners(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DeleteLoadBalancerListeners, this, request, handler, context, m_executor.get());
 }
-
 DeleteLoadBalancerPolicyOutcome ElasticLoadBalancingClient::DeleteLoadBalancerPolicy(const DeleteLoadBalancerPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteLoadBalancerPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -475,20 +399,13 @@ DeleteLoadBalancerPolicyOutcome ElasticLoadBalancingClient::DeleteLoadBalancerPo
 
 DeleteLoadBalancerPolicyOutcomeCallable ElasticLoadBalancingClient::DeleteLoadBalancerPolicyCallable(const DeleteLoadBalancerPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLoadBalancerPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLoadBalancerPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DeleteLoadBalancerPolicy, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DeleteLoadBalancerPolicyAsync(const DeleteLoadBalancerPolicyRequest& request, const DeleteLoadBalancerPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLoadBalancerPolicy(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DeleteLoadBalancerPolicy, this, request, handler, context, m_executor.get());
 }
-
 DeregisterInstancesFromLoadBalancerOutcome ElasticLoadBalancingClient::DeregisterInstancesFromLoadBalancer(const DeregisterInstancesFromLoadBalancerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeregisterInstancesFromLoadBalancer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -499,20 +416,13 @@ DeregisterInstancesFromLoadBalancerOutcome ElasticLoadBalancingClient::Deregiste
 
 DeregisterInstancesFromLoadBalancerOutcomeCallable ElasticLoadBalancingClient::DeregisterInstancesFromLoadBalancerCallable(const DeregisterInstancesFromLoadBalancerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeregisterInstancesFromLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeregisterInstancesFromLoadBalancer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DeregisterInstancesFromLoadBalancer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DeregisterInstancesFromLoadBalancerAsync(const DeregisterInstancesFromLoadBalancerRequest& request, const DeregisterInstancesFromLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeregisterInstancesFromLoadBalancer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DeregisterInstancesFromLoadBalancer, this, request, handler, context, m_executor.get());
 }
-
 DescribeAccountLimitsOutcome ElasticLoadBalancingClient::DescribeAccountLimits(const DescribeAccountLimitsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DescribeAccountLimits, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -523,20 +433,13 @@ DescribeAccountLimitsOutcome ElasticLoadBalancingClient::DescribeAccountLimits(c
 
 DescribeAccountLimitsOutcomeCallable ElasticLoadBalancingClient::DescribeAccountLimitsCallable(const DescribeAccountLimitsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAccountLimitsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAccountLimits(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DescribeAccountLimits, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DescribeAccountLimitsAsync(const DescribeAccountLimitsRequest& request, const DescribeAccountLimitsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAccountLimits(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DescribeAccountLimits, this, request, handler, context, m_executor.get());
 }
-
 DescribeInstanceHealthOutcome ElasticLoadBalancingClient::DescribeInstanceHealth(const DescribeInstanceHealthRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DescribeInstanceHealth, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -547,20 +450,13 @@ DescribeInstanceHealthOutcome ElasticLoadBalancingClient::DescribeInstanceHealth
 
 DescribeInstanceHealthOutcomeCallable ElasticLoadBalancingClient::DescribeInstanceHealthCallable(const DescribeInstanceHealthRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeInstanceHealthOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeInstanceHealth(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DescribeInstanceHealth, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DescribeInstanceHealthAsync(const DescribeInstanceHealthRequest& request, const DescribeInstanceHealthResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeInstanceHealth(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DescribeInstanceHealth, this, request, handler, context, m_executor.get());
 }
-
 DescribeLoadBalancerAttributesOutcome ElasticLoadBalancingClient::DescribeLoadBalancerAttributes(const DescribeLoadBalancerAttributesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DescribeLoadBalancerAttributes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -571,20 +467,13 @@ DescribeLoadBalancerAttributesOutcome ElasticLoadBalancingClient::DescribeLoadBa
 
 DescribeLoadBalancerAttributesOutcomeCallable ElasticLoadBalancingClient::DescribeLoadBalancerAttributesCallable(const DescribeLoadBalancerAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLoadBalancerAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLoadBalancerAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DescribeLoadBalancerAttributes, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DescribeLoadBalancerAttributesAsync(const DescribeLoadBalancerAttributesRequest& request, const DescribeLoadBalancerAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLoadBalancerAttributes(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DescribeLoadBalancerAttributes, this, request, handler, context, m_executor.get());
 }
-
 DescribeLoadBalancerPoliciesOutcome ElasticLoadBalancingClient::DescribeLoadBalancerPolicies(const DescribeLoadBalancerPoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DescribeLoadBalancerPolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -595,20 +484,13 @@ DescribeLoadBalancerPoliciesOutcome ElasticLoadBalancingClient::DescribeLoadBala
 
 DescribeLoadBalancerPoliciesOutcomeCallable ElasticLoadBalancingClient::DescribeLoadBalancerPoliciesCallable(const DescribeLoadBalancerPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLoadBalancerPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLoadBalancerPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DescribeLoadBalancerPolicies, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DescribeLoadBalancerPoliciesAsync(const DescribeLoadBalancerPoliciesRequest& request, const DescribeLoadBalancerPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLoadBalancerPolicies(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DescribeLoadBalancerPolicies, this, request, handler, context, m_executor.get());
 }
-
 DescribeLoadBalancerPolicyTypesOutcome ElasticLoadBalancingClient::DescribeLoadBalancerPolicyTypes(const DescribeLoadBalancerPolicyTypesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DescribeLoadBalancerPolicyTypes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -619,20 +501,13 @@ DescribeLoadBalancerPolicyTypesOutcome ElasticLoadBalancingClient::DescribeLoadB
 
 DescribeLoadBalancerPolicyTypesOutcomeCallable ElasticLoadBalancingClient::DescribeLoadBalancerPolicyTypesCallable(const DescribeLoadBalancerPolicyTypesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLoadBalancerPolicyTypesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLoadBalancerPolicyTypes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DescribeLoadBalancerPolicyTypes, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DescribeLoadBalancerPolicyTypesAsync(const DescribeLoadBalancerPolicyTypesRequest& request, const DescribeLoadBalancerPolicyTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLoadBalancerPolicyTypes(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DescribeLoadBalancerPolicyTypes, this, request, handler, context, m_executor.get());
 }
-
 DescribeLoadBalancersOutcome ElasticLoadBalancingClient::DescribeLoadBalancers(const DescribeLoadBalancersRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DescribeLoadBalancers, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -643,20 +518,13 @@ DescribeLoadBalancersOutcome ElasticLoadBalancingClient::DescribeLoadBalancers(c
 
 DescribeLoadBalancersOutcomeCallable ElasticLoadBalancingClient::DescribeLoadBalancersCallable(const DescribeLoadBalancersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLoadBalancersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLoadBalancers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DescribeLoadBalancers, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DescribeLoadBalancersAsync(const DescribeLoadBalancersRequest& request, const DescribeLoadBalancersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLoadBalancers(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DescribeLoadBalancers, this, request, handler, context, m_executor.get());
 }
-
 DescribeTagsOutcome ElasticLoadBalancingClient::DescribeTags(const DescribeTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DescribeTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -667,20 +535,13 @@ DescribeTagsOutcome ElasticLoadBalancingClient::DescribeTags(const DescribeTagsR
 
 DescribeTagsOutcomeCallable ElasticLoadBalancingClient::DescribeTagsCallable(const DescribeTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DescribeTags, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DescribeTagsAsync(const DescribeTagsRequest& request, const DescribeTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTags(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DescribeTags, this, request, handler, context, m_executor.get());
 }
-
 DetachLoadBalancerFromSubnetsOutcome ElasticLoadBalancingClient::DetachLoadBalancerFromSubnets(const DetachLoadBalancerFromSubnetsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DetachLoadBalancerFromSubnets, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -691,20 +552,13 @@ DetachLoadBalancerFromSubnetsOutcome ElasticLoadBalancingClient::DetachLoadBalan
 
 DetachLoadBalancerFromSubnetsOutcomeCallable ElasticLoadBalancingClient::DetachLoadBalancerFromSubnetsCallable(const DetachLoadBalancerFromSubnetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachLoadBalancerFromSubnetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachLoadBalancerFromSubnets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DetachLoadBalancerFromSubnets, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DetachLoadBalancerFromSubnetsAsync(const DetachLoadBalancerFromSubnetsRequest& request, const DetachLoadBalancerFromSubnetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachLoadBalancerFromSubnets(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DetachLoadBalancerFromSubnets, this, request, handler, context, m_executor.get());
 }
-
 DisableAvailabilityZonesForLoadBalancerOutcome ElasticLoadBalancingClient::DisableAvailabilityZonesForLoadBalancer(const DisableAvailabilityZonesForLoadBalancerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DisableAvailabilityZonesForLoadBalancer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -715,20 +569,13 @@ DisableAvailabilityZonesForLoadBalancerOutcome ElasticLoadBalancingClient::Disab
 
 DisableAvailabilityZonesForLoadBalancerOutcomeCallable ElasticLoadBalancingClient::DisableAvailabilityZonesForLoadBalancerCallable(const DisableAvailabilityZonesForLoadBalancerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisableAvailabilityZonesForLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisableAvailabilityZonesForLoadBalancer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::DisableAvailabilityZonesForLoadBalancer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::DisableAvailabilityZonesForLoadBalancerAsync(const DisableAvailabilityZonesForLoadBalancerRequest& request, const DisableAvailabilityZonesForLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisableAvailabilityZonesForLoadBalancer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::DisableAvailabilityZonesForLoadBalancer, this, request, handler, context, m_executor.get());
 }
-
 EnableAvailabilityZonesForLoadBalancerOutcome ElasticLoadBalancingClient::EnableAvailabilityZonesForLoadBalancer(const EnableAvailabilityZonesForLoadBalancerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, EnableAvailabilityZonesForLoadBalancer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -739,20 +586,13 @@ EnableAvailabilityZonesForLoadBalancerOutcome ElasticLoadBalancingClient::Enable
 
 EnableAvailabilityZonesForLoadBalancerOutcomeCallable ElasticLoadBalancingClient::EnableAvailabilityZonesForLoadBalancerCallable(const EnableAvailabilityZonesForLoadBalancerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnableAvailabilityZonesForLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnableAvailabilityZonesForLoadBalancer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::EnableAvailabilityZonesForLoadBalancer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::EnableAvailabilityZonesForLoadBalancerAsync(const EnableAvailabilityZonesForLoadBalancerRequest& request, const EnableAvailabilityZonesForLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnableAvailabilityZonesForLoadBalancer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::EnableAvailabilityZonesForLoadBalancer, this, request, handler, context, m_executor.get());
 }
-
 ModifyLoadBalancerAttributesOutcome ElasticLoadBalancingClient::ModifyLoadBalancerAttributes(const ModifyLoadBalancerAttributesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ModifyLoadBalancerAttributes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -763,20 +603,13 @@ ModifyLoadBalancerAttributesOutcome ElasticLoadBalancingClient::ModifyLoadBalanc
 
 ModifyLoadBalancerAttributesOutcomeCallable ElasticLoadBalancingClient::ModifyLoadBalancerAttributesCallable(const ModifyLoadBalancerAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ModifyLoadBalancerAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ModifyLoadBalancerAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::ModifyLoadBalancerAttributes, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::ModifyLoadBalancerAttributesAsync(const ModifyLoadBalancerAttributesRequest& request, const ModifyLoadBalancerAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ModifyLoadBalancerAttributes(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::ModifyLoadBalancerAttributes, this, request, handler, context, m_executor.get());
 }
-
 RegisterInstancesWithLoadBalancerOutcome ElasticLoadBalancingClient::RegisterInstancesWithLoadBalancer(const RegisterInstancesWithLoadBalancerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, RegisterInstancesWithLoadBalancer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -787,20 +620,13 @@ RegisterInstancesWithLoadBalancerOutcome ElasticLoadBalancingClient::RegisterIns
 
 RegisterInstancesWithLoadBalancerOutcomeCallable ElasticLoadBalancingClient::RegisterInstancesWithLoadBalancerCallable(const RegisterInstancesWithLoadBalancerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterInstancesWithLoadBalancerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterInstancesWithLoadBalancer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::RegisterInstancesWithLoadBalancer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::RegisterInstancesWithLoadBalancerAsync(const RegisterInstancesWithLoadBalancerRequest& request, const RegisterInstancesWithLoadBalancerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterInstancesWithLoadBalancer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::RegisterInstancesWithLoadBalancer, this, request, handler, context, m_executor.get());
 }
-
 RemoveTagsOutcome ElasticLoadBalancingClient::RemoveTags(const RemoveTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, RemoveTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -811,20 +637,13 @@ RemoveTagsOutcome ElasticLoadBalancingClient::RemoveTags(const RemoveTagsRequest
 
 RemoveTagsOutcomeCallable ElasticLoadBalancingClient::RemoveTagsCallable(const RemoveTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::RemoveTags, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::RemoveTagsAsync(const RemoveTagsRequest& request, const RemoveTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveTags(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::RemoveTags, this, request, handler, context, m_executor.get());
 }
-
 SetLoadBalancerListenerSSLCertificateOutcome ElasticLoadBalancingClient::SetLoadBalancerListenerSSLCertificate(const SetLoadBalancerListenerSSLCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SetLoadBalancerListenerSSLCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -835,20 +654,13 @@ SetLoadBalancerListenerSSLCertificateOutcome ElasticLoadBalancingClient::SetLoad
 
 SetLoadBalancerListenerSSLCertificateOutcomeCallable ElasticLoadBalancingClient::SetLoadBalancerListenerSSLCertificateCallable(const SetLoadBalancerListenerSSLCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetLoadBalancerListenerSSLCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetLoadBalancerListenerSSLCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::SetLoadBalancerListenerSSLCertificate, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::SetLoadBalancerListenerSSLCertificateAsync(const SetLoadBalancerListenerSSLCertificateRequest& request, const SetLoadBalancerListenerSSLCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetLoadBalancerListenerSSLCertificate(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::SetLoadBalancerListenerSSLCertificate, this, request, handler, context, m_executor.get());
 }
-
 SetLoadBalancerPoliciesForBackendServerOutcome ElasticLoadBalancingClient::SetLoadBalancerPoliciesForBackendServer(const SetLoadBalancerPoliciesForBackendServerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SetLoadBalancerPoliciesForBackendServer, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -859,20 +671,13 @@ SetLoadBalancerPoliciesForBackendServerOutcome ElasticLoadBalancingClient::SetLo
 
 SetLoadBalancerPoliciesForBackendServerOutcomeCallable ElasticLoadBalancingClient::SetLoadBalancerPoliciesForBackendServerCallable(const SetLoadBalancerPoliciesForBackendServerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetLoadBalancerPoliciesForBackendServerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetLoadBalancerPoliciesForBackendServer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::SetLoadBalancerPoliciesForBackendServer, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::SetLoadBalancerPoliciesForBackendServerAsync(const SetLoadBalancerPoliciesForBackendServerRequest& request, const SetLoadBalancerPoliciesForBackendServerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetLoadBalancerPoliciesForBackendServer(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::SetLoadBalancerPoliciesForBackendServer, this, request, handler, context, m_executor.get());
 }
-
 SetLoadBalancerPoliciesOfListenerOutcome ElasticLoadBalancingClient::SetLoadBalancerPoliciesOfListener(const SetLoadBalancerPoliciesOfListenerRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SetLoadBalancerPoliciesOfListener, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -883,17 +688,10 @@ SetLoadBalancerPoliciesOfListenerOutcome ElasticLoadBalancingClient::SetLoadBala
 
 SetLoadBalancerPoliciesOfListenerOutcomeCallable ElasticLoadBalancingClient::SetLoadBalancerPoliciesOfListenerCallable(const SetLoadBalancerPoliciesOfListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetLoadBalancerPoliciesOfListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetLoadBalancerPoliciesOfListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticLoadBalancingClient::SetLoadBalancerPoliciesOfListener, this, request, m_executor.get());
 }
 
 void ElasticLoadBalancingClient::SetLoadBalancerPoliciesOfListenerAsync(const SetLoadBalancerPoliciesOfListenerRequest& request, const SetLoadBalancerPoliciesOfListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetLoadBalancerPoliciesOfListener(request), context);
-    } );
+  MakeAsyncOperation(&ElasticLoadBalancingClient::SetLoadBalancerPoliciesOfListener, this, request, handler, context, m_executor.get());
 }
-

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -184,18 +185,12 @@ AddProfilePermissionOutcome SignerClient::AddProfilePermission(const AddProfileP
 
 AddProfilePermissionOutcomeCallable SignerClient::AddProfilePermissionCallable(const AddProfilePermissionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddProfilePermissionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddProfilePermission(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::AddProfilePermission, this, request, m_executor.get());
 }
 
 void SignerClient::AddProfilePermissionAsync(const AddProfilePermissionRequest& request, const AddProfilePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddProfilePermission(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::AddProfilePermission, this, request, handler, context, m_executor.get());
 }
 
 CancelSigningProfileOutcome SignerClient::CancelSigningProfile(const CancelSigningProfileRequest& request) const
@@ -215,18 +210,12 @@ CancelSigningProfileOutcome SignerClient::CancelSigningProfile(const CancelSigni
 
 CancelSigningProfileOutcomeCallable SignerClient::CancelSigningProfileCallable(const CancelSigningProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelSigningProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelSigningProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::CancelSigningProfile, this, request, m_executor.get());
 }
 
 void SignerClient::CancelSigningProfileAsync(const CancelSigningProfileRequest& request, const CancelSigningProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelSigningProfile(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::CancelSigningProfile, this, request, handler, context, m_executor.get());
 }
 
 DescribeSigningJobOutcome SignerClient::DescribeSigningJob(const DescribeSigningJobRequest& request) const
@@ -246,18 +235,12 @@ DescribeSigningJobOutcome SignerClient::DescribeSigningJob(const DescribeSigning
 
 DescribeSigningJobOutcomeCallable SignerClient::DescribeSigningJobCallable(const DescribeSigningJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSigningJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSigningJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::DescribeSigningJob, this, request, m_executor.get());
 }
 
 void SignerClient::DescribeSigningJobAsync(const DescribeSigningJobRequest& request, const DescribeSigningJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSigningJob(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::DescribeSigningJob, this, request, handler, context, m_executor.get());
 }
 
 GetSigningPlatformOutcome SignerClient::GetSigningPlatform(const GetSigningPlatformRequest& request) const
@@ -277,18 +260,12 @@ GetSigningPlatformOutcome SignerClient::GetSigningPlatform(const GetSigningPlatf
 
 GetSigningPlatformOutcomeCallable SignerClient::GetSigningPlatformCallable(const GetSigningPlatformRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSigningPlatformOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSigningPlatform(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::GetSigningPlatform, this, request, m_executor.get());
 }
 
 void SignerClient::GetSigningPlatformAsync(const GetSigningPlatformRequest& request, const GetSigningPlatformResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSigningPlatform(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::GetSigningPlatform, this, request, handler, context, m_executor.get());
 }
 
 GetSigningProfileOutcome SignerClient::GetSigningProfile(const GetSigningProfileRequest& request) const
@@ -308,18 +285,12 @@ GetSigningProfileOutcome SignerClient::GetSigningProfile(const GetSigningProfile
 
 GetSigningProfileOutcomeCallable SignerClient::GetSigningProfileCallable(const GetSigningProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSigningProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSigningProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::GetSigningProfile, this, request, m_executor.get());
 }
 
 void SignerClient::GetSigningProfileAsync(const GetSigningProfileRequest& request, const GetSigningProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSigningProfile(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::GetSigningProfile, this, request, handler, context, m_executor.get());
 }
 
 ListProfilePermissionsOutcome SignerClient::ListProfilePermissions(const ListProfilePermissionsRequest& request) const
@@ -340,18 +311,12 @@ ListProfilePermissionsOutcome SignerClient::ListProfilePermissions(const ListPro
 
 ListProfilePermissionsOutcomeCallable SignerClient::ListProfilePermissionsCallable(const ListProfilePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProfilePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProfilePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::ListProfilePermissions, this, request, m_executor.get());
 }
 
 void SignerClient::ListProfilePermissionsAsync(const ListProfilePermissionsRequest& request, const ListProfilePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProfilePermissions(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::ListProfilePermissions, this, request, handler, context, m_executor.get());
 }
 
 ListSigningJobsOutcome SignerClient::ListSigningJobs(const ListSigningJobsRequest& request) const
@@ -365,18 +330,12 @@ ListSigningJobsOutcome SignerClient::ListSigningJobs(const ListSigningJobsReques
 
 ListSigningJobsOutcomeCallable SignerClient::ListSigningJobsCallable(const ListSigningJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSigningJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSigningJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::ListSigningJobs, this, request, m_executor.get());
 }
 
 void SignerClient::ListSigningJobsAsync(const ListSigningJobsRequest& request, const ListSigningJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSigningJobs(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::ListSigningJobs, this, request, handler, context, m_executor.get());
 }
 
 ListSigningPlatformsOutcome SignerClient::ListSigningPlatforms(const ListSigningPlatformsRequest& request) const
@@ -390,18 +349,12 @@ ListSigningPlatformsOutcome SignerClient::ListSigningPlatforms(const ListSigning
 
 ListSigningPlatformsOutcomeCallable SignerClient::ListSigningPlatformsCallable(const ListSigningPlatformsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSigningPlatformsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSigningPlatforms(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::ListSigningPlatforms, this, request, m_executor.get());
 }
 
 void SignerClient::ListSigningPlatformsAsync(const ListSigningPlatformsRequest& request, const ListSigningPlatformsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSigningPlatforms(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::ListSigningPlatforms, this, request, handler, context, m_executor.get());
 }
 
 ListSigningProfilesOutcome SignerClient::ListSigningProfiles(const ListSigningProfilesRequest& request) const
@@ -415,18 +368,12 @@ ListSigningProfilesOutcome SignerClient::ListSigningProfiles(const ListSigningPr
 
 ListSigningProfilesOutcomeCallable SignerClient::ListSigningProfilesCallable(const ListSigningProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSigningProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSigningProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::ListSigningProfiles, this, request, m_executor.get());
 }
 
 void SignerClient::ListSigningProfilesAsync(const ListSigningProfilesRequest& request, const ListSigningProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSigningProfiles(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::ListSigningProfiles, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome SignerClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -446,18 +393,12 @@ ListTagsForResourceOutcome SignerClient::ListTagsForResource(const ListTagsForRe
 
 ListTagsForResourceOutcomeCallable SignerClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void SignerClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutSigningProfileOutcome SignerClient::PutSigningProfile(const PutSigningProfileRequest& request) const
@@ -477,18 +418,12 @@ PutSigningProfileOutcome SignerClient::PutSigningProfile(const PutSigningProfile
 
 PutSigningProfileOutcomeCallable SignerClient::PutSigningProfileCallable(const PutSigningProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutSigningProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutSigningProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::PutSigningProfile, this, request, m_executor.get());
 }
 
 void SignerClient::PutSigningProfileAsync(const PutSigningProfileRequest& request, const PutSigningProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutSigningProfile(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::PutSigningProfile, this, request, handler, context, m_executor.get());
 }
 
 RemoveProfilePermissionOutcome SignerClient::RemoveProfilePermission(const RemoveProfilePermissionRequest& request) const
@@ -520,18 +455,12 @@ RemoveProfilePermissionOutcome SignerClient::RemoveProfilePermission(const Remov
 
 RemoveProfilePermissionOutcomeCallable SignerClient::RemoveProfilePermissionCallable(const RemoveProfilePermissionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveProfilePermissionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveProfilePermission(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::RemoveProfilePermission, this, request, m_executor.get());
 }
 
 void SignerClient::RemoveProfilePermissionAsync(const RemoveProfilePermissionRequest& request, const RemoveProfilePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveProfilePermission(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::RemoveProfilePermission, this, request, handler, context, m_executor.get());
 }
 
 RevokeSignatureOutcome SignerClient::RevokeSignature(const RevokeSignatureRequest& request) const
@@ -552,18 +481,12 @@ RevokeSignatureOutcome SignerClient::RevokeSignature(const RevokeSignatureReques
 
 RevokeSignatureOutcomeCallable SignerClient::RevokeSignatureCallable(const RevokeSignatureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RevokeSignatureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RevokeSignature(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::RevokeSignature, this, request, m_executor.get());
 }
 
 void SignerClient::RevokeSignatureAsync(const RevokeSignatureRequest& request, const RevokeSignatureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RevokeSignature(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::RevokeSignature, this, request, handler, context, m_executor.get());
 }
 
 RevokeSigningProfileOutcome SignerClient::RevokeSigningProfile(const RevokeSigningProfileRequest& request) const
@@ -584,18 +507,12 @@ RevokeSigningProfileOutcome SignerClient::RevokeSigningProfile(const RevokeSigni
 
 RevokeSigningProfileOutcomeCallable SignerClient::RevokeSigningProfileCallable(const RevokeSigningProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RevokeSigningProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RevokeSigningProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::RevokeSigningProfile, this, request, m_executor.get());
 }
 
 void SignerClient::RevokeSigningProfileAsync(const RevokeSigningProfileRequest& request, const RevokeSigningProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RevokeSigningProfile(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::RevokeSigningProfile, this, request, handler, context, m_executor.get());
 }
 
 StartSigningJobOutcome SignerClient::StartSigningJob(const StartSigningJobRequest& request) const
@@ -609,18 +526,12 @@ StartSigningJobOutcome SignerClient::StartSigningJob(const StartSigningJobReques
 
 StartSigningJobOutcomeCallable SignerClient::StartSigningJobCallable(const StartSigningJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartSigningJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartSigningJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::StartSigningJob, this, request, m_executor.get());
 }
 
 void SignerClient::StartSigningJobAsync(const StartSigningJobRequest& request, const StartSigningJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartSigningJob(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::StartSigningJob, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome SignerClient::TagResource(const TagResourceRequest& request) const
@@ -640,18 +551,12 @@ TagResourceOutcome SignerClient::TagResource(const TagResourceRequest& request) 
 
 TagResourceOutcomeCallable SignerClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::TagResource, this, request, m_executor.get());
 }
 
 void SignerClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome SignerClient::UntagResource(const UntagResourceRequest& request) const
@@ -676,17 +581,11 @@ UntagResourceOutcome SignerClient::UntagResource(const UntagResourceRequest& req
 
 UntagResourceOutcomeCallable SignerClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SignerClient::UntagResource, this, request, m_executor.get());
 }
 
 void SignerClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&SignerClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -252,18 +253,12 @@ AcceptAttachmentOutcome NetworkManagerClient::AcceptAttachment(const AcceptAttac
 
 AcceptAttachmentOutcomeCallable NetworkManagerClient::AcceptAttachmentCallable(const AcceptAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AcceptAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AcceptAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::AcceptAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::AcceptAttachmentAsync(const AcceptAttachmentRequest& request, const AcceptAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AcceptAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::AcceptAttachment, this, request, handler, context, m_executor.get());
 }
 
 AssociateConnectPeerOutcome NetworkManagerClient::AssociateConnectPeer(const AssociateConnectPeerRequest& request) const
@@ -284,18 +279,12 @@ AssociateConnectPeerOutcome NetworkManagerClient::AssociateConnectPeer(const Ass
 
 AssociateConnectPeerOutcomeCallable NetworkManagerClient::AssociateConnectPeerCallable(const AssociateConnectPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateConnectPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateConnectPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::AssociateConnectPeer, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::AssociateConnectPeerAsync(const AssociateConnectPeerRequest& request, const AssociateConnectPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateConnectPeer(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::AssociateConnectPeer, this, request, handler, context, m_executor.get());
 }
 
 AssociateCustomerGatewayOutcome NetworkManagerClient::AssociateCustomerGateway(const AssociateCustomerGatewayRequest& request) const
@@ -316,18 +305,12 @@ AssociateCustomerGatewayOutcome NetworkManagerClient::AssociateCustomerGateway(c
 
 AssociateCustomerGatewayOutcomeCallable NetworkManagerClient::AssociateCustomerGatewayCallable(const AssociateCustomerGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateCustomerGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateCustomerGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::AssociateCustomerGateway, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::AssociateCustomerGatewayAsync(const AssociateCustomerGatewayRequest& request, const AssociateCustomerGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateCustomerGateway(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::AssociateCustomerGateway, this, request, handler, context, m_executor.get());
 }
 
 AssociateLinkOutcome NetworkManagerClient::AssociateLink(const AssociateLinkRequest& request) const
@@ -348,18 +331,12 @@ AssociateLinkOutcome NetworkManagerClient::AssociateLink(const AssociateLinkRequ
 
 AssociateLinkOutcomeCallable NetworkManagerClient::AssociateLinkCallable(const AssociateLinkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateLinkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateLink(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::AssociateLink, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::AssociateLinkAsync(const AssociateLinkRequest& request, const AssociateLinkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateLink(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::AssociateLink, this, request, handler, context, m_executor.get());
 }
 
 AssociateTransitGatewayConnectPeerOutcome NetworkManagerClient::AssociateTransitGatewayConnectPeer(const AssociateTransitGatewayConnectPeerRequest& request) const
@@ -380,18 +357,12 @@ AssociateTransitGatewayConnectPeerOutcome NetworkManagerClient::AssociateTransit
 
 AssociateTransitGatewayConnectPeerOutcomeCallable NetworkManagerClient::AssociateTransitGatewayConnectPeerCallable(const AssociateTransitGatewayConnectPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateTransitGatewayConnectPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateTransitGatewayConnectPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::AssociateTransitGatewayConnectPeer, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::AssociateTransitGatewayConnectPeerAsync(const AssociateTransitGatewayConnectPeerRequest& request, const AssociateTransitGatewayConnectPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateTransitGatewayConnectPeer(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::AssociateTransitGatewayConnectPeer, this, request, handler, context, m_executor.get());
 }
 
 CreateConnectAttachmentOutcome NetworkManagerClient::CreateConnectAttachment(const CreateConnectAttachmentRequest& request) const
@@ -405,18 +376,12 @@ CreateConnectAttachmentOutcome NetworkManagerClient::CreateConnectAttachment(con
 
 CreateConnectAttachmentOutcomeCallable NetworkManagerClient::CreateConnectAttachmentCallable(const CreateConnectAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateConnectAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateConnectAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateConnectAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateConnectAttachmentAsync(const CreateConnectAttachmentRequest& request, const CreateConnectAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateConnectAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateConnectAttachment, this, request, handler, context, m_executor.get());
 }
 
 CreateConnectPeerOutcome NetworkManagerClient::CreateConnectPeer(const CreateConnectPeerRequest& request) const
@@ -430,18 +395,12 @@ CreateConnectPeerOutcome NetworkManagerClient::CreateConnectPeer(const CreateCon
 
 CreateConnectPeerOutcomeCallable NetworkManagerClient::CreateConnectPeerCallable(const CreateConnectPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateConnectPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateConnectPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateConnectPeer, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateConnectPeerAsync(const CreateConnectPeerRequest& request, const CreateConnectPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateConnectPeer(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateConnectPeer, this, request, handler, context, m_executor.get());
 }
 
 CreateConnectionOutcome NetworkManagerClient::CreateConnection(const CreateConnectionRequest& request) const
@@ -462,18 +421,12 @@ CreateConnectionOutcome NetworkManagerClient::CreateConnection(const CreateConne
 
 CreateConnectionOutcomeCallable NetworkManagerClient::CreateConnectionCallable(const CreateConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateConnection, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateConnectionAsync(const CreateConnectionRequest& request, const CreateConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateConnection(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateConnection, this, request, handler, context, m_executor.get());
 }
 
 CreateCoreNetworkOutcome NetworkManagerClient::CreateCoreNetwork(const CreateCoreNetworkRequest& request) const
@@ -487,18 +440,12 @@ CreateCoreNetworkOutcome NetworkManagerClient::CreateCoreNetwork(const CreateCor
 
 CreateCoreNetworkOutcomeCallable NetworkManagerClient::CreateCoreNetworkCallable(const CreateCoreNetworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCoreNetworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCoreNetwork(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateCoreNetwork, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateCoreNetworkAsync(const CreateCoreNetworkRequest& request, const CreateCoreNetworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCoreNetwork(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateCoreNetwork, this, request, handler, context, m_executor.get());
 }
 
 CreateDeviceOutcome NetworkManagerClient::CreateDevice(const CreateDeviceRequest& request) const
@@ -519,18 +466,12 @@ CreateDeviceOutcome NetworkManagerClient::CreateDevice(const CreateDeviceRequest
 
 CreateDeviceOutcomeCallable NetworkManagerClient::CreateDeviceCallable(const CreateDeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateDevice, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateDeviceAsync(const CreateDeviceRequest& request, const CreateDeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDevice(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateDevice, this, request, handler, context, m_executor.get());
 }
 
 CreateGlobalNetworkOutcome NetworkManagerClient::CreateGlobalNetwork(const CreateGlobalNetworkRequest& request) const
@@ -544,18 +485,12 @@ CreateGlobalNetworkOutcome NetworkManagerClient::CreateGlobalNetwork(const Creat
 
 CreateGlobalNetworkOutcomeCallable NetworkManagerClient::CreateGlobalNetworkCallable(const CreateGlobalNetworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGlobalNetworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGlobalNetwork(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateGlobalNetwork, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateGlobalNetworkAsync(const CreateGlobalNetworkRequest& request, const CreateGlobalNetworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGlobalNetwork(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateGlobalNetwork, this, request, handler, context, m_executor.get());
 }
 
 CreateLinkOutcome NetworkManagerClient::CreateLink(const CreateLinkRequest& request) const
@@ -576,18 +511,12 @@ CreateLinkOutcome NetworkManagerClient::CreateLink(const CreateLinkRequest& requ
 
 CreateLinkOutcomeCallable NetworkManagerClient::CreateLinkCallable(const CreateLinkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLinkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLink(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateLink, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateLinkAsync(const CreateLinkRequest& request, const CreateLinkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLink(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateLink, this, request, handler, context, m_executor.get());
 }
 
 CreateSiteOutcome NetworkManagerClient::CreateSite(const CreateSiteRequest& request) const
@@ -608,18 +537,12 @@ CreateSiteOutcome NetworkManagerClient::CreateSite(const CreateSiteRequest& requ
 
 CreateSiteOutcomeCallable NetworkManagerClient::CreateSiteCallable(const CreateSiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateSite, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateSiteAsync(const CreateSiteRequest& request, const CreateSiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSite(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateSite, this, request, handler, context, m_executor.get());
 }
 
 CreateSiteToSiteVpnAttachmentOutcome NetworkManagerClient::CreateSiteToSiteVpnAttachment(const CreateSiteToSiteVpnAttachmentRequest& request) const
@@ -633,18 +556,12 @@ CreateSiteToSiteVpnAttachmentOutcome NetworkManagerClient::CreateSiteToSiteVpnAt
 
 CreateSiteToSiteVpnAttachmentOutcomeCallable NetworkManagerClient::CreateSiteToSiteVpnAttachmentCallable(const CreateSiteToSiteVpnAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSiteToSiteVpnAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSiteToSiteVpnAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateSiteToSiteVpnAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateSiteToSiteVpnAttachmentAsync(const CreateSiteToSiteVpnAttachmentRequest& request, const CreateSiteToSiteVpnAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSiteToSiteVpnAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateSiteToSiteVpnAttachment, this, request, handler, context, m_executor.get());
 }
 
 CreateTransitGatewayPeeringOutcome NetworkManagerClient::CreateTransitGatewayPeering(const CreateTransitGatewayPeeringRequest& request) const
@@ -658,18 +575,12 @@ CreateTransitGatewayPeeringOutcome NetworkManagerClient::CreateTransitGatewayPee
 
 CreateTransitGatewayPeeringOutcomeCallable NetworkManagerClient::CreateTransitGatewayPeeringCallable(const CreateTransitGatewayPeeringRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTransitGatewayPeeringOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTransitGatewayPeering(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateTransitGatewayPeering, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateTransitGatewayPeeringAsync(const CreateTransitGatewayPeeringRequest& request, const CreateTransitGatewayPeeringResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTransitGatewayPeering(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateTransitGatewayPeering, this, request, handler, context, m_executor.get());
 }
 
 CreateTransitGatewayRouteTableAttachmentOutcome NetworkManagerClient::CreateTransitGatewayRouteTableAttachment(const CreateTransitGatewayRouteTableAttachmentRequest& request) const
@@ -683,18 +594,12 @@ CreateTransitGatewayRouteTableAttachmentOutcome NetworkManagerClient::CreateTran
 
 CreateTransitGatewayRouteTableAttachmentOutcomeCallable NetworkManagerClient::CreateTransitGatewayRouteTableAttachmentCallable(const CreateTransitGatewayRouteTableAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTransitGatewayRouteTableAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTransitGatewayRouteTableAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateTransitGatewayRouteTableAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateTransitGatewayRouteTableAttachmentAsync(const CreateTransitGatewayRouteTableAttachmentRequest& request, const CreateTransitGatewayRouteTableAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTransitGatewayRouteTableAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateTransitGatewayRouteTableAttachment, this, request, handler, context, m_executor.get());
 }
 
 CreateVpcAttachmentOutcome NetworkManagerClient::CreateVpcAttachment(const CreateVpcAttachmentRequest& request) const
@@ -708,18 +613,12 @@ CreateVpcAttachmentOutcome NetworkManagerClient::CreateVpcAttachment(const Creat
 
 CreateVpcAttachmentOutcomeCallable NetworkManagerClient::CreateVpcAttachmentCallable(const CreateVpcAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateVpcAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateVpcAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::CreateVpcAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::CreateVpcAttachmentAsync(const CreateVpcAttachmentRequest& request, const CreateVpcAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateVpcAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::CreateVpcAttachment, this, request, handler, context, m_executor.get());
 }
 
 DeleteAttachmentOutcome NetworkManagerClient::DeleteAttachment(const DeleteAttachmentRequest& request) const
@@ -739,18 +638,12 @@ DeleteAttachmentOutcome NetworkManagerClient::DeleteAttachment(const DeleteAttac
 
 DeleteAttachmentOutcomeCallable NetworkManagerClient::DeleteAttachmentCallable(const DeleteAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteAttachmentAsync(const DeleteAttachmentRequest& request, const DeleteAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteAttachment, this, request, handler, context, m_executor.get());
 }
 
 DeleteConnectPeerOutcome NetworkManagerClient::DeleteConnectPeer(const DeleteConnectPeerRequest& request) const
@@ -770,18 +663,12 @@ DeleteConnectPeerOutcome NetworkManagerClient::DeleteConnectPeer(const DeleteCon
 
 DeleteConnectPeerOutcomeCallable NetworkManagerClient::DeleteConnectPeerCallable(const DeleteConnectPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteConnectPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteConnectPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteConnectPeer, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteConnectPeerAsync(const DeleteConnectPeerRequest& request, const DeleteConnectPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteConnectPeer(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteConnectPeer, this, request, handler, context, m_executor.get());
 }
 
 DeleteConnectionOutcome NetworkManagerClient::DeleteConnection(const DeleteConnectionRequest& request) const
@@ -808,18 +695,12 @@ DeleteConnectionOutcome NetworkManagerClient::DeleteConnection(const DeleteConne
 
 DeleteConnectionOutcomeCallable NetworkManagerClient::DeleteConnectionCallable(const DeleteConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteConnection, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteConnectionAsync(const DeleteConnectionRequest& request, const DeleteConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteConnection(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteConnection, this, request, handler, context, m_executor.get());
 }
 
 DeleteCoreNetworkOutcome NetworkManagerClient::DeleteCoreNetwork(const DeleteCoreNetworkRequest& request) const
@@ -839,18 +720,12 @@ DeleteCoreNetworkOutcome NetworkManagerClient::DeleteCoreNetwork(const DeleteCor
 
 DeleteCoreNetworkOutcomeCallable NetworkManagerClient::DeleteCoreNetworkCallable(const DeleteCoreNetworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCoreNetworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCoreNetwork(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteCoreNetwork, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteCoreNetworkAsync(const DeleteCoreNetworkRequest& request, const DeleteCoreNetworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCoreNetwork(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteCoreNetwork, this, request, handler, context, m_executor.get());
 }
 
 DeleteCoreNetworkPolicyVersionOutcome NetworkManagerClient::DeleteCoreNetworkPolicyVersion(const DeleteCoreNetworkPolicyVersionRequest& request) const
@@ -877,18 +752,12 @@ DeleteCoreNetworkPolicyVersionOutcome NetworkManagerClient::DeleteCoreNetworkPol
 
 DeleteCoreNetworkPolicyVersionOutcomeCallable NetworkManagerClient::DeleteCoreNetworkPolicyVersionCallable(const DeleteCoreNetworkPolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCoreNetworkPolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCoreNetworkPolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteCoreNetworkPolicyVersion, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteCoreNetworkPolicyVersionAsync(const DeleteCoreNetworkPolicyVersionRequest& request, const DeleteCoreNetworkPolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCoreNetworkPolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteCoreNetworkPolicyVersion, this, request, handler, context, m_executor.get());
 }
 
 DeleteDeviceOutcome NetworkManagerClient::DeleteDevice(const DeleteDeviceRequest& request) const
@@ -915,18 +784,12 @@ DeleteDeviceOutcome NetworkManagerClient::DeleteDevice(const DeleteDeviceRequest
 
 DeleteDeviceOutcomeCallable NetworkManagerClient::DeleteDeviceCallable(const DeleteDeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteDevice, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteDeviceAsync(const DeleteDeviceRequest& request, const DeleteDeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDevice(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteDevice, this, request, handler, context, m_executor.get());
 }
 
 DeleteGlobalNetworkOutcome NetworkManagerClient::DeleteGlobalNetwork(const DeleteGlobalNetworkRequest& request) const
@@ -946,18 +809,12 @@ DeleteGlobalNetworkOutcome NetworkManagerClient::DeleteGlobalNetwork(const Delet
 
 DeleteGlobalNetworkOutcomeCallable NetworkManagerClient::DeleteGlobalNetworkCallable(const DeleteGlobalNetworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGlobalNetworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGlobalNetwork(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteGlobalNetwork, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteGlobalNetworkAsync(const DeleteGlobalNetworkRequest& request, const DeleteGlobalNetworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGlobalNetwork(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteGlobalNetwork, this, request, handler, context, m_executor.get());
 }
 
 DeleteLinkOutcome NetworkManagerClient::DeleteLink(const DeleteLinkRequest& request) const
@@ -984,18 +841,12 @@ DeleteLinkOutcome NetworkManagerClient::DeleteLink(const DeleteLinkRequest& requ
 
 DeleteLinkOutcomeCallable NetworkManagerClient::DeleteLinkCallable(const DeleteLinkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLinkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLink(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteLink, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteLinkAsync(const DeleteLinkRequest& request, const DeleteLinkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLink(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteLink, this, request, handler, context, m_executor.get());
 }
 
 DeletePeeringOutcome NetworkManagerClient::DeletePeering(const DeletePeeringRequest& request) const
@@ -1015,18 +866,12 @@ DeletePeeringOutcome NetworkManagerClient::DeletePeering(const DeletePeeringRequ
 
 DeletePeeringOutcomeCallable NetworkManagerClient::DeletePeeringCallable(const DeletePeeringRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePeeringOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePeering(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeletePeering, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeletePeeringAsync(const DeletePeeringRequest& request, const DeletePeeringResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePeering(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeletePeering, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourcePolicyOutcome NetworkManagerClient::DeleteResourcePolicy(const DeleteResourcePolicyRequest& request) const
@@ -1046,18 +891,12 @@ DeleteResourcePolicyOutcome NetworkManagerClient::DeleteResourcePolicy(const Del
 
 DeleteResourcePolicyOutcomeCallable NetworkManagerClient::DeleteResourcePolicyCallable(const DeleteResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteResourcePolicy, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteResourcePolicyAsync(const DeleteResourcePolicyRequest& request, const DeleteResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteSiteOutcome NetworkManagerClient::DeleteSite(const DeleteSiteRequest& request) const
@@ -1084,18 +923,12 @@ DeleteSiteOutcome NetworkManagerClient::DeleteSite(const DeleteSiteRequest& requ
 
 DeleteSiteOutcomeCallable NetworkManagerClient::DeleteSiteCallable(const DeleteSiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeleteSite, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeleteSiteAsync(const DeleteSiteRequest& request, const DeleteSiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSite(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeleteSite, this, request, handler, context, m_executor.get());
 }
 
 DeregisterTransitGatewayOutcome NetworkManagerClient::DeregisterTransitGateway(const DeregisterTransitGatewayRequest& request) const
@@ -1122,18 +955,12 @@ DeregisterTransitGatewayOutcome NetworkManagerClient::DeregisterTransitGateway(c
 
 DeregisterTransitGatewayOutcomeCallable NetworkManagerClient::DeregisterTransitGatewayCallable(const DeregisterTransitGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeregisterTransitGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeregisterTransitGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DeregisterTransitGateway, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DeregisterTransitGatewayAsync(const DeregisterTransitGatewayRequest& request, const DeregisterTransitGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeregisterTransitGateway(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DeregisterTransitGateway, this, request, handler, context, m_executor.get());
 }
 
 DescribeGlobalNetworksOutcome NetworkManagerClient::DescribeGlobalNetworks(const DescribeGlobalNetworksRequest& request) const
@@ -1147,18 +974,12 @@ DescribeGlobalNetworksOutcome NetworkManagerClient::DescribeGlobalNetworks(const
 
 DescribeGlobalNetworksOutcomeCallable NetworkManagerClient::DescribeGlobalNetworksCallable(const DescribeGlobalNetworksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeGlobalNetworksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeGlobalNetworks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DescribeGlobalNetworks, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DescribeGlobalNetworksAsync(const DescribeGlobalNetworksRequest& request, const DescribeGlobalNetworksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeGlobalNetworks(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DescribeGlobalNetworks, this, request, handler, context, m_executor.get());
 }
 
 DisassociateConnectPeerOutcome NetworkManagerClient::DisassociateConnectPeer(const DisassociateConnectPeerRequest& request) const
@@ -1185,18 +1006,12 @@ DisassociateConnectPeerOutcome NetworkManagerClient::DisassociateConnectPeer(con
 
 DisassociateConnectPeerOutcomeCallable NetworkManagerClient::DisassociateConnectPeerCallable(const DisassociateConnectPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateConnectPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateConnectPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DisassociateConnectPeer, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DisassociateConnectPeerAsync(const DisassociateConnectPeerRequest& request, const DisassociateConnectPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateConnectPeer(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DisassociateConnectPeer, this, request, handler, context, m_executor.get());
 }
 
 DisassociateCustomerGatewayOutcome NetworkManagerClient::DisassociateCustomerGateway(const DisassociateCustomerGatewayRequest& request) const
@@ -1223,18 +1038,12 @@ DisassociateCustomerGatewayOutcome NetworkManagerClient::DisassociateCustomerGat
 
 DisassociateCustomerGatewayOutcomeCallable NetworkManagerClient::DisassociateCustomerGatewayCallable(const DisassociateCustomerGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateCustomerGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateCustomerGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DisassociateCustomerGateway, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DisassociateCustomerGatewayAsync(const DisassociateCustomerGatewayRequest& request, const DisassociateCustomerGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateCustomerGateway(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DisassociateCustomerGateway, this, request, handler, context, m_executor.get());
 }
 
 DisassociateLinkOutcome NetworkManagerClient::DisassociateLink(const DisassociateLinkRequest& request) const
@@ -1265,18 +1074,12 @@ DisassociateLinkOutcome NetworkManagerClient::DisassociateLink(const Disassociat
 
 DisassociateLinkOutcomeCallable NetworkManagerClient::DisassociateLinkCallable(const DisassociateLinkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateLinkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateLink(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DisassociateLink, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DisassociateLinkAsync(const DisassociateLinkRequest& request, const DisassociateLinkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateLink(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DisassociateLink, this, request, handler, context, m_executor.get());
 }
 
 DisassociateTransitGatewayConnectPeerOutcome NetworkManagerClient::DisassociateTransitGatewayConnectPeer(const DisassociateTransitGatewayConnectPeerRequest& request) const
@@ -1303,18 +1106,12 @@ DisassociateTransitGatewayConnectPeerOutcome NetworkManagerClient::DisassociateT
 
 DisassociateTransitGatewayConnectPeerOutcomeCallable NetworkManagerClient::DisassociateTransitGatewayConnectPeerCallable(const DisassociateTransitGatewayConnectPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateTransitGatewayConnectPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateTransitGatewayConnectPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::DisassociateTransitGatewayConnectPeer, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::DisassociateTransitGatewayConnectPeerAsync(const DisassociateTransitGatewayConnectPeerRequest& request, const DisassociateTransitGatewayConnectPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateTransitGatewayConnectPeer(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::DisassociateTransitGatewayConnectPeer, this, request, handler, context, m_executor.get());
 }
 
 ExecuteCoreNetworkChangeSetOutcome NetworkManagerClient::ExecuteCoreNetworkChangeSet(const ExecuteCoreNetworkChangeSetRequest& request) const
@@ -1342,18 +1139,12 @@ ExecuteCoreNetworkChangeSetOutcome NetworkManagerClient::ExecuteCoreNetworkChang
 
 ExecuteCoreNetworkChangeSetOutcomeCallable NetworkManagerClient::ExecuteCoreNetworkChangeSetCallable(const ExecuteCoreNetworkChangeSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ExecuteCoreNetworkChangeSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ExecuteCoreNetworkChangeSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ExecuteCoreNetworkChangeSet, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ExecuteCoreNetworkChangeSetAsync(const ExecuteCoreNetworkChangeSetRequest& request, const ExecuteCoreNetworkChangeSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ExecuteCoreNetworkChangeSet(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ExecuteCoreNetworkChangeSet, this, request, handler, context, m_executor.get());
 }
 
 GetConnectAttachmentOutcome NetworkManagerClient::GetConnectAttachment(const GetConnectAttachmentRequest& request) const
@@ -1373,18 +1164,12 @@ GetConnectAttachmentOutcome NetworkManagerClient::GetConnectAttachment(const Get
 
 GetConnectAttachmentOutcomeCallable NetworkManagerClient::GetConnectAttachmentCallable(const GetConnectAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetConnectAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetConnectAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetConnectAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetConnectAttachmentAsync(const GetConnectAttachmentRequest& request, const GetConnectAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetConnectAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetConnectAttachment, this, request, handler, context, m_executor.get());
 }
 
 GetConnectPeerOutcome NetworkManagerClient::GetConnectPeer(const GetConnectPeerRequest& request) const
@@ -1404,18 +1189,12 @@ GetConnectPeerOutcome NetworkManagerClient::GetConnectPeer(const GetConnectPeerR
 
 GetConnectPeerOutcomeCallable NetworkManagerClient::GetConnectPeerCallable(const GetConnectPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetConnectPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetConnectPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetConnectPeer, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetConnectPeerAsync(const GetConnectPeerRequest& request, const GetConnectPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetConnectPeer(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetConnectPeer, this, request, handler, context, m_executor.get());
 }
 
 GetConnectPeerAssociationsOutcome NetworkManagerClient::GetConnectPeerAssociations(const GetConnectPeerAssociationsRequest& request) const
@@ -1436,18 +1215,12 @@ GetConnectPeerAssociationsOutcome NetworkManagerClient::GetConnectPeerAssociatio
 
 GetConnectPeerAssociationsOutcomeCallable NetworkManagerClient::GetConnectPeerAssociationsCallable(const GetConnectPeerAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetConnectPeerAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetConnectPeerAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetConnectPeerAssociations, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetConnectPeerAssociationsAsync(const GetConnectPeerAssociationsRequest& request, const GetConnectPeerAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetConnectPeerAssociations(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetConnectPeerAssociations, this, request, handler, context, m_executor.get());
 }
 
 GetConnectionsOutcome NetworkManagerClient::GetConnections(const GetConnectionsRequest& request) const
@@ -1468,18 +1241,12 @@ GetConnectionsOutcome NetworkManagerClient::GetConnections(const GetConnectionsR
 
 GetConnectionsOutcomeCallable NetworkManagerClient::GetConnectionsCallable(const GetConnectionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetConnectionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetConnections(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetConnections, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetConnectionsAsync(const GetConnectionsRequest& request, const GetConnectionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetConnections(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetConnections, this, request, handler, context, m_executor.get());
 }
 
 GetCoreNetworkOutcome NetworkManagerClient::GetCoreNetwork(const GetCoreNetworkRequest& request) const
@@ -1499,18 +1266,12 @@ GetCoreNetworkOutcome NetworkManagerClient::GetCoreNetwork(const GetCoreNetworkR
 
 GetCoreNetworkOutcomeCallable NetworkManagerClient::GetCoreNetworkCallable(const GetCoreNetworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCoreNetworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCoreNetwork(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetCoreNetwork, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetCoreNetworkAsync(const GetCoreNetworkRequest& request, const GetCoreNetworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCoreNetwork(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetCoreNetwork, this, request, handler, context, m_executor.get());
 }
 
 GetCoreNetworkChangeEventsOutcome NetworkManagerClient::GetCoreNetworkChangeEvents(const GetCoreNetworkChangeEventsRequest& request) const
@@ -1537,18 +1298,12 @@ GetCoreNetworkChangeEventsOutcome NetworkManagerClient::GetCoreNetworkChangeEven
 
 GetCoreNetworkChangeEventsOutcomeCallable NetworkManagerClient::GetCoreNetworkChangeEventsCallable(const GetCoreNetworkChangeEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCoreNetworkChangeEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCoreNetworkChangeEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetCoreNetworkChangeEvents, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetCoreNetworkChangeEventsAsync(const GetCoreNetworkChangeEventsRequest& request, const GetCoreNetworkChangeEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCoreNetworkChangeEvents(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetCoreNetworkChangeEvents, this, request, handler, context, m_executor.get());
 }
 
 GetCoreNetworkChangeSetOutcome NetworkManagerClient::GetCoreNetworkChangeSet(const GetCoreNetworkChangeSetRequest& request) const
@@ -1575,18 +1330,12 @@ GetCoreNetworkChangeSetOutcome NetworkManagerClient::GetCoreNetworkChangeSet(con
 
 GetCoreNetworkChangeSetOutcomeCallable NetworkManagerClient::GetCoreNetworkChangeSetCallable(const GetCoreNetworkChangeSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCoreNetworkChangeSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCoreNetworkChangeSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetCoreNetworkChangeSet, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetCoreNetworkChangeSetAsync(const GetCoreNetworkChangeSetRequest& request, const GetCoreNetworkChangeSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCoreNetworkChangeSet(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetCoreNetworkChangeSet, this, request, handler, context, m_executor.get());
 }
 
 GetCoreNetworkPolicyOutcome NetworkManagerClient::GetCoreNetworkPolicy(const GetCoreNetworkPolicyRequest& request) const
@@ -1607,18 +1356,12 @@ GetCoreNetworkPolicyOutcome NetworkManagerClient::GetCoreNetworkPolicy(const Get
 
 GetCoreNetworkPolicyOutcomeCallable NetworkManagerClient::GetCoreNetworkPolicyCallable(const GetCoreNetworkPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCoreNetworkPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCoreNetworkPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetCoreNetworkPolicy, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetCoreNetworkPolicyAsync(const GetCoreNetworkPolicyRequest& request, const GetCoreNetworkPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCoreNetworkPolicy(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetCoreNetworkPolicy, this, request, handler, context, m_executor.get());
 }
 
 GetCustomerGatewayAssociationsOutcome NetworkManagerClient::GetCustomerGatewayAssociations(const GetCustomerGatewayAssociationsRequest& request) const
@@ -1639,18 +1382,12 @@ GetCustomerGatewayAssociationsOutcome NetworkManagerClient::GetCustomerGatewayAs
 
 GetCustomerGatewayAssociationsOutcomeCallable NetworkManagerClient::GetCustomerGatewayAssociationsCallable(const GetCustomerGatewayAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCustomerGatewayAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCustomerGatewayAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetCustomerGatewayAssociations, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetCustomerGatewayAssociationsAsync(const GetCustomerGatewayAssociationsRequest& request, const GetCustomerGatewayAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCustomerGatewayAssociations(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetCustomerGatewayAssociations, this, request, handler, context, m_executor.get());
 }
 
 GetDevicesOutcome NetworkManagerClient::GetDevices(const GetDevicesRequest& request) const
@@ -1671,18 +1408,12 @@ GetDevicesOutcome NetworkManagerClient::GetDevices(const GetDevicesRequest& requ
 
 GetDevicesOutcomeCallable NetworkManagerClient::GetDevicesCallable(const GetDevicesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDevicesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDevices(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetDevices, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetDevicesAsync(const GetDevicesRequest& request, const GetDevicesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDevices(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetDevices, this, request, handler, context, m_executor.get());
 }
 
 GetLinkAssociationsOutcome NetworkManagerClient::GetLinkAssociations(const GetLinkAssociationsRequest& request) const
@@ -1703,18 +1434,12 @@ GetLinkAssociationsOutcome NetworkManagerClient::GetLinkAssociations(const GetLi
 
 GetLinkAssociationsOutcomeCallable NetworkManagerClient::GetLinkAssociationsCallable(const GetLinkAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLinkAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLinkAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetLinkAssociations, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetLinkAssociationsAsync(const GetLinkAssociationsRequest& request, const GetLinkAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLinkAssociations(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetLinkAssociations, this, request, handler, context, m_executor.get());
 }
 
 GetLinksOutcome NetworkManagerClient::GetLinks(const GetLinksRequest& request) const
@@ -1735,18 +1460,12 @@ GetLinksOutcome NetworkManagerClient::GetLinks(const GetLinksRequest& request) c
 
 GetLinksOutcomeCallable NetworkManagerClient::GetLinksCallable(const GetLinksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLinksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLinks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetLinks, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetLinksAsync(const GetLinksRequest& request, const GetLinksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLinks(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetLinks, this, request, handler, context, m_executor.get());
 }
 
 GetNetworkResourceCountsOutcome NetworkManagerClient::GetNetworkResourceCounts(const GetNetworkResourceCountsRequest& request) const
@@ -1767,18 +1486,12 @@ GetNetworkResourceCountsOutcome NetworkManagerClient::GetNetworkResourceCounts(c
 
 GetNetworkResourceCountsOutcomeCallable NetworkManagerClient::GetNetworkResourceCountsCallable(const GetNetworkResourceCountsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetNetworkResourceCountsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetNetworkResourceCounts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetNetworkResourceCounts, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetNetworkResourceCountsAsync(const GetNetworkResourceCountsRequest& request, const GetNetworkResourceCountsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetNetworkResourceCounts(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetNetworkResourceCounts, this, request, handler, context, m_executor.get());
 }
 
 GetNetworkResourceRelationshipsOutcome NetworkManagerClient::GetNetworkResourceRelationships(const GetNetworkResourceRelationshipsRequest& request) const
@@ -1799,18 +1512,12 @@ GetNetworkResourceRelationshipsOutcome NetworkManagerClient::GetNetworkResourceR
 
 GetNetworkResourceRelationshipsOutcomeCallable NetworkManagerClient::GetNetworkResourceRelationshipsCallable(const GetNetworkResourceRelationshipsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetNetworkResourceRelationshipsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetNetworkResourceRelationships(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetNetworkResourceRelationships, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetNetworkResourceRelationshipsAsync(const GetNetworkResourceRelationshipsRequest& request, const GetNetworkResourceRelationshipsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetNetworkResourceRelationships(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetNetworkResourceRelationships, this, request, handler, context, m_executor.get());
 }
 
 GetNetworkResourcesOutcome NetworkManagerClient::GetNetworkResources(const GetNetworkResourcesRequest& request) const
@@ -1831,18 +1538,12 @@ GetNetworkResourcesOutcome NetworkManagerClient::GetNetworkResources(const GetNe
 
 GetNetworkResourcesOutcomeCallable NetworkManagerClient::GetNetworkResourcesCallable(const GetNetworkResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetNetworkResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetNetworkResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetNetworkResources, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetNetworkResourcesAsync(const GetNetworkResourcesRequest& request, const GetNetworkResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetNetworkResources(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetNetworkResources, this, request, handler, context, m_executor.get());
 }
 
 GetNetworkRoutesOutcome NetworkManagerClient::GetNetworkRoutes(const GetNetworkRoutesRequest& request) const
@@ -1863,18 +1564,12 @@ GetNetworkRoutesOutcome NetworkManagerClient::GetNetworkRoutes(const GetNetworkR
 
 GetNetworkRoutesOutcomeCallable NetworkManagerClient::GetNetworkRoutesCallable(const GetNetworkRoutesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetNetworkRoutesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetNetworkRoutes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetNetworkRoutes, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetNetworkRoutesAsync(const GetNetworkRoutesRequest& request, const GetNetworkRoutesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetNetworkRoutes(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetNetworkRoutes, this, request, handler, context, m_executor.get());
 }
 
 GetNetworkTelemetryOutcome NetworkManagerClient::GetNetworkTelemetry(const GetNetworkTelemetryRequest& request) const
@@ -1895,18 +1590,12 @@ GetNetworkTelemetryOutcome NetworkManagerClient::GetNetworkTelemetry(const GetNe
 
 GetNetworkTelemetryOutcomeCallable NetworkManagerClient::GetNetworkTelemetryCallable(const GetNetworkTelemetryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetNetworkTelemetryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetNetworkTelemetry(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetNetworkTelemetry, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetNetworkTelemetryAsync(const GetNetworkTelemetryRequest& request, const GetNetworkTelemetryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetNetworkTelemetry(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetNetworkTelemetry, this, request, handler, context, m_executor.get());
 }
 
 GetResourcePolicyOutcome NetworkManagerClient::GetResourcePolicy(const GetResourcePolicyRequest& request) const
@@ -1926,18 +1615,12 @@ GetResourcePolicyOutcome NetworkManagerClient::GetResourcePolicy(const GetResour
 
 GetResourcePolicyOutcomeCallable NetworkManagerClient::GetResourcePolicyCallable(const GetResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetResourcePolicy, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetResourcePolicyAsync(const GetResourcePolicyRequest& request, const GetResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 GetRouteAnalysisOutcome NetworkManagerClient::GetRouteAnalysis(const GetRouteAnalysisRequest& request) const
@@ -1964,18 +1647,12 @@ GetRouteAnalysisOutcome NetworkManagerClient::GetRouteAnalysis(const GetRouteAna
 
 GetRouteAnalysisOutcomeCallable NetworkManagerClient::GetRouteAnalysisCallable(const GetRouteAnalysisRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRouteAnalysisOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRouteAnalysis(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetRouteAnalysis, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetRouteAnalysisAsync(const GetRouteAnalysisRequest& request, const GetRouteAnalysisResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRouteAnalysis(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetRouteAnalysis, this, request, handler, context, m_executor.get());
 }
 
 GetSiteToSiteVpnAttachmentOutcome NetworkManagerClient::GetSiteToSiteVpnAttachment(const GetSiteToSiteVpnAttachmentRequest& request) const
@@ -1995,18 +1672,12 @@ GetSiteToSiteVpnAttachmentOutcome NetworkManagerClient::GetSiteToSiteVpnAttachme
 
 GetSiteToSiteVpnAttachmentOutcomeCallable NetworkManagerClient::GetSiteToSiteVpnAttachmentCallable(const GetSiteToSiteVpnAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSiteToSiteVpnAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSiteToSiteVpnAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetSiteToSiteVpnAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetSiteToSiteVpnAttachmentAsync(const GetSiteToSiteVpnAttachmentRequest& request, const GetSiteToSiteVpnAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSiteToSiteVpnAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetSiteToSiteVpnAttachment, this, request, handler, context, m_executor.get());
 }
 
 GetSitesOutcome NetworkManagerClient::GetSites(const GetSitesRequest& request) const
@@ -2027,18 +1698,12 @@ GetSitesOutcome NetworkManagerClient::GetSites(const GetSitesRequest& request) c
 
 GetSitesOutcomeCallable NetworkManagerClient::GetSitesCallable(const GetSitesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSitesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSites(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetSites, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetSitesAsync(const GetSitesRequest& request, const GetSitesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSites(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetSites, this, request, handler, context, m_executor.get());
 }
 
 GetTransitGatewayConnectPeerAssociationsOutcome NetworkManagerClient::GetTransitGatewayConnectPeerAssociations(const GetTransitGatewayConnectPeerAssociationsRequest& request) const
@@ -2059,18 +1724,12 @@ GetTransitGatewayConnectPeerAssociationsOutcome NetworkManagerClient::GetTransit
 
 GetTransitGatewayConnectPeerAssociationsOutcomeCallable NetworkManagerClient::GetTransitGatewayConnectPeerAssociationsCallable(const GetTransitGatewayConnectPeerAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTransitGatewayConnectPeerAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTransitGatewayConnectPeerAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetTransitGatewayConnectPeerAssociations, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetTransitGatewayConnectPeerAssociationsAsync(const GetTransitGatewayConnectPeerAssociationsRequest& request, const GetTransitGatewayConnectPeerAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTransitGatewayConnectPeerAssociations(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetTransitGatewayConnectPeerAssociations, this, request, handler, context, m_executor.get());
 }
 
 GetTransitGatewayPeeringOutcome NetworkManagerClient::GetTransitGatewayPeering(const GetTransitGatewayPeeringRequest& request) const
@@ -2090,18 +1749,12 @@ GetTransitGatewayPeeringOutcome NetworkManagerClient::GetTransitGatewayPeering(c
 
 GetTransitGatewayPeeringOutcomeCallable NetworkManagerClient::GetTransitGatewayPeeringCallable(const GetTransitGatewayPeeringRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTransitGatewayPeeringOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTransitGatewayPeering(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetTransitGatewayPeering, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetTransitGatewayPeeringAsync(const GetTransitGatewayPeeringRequest& request, const GetTransitGatewayPeeringResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTransitGatewayPeering(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetTransitGatewayPeering, this, request, handler, context, m_executor.get());
 }
 
 GetTransitGatewayRegistrationsOutcome NetworkManagerClient::GetTransitGatewayRegistrations(const GetTransitGatewayRegistrationsRequest& request) const
@@ -2122,18 +1775,12 @@ GetTransitGatewayRegistrationsOutcome NetworkManagerClient::GetTransitGatewayReg
 
 GetTransitGatewayRegistrationsOutcomeCallable NetworkManagerClient::GetTransitGatewayRegistrationsCallable(const GetTransitGatewayRegistrationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTransitGatewayRegistrationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTransitGatewayRegistrations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetTransitGatewayRegistrations, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetTransitGatewayRegistrationsAsync(const GetTransitGatewayRegistrationsRequest& request, const GetTransitGatewayRegistrationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTransitGatewayRegistrations(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetTransitGatewayRegistrations, this, request, handler, context, m_executor.get());
 }
 
 GetTransitGatewayRouteTableAttachmentOutcome NetworkManagerClient::GetTransitGatewayRouteTableAttachment(const GetTransitGatewayRouteTableAttachmentRequest& request) const
@@ -2153,18 +1800,12 @@ GetTransitGatewayRouteTableAttachmentOutcome NetworkManagerClient::GetTransitGat
 
 GetTransitGatewayRouteTableAttachmentOutcomeCallable NetworkManagerClient::GetTransitGatewayRouteTableAttachmentCallable(const GetTransitGatewayRouteTableAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTransitGatewayRouteTableAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTransitGatewayRouteTableAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetTransitGatewayRouteTableAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetTransitGatewayRouteTableAttachmentAsync(const GetTransitGatewayRouteTableAttachmentRequest& request, const GetTransitGatewayRouteTableAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTransitGatewayRouteTableAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetTransitGatewayRouteTableAttachment, this, request, handler, context, m_executor.get());
 }
 
 GetVpcAttachmentOutcome NetworkManagerClient::GetVpcAttachment(const GetVpcAttachmentRequest& request) const
@@ -2184,18 +1825,12 @@ GetVpcAttachmentOutcome NetworkManagerClient::GetVpcAttachment(const GetVpcAttac
 
 GetVpcAttachmentOutcomeCallable NetworkManagerClient::GetVpcAttachmentCallable(const GetVpcAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVpcAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVpcAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::GetVpcAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::GetVpcAttachmentAsync(const GetVpcAttachmentRequest& request, const GetVpcAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVpcAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::GetVpcAttachment, this, request, handler, context, m_executor.get());
 }
 
 ListAttachmentsOutcome NetworkManagerClient::ListAttachments(const ListAttachmentsRequest& request) const
@@ -2209,18 +1844,12 @@ ListAttachmentsOutcome NetworkManagerClient::ListAttachments(const ListAttachmen
 
 ListAttachmentsOutcomeCallable NetworkManagerClient::ListAttachmentsCallable(const ListAttachmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAttachmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAttachments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ListAttachments, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ListAttachmentsAsync(const ListAttachmentsRequest& request, const ListAttachmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAttachments(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ListAttachments, this, request, handler, context, m_executor.get());
 }
 
 ListConnectPeersOutcome NetworkManagerClient::ListConnectPeers(const ListConnectPeersRequest& request) const
@@ -2234,18 +1863,12 @@ ListConnectPeersOutcome NetworkManagerClient::ListConnectPeers(const ListConnect
 
 ListConnectPeersOutcomeCallable NetworkManagerClient::ListConnectPeersCallable(const ListConnectPeersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListConnectPeersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListConnectPeers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ListConnectPeers, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ListConnectPeersAsync(const ListConnectPeersRequest& request, const ListConnectPeersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListConnectPeers(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ListConnectPeers, this, request, handler, context, m_executor.get());
 }
 
 ListCoreNetworkPolicyVersionsOutcome NetworkManagerClient::ListCoreNetworkPolicyVersions(const ListCoreNetworkPolicyVersionsRequest& request) const
@@ -2266,18 +1889,12 @@ ListCoreNetworkPolicyVersionsOutcome NetworkManagerClient::ListCoreNetworkPolicy
 
 ListCoreNetworkPolicyVersionsOutcomeCallable NetworkManagerClient::ListCoreNetworkPolicyVersionsCallable(const ListCoreNetworkPolicyVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCoreNetworkPolicyVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCoreNetworkPolicyVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ListCoreNetworkPolicyVersions, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ListCoreNetworkPolicyVersionsAsync(const ListCoreNetworkPolicyVersionsRequest& request, const ListCoreNetworkPolicyVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCoreNetworkPolicyVersions(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ListCoreNetworkPolicyVersions, this, request, handler, context, m_executor.get());
 }
 
 ListCoreNetworksOutcome NetworkManagerClient::ListCoreNetworks(const ListCoreNetworksRequest& request) const
@@ -2291,18 +1908,12 @@ ListCoreNetworksOutcome NetworkManagerClient::ListCoreNetworks(const ListCoreNet
 
 ListCoreNetworksOutcomeCallable NetworkManagerClient::ListCoreNetworksCallable(const ListCoreNetworksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCoreNetworksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCoreNetworks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ListCoreNetworks, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ListCoreNetworksAsync(const ListCoreNetworksRequest& request, const ListCoreNetworksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCoreNetworks(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ListCoreNetworks, this, request, handler, context, m_executor.get());
 }
 
 ListOrganizationServiceAccessStatusOutcome NetworkManagerClient::ListOrganizationServiceAccessStatus(const ListOrganizationServiceAccessStatusRequest& request) const
@@ -2316,18 +1927,12 @@ ListOrganizationServiceAccessStatusOutcome NetworkManagerClient::ListOrganizatio
 
 ListOrganizationServiceAccessStatusOutcomeCallable NetworkManagerClient::ListOrganizationServiceAccessStatusCallable(const ListOrganizationServiceAccessStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOrganizationServiceAccessStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOrganizationServiceAccessStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ListOrganizationServiceAccessStatus, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ListOrganizationServiceAccessStatusAsync(const ListOrganizationServiceAccessStatusRequest& request, const ListOrganizationServiceAccessStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOrganizationServiceAccessStatus(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ListOrganizationServiceAccessStatus, this, request, handler, context, m_executor.get());
 }
 
 ListPeeringsOutcome NetworkManagerClient::ListPeerings(const ListPeeringsRequest& request) const
@@ -2341,18 +1946,12 @@ ListPeeringsOutcome NetworkManagerClient::ListPeerings(const ListPeeringsRequest
 
 ListPeeringsOutcomeCallable NetworkManagerClient::ListPeeringsCallable(const ListPeeringsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPeeringsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPeerings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ListPeerings, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ListPeeringsAsync(const ListPeeringsRequest& request, const ListPeeringsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPeerings(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ListPeerings, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome NetworkManagerClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -2372,18 +1971,12 @@ ListTagsForResourceOutcome NetworkManagerClient::ListTagsForResource(const ListT
 
 ListTagsForResourceOutcomeCallable NetworkManagerClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutCoreNetworkPolicyOutcome NetworkManagerClient::PutCoreNetworkPolicy(const PutCoreNetworkPolicyRequest& request) const
@@ -2404,18 +1997,12 @@ PutCoreNetworkPolicyOutcome NetworkManagerClient::PutCoreNetworkPolicy(const Put
 
 PutCoreNetworkPolicyOutcomeCallable NetworkManagerClient::PutCoreNetworkPolicyCallable(const PutCoreNetworkPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutCoreNetworkPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutCoreNetworkPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::PutCoreNetworkPolicy, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::PutCoreNetworkPolicyAsync(const PutCoreNetworkPolicyRequest& request, const PutCoreNetworkPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutCoreNetworkPolicy(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::PutCoreNetworkPolicy, this, request, handler, context, m_executor.get());
 }
 
 PutResourcePolicyOutcome NetworkManagerClient::PutResourcePolicy(const PutResourcePolicyRequest& request) const
@@ -2435,18 +2022,12 @@ PutResourcePolicyOutcome NetworkManagerClient::PutResourcePolicy(const PutResour
 
 PutResourcePolicyOutcomeCallable NetworkManagerClient::PutResourcePolicyCallable(const PutResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::PutResourcePolicy, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::PutResourcePolicyAsync(const PutResourcePolicyRequest& request, const PutResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::PutResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 RegisterTransitGatewayOutcome NetworkManagerClient::RegisterTransitGateway(const RegisterTransitGatewayRequest& request) const
@@ -2467,18 +2048,12 @@ RegisterTransitGatewayOutcome NetworkManagerClient::RegisterTransitGateway(const
 
 RegisterTransitGatewayOutcomeCallable NetworkManagerClient::RegisterTransitGatewayCallable(const RegisterTransitGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterTransitGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterTransitGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::RegisterTransitGateway, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::RegisterTransitGatewayAsync(const RegisterTransitGatewayRequest& request, const RegisterTransitGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterTransitGateway(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::RegisterTransitGateway, this, request, handler, context, m_executor.get());
 }
 
 RejectAttachmentOutcome NetworkManagerClient::RejectAttachment(const RejectAttachmentRequest& request) const
@@ -2499,18 +2074,12 @@ RejectAttachmentOutcome NetworkManagerClient::RejectAttachment(const RejectAttac
 
 RejectAttachmentOutcomeCallable NetworkManagerClient::RejectAttachmentCallable(const RejectAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RejectAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RejectAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::RejectAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::RejectAttachmentAsync(const RejectAttachmentRequest& request, const RejectAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RejectAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::RejectAttachment, this, request, handler, context, m_executor.get());
 }
 
 RestoreCoreNetworkPolicyVersionOutcome NetworkManagerClient::RestoreCoreNetworkPolicyVersion(const RestoreCoreNetworkPolicyVersionRequest& request) const
@@ -2538,18 +2107,12 @@ RestoreCoreNetworkPolicyVersionOutcome NetworkManagerClient::RestoreCoreNetworkP
 
 RestoreCoreNetworkPolicyVersionOutcomeCallable NetworkManagerClient::RestoreCoreNetworkPolicyVersionCallable(const RestoreCoreNetworkPolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RestoreCoreNetworkPolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RestoreCoreNetworkPolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::RestoreCoreNetworkPolicyVersion, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::RestoreCoreNetworkPolicyVersionAsync(const RestoreCoreNetworkPolicyVersionRequest& request, const RestoreCoreNetworkPolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RestoreCoreNetworkPolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::RestoreCoreNetworkPolicyVersion, this, request, handler, context, m_executor.get());
 }
 
 StartOrganizationServiceAccessUpdateOutcome NetworkManagerClient::StartOrganizationServiceAccessUpdate(const StartOrganizationServiceAccessUpdateRequest& request) const
@@ -2563,18 +2126,12 @@ StartOrganizationServiceAccessUpdateOutcome NetworkManagerClient::StartOrganizat
 
 StartOrganizationServiceAccessUpdateOutcomeCallable NetworkManagerClient::StartOrganizationServiceAccessUpdateCallable(const StartOrganizationServiceAccessUpdateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartOrganizationServiceAccessUpdateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartOrganizationServiceAccessUpdate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::StartOrganizationServiceAccessUpdate, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::StartOrganizationServiceAccessUpdateAsync(const StartOrganizationServiceAccessUpdateRequest& request, const StartOrganizationServiceAccessUpdateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartOrganizationServiceAccessUpdate(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::StartOrganizationServiceAccessUpdate, this, request, handler, context, m_executor.get());
 }
 
 StartRouteAnalysisOutcome NetworkManagerClient::StartRouteAnalysis(const StartRouteAnalysisRequest& request) const
@@ -2595,18 +2152,12 @@ StartRouteAnalysisOutcome NetworkManagerClient::StartRouteAnalysis(const StartRo
 
 StartRouteAnalysisOutcomeCallable NetworkManagerClient::StartRouteAnalysisCallable(const StartRouteAnalysisRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartRouteAnalysisOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartRouteAnalysis(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::StartRouteAnalysis, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::StartRouteAnalysisAsync(const StartRouteAnalysisRequest& request, const StartRouteAnalysisResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartRouteAnalysis(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::StartRouteAnalysis, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome NetworkManagerClient::TagResource(const TagResourceRequest& request) const
@@ -2626,18 +2177,12 @@ TagResourceOutcome NetworkManagerClient::TagResource(const TagResourceRequest& r
 
 TagResourceOutcomeCallable NetworkManagerClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::TagResource, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome NetworkManagerClient::UntagResource(const UntagResourceRequest& request) const
@@ -2662,18 +2207,12 @@ UntagResourceOutcome NetworkManagerClient::UntagResource(const UntagResourceRequ
 
 UntagResourceOutcomeCallable NetworkManagerClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UntagResource, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateConnectionOutcome NetworkManagerClient::UpdateConnection(const UpdateConnectionRequest& request) const
@@ -2700,18 +2239,12 @@ UpdateConnectionOutcome NetworkManagerClient::UpdateConnection(const UpdateConne
 
 UpdateConnectionOutcomeCallable NetworkManagerClient::UpdateConnectionCallable(const UpdateConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateConnection, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateConnectionAsync(const UpdateConnectionRequest& request, const UpdateConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateConnection(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateConnection, this, request, handler, context, m_executor.get());
 }
 
 UpdateCoreNetworkOutcome NetworkManagerClient::UpdateCoreNetwork(const UpdateCoreNetworkRequest& request) const
@@ -2731,18 +2264,12 @@ UpdateCoreNetworkOutcome NetworkManagerClient::UpdateCoreNetwork(const UpdateCor
 
 UpdateCoreNetworkOutcomeCallable NetworkManagerClient::UpdateCoreNetworkCallable(const UpdateCoreNetworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCoreNetworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCoreNetwork(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateCoreNetwork, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateCoreNetworkAsync(const UpdateCoreNetworkRequest& request, const UpdateCoreNetworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCoreNetwork(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateCoreNetwork, this, request, handler, context, m_executor.get());
 }
 
 UpdateDeviceOutcome NetworkManagerClient::UpdateDevice(const UpdateDeviceRequest& request) const
@@ -2769,18 +2296,12 @@ UpdateDeviceOutcome NetworkManagerClient::UpdateDevice(const UpdateDeviceRequest
 
 UpdateDeviceOutcomeCallable NetworkManagerClient::UpdateDeviceCallable(const UpdateDeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateDevice, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateDeviceAsync(const UpdateDeviceRequest& request, const UpdateDeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDevice(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateDevice, this, request, handler, context, m_executor.get());
 }
 
 UpdateGlobalNetworkOutcome NetworkManagerClient::UpdateGlobalNetwork(const UpdateGlobalNetworkRequest& request) const
@@ -2800,18 +2321,12 @@ UpdateGlobalNetworkOutcome NetworkManagerClient::UpdateGlobalNetwork(const Updat
 
 UpdateGlobalNetworkOutcomeCallable NetworkManagerClient::UpdateGlobalNetworkCallable(const UpdateGlobalNetworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGlobalNetworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGlobalNetwork(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateGlobalNetwork, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateGlobalNetworkAsync(const UpdateGlobalNetworkRequest& request, const UpdateGlobalNetworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGlobalNetwork(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateGlobalNetwork, this, request, handler, context, m_executor.get());
 }
 
 UpdateLinkOutcome NetworkManagerClient::UpdateLink(const UpdateLinkRequest& request) const
@@ -2838,18 +2353,12 @@ UpdateLinkOutcome NetworkManagerClient::UpdateLink(const UpdateLinkRequest& requ
 
 UpdateLinkOutcomeCallable NetworkManagerClient::UpdateLinkCallable(const UpdateLinkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateLinkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateLink(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateLink, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateLinkAsync(const UpdateLinkRequest& request, const UpdateLinkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateLink(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateLink, this, request, handler, context, m_executor.get());
 }
 
 UpdateNetworkResourceMetadataOutcome NetworkManagerClient::UpdateNetworkResourceMetadata(const UpdateNetworkResourceMetadataRequest& request) const
@@ -2877,18 +2386,12 @@ UpdateNetworkResourceMetadataOutcome NetworkManagerClient::UpdateNetworkResource
 
 UpdateNetworkResourceMetadataOutcomeCallable NetworkManagerClient::UpdateNetworkResourceMetadataCallable(const UpdateNetworkResourceMetadataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateNetworkResourceMetadataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateNetworkResourceMetadata(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateNetworkResourceMetadata, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateNetworkResourceMetadataAsync(const UpdateNetworkResourceMetadataRequest& request, const UpdateNetworkResourceMetadataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateNetworkResourceMetadata(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateNetworkResourceMetadata, this, request, handler, context, m_executor.get());
 }
 
 UpdateSiteOutcome NetworkManagerClient::UpdateSite(const UpdateSiteRequest& request) const
@@ -2915,18 +2418,12 @@ UpdateSiteOutcome NetworkManagerClient::UpdateSite(const UpdateSiteRequest& requ
 
 UpdateSiteOutcomeCallable NetworkManagerClient::UpdateSiteCallable(const UpdateSiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateSite, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateSiteAsync(const UpdateSiteRequest& request, const UpdateSiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSite(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateSite, this, request, handler, context, m_executor.get());
 }
 
 UpdateVpcAttachmentOutcome NetworkManagerClient::UpdateVpcAttachment(const UpdateVpcAttachmentRequest& request) const
@@ -2946,17 +2443,11 @@ UpdateVpcAttachmentOutcome NetworkManagerClient::UpdateVpcAttachment(const Updat
 
 UpdateVpcAttachmentOutcomeCallable NetworkManagerClient::UpdateVpcAttachmentCallable(const UpdateVpcAttachmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateVpcAttachmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateVpcAttachment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &NetworkManagerClient::UpdateVpcAttachment, this, request, m_executor.get());
 }
 
 void NetworkManagerClient::UpdateVpcAttachmentAsync(const UpdateVpcAttachmentRequest& request, const UpdateVpcAttachmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateVpcAttachment(request), context);
-    } );
+  MakeAsyncOperation(&NetworkManagerClient::UpdateVpcAttachment, this, request, handler, context, m_executor.get());
 }
 

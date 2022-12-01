@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -208,18 +209,12 @@ AcceptHandshakeOutcome OrganizationsClient::AcceptHandshake(const AcceptHandshak
 
 AcceptHandshakeOutcomeCallable OrganizationsClient::AcceptHandshakeCallable(const AcceptHandshakeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AcceptHandshakeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AcceptHandshake(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::AcceptHandshake, this, request, m_executor.get());
 }
 
 void OrganizationsClient::AcceptHandshakeAsync(const AcceptHandshakeRequest& request, const AcceptHandshakeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AcceptHandshake(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::AcceptHandshake, this, request, handler, context, m_executor.get());
 }
 
 AttachPolicyOutcome OrganizationsClient::AttachPolicy(const AttachPolicyRequest& request) const
@@ -232,18 +227,12 @@ AttachPolicyOutcome OrganizationsClient::AttachPolicy(const AttachPolicyRequest&
 
 AttachPolicyOutcomeCallable OrganizationsClient::AttachPolicyCallable(const AttachPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::AttachPolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::AttachPolicyAsync(const AttachPolicyRequest& request, const AttachPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachPolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::AttachPolicy, this, request, handler, context, m_executor.get());
 }
 
 CancelHandshakeOutcome OrganizationsClient::CancelHandshake(const CancelHandshakeRequest& request) const
@@ -256,18 +245,12 @@ CancelHandshakeOutcome OrganizationsClient::CancelHandshake(const CancelHandshak
 
 CancelHandshakeOutcomeCallable OrganizationsClient::CancelHandshakeCallable(const CancelHandshakeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelHandshakeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelHandshake(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::CancelHandshake, this, request, m_executor.get());
 }
 
 void OrganizationsClient::CancelHandshakeAsync(const CancelHandshakeRequest& request, const CancelHandshakeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelHandshake(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::CancelHandshake, this, request, handler, context, m_executor.get());
 }
 
 CloseAccountOutcome OrganizationsClient::CloseAccount(const CloseAccountRequest& request) const
@@ -280,18 +263,12 @@ CloseAccountOutcome OrganizationsClient::CloseAccount(const CloseAccountRequest&
 
 CloseAccountOutcomeCallable OrganizationsClient::CloseAccountCallable(const CloseAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CloseAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CloseAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::CloseAccount, this, request, m_executor.get());
 }
 
 void OrganizationsClient::CloseAccountAsync(const CloseAccountRequest& request, const CloseAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CloseAccount(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::CloseAccount, this, request, handler, context, m_executor.get());
 }
 
 CreateAccountOutcome OrganizationsClient::CreateAccount(const CreateAccountRequest& request) const
@@ -304,18 +281,12 @@ CreateAccountOutcome OrganizationsClient::CreateAccount(const CreateAccountReque
 
 CreateAccountOutcomeCallable OrganizationsClient::CreateAccountCallable(const CreateAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::CreateAccount, this, request, m_executor.get());
 }
 
 void OrganizationsClient::CreateAccountAsync(const CreateAccountRequest& request, const CreateAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAccount(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::CreateAccount, this, request, handler, context, m_executor.get());
 }
 
 CreateGovCloudAccountOutcome OrganizationsClient::CreateGovCloudAccount(const CreateGovCloudAccountRequest& request) const
@@ -328,18 +299,12 @@ CreateGovCloudAccountOutcome OrganizationsClient::CreateGovCloudAccount(const Cr
 
 CreateGovCloudAccountOutcomeCallable OrganizationsClient::CreateGovCloudAccountCallable(const CreateGovCloudAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGovCloudAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGovCloudAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::CreateGovCloudAccount, this, request, m_executor.get());
 }
 
 void OrganizationsClient::CreateGovCloudAccountAsync(const CreateGovCloudAccountRequest& request, const CreateGovCloudAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGovCloudAccount(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::CreateGovCloudAccount, this, request, handler, context, m_executor.get());
 }
 
 CreateOrganizationOutcome OrganizationsClient::CreateOrganization(const CreateOrganizationRequest& request) const
@@ -352,18 +317,12 @@ CreateOrganizationOutcome OrganizationsClient::CreateOrganization(const CreateOr
 
 CreateOrganizationOutcomeCallable OrganizationsClient::CreateOrganizationCallable(const CreateOrganizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateOrganizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateOrganization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::CreateOrganization, this, request, m_executor.get());
 }
 
 void OrganizationsClient::CreateOrganizationAsync(const CreateOrganizationRequest& request, const CreateOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateOrganization(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::CreateOrganization, this, request, handler, context, m_executor.get());
 }
 
 CreateOrganizationalUnitOutcome OrganizationsClient::CreateOrganizationalUnit(const CreateOrganizationalUnitRequest& request) const
@@ -376,18 +335,12 @@ CreateOrganizationalUnitOutcome OrganizationsClient::CreateOrganizationalUnit(co
 
 CreateOrganizationalUnitOutcomeCallable OrganizationsClient::CreateOrganizationalUnitCallable(const CreateOrganizationalUnitRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateOrganizationalUnitOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateOrganizationalUnit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::CreateOrganizationalUnit, this, request, m_executor.get());
 }
 
 void OrganizationsClient::CreateOrganizationalUnitAsync(const CreateOrganizationalUnitRequest& request, const CreateOrganizationalUnitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateOrganizationalUnit(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::CreateOrganizationalUnit, this, request, handler, context, m_executor.get());
 }
 
 CreatePolicyOutcome OrganizationsClient::CreatePolicy(const CreatePolicyRequest& request) const
@@ -400,18 +353,12 @@ CreatePolicyOutcome OrganizationsClient::CreatePolicy(const CreatePolicyRequest&
 
 CreatePolicyOutcomeCallable OrganizationsClient::CreatePolicyCallable(const CreatePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::CreatePolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::CreatePolicyAsync(const CreatePolicyRequest& request, const CreatePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::CreatePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeclineHandshakeOutcome OrganizationsClient::DeclineHandshake(const DeclineHandshakeRequest& request) const
@@ -424,18 +371,12 @@ DeclineHandshakeOutcome OrganizationsClient::DeclineHandshake(const DeclineHands
 
 DeclineHandshakeOutcomeCallable OrganizationsClient::DeclineHandshakeCallable(const DeclineHandshakeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeclineHandshakeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeclineHandshake(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DeclineHandshake, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DeclineHandshakeAsync(const DeclineHandshakeRequest& request, const DeclineHandshakeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeclineHandshake(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DeclineHandshake, this, request, handler, context, m_executor.get());
 }
 
 DeleteOrganizationOutcome OrganizationsClient::DeleteOrganization() const
@@ -473,18 +414,12 @@ DeleteOrganizationalUnitOutcome OrganizationsClient::DeleteOrganizationalUnit(co
 
 DeleteOrganizationalUnitOutcomeCallable OrganizationsClient::DeleteOrganizationalUnitCallable(const DeleteOrganizationalUnitRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteOrganizationalUnitOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteOrganizationalUnit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DeleteOrganizationalUnit, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DeleteOrganizationalUnitAsync(const DeleteOrganizationalUnitRequest& request, const DeleteOrganizationalUnitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteOrganizationalUnit(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DeleteOrganizationalUnit, this, request, handler, context, m_executor.get());
 }
 
 DeletePolicyOutcome OrganizationsClient::DeletePolicy(const DeletePolicyRequest& request) const
@@ -497,18 +432,12 @@ DeletePolicyOutcome OrganizationsClient::DeletePolicy(const DeletePolicyRequest&
 
 DeletePolicyOutcomeCallable OrganizationsClient::DeletePolicyCallable(const DeletePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DeletePolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DeletePolicyAsync(const DeletePolicyRequest& request, const DeletePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DeletePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeregisterDelegatedAdministratorOutcome OrganizationsClient::DeregisterDelegatedAdministrator(const DeregisterDelegatedAdministratorRequest& request) const
@@ -521,18 +450,12 @@ DeregisterDelegatedAdministratorOutcome OrganizationsClient::DeregisterDelegated
 
 DeregisterDelegatedAdministratorOutcomeCallable OrganizationsClient::DeregisterDelegatedAdministratorCallable(const DeregisterDelegatedAdministratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeregisterDelegatedAdministratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeregisterDelegatedAdministrator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DeregisterDelegatedAdministrator, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DeregisterDelegatedAdministratorAsync(const DeregisterDelegatedAdministratorRequest& request, const DeregisterDelegatedAdministratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeregisterDelegatedAdministrator(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DeregisterDelegatedAdministrator, this, request, handler, context, m_executor.get());
 }
 
 DescribeAccountOutcome OrganizationsClient::DescribeAccount(const DescribeAccountRequest& request) const
@@ -545,18 +468,12 @@ DescribeAccountOutcome OrganizationsClient::DescribeAccount(const DescribeAccoun
 
 DescribeAccountOutcomeCallable OrganizationsClient::DescribeAccountCallable(const DescribeAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DescribeAccount, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DescribeAccountAsync(const DescribeAccountRequest& request, const DescribeAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAccount(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DescribeAccount, this, request, handler, context, m_executor.get());
 }
 
 DescribeCreateAccountStatusOutcome OrganizationsClient::DescribeCreateAccountStatus(const DescribeCreateAccountStatusRequest& request) const
@@ -569,18 +486,12 @@ DescribeCreateAccountStatusOutcome OrganizationsClient::DescribeCreateAccountSta
 
 DescribeCreateAccountStatusOutcomeCallable OrganizationsClient::DescribeCreateAccountStatusCallable(const DescribeCreateAccountStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCreateAccountStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCreateAccountStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DescribeCreateAccountStatus, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DescribeCreateAccountStatusAsync(const DescribeCreateAccountStatusRequest& request, const DescribeCreateAccountStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCreateAccountStatus(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DescribeCreateAccountStatus, this, request, handler, context, m_executor.get());
 }
 
 DescribeEffectivePolicyOutcome OrganizationsClient::DescribeEffectivePolicy(const DescribeEffectivePolicyRequest& request) const
@@ -593,18 +504,12 @@ DescribeEffectivePolicyOutcome OrganizationsClient::DescribeEffectivePolicy(cons
 
 DescribeEffectivePolicyOutcomeCallable OrganizationsClient::DescribeEffectivePolicyCallable(const DescribeEffectivePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEffectivePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEffectivePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DescribeEffectivePolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DescribeEffectivePolicyAsync(const DescribeEffectivePolicyRequest& request, const DescribeEffectivePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEffectivePolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DescribeEffectivePolicy, this, request, handler, context, m_executor.get());
 }
 
 DescribeHandshakeOutcome OrganizationsClient::DescribeHandshake(const DescribeHandshakeRequest& request) const
@@ -617,18 +522,12 @@ DescribeHandshakeOutcome OrganizationsClient::DescribeHandshake(const DescribeHa
 
 DescribeHandshakeOutcomeCallable OrganizationsClient::DescribeHandshakeCallable(const DescribeHandshakeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeHandshakeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeHandshake(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DescribeHandshake, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DescribeHandshakeAsync(const DescribeHandshakeRequest& request, const DescribeHandshakeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeHandshake(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DescribeHandshake, this, request, handler, context, m_executor.get());
 }
 
 DescribeOrganizationOutcome OrganizationsClient::DescribeOrganization() const
@@ -666,18 +565,12 @@ DescribeOrganizationalUnitOutcome OrganizationsClient::DescribeOrganizationalUni
 
 DescribeOrganizationalUnitOutcomeCallable OrganizationsClient::DescribeOrganizationalUnitCallable(const DescribeOrganizationalUnitRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeOrganizationalUnitOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeOrganizationalUnit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DescribeOrganizationalUnit, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DescribeOrganizationalUnitAsync(const DescribeOrganizationalUnitRequest& request, const DescribeOrganizationalUnitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeOrganizationalUnit(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DescribeOrganizationalUnit, this, request, handler, context, m_executor.get());
 }
 
 DescribePolicyOutcome OrganizationsClient::DescribePolicy(const DescribePolicyRequest& request) const
@@ -690,18 +583,12 @@ DescribePolicyOutcome OrganizationsClient::DescribePolicy(const DescribePolicyRe
 
 DescribePolicyOutcomeCallable OrganizationsClient::DescribePolicyCallable(const DescribePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DescribePolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DescribePolicyAsync(const DescribePolicyRequest& request, const DescribePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribePolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DescribePolicy, this, request, handler, context, m_executor.get());
 }
 
 DetachPolicyOutcome OrganizationsClient::DetachPolicy(const DetachPolicyRequest& request) const
@@ -714,18 +601,12 @@ DetachPolicyOutcome OrganizationsClient::DetachPolicy(const DetachPolicyRequest&
 
 DetachPolicyOutcomeCallable OrganizationsClient::DetachPolicyCallable(const DetachPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DetachPolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DetachPolicyAsync(const DetachPolicyRequest& request, const DetachPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachPolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DetachPolicy, this, request, handler, context, m_executor.get());
 }
 
 DisableAWSServiceAccessOutcome OrganizationsClient::DisableAWSServiceAccess(const DisableAWSServiceAccessRequest& request) const
@@ -738,18 +619,12 @@ DisableAWSServiceAccessOutcome OrganizationsClient::DisableAWSServiceAccess(cons
 
 DisableAWSServiceAccessOutcomeCallable OrganizationsClient::DisableAWSServiceAccessCallable(const DisableAWSServiceAccessRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisableAWSServiceAccessOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisableAWSServiceAccess(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DisableAWSServiceAccess, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DisableAWSServiceAccessAsync(const DisableAWSServiceAccessRequest& request, const DisableAWSServiceAccessResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisableAWSServiceAccess(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DisableAWSServiceAccess, this, request, handler, context, m_executor.get());
 }
 
 DisablePolicyTypeOutcome OrganizationsClient::DisablePolicyType(const DisablePolicyTypeRequest& request) const
@@ -762,18 +637,12 @@ DisablePolicyTypeOutcome OrganizationsClient::DisablePolicyType(const DisablePol
 
 DisablePolicyTypeOutcomeCallable OrganizationsClient::DisablePolicyTypeCallable(const DisablePolicyTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisablePolicyTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisablePolicyType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::DisablePolicyType, this, request, m_executor.get());
 }
 
 void OrganizationsClient::DisablePolicyTypeAsync(const DisablePolicyTypeRequest& request, const DisablePolicyTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisablePolicyType(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::DisablePolicyType, this, request, handler, context, m_executor.get());
 }
 
 EnableAWSServiceAccessOutcome OrganizationsClient::EnableAWSServiceAccess(const EnableAWSServiceAccessRequest& request) const
@@ -786,18 +655,12 @@ EnableAWSServiceAccessOutcome OrganizationsClient::EnableAWSServiceAccess(const 
 
 EnableAWSServiceAccessOutcomeCallable OrganizationsClient::EnableAWSServiceAccessCallable(const EnableAWSServiceAccessRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnableAWSServiceAccessOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnableAWSServiceAccess(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::EnableAWSServiceAccess, this, request, m_executor.get());
 }
 
 void OrganizationsClient::EnableAWSServiceAccessAsync(const EnableAWSServiceAccessRequest& request, const EnableAWSServiceAccessResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnableAWSServiceAccess(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::EnableAWSServiceAccess, this, request, handler, context, m_executor.get());
 }
 
 EnableAllFeaturesOutcome OrganizationsClient::EnableAllFeatures(const EnableAllFeaturesRequest& request) const
@@ -810,18 +673,12 @@ EnableAllFeaturesOutcome OrganizationsClient::EnableAllFeatures(const EnableAllF
 
 EnableAllFeaturesOutcomeCallable OrganizationsClient::EnableAllFeaturesCallable(const EnableAllFeaturesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnableAllFeaturesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnableAllFeatures(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::EnableAllFeatures, this, request, m_executor.get());
 }
 
 void OrganizationsClient::EnableAllFeaturesAsync(const EnableAllFeaturesRequest& request, const EnableAllFeaturesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnableAllFeatures(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::EnableAllFeatures, this, request, handler, context, m_executor.get());
 }
 
 EnablePolicyTypeOutcome OrganizationsClient::EnablePolicyType(const EnablePolicyTypeRequest& request) const
@@ -834,18 +691,12 @@ EnablePolicyTypeOutcome OrganizationsClient::EnablePolicyType(const EnablePolicy
 
 EnablePolicyTypeOutcomeCallable OrganizationsClient::EnablePolicyTypeCallable(const EnablePolicyTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnablePolicyTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnablePolicyType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::EnablePolicyType, this, request, m_executor.get());
 }
 
 void OrganizationsClient::EnablePolicyTypeAsync(const EnablePolicyTypeRequest& request, const EnablePolicyTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnablePolicyType(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::EnablePolicyType, this, request, handler, context, m_executor.get());
 }
 
 InviteAccountToOrganizationOutcome OrganizationsClient::InviteAccountToOrganization(const InviteAccountToOrganizationRequest& request) const
@@ -858,18 +709,12 @@ InviteAccountToOrganizationOutcome OrganizationsClient::InviteAccountToOrganizat
 
 InviteAccountToOrganizationOutcomeCallable OrganizationsClient::InviteAccountToOrganizationCallable(const InviteAccountToOrganizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< InviteAccountToOrganizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->InviteAccountToOrganization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::InviteAccountToOrganization, this, request, m_executor.get());
 }
 
 void OrganizationsClient::InviteAccountToOrganizationAsync(const InviteAccountToOrganizationRequest& request, const InviteAccountToOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, InviteAccountToOrganization(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::InviteAccountToOrganization, this, request, handler, context, m_executor.get());
 }
 
 LeaveOrganizationOutcome OrganizationsClient::LeaveOrganization() const
@@ -907,18 +752,12 @@ ListAWSServiceAccessForOrganizationOutcome OrganizationsClient::ListAWSServiceAc
 
 ListAWSServiceAccessForOrganizationOutcomeCallable OrganizationsClient::ListAWSServiceAccessForOrganizationCallable(const ListAWSServiceAccessForOrganizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAWSServiceAccessForOrganizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAWSServiceAccessForOrganization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListAWSServiceAccessForOrganization, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListAWSServiceAccessForOrganizationAsync(const ListAWSServiceAccessForOrganizationRequest& request, const ListAWSServiceAccessForOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAWSServiceAccessForOrganization(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListAWSServiceAccessForOrganization, this, request, handler, context, m_executor.get());
 }
 
 ListAccountsOutcome OrganizationsClient::ListAccounts(const ListAccountsRequest& request) const
@@ -931,18 +770,12 @@ ListAccountsOutcome OrganizationsClient::ListAccounts(const ListAccountsRequest&
 
 ListAccountsOutcomeCallable OrganizationsClient::ListAccountsCallable(const ListAccountsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccountsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccounts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListAccounts, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListAccountsAsync(const ListAccountsRequest& request, const ListAccountsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccounts(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListAccounts, this, request, handler, context, m_executor.get());
 }
 
 ListAccountsForParentOutcome OrganizationsClient::ListAccountsForParent(const ListAccountsForParentRequest& request) const
@@ -955,18 +788,12 @@ ListAccountsForParentOutcome OrganizationsClient::ListAccountsForParent(const Li
 
 ListAccountsForParentOutcomeCallable OrganizationsClient::ListAccountsForParentCallable(const ListAccountsForParentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccountsForParentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccountsForParent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListAccountsForParent, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListAccountsForParentAsync(const ListAccountsForParentRequest& request, const ListAccountsForParentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccountsForParent(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListAccountsForParent, this, request, handler, context, m_executor.get());
 }
 
 ListChildrenOutcome OrganizationsClient::ListChildren(const ListChildrenRequest& request) const
@@ -979,18 +806,12 @@ ListChildrenOutcome OrganizationsClient::ListChildren(const ListChildrenRequest&
 
 ListChildrenOutcomeCallable OrganizationsClient::ListChildrenCallable(const ListChildrenRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChildrenOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChildren(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListChildren, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListChildrenAsync(const ListChildrenRequest& request, const ListChildrenResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChildren(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListChildren, this, request, handler, context, m_executor.get());
 }
 
 ListCreateAccountStatusOutcome OrganizationsClient::ListCreateAccountStatus(const ListCreateAccountStatusRequest& request) const
@@ -1003,18 +824,12 @@ ListCreateAccountStatusOutcome OrganizationsClient::ListCreateAccountStatus(cons
 
 ListCreateAccountStatusOutcomeCallable OrganizationsClient::ListCreateAccountStatusCallable(const ListCreateAccountStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCreateAccountStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCreateAccountStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListCreateAccountStatus, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListCreateAccountStatusAsync(const ListCreateAccountStatusRequest& request, const ListCreateAccountStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCreateAccountStatus(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListCreateAccountStatus, this, request, handler, context, m_executor.get());
 }
 
 ListDelegatedAdministratorsOutcome OrganizationsClient::ListDelegatedAdministrators(const ListDelegatedAdministratorsRequest& request) const
@@ -1027,18 +842,12 @@ ListDelegatedAdministratorsOutcome OrganizationsClient::ListDelegatedAdministrat
 
 ListDelegatedAdministratorsOutcomeCallable OrganizationsClient::ListDelegatedAdministratorsCallable(const ListDelegatedAdministratorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDelegatedAdministratorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDelegatedAdministrators(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListDelegatedAdministrators, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListDelegatedAdministratorsAsync(const ListDelegatedAdministratorsRequest& request, const ListDelegatedAdministratorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDelegatedAdministrators(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListDelegatedAdministrators, this, request, handler, context, m_executor.get());
 }
 
 ListDelegatedServicesForAccountOutcome OrganizationsClient::ListDelegatedServicesForAccount(const ListDelegatedServicesForAccountRequest& request) const
@@ -1051,18 +860,12 @@ ListDelegatedServicesForAccountOutcome OrganizationsClient::ListDelegatedService
 
 ListDelegatedServicesForAccountOutcomeCallable OrganizationsClient::ListDelegatedServicesForAccountCallable(const ListDelegatedServicesForAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDelegatedServicesForAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDelegatedServicesForAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListDelegatedServicesForAccount, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListDelegatedServicesForAccountAsync(const ListDelegatedServicesForAccountRequest& request, const ListDelegatedServicesForAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDelegatedServicesForAccount(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListDelegatedServicesForAccount, this, request, handler, context, m_executor.get());
 }
 
 ListHandshakesForAccountOutcome OrganizationsClient::ListHandshakesForAccount(const ListHandshakesForAccountRequest& request) const
@@ -1075,18 +878,12 @@ ListHandshakesForAccountOutcome OrganizationsClient::ListHandshakesForAccount(co
 
 ListHandshakesForAccountOutcomeCallable OrganizationsClient::ListHandshakesForAccountCallable(const ListHandshakesForAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListHandshakesForAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListHandshakesForAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListHandshakesForAccount, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListHandshakesForAccountAsync(const ListHandshakesForAccountRequest& request, const ListHandshakesForAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListHandshakesForAccount(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListHandshakesForAccount, this, request, handler, context, m_executor.get());
 }
 
 ListHandshakesForOrganizationOutcome OrganizationsClient::ListHandshakesForOrganization(const ListHandshakesForOrganizationRequest& request) const
@@ -1099,18 +896,12 @@ ListHandshakesForOrganizationOutcome OrganizationsClient::ListHandshakesForOrgan
 
 ListHandshakesForOrganizationOutcomeCallable OrganizationsClient::ListHandshakesForOrganizationCallable(const ListHandshakesForOrganizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListHandshakesForOrganizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListHandshakesForOrganization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListHandshakesForOrganization, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListHandshakesForOrganizationAsync(const ListHandshakesForOrganizationRequest& request, const ListHandshakesForOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListHandshakesForOrganization(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListHandshakesForOrganization, this, request, handler, context, m_executor.get());
 }
 
 ListOrganizationalUnitsForParentOutcome OrganizationsClient::ListOrganizationalUnitsForParent(const ListOrganizationalUnitsForParentRequest& request) const
@@ -1123,18 +914,12 @@ ListOrganizationalUnitsForParentOutcome OrganizationsClient::ListOrganizationalU
 
 ListOrganizationalUnitsForParentOutcomeCallable OrganizationsClient::ListOrganizationalUnitsForParentCallable(const ListOrganizationalUnitsForParentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOrganizationalUnitsForParentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOrganizationalUnitsForParent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListOrganizationalUnitsForParent, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListOrganizationalUnitsForParentAsync(const ListOrganizationalUnitsForParentRequest& request, const ListOrganizationalUnitsForParentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOrganizationalUnitsForParent(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListOrganizationalUnitsForParent, this, request, handler, context, m_executor.get());
 }
 
 ListParentsOutcome OrganizationsClient::ListParents(const ListParentsRequest& request) const
@@ -1147,18 +932,12 @@ ListParentsOutcome OrganizationsClient::ListParents(const ListParentsRequest& re
 
 ListParentsOutcomeCallable OrganizationsClient::ListParentsCallable(const ListParentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListParentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListParents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListParents, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListParentsAsync(const ListParentsRequest& request, const ListParentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListParents(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListParents, this, request, handler, context, m_executor.get());
 }
 
 ListPoliciesOutcome OrganizationsClient::ListPolicies(const ListPoliciesRequest& request) const
@@ -1171,18 +950,12 @@ ListPoliciesOutcome OrganizationsClient::ListPolicies(const ListPoliciesRequest&
 
 ListPoliciesOutcomeCallable OrganizationsClient::ListPoliciesCallable(const ListPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListPolicies, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListPoliciesAsync(const ListPoliciesRequest& request, const ListPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPolicies(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListPolicies, this, request, handler, context, m_executor.get());
 }
 
 ListPoliciesForTargetOutcome OrganizationsClient::ListPoliciesForTarget(const ListPoliciesForTargetRequest& request) const
@@ -1195,18 +968,12 @@ ListPoliciesForTargetOutcome OrganizationsClient::ListPoliciesForTarget(const Li
 
 ListPoliciesForTargetOutcomeCallable OrganizationsClient::ListPoliciesForTargetCallable(const ListPoliciesForTargetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPoliciesForTargetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPoliciesForTarget(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListPoliciesForTarget, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListPoliciesForTargetAsync(const ListPoliciesForTargetRequest& request, const ListPoliciesForTargetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPoliciesForTarget(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListPoliciesForTarget, this, request, handler, context, m_executor.get());
 }
 
 ListRootsOutcome OrganizationsClient::ListRoots(const ListRootsRequest& request) const
@@ -1219,18 +986,12 @@ ListRootsOutcome OrganizationsClient::ListRoots(const ListRootsRequest& request)
 
 ListRootsOutcomeCallable OrganizationsClient::ListRootsCallable(const ListRootsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRootsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoots(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListRoots, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListRootsAsync(const ListRootsRequest& request, const ListRootsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoots(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListRoots, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome OrganizationsClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1243,18 +1004,12 @@ ListTagsForResourceOutcome OrganizationsClient::ListTagsForResource(const ListTa
 
 ListTagsForResourceOutcomeCallable OrganizationsClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListTargetsForPolicyOutcome OrganizationsClient::ListTargetsForPolicy(const ListTargetsForPolicyRequest& request) const
@@ -1267,18 +1022,12 @@ ListTargetsForPolicyOutcome OrganizationsClient::ListTargetsForPolicy(const List
 
 ListTargetsForPolicyOutcomeCallable OrganizationsClient::ListTargetsForPolicyCallable(const ListTargetsForPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTargetsForPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTargetsForPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::ListTargetsForPolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::ListTargetsForPolicyAsync(const ListTargetsForPolicyRequest& request, const ListTargetsForPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTargetsForPolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::ListTargetsForPolicy, this, request, handler, context, m_executor.get());
 }
 
 MoveAccountOutcome OrganizationsClient::MoveAccount(const MoveAccountRequest& request) const
@@ -1291,18 +1040,12 @@ MoveAccountOutcome OrganizationsClient::MoveAccount(const MoveAccountRequest& re
 
 MoveAccountOutcomeCallable OrganizationsClient::MoveAccountCallable(const MoveAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< MoveAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->MoveAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::MoveAccount, this, request, m_executor.get());
 }
 
 void OrganizationsClient::MoveAccountAsync(const MoveAccountRequest& request, const MoveAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, MoveAccount(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::MoveAccount, this, request, handler, context, m_executor.get());
 }
 
 RegisterDelegatedAdministratorOutcome OrganizationsClient::RegisterDelegatedAdministrator(const RegisterDelegatedAdministratorRequest& request) const
@@ -1315,18 +1058,12 @@ RegisterDelegatedAdministratorOutcome OrganizationsClient::RegisterDelegatedAdmi
 
 RegisterDelegatedAdministratorOutcomeCallable OrganizationsClient::RegisterDelegatedAdministratorCallable(const RegisterDelegatedAdministratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterDelegatedAdministratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterDelegatedAdministrator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::RegisterDelegatedAdministrator, this, request, m_executor.get());
 }
 
 void OrganizationsClient::RegisterDelegatedAdministratorAsync(const RegisterDelegatedAdministratorRequest& request, const RegisterDelegatedAdministratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterDelegatedAdministrator(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::RegisterDelegatedAdministrator, this, request, handler, context, m_executor.get());
 }
 
 RemoveAccountFromOrganizationOutcome OrganizationsClient::RemoveAccountFromOrganization(const RemoveAccountFromOrganizationRequest& request) const
@@ -1339,18 +1076,12 @@ RemoveAccountFromOrganizationOutcome OrganizationsClient::RemoveAccountFromOrgan
 
 RemoveAccountFromOrganizationOutcomeCallable OrganizationsClient::RemoveAccountFromOrganizationCallable(const RemoveAccountFromOrganizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveAccountFromOrganizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveAccountFromOrganization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::RemoveAccountFromOrganization, this, request, m_executor.get());
 }
 
 void OrganizationsClient::RemoveAccountFromOrganizationAsync(const RemoveAccountFromOrganizationRequest& request, const RemoveAccountFromOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveAccountFromOrganization(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::RemoveAccountFromOrganization, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome OrganizationsClient::TagResource(const TagResourceRequest& request) const
@@ -1363,18 +1094,12 @@ TagResourceOutcome OrganizationsClient::TagResource(const TagResourceRequest& re
 
 TagResourceOutcomeCallable OrganizationsClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::TagResource, this, request, m_executor.get());
 }
 
 void OrganizationsClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome OrganizationsClient::UntagResource(const UntagResourceRequest& request) const
@@ -1387,18 +1112,12 @@ UntagResourceOutcome OrganizationsClient::UntagResource(const UntagResourceReque
 
 UntagResourceOutcomeCallable OrganizationsClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::UntagResource, this, request, m_executor.get());
 }
 
 void OrganizationsClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateOrganizationalUnitOutcome OrganizationsClient::UpdateOrganizationalUnit(const UpdateOrganizationalUnitRequest& request) const
@@ -1411,18 +1130,12 @@ UpdateOrganizationalUnitOutcome OrganizationsClient::UpdateOrganizationalUnit(co
 
 UpdateOrganizationalUnitOutcomeCallable OrganizationsClient::UpdateOrganizationalUnitCallable(const UpdateOrganizationalUnitRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateOrganizationalUnitOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateOrganizationalUnit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::UpdateOrganizationalUnit, this, request, m_executor.get());
 }
 
 void OrganizationsClient::UpdateOrganizationalUnitAsync(const UpdateOrganizationalUnitRequest& request, const UpdateOrganizationalUnitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateOrganizationalUnit(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::UpdateOrganizationalUnit, this, request, handler, context, m_executor.get());
 }
 
 UpdatePolicyOutcome OrganizationsClient::UpdatePolicy(const UpdatePolicyRequest& request) const
@@ -1435,17 +1148,11 @@ UpdatePolicyOutcome OrganizationsClient::UpdatePolicy(const UpdatePolicyRequest&
 
 UpdatePolicyOutcomeCallable OrganizationsClient::UpdatePolicyCallable(const UpdatePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OrganizationsClient::UpdatePolicy, this, request, m_executor.get());
 }
 
 void OrganizationsClient::UpdatePolicyAsync(const UpdatePolicyRequest& request, const UpdatePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePolicy(request), context);
-    } );
+  MakeAsyncOperation(&OrganizationsClient::UpdatePolicy, this, request, handler, context, m_executor.get());
 }
 

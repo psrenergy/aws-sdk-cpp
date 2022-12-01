@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -207,18 +208,12 @@ BatchEvaluateFeatureOutcome CloudWatchEvidentlyClient::BatchEvaluateFeature(cons
 
 BatchEvaluateFeatureOutcomeCallable CloudWatchEvidentlyClient::BatchEvaluateFeatureCallable(const BatchEvaluateFeatureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchEvaluateFeatureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchEvaluateFeature(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::BatchEvaluateFeature, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::BatchEvaluateFeatureAsync(const BatchEvaluateFeatureRequest& request, const BatchEvaluateFeatureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchEvaluateFeature(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::BatchEvaluateFeature, this, request, handler, context, m_executor.get());
 }
 
 CreateExperimentOutcome CloudWatchEvidentlyClient::CreateExperiment(const CreateExperimentRequest& request) const
@@ -239,18 +234,12 @@ CreateExperimentOutcome CloudWatchEvidentlyClient::CreateExperiment(const Create
 
 CreateExperimentOutcomeCallable CloudWatchEvidentlyClient::CreateExperimentCallable(const CreateExperimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateExperimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateExperiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::CreateExperiment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::CreateExperimentAsync(const CreateExperimentRequest& request, const CreateExperimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateExperiment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::CreateExperiment, this, request, handler, context, m_executor.get());
 }
 
 CreateFeatureOutcome CloudWatchEvidentlyClient::CreateFeature(const CreateFeatureRequest& request) const
@@ -271,18 +260,12 @@ CreateFeatureOutcome CloudWatchEvidentlyClient::CreateFeature(const CreateFeatur
 
 CreateFeatureOutcomeCallable CloudWatchEvidentlyClient::CreateFeatureCallable(const CreateFeatureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateFeatureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateFeature(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::CreateFeature, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::CreateFeatureAsync(const CreateFeatureRequest& request, const CreateFeatureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateFeature(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::CreateFeature, this, request, handler, context, m_executor.get());
 }
 
 CreateLaunchOutcome CloudWatchEvidentlyClient::CreateLaunch(const CreateLaunchRequest& request) const
@@ -303,18 +286,12 @@ CreateLaunchOutcome CloudWatchEvidentlyClient::CreateLaunch(const CreateLaunchRe
 
 CreateLaunchOutcomeCallable CloudWatchEvidentlyClient::CreateLaunchCallable(const CreateLaunchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLaunchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLaunch(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::CreateLaunch, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::CreateLaunchAsync(const CreateLaunchRequest& request, const CreateLaunchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLaunch(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::CreateLaunch, this, request, handler, context, m_executor.get());
 }
 
 CreateProjectOutcome CloudWatchEvidentlyClient::CreateProject(const CreateProjectRequest& request) const
@@ -328,18 +305,12 @@ CreateProjectOutcome CloudWatchEvidentlyClient::CreateProject(const CreateProjec
 
 CreateProjectOutcomeCallable CloudWatchEvidentlyClient::CreateProjectCallable(const CreateProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::CreateProject, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::CreateProjectAsync(const CreateProjectRequest& request, const CreateProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProject(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::CreateProject, this, request, handler, context, m_executor.get());
 }
 
 CreateSegmentOutcome CloudWatchEvidentlyClient::CreateSegment(const CreateSegmentRequest& request) const
@@ -353,18 +324,12 @@ CreateSegmentOutcome CloudWatchEvidentlyClient::CreateSegment(const CreateSegmen
 
 CreateSegmentOutcomeCallable CloudWatchEvidentlyClient::CreateSegmentCallable(const CreateSegmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSegmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSegment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::CreateSegment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::CreateSegmentAsync(const CreateSegmentRequest& request, const CreateSegmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSegment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::CreateSegment, this, request, handler, context, m_executor.get());
 }
 
 DeleteExperimentOutcome CloudWatchEvidentlyClient::DeleteExperiment(const DeleteExperimentRequest& request) const
@@ -391,18 +356,12 @@ DeleteExperimentOutcome CloudWatchEvidentlyClient::DeleteExperiment(const Delete
 
 DeleteExperimentOutcomeCallable CloudWatchEvidentlyClient::DeleteExperimentCallable(const DeleteExperimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteExperimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteExperiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::DeleteExperiment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::DeleteExperimentAsync(const DeleteExperimentRequest& request, const DeleteExperimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteExperiment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::DeleteExperiment, this, request, handler, context, m_executor.get());
 }
 
 DeleteFeatureOutcome CloudWatchEvidentlyClient::DeleteFeature(const DeleteFeatureRequest& request) const
@@ -429,18 +388,12 @@ DeleteFeatureOutcome CloudWatchEvidentlyClient::DeleteFeature(const DeleteFeatur
 
 DeleteFeatureOutcomeCallable CloudWatchEvidentlyClient::DeleteFeatureCallable(const DeleteFeatureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteFeatureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteFeature(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::DeleteFeature, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::DeleteFeatureAsync(const DeleteFeatureRequest& request, const DeleteFeatureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteFeature(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::DeleteFeature, this, request, handler, context, m_executor.get());
 }
 
 DeleteLaunchOutcome CloudWatchEvidentlyClient::DeleteLaunch(const DeleteLaunchRequest& request) const
@@ -467,18 +420,12 @@ DeleteLaunchOutcome CloudWatchEvidentlyClient::DeleteLaunch(const DeleteLaunchRe
 
 DeleteLaunchOutcomeCallable CloudWatchEvidentlyClient::DeleteLaunchCallable(const DeleteLaunchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLaunchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLaunch(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::DeleteLaunch, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::DeleteLaunchAsync(const DeleteLaunchRequest& request, const DeleteLaunchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLaunch(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::DeleteLaunch, this, request, handler, context, m_executor.get());
 }
 
 DeleteProjectOutcome CloudWatchEvidentlyClient::DeleteProject(const DeleteProjectRequest& request) const
@@ -498,18 +445,12 @@ DeleteProjectOutcome CloudWatchEvidentlyClient::DeleteProject(const DeleteProjec
 
 DeleteProjectOutcomeCallable CloudWatchEvidentlyClient::DeleteProjectCallable(const DeleteProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::DeleteProject, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::DeleteProjectAsync(const DeleteProjectRequest& request, const DeleteProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteProject(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::DeleteProject, this, request, handler, context, m_executor.get());
 }
 
 DeleteSegmentOutcome CloudWatchEvidentlyClient::DeleteSegment(const DeleteSegmentRequest& request) const
@@ -529,18 +470,12 @@ DeleteSegmentOutcome CloudWatchEvidentlyClient::DeleteSegment(const DeleteSegmen
 
 DeleteSegmentOutcomeCallable CloudWatchEvidentlyClient::DeleteSegmentCallable(const DeleteSegmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSegmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSegment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::DeleteSegment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::DeleteSegmentAsync(const DeleteSegmentRequest& request, const DeleteSegmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSegment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::DeleteSegment, this, request, handler, context, m_executor.get());
 }
 
 EvaluateFeatureOutcome CloudWatchEvidentlyClient::EvaluateFeature(const EvaluateFeatureRequest& request) const
@@ -569,18 +504,12 @@ EvaluateFeatureOutcome CloudWatchEvidentlyClient::EvaluateFeature(const Evaluate
 
 EvaluateFeatureOutcomeCallable CloudWatchEvidentlyClient::EvaluateFeatureCallable(const EvaluateFeatureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EvaluateFeatureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EvaluateFeature(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::EvaluateFeature, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::EvaluateFeatureAsync(const EvaluateFeatureRequest& request, const EvaluateFeatureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EvaluateFeature(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::EvaluateFeature, this, request, handler, context, m_executor.get());
 }
 
 GetExperimentOutcome CloudWatchEvidentlyClient::GetExperiment(const GetExperimentRequest& request) const
@@ -607,18 +536,12 @@ GetExperimentOutcome CloudWatchEvidentlyClient::GetExperiment(const GetExperimen
 
 GetExperimentOutcomeCallable CloudWatchEvidentlyClient::GetExperimentCallable(const GetExperimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetExperimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetExperiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::GetExperiment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::GetExperimentAsync(const GetExperimentRequest& request, const GetExperimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetExperiment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::GetExperiment, this, request, handler, context, m_executor.get());
 }
 
 GetExperimentResultsOutcome CloudWatchEvidentlyClient::GetExperimentResults(const GetExperimentResultsRequest& request) const
@@ -646,18 +569,12 @@ GetExperimentResultsOutcome CloudWatchEvidentlyClient::GetExperimentResults(cons
 
 GetExperimentResultsOutcomeCallable CloudWatchEvidentlyClient::GetExperimentResultsCallable(const GetExperimentResultsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetExperimentResultsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetExperimentResults(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::GetExperimentResults, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::GetExperimentResultsAsync(const GetExperimentResultsRequest& request, const GetExperimentResultsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetExperimentResults(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::GetExperimentResults, this, request, handler, context, m_executor.get());
 }
 
 GetFeatureOutcome CloudWatchEvidentlyClient::GetFeature(const GetFeatureRequest& request) const
@@ -684,18 +601,12 @@ GetFeatureOutcome CloudWatchEvidentlyClient::GetFeature(const GetFeatureRequest&
 
 GetFeatureOutcomeCallable CloudWatchEvidentlyClient::GetFeatureCallable(const GetFeatureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetFeatureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetFeature(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::GetFeature, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::GetFeatureAsync(const GetFeatureRequest& request, const GetFeatureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetFeature(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::GetFeature, this, request, handler, context, m_executor.get());
 }
 
 GetLaunchOutcome CloudWatchEvidentlyClient::GetLaunch(const GetLaunchRequest& request) const
@@ -722,18 +633,12 @@ GetLaunchOutcome CloudWatchEvidentlyClient::GetLaunch(const GetLaunchRequest& re
 
 GetLaunchOutcomeCallable CloudWatchEvidentlyClient::GetLaunchCallable(const GetLaunchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLaunchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLaunch(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::GetLaunch, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::GetLaunchAsync(const GetLaunchRequest& request, const GetLaunchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLaunch(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::GetLaunch, this, request, handler, context, m_executor.get());
 }
 
 GetProjectOutcome CloudWatchEvidentlyClient::GetProject(const GetProjectRequest& request) const
@@ -753,18 +658,12 @@ GetProjectOutcome CloudWatchEvidentlyClient::GetProject(const GetProjectRequest&
 
 GetProjectOutcomeCallable CloudWatchEvidentlyClient::GetProjectCallable(const GetProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::GetProject, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::GetProjectAsync(const GetProjectRequest& request, const GetProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetProject(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::GetProject, this, request, handler, context, m_executor.get());
 }
 
 GetSegmentOutcome CloudWatchEvidentlyClient::GetSegment(const GetSegmentRequest& request) const
@@ -784,18 +683,12 @@ GetSegmentOutcome CloudWatchEvidentlyClient::GetSegment(const GetSegmentRequest&
 
 GetSegmentOutcomeCallable CloudWatchEvidentlyClient::GetSegmentCallable(const GetSegmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSegmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSegment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::GetSegment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::GetSegmentAsync(const GetSegmentRequest& request, const GetSegmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSegment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::GetSegment, this, request, handler, context, m_executor.get());
 }
 
 ListExperimentsOutcome CloudWatchEvidentlyClient::ListExperiments(const ListExperimentsRequest& request) const
@@ -816,18 +709,12 @@ ListExperimentsOutcome CloudWatchEvidentlyClient::ListExperiments(const ListExpe
 
 ListExperimentsOutcomeCallable CloudWatchEvidentlyClient::ListExperimentsCallable(const ListExperimentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListExperimentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListExperiments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::ListExperiments, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::ListExperimentsAsync(const ListExperimentsRequest& request, const ListExperimentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListExperiments(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::ListExperiments, this, request, handler, context, m_executor.get());
 }
 
 ListFeaturesOutcome CloudWatchEvidentlyClient::ListFeatures(const ListFeaturesRequest& request) const
@@ -848,18 +735,12 @@ ListFeaturesOutcome CloudWatchEvidentlyClient::ListFeatures(const ListFeaturesRe
 
 ListFeaturesOutcomeCallable CloudWatchEvidentlyClient::ListFeaturesCallable(const ListFeaturesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFeaturesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFeatures(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::ListFeatures, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::ListFeaturesAsync(const ListFeaturesRequest& request, const ListFeaturesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFeatures(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::ListFeatures, this, request, handler, context, m_executor.get());
 }
 
 ListLaunchesOutcome CloudWatchEvidentlyClient::ListLaunches(const ListLaunchesRequest& request) const
@@ -880,18 +761,12 @@ ListLaunchesOutcome CloudWatchEvidentlyClient::ListLaunches(const ListLaunchesRe
 
 ListLaunchesOutcomeCallable CloudWatchEvidentlyClient::ListLaunchesCallable(const ListLaunchesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListLaunchesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListLaunches(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::ListLaunches, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::ListLaunchesAsync(const ListLaunchesRequest& request, const ListLaunchesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListLaunches(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::ListLaunches, this, request, handler, context, m_executor.get());
 }
 
 ListProjectsOutcome CloudWatchEvidentlyClient::ListProjects(const ListProjectsRequest& request) const
@@ -905,18 +780,12 @@ ListProjectsOutcome CloudWatchEvidentlyClient::ListProjects(const ListProjectsRe
 
 ListProjectsOutcomeCallable CloudWatchEvidentlyClient::ListProjectsCallable(const ListProjectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProjectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProjects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::ListProjects, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::ListProjectsAsync(const ListProjectsRequest& request, const ListProjectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProjects(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::ListProjects, this, request, handler, context, m_executor.get());
 }
 
 ListSegmentReferencesOutcome CloudWatchEvidentlyClient::ListSegmentReferences(const ListSegmentReferencesRequest& request) const
@@ -942,18 +811,12 @@ ListSegmentReferencesOutcome CloudWatchEvidentlyClient::ListSegmentReferences(co
 
 ListSegmentReferencesOutcomeCallable CloudWatchEvidentlyClient::ListSegmentReferencesCallable(const ListSegmentReferencesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSegmentReferencesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSegmentReferences(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::ListSegmentReferences, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::ListSegmentReferencesAsync(const ListSegmentReferencesRequest& request, const ListSegmentReferencesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSegmentReferences(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::ListSegmentReferences, this, request, handler, context, m_executor.get());
 }
 
 ListSegmentsOutcome CloudWatchEvidentlyClient::ListSegments(const ListSegmentsRequest& request) const
@@ -967,18 +830,12 @@ ListSegmentsOutcome CloudWatchEvidentlyClient::ListSegments(const ListSegmentsRe
 
 ListSegmentsOutcomeCallable CloudWatchEvidentlyClient::ListSegmentsCallable(const ListSegmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSegmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSegments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::ListSegments, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::ListSegmentsAsync(const ListSegmentsRequest& request, const ListSegmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSegments(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::ListSegments, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome CloudWatchEvidentlyClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -998,18 +855,12 @@ ListTagsForResourceOutcome CloudWatchEvidentlyClient::ListTagsForResource(const 
 
 ListTagsForResourceOutcomeCallable CloudWatchEvidentlyClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutProjectEventsOutcome CloudWatchEvidentlyClient::PutProjectEvents(const PutProjectEventsRequest& request) const
@@ -1031,18 +882,12 @@ PutProjectEventsOutcome CloudWatchEvidentlyClient::PutProjectEvents(const PutPro
 
 PutProjectEventsOutcomeCallable CloudWatchEvidentlyClient::PutProjectEventsCallable(const PutProjectEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutProjectEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutProjectEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::PutProjectEvents, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::PutProjectEventsAsync(const PutProjectEventsRequest& request, const PutProjectEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutProjectEvents(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::PutProjectEvents, this, request, handler, context, m_executor.get());
 }
 
 StartExperimentOutcome CloudWatchEvidentlyClient::StartExperiment(const StartExperimentRequest& request) const
@@ -1070,18 +915,12 @@ StartExperimentOutcome CloudWatchEvidentlyClient::StartExperiment(const StartExp
 
 StartExperimentOutcomeCallable CloudWatchEvidentlyClient::StartExperimentCallable(const StartExperimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartExperimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartExperiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::StartExperiment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::StartExperimentAsync(const StartExperimentRequest& request, const StartExperimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartExperiment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::StartExperiment, this, request, handler, context, m_executor.get());
 }
 
 StartLaunchOutcome CloudWatchEvidentlyClient::StartLaunch(const StartLaunchRequest& request) const
@@ -1109,18 +948,12 @@ StartLaunchOutcome CloudWatchEvidentlyClient::StartLaunch(const StartLaunchReque
 
 StartLaunchOutcomeCallable CloudWatchEvidentlyClient::StartLaunchCallable(const StartLaunchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartLaunchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartLaunch(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::StartLaunch, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::StartLaunchAsync(const StartLaunchRequest& request, const StartLaunchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartLaunch(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::StartLaunch, this, request, handler, context, m_executor.get());
 }
 
 StopExperimentOutcome CloudWatchEvidentlyClient::StopExperiment(const StopExperimentRequest& request) const
@@ -1148,18 +981,12 @@ StopExperimentOutcome CloudWatchEvidentlyClient::StopExperiment(const StopExperi
 
 StopExperimentOutcomeCallable CloudWatchEvidentlyClient::StopExperimentCallable(const StopExperimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopExperimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopExperiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::StopExperiment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::StopExperimentAsync(const StopExperimentRequest& request, const StopExperimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopExperiment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::StopExperiment, this, request, handler, context, m_executor.get());
 }
 
 StopLaunchOutcome CloudWatchEvidentlyClient::StopLaunch(const StopLaunchRequest& request) const
@@ -1187,18 +1014,12 @@ StopLaunchOutcome CloudWatchEvidentlyClient::StopLaunch(const StopLaunchRequest&
 
 StopLaunchOutcomeCallable CloudWatchEvidentlyClient::StopLaunchCallable(const StopLaunchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopLaunchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopLaunch(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::StopLaunch, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::StopLaunchAsync(const StopLaunchRequest& request, const StopLaunchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopLaunch(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::StopLaunch, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome CloudWatchEvidentlyClient::TagResource(const TagResourceRequest& request) const
@@ -1218,18 +1039,12 @@ TagResourceOutcome CloudWatchEvidentlyClient::TagResource(const TagResourceReque
 
 TagResourceOutcomeCallable CloudWatchEvidentlyClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::TagResource, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 TestSegmentPatternOutcome CloudWatchEvidentlyClient::TestSegmentPattern(const TestSegmentPatternRequest& request) const
@@ -1243,18 +1058,12 @@ TestSegmentPatternOutcome CloudWatchEvidentlyClient::TestSegmentPattern(const Te
 
 TestSegmentPatternOutcomeCallable CloudWatchEvidentlyClient::TestSegmentPatternCallable(const TestSegmentPatternRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TestSegmentPatternOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TestSegmentPattern(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::TestSegmentPattern, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::TestSegmentPatternAsync(const TestSegmentPatternRequest& request, const TestSegmentPatternResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TestSegmentPattern(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::TestSegmentPattern, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome CloudWatchEvidentlyClient::UntagResource(const UntagResourceRequest& request) const
@@ -1279,18 +1088,12 @@ UntagResourceOutcome CloudWatchEvidentlyClient::UntagResource(const UntagResourc
 
 UntagResourceOutcomeCallable CloudWatchEvidentlyClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::UntagResource, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateExperimentOutcome CloudWatchEvidentlyClient::UpdateExperiment(const UpdateExperimentRequest& request) const
@@ -1317,18 +1120,12 @@ UpdateExperimentOutcome CloudWatchEvidentlyClient::UpdateExperiment(const Update
 
 UpdateExperimentOutcomeCallable CloudWatchEvidentlyClient::UpdateExperimentCallable(const UpdateExperimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateExperimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateExperiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::UpdateExperiment, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::UpdateExperimentAsync(const UpdateExperimentRequest& request, const UpdateExperimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateExperiment(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::UpdateExperiment, this, request, handler, context, m_executor.get());
 }
 
 UpdateFeatureOutcome CloudWatchEvidentlyClient::UpdateFeature(const UpdateFeatureRequest& request) const
@@ -1355,18 +1152,12 @@ UpdateFeatureOutcome CloudWatchEvidentlyClient::UpdateFeature(const UpdateFeatur
 
 UpdateFeatureOutcomeCallable CloudWatchEvidentlyClient::UpdateFeatureCallable(const UpdateFeatureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateFeatureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateFeature(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::UpdateFeature, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::UpdateFeatureAsync(const UpdateFeatureRequest& request, const UpdateFeatureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateFeature(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::UpdateFeature, this, request, handler, context, m_executor.get());
 }
 
 UpdateLaunchOutcome CloudWatchEvidentlyClient::UpdateLaunch(const UpdateLaunchRequest& request) const
@@ -1393,18 +1184,12 @@ UpdateLaunchOutcome CloudWatchEvidentlyClient::UpdateLaunch(const UpdateLaunchRe
 
 UpdateLaunchOutcomeCallable CloudWatchEvidentlyClient::UpdateLaunchCallable(const UpdateLaunchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateLaunchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateLaunch(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::UpdateLaunch, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::UpdateLaunchAsync(const UpdateLaunchRequest& request, const UpdateLaunchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateLaunch(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::UpdateLaunch, this, request, handler, context, m_executor.get());
 }
 
 UpdateProjectOutcome CloudWatchEvidentlyClient::UpdateProject(const UpdateProjectRequest& request) const
@@ -1424,18 +1209,12 @@ UpdateProjectOutcome CloudWatchEvidentlyClient::UpdateProject(const UpdateProjec
 
 UpdateProjectOutcomeCallable CloudWatchEvidentlyClient::UpdateProjectCallable(const UpdateProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::UpdateProject, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::UpdateProjectAsync(const UpdateProjectRequest& request, const UpdateProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateProject(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::UpdateProject, this, request, handler, context, m_executor.get());
 }
 
 UpdateProjectDataDeliveryOutcome CloudWatchEvidentlyClient::UpdateProjectDataDelivery(const UpdateProjectDataDeliveryRequest& request) const
@@ -1456,17 +1235,11 @@ UpdateProjectDataDeliveryOutcome CloudWatchEvidentlyClient::UpdateProjectDataDel
 
 UpdateProjectDataDeliveryOutcomeCallable CloudWatchEvidentlyClient::UpdateProjectDataDeliveryCallable(const UpdateProjectDataDeliveryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateProjectDataDeliveryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateProjectDataDelivery(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchEvidentlyClient::UpdateProjectDataDelivery, this, request, m_executor.get());
 }
 
 void CloudWatchEvidentlyClient::UpdateProjectDataDeliveryAsync(const UpdateProjectDataDeliveryRequest& request, const UpdateProjectDataDeliveryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateProjectDataDelivery(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchEvidentlyClient::UpdateProjectDataDelivery, this, request, handler, context, m_executor.get());
 }
 

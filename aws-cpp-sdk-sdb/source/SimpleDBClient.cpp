@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -192,20 +193,13 @@ BatchDeleteAttributesOutcome SimpleDBClient::BatchDeleteAttributes(const BatchDe
 
 BatchDeleteAttributesOutcomeCallable SimpleDBClient::BatchDeleteAttributesCallable(const BatchDeleteAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDeleteAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDeleteAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::BatchDeleteAttributes, this, request, m_executor.get());
 }
 
 void SimpleDBClient::BatchDeleteAttributesAsync(const BatchDeleteAttributesRequest& request, const BatchDeleteAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDeleteAttributes(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::BatchDeleteAttributes, this, request, handler, context, m_executor.get());
 }
-
 BatchPutAttributesOutcome SimpleDBClient::BatchPutAttributes(const BatchPutAttributesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, BatchPutAttributes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -216,20 +210,13 @@ BatchPutAttributesOutcome SimpleDBClient::BatchPutAttributes(const BatchPutAttri
 
 BatchPutAttributesOutcomeCallable SimpleDBClient::BatchPutAttributesCallable(const BatchPutAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchPutAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchPutAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::BatchPutAttributes, this, request, m_executor.get());
 }
 
 void SimpleDBClient::BatchPutAttributesAsync(const BatchPutAttributesRequest& request, const BatchPutAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchPutAttributes(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::BatchPutAttributes, this, request, handler, context, m_executor.get());
 }
-
 CreateDomainOutcome SimpleDBClient::CreateDomain(const CreateDomainRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateDomain, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -240,20 +227,13 @@ CreateDomainOutcome SimpleDBClient::CreateDomain(const CreateDomainRequest& requ
 
 CreateDomainOutcomeCallable SimpleDBClient::CreateDomainCallable(const CreateDomainRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDomainOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDomain(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::CreateDomain, this, request, m_executor.get());
 }
 
 void SimpleDBClient::CreateDomainAsync(const CreateDomainRequest& request, const CreateDomainResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDomain(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::CreateDomain, this, request, handler, context, m_executor.get());
 }
-
 DeleteAttributesOutcome SimpleDBClient::DeleteAttributes(const DeleteAttributesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteAttributes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -264,20 +244,13 @@ DeleteAttributesOutcome SimpleDBClient::DeleteAttributes(const DeleteAttributesR
 
 DeleteAttributesOutcomeCallable SimpleDBClient::DeleteAttributesCallable(const DeleteAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::DeleteAttributes, this, request, m_executor.get());
 }
 
 void SimpleDBClient::DeleteAttributesAsync(const DeleteAttributesRequest& request, const DeleteAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAttributes(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::DeleteAttributes, this, request, handler, context, m_executor.get());
 }
-
 DeleteDomainOutcome SimpleDBClient::DeleteDomain(const DeleteDomainRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteDomain, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -288,20 +261,13 @@ DeleteDomainOutcome SimpleDBClient::DeleteDomain(const DeleteDomainRequest& requ
 
 DeleteDomainOutcomeCallable SimpleDBClient::DeleteDomainCallable(const DeleteDomainRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDomainOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDomain(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::DeleteDomain, this, request, m_executor.get());
 }
 
 void SimpleDBClient::DeleteDomainAsync(const DeleteDomainRequest& request, const DeleteDomainResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDomain(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::DeleteDomain, this, request, handler, context, m_executor.get());
 }
-
 DomainMetadataOutcome SimpleDBClient::DomainMetadata(const DomainMetadataRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DomainMetadata, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -312,20 +278,13 @@ DomainMetadataOutcome SimpleDBClient::DomainMetadata(const DomainMetadataRequest
 
 DomainMetadataOutcomeCallable SimpleDBClient::DomainMetadataCallable(const DomainMetadataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DomainMetadataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DomainMetadata(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::DomainMetadata, this, request, m_executor.get());
 }
 
 void SimpleDBClient::DomainMetadataAsync(const DomainMetadataRequest& request, const DomainMetadataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DomainMetadata(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::DomainMetadata, this, request, handler, context, m_executor.get());
 }
-
 GetAttributesOutcome SimpleDBClient::GetAttributes(const GetAttributesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetAttributes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -336,20 +295,13 @@ GetAttributesOutcome SimpleDBClient::GetAttributes(const GetAttributesRequest& r
 
 GetAttributesOutcomeCallable SimpleDBClient::GetAttributesCallable(const GetAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::GetAttributes, this, request, m_executor.get());
 }
 
 void SimpleDBClient::GetAttributesAsync(const GetAttributesRequest& request, const GetAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAttributes(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::GetAttributes, this, request, handler, context, m_executor.get());
 }
-
 ListDomainsOutcome SimpleDBClient::ListDomains(const ListDomainsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListDomains, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -360,20 +312,13 @@ ListDomainsOutcome SimpleDBClient::ListDomains(const ListDomainsRequest& request
 
 ListDomainsOutcomeCallable SimpleDBClient::ListDomainsCallable(const ListDomainsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDomainsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDomains(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::ListDomains, this, request, m_executor.get());
 }
 
 void SimpleDBClient::ListDomainsAsync(const ListDomainsRequest& request, const ListDomainsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDomains(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::ListDomains, this, request, handler, context, m_executor.get());
 }
-
 PutAttributesOutcome SimpleDBClient::PutAttributes(const PutAttributesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutAttributes, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -384,20 +329,13 @@ PutAttributesOutcome SimpleDBClient::PutAttributes(const PutAttributesRequest& r
 
 PutAttributesOutcomeCallable SimpleDBClient::PutAttributesCallable(const PutAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::PutAttributes, this, request, m_executor.get());
 }
 
 void SimpleDBClient::PutAttributesAsync(const PutAttributesRequest& request, const PutAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutAttributes(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::PutAttributes, this, request, handler, context, m_executor.get());
 }
-
 SelectOutcome SimpleDBClient::Select(const SelectRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, Select, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -408,17 +346,10 @@ SelectOutcome SimpleDBClient::Select(const SelectRequest& request) const
 
 SelectOutcomeCallable SimpleDBClient::SelectCallable(const SelectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SelectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->Select(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SimpleDBClient::Select, this, request, m_executor.get());
 }
 
 void SimpleDBClient::SelectAsync(const SelectRequest& request, const SelectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, Select(request), context);
-    } );
+  MakeAsyncOperation(&SimpleDBClient::Select, this, request, handler, context, m_executor.get());
 }
-

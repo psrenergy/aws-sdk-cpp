@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -215,18 +216,12 @@ AcceptDirectConnectGatewayAssociationProposalOutcome DirectConnectClient::Accept
 
 AcceptDirectConnectGatewayAssociationProposalOutcomeCallable DirectConnectClient::AcceptDirectConnectGatewayAssociationProposalCallable(const AcceptDirectConnectGatewayAssociationProposalRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AcceptDirectConnectGatewayAssociationProposalOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AcceptDirectConnectGatewayAssociationProposal(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AcceptDirectConnectGatewayAssociationProposal, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AcceptDirectConnectGatewayAssociationProposalAsync(const AcceptDirectConnectGatewayAssociationProposalRequest& request, const AcceptDirectConnectGatewayAssociationProposalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AcceptDirectConnectGatewayAssociationProposal(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AcceptDirectConnectGatewayAssociationProposal, this, request, handler, context, m_executor.get());
 }
 
 AllocateHostedConnectionOutcome DirectConnectClient::AllocateHostedConnection(const AllocateHostedConnectionRequest& request) const
@@ -239,18 +234,12 @@ AllocateHostedConnectionOutcome DirectConnectClient::AllocateHostedConnection(co
 
 AllocateHostedConnectionOutcomeCallable DirectConnectClient::AllocateHostedConnectionCallable(const AllocateHostedConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AllocateHostedConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AllocateHostedConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AllocateHostedConnection, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AllocateHostedConnectionAsync(const AllocateHostedConnectionRequest& request, const AllocateHostedConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AllocateHostedConnection(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AllocateHostedConnection, this, request, handler, context, m_executor.get());
 }
 
 AllocatePrivateVirtualInterfaceOutcome DirectConnectClient::AllocatePrivateVirtualInterface(const AllocatePrivateVirtualInterfaceRequest& request) const
@@ -263,18 +252,12 @@ AllocatePrivateVirtualInterfaceOutcome DirectConnectClient::AllocatePrivateVirtu
 
 AllocatePrivateVirtualInterfaceOutcomeCallable DirectConnectClient::AllocatePrivateVirtualInterfaceCallable(const AllocatePrivateVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AllocatePrivateVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AllocatePrivateVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AllocatePrivateVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AllocatePrivateVirtualInterfaceAsync(const AllocatePrivateVirtualInterfaceRequest& request, const AllocatePrivateVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AllocatePrivateVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AllocatePrivateVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 AllocatePublicVirtualInterfaceOutcome DirectConnectClient::AllocatePublicVirtualInterface(const AllocatePublicVirtualInterfaceRequest& request) const
@@ -287,18 +270,12 @@ AllocatePublicVirtualInterfaceOutcome DirectConnectClient::AllocatePublicVirtual
 
 AllocatePublicVirtualInterfaceOutcomeCallable DirectConnectClient::AllocatePublicVirtualInterfaceCallable(const AllocatePublicVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AllocatePublicVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AllocatePublicVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AllocatePublicVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AllocatePublicVirtualInterfaceAsync(const AllocatePublicVirtualInterfaceRequest& request, const AllocatePublicVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AllocatePublicVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AllocatePublicVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 AllocateTransitVirtualInterfaceOutcome DirectConnectClient::AllocateTransitVirtualInterface(const AllocateTransitVirtualInterfaceRequest& request) const
@@ -311,18 +288,12 @@ AllocateTransitVirtualInterfaceOutcome DirectConnectClient::AllocateTransitVirtu
 
 AllocateTransitVirtualInterfaceOutcomeCallable DirectConnectClient::AllocateTransitVirtualInterfaceCallable(const AllocateTransitVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AllocateTransitVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AllocateTransitVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AllocateTransitVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AllocateTransitVirtualInterfaceAsync(const AllocateTransitVirtualInterfaceRequest& request, const AllocateTransitVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AllocateTransitVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AllocateTransitVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 AssociateConnectionWithLagOutcome DirectConnectClient::AssociateConnectionWithLag(const AssociateConnectionWithLagRequest& request) const
@@ -335,18 +306,12 @@ AssociateConnectionWithLagOutcome DirectConnectClient::AssociateConnectionWithLa
 
 AssociateConnectionWithLagOutcomeCallable DirectConnectClient::AssociateConnectionWithLagCallable(const AssociateConnectionWithLagRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateConnectionWithLagOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateConnectionWithLag(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AssociateConnectionWithLag, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AssociateConnectionWithLagAsync(const AssociateConnectionWithLagRequest& request, const AssociateConnectionWithLagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateConnectionWithLag(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AssociateConnectionWithLag, this, request, handler, context, m_executor.get());
 }
 
 AssociateHostedConnectionOutcome DirectConnectClient::AssociateHostedConnection(const AssociateHostedConnectionRequest& request) const
@@ -359,18 +324,12 @@ AssociateHostedConnectionOutcome DirectConnectClient::AssociateHostedConnection(
 
 AssociateHostedConnectionOutcomeCallable DirectConnectClient::AssociateHostedConnectionCallable(const AssociateHostedConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateHostedConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateHostedConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AssociateHostedConnection, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AssociateHostedConnectionAsync(const AssociateHostedConnectionRequest& request, const AssociateHostedConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateHostedConnection(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AssociateHostedConnection, this, request, handler, context, m_executor.get());
 }
 
 AssociateMacSecKeyOutcome DirectConnectClient::AssociateMacSecKey(const AssociateMacSecKeyRequest& request) const
@@ -383,18 +342,12 @@ AssociateMacSecKeyOutcome DirectConnectClient::AssociateMacSecKey(const Associat
 
 AssociateMacSecKeyOutcomeCallable DirectConnectClient::AssociateMacSecKeyCallable(const AssociateMacSecKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateMacSecKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateMacSecKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AssociateMacSecKey, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AssociateMacSecKeyAsync(const AssociateMacSecKeyRequest& request, const AssociateMacSecKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateMacSecKey(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AssociateMacSecKey, this, request, handler, context, m_executor.get());
 }
 
 AssociateVirtualInterfaceOutcome DirectConnectClient::AssociateVirtualInterface(const AssociateVirtualInterfaceRequest& request) const
@@ -407,18 +360,12 @@ AssociateVirtualInterfaceOutcome DirectConnectClient::AssociateVirtualInterface(
 
 AssociateVirtualInterfaceOutcomeCallable DirectConnectClient::AssociateVirtualInterfaceCallable(const AssociateVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::AssociateVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::AssociateVirtualInterfaceAsync(const AssociateVirtualInterfaceRequest& request, const AssociateVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::AssociateVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 ConfirmConnectionOutcome DirectConnectClient::ConfirmConnection(const ConfirmConnectionRequest& request) const
@@ -431,18 +378,12 @@ ConfirmConnectionOutcome DirectConnectClient::ConfirmConnection(const ConfirmCon
 
 ConfirmConnectionOutcomeCallable DirectConnectClient::ConfirmConnectionCallable(const ConfirmConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfirmConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfirmConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::ConfirmConnection, this, request, m_executor.get());
 }
 
 void DirectConnectClient::ConfirmConnectionAsync(const ConfirmConnectionRequest& request, const ConfirmConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfirmConnection(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::ConfirmConnection, this, request, handler, context, m_executor.get());
 }
 
 ConfirmCustomerAgreementOutcome DirectConnectClient::ConfirmCustomerAgreement(const ConfirmCustomerAgreementRequest& request) const
@@ -455,18 +396,12 @@ ConfirmCustomerAgreementOutcome DirectConnectClient::ConfirmCustomerAgreement(co
 
 ConfirmCustomerAgreementOutcomeCallable DirectConnectClient::ConfirmCustomerAgreementCallable(const ConfirmCustomerAgreementRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfirmCustomerAgreementOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfirmCustomerAgreement(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::ConfirmCustomerAgreement, this, request, m_executor.get());
 }
 
 void DirectConnectClient::ConfirmCustomerAgreementAsync(const ConfirmCustomerAgreementRequest& request, const ConfirmCustomerAgreementResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfirmCustomerAgreement(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::ConfirmCustomerAgreement, this, request, handler, context, m_executor.get());
 }
 
 ConfirmPrivateVirtualInterfaceOutcome DirectConnectClient::ConfirmPrivateVirtualInterface(const ConfirmPrivateVirtualInterfaceRequest& request) const
@@ -479,18 +414,12 @@ ConfirmPrivateVirtualInterfaceOutcome DirectConnectClient::ConfirmPrivateVirtual
 
 ConfirmPrivateVirtualInterfaceOutcomeCallable DirectConnectClient::ConfirmPrivateVirtualInterfaceCallable(const ConfirmPrivateVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfirmPrivateVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfirmPrivateVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::ConfirmPrivateVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::ConfirmPrivateVirtualInterfaceAsync(const ConfirmPrivateVirtualInterfaceRequest& request, const ConfirmPrivateVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfirmPrivateVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::ConfirmPrivateVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 ConfirmPublicVirtualInterfaceOutcome DirectConnectClient::ConfirmPublicVirtualInterface(const ConfirmPublicVirtualInterfaceRequest& request) const
@@ -503,18 +432,12 @@ ConfirmPublicVirtualInterfaceOutcome DirectConnectClient::ConfirmPublicVirtualIn
 
 ConfirmPublicVirtualInterfaceOutcomeCallable DirectConnectClient::ConfirmPublicVirtualInterfaceCallable(const ConfirmPublicVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfirmPublicVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfirmPublicVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::ConfirmPublicVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::ConfirmPublicVirtualInterfaceAsync(const ConfirmPublicVirtualInterfaceRequest& request, const ConfirmPublicVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfirmPublicVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::ConfirmPublicVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 ConfirmTransitVirtualInterfaceOutcome DirectConnectClient::ConfirmTransitVirtualInterface(const ConfirmTransitVirtualInterfaceRequest& request) const
@@ -527,18 +450,12 @@ ConfirmTransitVirtualInterfaceOutcome DirectConnectClient::ConfirmTransitVirtual
 
 ConfirmTransitVirtualInterfaceOutcomeCallable DirectConnectClient::ConfirmTransitVirtualInterfaceCallable(const ConfirmTransitVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfirmTransitVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfirmTransitVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::ConfirmTransitVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::ConfirmTransitVirtualInterfaceAsync(const ConfirmTransitVirtualInterfaceRequest& request, const ConfirmTransitVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfirmTransitVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::ConfirmTransitVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 CreateBGPPeerOutcome DirectConnectClient::CreateBGPPeer(const CreateBGPPeerRequest& request) const
@@ -551,18 +468,12 @@ CreateBGPPeerOutcome DirectConnectClient::CreateBGPPeer(const CreateBGPPeerReque
 
 CreateBGPPeerOutcomeCallable DirectConnectClient::CreateBGPPeerCallable(const CreateBGPPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateBGPPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateBGPPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateBGPPeer, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateBGPPeerAsync(const CreateBGPPeerRequest& request, const CreateBGPPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateBGPPeer(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateBGPPeer, this, request, handler, context, m_executor.get());
 }
 
 CreateConnectionOutcome DirectConnectClient::CreateConnection(const CreateConnectionRequest& request) const
@@ -575,18 +486,12 @@ CreateConnectionOutcome DirectConnectClient::CreateConnection(const CreateConnec
 
 CreateConnectionOutcomeCallable DirectConnectClient::CreateConnectionCallable(const CreateConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateConnection, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateConnectionAsync(const CreateConnectionRequest& request, const CreateConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateConnection(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateConnection, this, request, handler, context, m_executor.get());
 }
 
 CreateDirectConnectGatewayOutcome DirectConnectClient::CreateDirectConnectGateway(const CreateDirectConnectGatewayRequest& request) const
@@ -599,18 +504,12 @@ CreateDirectConnectGatewayOutcome DirectConnectClient::CreateDirectConnectGatewa
 
 CreateDirectConnectGatewayOutcomeCallable DirectConnectClient::CreateDirectConnectGatewayCallable(const CreateDirectConnectGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDirectConnectGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDirectConnectGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateDirectConnectGateway, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateDirectConnectGatewayAsync(const CreateDirectConnectGatewayRequest& request, const CreateDirectConnectGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDirectConnectGateway(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateDirectConnectGateway, this, request, handler, context, m_executor.get());
 }
 
 CreateDirectConnectGatewayAssociationOutcome DirectConnectClient::CreateDirectConnectGatewayAssociation(const CreateDirectConnectGatewayAssociationRequest& request) const
@@ -623,18 +522,12 @@ CreateDirectConnectGatewayAssociationOutcome DirectConnectClient::CreateDirectCo
 
 CreateDirectConnectGatewayAssociationOutcomeCallable DirectConnectClient::CreateDirectConnectGatewayAssociationCallable(const CreateDirectConnectGatewayAssociationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDirectConnectGatewayAssociationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDirectConnectGatewayAssociation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateDirectConnectGatewayAssociation, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateDirectConnectGatewayAssociationAsync(const CreateDirectConnectGatewayAssociationRequest& request, const CreateDirectConnectGatewayAssociationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDirectConnectGatewayAssociation(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateDirectConnectGatewayAssociation, this, request, handler, context, m_executor.get());
 }
 
 CreateDirectConnectGatewayAssociationProposalOutcome DirectConnectClient::CreateDirectConnectGatewayAssociationProposal(const CreateDirectConnectGatewayAssociationProposalRequest& request) const
@@ -647,18 +540,12 @@ CreateDirectConnectGatewayAssociationProposalOutcome DirectConnectClient::Create
 
 CreateDirectConnectGatewayAssociationProposalOutcomeCallable DirectConnectClient::CreateDirectConnectGatewayAssociationProposalCallable(const CreateDirectConnectGatewayAssociationProposalRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDirectConnectGatewayAssociationProposalOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDirectConnectGatewayAssociationProposal(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateDirectConnectGatewayAssociationProposal, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateDirectConnectGatewayAssociationProposalAsync(const CreateDirectConnectGatewayAssociationProposalRequest& request, const CreateDirectConnectGatewayAssociationProposalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDirectConnectGatewayAssociationProposal(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateDirectConnectGatewayAssociationProposal, this, request, handler, context, m_executor.get());
 }
 
 CreateInterconnectOutcome DirectConnectClient::CreateInterconnect(const CreateInterconnectRequest& request) const
@@ -671,18 +558,12 @@ CreateInterconnectOutcome DirectConnectClient::CreateInterconnect(const CreateIn
 
 CreateInterconnectOutcomeCallable DirectConnectClient::CreateInterconnectCallable(const CreateInterconnectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateInterconnectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateInterconnect(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateInterconnect, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateInterconnectAsync(const CreateInterconnectRequest& request, const CreateInterconnectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateInterconnect(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateInterconnect, this, request, handler, context, m_executor.get());
 }
 
 CreateLagOutcome DirectConnectClient::CreateLag(const CreateLagRequest& request) const
@@ -695,18 +576,12 @@ CreateLagOutcome DirectConnectClient::CreateLag(const CreateLagRequest& request)
 
 CreateLagOutcomeCallable DirectConnectClient::CreateLagCallable(const CreateLagRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLagOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLag(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateLag, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateLagAsync(const CreateLagRequest& request, const CreateLagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLag(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateLag, this, request, handler, context, m_executor.get());
 }
 
 CreatePrivateVirtualInterfaceOutcome DirectConnectClient::CreatePrivateVirtualInterface(const CreatePrivateVirtualInterfaceRequest& request) const
@@ -719,18 +594,12 @@ CreatePrivateVirtualInterfaceOutcome DirectConnectClient::CreatePrivateVirtualIn
 
 CreatePrivateVirtualInterfaceOutcomeCallable DirectConnectClient::CreatePrivateVirtualInterfaceCallable(const CreatePrivateVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePrivateVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePrivateVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreatePrivateVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreatePrivateVirtualInterfaceAsync(const CreatePrivateVirtualInterfaceRequest& request, const CreatePrivateVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePrivateVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreatePrivateVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 CreatePublicVirtualInterfaceOutcome DirectConnectClient::CreatePublicVirtualInterface(const CreatePublicVirtualInterfaceRequest& request) const
@@ -743,18 +612,12 @@ CreatePublicVirtualInterfaceOutcome DirectConnectClient::CreatePublicVirtualInte
 
 CreatePublicVirtualInterfaceOutcomeCallable DirectConnectClient::CreatePublicVirtualInterfaceCallable(const CreatePublicVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePublicVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePublicVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreatePublicVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreatePublicVirtualInterfaceAsync(const CreatePublicVirtualInterfaceRequest& request, const CreatePublicVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePublicVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreatePublicVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 CreateTransitVirtualInterfaceOutcome DirectConnectClient::CreateTransitVirtualInterface(const CreateTransitVirtualInterfaceRequest& request) const
@@ -767,18 +630,12 @@ CreateTransitVirtualInterfaceOutcome DirectConnectClient::CreateTransitVirtualIn
 
 CreateTransitVirtualInterfaceOutcomeCallable DirectConnectClient::CreateTransitVirtualInterfaceCallable(const CreateTransitVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTransitVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTransitVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::CreateTransitVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::CreateTransitVirtualInterfaceAsync(const CreateTransitVirtualInterfaceRequest& request, const CreateTransitVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTransitVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::CreateTransitVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 DeleteBGPPeerOutcome DirectConnectClient::DeleteBGPPeer(const DeleteBGPPeerRequest& request) const
@@ -791,18 +648,12 @@ DeleteBGPPeerOutcome DirectConnectClient::DeleteBGPPeer(const DeleteBGPPeerReque
 
 DeleteBGPPeerOutcomeCallable DirectConnectClient::DeleteBGPPeerCallable(const DeleteBGPPeerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBGPPeerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBGPPeer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteBGPPeer, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteBGPPeerAsync(const DeleteBGPPeerRequest& request, const DeleteBGPPeerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBGPPeer(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteBGPPeer, this, request, handler, context, m_executor.get());
 }
 
 DeleteConnectionOutcome DirectConnectClient::DeleteConnection(const DeleteConnectionRequest& request) const
@@ -815,18 +666,12 @@ DeleteConnectionOutcome DirectConnectClient::DeleteConnection(const DeleteConnec
 
 DeleteConnectionOutcomeCallable DirectConnectClient::DeleteConnectionCallable(const DeleteConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteConnection, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteConnectionAsync(const DeleteConnectionRequest& request, const DeleteConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteConnection(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteConnection, this, request, handler, context, m_executor.get());
 }
 
 DeleteDirectConnectGatewayOutcome DirectConnectClient::DeleteDirectConnectGateway(const DeleteDirectConnectGatewayRequest& request) const
@@ -839,18 +684,12 @@ DeleteDirectConnectGatewayOutcome DirectConnectClient::DeleteDirectConnectGatewa
 
 DeleteDirectConnectGatewayOutcomeCallable DirectConnectClient::DeleteDirectConnectGatewayCallable(const DeleteDirectConnectGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDirectConnectGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDirectConnectGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteDirectConnectGateway, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteDirectConnectGatewayAsync(const DeleteDirectConnectGatewayRequest& request, const DeleteDirectConnectGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDirectConnectGateway(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteDirectConnectGateway, this, request, handler, context, m_executor.get());
 }
 
 DeleteDirectConnectGatewayAssociationOutcome DirectConnectClient::DeleteDirectConnectGatewayAssociation(const DeleteDirectConnectGatewayAssociationRequest& request) const
@@ -863,18 +702,12 @@ DeleteDirectConnectGatewayAssociationOutcome DirectConnectClient::DeleteDirectCo
 
 DeleteDirectConnectGatewayAssociationOutcomeCallable DirectConnectClient::DeleteDirectConnectGatewayAssociationCallable(const DeleteDirectConnectGatewayAssociationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDirectConnectGatewayAssociationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDirectConnectGatewayAssociation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteDirectConnectGatewayAssociation, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteDirectConnectGatewayAssociationAsync(const DeleteDirectConnectGatewayAssociationRequest& request, const DeleteDirectConnectGatewayAssociationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDirectConnectGatewayAssociation(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteDirectConnectGatewayAssociation, this, request, handler, context, m_executor.get());
 }
 
 DeleteDirectConnectGatewayAssociationProposalOutcome DirectConnectClient::DeleteDirectConnectGatewayAssociationProposal(const DeleteDirectConnectGatewayAssociationProposalRequest& request) const
@@ -887,18 +720,12 @@ DeleteDirectConnectGatewayAssociationProposalOutcome DirectConnectClient::Delete
 
 DeleteDirectConnectGatewayAssociationProposalOutcomeCallable DirectConnectClient::DeleteDirectConnectGatewayAssociationProposalCallable(const DeleteDirectConnectGatewayAssociationProposalRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDirectConnectGatewayAssociationProposalOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDirectConnectGatewayAssociationProposal(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteDirectConnectGatewayAssociationProposal, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteDirectConnectGatewayAssociationProposalAsync(const DeleteDirectConnectGatewayAssociationProposalRequest& request, const DeleteDirectConnectGatewayAssociationProposalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDirectConnectGatewayAssociationProposal(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteDirectConnectGatewayAssociationProposal, this, request, handler, context, m_executor.get());
 }
 
 DeleteInterconnectOutcome DirectConnectClient::DeleteInterconnect(const DeleteInterconnectRequest& request) const
@@ -911,18 +738,12 @@ DeleteInterconnectOutcome DirectConnectClient::DeleteInterconnect(const DeleteIn
 
 DeleteInterconnectOutcomeCallable DirectConnectClient::DeleteInterconnectCallable(const DeleteInterconnectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteInterconnectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteInterconnect(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteInterconnect, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteInterconnectAsync(const DeleteInterconnectRequest& request, const DeleteInterconnectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteInterconnect(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteInterconnect, this, request, handler, context, m_executor.get());
 }
 
 DeleteLagOutcome DirectConnectClient::DeleteLag(const DeleteLagRequest& request) const
@@ -935,18 +756,12 @@ DeleteLagOutcome DirectConnectClient::DeleteLag(const DeleteLagRequest& request)
 
 DeleteLagOutcomeCallable DirectConnectClient::DeleteLagCallable(const DeleteLagRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLagOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLag(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteLag, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteLagAsync(const DeleteLagRequest& request, const DeleteLagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLag(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteLag, this, request, handler, context, m_executor.get());
 }
 
 DeleteVirtualInterfaceOutcome DirectConnectClient::DeleteVirtualInterface(const DeleteVirtualInterfaceRequest& request) const
@@ -959,18 +774,12 @@ DeleteVirtualInterfaceOutcome DirectConnectClient::DeleteVirtualInterface(const 
 
 DeleteVirtualInterfaceOutcomeCallable DirectConnectClient::DeleteVirtualInterfaceCallable(const DeleteVirtualInterfaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVirtualInterfaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVirtualInterface(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DeleteVirtualInterface, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DeleteVirtualInterfaceAsync(const DeleteVirtualInterfaceRequest& request, const DeleteVirtualInterfaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVirtualInterface(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DeleteVirtualInterface, this, request, handler, context, m_executor.get());
 }
 
 DescribeConnectionsOutcome DirectConnectClient::DescribeConnections(const DescribeConnectionsRequest& request) const
@@ -983,18 +792,12 @@ DescribeConnectionsOutcome DirectConnectClient::DescribeConnections(const Descri
 
 DescribeConnectionsOutcomeCallable DirectConnectClient::DescribeConnectionsCallable(const DescribeConnectionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeConnectionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeConnections(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeConnections, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeConnectionsAsync(const DescribeConnectionsRequest& request, const DescribeConnectionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeConnections(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeConnections, this, request, handler, context, m_executor.get());
 }
 
 DescribeCustomerMetadataOutcome DirectConnectClient::DescribeCustomerMetadata() const
@@ -1032,18 +835,12 @@ DescribeDirectConnectGatewayAssociationProposalsOutcome DirectConnectClient::Des
 
 DescribeDirectConnectGatewayAssociationProposalsOutcomeCallable DirectConnectClient::DescribeDirectConnectGatewayAssociationProposalsCallable(const DescribeDirectConnectGatewayAssociationProposalsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDirectConnectGatewayAssociationProposalsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDirectConnectGatewayAssociationProposals(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeDirectConnectGatewayAssociationProposals, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeDirectConnectGatewayAssociationProposalsAsync(const DescribeDirectConnectGatewayAssociationProposalsRequest& request, const DescribeDirectConnectGatewayAssociationProposalsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDirectConnectGatewayAssociationProposals(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeDirectConnectGatewayAssociationProposals, this, request, handler, context, m_executor.get());
 }
 
 DescribeDirectConnectGatewayAssociationsOutcome DirectConnectClient::DescribeDirectConnectGatewayAssociations(const DescribeDirectConnectGatewayAssociationsRequest& request) const
@@ -1056,18 +853,12 @@ DescribeDirectConnectGatewayAssociationsOutcome DirectConnectClient::DescribeDir
 
 DescribeDirectConnectGatewayAssociationsOutcomeCallable DirectConnectClient::DescribeDirectConnectGatewayAssociationsCallable(const DescribeDirectConnectGatewayAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDirectConnectGatewayAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDirectConnectGatewayAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeDirectConnectGatewayAssociations, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeDirectConnectGatewayAssociationsAsync(const DescribeDirectConnectGatewayAssociationsRequest& request, const DescribeDirectConnectGatewayAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDirectConnectGatewayAssociations(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeDirectConnectGatewayAssociations, this, request, handler, context, m_executor.get());
 }
 
 DescribeDirectConnectGatewayAttachmentsOutcome DirectConnectClient::DescribeDirectConnectGatewayAttachments(const DescribeDirectConnectGatewayAttachmentsRequest& request) const
@@ -1080,18 +871,12 @@ DescribeDirectConnectGatewayAttachmentsOutcome DirectConnectClient::DescribeDire
 
 DescribeDirectConnectGatewayAttachmentsOutcomeCallable DirectConnectClient::DescribeDirectConnectGatewayAttachmentsCallable(const DescribeDirectConnectGatewayAttachmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDirectConnectGatewayAttachmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDirectConnectGatewayAttachments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeDirectConnectGatewayAttachments, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeDirectConnectGatewayAttachmentsAsync(const DescribeDirectConnectGatewayAttachmentsRequest& request, const DescribeDirectConnectGatewayAttachmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDirectConnectGatewayAttachments(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeDirectConnectGatewayAttachments, this, request, handler, context, m_executor.get());
 }
 
 DescribeDirectConnectGatewaysOutcome DirectConnectClient::DescribeDirectConnectGateways(const DescribeDirectConnectGatewaysRequest& request) const
@@ -1104,18 +889,12 @@ DescribeDirectConnectGatewaysOutcome DirectConnectClient::DescribeDirectConnectG
 
 DescribeDirectConnectGatewaysOutcomeCallable DirectConnectClient::DescribeDirectConnectGatewaysCallable(const DescribeDirectConnectGatewaysRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDirectConnectGatewaysOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDirectConnectGateways(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeDirectConnectGateways, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeDirectConnectGatewaysAsync(const DescribeDirectConnectGatewaysRequest& request, const DescribeDirectConnectGatewaysResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDirectConnectGateways(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeDirectConnectGateways, this, request, handler, context, m_executor.get());
 }
 
 DescribeHostedConnectionsOutcome DirectConnectClient::DescribeHostedConnections(const DescribeHostedConnectionsRequest& request) const
@@ -1128,18 +907,12 @@ DescribeHostedConnectionsOutcome DirectConnectClient::DescribeHostedConnections(
 
 DescribeHostedConnectionsOutcomeCallable DirectConnectClient::DescribeHostedConnectionsCallable(const DescribeHostedConnectionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeHostedConnectionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeHostedConnections(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeHostedConnections, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeHostedConnectionsAsync(const DescribeHostedConnectionsRequest& request, const DescribeHostedConnectionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeHostedConnections(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeHostedConnections, this, request, handler, context, m_executor.get());
 }
 
 DescribeInterconnectsOutcome DirectConnectClient::DescribeInterconnects(const DescribeInterconnectsRequest& request) const
@@ -1152,18 +925,12 @@ DescribeInterconnectsOutcome DirectConnectClient::DescribeInterconnects(const De
 
 DescribeInterconnectsOutcomeCallable DirectConnectClient::DescribeInterconnectsCallable(const DescribeInterconnectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeInterconnectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeInterconnects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeInterconnects, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeInterconnectsAsync(const DescribeInterconnectsRequest& request, const DescribeInterconnectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeInterconnects(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeInterconnects, this, request, handler, context, m_executor.get());
 }
 
 DescribeLagsOutcome DirectConnectClient::DescribeLags(const DescribeLagsRequest& request) const
@@ -1176,18 +943,12 @@ DescribeLagsOutcome DirectConnectClient::DescribeLags(const DescribeLagsRequest&
 
 DescribeLagsOutcomeCallable DirectConnectClient::DescribeLagsCallable(const DescribeLagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeLags, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeLagsAsync(const DescribeLagsRequest& request, const DescribeLagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLags(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeLags, this, request, handler, context, m_executor.get());
 }
 
 DescribeLoaOutcome DirectConnectClient::DescribeLoa(const DescribeLoaRequest& request) const
@@ -1200,18 +961,12 @@ DescribeLoaOutcome DirectConnectClient::DescribeLoa(const DescribeLoaRequest& re
 
 DescribeLoaOutcomeCallable DirectConnectClient::DescribeLoaCallable(const DescribeLoaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLoaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLoa(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeLoa, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeLoaAsync(const DescribeLoaRequest& request, const DescribeLoaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLoa(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeLoa, this, request, handler, context, m_executor.get());
 }
 
 DescribeLocationsOutcome DirectConnectClient::DescribeLocations() const
@@ -1249,18 +1004,12 @@ DescribeRouterConfigurationOutcome DirectConnectClient::DescribeRouterConfigurat
 
 DescribeRouterConfigurationOutcomeCallable DirectConnectClient::DescribeRouterConfigurationCallable(const DescribeRouterConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeRouterConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeRouterConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeRouterConfiguration, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeRouterConfigurationAsync(const DescribeRouterConfigurationRequest& request, const DescribeRouterConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeRouterConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeRouterConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DescribeTagsOutcome DirectConnectClient::DescribeTags(const DescribeTagsRequest& request) const
@@ -1273,18 +1022,12 @@ DescribeTagsOutcome DirectConnectClient::DescribeTags(const DescribeTagsRequest&
 
 DescribeTagsOutcomeCallable DirectConnectClient::DescribeTagsCallable(const DescribeTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeTags, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeTagsAsync(const DescribeTagsRequest& request, const DescribeTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTags(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeTags, this, request, handler, context, m_executor.get());
 }
 
 DescribeVirtualGatewaysOutcome DirectConnectClient::DescribeVirtualGateways() const
@@ -1322,18 +1065,12 @@ DescribeVirtualInterfacesOutcome DirectConnectClient::DescribeVirtualInterfaces(
 
 DescribeVirtualInterfacesOutcomeCallable DirectConnectClient::DescribeVirtualInterfacesCallable(const DescribeVirtualInterfacesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeVirtualInterfacesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeVirtualInterfaces(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DescribeVirtualInterfaces, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DescribeVirtualInterfacesAsync(const DescribeVirtualInterfacesRequest& request, const DescribeVirtualInterfacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeVirtualInterfaces(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DescribeVirtualInterfaces, this, request, handler, context, m_executor.get());
 }
 
 DisassociateConnectionFromLagOutcome DirectConnectClient::DisassociateConnectionFromLag(const DisassociateConnectionFromLagRequest& request) const
@@ -1346,18 +1083,12 @@ DisassociateConnectionFromLagOutcome DirectConnectClient::DisassociateConnection
 
 DisassociateConnectionFromLagOutcomeCallable DirectConnectClient::DisassociateConnectionFromLagCallable(const DisassociateConnectionFromLagRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateConnectionFromLagOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateConnectionFromLag(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DisassociateConnectionFromLag, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DisassociateConnectionFromLagAsync(const DisassociateConnectionFromLagRequest& request, const DisassociateConnectionFromLagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateConnectionFromLag(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DisassociateConnectionFromLag, this, request, handler, context, m_executor.get());
 }
 
 DisassociateMacSecKeyOutcome DirectConnectClient::DisassociateMacSecKey(const DisassociateMacSecKeyRequest& request) const
@@ -1370,18 +1101,12 @@ DisassociateMacSecKeyOutcome DirectConnectClient::DisassociateMacSecKey(const Di
 
 DisassociateMacSecKeyOutcomeCallable DirectConnectClient::DisassociateMacSecKeyCallable(const DisassociateMacSecKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateMacSecKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateMacSecKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::DisassociateMacSecKey, this, request, m_executor.get());
 }
 
 void DirectConnectClient::DisassociateMacSecKeyAsync(const DisassociateMacSecKeyRequest& request, const DisassociateMacSecKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateMacSecKey(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::DisassociateMacSecKey, this, request, handler, context, m_executor.get());
 }
 
 ListVirtualInterfaceTestHistoryOutcome DirectConnectClient::ListVirtualInterfaceTestHistory(const ListVirtualInterfaceTestHistoryRequest& request) const
@@ -1394,18 +1119,12 @@ ListVirtualInterfaceTestHistoryOutcome DirectConnectClient::ListVirtualInterface
 
 ListVirtualInterfaceTestHistoryOutcomeCallable DirectConnectClient::ListVirtualInterfaceTestHistoryCallable(const ListVirtualInterfaceTestHistoryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVirtualInterfaceTestHistoryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVirtualInterfaceTestHistory(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::ListVirtualInterfaceTestHistory, this, request, m_executor.get());
 }
 
 void DirectConnectClient::ListVirtualInterfaceTestHistoryAsync(const ListVirtualInterfaceTestHistoryRequest& request, const ListVirtualInterfaceTestHistoryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVirtualInterfaceTestHistory(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::ListVirtualInterfaceTestHistory, this, request, handler, context, m_executor.get());
 }
 
 StartBgpFailoverTestOutcome DirectConnectClient::StartBgpFailoverTest(const StartBgpFailoverTestRequest& request) const
@@ -1418,18 +1137,12 @@ StartBgpFailoverTestOutcome DirectConnectClient::StartBgpFailoverTest(const Star
 
 StartBgpFailoverTestOutcomeCallable DirectConnectClient::StartBgpFailoverTestCallable(const StartBgpFailoverTestRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartBgpFailoverTestOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartBgpFailoverTest(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::StartBgpFailoverTest, this, request, m_executor.get());
 }
 
 void DirectConnectClient::StartBgpFailoverTestAsync(const StartBgpFailoverTestRequest& request, const StartBgpFailoverTestResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartBgpFailoverTest(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::StartBgpFailoverTest, this, request, handler, context, m_executor.get());
 }
 
 StopBgpFailoverTestOutcome DirectConnectClient::StopBgpFailoverTest(const StopBgpFailoverTestRequest& request) const
@@ -1442,18 +1155,12 @@ StopBgpFailoverTestOutcome DirectConnectClient::StopBgpFailoverTest(const StopBg
 
 StopBgpFailoverTestOutcomeCallable DirectConnectClient::StopBgpFailoverTestCallable(const StopBgpFailoverTestRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopBgpFailoverTestOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopBgpFailoverTest(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::StopBgpFailoverTest, this, request, m_executor.get());
 }
 
 void DirectConnectClient::StopBgpFailoverTestAsync(const StopBgpFailoverTestRequest& request, const StopBgpFailoverTestResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopBgpFailoverTest(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::StopBgpFailoverTest, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome DirectConnectClient::TagResource(const TagResourceRequest& request) const
@@ -1466,18 +1173,12 @@ TagResourceOutcome DirectConnectClient::TagResource(const TagResourceRequest& re
 
 TagResourceOutcomeCallable DirectConnectClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::TagResource, this, request, m_executor.get());
 }
 
 void DirectConnectClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome DirectConnectClient::UntagResource(const UntagResourceRequest& request) const
@@ -1490,18 +1191,12 @@ UntagResourceOutcome DirectConnectClient::UntagResource(const UntagResourceReque
 
 UntagResourceOutcomeCallable DirectConnectClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::UntagResource, this, request, m_executor.get());
 }
 
 void DirectConnectClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateConnectionOutcome DirectConnectClient::UpdateConnection(const UpdateConnectionRequest& request) const
@@ -1514,18 +1209,12 @@ UpdateConnectionOutcome DirectConnectClient::UpdateConnection(const UpdateConnec
 
 UpdateConnectionOutcomeCallable DirectConnectClient::UpdateConnectionCallable(const UpdateConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::UpdateConnection, this, request, m_executor.get());
 }
 
 void DirectConnectClient::UpdateConnectionAsync(const UpdateConnectionRequest& request, const UpdateConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateConnection(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::UpdateConnection, this, request, handler, context, m_executor.get());
 }
 
 UpdateDirectConnectGatewayOutcome DirectConnectClient::UpdateDirectConnectGateway(const UpdateDirectConnectGatewayRequest& request) const
@@ -1538,18 +1227,12 @@ UpdateDirectConnectGatewayOutcome DirectConnectClient::UpdateDirectConnectGatewa
 
 UpdateDirectConnectGatewayOutcomeCallable DirectConnectClient::UpdateDirectConnectGatewayCallable(const UpdateDirectConnectGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDirectConnectGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDirectConnectGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::UpdateDirectConnectGateway, this, request, m_executor.get());
 }
 
 void DirectConnectClient::UpdateDirectConnectGatewayAsync(const UpdateDirectConnectGatewayRequest& request, const UpdateDirectConnectGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDirectConnectGateway(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::UpdateDirectConnectGateway, this, request, handler, context, m_executor.get());
 }
 
 UpdateDirectConnectGatewayAssociationOutcome DirectConnectClient::UpdateDirectConnectGatewayAssociation(const UpdateDirectConnectGatewayAssociationRequest& request) const
@@ -1562,18 +1245,12 @@ UpdateDirectConnectGatewayAssociationOutcome DirectConnectClient::UpdateDirectCo
 
 UpdateDirectConnectGatewayAssociationOutcomeCallable DirectConnectClient::UpdateDirectConnectGatewayAssociationCallable(const UpdateDirectConnectGatewayAssociationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDirectConnectGatewayAssociationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDirectConnectGatewayAssociation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::UpdateDirectConnectGatewayAssociation, this, request, m_executor.get());
 }
 
 void DirectConnectClient::UpdateDirectConnectGatewayAssociationAsync(const UpdateDirectConnectGatewayAssociationRequest& request, const UpdateDirectConnectGatewayAssociationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDirectConnectGatewayAssociation(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::UpdateDirectConnectGatewayAssociation, this, request, handler, context, m_executor.get());
 }
 
 UpdateLagOutcome DirectConnectClient::UpdateLag(const UpdateLagRequest& request) const
@@ -1586,18 +1263,12 @@ UpdateLagOutcome DirectConnectClient::UpdateLag(const UpdateLagRequest& request)
 
 UpdateLagOutcomeCallable DirectConnectClient::UpdateLagCallable(const UpdateLagRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateLagOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateLag(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::UpdateLag, this, request, m_executor.get());
 }
 
 void DirectConnectClient::UpdateLagAsync(const UpdateLagRequest& request, const UpdateLagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateLag(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::UpdateLag, this, request, handler, context, m_executor.get());
 }
 
 UpdateVirtualInterfaceAttributesOutcome DirectConnectClient::UpdateVirtualInterfaceAttributes(const UpdateVirtualInterfaceAttributesRequest& request) const
@@ -1610,17 +1281,11 @@ UpdateVirtualInterfaceAttributesOutcome DirectConnectClient::UpdateVirtualInterf
 
 UpdateVirtualInterfaceAttributesOutcomeCallable DirectConnectClient::UpdateVirtualInterfaceAttributesCallable(const UpdateVirtualInterfaceAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateVirtualInterfaceAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateVirtualInterfaceAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DirectConnectClient::UpdateVirtualInterfaceAttributes, this, request, m_executor.get());
 }
 
 void DirectConnectClient::UpdateVirtualInterfaceAttributesAsync(const UpdateVirtualInterfaceAttributesRequest& request, const UpdateVirtualInterfaceAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateVirtualInterfaceAttributes(request), context);
-    } );
+  MakeAsyncOperation(&DirectConnectClient::UpdateVirtualInterfaceAttributes, this, request, handler, context, m_executor.get());
 }
 

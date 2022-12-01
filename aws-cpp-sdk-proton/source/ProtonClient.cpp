@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -234,18 +235,12 @@ AcceptEnvironmentAccountConnectionOutcome ProtonClient::AcceptEnvironmentAccount
 
 AcceptEnvironmentAccountConnectionOutcomeCallable ProtonClient::AcceptEnvironmentAccountConnectionCallable(const AcceptEnvironmentAccountConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AcceptEnvironmentAccountConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AcceptEnvironmentAccountConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::AcceptEnvironmentAccountConnection, this, request, m_executor.get());
 }
 
 void ProtonClient::AcceptEnvironmentAccountConnectionAsync(const AcceptEnvironmentAccountConnectionRequest& request, const AcceptEnvironmentAccountConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AcceptEnvironmentAccountConnection(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::AcceptEnvironmentAccountConnection, this, request, handler, context, m_executor.get());
 }
 
 CancelComponentDeploymentOutcome ProtonClient::CancelComponentDeployment(const CancelComponentDeploymentRequest& request) const
@@ -258,18 +253,12 @@ CancelComponentDeploymentOutcome ProtonClient::CancelComponentDeployment(const C
 
 CancelComponentDeploymentOutcomeCallable ProtonClient::CancelComponentDeploymentCallable(const CancelComponentDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelComponentDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelComponentDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CancelComponentDeployment, this, request, m_executor.get());
 }
 
 void ProtonClient::CancelComponentDeploymentAsync(const CancelComponentDeploymentRequest& request, const CancelComponentDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelComponentDeployment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CancelComponentDeployment, this, request, handler, context, m_executor.get());
 }
 
 CancelEnvironmentDeploymentOutcome ProtonClient::CancelEnvironmentDeployment(const CancelEnvironmentDeploymentRequest& request) const
@@ -282,18 +271,12 @@ CancelEnvironmentDeploymentOutcome ProtonClient::CancelEnvironmentDeployment(con
 
 CancelEnvironmentDeploymentOutcomeCallable ProtonClient::CancelEnvironmentDeploymentCallable(const CancelEnvironmentDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelEnvironmentDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelEnvironmentDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CancelEnvironmentDeployment, this, request, m_executor.get());
 }
 
 void ProtonClient::CancelEnvironmentDeploymentAsync(const CancelEnvironmentDeploymentRequest& request, const CancelEnvironmentDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelEnvironmentDeployment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CancelEnvironmentDeployment, this, request, handler, context, m_executor.get());
 }
 
 CancelServiceInstanceDeploymentOutcome ProtonClient::CancelServiceInstanceDeployment(const CancelServiceInstanceDeploymentRequest& request) const
@@ -306,18 +289,12 @@ CancelServiceInstanceDeploymentOutcome ProtonClient::CancelServiceInstanceDeploy
 
 CancelServiceInstanceDeploymentOutcomeCallable ProtonClient::CancelServiceInstanceDeploymentCallable(const CancelServiceInstanceDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelServiceInstanceDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelServiceInstanceDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CancelServiceInstanceDeployment, this, request, m_executor.get());
 }
 
 void ProtonClient::CancelServiceInstanceDeploymentAsync(const CancelServiceInstanceDeploymentRequest& request, const CancelServiceInstanceDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelServiceInstanceDeployment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CancelServiceInstanceDeployment, this, request, handler, context, m_executor.get());
 }
 
 CancelServicePipelineDeploymentOutcome ProtonClient::CancelServicePipelineDeployment(const CancelServicePipelineDeploymentRequest& request) const
@@ -330,18 +307,12 @@ CancelServicePipelineDeploymentOutcome ProtonClient::CancelServicePipelineDeploy
 
 CancelServicePipelineDeploymentOutcomeCallable ProtonClient::CancelServicePipelineDeploymentCallable(const CancelServicePipelineDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelServicePipelineDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelServicePipelineDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CancelServicePipelineDeployment, this, request, m_executor.get());
 }
 
 void ProtonClient::CancelServicePipelineDeploymentAsync(const CancelServicePipelineDeploymentRequest& request, const CancelServicePipelineDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelServicePipelineDeployment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CancelServicePipelineDeployment, this, request, handler, context, m_executor.get());
 }
 
 CreateComponentOutcome ProtonClient::CreateComponent(const CreateComponentRequest& request) const
@@ -354,18 +325,12 @@ CreateComponentOutcome ProtonClient::CreateComponent(const CreateComponentReques
 
 CreateComponentOutcomeCallable ProtonClient::CreateComponentCallable(const CreateComponentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateComponentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateComponent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateComponent, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateComponentAsync(const CreateComponentRequest& request, const CreateComponentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateComponent(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateComponent, this, request, handler, context, m_executor.get());
 }
 
 CreateEnvironmentOutcome ProtonClient::CreateEnvironment(const CreateEnvironmentRequest& request) const
@@ -378,18 +343,12 @@ CreateEnvironmentOutcome ProtonClient::CreateEnvironment(const CreateEnvironment
 
 CreateEnvironmentOutcomeCallable ProtonClient::CreateEnvironmentCallable(const CreateEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateEnvironment, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateEnvironmentAsync(const CreateEnvironmentRequest& request, const CreateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateEnvironment, this, request, handler, context, m_executor.get());
 }
 
 CreateEnvironmentAccountConnectionOutcome ProtonClient::CreateEnvironmentAccountConnection(const CreateEnvironmentAccountConnectionRequest& request) const
@@ -402,18 +361,12 @@ CreateEnvironmentAccountConnectionOutcome ProtonClient::CreateEnvironmentAccount
 
 CreateEnvironmentAccountConnectionOutcomeCallable ProtonClient::CreateEnvironmentAccountConnectionCallable(const CreateEnvironmentAccountConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEnvironmentAccountConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEnvironmentAccountConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateEnvironmentAccountConnection, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateEnvironmentAccountConnectionAsync(const CreateEnvironmentAccountConnectionRequest& request, const CreateEnvironmentAccountConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEnvironmentAccountConnection(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateEnvironmentAccountConnection, this, request, handler, context, m_executor.get());
 }
 
 CreateEnvironmentTemplateOutcome ProtonClient::CreateEnvironmentTemplate(const CreateEnvironmentTemplateRequest& request) const
@@ -426,18 +379,12 @@ CreateEnvironmentTemplateOutcome ProtonClient::CreateEnvironmentTemplate(const C
 
 CreateEnvironmentTemplateOutcomeCallable ProtonClient::CreateEnvironmentTemplateCallable(const CreateEnvironmentTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEnvironmentTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEnvironmentTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateEnvironmentTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateEnvironmentTemplateAsync(const CreateEnvironmentTemplateRequest& request, const CreateEnvironmentTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEnvironmentTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateEnvironmentTemplate, this, request, handler, context, m_executor.get());
 }
 
 CreateEnvironmentTemplateVersionOutcome ProtonClient::CreateEnvironmentTemplateVersion(const CreateEnvironmentTemplateVersionRequest& request) const
@@ -450,18 +397,12 @@ CreateEnvironmentTemplateVersionOutcome ProtonClient::CreateEnvironmentTemplateV
 
 CreateEnvironmentTemplateVersionOutcomeCallable ProtonClient::CreateEnvironmentTemplateVersionCallable(const CreateEnvironmentTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEnvironmentTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEnvironmentTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateEnvironmentTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateEnvironmentTemplateVersionAsync(const CreateEnvironmentTemplateVersionRequest& request, const CreateEnvironmentTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEnvironmentTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateEnvironmentTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 CreateRepositoryOutcome ProtonClient::CreateRepository(const CreateRepositoryRequest& request) const
@@ -474,18 +415,12 @@ CreateRepositoryOutcome ProtonClient::CreateRepository(const CreateRepositoryReq
 
 CreateRepositoryOutcomeCallable ProtonClient::CreateRepositoryCallable(const CreateRepositoryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRepositoryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRepository(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateRepository, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateRepositoryAsync(const CreateRepositoryRequest& request, const CreateRepositoryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRepository(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateRepository, this, request, handler, context, m_executor.get());
 }
 
 CreateServiceOutcome ProtonClient::CreateService(const CreateServiceRequest& request) const
@@ -498,18 +433,12 @@ CreateServiceOutcome ProtonClient::CreateService(const CreateServiceRequest& req
 
 CreateServiceOutcomeCallable ProtonClient::CreateServiceCallable(const CreateServiceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateServiceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateService(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateService, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateServiceAsync(const CreateServiceRequest& request, const CreateServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateService(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateService, this, request, handler, context, m_executor.get());
 }
 
 CreateServiceTemplateOutcome ProtonClient::CreateServiceTemplate(const CreateServiceTemplateRequest& request) const
@@ -522,18 +451,12 @@ CreateServiceTemplateOutcome ProtonClient::CreateServiceTemplate(const CreateSer
 
 CreateServiceTemplateOutcomeCallable ProtonClient::CreateServiceTemplateCallable(const CreateServiceTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateServiceTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateServiceTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateServiceTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateServiceTemplateAsync(const CreateServiceTemplateRequest& request, const CreateServiceTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateServiceTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateServiceTemplate, this, request, handler, context, m_executor.get());
 }
 
 CreateServiceTemplateVersionOutcome ProtonClient::CreateServiceTemplateVersion(const CreateServiceTemplateVersionRequest& request) const
@@ -546,18 +469,12 @@ CreateServiceTemplateVersionOutcome ProtonClient::CreateServiceTemplateVersion(c
 
 CreateServiceTemplateVersionOutcomeCallable ProtonClient::CreateServiceTemplateVersionCallable(const CreateServiceTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateServiceTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateServiceTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateServiceTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateServiceTemplateVersionAsync(const CreateServiceTemplateVersionRequest& request, const CreateServiceTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateServiceTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateServiceTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 CreateTemplateSyncConfigOutcome ProtonClient::CreateTemplateSyncConfig(const CreateTemplateSyncConfigRequest& request) const
@@ -570,18 +487,12 @@ CreateTemplateSyncConfigOutcome ProtonClient::CreateTemplateSyncConfig(const Cre
 
 CreateTemplateSyncConfigOutcomeCallable ProtonClient::CreateTemplateSyncConfigCallable(const CreateTemplateSyncConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTemplateSyncConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTemplateSyncConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::CreateTemplateSyncConfig, this, request, m_executor.get());
 }
 
 void ProtonClient::CreateTemplateSyncConfigAsync(const CreateTemplateSyncConfigRequest& request, const CreateTemplateSyncConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTemplateSyncConfig(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::CreateTemplateSyncConfig, this, request, handler, context, m_executor.get());
 }
 
 DeleteComponentOutcome ProtonClient::DeleteComponent(const DeleteComponentRequest& request) const
@@ -594,18 +505,12 @@ DeleteComponentOutcome ProtonClient::DeleteComponent(const DeleteComponentReques
 
 DeleteComponentOutcomeCallable ProtonClient::DeleteComponentCallable(const DeleteComponentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteComponentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteComponent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteComponent, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteComponentAsync(const DeleteComponentRequest& request, const DeleteComponentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteComponent(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteComponent, this, request, handler, context, m_executor.get());
 }
 
 DeleteEnvironmentOutcome ProtonClient::DeleteEnvironment(const DeleteEnvironmentRequest& request) const
@@ -618,18 +523,12 @@ DeleteEnvironmentOutcome ProtonClient::DeleteEnvironment(const DeleteEnvironment
 
 DeleteEnvironmentOutcomeCallable ProtonClient::DeleteEnvironmentCallable(const DeleteEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteEnvironment, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteEnvironmentAsync(const DeleteEnvironmentRequest& request, const DeleteEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteEnvironment, this, request, handler, context, m_executor.get());
 }
 
 DeleteEnvironmentAccountConnectionOutcome ProtonClient::DeleteEnvironmentAccountConnection(const DeleteEnvironmentAccountConnectionRequest& request) const
@@ -642,18 +541,12 @@ DeleteEnvironmentAccountConnectionOutcome ProtonClient::DeleteEnvironmentAccount
 
 DeleteEnvironmentAccountConnectionOutcomeCallable ProtonClient::DeleteEnvironmentAccountConnectionCallable(const DeleteEnvironmentAccountConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEnvironmentAccountConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEnvironmentAccountConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteEnvironmentAccountConnection, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteEnvironmentAccountConnectionAsync(const DeleteEnvironmentAccountConnectionRequest& request, const DeleteEnvironmentAccountConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEnvironmentAccountConnection(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteEnvironmentAccountConnection, this, request, handler, context, m_executor.get());
 }
 
 DeleteEnvironmentTemplateOutcome ProtonClient::DeleteEnvironmentTemplate(const DeleteEnvironmentTemplateRequest& request) const
@@ -666,18 +559,12 @@ DeleteEnvironmentTemplateOutcome ProtonClient::DeleteEnvironmentTemplate(const D
 
 DeleteEnvironmentTemplateOutcomeCallable ProtonClient::DeleteEnvironmentTemplateCallable(const DeleteEnvironmentTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEnvironmentTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEnvironmentTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteEnvironmentTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteEnvironmentTemplateAsync(const DeleteEnvironmentTemplateRequest& request, const DeleteEnvironmentTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEnvironmentTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteEnvironmentTemplate, this, request, handler, context, m_executor.get());
 }
 
 DeleteEnvironmentTemplateVersionOutcome ProtonClient::DeleteEnvironmentTemplateVersion(const DeleteEnvironmentTemplateVersionRequest& request) const
@@ -690,18 +577,12 @@ DeleteEnvironmentTemplateVersionOutcome ProtonClient::DeleteEnvironmentTemplateV
 
 DeleteEnvironmentTemplateVersionOutcomeCallable ProtonClient::DeleteEnvironmentTemplateVersionCallable(const DeleteEnvironmentTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEnvironmentTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEnvironmentTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteEnvironmentTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteEnvironmentTemplateVersionAsync(const DeleteEnvironmentTemplateVersionRequest& request, const DeleteEnvironmentTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEnvironmentTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteEnvironmentTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 DeleteRepositoryOutcome ProtonClient::DeleteRepository(const DeleteRepositoryRequest& request) const
@@ -714,18 +595,12 @@ DeleteRepositoryOutcome ProtonClient::DeleteRepository(const DeleteRepositoryReq
 
 DeleteRepositoryOutcomeCallable ProtonClient::DeleteRepositoryCallable(const DeleteRepositoryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRepositoryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRepository(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteRepository, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteRepositoryAsync(const DeleteRepositoryRequest& request, const DeleteRepositoryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRepository(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteRepository, this, request, handler, context, m_executor.get());
 }
 
 DeleteServiceOutcome ProtonClient::DeleteService(const DeleteServiceRequest& request) const
@@ -738,18 +613,12 @@ DeleteServiceOutcome ProtonClient::DeleteService(const DeleteServiceRequest& req
 
 DeleteServiceOutcomeCallable ProtonClient::DeleteServiceCallable(const DeleteServiceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteServiceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteService(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteService, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteServiceAsync(const DeleteServiceRequest& request, const DeleteServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteService(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteService, this, request, handler, context, m_executor.get());
 }
 
 DeleteServiceTemplateOutcome ProtonClient::DeleteServiceTemplate(const DeleteServiceTemplateRequest& request) const
@@ -762,18 +631,12 @@ DeleteServiceTemplateOutcome ProtonClient::DeleteServiceTemplate(const DeleteSer
 
 DeleteServiceTemplateOutcomeCallable ProtonClient::DeleteServiceTemplateCallable(const DeleteServiceTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteServiceTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteServiceTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteServiceTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteServiceTemplateAsync(const DeleteServiceTemplateRequest& request, const DeleteServiceTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteServiceTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteServiceTemplate, this, request, handler, context, m_executor.get());
 }
 
 DeleteServiceTemplateVersionOutcome ProtonClient::DeleteServiceTemplateVersion(const DeleteServiceTemplateVersionRequest& request) const
@@ -786,18 +649,12 @@ DeleteServiceTemplateVersionOutcome ProtonClient::DeleteServiceTemplateVersion(c
 
 DeleteServiceTemplateVersionOutcomeCallable ProtonClient::DeleteServiceTemplateVersionCallable(const DeleteServiceTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteServiceTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteServiceTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteServiceTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteServiceTemplateVersionAsync(const DeleteServiceTemplateVersionRequest& request, const DeleteServiceTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteServiceTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteServiceTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 DeleteTemplateSyncConfigOutcome ProtonClient::DeleteTemplateSyncConfig(const DeleteTemplateSyncConfigRequest& request) const
@@ -810,18 +667,12 @@ DeleteTemplateSyncConfigOutcome ProtonClient::DeleteTemplateSyncConfig(const Del
 
 DeleteTemplateSyncConfigOutcomeCallable ProtonClient::DeleteTemplateSyncConfigCallable(const DeleteTemplateSyncConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTemplateSyncConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTemplateSyncConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::DeleteTemplateSyncConfig, this, request, m_executor.get());
 }
 
 void ProtonClient::DeleteTemplateSyncConfigAsync(const DeleteTemplateSyncConfigRequest& request, const DeleteTemplateSyncConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTemplateSyncConfig(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::DeleteTemplateSyncConfig, this, request, handler, context, m_executor.get());
 }
 
 GetAccountSettingsOutcome ProtonClient::GetAccountSettings(const GetAccountSettingsRequest& request) const
@@ -834,18 +685,12 @@ GetAccountSettingsOutcome ProtonClient::GetAccountSettings(const GetAccountSetti
 
 GetAccountSettingsOutcomeCallable ProtonClient::GetAccountSettingsCallable(const GetAccountSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccountSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccountSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetAccountSettings, this, request, m_executor.get());
 }
 
 void ProtonClient::GetAccountSettingsAsync(const GetAccountSettingsRequest& request, const GetAccountSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccountSettings(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetAccountSettings, this, request, handler, context, m_executor.get());
 }
 
 GetComponentOutcome ProtonClient::GetComponent(const GetComponentRequest& request) const
@@ -858,18 +703,12 @@ GetComponentOutcome ProtonClient::GetComponent(const GetComponentRequest& reques
 
 GetComponentOutcomeCallable ProtonClient::GetComponentCallable(const GetComponentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetComponentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetComponent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetComponent, this, request, m_executor.get());
 }
 
 void ProtonClient::GetComponentAsync(const GetComponentRequest& request, const GetComponentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetComponent(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetComponent, this, request, handler, context, m_executor.get());
 }
 
 GetEnvironmentOutcome ProtonClient::GetEnvironment(const GetEnvironmentRequest& request) const
@@ -882,18 +721,12 @@ GetEnvironmentOutcome ProtonClient::GetEnvironment(const GetEnvironmentRequest& 
 
 GetEnvironmentOutcomeCallable ProtonClient::GetEnvironmentCallable(const GetEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetEnvironment, this, request, m_executor.get());
 }
 
 void ProtonClient::GetEnvironmentAsync(const GetEnvironmentRequest& request, const GetEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetEnvironment, this, request, handler, context, m_executor.get());
 }
 
 GetEnvironmentAccountConnectionOutcome ProtonClient::GetEnvironmentAccountConnection(const GetEnvironmentAccountConnectionRequest& request) const
@@ -906,18 +739,12 @@ GetEnvironmentAccountConnectionOutcome ProtonClient::GetEnvironmentAccountConnec
 
 GetEnvironmentAccountConnectionOutcomeCallable ProtonClient::GetEnvironmentAccountConnectionCallable(const GetEnvironmentAccountConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEnvironmentAccountConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEnvironmentAccountConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetEnvironmentAccountConnection, this, request, m_executor.get());
 }
 
 void ProtonClient::GetEnvironmentAccountConnectionAsync(const GetEnvironmentAccountConnectionRequest& request, const GetEnvironmentAccountConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEnvironmentAccountConnection(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetEnvironmentAccountConnection, this, request, handler, context, m_executor.get());
 }
 
 GetEnvironmentTemplateOutcome ProtonClient::GetEnvironmentTemplate(const GetEnvironmentTemplateRequest& request) const
@@ -930,18 +757,12 @@ GetEnvironmentTemplateOutcome ProtonClient::GetEnvironmentTemplate(const GetEnvi
 
 GetEnvironmentTemplateOutcomeCallable ProtonClient::GetEnvironmentTemplateCallable(const GetEnvironmentTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEnvironmentTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEnvironmentTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetEnvironmentTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::GetEnvironmentTemplateAsync(const GetEnvironmentTemplateRequest& request, const GetEnvironmentTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEnvironmentTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetEnvironmentTemplate, this, request, handler, context, m_executor.get());
 }
 
 GetEnvironmentTemplateVersionOutcome ProtonClient::GetEnvironmentTemplateVersion(const GetEnvironmentTemplateVersionRequest& request) const
@@ -954,18 +775,12 @@ GetEnvironmentTemplateVersionOutcome ProtonClient::GetEnvironmentTemplateVersion
 
 GetEnvironmentTemplateVersionOutcomeCallable ProtonClient::GetEnvironmentTemplateVersionCallable(const GetEnvironmentTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEnvironmentTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEnvironmentTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetEnvironmentTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::GetEnvironmentTemplateVersionAsync(const GetEnvironmentTemplateVersionRequest& request, const GetEnvironmentTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEnvironmentTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetEnvironmentTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 GetRepositoryOutcome ProtonClient::GetRepository(const GetRepositoryRequest& request) const
@@ -978,18 +793,12 @@ GetRepositoryOutcome ProtonClient::GetRepository(const GetRepositoryRequest& req
 
 GetRepositoryOutcomeCallable ProtonClient::GetRepositoryCallable(const GetRepositoryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRepositoryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRepository(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetRepository, this, request, m_executor.get());
 }
 
 void ProtonClient::GetRepositoryAsync(const GetRepositoryRequest& request, const GetRepositoryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRepository(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetRepository, this, request, handler, context, m_executor.get());
 }
 
 GetRepositorySyncStatusOutcome ProtonClient::GetRepositorySyncStatus(const GetRepositorySyncStatusRequest& request) const
@@ -1002,18 +811,12 @@ GetRepositorySyncStatusOutcome ProtonClient::GetRepositorySyncStatus(const GetRe
 
 GetRepositorySyncStatusOutcomeCallable ProtonClient::GetRepositorySyncStatusCallable(const GetRepositorySyncStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRepositorySyncStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRepositorySyncStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetRepositorySyncStatus, this, request, m_executor.get());
 }
 
 void ProtonClient::GetRepositorySyncStatusAsync(const GetRepositorySyncStatusRequest& request, const GetRepositorySyncStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRepositorySyncStatus(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetRepositorySyncStatus, this, request, handler, context, m_executor.get());
 }
 
 GetServiceOutcome ProtonClient::GetService(const GetServiceRequest& request) const
@@ -1026,18 +829,12 @@ GetServiceOutcome ProtonClient::GetService(const GetServiceRequest& request) con
 
 GetServiceOutcomeCallable ProtonClient::GetServiceCallable(const GetServiceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetService(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetService, this, request, m_executor.get());
 }
 
 void ProtonClient::GetServiceAsync(const GetServiceRequest& request, const GetServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetService(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetService, this, request, handler, context, m_executor.get());
 }
 
 GetServiceInstanceOutcome ProtonClient::GetServiceInstance(const GetServiceInstanceRequest& request) const
@@ -1050,18 +847,12 @@ GetServiceInstanceOutcome ProtonClient::GetServiceInstance(const GetServiceInsta
 
 GetServiceInstanceOutcomeCallable ProtonClient::GetServiceInstanceCallable(const GetServiceInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServiceInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetServiceInstance, this, request, m_executor.get());
 }
 
 void ProtonClient::GetServiceInstanceAsync(const GetServiceInstanceRequest& request, const GetServiceInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServiceInstance(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetServiceInstance, this, request, handler, context, m_executor.get());
 }
 
 GetServiceTemplateOutcome ProtonClient::GetServiceTemplate(const GetServiceTemplateRequest& request) const
@@ -1074,18 +865,12 @@ GetServiceTemplateOutcome ProtonClient::GetServiceTemplate(const GetServiceTempl
 
 GetServiceTemplateOutcomeCallable ProtonClient::GetServiceTemplateCallable(const GetServiceTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServiceTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetServiceTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::GetServiceTemplateAsync(const GetServiceTemplateRequest& request, const GetServiceTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServiceTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetServiceTemplate, this, request, handler, context, m_executor.get());
 }
 
 GetServiceTemplateVersionOutcome ProtonClient::GetServiceTemplateVersion(const GetServiceTemplateVersionRequest& request) const
@@ -1098,18 +883,12 @@ GetServiceTemplateVersionOutcome ProtonClient::GetServiceTemplateVersion(const G
 
 GetServiceTemplateVersionOutcomeCallable ProtonClient::GetServiceTemplateVersionCallable(const GetServiceTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServiceTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetServiceTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::GetServiceTemplateVersionAsync(const GetServiceTemplateVersionRequest& request, const GetServiceTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServiceTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetServiceTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 GetTemplateSyncConfigOutcome ProtonClient::GetTemplateSyncConfig(const GetTemplateSyncConfigRequest& request) const
@@ -1122,18 +901,12 @@ GetTemplateSyncConfigOutcome ProtonClient::GetTemplateSyncConfig(const GetTempla
 
 GetTemplateSyncConfigOutcomeCallable ProtonClient::GetTemplateSyncConfigCallable(const GetTemplateSyncConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTemplateSyncConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTemplateSyncConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetTemplateSyncConfig, this, request, m_executor.get());
 }
 
 void ProtonClient::GetTemplateSyncConfigAsync(const GetTemplateSyncConfigRequest& request, const GetTemplateSyncConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTemplateSyncConfig(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetTemplateSyncConfig, this, request, handler, context, m_executor.get());
 }
 
 GetTemplateSyncStatusOutcome ProtonClient::GetTemplateSyncStatus(const GetTemplateSyncStatusRequest& request) const
@@ -1146,18 +919,12 @@ GetTemplateSyncStatusOutcome ProtonClient::GetTemplateSyncStatus(const GetTempla
 
 GetTemplateSyncStatusOutcomeCallable ProtonClient::GetTemplateSyncStatusCallable(const GetTemplateSyncStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTemplateSyncStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTemplateSyncStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::GetTemplateSyncStatus, this, request, m_executor.get());
 }
 
 void ProtonClient::GetTemplateSyncStatusAsync(const GetTemplateSyncStatusRequest& request, const GetTemplateSyncStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTemplateSyncStatus(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::GetTemplateSyncStatus, this, request, handler, context, m_executor.get());
 }
 
 ListComponentOutputsOutcome ProtonClient::ListComponentOutputs(const ListComponentOutputsRequest& request) const
@@ -1170,18 +937,12 @@ ListComponentOutputsOutcome ProtonClient::ListComponentOutputs(const ListCompone
 
 ListComponentOutputsOutcomeCallable ProtonClient::ListComponentOutputsCallable(const ListComponentOutputsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListComponentOutputsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListComponentOutputs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListComponentOutputs, this, request, m_executor.get());
 }
 
 void ProtonClient::ListComponentOutputsAsync(const ListComponentOutputsRequest& request, const ListComponentOutputsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListComponentOutputs(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListComponentOutputs, this, request, handler, context, m_executor.get());
 }
 
 ListComponentProvisionedResourcesOutcome ProtonClient::ListComponentProvisionedResources(const ListComponentProvisionedResourcesRequest& request) const
@@ -1194,18 +955,12 @@ ListComponentProvisionedResourcesOutcome ProtonClient::ListComponentProvisionedR
 
 ListComponentProvisionedResourcesOutcomeCallable ProtonClient::ListComponentProvisionedResourcesCallable(const ListComponentProvisionedResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListComponentProvisionedResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListComponentProvisionedResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListComponentProvisionedResources, this, request, m_executor.get());
 }
 
 void ProtonClient::ListComponentProvisionedResourcesAsync(const ListComponentProvisionedResourcesRequest& request, const ListComponentProvisionedResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListComponentProvisionedResources(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListComponentProvisionedResources, this, request, handler, context, m_executor.get());
 }
 
 ListComponentsOutcome ProtonClient::ListComponents(const ListComponentsRequest& request) const
@@ -1218,18 +973,12 @@ ListComponentsOutcome ProtonClient::ListComponents(const ListComponentsRequest& 
 
 ListComponentsOutcomeCallable ProtonClient::ListComponentsCallable(const ListComponentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListComponentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListComponents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListComponents, this, request, m_executor.get());
 }
 
 void ProtonClient::ListComponentsAsync(const ListComponentsRequest& request, const ListComponentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListComponents(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListComponents, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentAccountConnectionsOutcome ProtonClient::ListEnvironmentAccountConnections(const ListEnvironmentAccountConnectionsRequest& request) const
@@ -1242,18 +991,12 @@ ListEnvironmentAccountConnectionsOutcome ProtonClient::ListEnvironmentAccountCon
 
 ListEnvironmentAccountConnectionsOutcomeCallable ProtonClient::ListEnvironmentAccountConnectionsCallable(const ListEnvironmentAccountConnectionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentAccountConnectionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironmentAccountConnections(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListEnvironmentAccountConnections, this, request, m_executor.get());
 }
 
 void ProtonClient::ListEnvironmentAccountConnectionsAsync(const ListEnvironmentAccountConnectionsRequest& request, const ListEnvironmentAccountConnectionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironmentAccountConnections(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListEnvironmentAccountConnections, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentOutputsOutcome ProtonClient::ListEnvironmentOutputs(const ListEnvironmentOutputsRequest& request) const
@@ -1266,18 +1009,12 @@ ListEnvironmentOutputsOutcome ProtonClient::ListEnvironmentOutputs(const ListEnv
 
 ListEnvironmentOutputsOutcomeCallable ProtonClient::ListEnvironmentOutputsCallable(const ListEnvironmentOutputsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentOutputsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironmentOutputs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListEnvironmentOutputs, this, request, m_executor.get());
 }
 
 void ProtonClient::ListEnvironmentOutputsAsync(const ListEnvironmentOutputsRequest& request, const ListEnvironmentOutputsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironmentOutputs(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListEnvironmentOutputs, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentProvisionedResourcesOutcome ProtonClient::ListEnvironmentProvisionedResources(const ListEnvironmentProvisionedResourcesRequest& request) const
@@ -1290,18 +1027,12 @@ ListEnvironmentProvisionedResourcesOutcome ProtonClient::ListEnvironmentProvisio
 
 ListEnvironmentProvisionedResourcesOutcomeCallable ProtonClient::ListEnvironmentProvisionedResourcesCallable(const ListEnvironmentProvisionedResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentProvisionedResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironmentProvisionedResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListEnvironmentProvisionedResources, this, request, m_executor.get());
 }
 
 void ProtonClient::ListEnvironmentProvisionedResourcesAsync(const ListEnvironmentProvisionedResourcesRequest& request, const ListEnvironmentProvisionedResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironmentProvisionedResources(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListEnvironmentProvisionedResources, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentTemplateVersionsOutcome ProtonClient::ListEnvironmentTemplateVersions(const ListEnvironmentTemplateVersionsRequest& request) const
@@ -1314,18 +1045,12 @@ ListEnvironmentTemplateVersionsOutcome ProtonClient::ListEnvironmentTemplateVers
 
 ListEnvironmentTemplateVersionsOutcomeCallable ProtonClient::ListEnvironmentTemplateVersionsCallable(const ListEnvironmentTemplateVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentTemplateVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironmentTemplateVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListEnvironmentTemplateVersions, this, request, m_executor.get());
 }
 
 void ProtonClient::ListEnvironmentTemplateVersionsAsync(const ListEnvironmentTemplateVersionsRequest& request, const ListEnvironmentTemplateVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironmentTemplateVersions(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListEnvironmentTemplateVersions, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentTemplatesOutcome ProtonClient::ListEnvironmentTemplates(const ListEnvironmentTemplatesRequest& request) const
@@ -1338,18 +1063,12 @@ ListEnvironmentTemplatesOutcome ProtonClient::ListEnvironmentTemplates(const Lis
 
 ListEnvironmentTemplatesOutcomeCallable ProtonClient::ListEnvironmentTemplatesCallable(const ListEnvironmentTemplatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentTemplatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironmentTemplates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListEnvironmentTemplates, this, request, m_executor.get());
 }
 
 void ProtonClient::ListEnvironmentTemplatesAsync(const ListEnvironmentTemplatesRequest& request, const ListEnvironmentTemplatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironmentTemplates(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListEnvironmentTemplates, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentsOutcome ProtonClient::ListEnvironments(const ListEnvironmentsRequest& request) const
@@ -1362,18 +1081,12 @@ ListEnvironmentsOutcome ProtonClient::ListEnvironments(const ListEnvironmentsReq
 
 ListEnvironmentsOutcomeCallable ProtonClient::ListEnvironmentsCallable(const ListEnvironmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListEnvironments, this, request, m_executor.get());
 }
 
 void ProtonClient::ListEnvironmentsAsync(const ListEnvironmentsRequest& request, const ListEnvironmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironments(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListEnvironments, this, request, handler, context, m_executor.get());
 }
 
 ListRepositoriesOutcome ProtonClient::ListRepositories(const ListRepositoriesRequest& request) const
@@ -1386,18 +1099,12 @@ ListRepositoriesOutcome ProtonClient::ListRepositories(const ListRepositoriesReq
 
 ListRepositoriesOutcomeCallable ProtonClient::ListRepositoriesCallable(const ListRepositoriesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRepositoriesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRepositories(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListRepositories, this, request, m_executor.get());
 }
 
 void ProtonClient::ListRepositoriesAsync(const ListRepositoriesRequest& request, const ListRepositoriesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRepositories(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListRepositories, this, request, handler, context, m_executor.get());
 }
 
 ListRepositorySyncDefinitionsOutcome ProtonClient::ListRepositorySyncDefinitions(const ListRepositorySyncDefinitionsRequest& request) const
@@ -1410,18 +1117,12 @@ ListRepositorySyncDefinitionsOutcome ProtonClient::ListRepositorySyncDefinitions
 
 ListRepositorySyncDefinitionsOutcomeCallable ProtonClient::ListRepositorySyncDefinitionsCallable(const ListRepositorySyncDefinitionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRepositorySyncDefinitionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRepositorySyncDefinitions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListRepositorySyncDefinitions, this, request, m_executor.get());
 }
 
 void ProtonClient::ListRepositorySyncDefinitionsAsync(const ListRepositorySyncDefinitionsRequest& request, const ListRepositorySyncDefinitionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRepositorySyncDefinitions(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListRepositorySyncDefinitions, this, request, handler, context, m_executor.get());
 }
 
 ListServiceInstanceOutputsOutcome ProtonClient::ListServiceInstanceOutputs(const ListServiceInstanceOutputsRequest& request) const
@@ -1434,18 +1135,12 @@ ListServiceInstanceOutputsOutcome ProtonClient::ListServiceInstanceOutputs(const
 
 ListServiceInstanceOutputsOutcomeCallable ProtonClient::ListServiceInstanceOutputsCallable(const ListServiceInstanceOutputsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServiceInstanceOutputsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServiceInstanceOutputs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServiceInstanceOutputs, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServiceInstanceOutputsAsync(const ListServiceInstanceOutputsRequest& request, const ListServiceInstanceOutputsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServiceInstanceOutputs(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServiceInstanceOutputs, this, request, handler, context, m_executor.get());
 }
 
 ListServiceInstanceProvisionedResourcesOutcome ProtonClient::ListServiceInstanceProvisionedResources(const ListServiceInstanceProvisionedResourcesRequest& request) const
@@ -1458,18 +1153,12 @@ ListServiceInstanceProvisionedResourcesOutcome ProtonClient::ListServiceInstance
 
 ListServiceInstanceProvisionedResourcesOutcomeCallable ProtonClient::ListServiceInstanceProvisionedResourcesCallable(const ListServiceInstanceProvisionedResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServiceInstanceProvisionedResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServiceInstanceProvisionedResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServiceInstanceProvisionedResources, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServiceInstanceProvisionedResourcesAsync(const ListServiceInstanceProvisionedResourcesRequest& request, const ListServiceInstanceProvisionedResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServiceInstanceProvisionedResources(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServiceInstanceProvisionedResources, this, request, handler, context, m_executor.get());
 }
 
 ListServiceInstancesOutcome ProtonClient::ListServiceInstances(const ListServiceInstancesRequest& request) const
@@ -1482,18 +1171,12 @@ ListServiceInstancesOutcome ProtonClient::ListServiceInstances(const ListService
 
 ListServiceInstancesOutcomeCallable ProtonClient::ListServiceInstancesCallable(const ListServiceInstancesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServiceInstancesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServiceInstances(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServiceInstances, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServiceInstancesAsync(const ListServiceInstancesRequest& request, const ListServiceInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServiceInstances(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServiceInstances, this, request, handler, context, m_executor.get());
 }
 
 ListServicePipelineOutputsOutcome ProtonClient::ListServicePipelineOutputs(const ListServicePipelineOutputsRequest& request) const
@@ -1506,18 +1189,12 @@ ListServicePipelineOutputsOutcome ProtonClient::ListServicePipelineOutputs(const
 
 ListServicePipelineOutputsOutcomeCallable ProtonClient::ListServicePipelineOutputsCallable(const ListServicePipelineOutputsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServicePipelineOutputsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServicePipelineOutputs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServicePipelineOutputs, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServicePipelineOutputsAsync(const ListServicePipelineOutputsRequest& request, const ListServicePipelineOutputsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServicePipelineOutputs(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServicePipelineOutputs, this, request, handler, context, m_executor.get());
 }
 
 ListServicePipelineProvisionedResourcesOutcome ProtonClient::ListServicePipelineProvisionedResources(const ListServicePipelineProvisionedResourcesRequest& request) const
@@ -1530,18 +1207,12 @@ ListServicePipelineProvisionedResourcesOutcome ProtonClient::ListServicePipeline
 
 ListServicePipelineProvisionedResourcesOutcomeCallable ProtonClient::ListServicePipelineProvisionedResourcesCallable(const ListServicePipelineProvisionedResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServicePipelineProvisionedResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServicePipelineProvisionedResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServicePipelineProvisionedResources, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServicePipelineProvisionedResourcesAsync(const ListServicePipelineProvisionedResourcesRequest& request, const ListServicePipelineProvisionedResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServicePipelineProvisionedResources(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServicePipelineProvisionedResources, this, request, handler, context, m_executor.get());
 }
 
 ListServiceTemplateVersionsOutcome ProtonClient::ListServiceTemplateVersions(const ListServiceTemplateVersionsRequest& request) const
@@ -1554,18 +1225,12 @@ ListServiceTemplateVersionsOutcome ProtonClient::ListServiceTemplateVersions(con
 
 ListServiceTemplateVersionsOutcomeCallable ProtonClient::ListServiceTemplateVersionsCallable(const ListServiceTemplateVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServiceTemplateVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServiceTemplateVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServiceTemplateVersions, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServiceTemplateVersionsAsync(const ListServiceTemplateVersionsRequest& request, const ListServiceTemplateVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServiceTemplateVersions(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServiceTemplateVersions, this, request, handler, context, m_executor.get());
 }
 
 ListServiceTemplatesOutcome ProtonClient::ListServiceTemplates(const ListServiceTemplatesRequest& request) const
@@ -1578,18 +1243,12 @@ ListServiceTemplatesOutcome ProtonClient::ListServiceTemplates(const ListService
 
 ListServiceTemplatesOutcomeCallable ProtonClient::ListServiceTemplatesCallable(const ListServiceTemplatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServiceTemplatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServiceTemplates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServiceTemplates, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServiceTemplatesAsync(const ListServiceTemplatesRequest& request, const ListServiceTemplatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServiceTemplates(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServiceTemplates, this, request, handler, context, m_executor.get());
 }
 
 ListServicesOutcome ProtonClient::ListServices(const ListServicesRequest& request) const
@@ -1602,18 +1261,12 @@ ListServicesOutcome ProtonClient::ListServices(const ListServicesRequest& reques
 
 ListServicesOutcomeCallable ProtonClient::ListServicesCallable(const ListServicesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServicesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServices(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListServices, this, request, m_executor.get());
 }
 
 void ProtonClient::ListServicesAsync(const ListServicesRequest& request, const ListServicesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServices(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListServices, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome ProtonClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1626,18 +1279,12 @@ ListTagsForResourceOutcome ProtonClient::ListTagsForResource(const ListTagsForRe
 
 ListTagsForResourceOutcomeCallable ProtonClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void ProtonClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 NotifyResourceDeploymentStatusChangeOutcome ProtonClient::NotifyResourceDeploymentStatusChange(const NotifyResourceDeploymentStatusChangeRequest& request) const
@@ -1650,18 +1297,12 @@ NotifyResourceDeploymentStatusChangeOutcome ProtonClient::NotifyResourceDeployme
 
 NotifyResourceDeploymentStatusChangeOutcomeCallable ProtonClient::NotifyResourceDeploymentStatusChangeCallable(const NotifyResourceDeploymentStatusChangeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< NotifyResourceDeploymentStatusChangeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->NotifyResourceDeploymentStatusChange(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::NotifyResourceDeploymentStatusChange, this, request, m_executor.get());
 }
 
 void ProtonClient::NotifyResourceDeploymentStatusChangeAsync(const NotifyResourceDeploymentStatusChangeRequest& request, const NotifyResourceDeploymentStatusChangeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, NotifyResourceDeploymentStatusChange(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::NotifyResourceDeploymentStatusChange, this, request, handler, context, m_executor.get());
 }
 
 RejectEnvironmentAccountConnectionOutcome ProtonClient::RejectEnvironmentAccountConnection(const RejectEnvironmentAccountConnectionRequest& request) const
@@ -1674,18 +1315,12 @@ RejectEnvironmentAccountConnectionOutcome ProtonClient::RejectEnvironmentAccount
 
 RejectEnvironmentAccountConnectionOutcomeCallable ProtonClient::RejectEnvironmentAccountConnectionCallable(const RejectEnvironmentAccountConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RejectEnvironmentAccountConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RejectEnvironmentAccountConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::RejectEnvironmentAccountConnection, this, request, m_executor.get());
 }
 
 void ProtonClient::RejectEnvironmentAccountConnectionAsync(const RejectEnvironmentAccountConnectionRequest& request, const RejectEnvironmentAccountConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RejectEnvironmentAccountConnection(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::RejectEnvironmentAccountConnection, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome ProtonClient::TagResource(const TagResourceRequest& request) const
@@ -1698,18 +1333,12 @@ TagResourceOutcome ProtonClient::TagResource(const TagResourceRequest& request) 
 
 TagResourceOutcomeCallable ProtonClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::TagResource, this, request, m_executor.get());
 }
 
 void ProtonClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome ProtonClient::UntagResource(const UntagResourceRequest& request) const
@@ -1722,18 +1351,12 @@ UntagResourceOutcome ProtonClient::UntagResource(const UntagResourceRequest& req
 
 UntagResourceOutcomeCallable ProtonClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UntagResource, this, request, m_executor.get());
 }
 
 void ProtonClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAccountSettingsOutcome ProtonClient::UpdateAccountSettings(const UpdateAccountSettingsRequest& request) const
@@ -1746,18 +1369,12 @@ UpdateAccountSettingsOutcome ProtonClient::UpdateAccountSettings(const UpdateAcc
 
 UpdateAccountSettingsOutcomeCallable ProtonClient::UpdateAccountSettingsCallable(const UpdateAccountSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccountSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccountSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateAccountSettings, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateAccountSettingsAsync(const UpdateAccountSettingsRequest& request, const UpdateAccountSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccountSettings(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateAccountSettings, this, request, handler, context, m_executor.get());
 }
 
 UpdateComponentOutcome ProtonClient::UpdateComponent(const UpdateComponentRequest& request) const
@@ -1770,18 +1387,12 @@ UpdateComponentOutcome ProtonClient::UpdateComponent(const UpdateComponentReques
 
 UpdateComponentOutcomeCallable ProtonClient::UpdateComponentCallable(const UpdateComponentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateComponentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateComponent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateComponent, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateComponentAsync(const UpdateComponentRequest& request, const UpdateComponentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateComponent(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateComponent, this, request, handler, context, m_executor.get());
 }
 
 UpdateEnvironmentOutcome ProtonClient::UpdateEnvironment(const UpdateEnvironmentRequest& request) const
@@ -1794,18 +1405,12 @@ UpdateEnvironmentOutcome ProtonClient::UpdateEnvironment(const UpdateEnvironment
 
 UpdateEnvironmentOutcomeCallable ProtonClient::UpdateEnvironmentCallable(const UpdateEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateEnvironment, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateEnvironmentAsync(const UpdateEnvironmentRequest& request, const UpdateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateEnvironment, this, request, handler, context, m_executor.get());
 }
 
 UpdateEnvironmentAccountConnectionOutcome ProtonClient::UpdateEnvironmentAccountConnection(const UpdateEnvironmentAccountConnectionRequest& request) const
@@ -1818,18 +1423,12 @@ UpdateEnvironmentAccountConnectionOutcome ProtonClient::UpdateEnvironmentAccount
 
 UpdateEnvironmentAccountConnectionOutcomeCallable ProtonClient::UpdateEnvironmentAccountConnectionCallable(const UpdateEnvironmentAccountConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEnvironmentAccountConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEnvironmentAccountConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateEnvironmentAccountConnection, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateEnvironmentAccountConnectionAsync(const UpdateEnvironmentAccountConnectionRequest& request, const UpdateEnvironmentAccountConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEnvironmentAccountConnection(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateEnvironmentAccountConnection, this, request, handler, context, m_executor.get());
 }
 
 UpdateEnvironmentTemplateOutcome ProtonClient::UpdateEnvironmentTemplate(const UpdateEnvironmentTemplateRequest& request) const
@@ -1842,18 +1441,12 @@ UpdateEnvironmentTemplateOutcome ProtonClient::UpdateEnvironmentTemplate(const U
 
 UpdateEnvironmentTemplateOutcomeCallable ProtonClient::UpdateEnvironmentTemplateCallable(const UpdateEnvironmentTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEnvironmentTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEnvironmentTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateEnvironmentTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateEnvironmentTemplateAsync(const UpdateEnvironmentTemplateRequest& request, const UpdateEnvironmentTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEnvironmentTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateEnvironmentTemplate, this, request, handler, context, m_executor.get());
 }
 
 UpdateEnvironmentTemplateVersionOutcome ProtonClient::UpdateEnvironmentTemplateVersion(const UpdateEnvironmentTemplateVersionRequest& request) const
@@ -1866,18 +1459,12 @@ UpdateEnvironmentTemplateVersionOutcome ProtonClient::UpdateEnvironmentTemplateV
 
 UpdateEnvironmentTemplateVersionOutcomeCallable ProtonClient::UpdateEnvironmentTemplateVersionCallable(const UpdateEnvironmentTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEnvironmentTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEnvironmentTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateEnvironmentTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateEnvironmentTemplateVersionAsync(const UpdateEnvironmentTemplateVersionRequest& request, const UpdateEnvironmentTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEnvironmentTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateEnvironmentTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 UpdateServiceOutcome ProtonClient::UpdateService(const UpdateServiceRequest& request) const
@@ -1890,18 +1477,12 @@ UpdateServiceOutcome ProtonClient::UpdateService(const UpdateServiceRequest& req
 
 UpdateServiceOutcomeCallable ProtonClient::UpdateServiceCallable(const UpdateServiceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateServiceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateService(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateService, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateServiceAsync(const UpdateServiceRequest& request, const UpdateServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateService(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateService, this, request, handler, context, m_executor.get());
 }
 
 UpdateServiceInstanceOutcome ProtonClient::UpdateServiceInstance(const UpdateServiceInstanceRequest& request) const
@@ -1914,18 +1495,12 @@ UpdateServiceInstanceOutcome ProtonClient::UpdateServiceInstance(const UpdateSer
 
 UpdateServiceInstanceOutcomeCallable ProtonClient::UpdateServiceInstanceCallable(const UpdateServiceInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateServiceInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateServiceInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateServiceInstance, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateServiceInstanceAsync(const UpdateServiceInstanceRequest& request, const UpdateServiceInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateServiceInstance(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateServiceInstance, this, request, handler, context, m_executor.get());
 }
 
 UpdateServicePipelineOutcome ProtonClient::UpdateServicePipeline(const UpdateServicePipelineRequest& request) const
@@ -1938,18 +1513,12 @@ UpdateServicePipelineOutcome ProtonClient::UpdateServicePipeline(const UpdateSer
 
 UpdateServicePipelineOutcomeCallable ProtonClient::UpdateServicePipelineCallable(const UpdateServicePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateServicePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateServicePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateServicePipeline, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateServicePipelineAsync(const UpdateServicePipelineRequest& request, const UpdateServicePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateServicePipeline(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateServicePipeline, this, request, handler, context, m_executor.get());
 }
 
 UpdateServiceTemplateOutcome ProtonClient::UpdateServiceTemplate(const UpdateServiceTemplateRequest& request) const
@@ -1962,18 +1531,12 @@ UpdateServiceTemplateOutcome ProtonClient::UpdateServiceTemplate(const UpdateSer
 
 UpdateServiceTemplateOutcomeCallable ProtonClient::UpdateServiceTemplateCallable(const UpdateServiceTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateServiceTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateServiceTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateServiceTemplate, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateServiceTemplateAsync(const UpdateServiceTemplateRequest& request, const UpdateServiceTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateServiceTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateServiceTemplate, this, request, handler, context, m_executor.get());
 }
 
 UpdateServiceTemplateVersionOutcome ProtonClient::UpdateServiceTemplateVersion(const UpdateServiceTemplateVersionRequest& request) const
@@ -1986,18 +1549,12 @@ UpdateServiceTemplateVersionOutcome ProtonClient::UpdateServiceTemplateVersion(c
 
 UpdateServiceTemplateVersionOutcomeCallable ProtonClient::UpdateServiceTemplateVersionCallable(const UpdateServiceTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateServiceTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateServiceTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateServiceTemplateVersion, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateServiceTemplateVersionAsync(const UpdateServiceTemplateVersionRequest& request, const UpdateServiceTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateServiceTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateServiceTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 UpdateTemplateSyncConfigOutcome ProtonClient::UpdateTemplateSyncConfig(const UpdateTemplateSyncConfigRequest& request) const
@@ -2010,17 +1567,11 @@ UpdateTemplateSyncConfigOutcome ProtonClient::UpdateTemplateSyncConfig(const Upd
 
 UpdateTemplateSyncConfigOutcomeCallable ProtonClient::UpdateTemplateSyncConfigCallable(const UpdateTemplateSyncConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTemplateSyncConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTemplateSyncConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ProtonClient::UpdateTemplateSyncConfig, this, request, m_executor.get());
 }
 
 void ProtonClient::UpdateTemplateSyncConfigAsync(const UpdateTemplateSyncConfigRequest& request, const UpdateTemplateSyncConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTemplateSyncConfig(request), context);
-    } );
+  MakeAsyncOperation(&ProtonClient::UpdateTemplateSyncConfig, this, request, handler, context, m_executor.get());
 }
 

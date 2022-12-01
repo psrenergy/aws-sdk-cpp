@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -167,18 +168,12 @@ CancelResourceRequestOutcome CloudControlApiClient::CancelResourceRequest(const 
 
 CancelResourceRequestOutcomeCallable CloudControlApiClient::CancelResourceRequestCallable(const CancelResourceRequestRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelResourceRequestOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelResourceRequest(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::CancelResourceRequest, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::CancelResourceRequestAsync(const CancelResourceRequestRequest& request, const CancelResourceRequestResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelResourceRequest(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::CancelResourceRequest, this, request, handler, context, m_executor.get());
 }
 
 CreateResourceOutcome CloudControlApiClient::CreateResource(const CreateResourceRequest& request) const
@@ -191,18 +186,12 @@ CreateResourceOutcome CloudControlApiClient::CreateResource(const CreateResource
 
 CreateResourceOutcomeCallable CloudControlApiClient::CreateResourceCallable(const CreateResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::CreateResource, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::CreateResourceAsync(const CreateResourceRequest& request, const CreateResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::CreateResource, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourceOutcome CloudControlApiClient::DeleteResource(const DeleteResourceRequest& request) const
@@ -215,18 +204,12 @@ DeleteResourceOutcome CloudControlApiClient::DeleteResource(const DeleteResource
 
 DeleteResourceOutcomeCallable CloudControlApiClient::DeleteResourceCallable(const DeleteResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::DeleteResource, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::DeleteResourceAsync(const DeleteResourceRequest& request, const DeleteResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::DeleteResource, this, request, handler, context, m_executor.get());
 }
 
 GetResourceOutcome CloudControlApiClient::GetResource(const GetResourceRequest& request) const
@@ -239,18 +222,12 @@ GetResourceOutcome CloudControlApiClient::GetResource(const GetResourceRequest& 
 
 GetResourceOutcomeCallable CloudControlApiClient::GetResourceCallable(const GetResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::GetResource, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::GetResourceAsync(const GetResourceRequest& request, const GetResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::GetResource, this, request, handler, context, m_executor.get());
 }
 
 GetResourceRequestStatusOutcome CloudControlApiClient::GetResourceRequestStatus(const GetResourceRequestStatusRequest& request) const
@@ -263,18 +240,12 @@ GetResourceRequestStatusOutcome CloudControlApiClient::GetResourceRequestStatus(
 
 GetResourceRequestStatusOutcomeCallable CloudControlApiClient::GetResourceRequestStatusCallable(const GetResourceRequestStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourceRequestStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourceRequestStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::GetResourceRequestStatus, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::GetResourceRequestStatusAsync(const GetResourceRequestStatusRequest& request, const GetResourceRequestStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourceRequestStatus(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::GetResourceRequestStatus, this, request, handler, context, m_executor.get());
 }
 
 ListResourceRequestsOutcome CloudControlApiClient::ListResourceRequests(const ListResourceRequestsRequest& request) const
@@ -287,18 +258,12 @@ ListResourceRequestsOutcome CloudControlApiClient::ListResourceRequests(const Li
 
 ListResourceRequestsOutcomeCallable CloudControlApiClient::ListResourceRequestsCallable(const ListResourceRequestsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourceRequestsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResourceRequests(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::ListResourceRequests, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::ListResourceRequestsAsync(const ListResourceRequestsRequest& request, const ListResourceRequestsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResourceRequests(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::ListResourceRequests, this, request, handler, context, m_executor.get());
 }
 
 ListResourcesOutcome CloudControlApiClient::ListResources(const ListResourcesRequest& request) const
@@ -311,18 +276,12 @@ ListResourcesOutcome CloudControlApiClient::ListResources(const ListResourcesReq
 
 ListResourcesOutcomeCallable CloudControlApiClient::ListResourcesCallable(const ListResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::ListResources, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::ListResourcesAsync(const ListResourcesRequest& request, const ListResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResources(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::ListResources, this, request, handler, context, m_executor.get());
 }
 
 UpdateResourceOutcome CloudControlApiClient::UpdateResource(const UpdateResourceRequest& request) const
@@ -335,17 +294,11 @@ UpdateResourceOutcome CloudControlApiClient::UpdateResource(const UpdateResource
 
 UpdateResourceOutcomeCallable CloudControlApiClient::UpdateResourceCallable(const UpdateResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudControlApiClient::UpdateResource, this, request, m_executor.get());
 }
 
 void CloudControlApiClient::UpdateResourceAsync(const UpdateResourceRequest& request, const UpdateResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudControlApiClient::UpdateResource, this, request, handler, context, m_executor.get());
 }
 

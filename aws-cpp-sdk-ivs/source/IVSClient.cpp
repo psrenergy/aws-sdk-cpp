@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -188,18 +189,12 @@ BatchGetChannelOutcome IVSClient::BatchGetChannel(const BatchGetChannelRequest& 
 
 BatchGetChannelOutcomeCallable IVSClient::BatchGetChannelCallable(const BatchGetChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::BatchGetChannel, this, request, m_executor.get());
 }
 
 void IVSClient::BatchGetChannelAsync(const BatchGetChannelRequest& request, const BatchGetChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetChannel(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::BatchGetChannel, this, request, handler, context, m_executor.get());
 }
 
 BatchGetStreamKeyOutcome IVSClient::BatchGetStreamKey(const BatchGetStreamKeyRequest& request) const
@@ -213,18 +208,12 @@ BatchGetStreamKeyOutcome IVSClient::BatchGetStreamKey(const BatchGetStreamKeyReq
 
 BatchGetStreamKeyOutcomeCallable IVSClient::BatchGetStreamKeyCallable(const BatchGetStreamKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetStreamKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetStreamKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::BatchGetStreamKey, this, request, m_executor.get());
 }
 
 void IVSClient::BatchGetStreamKeyAsync(const BatchGetStreamKeyRequest& request, const BatchGetStreamKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetStreamKey(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::BatchGetStreamKey, this, request, handler, context, m_executor.get());
 }
 
 CreateChannelOutcome IVSClient::CreateChannel(const CreateChannelRequest& request) const
@@ -238,18 +227,12 @@ CreateChannelOutcome IVSClient::CreateChannel(const CreateChannelRequest& reques
 
 CreateChannelOutcomeCallable IVSClient::CreateChannelCallable(const CreateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::CreateChannel, this, request, m_executor.get());
 }
 
 void IVSClient::CreateChannelAsync(const CreateChannelRequest& request, const CreateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateChannel(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::CreateChannel, this, request, handler, context, m_executor.get());
 }
 
 CreateRecordingConfigurationOutcome IVSClient::CreateRecordingConfiguration(const CreateRecordingConfigurationRequest& request) const
@@ -263,18 +246,12 @@ CreateRecordingConfigurationOutcome IVSClient::CreateRecordingConfiguration(cons
 
 CreateRecordingConfigurationOutcomeCallable IVSClient::CreateRecordingConfigurationCallable(const CreateRecordingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRecordingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRecordingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::CreateRecordingConfiguration, this, request, m_executor.get());
 }
 
 void IVSClient::CreateRecordingConfigurationAsync(const CreateRecordingConfigurationRequest& request, const CreateRecordingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRecordingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::CreateRecordingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 CreateStreamKeyOutcome IVSClient::CreateStreamKey(const CreateStreamKeyRequest& request) const
@@ -288,18 +265,12 @@ CreateStreamKeyOutcome IVSClient::CreateStreamKey(const CreateStreamKeyRequest& 
 
 CreateStreamKeyOutcomeCallable IVSClient::CreateStreamKeyCallable(const CreateStreamKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateStreamKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateStreamKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::CreateStreamKey, this, request, m_executor.get());
 }
 
 void IVSClient::CreateStreamKeyAsync(const CreateStreamKeyRequest& request, const CreateStreamKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateStreamKey(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::CreateStreamKey, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelOutcome IVSClient::DeleteChannel(const DeleteChannelRequest& request) const
@@ -313,18 +284,12 @@ DeleteChannelOutcome IVSClient::DeleteChannel(const DeleteChannelRequest& reques
 
 DeleteChannelOutcomeCallable IVSClient::DeleteChannelCallable(const DeleteChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::DeleteChannel, this, request, m_executor.get());
 }
 
 void IVSClient::DeleteChannelAsync(const DeleteChannelRequest& request, const DeleteChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannel(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::DeleteChannel, this, request, handler, context, m_executor.get());
 }
 
 DeletePlaybackKeyPairOutcome IVSClient::DeletePlaybackKeyPair(const DeletePlaybackKeyPairRequest& request) const
@@ -338,18 +303,12 @@ DeletePlaybackKeyPairOutcome IVSClient::DeletePlaybackKeyPair(const DeletePlayba
 
 DeletePlaybackKeyPairOutcomeCallable IVSClient::DeletePlaybackKeyPairCallable(const DeletePlaybackKeyPairRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePlaybackKeyPairOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePlaybackKeyPair(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::DeletePlaybackKeyPair, this, request, m_executor.get());
 }
 
 void IVSClient::DeletePlaybackKeyPairAsync(const DeletePlaybackKeyPairRequest& request, const DeletePlaybackKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePlaybackKeyPair(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::DeletePlaybackKeyPair, this, request, handler, context, m_executor.get());
 }
 
 DeleteRecordingConfigurationOutcome IVSClient::DeleteRecordingConfiguration(const DeleteRecordingConfigurationRequest& request) const
@@ -363,18 +322,12 @@ DeleteRecordingConfigurationOutcome IVSClient::DeleteRecordingConfiguration(cons
 
 DeleteRecordingConfigurationOutcomeCallable IVSClient::DeleteRecordingConfigurationCallable(const DeleteRecordingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRecordingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRecordingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::DeleteRecordingConfiguration, this, request, m_executor.get());
 }
 
 void IVSClient::DeleteRecordingConfigurationAsync(const DeleteRecordingConfigurationRequest& request, const DeleteRecordingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRecordingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::DeleteRecordingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeleteStreamKeyOutcome IVSClient::DeleteStreamKey(const DeleteStreamKeyRequest& request) const
@@ -388,18 +341,12 @@ DeleteStreamKeyOutcome IVSClient::DeleteStreamKey(const DeleteStreamKeyRequest& 
 
 DeleteStreamKeyOutcomeCallable IVSClient::DeleteStreamKeyCallable(const DeleteStreamKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteStreamKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteStreamKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::DeleteStreamKey, this, request, m_executor.get());
 }
 
 void IVSClient::DeleteStreamKeyAsync(const DeleteStreamKeyRequest& request, const DeleteStreamKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteStreamKey(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::DeleteStreamKey, this, request, handler, context, m_executor.get());
 }
 
 GetChannelOutcome IVSClient::GetChannel(const GetChannelRequest& request) const
@@ -413,18 +360,12 @@ GetChannelOutcome IVSClient::GetChannel(const GetChannelRequest& request) const
 
 GetChannelOutcomeCallable IVSClient::GetChannelCallable(const GetChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::GetChannel, this, request, m_executor.get());
 }
 
 void IVSClient::GetChannelAsync(const GetChannelRequest& request, const GetChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetChannel(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::GetChannel, this, request, handler, context, m_executor.get());
 }
 
 GetPlaybackKeyPairOutcome IVSClient::GetPlaybackKeyPair(const GetPlaybackKeyPairRequest& request) const
@@ -438,18 +379,12 @@ GetPlaybackKeyPairOutcome IVSClient::GetPlaybackKeyPair(const GetPlaybackKeyPair
 
 GetPlaybackKeyPairOutcomeCallable IVSClient::GetPlaybackKeyPairCallable(const GetPlaybackKeyPairRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPlaybackKeyPairOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPlaybackKeyPair(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::GetPlaybackKeyPair, this, request, m_executor.get());
 }
 
 void IVSClient::GetPlaybackKeyPairAsync(const GetPlaybackKeyPairRequest& request, const GetPlaybackKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPlaybackKeyPair(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::GetPlaybackKeyPair, this, request, handler, context, m_executor.get());
 }
 
 GetRecordingConfigurationOutcome IVSClient::GetRecordingConfiguration(const GetRecordingConfigurationRequest& request) const
@@ -463,18 +398,12 @@ GetRecordingConfigurationOutcome IVSClient::GetRecordingConfiguration(const GetR
 
 GetRecordingConfigurationOutcomeCallable IVSClient::GetRecordingConfigurationCallable(const GetRecordingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRecordingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRecordingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::GetRecordingConfiguration, this, request, m_executor.get());
 }
 
 void IVSClient::GetRecordingConfigurationAsync(const GetRecordingConfigurationRequest& request, const GetRecordingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRecordingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::GetRecordingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetStreamOutcome IVSClient::GetStream(const GetStreamRequest& request) const
@@ -488,18 +417,12 @@ GetStreamOutcome IVSClient::GetStream(const GetStreamRequest& request) const
 
 GetStreamOutcomeCallable IVSClient::GetStreamCallable(const GetStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::GetStream, this, request, m_executor.get());
 }
 
 void IVSClient::GetStreamAsync(const GetStreamRequest& request, const GetStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetStream(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::GetStream, this, request, handler, context, m_executor.get());
 }
 
 GetStreamKeyOutcome IVSClient::GetStreamKey(const GetStreamKeyRequest& request) const
@@ -513,18 +436,12 @@ GetStreamKeyOutcome IVSClient::GetStreamKey(const GetStreamKeyRequest& request) 
 
 GetStreamKeyOutcomeCallable IVSClient::GetStreamKeyCallable(const GetStreamKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetStreamKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetStreamKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::GetStreamKey, this, request, m_executor.get());
 }
 
 void IVSClient::GetStreamKeyAsync(const GetStreamKeyRequest& request, const GetStreamKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetStreamKey(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::GetStreamKey, this, request, handler, context, m_executor.get());
 }
 
 GetStreamSessionOutcome IVSClient::GetStreamSession(const GetStreamSessionRequest& request) const
@@ -538,18 +455,12 @@ GetStreamSessionOutcome IVSClient::GetStreamSession(const GetStreamSessionReques
 
 GetStreamSessionOutcomeCallable IVSClient::GetStreamSessionCallable(const GetStreamSessionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetStreamSessionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetStreamSession(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::GetStreamSession, this, request, m_executor.get());
 }
 
 void IVSClient::GetStreamSessionAsync(const GetStreamSessionRequest& request, const GetStreamSessionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetStreamSession(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::GetStreamSession, this, request, handler, context, m_executor.get());
 }
 
 ImportPlaybackKeyPairOutcome IVSClient::ImportPlaybackKeyPair(const ImportPlaybackKeyPairRequest& request) const
@@ -563,18 +474,12 @@ ImportPlaybackKeyPairOutcome IVSClient::ImportPlaybackKeyPair(const ImportPlayba
 
 ImportPlaybackKeyPairOutcomeCallable IVSClient::ImportPlaybackKeyPairCallable(const ImportPlaybackKeyPairRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ImportPlaybackKeyPairOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ImportPlaybackKeyPair(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ImportPlaybackKeyPair, this, request, m_executor.get());
 }
 
 void IVSClient::ImportPlaybackKeyPairAsync(const ImportPlaybackKeyPairRequest& request, const ImportPlaybackKeyPairResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ImportPlaybackKeyPair(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ImportPlaybackKeyPair, this, request, handler, context, m_executor.get());
 }
 
 ListChannelsOutcome IVSClient::ListChannels(const ListChannelsRequest& request) const
@@ -588,18 +493,12 @@ ListChannelsOutcome IVSClient::ListChannels(const ListChannelsRequest& request) 
 
 ListChannelsOutcomeCallable IVSClient::ListChannelsCallable(const ListChannelsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannels(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ListChannels, this, request, m_executor.get());
 }
 
 void IVSClient::ListChannelsAsync(const ListChannelsRequest& request, const ListChannelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannels(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ListChannels, this, request, handler, context, m_executor.get());
 }
 
 ListPlaybackKeyPairsOutcome IVSClient::ListPlaybackKeyPairs(const ListPlaybackKeyPairsRequest& request) const
@@ -613,18 +512,12 @@ ListPlaybackKeyPairsOutcome IVSClient::ListPlaybackKeyPairs(const ListPlaybackKe
 
 ListPlaybackKeyPairsOutcomeCallable IVSClient::ListPlaybackKeyPairsCallable(const ListPlaybackKeyPairsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPlaybackKeyPairsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPlaybackKeyPairs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ListPlaybackKeyPairs, this, request, m_executor.get());
 }
 
 void IVSClient::ListPlaybackKeyPairsAsync(const ListPlaybackKeyPairsRequest& request, const ListPlaybackKeyPairsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPlaybackKeyPairs(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ListPlaybackKeyPairs, this, request, handler, context, m_executor.get());
 }
 
 ListRecordingConfigurationsOutcome IVSClient::ListRecordingConfigurations(const ListRecordingConfigurationsRequest& request) const
@@ -638,18 +531,12 @@ ListRecordingConfigurationsOutcome IVSClient::ListRecordingConfigurations(const 
 
 ListRecordingConfigurationsOutcomeCallable IVSClient::ListRecordingConfigurationsCallable(const ListRecordingConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRecordingConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRecordingConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ListRecordingConfigurations, this, request, m_executor.get());
 }
 
 void IVSClient::ListRecordingConfigurationsAsync(const ListRecordingConfigurationsRequest& request, const ListRecordingConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRecordingConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ListRecordingConfigurations, this, request, handler, context, m_executor.get());
 }
 
 ListStreamKeysOutcome IVSClient::ListStreamKeys(const ListStreamKeysRequest& request) const
@@ -663,18 +550,12 @@ ListStreamKeysOutcome IVSClient::ListStreamKeys(const ListStreamKeysRequest& req
 
 ListStreamKeysOutcomeCallable IVSClient::ListStreamKeysCallable(const ListStreamKeysRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStreamKeysOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStreamKeys(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ListStreamKeys, this, request, m_executor.get());
 }
 
 void IVSClient::ListStreamKeysAsync(const ListStreamKeysRequest& request, const ListStreamKeysResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStreamKeys(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ListStreamKeys, this, request, handler, context, m_executor.get());
 }
 
 ListStreamSessionsOutcome IVSClient::ListStreamSessions(const ListStreamSessionsRequest& request) const
@@ -688,18 +569,12 @@ ListStreamSessionsOutcome IVSClient::ListStreamSessions(const ListStreamSessions
 
 ListStreamSessionsOutcomeCallable IVSClient::ListStreamSessionsCallable(const ListStreamSessionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStreamSessionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStreamSessions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ListStreamSessions, this, request, m_executor.get());
 }
 
 void IVSClient::ListStreamSessionsAsync(const ListStreamSessionsRequest& request, const ListStreamSessionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStreamSessions(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ListStreamSessions, this, request, handler, context, m_executor.get());
 }
 
 ListStreamsOutcome IVSClient::ListStreams(const ListStreamsRequest& request) const
@@ -713,18 +588,12 @@ ListStreamsOutcome IVSClient::ListStreams(const ListStreamsRequest& request) con
 
 ListStreamsOutcomeCallable IVSClient::ListStreamsCallable(const ListStreamsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStreamsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStreams(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ListStreams, this, request, m_executor.get());
 }
 
 void IVSClient::ListStreamsAsync(const ListStreamsRequest& request, const ListStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStreams(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ListStreams, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome IVSClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -744,18 +613,12 @@ ListTagsForResourceOutcome IVSClient::ListTagsForResource(const ListTagsForResou
 
 ListTagsForResourceOutcomeCallable IVSClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void IVSClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutMetadataOutcome IVSClient::PutMetadata(const PutMetadataRequest& request) const
@@ -769,18 +632,12 @@ PutMetadataOutcome IVSClient::PutMetadata(const PutMetadataRequest& request) con
 
 PutMetadataOutcomeCallable IVSClient::PutMetadataCallable(const PutMetadataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutMetadataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutMetadata(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::PutMetadata, this, request, m_executor.get());
 }
 
 void IVSClient::PutMetadataAsync(const PutMetadataRequest& request, const PutMetadataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutMetadata(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::PutMetadata, this, request, handler, context, m_executor.get());
 }
 
 StopStreamOutcome IVSClient::StopStream(const StopStreamRequest& request) const
@@ -794,18 +651,12 @@ StopStreamOutcome IVSClient::StopStream(const StopStreamRequest& request) const
 
 StopStreamOutcomeCallable IVSClient::StopStreamCallable(const StopStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::StopStream, this, request, m_executor.get());
 }
 
 void IVSClient::StopStreamAsync(const StopStreamRequest& request, const StopStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopStream(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::StopStream, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome IVSClient::TagResource(const TagResourceRequest& request) const
@@ -825,18 +676,12 @@ TagResourceOutcome IVSClient::TagResource(const TagResourceRequest& request) con
 
 TagResourceOutcomeCallable IVSClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::TagResource, this, request, m_executor.get());
 }
 
 void IVSClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome IVSClient::UntagResource(const UntagResourceRequest& request) const
@@ -861,18 +706,12 @@ UntagResourceOutcome IVSClient::UntagResource(const UntagResourceRequest& reques
 
 UntagResourceOutcomeCallable IVSClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::UntagResource, this, request, m_executor.get());
 }
 
 void IVSClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateChannelOutcome IVSClient::UpdateChannel(const UpdateChannelRequest& request) const
@@ -886,17 +725,11 @@ UpdateChannelOutcome IVSClient::UpdateChannel(const UpdateChannelRequest& reques
 
 UpdateChannelOutcomeCallable IVSClient::UpdateChannelCallable(const UpdateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IVSClient::UpdateChannel, this, request, m_executor.get());
 }
 
 void IVSClient::UpdateChannelAsync(const UpdateChannelRequest& request, const UpdateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateChannel(request), context);
-    } );
+  MakeAsyncOperation(&IVSClient::UpdateChannel, this, request, handler, context, m_executor.get());
 }
 

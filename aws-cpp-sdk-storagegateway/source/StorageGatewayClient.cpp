@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -249,18 +250,12 @@ ActivateGatewayOutcome StorageGatewayClient::ActivateGateway(const ActivateGatew
 
 ActivateGatewayOutcomeCallable StorageGatewayClient::ActivateGatewayCallable(const ActivateGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ActivateGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ActivateGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ActivateGateway, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ActivateGatewayAsync(const ActivateGatewayRequest& request, const ActivateGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ActivateGateway(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ActivateGateway, this, request, handler, context, m_executor.get());
 }
 
 AddCacheOutcome StorageGatewayClient::AddCache(const AddCacheRequest& request) const
@@ -273,18 +268,12 @@ AddCacheOutcome StorageGatewayClient::AddCache(const AddCacheRequest& request) c
 
 AddCacheOutcomeCallable StorageGatewayClient::AddCacheCallable(const AddCacheRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddCacheOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddCache(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::AddCache, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::AddCacheAsync(const AddCacheRequest& request, const AddCacheResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddCache(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::AddCache, this, request, handler, context, m_executor.get());
 }
 
 AddTagsToResourceOutcome StorageGatewayClient::AddTagsToResource(const AddTagsToResourceRequest& request) const
@@ -297,18 +286,12 @@ AddTagsToResourceOutcome StorageGatewayClient::AddTagsToResource(const AddTagsTo
 
 AddTagsToResourceOutcomeCallable StorageGatewayClient::AddTagsToResourceCallable(const AddTagsToResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddTagsToResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddTagsToResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::AddTagsToResource, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::AddTagsToResourceAsync(const AddTagsToResourceRequest& request, const AddTagsToResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddTagsToResource(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::AddTagsToResource, this, request, handler, context, m_executor.get());
 }
 
 AddUploadBufferOutcome StorageGatewayClient::AddUploadBuffer(const AddUploadBufferRequest& request) const
@@ -321,18 +304,12 @@ AddUploadBufferOutcome StorageGatewayClient::AddUploadBuffer(const AddUploadBuff
 
 AddUploadBufferOutcomeCallable StorageGatewayClient::AddUploadBufferCallable(const AddUploadBufferRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddUploadBufferOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddUploadBuffer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::AddUploadBuffer, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::AddUploadBufferAsync(const AddUploadBufferRequest& request, const AddUploadBufferResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddUploadBuffer(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::AddUploadBuffer, this, request, handler, context, m_executor.get());
 }
 
 AddWorkingStorageOutcome StorageGatewayClient::AddWorkingStorage(const AddWorkingStorageRequest& request) const
@@ -345,18 +322,12 @@ AddWorkingStorageOutcome StorageGatewayClient::AddWorkingStorage(const AddWorkin
 
 AddWorkingStorageOutcomeCallable StorageGatewayClient::AddWorkingStorageCallable(const AddWorkingStorageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddWorkingStorageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddWorkingStorage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::AddWorkingStorage, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::AddWorkingStorageAsync(const AddWorkingStorageRequest& request, const AddWorkingStorageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddWorkingStorage(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::AddWorkingStorage, this, request, handler, context, m_executor.get());
 }
 
 AssignTapePoolOutcome StorageGatewayClient::AssignTapePool(const AssignTapePoolRequest& request) const
@@ -369,18 +340,12 @@ AssignTapePoolOutcome StorageGatewayClient::AssignTapePool(const AssignTapePoolR
 
 AssignTapePoolOutcomeCallable StorageGatewayClient::AssignTapePoolCallable(const AssignTapePoolRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssignTapePoolOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssignTapePool(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::AssignTapePool, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::AssignTapePoolAsync(const AssignTapePoolRequest& request, const AssignTapePoolResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssignTapePool(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::AssignTapePool, this, request, handler, context, m_executor.get());
 }
 
 AssociateFileSystemOutcome StorageGatewayClient::AssociateFileSystem(const AssociateFileSystemRequest& request) const
@@ -393,18 +358,12 @@ AssociateFileSystemOutcome StorageGatewayClient::AssociateFileSystem(const Assoc
 
 AssociateFileSystemOutcomeCallable StorageGatewayClient::AssociateFileSystemCallable(const AssociateFileSystemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateFileSystemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateFileSystem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::AssociateFileSystem, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::AssociateFileSystemAsync(const AssociateFileSystemRequest& request, const AssociateFileSystemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateFileSystem(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::AssociateFileSystem, this, request, handler, context, m_executor.get());
 }
 
 AttachVolumeOutcome StorageGatewayClient::AttachVolume(const AttachVolumeRequest& request) const
@@ -417,18 +376,12 @@ AttachVolumeOutcome StorageGatewayClient::AttachVolume(const AttachVolumeRequest
 
 AttachVolumeOutcomeCallable StorageGatewayClient::AttachVolumeCallable(const AttachVolumeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachVolumeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachVolume(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::AttachVolume, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::AttachVolumeAsync(const AttachVolumeRequest& request, const AttachVolumeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachVolume(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::AttachVolume, this, request, handler, context, m_executor.get());
 }
 
 CancelArchivalOutcome StorageGatewayClient::CancelArchival(const CancelArchivalRequest& request) const
@@ -441,18 +394,12 @@ CancelArchivalOutcome StorageGatewayClient::CancelArchival(const CancelArchivalR
 
 CancelArchivalOutcomeCallable StorageGatewayClient::CancelArchivalCallable(const CancelArchivalRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelArchivalOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelArchival(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CancelArchival, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CancelArchivalAsync(const CancelArchivalRequest& request, const CancelArchivalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelArchival(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CancelArchival, this, request, handler, context, m_executor.get());
 }
 
 CancelRetrievalOutcome StorageGatewayClient::CancelRetrieval(const CancelRetrievalRequest& request) const
@@ -465,18 +412,12 @@ CancelRetrievalOutcome StorageGatewayClient::CancelRetrieval(const CancelRetriev
 
 CancelRetrievalOutcomeCallable StorageGatewayClient::CancelRetrievalCallable(const CancelRetrievalRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelRetrievalOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelRetrieval(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CancelRetrieval, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CancelRetrievalAsync(const CancelRetrievalRequest& request, const CancelRetrievalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelRetrieval(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CancelRetrieval, this, request, handler, context, m_executor.get());
 }
 
 CreateCachediSCSIVolumeOutcome StorageGatewayClient::CreateCachediSCSIVolume(const CreateCachediSCSIVolumeRequest& request) const
@@ -489,18 +430,12 @@ CreateCachediSCSIVolumeOutcome StorageGatewayClient::CreateCachediSCSIVolume(con
 
 CreateCachediSCSIVolumeOutcomeCallable StorageGatewayClient::CreateCachediSCSIVolumeCallable(const CreateCachediSCSIVolumeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCachediSCSIVolumeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCachediSCSIVolume(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateCachediSCSIVolume, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateCachediSCSIVolumeAsync(const CreateCachediSCSIVolumeRequest& request, const CreateCachediSCSIVolumeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCachediSCSIVolume(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateCachediSCSIVolume, this, request, handler, context, m_executor.get());
 }
 
 CreateNFSFileShareOutcome StorageGatewayClient::CreateNFSFileShare(const CreateNFSFileShareRequest& request) const
@@ -513,18 +448,12 @@ CreateNFSFileShareOutcome StorageGatewayClient::CreateNFSFileShare(const CreateN
 
 CreateNFSFileShareOutcomeCallable StorageGatewayClient::CreateNFSFileShareCallable(const CreateNFSFileShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateNFSFileShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateNFSFileShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateNFSFileShare, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateNFSFileShareAsync(const CreateNFSFileShareRequest& request, const CreateNFSFileShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateNFSFileShare(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateNFSFileShare, this, request, handler, context, m_executor.get());
 }
 
 CreateSMBFileShareOutcome StorageGatewayClient::CreateSMBFileShare(const CreateSMBFileShareRequest& request) const
@@ -537,18 +466,12 @@ CreateSMBFileShareOutcome StorageGatewayClient::CreateSMBFileShare(const CreateS
 
 CreateSMBFileShareOutcomeCallable StorageGatewayClient::CreateSMBFileShareCallable(const CreateSMBFileShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSMBFileShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSMBFileShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateSMBFileShare, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateSMBFileShareAsync(const CreateSMBFileShareRequest& request, const CreateSMBFileShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSMBFileShare(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateSMBFileShare, this, request, handler, context, m_executor.get());
 }
 
 CreateSnapshotOutcome StorageGatewayClient::CreateSnapshot(const CreateSnapshotRequest& request) const
@@ -561,18 +484,12 @@ CreateSnapshotOutcome StorageGatewayClient::CreateSnapshot(const CreateSnapshotR
 
 CreateSnapshotOutcomeCallable StorageGatewayClient::CreateSnapshotCallable(const CreateSnapshotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSnapshot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateSnapshot, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateSnapshotAsync(const CreateSnapshotRequest& request, const CreateSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSnapshot(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateSnapshot, this, request, handler, context, m_executor.get());
 }
 
 CreateSnapshotFromVolumeRecoveryPointOutcome StorageGatewayClient::CreateSnapshotFromVolumeRecoveryPoint(const CreateSnapshotFromVolumeRecoveryPointRequest& request) const
@@ -585,18 +502,12 @@ CreateSnapshotFromVolumeRecoveryPointOutcome StorageGatewayClient::CreateSnapsho
 
 CreateSnapshotFromVolumeRecoveryPointOutcomeCallable StorageGatewayClient::CreateSnapshotFromVolumeRecoveryPointCallable(const CreateSnapshotFromVolumeRecoveryPointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSnapshotFromVolumeRecoveryPointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSnapshotFromVolumeRecoveryPoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateSnapshotFromVolumeRecoveryPoint, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateSnapshotFromVolumeRecoveryPointAsync(const CreateSnapshotFromVolumeRecoveryPointRequest& request, const CreateSnapshotFromVolumeRecoveryPointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSnapshotFromVolumeRecoveryPoint(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateSnapshotFromVolumeRecoveryPoint, this, request, handler, context, m_executor.get());
 }
 
 CreateStorediSCSIVolumeOutcome StorageGatewayClient::CreateStorediSCSIVolume(const CreateStorediSCSIVolumeRequest& request) const
@@ -609,18 +520,12 @@ CreateStorediSCSIVolumeOutcome StorageGatewayClient::CreateStorediSCSIVolume(con
 
 CreateStorediSCSIVolumeOutcomeCallable StorageGatewayClient::CreateStorediSCSIVolumeCallable(const CreateStorediSCSIVolumeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateStorediSCSIVolumeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateStorediSCSIVolume(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateStorediSCSIVolume, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateStorediSCSIVolumeAsync(const CreateStorediSCSIVolumeRequest& request, const CreateStorediSCSIVolumeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateStorediSCSIVolume(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateStorediSCSIVolume, this, request, handler, context, m_executor.get());
 }
 
 CreateTapePoolOutcome StorageGatewayClient::CreateTapePool(const CreateTapePoolRequest& request) const
@@ -633,18 +538,12 @@ CreateTapePoolOutcome StorageGatewayClient::CreateTapePool(const CreateTapePoolR
 
 CreateTapePoolOutcomeCallable StorageGatewayClient::CreateTapePoolCallable(const CreateTapePoolRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTapePoolOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTapePool(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateTapePool, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateTapePoolAsync(const CreateTapePoolRequest& request, const CreateTapePoolResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTapePool(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateTapePool, this, request, handler, context, m_executor.get());
 }
 
 CreateTapeWithBarcodeOutcome StorageGatewayClient::CreateTapeWithBarcode(const CreateTapeWithBarcodeRequest& request) const
@@ -657,18 +556,12 @@ CreateTapeWithBarcodeOutcome StorageGatewayClient::CreateTapeWithBarcode(const C
 
 CreateTapeWithBarcodeOutcomeCallable StorageGatewayClient::CreateTapeWithBarcodeCallable(const CreateTapeWithBarcodeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTapeWithBarcodeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTapeWithBarcode(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateTapeWithBarcode, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateTapeWithBarcodeAsync(const CreateTapeWithBarcodeRequest& request, const CreateTapeWithBarcodeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTapeWithBarcode(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateTapeWithBarcode, this, request, handler, context, m_executor.get());
 }
 
 CreateTapesOutcome StorageGatewayClient::CreateTapes(const CreateTapesRequest& request) const
@@ -681,18 +574,12 @@ CreateTapesOutcome StorageGatewayClient::CreateTapes(const CreateTapesRequest& r
 
 CreateTapesOutcomeCallable StorageGatewayClient::CreateTapesCallable(const CreateTapesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTapesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTapes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::CreateTapes, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::CreateTapesAsync(const CreateTapesRequest& request, const CreateTapesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTapes(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::CreateTapes, this, request, handler, context, m_executor.get());
 }
 
 DeleteAutomaticTapeCreationPolicyOutcome StorageGatewayClient::DeleteAutomaticTapeCreationPolicy(const DeleteAutomaticTapeCreationPolicyRequest& request) const
@@ -705,18 +592,12 @@ DeleteAutomaticTapeCreationPolicyOutcome StorageGatewayClient::DeleteAutomaticTa
 
 DeleteAutomaticTapeCreationPolicyOutcomeCallable StorageGatewayClient::DeleteAutomaticTapeCreationPolicyCallable(const DeleteAutomaticTapeCreationPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAutomaticTapeCreationPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAutomaticTapeCreationPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteAutomaticTapeCreationPolicy, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteAutomaticTapeCreationPolicyAsync(const DeleteAutomaticTapeCreationPolicyRequest& request, const DeleteAutomaticTapeCreationPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAutomaticTapeCreationPolicy(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteAutomaticTapeCreationPolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteBandwidthRateLimitOutcome StorageGatewayClient::DeleteBandwidthRateLimit(const DeleteBandwidthRateLimitRequest& request) const
@@ -729,18 +610,12 @@ DeleteBandwidthRateLimitOutcome StorageGatewayClient::DeleteBandwidthRateLimit(c
 
 DeleteBandwidthRateLimitOutcomeCallable StorageGatewayClient::DeleteBandwidthRateLimitCallable(const DeleteBandwidthRateLimitRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBandwidthRateLimitOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBandwidthRateLimit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteBandwidthRateLimit, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteBandwidthRateLimitAsync(const DeleteBandwidthRateLimitRequest& request, const DeleteBandwidthRateLimitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBandwidthRateLimit(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteBandwidthRateLimit, this, request, handler, context, m_executor.get());
 }
 
 DeleteChapCredentialsOutcome StorageGatewayClient::DeleteChapCredentials(const DeleteChapCredentialsRequest& request) const
@@ -753,18 +628,12 @@ DeleteChapCredentialsOutcome StorageGatewayClient::DeleteChapCredentials(const D
 
 DeleteChapCredentialsOutcomeCallable StorageGatewayClient::DeleteChapCredentialsCallable(const DeleteChapCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChapCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChapCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteChapCredentials, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteChapCredentialsAsync(const DeleteChapCredentialsRequest& request, const DeleteChapCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChapCredentials(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteChapCredentials, this, request, handler, context, m_executor.get());
 }
 
 DeleteFileShareOutcome StorageGatewayClient::DeleteFileShare(const DeleteFileShareRequest& request) const
@@ -777,18 +646,12 @@ DeleteFileShareOutcome StorageGatewayClient::DeleteFileShare(const DeleteFileSha
 
 DeleteFileShareOutcomeCallable StorageGatewayClient::DeleteFileShareCallable(const DeleteFileShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteFileShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteFileShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteFileShare, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteFileShareAsync(const DeleteFileShareRequest& request, const DeleteFileShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteFileShare(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteFileShare, this, request, handler, context, m_executor.get());
 }
 
 DeleteGatewayOutcome StorageGatewayClient::DeleteGateway(const DeleteGatewayRequest& request) const
@@ -801,18 +664,12 @@ DeleteGatewayOutcome StorageGatewayClient::DeleteGateway(const DeleteGatewayRequ
 
 DeleteGatewayOutcomeCallable StorageGatewayClient::DeleteGatewayCallable(const DeleteGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteGateway, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteGatewayAsync(const DeleteGatewayRequest& request, const DeleteGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGateway(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteGateway, this, request, handler, context, m_executor.get());
 }
 
 DeleteSnapshotScheduleOutcome StorageGatewayClient::DeleteSnapshotSchedule(const DeleteSnapshotScheduleRequest& request) const
@@ -825,18 +682,12 @@ DeleteSnapshotScheduleOutcome StorageGatewayClient::DeleteSnapshotSchedule(const
 
 DeleteSnapshotScheduleOutcomeCallable StorageGatewayClient::DeleteSnapshotScheduleCallable(const DeleteSnapshotScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSnapshotScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSnapshotSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteSnapshotSchedule, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteSnapshotScheduleAsync(const DeleteSnapshotScheduleRequest& request, const DeleteSnapshotScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSnapshotSchedule(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteSnapshotSchedule, this, request, handler, context, m_executor.get());
 }
 
 DeleteTapeOutcome StorageGatewayClient::DeleteTape(const DeleteTapeRequest& request) const
@@ -849,18 +700,12 @@ DeleteTapeOutcome StorageGatewayClient::DeleteTape(const DeleteTapeRequest& requ
 
 DeleteTapeOutcomeCallable StorageGatewayClient::DeleteTapeCallable(const DeleteTapeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTapeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTape(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteTape, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteTapeAsync(const DeleteTapeRequest& request, const DeleteTapeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTape(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteTape, this, request, handler, context, m_executor.get());
 }
 
 DeleteTapeArchiveOutcome StorageGatewayClient::DeleteTapeArchive(const DeleteTapeArchiveRequest& request) const
@@ -873,18 +718,12 @@ DeleteTapeArchiveOutcome StorageGatewayClient::DeleteTapeArchive(const DeleteTap
 
 DeleteTapeArchiveOutcomeCallable StorageGatewayClient::DeleteTapeArchiveCallable(const DeleteTapeArchiveRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTapeArchiveOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTapeArchive(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteTapeArchive, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteTapeArchiveAsync(const DeleteTapeArchiveRequest& request, const DeleteTapeArchiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTapeArchive(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteTapeArchive, this, request, handler, context, m_executor.get());
 }
 
 DeleteTapePoolOutcome StorageGatewayClient::DeleteTapePool(const DeleteTapePoolRequest& request) const
@@ -897,18 +736,12 @@ DeleteTapePoolOutcome StorageGatewayClient::DeleteTapePool(const DeleteTapePoolR
 
 DeleteTapePoolOutcomeCallable StorageGatewayClient::DeleteTapePoolCallable(const DeleteTapePoolRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTapePoolOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTapePool(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteTapePool, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteTapePoolAsync(const DeleteTapePoolRequest& request, const DeleteTapePoolResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTapePool(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteTapePool, this, request, handler, context, m_executor.get());
 }
 
 DeleteVolumeOutcome StorageGatewayClient::DeleteVolume(const DeleteVolumeRequest& request) const
@@ -921,18 +754,12 @@ DeleteVolumeOutcome StorageGatewayClient::DeleteVolume(const DeleteVolumeRequest
 
 DeleteVolumeOutcomeCallable StorageGatewayClient::DeleteVolumeCallable(const DeleteVolumeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVolumeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVolume(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DeleteVolume, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DeleteVolumeAsync(const DeleteVolumeRequest& request, const DeleteVolumeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVolume(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DeleteVolume, this, request, handler, context, m_executor.get());
 }
 
 DescribeAvailabilityMonitorTestOutcome StorageGatewayClient::DescribeAvailabilityMonitorTest(const DescribeAvailabilityMonitorTestRequest& request) const
@@ -945,18 +772,12 @@ DescribeAvailabilityMonitorTestOutcome StorageGatewayClient::DescribeAvailabilit
 
 DescribeAvailabilityMonitorTestOutcomeCallable StorageGatewayClient::DescribeAvailabilityMonitorTestCallable(const DescribeAvailabilityMonitorTestRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAvailabilityMonitorTestOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAvailabilityMonitorTest(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeAvailabilityMonitorTest, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeAvailabilityMonitorTestAsync(const DescribeAvailabilityMonitorTestRequest& request, const DescribeAvailabilityMonitorTestResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAvailabilityMonitorTest(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeAvailabilityMonitorTest, this, request, handler, context, m_executor.get());
 }
 
 DescribeBandwidthRateLimitOutcome StorageGatewayClient::DescribeBandwidthRateLimit(const DescribeBandwidthRateLimitRequest& request) const
@@ -969,18 +790,12 @@ DescribeBandwidthRateLimitOutcome StorageGatewayClient::DescribeBandwidthRateLim
 
 DescribeBandwidthRateLimitOutcomeCallable StorageGatewayClient::DescribeBandwidthRateLimitCallable(const DescribeBandwidthRateLimitRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeBandwidthRateLimitOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeBandwidthRateLimit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeBandwidthRateLimit, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeBandwidthRateLimitAsync(const DescribeBandwidthRateLimitRequest& request, const DescribeBandwidthRateLimitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeBandwidthRateLimit(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeBandwidthRateLimit, this, request, handler, context, m_executor.get());
 }
 
 DescribeBandwidthRateLimitScheduleOutcome StorageGatewayClient::DescribeBandwidthRateLimitSchedule(const DescribeBandwidthRateLimitScheduleRequest& request) const
@@ -993,18 +808,12 @@ DescribeBandwidthRateLimitScheduleOutcome StorageGatewayClient::DescribeBandwidt
 
 DescribeBandwidthRateLimitScheduleOutcomeCallable StorageGatewayClient::DescribeBandwidthRateLimitScheduleCallable(const DescribeBandwidthRateLimitScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeBandwidthRateLimitScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeBandwidthRateLimitSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeBandwidthRateLimitSchedule, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeBandwidthRateLimitScheduleAsync(const DescribeBandwidthRateLimitScheduleRequest& request, const DescribeBandwidthRateLimitScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeBandwidthRateLimitSchedule(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeBandwidthRateLimitSchedule, this, request, handler, context, m_executor.get());
 }
 
 DescribeCacheOutcome StorageGatewayClient::DescribeCache(const DescribeCacheRequest& request) const
@@ -1017,18 +826,12 @@ DescribeCacheOutcome StorageGatewayClient::DescribeCache(const DescribeCacheRequ
 
 DescribeCacheOutcomeCallable StorageGatewayClient::DescribeCacheCallable(const DescribeCacheRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCacheOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCache(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeCache, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeCacheAsync(const DescribeCacheRequest& request, const DescribeCacheResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCache(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeCache, this, request, handler, context, m_executor.get());
 }
 
 DescribeCachediSCSIVolumesOutcome StorageGatewayClient::DescribeCachediSCSIVolumes(const DescribeCachediSCSIVolumesRequest& request) const
@@ -1041,18 +844,12 @@ DescribeCachediSCSIVolumesOutcome StorageGatewayClient::DescribeCachediSCSIVolum
 
 DescribeCachediSCSIVolumesOutcomeCallable StorageGatewayClient::DescribeCachediSCSIVolumesCallable(const DescribeCachediSCSIVolumesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCachediSCSIVolumesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCachediSCSIVolumes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeCachediSCSIVolumes, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeCachediSCSIVolumesAsync(const DescribeCachediSCSIVolumesRequest& request, const DescribeCachediSCSIVolumesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCachediSCSIVolumes(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeCachediSCSIVolumes, this, request, handler, context, m_executor.get());
 }
 
 DescribeChapCredentialsOutcome StorageGatewayClient::DescribeChapCredentials(const DescribeChapCredentialsRequest& request) const
@@ -1065,18 +862,12 @@ DescribeChapCredentialsOutcome StorageGatewayClient::DescribeChapCredentials(con
 
 DescribeChapCredentialsOutcomeCallable StorageGatewayClient::DescribeChapCredentialsCallable(const DescribeChapCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChapCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChapCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeChapCredentials, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeChapCredentialsAsync(const DescribeChapCredentialsRequest& request, const DescribeChapCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChapCredentials(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeChapCredentials, this, request, handler, context, m_executor.get());
 }
 
 DescribeFileSystemAssociationsOutcome StorageGatewayClient::DescribeFileSystemAssociations(const DescribeFileSystemAssociationsRequest& request) const
@@ -1089,18 +880,12 @@ DescribeFileSystemAssociationsOutcome StorageGatewayClient::DescribeFileSystemAs
 
 DescribeFileSystemAssociationsOutcomeCallable StorageGatewayClient::DescribeFileSystemAssociationsCallable(const DescribeFileSystemAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFileSystemAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFileSystemAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeFileSystemAssociations, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeFileSystemAssociationsAsync(const DescribeFileSystemAssociationsRequest& request, const DescribeFileSystemAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFileSystemAssociations(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeFileSystemAssociations, this, request, handler, context, m_executor.get());
 }
 
 DescribeGatewayInformationOutcome StorageGatewayClient::DescribeGatewayInformation(const DescribeGatewayInformationRequest& request) const
@@ -1113,18 +898,12 @@ DescribeGatewayInformationOutcome StorageGatewayClient::DescribeGatewayInformati
 
 DescribeGatewayInformationOutcomeCallable StorageGatewayClient::DescribeGatewayInformationCallable(const DescribeGatewayInformationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeGatewayInformationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeGatewayInformation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeGatewayInformation, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeGatewayInformationAsync(const DescribeGatewayInformationRequest& request, const DescribeGatewayInformationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeGatewayInformation(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeGatewayInformation, this, request, handler, context, m_executor.get());
 }
 
 DescribeMaintenanceStartTimeOutcome StorageGatewayClient::DescribeMaintenanceStartTime(const DescribeMaintenanceStartTimeRequest& request) const
@@ -1137,18 +916,12 @@ DescribeMaintenanceStartTimeOutcome StorageGatewayClient::DescribeMaintenanceSta
 
 DescribeMaintenanceStartTimeOutcomeCallable StorageGatewayClient::DescribeMaintenanceStartTimeCallable(const DescribeMaintenanceStartTimeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeMaintenanceStartTimeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeMaintenanceStartTime(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeMaintenanceStartTime, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeMaintenanceStartTimeAsync(const DescribeMaintenanceStartTimeRequest& request, const DescribeMaintenanceStartTimeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeMaintenanceStartTime(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeMaintenanceStartTime, this, request, handler, context, m_executor.get());
 }
 
 DescribeNFSFileSharesOutcome StorageGatewayClient::DescribeNFSFileShares(const DescribeNFSFileSharesRequest& request) const
@@ -1161,18 +934,12 @@ DescribeNFSFileSharesOutcome StorageGatewayClient::DescribeNFSFileShares(const D
 
 DescribeNFSFileSharesOutcomeCallable StorageGatewayClient::DescribeNFSFileSharesCallable(const DescribeNFSFileSharesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeNFSFileSharesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeNFSFileShares(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeNFSFileShares, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeNFSFileSharesAsync(const DescribeNFSFileSharesRequest& request, const DescribeNFSFileSharesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeNFSFileShares(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeNFSFileShares, this, request, handler, context, m_executor.get());
 }
 
 DescribeSMBFileSharesOutcome StorageGatewayClient::DescribeSMBFileShares(const DescribeSMBFileSharesRequest& request) const
@@ -1185,18 +952,12 @@ DescribeSMBFileSharesOutcome StorageGatewayClient::DescribeSMBFileShares(const D
 
 DescribeSMBFileSharesOutcomeCallable StorageGatewayClient::DescribeSMBFileSharesCallable(const DescribeSMBFileSharesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSMBFileSharesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSMBFileShares(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeSMBFileShares, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeSMBFileSharesAsync(const DescribeSMBFileSharesRequest& request, const DescribeSMBFileSharesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSMBFileShares(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeSMBFileShares, this, request, handler, context, m_executor.get());
 }
 
 DescribeSMBSettingsOutcome StorageGatewayClient::DescribeSMBSettings(const DescribeSMBSettingsRequest& request) const
@@ -1209,18 +970,12 @@ DescribeSMBSettingsOutcome StorageGatewayClient::DescribeSMBSettings(const Descr
 
 DescribeSMBSettingsOutcomeCallable StorageGatewayClient::DescribeSMBSettingsCallable(const DescribeSMBSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSMBSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSMBSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeSMBSettings, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeSMBSettingsAsync(const DescribeSMBSettingsRequest& request, const DescribeSMBSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSMBSettings(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeSMBSettings, this, request, handler, context, m_executor.get());
 }
 
 DescribeSnapshotScheduleOutcome StorageGatewayClient::DescribeSnapshotSchedule(const DescribeSnapshotScheduleRequest& request) const
@@ -1233,18 +988,12 @@ DescribeSnapshotScheduleOutcome StorageGatewayClient::DescribeSnapshotSchedule(c
 
 DescribeSnapshotScheduleOutcomeCallable StorageGatewayClient::DescribeSnapshotScheduleCallable(const DescribeSnapshotScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSnapshotScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSnapshotSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeSnapshotSchedule, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeSnapshotScheduleAsync(const DescribeSnapshotScheduleRequest& request, const DescribeSnapshotScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSnapshotSchedule(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeSnapshotSchedule, this, request, handler, context, m_executor.get());
 }
 
 DescribeStorediSCSIVolumesOutcome StorageGatewayClient::DescribeStorediSCSIVolumes(const DescribeStorediSCSIVolumesRequest& request) const
@@ -1257,18 +1006,12 @@ DescribeStorediSCSIVolumesOutcome StorageGatewayClient::DescribeStorediSCSIVolum
 
 DescribeStorediSCSIVolumesOutcomeCallable StorageGatewayClient::DescribeStorediSCSIVolumesCallable(const DescribeStorediSCSIVolumesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeStorediSCSIVolumesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeStorediSCSIVolumes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeStorediSCSIVolumes, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeStorediSCSIVolumesAsync(const DescribeStorediSCSIVolumesRequest& request, const DescribeStorediSCSIVolumesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeStorediSCSIVolumes(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeStorediSCSIVolumes, this, request, handler, context, m_executor.get());
 }
 
 DescribeTapeArchivesOutcome StorageGatewayClient::DescribeTapeArchives(const DescribeTapeArchivesRequest& request) const
@@ -1281,18 +1024,12 @@ DescribeTapeArchivesOutcome StorageGatewayClient::DescribeTapeArchives(const Des
 
 DescribeTapeArchivesOutcomeCallable StorageGatewayClient::DescribeTapeArchivesCallable(const DescribeTapeArchivesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTapeArchivesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTapeArchives(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeTapeArchives, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeTapeArchivesAsync(const DescribeTapeArchivesRequest& request, const DescribeTapeArchivesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTapeArchives(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeTapeArchives, this, request, handler, context, m_executor.get());
 }
 
 DescribeTapeRecoveryPointsOutcome StorageGatewayClient::DescribeTapeRecoveryPoints(const DescribeTapeRecoveryPointsRequest& request) const
@@ -1305,18 +1042,12 @@ DescribeTapeRecoveryPointsOutcome StorageGatewayClient::DescribeTapeRecoveryPoin
 
 DescribeTapeRecoveryPointsOutcomeCallable StorageGatewayClient::DescribeTapeRecoveryPointsCallable(const DescribeTapeRecoveryPointsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTapeRecoveryPointsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTapeRecoveryPoints(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeTapeRecoveryPoints, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeTapeRecoveryPointsAsync(const DescribeTapeRecoveryPointsRequest& request, const DescribeTapeRecoveryPointsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTapeRecoveryPoints(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeTapeRecoveryPoints, this, request, handler, context, m_executor.get());
 }
 
 DescribeTapesOutcome StorageGatewayClient::DescribeTapes(const DescribeTapesRequest& request) const
@@ -1329,18 +1060,12 @@ DescribeTapesOutcome StorageGatewayClient::DescribeTapes(const DescribeTapesRequ
 
 DescribeTapesOutcomeCallable StorageGatewayClient::DescribeTapesCallable(const DescribeTapesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTapesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTapes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeTapes, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeTapesAsync(const DescribeTapesRequest& request, const DescribeTapesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTapes(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeTapes, this, request, handler, context, m_executor.get());
 }
 
 DescribeUploadBufferOutcome StorageGatewayClient::DescribeUploadBuffer(const DescribeUploadBufferRequest& request) const
@@ -1353,18 +1078,12 @@ DescribeUploadBufferOutcome StorageGatewayClient::DescribeUploadBuffer(const Des
 
 DescribeUploadBufferOutcomeCallable StorageGatewayClient::DescribeUploadBufferCallable(const DescribeUploadBufferRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeUploadBufferOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeUploadBuffer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeUploadBuffer, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeUploadBufferAsync(const DescribeUploadBufferRequest& request, const DescribeUploadBufferResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeUploadBuffer(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeUploadBuffer, this, request, handler, context, m_executor.get());
 }
 
 DescribeVTLDevicesOutcome StorageGatewayClient::DescribeVTLDevices(const DescribeVTLDevicesRequest& request) const
@@ -1377,18 +1096,12 @@ DescribeVTLDevicesOutcome StorageGatewayClient::DescribeVTLDevices(const Describ
 
 DescribeVTLDevicesOutcomeCallable StorageGatewayClient::DescribeVTLDevicesCallable(const DescribeVTLDevicesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeVTLDevicesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeVTLDevices(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeVTLDevices, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeVTLDevicesAsync(const DescribeVTLDevicesRequest& request, const DescribeVTLDevicesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeVTLDevices(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeVTLDevices, this, request, handler, context, m_executor.get());
 }
 
 DescribeWorkingStorageOutcome StorageGatewayClient::DescribeWorkingStorage(const DescribeWorkingStorageRequest& request) const
@@ -1401,18 +1114,12 @@ DescribeWorkingStorageOutcome StorageGatewayClient::DescribeWorkingStorage(const
 
 DescribeWorkingStorageOutcomeCallable StorageGatewayClient::DescribeWorkingStorageCallable(const DescribeWorkingStorageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeWorkingStorageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeWorkingStorage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DescribeWorkingStorage, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DescribeWorkingStorageAsync(const DescribeWorkingStorageRequest& request, const DescribeWorkingStorageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeWorkingStorage(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DescribeWorkingStorage, this, request, handler, context, m_executor.get());
 }
 
 DetachVolumeOutcome StorageGatewayClient::DetachVolume(const DetachVolumeRequest& request) const
@@ -1425,18 +1132,12 @@ DetachVolumeOutcome StorageGatewayClient::DetachVolume(const DetachVolumeRequest
 
 DetachVolumeOutcomeCallable StorageGatewayClient::DetachVolumeCallable(const DetachVolumeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachVolumeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachVolume(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DetachVolume, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DetachVolumeAsync(const DetachVolumeRequest& request, const DetachVolumeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachVolume(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DetachVolume, this, request, handler, context, m_executor.get());
 }
 
 DisableGatewayOutcome StorageGatewayClient::DisableGateway(const DisableGatewayRequest& request) const
@@ -1449,18 +1150,12 @@ DisableGatewayOutcome StorageGatewayClient::DisableGateway(const DisableGatewayR
 
 DisableGatewayOutcomeCallable StorageGatewayClient::DisableGatewayCallable(const DisableGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisableGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisableGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DisableGateway, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DisableGatewayAsync(const DisableGatewayRequest& request, const DisableGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisableGateway(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DisableGateway, this, request, handler, context, m_executor.get());
 }
 
 DisassociateFileSystemOutcome StorageGatewayClient::DisassociateFileSystem(const DisassociateFileSystemRequest& request) const
@@ -1473,18 +1168,12 @@ DisassociateFileSystemOutcome StorageGatewayClient::DisassociateFileSystem(const
 
 DisassociateFileSystemOutcomeCallable StorageGatewayClient::DisassociateFileSystemCallable(const DisassociateFileSystemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateFileSystemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateFileSystem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::DisassociateFileSystem, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::DisassociateFileSystemAsync(const DisassociateFileSystemRequest& request, const DisassociateFileSystemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateFileSystem(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::DisassociateFileSystem, this, request, handler, context, m_executor.get());
 }
 
 JoinDomainOutcome StorageGatewayClient::JoinDomain(const JoinDomainRequest& request) const
@@ -1497,18 +1186,12 @@ JoinDomainOutcome StorageGatewayClient::JoinDomain(const JoinDomainRequest& requ
 
 JoinDomainOutcomeCallable StorageGatewayClient::JoinDomainCallable(const JoinDomainRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< JoinDomainOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->JoinDomain(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::JoinDomain, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::JoinDomainAsync(const JoinDomainRequest& request, const JoinDomainResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, JoinDomain(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::JoinDomain, this, request, handler, context, m_executor.get());
 }
 
 ListAutomaticTapeCreationPoliciesOutcome StorageGatewayClient::ListAutomaticTapeCreationPolicies(const ListAutomaticTapeCreationPoliciesRequest& request) const
@@ -1521,18 +1204,12 @@ ListAutomaticTapeCreationPoliciesOutcome StorageGatewayClient::ListAutomaticTape
 
 ListAutomaticTapeCreationPoliciesOutcomeCallable StorageGatewayClient::ListAutomaticTapeCreationPoliciesCallable(const ListAutomaticTapeCreationPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAutomaticTapeCreationPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAutomaticTapeCreationPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListAutomaticTapeCreationPolicies, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListAutomaticTapeCreationPoliciesAsync(const ListAutomaticTapeCreationPoliciesRequest& request, const ListAutomaticTapeCreationPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAutomaticTapeCreationPolicies(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListAutomaticTapeCreationPolicies, this, request, handler, context, m_executor.get());
 }
 
 ListFileSharesOutcome StorageGatewayClient::ListFileShares(const ListFileSharesRequest& request) const
@@ -1545,18 +1222,12 @@ ListFileSharesOutcome StorageGatewayClient::ListFileShares(const ListFileSharesR
 
 ListFileSharesOutcomeCallable StorageGatewayClient::ListFileSharesCallable(const ListFileSharesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFileSharesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFileShares(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListFileShares, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListFileSharesAsync(const ListFileSharesRequest& request, const ListFileSharesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFileShares(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListFileShares, this, request, handler, context, m_executor.get());
 }
 
 ListFileSystemAssociationsOutcome StorageGatewayClient::ListFileSystemAssociations(const ListFileSystemAssociationsRequest& request) const
@@ -1569,18 +1240,12 @@ ListFileSystemAssociationsOutcome StorageGatewayClient::ListFileSystemAssociatio
 
 ListFileSystemAssociationsOutcomeCallable StorageGatewayClient::ListFileSystemAssociationsCallable(const ListFileSystemAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFileSystemAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFileSystemAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListFileSystemAssociations, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListFileSystemAssociationsAsync(const ListFileSystemAssociationsRequest& request, const ListFileSystemAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFileSystemAssociations(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListFileSystemAssociations, this, request, handler, context, m_executor.get());
 }
 
 ListGatewaysOutcome StorageGatewayClient::ListGateways(const ListGatewaysRequest& request) const
@@ -1593,18 +1258,12 @@ ListGatewaysOutcome StorageGatewayClient::ListGateways(const ListGatewaysRequest
 
 ListGatewaysOutcomeCallable StorageGatewayClient::ListGatewaysCallable(const ListGatewaysRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGatewaysOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGateways(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListGateways, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListGatewaysAsync(const ListGatewaysRequest& request, const ListGatewaysResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGateways(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListGateways, this, request, handler, context, m_executor.get());
 }
 
 ListLocalDisksOutcome StorageGatewayClient::ListLocalDisks(const ListLocalDisksRequest& request) const
@@ -1617,18 +1276,12 @@ ListLocalDisksOutcome StorageGatewayClient::ListLocalDisks(const ListLocalDisksR
 
 ListLocalDisksOutcomeCallable StorageGatewayClient::ListLocalDisksCallable(const ListLocalDisksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListLocalDisksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListLocalDisks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListLocalDisks, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListLocalDisksAsync(const ListLocalDisksRequest& request, const ListLocalDisksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListLocalDisks(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListLocalDisks, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome StorageGatewayClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1641,18 +1294,12 @@ ListTagsForResourceOutcome StorageGatewayClient::ListTagsForResource(const ListT
 
 ListTagsForResourceOutcomeCallable StorageGatewayClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListTapePoolsOutcome StorageGatewayClient::ListTapePools(const ListTapePoolsRequest& request) const
@@ -1665,18 +1312,12 @@ ListTapePoolsOutcome StorageGatewayClient::ListTapePools(const ListTapePoolsRequ
 
 ListTapePoolsOutcomeCallable StorageGatewayClient::ListTapePoolsCallable(const ListTapePoolsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTapePoolsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTapePools(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListTapePools, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListTapePoolsAsync(const ListTapePoolsRequest& request, const ListTapePoolsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTapePools(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListTapePools, this, request, handler, context, m_executor.get());
 }
 
 ListTapesOutcome StorageGatewayClient::ListTapes(const ListTapesRequest& request) const
@@ -1689,18 +1330,12 @@ ListTapesOutcome StorageGatewayClient::ListTapes(const ListTapesRequest& request
 
 ListTapesOutcomeCallable StorageGatewayClient::ListTapesCallable(const ListTapesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTapesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTapes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListTapes, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListTapesAsync(const ListTapesRequest& request, const ListTapesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTapes(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListTapes, this, request, handler, context, m_executor.get());
 }
 
 ListVolumeInitiatorsOutcome StorageGatewayClient::ListVolumeInitiators(const ListVolumeInitiatorsRequest& request) const
@@ -1713,18 +1348,12 @@ ListVolumeInitiatorsOutcome StorageGatewayClient::ListVolumeInitiators(const Lis
 
 ListVolumeInitiatorsOutcomeCallable StorageGatewayClient::ListVolumeInitiatorsCallable(const ListVolumeInitiatorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVolumeInitiatorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVolumeInitiators(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListVolumeInitiators, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListVolumeInitiatorsAsync(const ListVolumeInitiatorsRequest& request, const ListVolumeInitiatorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVolumeInitiators(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListVolumeInitiators, this, request, handler, context, m_executor.get());
 }
 
 ListVolumeRecoveryPointsOutcome StorageGatewayClient::ListVolumeRecoveryPoints(const ListVolumeRecoveryPointsRequest& request) const
@@ -1737,18 +1366,12 @@ ListVolumeRecoveryPointsOutcome StorageGatewayClient::ListVolumeRecoveryPoints(c
 
 ListVolumeRecoveryPointsOutcomeCallable StorageGatewayClient::ListVolumeRecoveryPointsCallable(const ListVolumeRecoveryPointsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVolumeRecoveryPointsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVolumeRecoveryPoints(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListVolumeRecoveryPoints, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListVolumeRecoveryPointsAsync(const ListVolumeRecoveryPointsRequest& request, const ListVolumeRecoveryPointsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVolumeRecoveryPoints(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListVolumeRecoveryPoints, this, request, handler, context, m_executor.get());
 }
 
 ListVolumesOutcome StorageGatewayClient::ListVolumes(const ListVolumesRequest& request) const
@@ -1761,18 +1384,12 @@ ListVolumesOutcome StorageGatewayClient::ListVolumes(const ListVolumesRequest& r
 
 ListVolumesOutcomeCallable StorageGatewayClient::ListVolumesCallable(const ListVolumesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVolumesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVolumes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ListVolumes, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ListVolumesAsync(const ListVolumesRequest& request, const ListVolumesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVolumes(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ListVolumes, this, request, handler, context, m_executor.get());
 }
 
 NotifyWhenUploadedOutcome StorageGatewayClient::NotifyWhenUploaded(const NotifyWhenUploadedRequest& request) const
@@ -1785,18 +1402,12 @@ NotifyWhenUploadedOutcome StorageGatewayClient::NotifyWhenUploaded(const NotifyW
 
 NotifyWhenUploadedOutcomeCallable StorageGatewayClient::NotifyWhenUploadedCallable(const NotifyWhenUploadedRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< NotifyWhenUploadedOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->NotifyWhenUploaded(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::NotifyWhenUploaded, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::NotifyWhenUploadedAsync(const NotifyWhenUploadedRequest& request, const NotifyWhenUploadedResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, NotifyWhenUploaded(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::NotifyWhenUploaded, this, request, handler, context, m_executor.get());
 }
 
 RefreshCacheOutcome StorageGatewayClient::RefreshCache(const RefreshCacheRequest& request) const
@@ -1809,18 +1420,12 @@ RefreshCacheOutcome StorageGatewayClient::RefreshCache(const RefreshCacheRequest
 
 RefreshCacheOutcomeCallable StorageGatewayClient::RefreshCacheCallable(const RefreshCacheRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RefreshCacheOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RefreshCache(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::RefreshCache, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::RefreshCacheAsync(const RefreshCacheRequest& request, const RefreshCacheResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RefreshCache(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::RefreshCache, this, request, handler, context, m_executor.get());
 }
 
 RemoveTagsFromResourceOutcome StorageGatewayClient::RemoveTagsFromResource(const RemoveTagsFromResourceRequest& request) const
@@ -1833,18 +1438,12 @@ RemoveTagsFromResourceOutcome StorageGatewayClient::RemoveTagsFromResource(const
 
 RemoveTagsFromResourceOutcomeCallable StorageGatewayClient::RemoveTagsFromResourceCallable(const RemoveTagsFromResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveTagsFromResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveTagsFromResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::RemoveTagsFromResource, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::RemoveTagsFromResourceAsync(const RemoveTagsFromResourceRequest& request, const RemoveTagsFromResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveTagsFromResource(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::RemoveTagsFromResource, this, request, handler, context, m_executor.get());
 }
 
 ResetCacheOutcome StorageGatewayClient::ResetCache(const ResetCacheRequest& request) const
@@ -1857,18 +1456,12 @@ ResetCacheOutcome StorageGatewayClient::ResetCache(const ResetCacheRequest& requ
 
 ResetCacheOutcomeCallable StorageGatewayClient::ResetCacheCallable(const ResetCacheRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ResetCacheOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ResetCache(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ResetCache, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ResetCacheAsync(const ResetCacheRequest& request, const ResetCacheResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ResetCache(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ResetCache, this, request, handler, context, m_executor.get());
 }
 
 RetrieveTapeArchiveOutcome StorageGatewayClient::RetrieveTapeArchive(const RetrieveTapeArchiveRequest& request) const
@@ -1881,18 +1474,12 @@ RetrieveTapeArchiveOutcome StorageGatewayClient::RetrieveTapeArchive(const Retri
 
 RetrieveTapeArchiveOutcomeCallable StorageGatewayClient::RetrieveTapeArchiveCallable(const RetrieveTapeArchiveRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RetrieveTapeArchiveOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RetrieveTapeArchive(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::RetrieveTapeArchive, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::RetrieveTapeArchiveAsync(const RetrieveTapeArchiveRequest& request, const RetrieveTapeArchiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RetrieveTapeArchive(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::RetrieveTapeArchive, this, request, handler, context, m_executor.get());
 }
 
 RetrieveTapeRecoveryPointOutcome StorageGatewayClient::RetrieveTapeRecoveryPoint(const RetrieveTapeRecoveryPointRequest& request) const
@@ -1905,18 +1492,12 @@ RetrieveTapeRecoveryPointOutcome StorageGatewayClient::RetrieveTapeRecoveryPoint
 
 RetrieveTapeRecoveryPointOutcomeCallable StorageGatewayClient::RetrieveTapeRecoveryPointCallable(const RetrieveTapeRecoveryPointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RetrieveTapeRecoveryPointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RetrieveTapeRecoveryPoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::RetrieveTapeRecoveryPoint, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::RetrieveTapeRecoveryPointAsync(const RetrieveTapeRecoveryPointRequest& request, const RetrieveTapeRecoveryPointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RetrieveTapeRecoveryPoint(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::RetrieveTapeRecoveryPoint, this, request, handler, context, m_executor.get());
 }
 
 SetLocalConsolePasswordOutcome StorageGatewayClient::SetLocalConsolePassword(const SetLocalConsolePasswordRequest& request) const
@@ -1929,18 +1510,12 @@ SetLocalConsolePasswordOutcome StorageGatewayClient::SetLocalConsolePassword(con
 
 SetLocalConsolePasswordOutcomeCallable StorageGatewayClient::SetLocalConsolePasswordCallable(const SetLocalConsolePasswordRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetLocalConsolePasswordOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetLocalConsolePassword(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::SetLocalConsolePassword, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::SetLocalConsolePasswordAsync(const SetLocalConsolePasswordRequest& request, const SetLocalConsolePasswordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetLocalConsolePassword(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::SetLocalConsolePassword, this, request, handler, context, m_executor.get());
 }
 
 SetSMBGuestPasswordOutcome StorageGatewayClient::SetSMBGuestPassword(const SetSMBGuestPasswordRequest& request) const
@@ -1953,18 +1528,12 @@ SetSMBGuestPasswordOutcome StorageGatewayClient::SetSMBGuestPassword(const SetSM
 
 SetSMBGuestPasswordOutcomeCallable StorageGatewayClient::SetSMBGuestPasswordCallable(const SetSMBGuestPasswordRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetSMBGuestPasswordOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetSMBGuestPassword(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::SetSMBGuestPassword, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::SetSMBGuestPasswordAsync(const SetSMBGuestPasswordRequest& request, const SetSMBGuestPasswordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetSMBGuestPassword(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::SetSMBGuestPassword, this, request, handler, context, m_executor.get());
 }
 
 ShutdownGatewayOutcome StorageGatewayClient::ShutdownGateway(const ShutdownGatewayRequest& request) const
@@ -1977,18 +1546,12 @@ ShutdownGatewayOutcome StorageGatewayClient::ShutdownGateway(const ShutdownGatew
 
 ShutdownGatewayOutcomeCallable StorageGatewayClient::ShutdownGatewayCallable(const ShutdownGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ShutdownGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ShutdownGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::ShutdownGateway, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::ShutdownGatewayAsync(const ShutdownGatewayRequest& request, const ShutdownGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ShutdownGateway(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::ShutdownGateway, this, request, handler, context, m_executor.get());
 }
 
 StartAvailabilityMonitorTestOutcome StorageGatewayClient::StartAvailabilityMonitorTest(const StartAvailabilityMonitorTestRequest& request) const
@@ -2001,18 +1564,12 @@ StartAvailabilityMonitorTestOutcome StorageGatewayClient::StartAvailabilityMonit
 
 StartAvailabilityMonitorTestOutcomeCallable StorageGatewayClient::StartAvailabilityMonitorTestCallable(const StartAvailabilityMonitorTestRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartAvailabilityMonitorTestOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartAvailabilityMonitorTest(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::StartAvailabilityMonitorTest, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::StartAvailabilityMonitorTestAsync(const StartAvailabilityMonitorTestRequest& request, const StartAvailabilityMonitorTestResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartAvailabilityMonitorTest(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::StartAvailabilityMonitorTest, this, request, handler, context, m_executor.get());
 }
 
 StartGatewayOutcome StorageGatewayClient::StartGateway(const StartGatewayRequest& request) const
@@ -2025,18 +1582,12 @@ StartGatewayOutcome StorageGatewayClient::StartGateway(const StartGatewayRequest
 
 StartGatewayOutcomeCallable StorageGatewayClient::StartGatewayCallable(const StartGatewayRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartGatewayOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartGateway(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::StartGateway, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::StartGatewayAsync(const StartGatewayRequest& request, const StartGatewayResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartGateway(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::StartGateway, this, request, handler, context, m_executor.get());
 }
 
 UpdateAutomaticTapeCreationPolicyOutcome StorageGatewayClient::UpdateAutomaticTapeCreationPolicy(const UpdateAutomaticTapeCreationPolicyRequest& request) const
@@ -2049,18 +1600,12 @@ UpdateAutomaticTapeCreationPolicyOutcome StorageGatewayClient::UpdateAutomaticTa
 
 UpdateAutomaticTapeCreationPolicyOutcomeCallable StorageGatewayClient::UpdateAutomaticTapeCreationPolicyCallable(const UpdateAutomaticTapeCreationPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAutomaticTapeCreationPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAutomaticTapeCreationPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateAutomaticTapeCreationPolicy, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateAutomaticTapeCreationPolicyAsync(const UpdateAutomaticTapeCreationPolicyRequest& request, const UpdateAutomaticTapeCreationPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAutomaticTapeCreationPolicy(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateAutomaticTapeCreationPolicy, this, request, handler, context, m_executor.get());
 }
 
 UpdateBandwidthRateLimitOutcome StorageGatewayClient::UpdateBandwidthRateLimit(const UpdateBandwidthRateLimitRequest& request) const
@@ -2073,18 +1618,12 @@ UpdateBandwidthRateLimitOutcome StorageGatewayClient::UpdateBandwidthRateLimit(c
 
 UpdateBandwidthRateLimitOutcomeCallable StorageGatewayClient::UpdateBandwidthRateLimitCallable(const UpdateBandwidthRateLimitRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateBandwidthRateLimitOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateBandwidthRateLimit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateBandwidthRateLimit, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateBandwidthRateLimitAsync(const UpdateBandwidthRateLimitRequest& request, const UpdateBandwidthRateLimitResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateBandwidthRateLimit(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateBandwidthRateLimit, this, request, handler, context, m_executor.get());
 }
 
 UpdateBandwidthRateLimitScheduleOutcome StorageGatewayClient::UpdateBandwidthRateLimitSchedule(const UpdateBandwidthRateLimitScheduleRequest& request) const
@@ -2097,18 +1636,12 @@ UpdateBandwidthRateLimitScheduleOutcome StorageGatewayClient::UpdateBandwidthRat
 
 UpdateBandwidthRateLimitScheduleOutcomeCallable StorageGatewayClient::UpdateBandwidthRateLimitScheduleCallable(const UpdateBandwidthRateLimitScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateBandwidthRateLimitScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateBandwidthRateLimitSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateBandwidthRateLimitSchedule, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateBandwidthRateLimitScheduleAsync(const UpdateBandwidthRateLimitScheduleRequest& request, const UpdateBandwidthRateLimitScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateBandwidthRateLimitSchedule(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateBandwidthRateLimitSchedule, this, request, handler, context, m_executor.get());
 }
 
 UpdateChapCredentialsOutcome StorageGatewayClient::UpdateChapCredentials(const UpdateChapCredentialsRequest& request) const
@@ -2121,18 +1654,12 @@ UpdateChapCredentialsOutcome StorageGatewayClient::UpdateChapCredentials(const U
 
 UpdateChapCredentialsOutcomeCallable StorageGatewayClient::UpdateChapCredentialsCallable(const UpdateChapCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateChapCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateChapCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateChapCredentials, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateChapCredentialsAsync(const UpdateChapCredentialsRequest& request, const UpdateChapCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateChapCredentials(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateChapCredentials, this, request, handler, context, m_executor.get());
 }
 
 UpdateFileSystemAssociationOutcome StorageGatewayClient::UpdateFileSystemAssociation(const UpdateFileSystemAssociationRequest& request) const
@@ -2145,18 +1672,12 @@ UpdateFileSystemAssociationOutcome StorageGatewayClient::UpdateFileSystemAssocia
 
 UpdateFileSystemAssociationOutcomeCallable StorageGatewayClient::UpdateFileSystemAssociationCallable(const UpdateFileSystemAssociationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateFileSystemAssociationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateFileSystemAssociation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateFileSystemAssociation, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateFileSystemAssociationAsync(const UpdateFileSystemAssociationRequest& request, const UpdateFileSystemAssociationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateFileSystemAssociation(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateFileSystemAssociation, this, request, handler, context, m_executor.get());
 }
 
 UpdateGatewayInformationOutcome StorageGatewayClient::UpdateGatewayInformation(const UpdateGatewayInformationRequest& request) const
@@ -2169,18 +1690,12 @@ UpdateGatewayInformationOutcome StorageGatewayClient::UpdateGatewayInformation(c
 
 UpdateGatewayInformationOutcomeCallable StorageGatewayClient::UpdateGatewayInformationCallable(const UpdateGatewayInformationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGatewayInformationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGatewayInformation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateGatewayInformation, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateGatewayInformationAsync(const UpdateGatewayInformationRequest& request, const UpdateGatewayInformationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGatewayInformation(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateGatewayInformation, this, request, handler, context, m_executor.get());
 }
 
 UpdateGatewaySoftwareNowOutcome StorageGatewayClient::UpdateGatewaySoftwareNow(const UpdateGatewaySoftwareNowRequest& request) const
@@ -2193,18 +1708,12 @@ UpdateGatewaySoftwareNowOutcome StorageGatewayClient::UpdateGatewaySoftwareNow(c
 
 UpdateGatewaySoftwareNowOutcomeCallable StorageGatewayClient::UpdateGatewaySoftwareNowCallable(const UpdateGatewaySoftwareNowRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGatewaySoftwareNowOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGatewaySoftwareNow(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateGatewaySoftwareNow, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateGatewaySoftwareNowAsync(const UpdateGatewaySoftwareNowRequest& request, const UpdateGatewaySoftwareNowResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGatewaySoftwareNow(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateGatewaySoftwareNow, this, request, handler, context, m_executor.get());
 }
 
 UpdateMaintenanceStartTimeOutcome StorageGatewayClient::UpdateMaintenanceStartTime(const UpdateMaintenanceStartTimeRequest& request) const
@@ -2217,18 +1726,12 @@ UpdateMaintenanceStartTimeOutcome StorageGatewayClient::UpdateMaintenanceStartTi
 
 UpdateMaintenanceStartTimeOutcomeCallable StorageGatewayClient::UpdateMaintenanceStartTimeCallable(const UpdateMaintenanceStartTimeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateMaintenanceStartTimeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateMaintenanceStartTime(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateMaintenanceStartTime, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateMaintenanceStartTimeAsync(const UpdateMaintenanceStartTimeRequest& request, const UpdateMaintenanceStartTimeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateMaintenanceStartTime(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateMaintenanceStartTime, this, request, handler, context, m_executor.get());
 }
 
 UpdateNFSFileShareOutcome StorageGatewayClient::UpdateNFSFileShare(const UpdateNFSFileShareRequest& request) const
@@ -2241,18 +1744,12 @@ UpdateNFSFileShareOutcome StorageGatewayClient::UpdateNFSFileShare(const UpdateN
 
 UpdateNFSFileShareOutcomeCallable StorageGatewayClient::UpdateNFSFileShareCallable(const UpdateNFSFileShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateNFSFileShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateNFSFileShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateNFSFileShare, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateNFSFileShareAsync(const UpdateNFSFileShareRequest& request, const UpdateNFSFileShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateNFSFileShare(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateNFSFileShare, this, request, handler, context, m_executor.get());
 }
 
 UpdateSMBFileShareOutcome StorageGatewayClient::UpdateSMBFileShare(const UpdateSMBFileShareRequest& request) const
@@ -2265,18 +1762,12 @@ UpdateSMBFileShareOutcome StorageGatewayClient::UpdateSMBFileShare(const UpdateS
 
 UpdateSMBFileShareOutcomeCallable StorageGatewayClient::UpdateSMBFileShareCallable(const UpdateSMBFileShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSMBFileShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSMBFileShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateSMBFileShare, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateSMBFileShareAsync(const UpdateSMBFileShareRequest& request, const UpdateSMBFileShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSMBFileShare(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateSMBFileShare, this, request, handler, context, m_executor.get());
 }
 
 UpdateSMBFileShareVisibilityOutcome StorageGatewayClient::UpdateSMBFileShareVisibility(const UpdateSMBFileShareVisibilityRequest& request) const
@@ -2289,18 +1780,12 @@ UpdateSMBFileShareVisibilityOutcome StorageGatewayClient::UpdateSMBFileShareVisi
 
 UpdateSMBFileShareVisibilityOutcomeCallable StorageGatewayClient::UpdateSMBFileShareVisibilityCallable(const UpdateSMBFileShareVisibilityRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSMBFileShareVisibilityOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSMBFileShareVisibility(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateSMBFileShareVisibility, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateSMBFileShareVisibilityAsync(const UpdateSMBFileShareVisibilityRequest& request, const UpdateSMBFileShareVisibilityResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSMBFileShareVisibility(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateSMBFileShareVisibility, this, request, handler, context, m_executor.get());
 }
 
 UpdateSMBLocalGroupsOutcome StorageGatewayClient::UpdateSMBLocalGroups(const UpdateSMBLocalGroupsRequest& request) const
@@ -2313,18 +1798,12 @@ UpdateSMBLocalGroupsOutcome StorageGatewayClient::UpdateSMBLocalGroups(const Upd
 
 UpdateSMBLocalGroupsOutcomeCallable StorageGatewayClient::UpdateSMBLocalGroupsCallable(const UpdateSMBLocalGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSMBLocalGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSMBLocalGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateSMBLocalGroups, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateSMBLocalGroupsAsync(const UpdateSMBLocalGroupsRequest& request, const UpdateSMBLocalGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSMBLocalGroups(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateSMBLocalGroups, this, request, handler, context, m_executor.get());
 }
 
 UpdateSMBSecurityStrategyOutcome StorageGatewayClient::UpdateSMBSecurityStrategy(const UpdateSMBSecurityStrategyRequest& request) const
@@ -2337,18 +1816,12 @@ UpdateSMBSecurityStrategyOutcome StorageGatewayClient::UpdateSMBSecurityStrategy
 
 UpdateSMBSecurityStrategyOutcomeCallable StorageGatewayClient::UpdateSMBSecurityStrategyCallable(const UpdateSMBSecurityStrategyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSMBSecurityStrategyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSMBSecurityStrategy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateSMBSecurityStrategy, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateSMBSecurityStrategyAsync(const UpdateSMBSecurityStrategyRequest& request, const UpdateSMBSecurityStrategyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSMBSecurityStrategy(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateSMBSecurityStrategy, this, request, handler, context, m_executor.get());
 }
 
 UpdateSnapshotScheduleOutcome StorageGatewayClient::UpdateSnapshotSchedule(const UpdateSnapshotScheduleRequest& request) const
@@ -2361,18 +1834,12 @@ UpdateSnapshotScheduleOutcome StorageGatewayClient::UpdateSnapshotSchedule(const
 
 UpdateSnapshotScheduleOutcomeCallable StorageGatewayClient::UpdateSnapshotScheduleCallable(const UpdateSnapshotScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSnapshotScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSnapshotSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateSnapshotSchedule, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateSnapshotScheduleAsync(const UpdateSnapshotScheduleRequest& request, const UpdateSnapshotScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSnapshotSchedule(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateSnapshotSchedule, this, request, handler, context, m_executor.get());
 }
 
 UpdateVTLDeviceTypeOutcome StorageGatewayClient::UpdateVTLDeviceType(const UpdateVTLDeviceTypeRequest& request) const
@@ -2385,17 +1852,11 @@ UpdateVTLDeviceTypeOutcome StorageGatewayClient::UpdateVTLDeviceType(const Updat
 
 UpdateVTLDeviceTypeOutcomeCallable StorageGatewayClient::UpdateVTLDeviceTypeCallable(const UpdateVTLDeviceTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateVTLDeviceTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateVTLDeviceType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &StorageGatewayClient::UpdateVTLDeviceType, this, request, m_executor.get());
 }
 
 void StorageGatewayClient::UpdateVTLDeviceTypeAsync(const UpdateVTLDeviceTypeRequest& request, const UpdateVTLDeviceTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateVTLDeviceType(request), context);
-    } );
+  MakeAsyncOperation(&StorageGatewayClient::UpdateVTLDeviceType, this, request, handler, context, m_executor.get());
 }
 

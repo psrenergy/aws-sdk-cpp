@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -171,18 +172,12 @@ CreateDeliveryStreamOutcome FirehoseClient::CreateDeliveryStream(const CreateDel
 
 CreateDeliveryStreamOutcomeCallable FirehoseClient::CreateDeliveryStreamCallable(const CreateDeliveryStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDeliveryStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDeliveryStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::CreateDeliveryStream, this, request, m_executor.get());
 }
 
 void FirehoseClient::CreateDeliveryStreamAsync(const CreateDeliveryStreamRequest& request, const CreateDeliveryStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDeliveryStream(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::CreateDeliveryStream, this, request, handler, context, m_executor.get());
 }
 
 DeleteDeliveryStreamOutcome FirehoseClient::DeleteDeliveryStream(const DeleteDeliveryStreamRequest& request) const
@@ -195,18 +190,12 @@ DeleteDeliveryStreamOutcome FirehoseClient::DeleteDeliveryStream(const DeleteDel
 
 DeleteDeliveryStreamOutcomeCallable FirehoseClient::DeleteDeliveryStreamCallable(const DeleteDeliveryStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDeliveryStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDeliveryStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::DeleteDeliveryStream, this, request, m_executor.get());
 }
 
 void FirehoseClient::DeleteDeliveryStreamAsync(const DeleteDeliveryStreamRequest& request, const DeleteDeliveryStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDeliveryStream(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::DeleteDeliveryStream, this, request, handler, context, m_executor.get());
 }
 
 DescribeDeliveryStreamOutcome FirehoseClient::DescribeDeliveryStream(const DescribeDeliveryStreamRequest& request) const
@@ -219,18 +208,12 @@ DescribeDeliveryStreamOutcome FirehoseClient::DescribeDeliveryStream(const Descr
 
 DescribeDeliveryStreamOutcomeCallable FirehoseClient::DescribeDeliveryStreamCallable(const DescribeDeliveryStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDeliveryStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDeliveryStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::DescribeDeliveryStream, this, request, m_executor.get());
 }
 
 void FirehoseClient::DescribeDeliveryStreamAsync(const DescribeDeliveryStreamRequest& request, const DescribeDeliveryStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDeliveryStream(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::DescribeDeliveryStream, this, request, handler, context, m_executor.get());
 }
 
 ListDeliveryStreamsOutcome FirehoseClient::ListDeliveryStreams(const ListDeliveryStreamsRequest& request) const
@@ -243,18 +226,12 @@ ListDeliveryStreamsOutcome FirehoseClient::ListDeliveryStreams(const ListDeliver
 
 ListDeliveryStreamsOutcomeCallable FirehoseClient::ListDeliveryStreamsCallable(const ListDeliveryStreamsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDeliveryStreamsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDeliveryStreams(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::ListDeliveryStreams, this, request, m_executor.get());
 }
 
 void FirehoseClient::ListDeliveryStreamsAsync(const ListDeliveryStreamsRequest& request, const ListDeliveryStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDeliveryStreams(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::ListDeliveryStreams, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForDeliveryStreamOutcome FirehoseClient::ListTagsForDeliveryStream(const ListTagsForDeliveryStreamRequest& request) const
@@ -267,18 +244,12 @@ ListTagsForDeliveryStreamOutcome FirehoseClient::ListTagsForDeliveryStream(const
 
 ListTagsForDeliveryStreamOutcomeCallable FirehoseClient::ListTagsForDeliveryStreamCallable(const ListTagsForDeliveryStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForDeliveryStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForDeliveryStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::ListTagsForDeliveryStream, this, request, m_executor.get());
 }
 
 void FirehoseClient::ListTagsForDeliveryStreamAsync(const ListTagsForDeliveryStreamRequest& request, const ListTagsForDeliveryStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForDeliveryStream(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::ListTagsForDeliveryStream, this, request, handler, context, m_executor.get());
 }
 
 PutRecordOutcome FirehoseClient::PutRecord(const PutRecordRequest& request) const
@@ -291,18 +262,12 @@ PutRecordOutcome FirehoseClient::PutRecord(const PutRecordRequest& request) cons
 
 PutRecordOutcomeCallable FirehoseClient::PutRecordCallable(const PutRecordRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRecordOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRecord(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::PutRecord, this, request, m_executor.get());
 }
 
 void FirehoseClient::PutRecordAsync(const PutRecordRequest& request, const PutRecordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRecord(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::PutRecord, this, request, handler, context, m_executor.get());
 }
 
 PutRecordBatchOutcome FirehoseClient::PutRecordBatch(const PutRecordBatchRequest& request) const
@@ -315,18 +280,12 @@ PutRecordBatchOutcome FirehoseClient::PutRecordBatch(const PutRecordBatchRequest
 
 PutRecordBatchOutcomeCallable FirehoseClient::PutRecordBatchCallable(const PutRecordBatchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRecordBatchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRecordBatch(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::PutRecordBatch, this, request, m_executor.get());
 }
 
 void FirehoseClient::PutRecordBatchAsync(const PutRecordBatchRequest& request, const PutRecordBatchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRecordBatch(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::PutRecordBatch, this, request, handler, context, m_executor.get());
 }
 
 StartDeliveryStreamEncryptionOutcome FirehoseClient::StartDeliveryStreamEncryption(const StartDeliveryStreamEncryptionRequest& request) const
@@ -339,18 +298,12 @@ StartDeliveryStreamEncryptionOutcome FirehoseClient::StartDeliveryStreamEncrypti
 
 StartDeliveryStreamEncryptionOutcomeCallable FirehoseClient::StartDeliveryStreamEncryptionCallable(const StartDeliveryStreamEncryptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartDeliveryStreamEncryptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartDeliveryStreamEncryption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::StartDeliveryStreamEncryption, this, request, m_executor.get());
 }
 
 void FirehoseClient::StartDeliveryStreamEncryptionAsync(const StartDeliveryStreamEncryptionRequest& request, const StartDeliveryStreamEncryptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartDeliveryStreamEncryption(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::StartDeliveryStreamEncryption, this, request, handler, context, m_executor.get());
 }
 
 StopDeliveryStreamEncryptionOutcome FirehoseClient::StopDeliveryStreamEncryption(const StopDeliveryStreamEncryptionRequest& request) const
@@ -363,18 +316,12 @@ StopDeliveryStreamEncryptionOutcome FirehoseClient::StopDeliveryStreamEncryption
 
 StopDeliveryStreamEncryptionOutcomeCallable FirehoseClient::StopDeliveryStreamEncryptionCallable(const StopDeliveryStreamEncryptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopDeliveryStreamEncryptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopDeliveryStreamEncryption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::StopDeliveryStreamEncryption, this, request, m_executor.get());
 }
 
 void FirehoseClient::StopDeliveryStreamEncryptionAsync(const StopDeliveryStreamEncryptionRequest& request, const StopDeliveryStreamEncryptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopDeliveryStreamEncryption(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::StopDeliveryStreamEncryption, this, request, handler, context, m_executor.get());
 }
 
 TagDeliveryStreamOutcome FirehoseClient::TagDeliveryStream(const TagDeliveryStreamRequest& request) const
@@ -387,18 +334,12 @@ TagDeliveryStreamOutcome FirehoseClient::TagDeliveryStream(const TagDeliveryStre
 
 TagDeliveryStreamOutcomeCallable FirehoseClient::TagDeliveryStreamCallable(const TagDeliveryStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagDeliveryStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagDeliveryStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::TagDeliveryStream, this, request, m_executor.get());
 }
 
 void FirehoseClient::TagDeliveryStreamAsync(const TagDeliveryStreamRequest& request, const TagDeliveryStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagDeliveryStream(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::TagDeliveryStream, this, request, handler, context, m_executor.get());
 }
 
 UntagDeliveryStreamOutcome FirehoseClient::UntagDeliveryStream(const UntagDeliveryStreamRequest& request) const
@@ -411,18 +352,12 @@ UntagDeliveryStreamOutcome FirehoseClient::UntagDeliveryStream(const UntagDelive
 
 UntagDeliveryStreamOutcomeCallable FirehoseClient::UntagDeliveryStreamCallable(const UntagDeliveryStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagDeliveryStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagDeliveryStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::UntagDeliveryStream, this, request, m_executor.get());
 }
 
 void FirehoseClient::UntagDeliveryStreamAsync(const UntagDeliveryStreamRequest& request, const UntagDeliveryStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagDeliveryStream(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::UntagDeliveryStream, this, request, handler, context, m_executor.get());
 }
 
 UpdateDestinationOutcome FirehoseClient::UpdateDestination(const UpdateDestinationRequest& request) const
@@ -435,17 +370,11 @@ UpdateDestinationOutcome FirehoseClient::UpdateDestination(const UpdateDestinati
 
 UpdateDestinationOutcomeCallable FirehoseClient::UpdateDestinationCallable(const UpdateDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &FirehoseClient::UpdateDestination, this, request, m_executor.get());
 }
 
 void FirehoseClient::UpdateDestinationAsync(const UpdateDestinationRequest& request, const UpdateDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDestination(request), context);
-    } );
+  MakeAsyncOperation(&FirehoseClient::UpdateDestination, this, request, handler, context, m_executor.get());
 }
 

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -184,18 +185,12 @@ CancelClusterOutcome SnowballClient::CancelCluster(const CancelClusterRequest& r
 
 CancelClusterOutcomeCallable SnowballClient::CancelClusterCallable(const CancelClusterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelClusterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelCluster(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::CancelCluster, this, request, m_executor.get());
 }
 
 void SnowballClient::CancelClusterAsync(const CancelClusterRequest& request, const CancelClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelCluster(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::CancelCluster, this, request, handler, context, m_executor.get());
 }
 
 CancelJobOutcome SnowballClient::CancelJob(const CancelJobRequest& request) const
@@ -208,18 +203,12 @@ CancelJobOutcome SnowballClient::CancelJob(const CancelJobRequest& request) cons
 
 CancelJobOutcomeCallable SnowballClient::CancelJobCallable(const CancelJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::CancelJob, this, request, m_executor.get());
 }
 
 void SnowballClient::CancelJobAsync(const CancelJobRequest& request, const CancelJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelJob(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::CancelJob, this, request, handler, context, m_executor.get());
 }
 
 CreateAddressOutcome SnowballClient::CreateAddress(const CreateAddressRequest& request) const
@@ -232,18 +221,12 @@ CreateAddressOutcome SnowballClient::CreateAddress(const CreateAddressRequest& r
 
 CreateAddressOutcomeCallable SnowballClient::CreateAddressCallable(const CreateAddressRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAddressOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAddress(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::CreateAddress, this, request, m_executor.get());
 }
 
 void SnowballClient::CreateAddressAsync(const CreateAddressRequest& request, const CreateAddressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAddress(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::CreateAddress, this, request, handler, context, m_executor.get());
 }
 
 CreateClusterOutcome SnowballClient::CreateCluster(const CreateClusterRequest& request) const
@@ -256,18 +239,12 @@ CreateClusterOutcome SnowballClient::CreateCluster(const CreateClusterRequest& r
 
 CreateClusterOutcomeCallable SnowballClient::CreateClusterCallable(const CreateClusterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateClusterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCluster(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::CreateCluster, this, request, m_executor.get());
 }
 
 void SnowballClient::CreateClusterAsync(const CreateClusterRequest& request, const CreateClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCluster(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::CreateCluster, this, request, handler, context, m_executor.get());
 }
 
 CreateJobOutcome SnowballClient::CreateJob(const CreateJobRequest& request) const
@@ -280,18 +257,12 @@ CreateJobOutcome SnowballClient::CreateJob(const CreateJobRequest& request) cons
 
 CreateJobOutcomeCallable SnowballClient::CreateJobCallable(const CreateJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::CreateJob, this, request, m_executor.get());
 }
 
 void SnowballClient::CreateJobAsync(const CreateJobRequest& request, const CreateJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateJob(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::CreateJob, this, request, handler, context, m_executor.get());
 }
 
 CreateLongTermPricingOutcome SnowballClient::CreateLongTermPricing(const CreateLongTermPricingRequest& request) const
@@ -304,18 +275,12 @@ CreateLongTermPricingOutcome SnowballClient::CreateLongTermPricing(const CreateL
 
 CreateLongTermPricingOutcomeCallable SnowballClient::CreateLongTermPricingCallable(const CreateLongTermPricingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLongTermPricingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLongTermPricing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::CreateLongTermPricing, this, request, m_executor.get());
 }
 
 void SnowballClient::CreateLongTermPricingAsync(const CreateLongTermPricingRequest& request, const CreateLongTermPricingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLongTermPricing(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::CreateLongTermPricing, this, request, handler, context, m_executor.get());
 }
 
 CreateReturnShippingLabelOutcome SnowballClient::CreateReturnShippingLabel(const CreateReturnShippingLabelRequest& request) const
@@ -328,18 +293,12 @@ CreateReturnShippingLabelOutcome SnowballClient::CreateReturnShippingLabel(const
 
 CreateReturnShippingLabelOutcomeCallable SnowballClient::CreateReturnShippingLabelCallable(const CreateReturnShippingLabelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateReturnShippingLabelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateReturnShippingLabel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::CreateReturnShippingLabel, this, request, m_executor.get());
 }
 
 void SnowballClient::CreateReturnShippingLabelAsync(const CreateReturnShippingLabelRequest& request, const CreateReturnShippingLabelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateReturnShippingLabel(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::CreateReturnShippingLabel, this, request, handler, context, m_executor.get());
 }
 
 DescribeAddressOutcome SnowballClient::DescribeAddress(const DescribeAddressRequest& request) const
@@ -352,18 +311,12 @@ DescribeAddressOutcome SnowballClient::DescribeAddress(const DescribeAddressRequ
 
 DescribeAddressOutcomeCallable SnowballClient::DescribeAddressCallable(const DescribeAddressRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAddressOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAddress(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::DescribeAddress, this, request, m_executor.get());
 }
 
 void SnowballClient::DescribeAddressAsync(const DescribeAddressRequest& request, const DescribeAddressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAddress(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::DescribeAddress, this, request, handler, context, m_executor.get());
 }
 
 DescribeAddressesOutcome SnowballClient::DescribeAddresses(const DescribeAddressesRequest& request) const
@@ -376,18 +329,12 @@ DescribeAddressesOutcome SnowballClient::DescribeAddresses(const DescribeAddress
 
 DescribeAddressesOutcomeCallable SnowballClient::DescribeAddressesCallable(const DescribeAddressesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAddressesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAddresses(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::DescribeAddresses, this, request, m_executor.get());
 }
 
 void SnowballClient::DescribeAddressesAsync(const DescribeAddressesRequest& request, const DescribeAddressesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAddresses(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::DescribeAddresses, this, request, handler, context, m_executor.get());
 }
 
 DescribeClusterOutcome SnowballClient::DescribeCluster(const DescribeClusterRequest& request) const
@@ -400,18 +347,12 @@ DescribeClusterOutcome SnowballClient::DescribeCluster(const DescribeClusterRequ
 
 DescribeClusterOutcomeCallable SnowballClient::DescribeClusterCallable(const DescribeClusterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeClusterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCluster(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::DescribeCluster, this, request, m_executor.get());
 }
 
 void SnowballClient::DescribeClusterAsync(const DescribeClusterRequest& request, const DescribeClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCluster(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::DescribeCluster, this, request, handler, context, m_executor.get());
 }
 
 DescribeJobOutcome SnowballClient::DescribeJob(const DescribeJobRequest& request) const
@@ -424,18 +365,12 @@ DescribeJobOutcome SnowballClient::DescribeJob(const DescribeJobRequest& request
 
 DescribeJobOutcomeCallable SnowballClient::DescribeJobCallable(const DescribeJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::DescribeJob, this, request, m_executor.get());
 }
 
 void SnowballClient::DescribeJobAsync(const DescribeJobRequest& request, const DescribeJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeJob(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::DescribeJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeReturnShippingLabelOutcome SnowballClient::DescribeReturnShippingLabel(const DescribeReturnShippingLabelRequest& request) const
@@ -448,18 +383,12 @@ DescribeReturnShippingLabelOutcome SnowballClient::DescribeReturnShippingLabel(c
 
 DescribeReturnShippingLabelOutcomeCallable SnowballClient::DescribeReturnShippingLabelCallable(const DescribeReturnShippingLabelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeReturnShippingLabelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeReturnShippingLabel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::DescribeReturnShippingLabel, this, request, m_executor.get());
 }
 
 void SnowballClient::DescribeReturnShippingLabelAsync(const DescribeReturnShippingLabelRequest& request, const DescribeReturnShippingLabelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeReturnShippingLabel(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::DescribeReturnShippingLabel, this, request, handler, context, m_executor.get());
 }
 
 GetJobManifestOutcome SnowballClient::GetJobManifest(const GetJobManifestRequest& request) const
@@ -472,18 +401,12 @@ GetJobManifestOutcome SnowballClient::GetJobManifest(const GetJobManifestRequest
 
 GetJobManifestOutcomeCallable SnowballClient::GetJobManifestCallable(const GetJobManifestRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetJobManifestOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetJobManifest(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::GetJobManifest, this, request, m_executor.get());
 }
 
 void SnowballClient::GetJobManifestAsync(const GetJobManifestRequest& request, const GetJobManifestResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetJobManifest(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::GetJobManifest, this, request, handler, context, m_executor.get());
 }
 
 GetJobUnlockCodeOutcome SnowballClient::GetJobUnlockCode(const GetJobUnlockCodeRequest& request) const
@@ -496,18 +419,12 @@ GetJobUnlockCodeOutcome SnowballClient::GetJobUnlockCode(const GetJobUnlockCodeR
 
 GetJobUnlockCodeOutcomeCallable SnowballClient::GetJobUnlockCodeCallable(const GetJobUnlockCodeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetJobUnlockCodeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetJobUnlockCode(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::GetJobUnlockCode, this, request, m_executor.get());
 }
 
 void SnowballClient::GetJobUnlockCodeAsync(const GetJobUnlockCodeRequest& request, const GetJobUnlockCodeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetJobUnlockCode(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::GetJobUnlockCode, this, request, handler, context, m_executor.get());
 }
 
 GetSnowballUsageOutcome SnowballClient::GetSnowballUsage(const GetSnowballUsageRequest& request) const
@@ -520,18 +437,12 @@ GetSnowballUsageOutcome SnowballClient::GetSnowballUsage(const GetSnowballUsageR
 
 GetSnowballUsageOutcomeCallable SnowballClient::GetSnowballUsageCallable(const GetSnowballUsageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSnowballUsageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSnowballUsage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::GetSnowballUsage, this, request, m_executor.get());
 }
 
 void SnowballClient::GetSnowballUsageAsync(const GetSnowballUsageRequest& request, const GetSnowballUsageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSnowballUsage(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::GetSnowballUsage, this, request, handler, context, m_executor.get());
 }
 
 GetSoftwareUpdatesOutcome SnowballClient::GetSoftwareUpdates(const GetSoftwareUpdatesRequest& request) const
@@ -544,18 +455,12 @@ GetSoftwareUpdatesOutcome SnowballClient::GetSoftwareUpdates(const GetSoftwareUp
 
 GetSoftwareUpdatesOutcomeCallable SnowballClient::GetSoftwareUpdatesCallable(const GetSoftwareUpdatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSoftwareUpdatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSoftwareUpdates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::GetSoftwareUpdates, this, request, m_executor.get());
 }
 
 void SnowballClient::GetSoftwareUpdatesAsync(const GetSoftwareUpdatesRequest& request, const GetSoftwareUpdatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSoftwareUpdates(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::GetSoftwareUpdates, this, request, handler, context, m_executor.get());
 }
 
 ListClusterJobsOutcome SnowballClient::ListClusterJobs(const ListClusterJobsRequest& request) const
@@ -568,18 +473,12 @@ ListClusterJobsOutcome SnowballClient::ListClusterJobs(const ListClusterJobsRequ
 
 ListClusterJobsOutcomeCallable SnowballClient::ListClusterJobsCallable(const ListClusterJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListClusterJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListClusterJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::ListClusterJobs, this, request, m_executor.get());
 }
 
 void SnowballClient::ListClusterJobsAsync(const ListClusterJobsRequest& request, const ListClusterJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListClusterJobs(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::ListClusterJobs, this, request, handler, context, m_executor.get());
 }
 
 ListClustersOutcome SnowballClient::ListClusters(const ListClustersRequest& request) const
@@ -592,18 +491,12 @@ ListClustersOutcome SnowballClient::ListClusters(const ListClustersRequest& requ
 
 ListClustersOutcomeCallable SnowballClient::ListClustersCallable(const ListClustersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListClustersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListClusters(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::ListClusters, this, request, m_executor.get());
 }
 
 void SnowballClient::ListClustersAsync(const ListClustersRequest& request, const ListClustersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListClusters(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::ListClusters, this, request, handler, context, m_executor.get());
 }
 
 ListCompatibleImagesOutcome SnowballClient::ListCompatibleImages(const ListCompatibleImagesRequest& request) const
@@ -616,18 +509,12 @@ ListCompatibleImagesOutcome SnowballClient::ListCompatibleImages(const ListCompa
 
 ListCompatibleImagesOutcomeCallable SnowballClient::ListCompatibleImagesCallable(const ListCompatibleImagesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCompatibleImagesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCompatibleImages(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::ListCompatibleImages, this, request, m_executor.get());
 }
 
 void SnowballClient::ListCompatibleImagesAsync(const ListCompatibleImagesRequest& request, const ListCompatibleImagesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCompatibleImages(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::ListCompatibleImages, this, request, handler, context, m_executor.get());
 }
 
 ListJobsOutcome SnowballClient::ListJobs(const ListJobsRequest& request) const
@@ -640,18 +527,12 @@ ListJobsOutcome SnowballClient::ListJobs(const ListJobsRequest& request) const
 
 ListJobsOutcomeCallable SnowballClient::ListJobsCallable(const ListJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::ListJobs, this, request, m_executor.get());
 }
 
 void SnowballClient::ListJobsAsync(const ListJobsRequest& request, const ListJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobs(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::ListJobs, this, request, handler, context, m_executor.get());
 }
 
 ListLongTermPricingOutcome SnowballClient::ListLongTermPricing(const ListLongTermPricingRequest& request) const
@@ -664,18 +545,12 @@ ListLongTermPricingOutcome SnowballClient::ListLongTermPricing(const ListLongTer
 
 ListLongTermPricingOutcomeCallable SnowballClient::ListLongTermPricingCallable(const ListLongTermPricingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListLongTermPricingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListLongTermPricing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::ListLongTermPricing, this, request, m_executor.get());
 }
 
 void SnowballClient::ListLongTermPricingAsync(const ListLongTermPricingRequest& request, const ListLongTermPricingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListLongTermPricing(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::ListLongTermPricing, this, request, handler, context, m_executor.get());
 }
 
 UpdateClusterOutcome SnowballClient::UpdateCluster(const UpdateClusterRequest& request) const
@@ -688,18 +563,12 @@ UpdateClusterOutcome SnowballClient::UpdateCluster(const UpdateClusterRequest& r
 
 UpdateClusterOutcomeCallable SnowballClient::UpdateClusterCallable(const UpdateClusterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateClusterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCluster(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::UpdateCluster, this, request, m_executor.get());
 }
 
 void SnowballClient::UpdateClusterAsync(const UpdateClusterRequest& request, const UpdateClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCluster(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::UpdateCluster, this, request, handler, context, m_executor.get());
 }
 
 UpdateJobOutcome SnowballClient::UpdateJob(const UpdateJobRequest& request) const
@@ -712,18 +581,12 @@ UpdateJobOutcome SnowballClient::UpdateJob(const UpdateJobRequest& request) cons
 
 UpdateJobOutcomeCallable SnowballClient::UpdateJobCallable(const UpdateJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::UpdateJob, this, request, m_executor.get());
 }
 
 void SnowballClient::UpdateJobAsync(const UpdateJobRequest& request, const UpdateJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateJob(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::UpdateJob, this, request, handler, context, m_executor.get());
 }
 
 UpdateJobShipmentStateOutcome SnowballClient::UpdateJobShipmentState(const UpdateJobShipmentStateRequest& request) const
@@ -736,18 +599,12 @@ UpdateJobShipmentStateOutcome SnowballClient::UpdateJobShipmentState(const Updat
 
 UpdateJobShipmentStateOutcomeCallable SnowballClient::UpdateJobShipmentStateCallable(const UpdateJobShipmentStateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateJobShipmentStateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateJobShipmentState(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::UpdateJobShipmentState, this, request, m_executor.get());
 }
 
 void SnowballClient::UpdateJobShipmentStateAsync(const UpdateJobShipmentStateRequest& request, const UpdateJobShipmentStateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateJobShipmentState(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::UpdateJobShipmentState, this, request, handler, context, m_executor.get());
 }
 
 UpdateLongTermPricingOutcome SnowballClient::UpdateLongTermPricing(const UpdateLongTermPricingRequest& request) const
@@ -760,17 +617,11 @@ UpdateLongTermPricingOutcome SnowballClient::UpdateLongTermPricing(const UpdateL
 
 UpdateLongTermPricingOutcomeCallable SnowballClient::UpdateLongTermPricingCallable(const UpdateLongTermPricingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateLongTermPricingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateLongTermPricing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SnowballClient::UpdateLongTermPricing, this, request, m_executor.get());
 }
 
 void SnowballClient::UpdateLongTermPricingAsync(const UpdateLongTermPricingRequest& request, const UpdateLongTermPricingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateLongTermPricing(request), context);
-    } );
+  MakeAsyncOperation(&SnowballClient::UpdateLongTermPricing, this, request, handler, context, m_executor.get());
 }
 

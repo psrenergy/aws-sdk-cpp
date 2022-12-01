@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -202,18 +203,12 @@ AddTagsToOnPremisesInstancesOutcome CodeDeployClient::AddTagsToOnPremisesInstanc
 
 AddTagsToOnPremisesInstancesOutcomeCallable CodeDeployClient::AddTagsToOnPremisesInstancesCallable(const AddTagsToOnPremisesInstancesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddTagsToOnPremisesInstancesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddTagsToOnPremisesInstances(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::AddTagsToOnPremisesInstances, this, request, m_executor.get());
 }
 
 void CodeDeployClient::AddTagsToOnPremisesInstancesAsync(const AddTagsToOnPremisesInstancesRequest& request, const AddTagsToOnPremisesInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddTagsToOnPremisesInstances(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::AddTagsToOnPremisesInstances, this, request, handler, context, m_executor.get());
 }
 
 BatchGetApplicationRevisionsOutcome CodeDeployClient::BatchGetApplicationRevisions(const BatchGetApplicationRevisionsRequest& request) const
@@ -226,18 +221,12 @@ BatchGetApplicationRevisionsOutcome CodeDeployClient::BatchGetApplicationRevisio
 
 BatchGetApplicationRevisionsOutcomeCallable CodeDeployClient::BatchGetApplicationRevisionsCallable(const BatchGetApplicationRevisionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetApplicationRevisionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetApplicationRevisions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::BatchGetApplicationRevisions, this, request, m_executor.get());
 }
 
 void CodeDeployClient::BatchGetApplicationRevisionsAsync(const BatchGetApplicationRevisionsRequest& request, const BatchGetApplicationRevisionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetApplicationRevisions(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::BatchGetApplicationRevisions, this, request, handler, context, m_executor.get());
 }
 
 BatchGetApplicationsOutcome CodeDeployClient::BatchGetApplications(const BatchGetApplicationsRequest& request) const
@@ -250,18 +239,12 @@ BatchGetApplicationsOutcome CodeDeployClient::BatchGetApplications(const BatchGe
 
 BatchGetApplicationsOutcomeCallable CodeDeployClient::BatchGetApplicationsCallable(const BatchGetApplicationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetApplicationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetApplications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::BatchGetApplications, this, request, m_executor.get());
 }
 
 void CodeDeployClient::BatchGetApplicationsAsync(const BatchGetApplicationsRequest& request, const BatchGetApplicationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetApplications(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::BatchGetApplications, this, request, handler, context, m_executor.get());
 }
 
 BatchGetDeploymentGroupsOutcome CodeDeployClient::BatchGetDeploymentGroups(const BatchGetDeploymentGroupsRequest& request) const
@@ -274,18 +257,12 @@ BatchGetDeploymentGroupsOutcome CodeDeployClient::BatchGetDeploymentGroups(const
 
 BatchGetDeploymentGroupsOutcomeCallable CodeDeployClient::BatchGetDeploymentGroupsCallable(const BatchGetDeploymentGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetDeploymentGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetDeploymentGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::BatchGetDeploymentGroups, this, request, m_executor.get());
 }
 
 void CodeDeployClient::BatchGetDeploymentGroupsAsync(const BatchGetDeploymentGroupsRequest& request, const BatchGetDeploymentGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetDeploymentGroups(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::BatchGetDeploymentGroups, this, request, handler, context, m_executor.get());
 }
 
 BatchGetDeploymentTargetsOutcome CodeDeployClient::BatchGetDeploymentTargets(const BatchGetDeploymentTargetsRequest& request) const
@@ -298,18 +275,12 @@ BatchGetDeploymentTargetsOutcome CodeDeployClient::BatchGetDeploymentTargets(con
 
 BatchGetDeploymentTargetsOutcomeCallable CodeDeployClient::BatchGetDeploymentTargetsCallable(const BatchGetDeploymentTargetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetDeploymentTargetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetDeploymentTargets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::BatchGetDeploymentTargets, this, request, m_executor.get());
 }
 
 void CodeDeployClient::BatchGetDeploymentTargetsAsync(const BatchGetDeploymentTargetsRequest& request, const BatchGetDeploymentTargetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetDeploymentTargets(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::BatchGetDeploymentTargets, this, request, handler, context, m_executor.get());
 }
 
 BatchGetDeploymentsOutcome CodeDeployClient::BatchGetDeployments(const BatchGetDeploymentsRequest& request) const
@@ -322,18 +293,12 @@ BatchGetDeploymentsOutcome CodeDeployClient::BatchGetDeployments(const BatchGetD
 
 BatchGetDeploymentsOutcomeCallable CodeDeployClient::BatchGetDeploymentsCallable(const BatchGetDeploymentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetDeploymentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetDeployments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::BatchGetDeployments, this, request, m_executor.get());
 }
 
 void CodeDeployClient::BatchGetDeploymentsAsync(const BatchGetDeploymentsRequest& request, const BatchGetDeploymentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetDeployments(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::BatchGetDeployments, this, request, handler, context, m_executor.get());
 }
 
 BatchGetOnPremisesInstancesOutcome CodeDeployClient::BatchGetOnPremisesInstances(const BatchGetOnPremisesInstancesRequest& request) const
@@ -346,18 +311,12 @@ BatchGetOnPremisesInstancesOutcome CodeDeployClient::BatchGetOnPremisesInstances
 
 BatchGetOnPremisesInstancesOutcomeCallable CodeDeployClient::BatchGetOnPremisesInstancesCallable(const BatchGetOnPremisesInstancesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetOnPremisesInstancesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetOnPremisesInstances(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::BatchGetOnPremisesInstances, this, request, m_executor.get());
 }
 
 void CodeDeployClient::BatchGetOnPremisesInstancesAsync(const BatchGetOnPremisesInstancesRequest& request, const BatchGetOnPremisesInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetOnPremisesInstances(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::BatchGetOnPremisesInstances, this, request, handler, context, m_executor.get());
 }
 
 ContinueDeploymentOutcome CodeDeployClient::ContinueDeployment(const ContinueDeploymentRequest& request) const
@@ -370,18 +329,12 @@ ContinueDeploymentOutcome CodeDeployClient::ContinueDeployment(const ContinueDep
 
 ContinueDeploymentOutcomeCallable CodeDeployClient::ContinueDeploymentCallable(const ContinueDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ContinueDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ContinueDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ContinueDeployment, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ContinueDeploymentAsync(const ContinueDeploymentRequest& request, const ContinueDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ContinueDeployment(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ContinueDeployment, this, request, handler, context, m_executor.get());
 }
 
 CreateApplicationOutcome CodeDeployClient::CreateApplication(const CreateApplicationRequest& request) const
@@ -394,18 +347,12 @@ CreateApplicationOutcome CodeDeployClient::CreateApplication(const CreateApplica
 
 CreateApplicationOutcomeCallable CodeDeployClient::CreateApplicationCallable(const CreateApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::CreateApplication, this, request, m_executor.get());
 }
 
 void CodeDeployClient::CreateApplicationAsync(const CreateApplicationRequest& request, const CreateApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateApplication(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::CreateApplication, this, request, handler, context, m_executor.get());
 }
 
 CreateDeploymentOutcome CodeDeployClient::CreateDeployment(const CreateDeploymentRequest& request) const
@@ -418,18 +365,12 @@ CreateDeploymentOutcome CodeDeployClient::CreateDeployment(const CreateDeploymen
 
 CreateDeploymentOutcomeCallable CodeDeployClient::CreateDeploymentCallable(const CreateDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::CreateDeployment, this, request, m_executor.get());
 }
 
 void CodeDeployClient::CreateDeploymentAsync(const CreateDeploymentRequest& request, const CreateDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDeployment(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::CreateDeployment, this, request, handler, context, m_executor.get());
 }
 
 CreateDeploymentConfigOutcome CodeDeployClient::CreateDeploymentConfig(const CreateDeploymentConfigRequest& request) const
@@ -442,18 +383,12 @@ CreateDeploymentConfigOutcome CodeDeployClient::CreateDeploymentConfig(const Cre
 
 CreateDeploymentConfigOutcomeCallable CodeDeployClient::CreateDeploymentConfigCallable(const CreateDeploymentConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDeploymentConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDeploymentConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::CreateDeploymentConfig, this, request, m_executor.get());
 }
 
 void CodeDeployClient::CreateDeploymentConfigAsync(const CreateDeploymentConfigRequest& request, const CreateDeploymentConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDeploymentConfig(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::CreateDeploymentConfig, this, request, handler, context, m_executor.get());
 }
 
 CreateDeploymentGroupOutcome CodeDeployClient::CreateDeploymentGroup(const CreateDeploymentGroupRequest& request) const
@@ -466,18 +401,12 @@ CreateDeploymentGroupOutcome CodeDeployClient::CreateDeploymentGroup(const Creat
 
 CreateDeploymentGroupOutcomeCallable CodeDeployClient::CreateDeploymentGroupCallable(const CreateDeploymentGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDeploymentGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDeploymentGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::CreateDeploymentGroup, this, request, m_executor.get());
 }
 
 void CodeDeployClient::CreateDeploymentGroupAsync(const CreateDeploymentGroupRequest& request, const CreateDeploymentGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDeploymentGroup(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::CreateDeploymentGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationOutcome CodeDeployClient::DeleteApplication(const DeleteApplicationRequest& request) const
@@ -490,18 +419,12 @@ DeleteApplicationOutcome CodeDeployClient::DeleteApplication(const DeleteApplica
 
 DeleteApplicationOutcomeCallable CodeDeployClient::DeleteApplicationCallable(const DeleteApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::DeleteApplication, this, request, m_executor.get());
 }
 
 void CodeDeployClient::DeleteApplicationAsync(const DeleteApplicationRequest& request, const DeleteApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplication(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::DeleteApplication, this, request, handler, context, m_executor.get());
 }
 
 DeleteDeploymentConfigOutcome CodeDeployClient::DeleteDeploymentConfig(const DeleteDeploymentConfigRequest& request) const
@@ -514,18 +437,12 @@ DeleteDeploymentConfigOutcome CodeDeployClient::DeleteDeploymentConfig(const Del
 
 DeleteDeploymentConfigOutcomeCallable CodeDeployClient::DeleteDeploymentConfigCallable(const DeleteDeploymentConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDeploymentConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDeploymentConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::DeleteDeploymentConfig, this, request, m_executor.get());
 }
 
 void CodeDeployClient::DeleteDeploymentConfigAsync(const DeleteDeploymentConfigRequest& request, const DeleteDeploymentConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDeploymentConfig(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::DeleteDeploymentConfig, this, request, handler, context, m_executor.get());
 }
 
 DeleteDeploymentGroupOutcome CodeDeployClient::DeleteDeploymentGroup(const DeleteDeploymentGroupRequest& request) const
@@ -538,18 +455,12 @@ DeleteDeploymentGroupOutcome CodeDeployClient::DeleteDeploymentGroup(const Delet
 
 DeleteDeploymentGroupOutcomeCallable CodeDeployClient::DeleteDeploymentGroupCallable(const DeleteDeploymentGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDeploymentGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDeploymentGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::DeleteDeploymentGroup, this, request, m_executor.get());
 }
 
 void CodeDeployClient::DeleteDeploymentGroupAsync(const DeleteDeploymentGroupRequest& request, const DeleteDeploymentGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDeploymentGroup(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::DeleteDeploymentGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteGitHubAccountTokenOutcome CodeDeployClient::DeleteGitHubAccountToken(const DeleteGitHubAccountTokenRequest& request) const
@@ -562,18 +473,12 @@ DeleteGitHubAccountTokenOutcome CodeDeployClient::DeleteGitHubAccountToken(const
 
 DeleteGitHubAccountTokenOutcomeCallable CodeDeployClient::DeleteGitHubAccountTokenCallable(const DeleteGitHubAccountTokenRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGitHubAccountTokenOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGitHubAccountToken(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::DeleteGitHubAccountToken, this, request, m_executor.get());
 }
 
 void CodeDeployClient::DeleteGitHubAccountTokenAsync(const DeleteGitHubAccountTokenRequest& request, const DeleteGitHubAccountTokenResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGitHubAccountToken(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::DeleteGitHubAccountToken, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourcesByExternalIdOutcome CodeDeployClient::DeleteResourcesByExternalId(const DeleteResourcesByExternalIdRequest& request) const
@@ -586,18 +491,12 @@ DeleteResourcesByExternalIdOutcome CodeDeployClient::DeleteResourcesByExternalId
 
 DeleteResourcesByExternalIdOutcomeCallable CodeDeployClient::DeleteResourcesByExternalIdCallable(const DeleteResourcesByExternalIdRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourcesByExternalIdOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourcesByExternalId(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::DeleteResourcesByExternalId, this, request, m_executor.get());
 }
 
 void CodeDeployClient::DeleteResourcesByExternalIdAsync(const DeleteResourcesByExternalIdRequest& request, const DeleteResourcesByExternalIdResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourcesByExternalId(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::DeleteResourcesByExternalId, this, request, handler, context, m_executor.get());
 }
 
 DeregisterOnPremisesInstanceOutcome CodeDeployClient::DeregisterOnPremisesInstance(const DeregisterOnPremisesInstanceRequest& request) const
@@ -610,18 +509,12 @@ DeregisterOnPremisesInstanceOutcome CodeDeployClient::DeregisterOnPremisesInstan
 
 DeregisterOnPremisesInstanceOutcomeCallable CodeDeployClient::DeregisterOnPremisesInstanceCallable(const DeregisterOnPremisesInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeregisterOnPremisesInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeregisterOnPremisesInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::DeregisterOnPremisesInstance, this, request, m_executor.get());
 }
 
 void CodeDeployClient::DeregisterOnPremisesInstanceAsync(const DeregisterOnPremisesInstanceRequest& request, const DeregisterOnPremisesInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeregisterOnPremisesInstance(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::DeregisterOnPremisesInstance, this, request, handler, context, m_executor.get());
 }
 
 GetApplicationOutcome CodeDeployClient::GetApplication(const GetApplicationRequest& request) const
@@ -634,18 +527,12 @@ GetApplicationOutcome CodeDeployClient::GetApplication(const GetApplicationReque
 
 GetApplicationOutcomeCallable CodeDeployClient::GetApplicationCallable(const GetApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::GetApplication, this, request, m_executor.get());
 }
 
 void CodeDeployClient::GetApplicationAsync(const GetApplicationRequest& request, const GetApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetApplication(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::GetApplication, this, request, handler, context, m_executor.get());
 }
 
 GetApplicationRevisionOutcome CodeDeployClient::GetApplicationRevision(const GetApplicationRevisionRequest& request) const
@@ -658,18 +545,12 @@ GetApplicationRevisionOutcome CodeDeployClient::GetApplicationRevision(const Get
 
 GetApplicationRevisionOutcomeCallable CodeDeployClient::GetApplicationRevisionCallable(const GetApplicationRevisionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetApplicationRevisionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetApplicationRevision(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::GetApplicationRevision, this, request, m_executor.get());
 }
 
 void CodeDeployClient::GetApplicationRevisionAsync(const GetApplicationRevisionRequest& request, const GetApplicationRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetApplicationRevision(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::GetApplicationRevision, this, request, handler, context, m_executor.get());
 }
 
 GetDeploymentOutcome CodeDeployClient::GetDeployment(const GetDeploymentRequest& request) const
@@ -682,18 +563,12 @@ GetDeploymentOutcome CodeDeployClient::GetDeployment(const GetDeploymentRequest&
 
 GetDeploymentOutcomeCallable CodeDeployClient::GetDeploymentCallable(const GetDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::GetDeployment, this, request, m_executor.get());
 }
 
 void CodeDeployClient::GetDeploymentAsync(const GetDeploymentRequest& request, const GetDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDeployment(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::GetDeployment, this, request, handler, context, m_executor.get());
 }
 
 GetDeploymentConfigOutcome CodeDeployClient::GetDeploymentConfig(const GetDeploymentConfigRequest& request) const
@@ -706,18 +581,12 @@ GetDeploymentConfigOutcome CodeDeployClient::GetDeploymentConfig(const GetDeploy
 
 GetDeploymentConfigOutcomeCallable CodeDeployClient::GetDeploymentConfigCallable(const GetDeploymentConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDeploymentConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDeploymentConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::GetDeploymentConfig, this, request, m_executor.get());
 }
 
 void CodeDeployClient::GetDeploymentConfigAsync(const GetDeploymentConfigRequest& request, const GetDeploymentConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDeploymentConfig(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::GetDeploymentConfig, this, request, handler, context, m_executor.get());
 }
 
 GetDeploymentGroupOutcome CodeDeployClient::GetDeploymentGroup(const GetDeploymentGroupRequest& request) const
@@ -730,18 +599,12 @@ GetDeploymentGroupOutcome CodeDeployClient::GetDeploymentGroup(const GetDeployme
 
 GetDeploymentGroupOutcomeCallable CodeDeployClient::GetDeploymentGroupCallable(const GetDeploymentGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDeploymentGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDeploymentGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::GetDeploymentGroup, this, request, m_executor.get());
 }
 
 void CodeDeployClient::GetDeploymentGroupAsync(const GetDeploymentGroupRequest& request, const GetDeploymentGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDeploymentGroup(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::GetDeploymentGroup, this, request, handler, context, m_executor.get());
 }
 
 GetDeploymentTargetOutcome CodeDeployClient::GetDeploymentTarget(const GetDeploymentTargetRequest& request) const
@@ -754,18 +617,12 @@ GetDeploymentTargetOutcome CodeDeployClient::GetDeploymentTarget(const GetDeploy
 
 GetDeploymentTargetOutcomeCallable CodeDeployClient::GetDeploymentTargetCallable(const GetDeploymentTargetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDeploymentTargetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDeploymentTarget(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::GetDeploymentTarget, this, request, m_executor.get());
 }
 
 void CodeDeployClient::GetDeploymentTargetAsync(const GetDeploymentTargetRequest& request, const GetDeploymentTargetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDeploymentTarget(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::GetDeploymentTarget, this, request, handler, context, m_executor.get());
 }
 
 GetOnPremisesInstanceOutcome CodeDeployClient::GetOnPremisesInstance(const GetOnPremisesInstanceRequest& request) const
@@ -778,18 +635,12 @@ GetOnPremisesInstanceOutcome CodeDeployClient::GetOnPremisesInstance(const GetOn
 
 GetOnPremisesInstanceOutcomeCallable CodeDeployClient::GetOnPremisesInstanceCallable(const GetOnPremisesInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOnPremisesInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOnPremisesInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::GetOnPremisesInstance, this, request, m_executor.get());
 }
 
 void CodeDeployClient::GetOnPremisesInstanceAsync(const GetOnPremisesInstanceRequest& request, const GetOnPremisesInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOnPremisesInstance(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::GetOnPremisesInstance, this, request, handler, context, m_executor.get());
 }
 
 ListApplicationRevisionsOutcome CodeDeployClient::ListApplicationRevisions(const ListApplicationRevisionsRequest& request) const
@@ -802,18 +653,12 @@ ListApplicationRevisionsOutcome CodeDeployClient::ListApplicationRevisions(const
 
 ListApplicationRevisionsOutcomeCallable CodeDeployClient::ListApplicationRevisionsCallable(const ListApplicationRevisionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListApplicationRevisionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListApplicationRevisions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListApplicationRevisions, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListApplicationRevisionsAsync(const ListApplicationRevisionsRequest& request, const ListApplicationRevisionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListApplicationRevisions(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListApplicationRevisions, this, request, handler, context, m_executor.get());
 }
 
 ListApplicationsOutcome CodeDeployClient::ListApplications(const ListApplicationsRequest& request) const
@@ -826,18 +671,12 @@ ListApplicationsOutcome CodeDeployClient::ListApplications(const ListApplication
 
 ListApplicationsOutcomeCallable CodeDeployClient::ListApplicationsCallable(const ListApplicationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListApplicationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListApplications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListApplications, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListApplicationsAsync(const ListApplicationsRequest& request, const ListApplicationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListApplications(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListApplications, this, request, handler, context, m_executor.get());
 }
 
 ListDeploymentConfigsOutcome CodeDeployClient::ListDeploymentConfigs(const ListDeploymentConfigsRequest& request) const
@@ -850,18 +689,12 @@ ListDeploymentConfigsOutcome CodeDeployClient::ListDeploymentConfigs(const ListD
 
 ListDeploymentConfigsOutcomeCallable CodeDeployClient::ListDeploymentConfigsCallable(const ListDeploymentConfigsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDeploymentConfigsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDeploymentConfigs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListDeploymentConfigs, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListDeploymentConfigsAsync(const ListDeploymentConfigsRequest& request, const ListDeploymentConfigsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDeploymentConfigs(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListDeploymentConfigs, this, request, handler, context, m_executor.get());
 }
 
 ListDeploymentGroupsOutcome CodeDeployClient::ListDeploymentGroups(const ListDeploymentGroupsRequest& request) const
@@ -874,18 +707,12 @@ ListDeploymentGroupsOutcome CodeDeployClient::ListDeploymentGroups(const ListDep
 
 ListDeploymentGroupsOutcomeCallable CodeDeployClient::ListDeploymentGroupsCallable(const ListDeploymentGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDeploymentGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDeploymentGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListDeploymentGroups, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListDeploymentGroupsAsync(const ListDeploymentGroupsRequest& request, const ListDeploymentGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDeploymentGroups(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListDeploymentGroups, this, request, handler, context, m_executor.get());
 }
 
 ListDeploymentTargetsOutcome CodeDeployClient::ListDeploymentTargets(const ListDeploymentTargetsRequest& request) const
@@ -898,18 +725,12 @@ ListDeploymentTargetsOutcome CodeDeployClient::ListDeploymentTargets(const ListD
 
 ListDeploymentTargetsOutcomeCallable CodeDeployClient::ListDeploymentTargetsCallable(const ListDeploymentTargetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDeploymentTargetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDeploymentTargets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListDeploymentTargets, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListDeploymentTargetsAsync(const ListDeploymentTargetsRequest& request, const ListDeploymentTargetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDeploymentTargets(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListDeploymentTargets, this, request, handler, context, m_executor.get());
 }
 
 ListDeploymentsOutcome CodeDeployClient::ListDeployments(const ListDeploymentsRequest& request) const
@@ -922,18 +743,12 @@ ListDeploymentsOutcome CodeDeployClient::ListDeployments(const ListDeploymentsRe
 
 ListDeploymentsOutcomeCallable CodeDeployClient::ListDeploymentsCallable(const ListDeploymentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDeploymentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDeployments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListDeployments, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListDeploymentsAsync(const ListDeploymentsRequest& request, const ListDeploymentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDeployments(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListDeployments, this, request, handler, context, m_executor.get());
 }
 
 ListGitHubAccountTokenNamesOutcome CodeDeployClient::ListGitHubAccountTokenNames(const ListGitHubAccountTokenNamesRequest& request) const
@@ -946,18 +761,12 @@ ListGitHubAccountTokenNamesOutcome CodeDeployClient::ListGitHubAccountTokenNames
 
 ListGitHubAccountTokenNamesOutcomeCallable CodeDeployClient::ListGitHubAccountTokenNamesCallable(const ListGitHubAccountTokenNamesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGitHubAccountTokenNamesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGitHubAccountTokenNames(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListGitHubAccountTokenNames, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListGitHubAccountTokenNamesAsync(const ListGitHubAccountTokenNamesRequest& request, const ListGitHubAccountTokenNamesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGitHubAccountTokenNames(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListGitHubAccountTokenNames, this, request, handler, context, m_executor.get());
 }
 
 ListOnPremisesInstancesOutcome CodeDeployClient::ListOnPremisesInstances(const ListOnPremisesInstancesRequest& request) const
@@ -970,18 +779,12 @@ ListOnPremisesInstancesOutcome CodeDeployClient::ListOnPremisesInstances(const L
 
 ListOnPremisesInstancesOutcomeCallable CodeDeployClient::ListOnPremisesInstancesCallable(const ListOnPremisesInstancesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOnPremisesInstancesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOnPremisesInstances(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListOnPremisesInstances, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListOnPremisesInstancesAsync(const ListOnPremisesInstancesRequest& request, const ListOnPremisesInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOnPremisesInstances(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListOnPremisesInstances, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome CodeDeployClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -994,18 +797,12 @@ ListTagsForResourceOutcome CodeDeployClient::ListTagsForResource(const ListTagsF
 
 ListTagsForResourceOutcomeCallable CodeDeployClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void CodeDeployClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutLifecycleEventHookExecutionStatusOutcome CodeDeployClient::PutLifecycleEventHookExecutionStatus(const PutLifecycleEventHookExecutionStatusRequest& request) const
@@ -1018,18 +815,12 @@ PutLifecycleEventHookExecutionStatusOutcome CodeDeployClient::PutLifecycleEventH
 
 PutLifecycleEventHookExecutionStatusOutcomeCallable CodeDeployClient::PutLifecycleEventHookExecutionStatusCallable(const PutLifecycleEventHookExecutionStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutLifecycleEventHookExecutionStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutLifecycleEventHookExecutionStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::PutLifecycleEventHookExecutionStatus, this, request, m_executor.get());
 }
 
 void CodeDeployClient::PutLifecycleEventHookExecutionStatusAsync(const PutLifecycleEventHookExecutionStatusRequest& request, const PutLifecycleEventHookExecutionStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutLifecycleEventHookExecutionStatus(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::PutLifecycleEventHookExecutionStatus, this, request, handler, context, m_executor.get());
 }
 
 RegisterApplicationRevisionOutcome CodeDeployClient::RegisterApplicationRevision(const RegisterApplicationRevisionRequest& request) const
@@ -1042,18 +833,12 @@ RegisterApplicationRevisionOutcome CodeDeployClient::RegisterApplicationRevision
 
 RegisterApplicationRevisionOutcomeCallable CodeDeployClient::RegisterApplicationRevisionCallable(const RegisterApplicationRevisionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterApplicationRevisionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterApplicationRevision(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::RegisterApplicationRevision, this, request, m_executor.get());
 }
 
 void CodeDeployClient::RegisterApplicationRevisionAsync(const RegisterApplicationRevisionRequest& request, const RegisterApplicationRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterApplicationRevision(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::RegisterApplicationRevision, this, request, handler, context, m_executor.get());
 }
 
 RegisterOnPremisesInstanceOutcome CodeDeployClient::RegisterOnPremisesInstance(const RegisterOnPremisesInstanceRequest& request) const
@@ -1066,18 +851,12 @@ RegisterOnPremisesInstanceOutcome CodeDeployClient::RegisterOnPremisesInstance(c
 
 RegisterOnPremisesInstanceOutcomeCallable CodeDeployClient::RegisterOnPremisesInstanceCallable(const RegisterOnPremisesInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterOnPremisesInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterOnPremisesInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::RegisterOnPremisesInstance, this, request, m_executor.get());
 }
 
 void CodeDeployClient::RegisterOnPremisesInstanceAsync(const RegisterOnPremisesInstanceRequest& request, const RegisterOnPremisesInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterOnPremisesInstance(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::RegisterOnPremisesInstance, this, request, handler, context, m_executor.get());
 }
 
 RemoveTagsFromOnPremisesInstancesOutcome CodeDeployClient::RemoveTagsFromOnPremisesInstances(const RemoveTagsFromOnPremisesInstancesRequest& request) const
@@ -1090,18 +869,12 @@ RemoveTagsFromOnPremisesInstancesOutcome CodeDeployClient::RemoveTagsFromOnPremi
 
 RemoveTagsFromOnPremisesInstancesOutcomeCallable CodeDeployClient::RemoveTagsFromOnPremisesInstancesCallable(const RemoveTagsFromOnPremisesInstancesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveTagsFromOnPremisesInstancesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveTagsFromOnPremisesInstances(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::RemoveTagsFromOnPremisesInstances, this, request, m_executor.get());
 }
 
 void CodeDeployClient::RemoveTagsFromOnPremisesInstancesAsync(const RemoveTagsFromOnPremisesInstancesRequest& request, const RemoveTagsFromOnPremisesInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveTagsFromOnPremisesInstances(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::RemoveTagsFromOnPremisesInstances, this, request, handler, context, m_executor.get());
 }
 
 StopDeploymentOutcome CodeDeployClient::StopDeployment(const StopDeploymentRequest& request) const
@@ -1114,18 +887,12 @@ StopDeploymentOutcome CodeDeployClient::StopDeployment(const StopDeploymentReque
 
 StopDeploymentOutcomeCallable CodeDeployClient::StopDeploymentCallable(const StopDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::StopDeployment, this, request, m_executor.get());
 }
 
 void CodeDeployClient::StopDeploymentAsync(const StopDeploymentRequest& request, const StopDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopDeployment(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::StopDeployment, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome CodeDeployClient::TagResource(const TagResourceRequest& request) const
@@ -1138,18 +905,12 @@ TagResourceOutcome CodeDeployClient::TagResource(const TagResourceRequest& reque
 
 TagResourceOutcomeCallable CodeDeployClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::TagResource, this, request, m_executor.get());
 }
 
 void CodeDeployClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome CodeDeployClient::UntagResource(const UntagResourceRequest& request) const
@@ -1162,18 +923,12 @@ UntagResourceOutcome CodeDeployClient::UntagResource(const UntagResourceRequest&
 
 UntagResourceOutcomeCallable CodeDeployClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::UntagResource, this, request, m_executor.get());
 }
 
 void CodeDeployClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateApplicationOutcome CodeDeployClient::UpdateApplication(const UpdateApplicationRequest& request) const
@@ -1186,18 +941,12 @@ UpdateApplicationOutcome CodeDeployClient::UpdateApplication(const UpdateApplica
 
 UpdateApplicationOutcomeCallable CodeDeployClient::UpdateApplicationCallable(const UpdateApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::UpdateApplication, this, request, m_executor.get());
 }
 
 void CodeDeployClient::UpdateApplicationAsync(const UpdateApplicationRequest& request, const UpdateApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateApplication(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::UpdateApplication, this, request, handler, context, m_executor.get());
 }
 
 UpdateDeploymentGroupOutcome CodeDeployClient::UpdateDeploymentGroup(const UpdateDeploymentGroupRequest& request) const
@@ -1210,17 +959,11 @@ UpdateDeploymentGroupOutcome CodeDeployClient::UpdateDeploymentGroup(const Updat
 
 UpdateDeploymentGroupOutcomeCallable CodeDeployClient::UpdateDeploymentGroupCallable(const UpdateDeploymentGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDeploymentGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDeploymentGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeDeployClient::UpdateDeploymentGroup, this, request, m_executor.get());
 }
 
 void CodeDeployClient::UpdateDeploymentGroupAsync(const UpdateDeploymentGroupRequest& request, const UpdateDeploymentGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDeploymentGroup(request), context);
-    } );
+  MakeAsyncOperation(&CodeDeployClient::UpdateDeploymentGroup, this, request, handler, context, m_executor.get());
 }
 

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -176,18 +177,12 @@ AssociateDefaultViewOutcome ResourceExplorer2Client::AssociateDefaultView(const 
 
 AssociateDefaultViewOutcomeCallable ResourceExplorer2Client::AssociateDefaultViewCallable(const AssociateDefaultViewRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateDefaultViewOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateDefaultView(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::AssociateDefaultView, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::AssociateDefaultViewAsync(const AssociateDefaultViewRequest& request, const AssociateDefaultViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateDefaultView(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::AssociateDefaultView, this, request, handler, context, m_executor.get());
 }
 
 BatchGetViewOutcome ResourceExplorer2Client::BatchGetView(const BatchGetViewRequest& request) const
@@ -201,18 +196,12 @@ BatchGetViewOutcome ResourceExplorer2Client::BatchGetView(const BatchGetViewRequ
 
 BatchGetViewOutcomeCallable ResourceExplorer2Client::BatchGetViewCallable(const BatchGetViewRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetViewOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetView(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::BatchGetView, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::BatchGetViewAsync(const BatchGetViewRequest& request, const BatchGetViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetView(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::BatchGetView, this, request, handler, context, m_executor.get());
 }
 
 CreateIndexOutcome ResourceExplorer2Client::CreateIndex(const CreateIndexRequest& request) const
@@ -226,18 +215,12 @@ CreateIndexOutcome ResourceExplorer2Client::CreateIndex(const CreateIndexRequest
 
 CreateIndexOutcomeCallable ResourceExplorer2Client::CreateIndexCallable(const CreateIndexRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateIndexOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateIndex(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::CreateIndex, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::CreateIndexAsync(const CreateIndexRequest& request, const CreateIndexResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateIndex(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::CreateIndex, this, request, handler, context, m_executor.get());
 }
 
 CreateViewOutcome ResourceExplorer2Client::CreateView(const CreateViewRequest& request) const
@@ -251,18 +234,12 @@ CreateViewOutcome ResourceExplorer2Client::CreateView(const CreateViewRequest& r
 
 CreateViewOutcomeCallable ResourceExplorer2Client::CreateViewCallable(const CreateViewRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateViewOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateView(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::CreateView, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::CreateViewAsync(const CreateViewRequest& request, const CreateViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateView(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::CreateView, this, request, handler, context, m_executor.get());
 }
 
 DeleteIndexOutcome ResourceExplorer2Client::DeleteIndex(const DeleteIndexRequest& request) const
@@ -276,18 +253,12 @@ DeleteIndexOutcome ResourceExplorer2Client::DeleteIndex(const DeleteIndexRequest
 
 DeleteIndexOutcomeCallable ResourceExplorer2Client::DeleteIndexCallable(const DeleteIndexRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteIndexOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteIndex(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::DeleteIndex, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::DeleteIndexAsync(const DeleteIndexRequest& request, const DeleteIndexResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteIndex(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::DeleteIndex, this, request, handler, context, m_executor.get());
 }
 
 DeleteViewOutcome ResourceExplorer2Client::DeleteView(const DeleteViewRequest& request) const
@@ -301,18 +272,12 @@ DeleteViewOutcome ResourceExplorer2Client::DeleteView(const DeleteViewRequest& r
 
 DeleteViewOutcomeCallable ResourceExplorer2Client::DeleteViewCallable(const DeleteViewRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteViewOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteView(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::DeleteView, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::DeleteViewAsync(const DeleteViewRequest& request, const DeleteViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteView(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::DeleteView, this, request, handler, context, m_executor.get());
 }
 
 DisassociateDefaultViewOutcome ResourceExplorer2Client::DisassociateDefaultView() const
@@ -404,18 +369,12 @@ GetViewOutcome ResourceExplorer2Client::GetView(const GetViewRequest& request) c
 
 GetViewOutcomeCallable ResourceExplorer2Client::GetViewCallable(const GetViewRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetViewOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetView(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::GetView, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::GetViewAsync(const GetViewRequest& request, const GetViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetView(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::GetView, this, request, handler, context, m_executor.get());
 }
 
 ListIndexesOutcome ResourceExplorer2Client::ListIndexes(const ListIndexesRequest& request) const
@@ -429,18 +388,12 @@ ListIndexesOutcome ResourceExplorer2Client::ListIndexes(const ListIndexesRequest
 
 ListIndexesOutcomeCallable ResourceExplorer2Client::ListIndexesCallable(const ListIndexesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListIndexesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListIndexes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::ListIndexes, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::ListIndexesAsync(const ListIndexesRequest& request, const ListIndexesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListIndexes(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::ListIndexes, this, request, handler, context, m_executor.get());
 }
 
 ListSupportedResourceTypesOutcome ResourceExplorer2Client::ListSupportedResourceTypes(const ListSupportedResourceTypesRequest& request) const
@@ -454,18 +407,12 @@ ListSupportedResourceTypesOutcome ResourceExplorer2Client::ListSupportedResource
 
 ListSupportedResourceTypesOutcomeCallable ResourceExplorer2Client::ListSupportedResourceTypesCallable(const ListSupportedResourceTypesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSupportedResourceTypesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSupportedResourceTypes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::ListSupportedResourceTypes, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::ListSupportedResourceTypesAsync(const ListSupportedResourceTypesRequest& request, const ListSupportedResourceTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSupportedResourceTypes(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::ListSupportedResourceTypes, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome ResourceExplorer2Client::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -485,18 +432,12 @@ ListTagsForResourceOutcome ResourceExplorer2Client::ListTagsForResource(const Li
 
 ListTagsForResourceOutcomeCallable ResourceExplorer2Client::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::ListTagsForResource, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListViewsOutcome ResourceExplorer2Client::ListViews(const ListViewsRequest& request) const
@@ -510,18 +451,12 @@ ListViewsOutcome ResourceExplorer2Client::ListViews(const ListViewsRequest& requ
 
 ListViewsOutcomeCallable ResourceExplorer2Client::ListViewsCallable(const ListViewsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListViewsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListViews(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::ListViews, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::ListViewsAsync(const ListViewsRequest& request, const ListViewsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListViews(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::ListViews, this, request, handler, context, m_executor.get());
 }
 
 SearchOutcome ResourceExplorer2Client::Search(const SearchRequest& request) const
@@ -535,18 +470,12 @@ SearchOutcome ResourceExplorer2Client::Search(const SearchRequest& request) cons
 
 SearchOutcomeCallable ResourceExplorer2Client::SearchCallable(const SearchRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->Search(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::Search, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::SearchAsync(const SearchRequest& request, const SearchResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, Search(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::Search, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome ResourceExplorer2Client::TagResource(const TagResourceRequest& request) const
@@ -566,18 +495,12 @@ TagResourceOutcome ResourceExplorer2Client::TagResource(const TagResourceRequest
 
 TagResourceOutcomeCallable ResourceExplorer2Client::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::TagResource, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome ResourceExplorer2Client::UntagResource(const UntagResourceRequest& request) const
@@ -602,18 +525,12 @@ UntagResourceOutcome ResourceExplorer2Client::UntagResource(const UntagResourceR
 
 UntagResourceOutcomeCallable ResourceExplorer2Client::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::UntagResource, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateIndexTypeOutcome ResourceExplorer2Client::UpdateIndexType(const UpdateIndexTypeRequest& request) const
@@ -627,18 +544,12 @@ UpdateIndexTypeOutcome ResourceExplorer2Client::UpdateIndexType(const UpdateInde
 
 UpdateIndexTypeOutcomeCallable ResourceExplorer2Client::UpdateIndexTypeCallable(const UpdateIndexTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateIndexTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateIndexType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::UpdateIndexType, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::UpdateIndexTypeAsync(const UpdateIndexTypeRequest& request, const UpdateIndexTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateIndexType(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::UpdateIndexType, this, request, handler, context, m_executor.get());
 }
 
 UpdateViewOutcome ResourceExplorer2Client::UpdateView(const UpdateViewRequest& request) const
@@ -652,17 +563,11 @@ UpdateViewOutcome ResourceExplorer2Client::UpdateView(const UpdateViewRequest& r
 
 UpdateViewOutcomeCallable ResourceExplorer2Client::UpdateViewCallable(const UpdateViewRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateViewOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateView(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceExplorer2Client::UpdateView, this, request, m_executor.get());
 }
 
 void ResourceExplorer2Client::UpdateViewAsync(const UpdateViewRequest& request, const UpdateViewResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateView(request), context);
-    } );
+  MakeAsyncOperation(&ResourceExplorer2Client::UpdateView, this, request, handler, context, m_executor.get());
 }
 

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -340,20 +341,13 @@ AddClientIDToOpenIDConnectProviderOutcome IAMClient::AddClientIDToOpenIDConnectP
 
 AddClientIDToOpenIDConnectProviderOutcomeCallable IAMClient::AddClientIDToOpenIDConnectProviderCallable(const AddClientIDToOpenIDConnectProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddClientIDToOpenIDConnectProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddClientIDToOpenIDConnectProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::AddClientIDToOpenIDConnectProvider, this, request, m_executor.get());
 }
 
 void IAMClient::AddClientIDToOpenIDConnectProviderAsync(const AddClientIDToOpenIDConnectProviderRequest& request, const AddClientIDToOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddClientIDToOpenIDConnectProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::AddClientIDToOpenIDConnectProvider, this, request, handler, context, m_executor.get());
 }
-
 AddRoleToInstanceProfileOutcome IAMClient::AddRoleToInstanceProfile(const AddRoleToInstanceProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, AddRoleToInstanceProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -364,20 +358,13 @@ AddRoleToInstanceProfileOutcome IAMClient::AddRoleToInstanceProfile(const AddRol
 
 AddRoleToInstanceProfileOutcomeCallable IAMClient::AddRoleToInstanceProfileCallable(const AddRoleToInstanceProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddRoleToInstanceProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddRoleToInstanceProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::AddRoleToInstanceProfile, this, request, m_executor.get());
 }
 
 void IAMClient::AddRoleToInstanceProfileAsync(const AddRoleToInstanceProfileRequest& request, const AddRoleToInstanceProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddRoleToInstanceProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::AddRoleToInstanceProfile, this, request, handler, context, m_executor.get());
 }
-
 AddUserToGroupOutcome IAMClient::AddUserToGroup(const AddUserToGroupRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, AddUserToGroup, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -388,20 +375,13 @@ AddUserToGroupOutcome IAMClient::AddUserToGroup(const AddUserToGroupRequest& req
 
 AddUserToGroupOutcomeCallable IAMClient::AddUserToGroupCallable(const AddUserToGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddUserToGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddUserToGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::AddUserToGroup, this, request, m_executor.get());
 }
 
 void IAMClient::AddUserToGroupAsync(const AddUserToGroupRequest& request, const AddUserToGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddUserToGroup(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::AddUserToGroup, this, request, handler, context, m_executor.get());
 }
-
 AttachGroupPolicyOutcome IAMClient::AttachGroupPolicy(const AttachGroupPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, AttachGroupPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -412,20 +392,13 @@ AttachGroupPolicyOutcome IAMClient::AttachGroupPolicy(const AttachGroupPolicyReq
 
 AttachGroupPolicyOutcomeCallable IAMClient::AttachGroupPolicyCallable(const AttachGroupPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachGroupPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachGroupPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::AttachGroupPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::AttachGroupPolicyAsync(const AttachGroupPolicyRequest& request, const AttachGroupPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachGroupPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::AttachGroupPolicy, this, request, handler, context, m_executor.get());
 }
-
 AttachRolePolicyOutcome IAMClient::AttachRolePolicy(const AttachRolePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, AttachRolePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -436,20 +409,13 @@ AttachRolePolicyOutcome IAMClient::AttachRolePolicy(const AttachRolePolicyReques
 
 AttachRolePolicyOutcomeCallable IAMClient::AttachRolePolicyCallable(const AttachRolePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachRolePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachRolePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::AttachRolePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::AttachRolePolicyAsync(const AttachRolePolicyRequest& request, const AttachRolePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachRolePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::AttachRolePolicy, this, request, handler, context, m_executor.get());
 }
-
 AttachUserPolicyOutcome IAMClient::AttachUserPolicy(const AttachUserPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, AttachUserPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -460,20 +426,13 @@ AttachUserPolicyOutcome IAMClient::AttachUserPolicy(const AttachUserPolicyReques
 
 AttachUserPolicyOutcomeCallable IAMClient::AttachUserPolicyCallable(const AttachUserPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachUserPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachUserPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::AttachUserPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::AttachUserPolicyAsync(const AttachUserPolicyRequest& request, const AttachUserPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachUserPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::AttachUserPolicy, this, request, handler, context, m_executor.get());
 }
-
 ChangePasswordOutcome IAMClient::ChangePassword(const ChangePasswordRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ChangePassword, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -484,20 +443,13 @@ ChangePasswordOutcome IAMClient::ChangePassword(const ChangePasswordRequest& req
 
 ChangePasswordOutcomeCallable IAMClient::ChangePasswordCallable(const ChangePasswordRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ChangePasswordOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ChangePassword(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ChangePassword, this, request, m_executor.get());
 }
 
 void IAMClient::ChangePasswordAsync(const ChangePasswordRequest& request, const ChangePasswordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ChangePassword(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ChangePassword, this, request, handler, context, m_executor.get());
 }
-
 CreateAccessKeyOutcome IAMClient::CreateAccessKey(const CreateAccessKeyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateAccessKey, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -508,20 +460,13 @@ CreateAccessKeyOutcome IAMClient::CreateAccessKey(const CreateAccessKeyRequest& 
 
 CreateAccessKeyOutcomeCallable IAMClient::CreateAccessKeyCallable(const CreateAccessKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAccessKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAccessKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateAccessKey, this, request, m_executor.get());
 }
 
 void IAMClient::CreateAccessKeyAsync(const CreateAccessKeyRequest& request, const CreateAccessKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAccessKey(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateAccessKey, this, request, handler, context, m_executor.get());
 }
-
 CreateAccountAliasOutcome IAMClient::CreateAccountAlias(const CreateAccountAliasRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateAccountAlias, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -532,20 +477,13 @@ CreateAccountAliasOutcome IAMClient::CreateAccountAlias(const CreateAccountAlias
 
 CreateAccountAliasOutcomeCallable IAMClient::CreateAccountAliasCallable(const CreateAccountAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAccountAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAccountAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateAccountAlias, this, request, m_executor.get());
 }
 
 void IAMClient::CreateAccountAliasAsync(const CreateAccountAliasRequest& request, const CreateAccountAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAccountAlias(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateAccountAlias, this, request, handler, context, m_executor.get());
 }
-
 CreateGroupOutcome IAMClient::CreateGroup(const CreateGroupRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateGroup, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -556,20 +494,13 @@ CreateGroupOutcome IAMClient::CreateGroup(const CreateGroupRequest& request) con
 
 CreateGroupOutcomeCallable IAMClient::CreateGroupCallable(const CreateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateGroup, this, request, m_executor.get());
 }
 
 void IAMClient::CreateGroupAsync(const CreateGroupRequest& request, const CreateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGroup(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateGroup, this, request, handler, context, m_executor.get());
 }
-
 CreateInstanceProfileOutcome IAMClient::CreateInstanceProfile(const CreateInstanceProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateInstanceProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -580,20 +511,13 @@ CreateInstanceProfileOutcome IAMClient::CreateInstanceProfile(const CreateInstan
 
 CreateInstanceProfileOutcomeCallable IAMClient::CreateInstanceProfileCallable(const CreateInstanceProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateInstanceProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateInstanceProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateInstanceProfile, this, request, m_executor.get());
 }
 
 void IAMClient::CreateInstanceProfileAsync(const CreateInstanceProfileRequest& request, const CreateInstanceProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateInstanceProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateInstanceProfile, this, request, handler, context, m_executor.get());
 }
-
 CreateLoginProfileOutcome IAMClient::CreateLoginProfile(const CreateLoginProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateLoginProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -604,20 +528,13 @@ CreateLoginProfileOutcome IAMClient::CreateLoginProfile(const CreateLoginProfile
 
 CreateLoginProfileOutcomeCallable IAMClient::CreateLoginProfileCallable(const CreateLoginProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLoginProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLoginProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateLoginProfile, this, request, m_executor.get());
 }
 
 void IAMClient::CreateLoginProfileAsync(const CreateLoginProfileRequest& request, const CreateLoginProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLoginProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateLoginProfile, this, request, handler, context, m_executor.get());
 }
-
 CreateOpenIDConnectProviderOutcome IAMClient::CreateOpenIDConnectProvider(const CreateOpenIDConnectProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateOpenIDConnectProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -628,20 +545,13 @@ CreateOpenIDConnectProviderOutcome IAMClient::CreateOpenIDConnectProvider(const 
 
 CreateOpenIDConnectProviderOutcomeCallable IAMClient::CreateOpenIDConnectProviderCallable(const CreateOpenIDConnectProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateOpenIDConnectProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateOpenIDConnectProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateOpenIDConnectProvider, this, request, m_executor.get());
 }
 
 void IAMClient::CreateOpenIDConnectProviderAsync(const CreateOpenIDConnectProviderRequest& request, const CreateOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateOpenIDConnectProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateOpenIDConnectProvider, this, request, handler, context, m_executor.get());
 }
-
 CreatePolicyOutcome IAMClient::CreatePolicy(const CreatePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreatePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -652,20 +562,13 @@ CreatePolicyOutcome IAMClient::CreatePolicy(const CreatePolicyRequest& request) 
 
 CreatePolicyOutcomeCallable IAMClient::CreatePolicyCallable(const CreatePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreatePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::CreatePolicyAsync(const CreatePolicyRequest& request, const CreatePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreatePolicy, this, request, handler, context, m_executor.get());
 }
-
 CreatePolicyVersionOutcome IAMClient::CreatePolicyVersion(const CreatePolicyVersionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreatePolicyVersion, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -676,20 +579,13 @@ CreatePolicyVersionOutcome IAMClient::CreatePolicyVersion(const CreatePolicyVers
 
 CreatePolicyVersionOutcomeCallable IAMClient::CreatePolicyVersionCallable(const CreatePolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreatePolicyVersion, this, request, m_executor.get());
 }
 
 void IAMClient::CreatePolicyVersionAsync(const CreatePolicyVersionRequest& request, const CreatePolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreatePolicyVersion, this, request, handler, context, m_executor.get());
 }
-
 CreateRoleOutcome IAMClient::CreateRole(const CreateRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -700,20 +596,13 @@ CreateRoleOutcome IAMClient::CreateRole(const CreateRoleRequest& request) const
 
 CreateRoleOutcomeCallable IAMClient::CreateRoleCallable(const CreateRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateRole, this, request, m_executor.get());
 }
 
 void IAMClient::CreateRoleAsync(const CreateRoleRequest& request, const CreateRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateRole, this, request, handler, context, m_executor.get());
 }
-
 CreateSAMLProviderOutcome IAMClient::CreateSAMLProvider(const CreateSAMLProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateSAMLProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -724,20 +613,13 @@ CreateSAMLProviderOutcome IAMClient::CreateSAMLProvider(const CreateSAMLProvider
 
 CreateSAMLProviderOutcomeCallable IAMClient::CreateSAMLProviderCallable(const CreateSAMLProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSAMLProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSAMLProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateSAMLProvider, this, request, m_executor.get());
 }
 
 void IAMClient::CreateSAMLProviderAsync(const CreateSAMLProviderRequest& request, const CreateSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSAMLProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateSAMLProvider, this, request, handler, context, m_executor.get());
 }
-
 CreateServiceLinkedRoleOutcome IAMClient::CreateServiceLinkedRole(const CreateServiceLinkedRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateServiceLinkedRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -748,20 +630,13 @@ CreateServiceLinkedRoleOutcome IAMClient::CreateServiceLinkedRole(const CreateSe
 
 CreateServiceLinkedRoleOutcomeCallable IAMClient::CreateServiceLinkedRoleCallable(const CreateServiceLinkedRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateServiceLinkedRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateServiceLinkedRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateServiceLinkedRole, this, request, m_executor.get());
 }
 
 void IAMClient::CreateServiceLinkedRoleAsync(const CreateServiceLinkedRoleRequest& request, const CreateServiceLinkedRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateServiceLinkedRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateServiceLinkedRole, this, request, handler, context, m_executor.get());
 }
-
 CreateServiceSpecificCredentialOutcome IAMClient::CreateServiceSpecificCredential(const CreateServiceSpecificCredentialRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateServiceSpecificCredential, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -772,20 +647,13 @@ CreateServiceSpecificCredentialOutcome IAMClient::CreateServiceSpecificCredentia
 
 CreateServiceSpecificCredentialOutcomeCallable IAMClient::CreateServiceSpecificCredentialCallable(const CreateServiceSpecificCredentialRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateServiceSpecificCredentialOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateServiceSpecificCredential(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateServiceSpecificCredential, this, request, m_executor.get());
 }
 
 void IAMClient::CreateServiceSpecificCredentialAsync(const CreateServiceSpecificCredentialRequest& request, const CreateServiceSpecificCredentialResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateServiceSpecificCredential(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateServiceSpecificCredential, this, request, handler, context, m_executor.get());
 }
-
 CreateUserOutcome IAMClient::CreateUser(const CreateUserRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateUser, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -796,20 +664,13 @@ CreateUserOutcome IAMClient::CreateUser(const CreateUserRequest& request) const
 
 CreateUserOutcomeCallable IAMClient::CreateUserCallable(const CreateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateUser, this, request, m_executor.get());
 }
 
 void IAMClient::CreateUserAsync(const CreateUserRequest& request, const CreateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateUser(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateUser, this, request, handler, context, m_executor.get());
 }
-
 CreateVirtualMFADeviceOutcome IAMClient::CreateVirtualMFADevice(const CreateVirtualMFADeviceRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, CreateVirtualMFADevice, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -820,20 +681,13 @@ CreateVirtualMFADeviceOutcome IAMClient::CreateVirtualMFADevice(const CreateVirt
 
 CreateVirtualMFADeviceOutcomeCallable IAMClient::CreateVirtualMFADeviceCallable(const CreateVirtualMFADeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateVirtualMFADeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateVirtualMFADevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::CreateVirtualMFADevice, this, request, m_executor.get());
 }
 
 void IAMClient::CreateVirtualMFADeviceAsync(const CreateVirtualMFADeviceRequest& request, const CreateVirtualMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateVirtualMFADevice(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::CreateVirtualMFADevice, this, request, handler, context, m_executor.get());
 }
-
 DeactivateMFADeviceOutcome IAMClient::DeactivateMFADevice(const DeactivateMFADeviceRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeactivateMFADevice, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -844,20 +698,13 @@ DeactivateMFADeviceOutcome IAMClient::DeactivateMFADevice(const DeactivateMFADev
 
 DeactivateMFADeviceOutcomeCallable IAMClient::DeactivateMFADeviceCallable(const DeactivateMFADeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeactivateMFADeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeactivateMFADevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeactivateMFADevice, this, request, m_executor.get());
 }
 
 void IAMClient::DeactivateMFADeviceAsync(const DeactivateMFADeviceRequest& request, const DeactivateMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeactivateMFADevice(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeactivateMFADevice, this, request, handler, context, m_executor.get());
 }
-
 DeleteAccessKeyOutcome IAMClient::DeleteAccessKey(const DeleteAccessKeyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteAccessKey, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -868,20 +715,13 @@ DeleteAccessKeyOutcome IAMClient::DeleteAccessKey(const DeleteAccessKeyRequest& 
 
 DeleteAccessKeyOutcomeCallable IAMClient::DeleteAccessKeyCallable(const DeleteAccessKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAccessKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAccessKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteAccessKey, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteAccessKeyAsync(const DeleteAccessKeyRequest& request, const DeleteAccessKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAccessKey(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteAccessKey, this, request, handler, context, m_executor.get());
 }
-
 DeleteAccountAliasOutcome IAMClient::DeleteAccountAlias(const DeleteAccountAliasRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteAccountAlias, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -892,20 +732,13 @@ DeleteAccountAliasOutcome IAMClient::DeleteAccountAlias(const DeleteAccountAlias
 
 DeleteAccountAliasOutcomeCallable IAMClient::DeleteAccountAliasCallable(const DeleteAccountAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAccountAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAccountAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteAccountAlias, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteAccountAliasAsync(const DeleteAccountAliasRequest& request, const DeleteAccountAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAccountAlias(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteAccountAlias, this, request, handler, context, m_executor.get());
 }
-
 DeleteAccountPasswordPolicyOutcome IAMClient::DeleteAccountPasswordPolicy(const DeleteAccountPasswordPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteAccountPasswordPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -916,20 +749,13 @@ DeleteAccountPasswordPolicyOutcome IAMClient::DeleteAccountPasswordPolicy(const 
 
 DeleteAccountPasswordPolicyOutcomeCallable IAMClient::DeleteAccountPasswordPolicyCallable(const DeleteAccountPasswordPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAccountPasswordPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAccountPasswordPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteAccountPasswordPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteAccountPasswordPolicyAsync(const DeleteAccountPasswordPolicyRequest& request, const DeleteAccountPasswordPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAccountPasswordPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteAccountPasswordPolicy, this, request, handler, context, m_executor.get());
 }
-
 DeleteGroupOutcome IAMClient::DeleteGroup(const DeleteGroupRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteGroup, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -940,20 +766,13 @@ DeleteGroupOutcome IAMClient::DeleteGroup(const DeleteGroupRequest& request) con
 
 DeleteGroupOutcomeCallable IAMClient::DeleteGroupCallable(const DeleteGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteGroup, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteGroupAsync(const DeleteGroupRequest& request, const DeleteGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroup(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteGroup, this, request, handler, context, m_executor.get());
 }
-
 DeleteGroupPolicyOutcome IAMClient::DeleteGroupPolicy(const DeleteGroupPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteGroupPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -964,20 +783,13 @@ DeleteGroupPolicyOutcome IAMClient::DeleteGroupPolicy(const DeleteGroupPolicyReq
 
 DeleteGroupPolicyOutcomeCallable IAMClient::DeleteGroupPolicyCallable(const DeleteGroupPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroupPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteGroupPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteGroupPolicyAsync(const DeleteGroupPolicyRequest& request, const DeleteGroupPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroupPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteGroupPolicy, this, request, handler, context, m_executor.get());
 }
-
 DeleteInstanceProfileOutcome IAMClient::DeleteInstanceProfile(const DeleteInstanceProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteInstanceProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -988,20 +800,13 @@ DeleteInstanceProfileOutcome IAMClient::DeleteInstanceProfile(const DeleteInstan
 
 DeleteInstanceProfileOutcomeCallable IAMClient::DeleteInstanceProfileCallable(const DeleteInstanceProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteInstanceProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteInstanceProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteInstanceProfile, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteInstanceProfileAsync(const DeleteInstanceProfileRequest& request, const DeleteInstanceProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteInstanceProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteInstanceProfile, this, request, handler, context, m_executor.get());
 }
-
 DeleteLoginProfileOutcome IAMClient::DeleteLoginProfile(const DeleteLoginProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteLoginProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1012,20 +817,13 @@ DeleteLoginProfileOutcome IAMClient::DeleteLoginProfile(const DeleteLoginProfile
 
 DeleteLoginProfileOutcomeCallable IAMClient::DeleteLoginProfileCallable(const DeleteLoginProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLoginProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLoginProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteLoginProfile, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteLoginProfileAsync(const DeleteLoginProfileRequest& request, const DeleteLoginProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLoginProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteLoginProfile, this, request, handler, context, m_executor.get());
 }
-
 DeleteOpenIDConnectProviderOutcome IAMClient::DeleteOpenIDConnectProvider(const DeleteOpenIDConnectProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteOpenIDConnectProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1036,20 +834,13 @@ DeleteOpenIDConnectProviderOutcome IAMClient::DeleteOpenIDConnectProvider(const 
 
 DeleteOpenIDConnectProviderOutcomeCallable IAMClient::DeleteOpenIDConnectProviderCallable(const DeleteOpenIDConnectProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteOpenIDConnectProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteOpenIDConnectProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteOpenIDConnectProvider, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteOpenIDConnectProviderAsync(const DeleteOpenIDConnectProviderRequest& request, const DeleteOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteOpenIDConnectProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteOpenIDConnectProvider, this, request, handler, context, m_executor.get());
 }
-
 DeletePolicyOutcome IAMClient::DeletePolicy(const DeletePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeletePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1060,20 +851,13 @@ DeletePolicyOutcome IAMClient::DeletePolicy(const DeletePolicyRequest& request) 
 
 DeletePolicyOutcomeCallable IAMClient::DeletePolicyCallable(const DeletePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeletePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DeletePolicyAsync(const DeletePolicyRequest& request, const DeletePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeletePolicy, this, request, handler, context, m_executor.get());
 }
-
 DeletePolicyVersionOutcome IAMClient::DeletePolicyVersion(const DeletePolicyVersionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeletePolicyVersion, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1084,20 +868,13 @@ DeletePolicyVersionOutcome IAMClient::DeletePolicyVersion(const DeletePolicyVers
 
 DeletePolicyVersionOutcomeCallable IAMClient::DeletePolicyVersionCallable(const DeletePolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeletePolicyVersion, this, request, m_executor.get());
 }
 
 void IAMClient::DeletePolicyVersionAsync(const DeletePolicyVersionRequest& request, const DeletePolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeletePolicyVersion, this, request, handler, context, m_executor.get());
 }
-
 DeleteRoleOutcome IAMClient::DeleteRole(const DeleteRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1108,20 +885,13 @@ DeleteRoleOutcome IAMClient::DeleteRole(const DeleteRoleRequest& request) const
 
 DeleteRoleOutcomeCallable IAMClient::DeleteRoleCallable(const DeleteRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteRole, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteRoleAsync(const DeleteRoleRequest& request, const DeleteRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteRole, this, request, handler, context, m_executor.get());
 }
-
 DeleteRolePermissionsBoundaryOutcome IAMClient::DeleteRolePermissionsBoundary(const DeleteRolePermissionsBoundaryRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteRolePermissionsBoundary, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1132,20 +902,13 @@ DeleteRolePermissionsBoundaryOutcome IAMClient::DeleteRolePermissionsBoundary(co
 
 DeleteRolePermissionsBoundaryOutcomeCallable IAMClient::DeleteRolePermissionsBoundaryCallable(const DeleteRolePermissionsBoundaryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRolePermissionsBoundaryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRolePermissionsBoundary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteRolePermissionsBoundary, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteRolePermissionsBoundaryAsync(const DeleteRolePermissionsBoundaryRequest& request, const DeleteRolePermissionsBoundaryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRolePermissionsBoundary(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteRolePermissionsBoundary, this, request, handler, context, m_executor.get());
 }
-
 DeleteRolePolicyOutcome IAMClient::DeleteRolePolicy(const DeleteRolePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteRolePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1156,20 +919,13 @@ DeleteRolePolicyOutcome IAMClient::DeleteRolePolicy(const DeleteRolePolicyReques
 
 DeleteRolePolicyOutcomeCallable IAMClient::DeleteRolePolicyCallable(const DeleteRolePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRolePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRolePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteRolePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteRolePolicyAsync(const DeleteRolePolicyRequest& request, const DeleteRolePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRolePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteRolePolicy, this, request, handler, context, m_executor.get());
 }
-
 DeleteSAMLProviderOutcome IAMClient::DeleteSAMLProvider(const DeleteSAMLProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteSAMLProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1180,20 +936,13 @@ DeleteSAMLProviderOutcome IAMClient::DeleteSAMLProvider(const DeleteSAMLProvider
 
 DeleteSAMLProviderOutcomeCallable IAMClient::DeleteSAMLProviderCallable(const DeleteSAMLProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSAMLProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSAMLProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteSAMLProvider, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteSAMLProviderAsync(const DeleteSAMLProviderRequest& request, const DeleteSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSAMLProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteSAMLProvider, this, request, handler, context, m_executor.get());
 }
-
 DeleteSSHPublicKeyOutcome IAMClient::DeleteSSHPublicKey(const DeleteSSHPublicKeyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteSSHPublicKey, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1204,20 +953,13 @@ DeleteSSHPublicKeyOutcome IAMClient::DeleteSSHPublicKey(const DeleteSSHPublicKey
 
 DeleteSSHPublicKeyOutcomeCallable IAMClient::DeleteSSHPublicKeyCallable(const DeleteSSHPublicKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSSHPublicKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSSHPublicKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteSSHPublicKey, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteSSHPublicKeyAsync(const DeleteSSHPublicKeyRequest& request, const DeleteSSHPublicKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSSHPublicKey(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteSSHPublicKey, this, request, handler, context, m_executor.get());
 }
-
 DeleteServerCertificateOutcome IAMClient::DeleteServerCertificate(const DeleteServerCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteServerCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1228,20 +970,13 @@ DeleteServerCertificateOutcome IAMClient::DeleteServerCertificate(const DeleteSe
 
 DeleteServerCertificateOutcomeCallable IAMClient::DeleteServerCertificateCallable(const DeleteServerCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteServerCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteServerCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteServerCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteServerCertificateAsync(const DeleteServerCertificateRequest& request, const DeleteServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteServerCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteServerCertificate, this, request, handler, context, m_executor.get());
 }
-
 DeleteServiceLinkedRoleOutcome IAMClient::DeleteServiceLinkedRole(const DeleteServiceLinkedRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteServiceLinkedRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1252,20 +987,13 @@ DeleteServiceLinkedRoleOutcome IAMClient::DeleteServiceLinkedRole(const DeleteSe
 
 DeleteServiceLinkedRoleOutcomeCallable IAMClient::DeleteServiceLinkedRoleCallable(const DeleteServiceLinkedRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteServiceLinkedRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteServiceLinkedRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteServiceLinkedRole, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteServiceLinkedRoleAsync(const DeleteServiceLinkedRoleRequest& request, const DeleteServiceLinkedRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteServiceLinkedRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteServiceLinkedRole, this, request, handler, context, m_executor.get());
 }
-
 DeleteServiceSpecificCredentialOutcome IAMClient::DeleteServiceSpecificCredential(const DeleteServiceSpecificCredentialRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteServiceSpecificCredential, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1276,20 +1004,13 @@ DeleteServiceSpecificCredentialOutcome IAMClient::DeleteServiceSpecificCredentia
 
 DeleteServiceSpecificCredentialOutcomeCallable IAMClient::DeleteServiceSpecificCredentialCallable(const DeleteServiceSpecificCredentialRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteServiceSpecificCredentialOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteServiceSpecificCredential(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteServiceSpecificCredential, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteServiceSpecificCredentialAsync(const DeleteServiceSpecificCredentialRequest& request, const DeleteServiceSpecificCredentialResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteServiceSpecificCredential(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteServiceSpecificCredential, this, request, handler, context, m_executor.get());
 }
-
 DeleteSigningCertificateOutcome IAMClient::DeleteSigningCertificate(const DeleteSigningCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteSigningCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1300,20 +1021,13 @@ DeleteSigningCertificateOutcome IAMClient::DeleteSigningCertificate(const Delete
 
 DeleteSigningCertificateOutcomeCallable IAMClient::DeleteSigningCertificateCallable(const DeleteSigningCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSigningCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSigningCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteSigningCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteSigningCertificateAsync(const DeleteSigningCertificateRequest& request, const DeleteSigningCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSigningCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteSigningCertificate, this, request, handler, context, m_executor.get());
 }
-
 DeleteUserOutcome IAMClient::DeleteUser(const DeleteUserRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteUser, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1324,20 +1038,13 @@ DeleteUserOutcome IAMClient::DeleteUser(const DeleteUserRequest& request) const
 
 DeleteUserOutcomeCallable IAMClient::DeleteUserCallable(const DeleteUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteUser, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteUserAsync(const DeleteUserRequest& request, const DeleteUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUser(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteUser, this, request, handler, context, m_executor.get());
 }
-
 DeleteUserPermissionsBoundaryOutcome IAMClient::DeleteUserPermissionsBoundary(const DeleteUserPermissionsBoundaryRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteUserPermissionsBoundary, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1348,20 +1055,13 @@ DeleteUserPermissionsBoundaryOutcome IAMClient::DeleteUserPermissionsBoundary(co
 
 DeleteUserPermissionsBoundaryOutcomeCallable IAMClient::DeleteUserPermissionsBoundaryCallable(const DeleteUserPermissionsBoundaryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserPermissionsBoundaryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUserPermissionsBoundary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteUserPermissionsBoundary, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteUserPermissionsBoundaryAsync(const DeleteUserPermissionsBoundaryRequest& request, const DeleteUserPermissionsBoundaryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUserPermissionsBoundary(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteUserPermissionsBoundary, this, request, handler, context, m_executor.get());
 }
-
 DeleteUserPolicyOutcome IAMClient::DeleteUserPolicy(const DeleteUserPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteUserPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1372,20 +1072,13 @@ DeleteUserPolicyOutcome IAMClient::DeleteUserPolicy(const DeleteUserPolicyReques
 
 DeleteUserPolicyOutcomeCallable IAMClient::DeleteUserPolicyCallable(const DeleteUserPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUserPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteUserPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteUserPolicyAsync(const DeleteUserPolicyRequest& request, const DeleteUserPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUserPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteUserPolicy, this, request, handler, context, m_executor.get());
 }
-
 DeleteVirtualMFADeviceOutcome IAMClient::DeleteVirtualMFADevice(const DeleteVirtualMFADeviceRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DeleteVirtualMFADevice, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1396,20 +1089,13 @@ DeleteVirtualMFADeviceOutcome IAMClient::DeleteVirtualMFADevice(const DeleteVirt
 
 DeleteVirtualMFADeviceOutcomeCallable IAMClient::DeleteVirtualMFADeviceCallable(const DeleteVirtualMFADeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVirtualMFADeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVirtualMFADevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DeleteVirtualMFADevice, this, request, m_executor.get());
 }
 
 void IAMClient::DeleteVirtualMFADeviceAsync(const DeleteVirtualMFADeviceRequest& request, const DeleteVirtualMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVirtualMFADevice(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DeleteVirtualMFADevice, this, request, handler, context, m_executor.get());
 }
-
 DetachGroupPolicyOutcome IAMClient::DetachGroupPolicy(const DetachGroupPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DetachGroupPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1420,20 +1106,13 @@ DetachGroupPolicyOutcome IAMClient::DetachGroupPolicy(const DetachGroupPolicyReq
 
 DetachGroupPolicyOutcomeCallable IAMClient::DetachGroupPolicyCallable(const DetachGroupPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachGroupPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachGroupPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DetachGroupPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DetachGroupPolicyAsync(const DetachGroupPolicyRequest& request, const DetachGroupPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachGroupPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DetachGroupPolicy, this, request, handler, context, m_executor.get());
 }
-
 DetachRolePolicyOutcome IAMClient::DetachRolePolicy(const DetachRolePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DetachRolePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1444,20 +1123,13 @@ DetachRolePolicyOutcome IAMClient::DetachRolePolicy(const DetachRolePolicyReques
 
 DetachRolePolicyOutcomeCallable IAMClient::DetachRolePolicyCallable(const DetachRolePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachRolePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachRolePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DetachRolePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DetachRolePolicyAsync(const DetachRolePolicyRequest& request, const DetachRolePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachRolePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DetachRolePolicy, this, request, handler, context, m_executor.get());
 }
-
 DetachUserPolicyOutcome IAMClient::DetachUserPolicy(const DetachUserPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, DetachUserPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1468,20 +1140,13 @@ DetachUserPolicyOutcome IAMClient::DetachUserPolicy(const DetachUserPolicyReques
 
 DetachUserPolicyOutcomeCallable IAMClient::DetachUserPolicyCallable(const DetachUserPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachUserPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachUserPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::DetachUserPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::DetachUserPolicyAsync(const DetachUserPolicyRequest& request, const DetachUserPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachUserPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::DetachUserPolicy, this, request, handler, context, m_executor.get());
 }
-
 EnableMFADeviceOutcome IAMClient::EnableMFADevice(const EnableMFADeviceRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, EnableMFADevice, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1492,20 +1157,13 @@ EnableMFADeviceOutcome IAMClient::EnableMFADevice(const EnableMFADeviceRequest& 
 
 EnableMFADeviceOutcomeCallable IAMClient::EnableMFADeviceCallable(const EnableMFADeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnableMFADeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnableMFADevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::EnableMFADevice, this, request, m_executor.get());
 }
 
 void IAMClient::EnableMFADeviceAsync(const EnableMFADeviceRequest& request, const EnableMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnableMFADevice(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::EnableMFADevice, this, request, handler, context, m_executor.get());
 }
-
 GenerateCredentialReportOutcome IAMClient::GenerateCredentialReport(const GenerateCredentialReportRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GenerateCredentialReport, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1516,20 +1174,13 @@ GenerateCredentialReportOutcome IAMClient::GenerateCredentialReport(const Genera
 
 GenerateCredentialReportOutcomeCallable IAMClient::GenerateCredentialReportCallable(const GenerateCredentialReportRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GenerateCredentialReportOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GenerateCredentialReport(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GenerateCredentialReport, this, request, m_executor.get());
 }
 
 void IAMClient::GenerateCredentialReportAsync(const GenerateCredentialReportRequest& request, const GenerateCredentialReportResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GenerateCredentialReport(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GenerateCredentialReport, this, request, handler, context, m_executor.get());
 }
-
 GenerateOrganizationsAccessReportOutcome IAMClient::GenerateOrganizationsAccessReport(const GenerateOrganizationsAccessReportRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GenerateOrganizationsAccessReport, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1540,20 +1191,13 @@ GenerateOrganizationsAccessReportOutcome IAMClient::GenerateOrganizationsAccessR
 
 GenerateOrganizationsAccessReportOutcomeCallable IAMClient::GenerateOrganizationsAccessReportCallable(const GenerateOrganizationsAccessReportRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GenerateOrganizationsAccessReportOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GenerateOrganizationsAccessReport(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GenerateOrganizationsAccessReport, this, request, m_executor.get());
 }
 
 void IAMClient::GenerateOrganizationsAccessReportAsync(const GenerateOrganizationsAccessReportRequest& request, const GenerateOrganizationsAccessReportResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GenerateOrganizationsAccessReport(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GenerateOrganizationsAccessReport, this, request, handler, context, m_executor.get());
 }
-
 GenerateServiceLastAccessedDetailsOutcome IAMClient::GenerateServiceLastAccessedDetails(const GenerateServiceLastAccessedDetailsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GenerateServiceLastAccessedDetails, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1564,20 +1208,13 @@ GenerateServiceLastAccessedDetailsOutcome IAMClient::GenerateServiceLastAccessed
 
 GenerateServiceLastAccessedDetailsOutcomeCallable IAMClient::GenerateServiceLastAccessedDetailsCallable(const GenerateServiceLastAccessedDetailsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GenerateServiceLastAccessedDetailsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GenerateServiceLastAccessedDetails(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GenerateServiceLastAccessedDetails, this, request, m_executor.get());
 }
 
 void IAMClient::GenerateServiceLastAccessedDetailsAsync(const GenerateServiceLastAccessedDetailsRequest& request, const GenerateServiceLastAccessedDetailsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GenerateServiceLastAccessedDetails(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GenerateServiceLastAccessedDetails, this, request, handler, context, m_executor.get());
 }
-
 GetAccessKeyLastUsedOutcome IAMClient::GetAccessKeyLastUsed(const GetAccessKeyLastUsedRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetAccessKeyLastUsed, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1588,20 +1225,13 @@ GetAccessKeyLastUsedOutcome IAMClient::GetAccessKeyLastUsed(const GetAccessKeyLa
 
 GetAccessKeyLastUsedOutcomeCallable IAMClient::GetAccessKeyLastUsedCallable(const GetAccessKeyLastUsedRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccessKeyLastUsedOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccessKeyLastUsed(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetAccessKeyLastUsed, this, request, m_executor.get());
 }
 
 void IAMClient::GetAccessKeyLastUsedAsync(const GetAccessKeyLastUsedRequest& request, const GetAccessKeyLastUsedResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccessKeyLastUsed(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetAccessKeyLastUsed, this, request, handler, context, m_executor.get());
 }
-
 GetAccountAuthorizationDetailsOutcome IAMClient::GetAccountAuthorizationDetails(const GetAccountAuthorizationDetailsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetAccountAuthorizationDetails, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1612,20 +1242,13 @@ GetAccountAuthorizationDetailsOutcome IAMClient::GetAccountAuthorizationDetails(
 
 GetAccountAuthorizationDetailsOutcomeCallable IAMClient::GetAccountAuthorizationDetailsCallable(const GetAccountAuthorizationDetailsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccountAuthorizationDetailsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccountAuthorizationDetails(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetAccountAuthorizationDetails, this, request, m_executor.get());
 }
 
 void IAMClient::GetAccountAuthorizationDetailsAsync(const GetAccountAuthorizationDetailsRequest& request, const GetAccountAuthorizationDetailsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccountAuthorizationDetails(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetAccountAuthorizationDetails, this, request, handler, context, m_executor.get());
 }
-
 GetAccountPasswordPolicyOutcome IAMClient::GetAccountPasswordPolicy(const GetAccountPasswordPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetAccountPasswordPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1636,20 +1259,13 @@ GetAccountPasswordPolicyOutcome IAMClient::GetAccountPasswordPolicy(const GetAcc
 
 GetAccountPasswordPolicyOutcomeCallable IAMClient::GetAccountPasswordPolicyCallable(const GetAccountPasswordPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccountPasswordPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccountPasswordPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetAccountPasswordPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::GetAccountPasswordPolicyAsync(const GetAccountPasswordPolicyRequest& request, const GetAccountPasswordPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccountPasswordPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetAccountPasswordPolicy, this, request, handler, context, m_executor.get());
 }
-
 GetAccountSummaryOutcome IAMClient::GetAccountSummary(const GetAccountSummaryRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetAccountSummary, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1660,20 +1276,13 @@ GetAccountSummaryOutcome IAMClient::GetAccountSummary(const GetAccountSummaryReq
 
 GetAccountSummaryOutcomeCallable IAMClient::GetAccountSummaryCallable(const GetAccountSummaryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccountSummaryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccountSummary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetAccountSummary, this, request, m_executor.get());
 }
 
 void IAMClient::GetAccountSummaryAsync(const GetAccountSummaryRequest& request, const GetAccountSummaryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccountSummary(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetAccountSummary, this, request, handler, context, m_executor.get());
 }
-
 GetContextKeysForCustomPolicyOutcome IAMClient::GetContextKeysForCustomPolicy(const GetContextKeysForCustomPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetContextKeysForCustomPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1684,20 +1293,13 @@ GetContextKeysForCustomPolicyOutcome IAMClient::GetContextKeysForCustomPolicy(co
 
 GetContextKeysForCustomPolicyOutcomeCallable IAMClient::GetContextKeysForCustomPolicyCallable(const GetContextKeysForCustomPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetContextKeysForCustomPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetContextKeysForCustomPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetContextKeysForCustomPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::GetContextKeysForCustomPolicyAsync(const GetContextKeysForCustomPolicyRequest& request, const GetContextKeysForCustomPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetContextKeysForCustomPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetContextKeysForCustomPolicy, this, request, handler, context, m_executor.get());
 }
-
 GetContextKeysForPrincipalPolicyOutcome IAMClient::GetContextKeysForPrincipalPolicy(const GetContextKeysForPrincipalPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetContextKeysForPrincipalPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1708,20 +1310,13 @@ GetContextKeysForPrincipalPolicyOutcome IAMClient::GetContextKeysForPrincipalPol
 
 GetContextKeysForPrincipalPolicyOutcomeCallable IAMClient::GetContextKeysForPrincipalPolicyCallable(const GetContextKeysForPrincipalPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetContextKeysForPrincipalPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetContextKeysForPrincipalPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetContextKeysForPrincipalPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::GetContextKeysForPrincipalPolicyAsync(const GetContextKeysForPrincipalPolicyRequest& request, const GetContextKeysForPrincipalPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetContextKeysForPrincipalPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetContextKeysForPrincipalPolicy, this, request, handler, context, m_executor.get());
 }
-
 GetCredentialReportOutcome IAMClient::GetCredentialReport(const GetCredentialReportRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetCredentialReport, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1732,20 +1327,13 @@ GetCredentialReportOutcome IAMClient::GetCredentialReport(const GetCredentialRep
 
 GetCredentialReportOutcomeCallable IAMClient::GetCredentialReportCallable(const GetCredentialReportRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCredentialReportOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCredentialReport(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetCredentialReport, this, request, m_executor.get());
 }
 
 void IAMClient::GetCredentialReportAsync(const GetCredentialReportRequest& request, const GetCredentialReportResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCredentialReport(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetCredentialReport, this, request, handler, context, m_executor.get());
 }
-
 GetGroupOutcome IAMClient::GetGroup(const GetGroupRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetGroup, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1756,20 +1344,13 @@ GetGroupOutcome IAMClient::GetGroup(const GetGroupRequest& request) const
 
 GetGroupOutcomeCallable IAMClient::GetGroupCallable(const GetGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetGroup, this, request, m_executor.get());
 }
 
 void IAMClient::GetGroupAsync(const GetGroupRequest& request, const GetGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroup(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetGroup, this, request, handler, context, m_executor.get());
 }
-
 GetGroupPolicyOutcome IAMClient::GetGroupPolicy(const GetGroupPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetGroupPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1780,20 +1361,13 @@ GetGroupPolicyOutcome IAMClient::GetGroupPolicy(const GetGroupPolicyRequest& req
 
 GetGroupPolicyOutcomeCallable IAMClient::GetGroupPolicyCallable(const GetGroupPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroupPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetGroupPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::GetGroupPolicyAsync(const GetGroupPolicyRequest& request, const GetGroupPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroupPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetGroupPolicy, this, request, handler, context, m_executor.get());
 }
-
 GetInstanceProfileOutcome IAMClient::GetInstanceProfile(const GetInstanceProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetInstanceProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1804,20 +1378,13 @@ GetInstanceProfileOutcome IAMClient::GetInstanceProfile(const GetInstanceProfile
 
 GetInstanceProfileOutcomeCallable IAMClient::GetInstanceProfileCallable(const GetInstanceProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetInstanceProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetInstanceProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetInstanceProfile, this, request, m_executor.get());
 }
 
 void IAMClient::GetInstanceProfileAsync(const GetInstanceProfileRequest& request, const GetInstanceProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetInstanceProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetInstanceProfile, this, request, handler, context, m_executor.get());
 }
-
 GetLoginProfileOutcome IAMClient::GetLoginProfile(const GetLoginProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetLoginProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1828,20 +1395,13 @@ GetLoginProfileOutcome IAMClient::GetLoginProfile(const GetLoginProfileRequest& 
 
 GetLoginProfileOutcomeCallable IAMClient::GetLoginProfileCallable(const GetLoginProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLoginProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLoginProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetLoginProfile, this, request, m_executor.get());
 }
 
 void IAMClient::GetLoginProfileAsync(const GetLoginProfileRequest& request, const GetLoginProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLoginProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetLoginProfile, this, request, handler, context, m_executor.get());
 }
-
 GetOpenIDConnectProviderOutcome IAMClient::GetOpenIDConnectProvider(const GetOpenIDConnectProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetOpenIDConnectProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1852,20 +1412,13 @@ GetOpenIDConnectProviderOutcome IAMClient::GetOpenIDConnectProvider(const GetOpe
 
 GetOpenIDConnectProviderOutcomeCallable IAMClient::GetOpenIDConnectProviderCallable(const GetOpenIDConnectProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOpenIDConnectProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOpenIDConnectProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetOpenIDConnectProvider, this, request, m_executor.get());
 }
 
 void IAMClient::GetOpenIDConnectProviderAsync(const GetOpenIDConnectProviderRequest& request, const GetOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOpenIDConnectProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetOpenIDConnectProvider, this, request, handler, context, m_executor.get());
 }
-
 GetOrganizationsAccessReportOutcome IAMClient::GetOrganizationsAccessReport(const GetOrganizationsAccessReportRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetOrganizationsAccessReport, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1876,20 +1429,13 @@ GetOrganizationsAccessReportOutcome IAMClient::GetOrganizationsAccessReport(cons
 
 GetOrganizationsAccessReportOutcomeCallable IAMClient::GetOrganizationsAccessReportCallable(const GetOrganizationsAccessReportRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOrganizationsAccessReportOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOrganizationsAccessReport(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetOrganizationsAccessReport, this, request, m_executor.get());
 }
 
 void IAMClient::GetOrganizationsAccessReportAsync(const GetOrganizationsAccessReportRequest& request, const GetOrganizationsAccessReportResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOrganizationsAccessReport(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetOrganizationsAccessReport, this, request, handler, context, m_executor.get());
 }
-
 GetPolicyOutcome IAMClient::GetPolicy(const GetPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1900,20 +1446,13 @@ GetPolicyOutcome IAMClient::GetPolicy(const GetPolicyRequest& request) const
 
 GetPolicyOutcomeCallable IAMClient::GetPolicyCallable(const GetPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::GetPolicyAsync(const GetPolicyRequest& request, const GetPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetPolicy, this, request, handler, context, m_executor.get());
 }
-
 GetPolicyVersionOutcome IAMClient::GetPolicyVersion(const GetPolicyVersionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetPolicyVersion, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1924,20 +1463,13 @@ GetPolicyVersionOutcome IAMClient::GetPolicyVersion(const GetPolicyVersionReques
 
 GetPolicyVersionOutcomeCallable IAMClient::GetPolicyVersionCallable(const GetPolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetPolicyVersion, this, request, m_executor.get());
 }
 
 void IAMClient::GetPolicyVersionAsync(const GetPolicyVersionRequest& request, const GetPolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetPolicyVersion, this, request, handler, context, m_executor.get());
 }
-
 GetRoleOutcome IAMClient::GetRole(const GetRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1948,20 +1480,13 @@ GetRoleOutcome IAMClient::GetRole(const GetRoleRequest& request) const
 
 GetRoleOutcomeCallable IAMClient::GetRoleCallable(const GetRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetRole, this, request, m_executor.get());
 }
 
 void IAMClient::GetRoleAsync(const GetRoleRequest& request, const GetRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetRole, this, request, handler, context, m_executor.get());
 }
-
 GetRolePolicyOutcome IAMClient::GetRolePolicy(const GetRolePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetRolePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1972,20 +1497,13 @@ GetRolePolicyOutcome IAMClient::GetRolePolicy(const GetRolePolicyRequest& reques
 
 GetRolePolicyOutcomeCallable IAMClient::GetRolePolicyCallable(const GetRolePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRolePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRolePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetRolePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::GetRolePolicyAsync(const GetRolePolicyRequest& request, const GetRolePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRolePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetRolePolicy, this, request, handler, context, m_executor.get());
 }
-
 GetSAMLProviderOutcome IAMClient::GetSAMLProvider(const GetSAMLProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetSAMLProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -1996,20 +1514,13 @@ GetSAMLProviderOutcome IAMClient::GetSAMLProvider(const GetSAMLProviderRequest& 
 
 GetSAMLProviderOutcomeCallable IAMClient::GetSAMLProviderCallable(const GetSAMLProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSAMLProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSAMLProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetSAMLProvider, this, request, m_executor.get());
 }
 
 void IAMClient::GetSAMLProviderAsync(const GetSAMLProviderRequest& request, const GetSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSAMLProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetSAMLProvider, this, request, handler, context, m_executor.get());
 }
-
 GetSSHPublicKeyOutcome IAMClient::GetSSHPublicKey(const GetSSHPublicKeyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetSSHPublicKey, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2020,20 +1531,13 @@ GetSSHPublicKeyOutcome IAMClient::GetSSHPublicKey(const GetSSHPublicKeyRequest& 
 
 GetSSHPublicKeyOutcomeCallable IAMClient::GetSSHPublicKeyCallable(const GetSSHPublicKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSSHPublicKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSSHPublicKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetSSHPublicKey, this, request, m_executor.get());
 }
 
 void IAMClient::GetSSHPublicKeyAsync(const GetSSHPublicKeyRequest& request, const GetSSHPublicKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSSHPublicKey(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetSSHPublicKey, this, request, handler, context, m_executor.get());
 }
-
 GetServerCertificateOutcome IAMClient::GetServerCertificate(const GetServerCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetServerCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2044,20 +1548,13 @@ GetServerCertificateOutcome IAMClient::GetServerCertificate(const GetServerCerti
 
 GetServerCertificateOutcomeCallable IAMClient::GetServerCertificateCallable(const GetServerCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServerCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServerCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetServerCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::GetServerCertificateAsync(const GetServerCertificateRequest& request, const GetServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServerCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetServerCertificate, this, request, handler, context, m_executor.get());
 }
-
 GetServiceLastAccessedDetailsOutcome IAMClient::GetServiceLastAccessedDetails(const GetServiceLastAccessedDetailsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetServiceLastAccessedDetails, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2068,20 +1565,13 @@ GetServiceLastAccessedDetailsOutcome IAMClient::GetServiceLastAccessedDetails(co
 
 GetServiceLastAccessedDetailsOutcomeCallable IAMClient::GetServiceLastAccessedDetailsCallable(const GetServiceLastAccessedDetailsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceLastAccessedDetailsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServiceLastAccessedDetails(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetServiceLastAccessedDetails, this, request, m_executor.get());
 }
 
 void IAMClient::GetServiceLastAccessedDetailsAsync(const GetServiceLastAccessedDetailsRequest& request, const GetServiceLastAccessedDetailsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServiceLastAccessedDetails(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetServiceLastAccessedDetails, this, request, handler, context, m_executor.get());
 }
-
 GetServiceLastAccessedDetailsWithEntitiesOutcome IAMClient::GetServiceLastAccessedDetailsWithEntities(const GetServiceLastAccessedDetailsWithEntitiesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetServiceLastAccessedDetailsWithEntities, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2092,20 +1582,13 @@ GetServiceLastAccessedDetailsWithEntitiesOutcome IAMClient::GetServiceLastAccess
 
 GetServiceLastAccessedDetailsWithEntitiesOutcomeCallable IAMClient::GetServiceLastAccessedDetailsWithEntitiesCallable(const GetServiceLastAccessedDetailsWithEntitiesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceLastAccessedDetailsWithEntitiesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServiceLastAccessedDetailsWithEntities(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetServiceLastAccessedDetailsWithEntities, this, request, m_executor.get());
 }
 
 void IAMClient::GetServiceLastAccessedDetailsWithEntitiesAsync(const GetServiceLastAccessedDetailsWithEntitiesRequest& request, const GetServiceLastAccessedDetailsWithEntitiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServiceLastAccessedDetailsWithEntities(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetServiceLastAccessedDetailsWithEntities, this, request, handler, context, m_executor.get());
 }
-
 GetServiceLinkedRoleDeletionStatusOutcome IAMClient::GetServiceLinkedRoleDeletionStatus(const GetServiceLinkedRoleDeletionStatusRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetServiceLinkedRoleDeletionStatus, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2116,20 +1599,13 @@ GetServiceLinkedRoleDeletionStatusOutcome IAMClient::GetServiceLinkedRoleDeletio
 
 GetServiceLinkedRoleDeletionStatusOutcomeCallable IAMClient::GetServiceLinkedRoleDeletionStatusCallable(const GetServiceLinkedRoleDeletionStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceLinkedRoleDeletionStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServiceLinkedRoleDeletionStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetServiceLinkedRoleDeletionStatus, this, request, m_executor.get());
 }
 
 void IAMClient::GetServiceLinkedRoleDeletionStatusAsync(const GetServiceLinkedRoleDeletionStatusRequest& request, const GetServiceLinkedRoleDeletionStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServiceLinkedRoleDeletionStatus(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetServiceLinkedRoleDeletionStatus, this, request, handler, context, m_executor.get());
 }
-
 GetUserOutcome IAMClient::GetUser(const GetUserRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetUser, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2140,20 +1616,13 @@ GetUserOutcome IAMClient::GetUser(const GetUserRequest& request) const
 
 GetUserOutcomeCallable IAMClient::GetUserCallable(const GetUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetUser, this, request, m_executor.get());
 }
 
 void IAMClient::GetUserAsync(const GetUserRequest& request, const GetUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetUser(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetUser, this, request, handler, context, m_executor.get());
 }
-
 GetUserPolicyOutcome IAMClient::GetUserPolicy(const GetUserPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, GetUserPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2164,20 +1633,13 @@ GetUserPolicyOutcome IAMClient::GetUserPolicy(const GetUserPolicyRequest& reques
 
 GetUserPolicyOutcomeCallable IAMClient::GetUserPolicyCallable(const GetUserPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetUserPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetUserPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::GetUserPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::GetUserPolicyAsync(const GetUserPolicyRequest& request, const GetUserPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetUserPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::GetUserPolicy, this, request, handler, context, m_executor.get());
 }
-
 ListAccessKeysOutcome IAMClient::ListAccessKeys(const ListAccessKeysRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListAccessKeys, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2188,20 +1650,13 @@ ListAccessKeysOutcome IAMClient::ListAccessKeys(const ListAccessKeysRequest& req
 
 ListAccessKeysOutcomeCallable IAMClient::ListAccessKeysCallable(const ListAccessKeysRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccessKeysOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccessKeys(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListAccessKeys, this, request, m_executor.get());
 }
 
 void IAMClient::ListAccessKeysAsync(const ListAccessKeysRequest& request, const ListAccessKeysResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccessKeys(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListAccessKeys, this, request, handler, context, m_executor.get());
 }
-
 ListAccountAliasesOutcome IAMClient::ListAccountAliases(const ListAccountAliasesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListAccountAliases, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2212,20 +1667,13 @@ ListAccountAliasesOutcome IAMClient::ListAccountAliases(const ListAccountAliases
 
 ListAccountAliasesOutcomeCallable IAMClient::ListAccountAliasesCallable(const ListAccountAliasesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccountAliasesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccountAliases(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListAccountAliases, this, request, m_executor.get());
 }
 
 void IAMClient::ListAccountAliasesAsync(const ListAccountAliasesRequest& request, const ListAccountAliasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccountAliases(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListAccountAliases, this, request, handler, context, m_executor.get());
 }
-
 ListAttachedGroupPoliciesOutcome IAMClient::ListAttachedGroupPolicies(const ListAttachedGroupPoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListAttachedGroupPolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2236,20 +1684,13 @@ ListAttachedGroupPoliciesOutcome IAMClient::ListAttachedGroupPolicies(const List
 
 ListAttachedGroupPoliciesOutcomeCallable IAMClient::ListAttachedGroupPoliciesCallable(const ListAttachedGroupPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAttachedGroupPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAttachedGroupPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListAttachedGroupPolicies, this, request, m_executor.get());
 }
 
 void IAMClient::ListAttachedGroupPoliciesAsync(const ListAttachedGroupPoliciesRequest& request, const ListAttachedGroupPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAttachedGroupPolicies(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListAttachedGroupPolicies, this, request, handler, context, m_executor.get());
 }
-
 ListAttachedRolePoliciesOutcome IAMClient::ListAttachedRolePolicies(const ListAttachedRolePoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListAttachedRolePolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2260,20 +1701,13 @@ ListAttachedRolePoliciesOutcome IAMClient::ListAttachedRolePolicies(const ListAt
 
 ListAttachedRolePoliciesOutcomeCallable IAMClient::ListAttachedRolePoliciesCallable(const ListAttachedRolePoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAttachedRolePoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAttachedRolePolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListAttachedRolePolicies, this, request, m_executor.get());
 }
 
 void IAMClient::ListAttachedRolePoliciesAsync(const ListAttachedRolePoliciesRequest& request, const ListAttachedRolePoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAttachedRolePolicies(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListAttachedRolePolicies, this, request, handler, context, m_executor.get());
 }
-
 ListAttachedUserPoliciesOutcome IAMClient::ListAttachedUserPolicies(const ListAttachedUserPoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListAttachedUserPolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2284,20 +1718,13 @@ ListAttachedUserPoliciesOutcome IAMClient::ListAttachedUserPolicies(const ListAt
 
 ListAttachedUserPoliciesOutcomeCallable IAMClient::ListAttachedUserPoliciesCallable(const ListAttachedUserPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAttachedUserPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAttachedUserPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListAttachedUserPolicies, this, request, m_executor.get());
 }
 
 void IAMClient::ListAttachedUserPoliciesAsync(const ListAttachedUserPoliciesRequest& request, const ListAttachedUserPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAttachedUserPolicies(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListAttachedUserPolicies, this, request, handler, context, m_executor.get());
 }
-
 ListEntitiesForPolicyOutcome IAMClient::ListEntitiesForPolicy(const ListEntitiesForPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListEntitiesForPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2308,20 +1735,13 @@ ListEntitiesForPolicyOutcome IAMClient::ListEntitiesForPolicy(const ListEntities
 
 ListEntitiesForPolicyOutcomeCallable IAMClient::ListEntitiesForPolicyCallable(const ListEntitiesForPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEntitiesForPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEntitiesForPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListEntitiesForPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::ListEntitiesForPolicyAsync(const ListEntitiesForPolicyRequest& request, const ListEntitiesForPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEntitiesForPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListEntitiesForPolicy, this, request, handler, context, m_executor.get());
 }
-
 ListGroupPoliciesOutcome IAMClient::ListGroupPolicies(const ListGroupPoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListGroupPolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2332,20 +1752,13 @@ ListGroupPoliciesOutcome IAMClient::ListGroupPolicies(const ListGroupPoliciesReq
 
 ListGroupPoliciesOutcomeCallable IAMClient::ListGroupPoliciesCallable(const ListGroupPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroupPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListGroupPolicies, this, request, m_executor.get());
 }
 
 void IAMClient::ListGroupPoliciesAsync(const ListGroupPoliciesRequest& request, const ListGroupPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroupPolicies(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListGroupPolicies, this, request, handler, context, m_executor.get());
 }
-
 ListGroupsOutcome IAMClient::ListGroups(const ListGroupsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListGroups, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2356,20 +1769,13 @@ ListGroupsOutcome IAMClient::ListGroups(const ListGroupsRequest& request) const
 
 ListGroupsOutcomeCallable IAMClient::ListGroupsCallable(const ListGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListGroups, this, request, m_executor.get());
 }
 
 void IAMClient::ListGroupsAsync(const ListGroupsRequest& request, const ListGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroups(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListGroups, this, request, handler, context, m_executor.get());
 }
-
 ListGroupsForUserOutcome IAMClient::ListGroupsForUser(const ListGroupsForUserRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListGroupsForUser, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2380,20 +1786,13 @@ ListGroupsForUserOutcome IAMClient::ListGroupsForUser(const ListGroupsForUserReq
 
 ListGroupsForUserOutcomeCallable IAMClient::ListGroupsForUserCallable(const ListGroupsForUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupsForUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroupsForUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListGroupsForUser, this, request, m_executor.get());
 }
 
 void IAMClient::ListGroupsForUserAsync(const ListGroupsForUserRequest& request, const ListGroupsForUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroupsForUser(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListGroupsForUser, this, request, handler, context, m_executor.get());
 }
-
 ListInstanceProfileTagsOutcome IAMClient::ListInstanceProfileTags(const ListInstanceProfileTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListInstanceProfileTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2404,20 +1803,13 @@ ListInstanceProfileTagsOutcome IAMClient::ListInstanceProfileTags(const ListInst
 
 ListInstanceProfileTagsOutcomeCallable IAMClient::ListInstanceProfileTagsCallable(const ListInstanceProfileTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListInstanceProfileTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListInstanceProfileTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListInstanceProfileTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListInstanceProfileTagsAsync(const ListInstanceProfileTagsRequest& request, const ListInstanceProfileTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListInstanceProfileTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListInstanceProfileTags, this, request, handler, context, m_executor.get());
 }
-
 ListInstanceProfilesOutcome IAMClient::ListInstanceProfiles(const ListInstanceProfilesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListInstanceProfiles, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2428,20 +1820,13 @@ ListInstanceProfilesOutcome IAMClient::ListInstanceProfiles(const ListInstancePr
 
 ListInstanceProfilesOutcomeCallable IAMClient::ListInstanceProfilesCallable(const ListInstanceProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListInstanceProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListInstanceProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListInstanceProfiles, this, request, m_executor.get());
 }
 
 void IAMClient::ListInstanceProfilesAsync(const ListInstanceProfilesRequest& request, const ListInstanceProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListInstanceProfiles(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListInstanceProfiles, this, request, handler, context, m_executor.get());
 }
-
 ListInstanceProfilesForRoleOutcome IAMClient::ListInstanceProfilesForRole(const ListInstanceProfilesForRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListInstanceProfilesForRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2452,20 +1837,13 @@ ListInstanceProfilesForRoleOutcome IAMClient::ListInstanceProfilesForRole(const 
 
 ListInstanceProfilesForRoleOutcomeCallable IAMClient::ListInstanceProfilesForRoleCallable(const ListInstanceProfilesForRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListInstanceProfilesForRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListInstanceProfilesForRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListInstanceProfilesForRole, this, request, m_executor.get());
 }
 
 void IAMClient::ListInstanceProfilesForRoleAsync(const ListInstanceProfilesForRoleRequest& request, const ListInstanceProfilesForRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListInstanceProfilesForRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListInstanceProfilesForRole, this, request, handler, context, m_executor.get());
 }
-
 ListMFADeviceTagsOutcome IAMClient::ListMFADeviceTags(const ListMFADeviceTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListMFADeviceTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2476,20 +1854,13 @@ ListMFADeviceTagsOutcome IAMClient::ListMFADeviceTags(const ListMFADeviceTagsReq
 
 ListMFADeviceTagsOutcomeCallable IAMClient::ListMFADeviceTagsCallable(const ListMFADeviceTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMFADeviceTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMFADeviceTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListMFADeviceTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListMFADeviceTagsAsync(const ListMFADeviceTagsRequest& request, const ListMFADeviceTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMFADeviceTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListMFADeviceTags, this, request, handler, context, m_executor.get());
 }
-
 ListMFADevicesOutcome IAMClient::ListMFADevices(const ListMFADevicesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListMFADevices, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2500,20 +1871,13 @@ ListMFADevicesOutcome IAMClient::ListMFADevices(const ListMFADevicesRequest& req
 
 ListMFADevicesOutcomeCallable IAMClient::ListMFADevicesCallable(const ListMFADevicesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMFADevicesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMFADevices(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListMFADevices, this, request, m_executor.get());
 }
 
 void IAMClient::ListMFADevicesAsync(const ListMFADevicesRequest& request, const ListMFADevicesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMFADevices(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListMFADevices, this, request, handler, context, m_executor.get());
 }
-
 ListOpenIDConnectProviderTagsOutcome IAMClient::ListOpenIDConnectProviderTags(const ListOpenIDConnectProviderTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListOpenIDConnectProviderTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2524,20 +1888,13 @@ ListOpenIDConnectProviderTagsOutcome IAMClient::ListOpenIDConnectProviderTags(co
 
 ListOpenIDConnectProviderTagsOutcomeCallable IAMClient::ListOpenIDConnectProviderTagsCallable(const ListOpenIDConnectProviderTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOpenIDConnectProviderTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOpenIDConnectProviderTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListOpenIDConnectProviderTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListOpenIDConnectProviderTagsAsync(const ListOpenIDConnectProviderTagsRequest& request, const ListOpenIDConnectProviderTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOpenIDConnectProviderTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListOpenIDConnectProviderTags, this, request, handler, context, m_executor.get());
 }
-
 ListOpenIDConnectProvidersOutcome IAMClient::ListOpenIDConnectProviders(const ListOpenIDConnectProvidersRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListOpenIDConnectProviders, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2548,20 +1905,13 @@ ListOpenIDConnectProvidersOutcome IAMClient::ListOpenIDConnectProviders(const Li
 
 ListOpenIDConnectProvidersOutcomeCallable IAMClient::ListOpenIDConnectProvidersCallable(const ListOpenIDConnectProvidersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOpenIDConnectProvidersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOpenIDConnectProviders(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListOpenIDConnectProviders, this, request, m_executor.get());
 }
 
 void IAMClient::ListOpenIDConnectProvidersAsync(const ListOpenIDConnectProvidersRequest& request, const ListOpenIDConnectProvidersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOpenIDConnectProviders(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListOpenIDConnectProviders, this, request, handler, context, m_executor.get());
 }
-
 ListPoliciesOutcome IAMClient::ListPolicies(const ListPoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListPolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2572,20 +1922,13 @@ ListPoliciesOutcome IAMClient::ListPolicies(const ListPoliciesRequest& request) 
 
 ListPoliciesOutcomeCallable IAMClient::ListPoliciesCallable(const ListPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListPolicies, this, request, m_executor.get());
 }
 
 void IAMClient::ListPoliciesAsync(const ListPoliciesRequest& request, const ListPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPolicies(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListPolicies, this, request, handler, context, m_executor.get());
 }
-
 ListPoliciesGrantingServiceAccessOutcome IAMClient::ListPoliciesGrantingServiceAccess(const ListPoliciesGrantingServiceAccessRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListPoliciesGrantingServiceAccess, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2596,20 +1939,13 @@ ListPoliciesGrantingServiceAccessOutcome IAMClient::ListPoliciesGrantingServiceA
 
 ListPoliciesGrantingServiceAccessOutcomeCallable IAMClient::ListPoliciesGrantingServiceAccessCallable(const ListPoliciesGrantingServiceAccessRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPoliciesGrantingServiceAccessOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPoliciesGrantingServiceAccess(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListPoliciesGrantingServiceAccess, this, request, m_executor.get());
 }
 
 void IAMClient::ListPoliciesGrantingServiceAccessAsync(const ListPoliciesGrantingServiceAccessRequest& request, const ListPoliciesGrantingServiceAccessResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPoliciesGrantingServiceAccess(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListPoliciesGrantingServiceAccess, this, request, handler, context, m_executor.get());
 }
-
 ListPolicyTagsOutcome IAMClient::ListPolicyTags(const ListPolicyTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListPolicyTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2620,20 +1956,13 @@ ListPolicyTagsOutcome IAMClient::ListPolicyTags(const ListPolicyTagsRequest& req
 
 ListPolicyTagsOutcomeCallable IAMClient::ListPolicyTagsCallable(const ListPolicyTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPolicyTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPolicyTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListPolicyTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListPolicyTagsAsync(const ListPolicyTagsRequest& request, const ListPolicyTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPolicyTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListPolicyTags, this, request, handler, context, m_executor.get());
 }
-
 ListPolicyVersionsOutcome IAMClient::ListPolicyVersions(const ListPolicyVersionsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListPolicyVersions, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2644,20 +1973,13 @@ ListPolicyVersionsOutcome IAMClient::ListPolicyVersions(const ListPolicyVersions
 
 ListPolicyVersionsOutcomeCallable IAMClient::ListPolicyVersionsCallable(const ListPolicyVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPolicyVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPolicyVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListPolicyVersions, this, request, m_executor.get());
 }
 
 void IAMClient::ListPolicyVersionsAsync(const ListPolicyVersionsRequest& request, const ListPolicyVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPolicyVersions(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListPolicyVersions, this, request, handler, context, m_executor.get());
 }
-
 ListRolePoliciesOutcome IAMClient::ListRolePolicies(const ListRolePoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListRolePolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2668,20 +1990,13 @@ ListRolePoliciesOutcome IAMClient::ListRolePolicies(const ListRolePoliciesReques
 
 ListRolePoliciesOutcomeCallable IAMClient::ListRolePoliciesCallable(const ListRolePoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRolePoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRolePolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListRolePolicies, this, request, m_executor.get());
 }
 
 void IAMClient::ListRolePoliciesAsync(const ListRolePoliciesRequest& request, const ListRolePoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRolePolicies(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListRolePolicies, this, request, handler, context, m_executor.get());
 }
-
 ListRoleTagsOutcome IAMClient::ListRoleTags(const ListRoleTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListRoleTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2692,20 +2007,13 @@ ListRoleTagsOutcome IAMClient::ListRoleTags(const ListRoleTagsRequest& request) 
 
 ListRoleTagsOutcomeCallable IAMClient::ListRoleTagsCallable(const ListRoleTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRoleTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoleTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListRoleTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListRoleTagsAsync(const ListRoleTagsRequest& request, const ListRoleTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoleTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListRoleTags, this, request, handler, context, m_executor.get());
 }
-
 ListRolesOutcome IAMClient::ListRoles(const ListRolesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListRoles, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2716,20 +2024,13 @@ ListRolesOutcome IAMClient::ListRoles(const ListRolesRequest& request) const
 
 ListRolesOutcomeCallable IAMClient::ListRolesCallable(const ListRolesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRolesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListRoles, this, request, m_executor.get());
 }
 
 void IAMClient::ListRolesAsync(const ListRolesRequest& request, const ListRolesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoles(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListRoles, this, request, handler, context, m_executor.get());
 }
-
 ListSAMLProviderTagsOutcome IAMClient::ListSAMLProviderTags(const ListSAMLProviderTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListSAMLProviderTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2740,20 +2041,13 @@ ListSAMLProviderTagsOutcome IAMClient::ListSAMLProviderTags(const ListSAMLProvid
 
 ListSAMLProviderTagsOutcomeCallable IAMClient::ListSAMLProviderTagsCallable(const ListSAMLProviderTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSAMLProviderTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSAMLProviderTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListSAMLProviderTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListSAMLProviderTagsAsync(const ListSAMLProviderTagsRequest& request, const ListSAMLProviderTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSAMLProviderTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListSAMLProviderTags, this, request, handler, context, m_executor.get());
 }
-
 ListSAMLProvidersOutcome IAMClient::ListSAMLProviders(const ListSAMLProvidersRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListSAMLProviders, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2764,20 +2058,13 @@ ListSAMLProvidersOutcome IAMClient::ListSAMLProviders(const ListSAMLProvidersReq
 
 ListSAMLProvidersOutcomeCallable IAMClient::ListSAMLProvidersCallable(const ListSAMLProvidersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSAMLProvidersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSAMLProviders(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListSAMLProviders, this, request, m_executor.get());
 }
 
 void IAMClient::ListSAMLProvidersAsync(const ListSAMLProvidersRequest& request, const ListSAMLProvidersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSAMLProviders(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListSAMLProviders, this, request, handler, context, m_executor.get());
 }
-
 ListSSHPublicKeysOutcome IAMClient::ListSSHPublicKeys(const ListSSHPublicKeysRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListSSHPublicKeys, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2788,20 +2075,13 @@ ListSSHPublicKeysOutcome IAMClient::ListSSHPublicKeys(const ListSSHPublicKeysReq
 
 ListSSHPublicKeysOutcomeCallable IAMClient::ListSSHPublicKeysCallable(const ListSSHPublicKeysRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSSHPublicKeysOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSSHPublicKeys(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListSSHPublicKeys, this, request, m_executor.get());
 }
 
 void IAMClient::ListSSHPublicKeysAsync(const ListSSHPublicKeysRequest& request, const ListSSHPublicKeysResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSSHPublicKeys(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListSSHPublicKeys, this, request, handler, context, m_executor.get());
 }
-
 ListServerCertificateTagsOutcome IAMClient::ListServerCertificateTags(const ListServerCertificateTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListServerCertificateTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2812,20 +2092,13 @@ ListServerCertificateTagsOutcome IAMClient::ListServerCertificateTags(const List
 
 ListServerCertificateTagsOutcomeCallable IAMClient::ListServerCertificateTagsCallable(const ListServerCertificateTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServerCertificateTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServerCertificateTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListServerCertificateTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListServerCertificateTagsAsync(const ListServerCertificateTagsRequest& request, const ListServerCertificateTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServerCertificateTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListServerCertificateTags, this, request, handler, context, m_executor.get());
 }
-
 ListServerCertificatesOutcome IAMClient::ListServerCertificates(const ListServerCertificatesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListServerCertificates, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2836,20 +2109,13 @@ ListServerCertificatesOutcome IAMClient::ListServerCertificates(const ListServer
 
 ListServerCertificatesOutcomeCallable IAMClient::ListServerCertificatesCallable(const ListServerCertificatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServerCertificatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServerCertificates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListServerCertificates, this, request, m_executor.get());
 }
 
 void IAMClient::ListServerCertificatesAsync(const ListServerCertificatesRequest& request, const ListServerCertificatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServerCertificates(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListServerCertificates, this, request, handler, context, m_executor.get());
 }
-
 ListServiceSpecificCredentialsOutcome IAMClient::ListServiceSpecificCredentials(const ListServiceSpecificCredentialsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListServiceSpecificCredentials, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2860,20 +2126,13 @@ ListServiceSpecificCredentialsOutcome IAMClient::ListServiceSpecificCredentials(
 
 ListServiceSpecificCredentialsOutcomeCallable IAMClient::ListServiceSpecificCredentialsCallable(const ListServiceSpecificCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServiceSpecificCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServiceSpecificCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListServiceSpecificCredentials, this, request, m_executor.get());
 }
 
 void IAMClient::ListServiceSpecificCredentialsAsync(const ListServiceSpecificCredentialsRequest& request, const ListServiceSpecificCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServiceSpecificCredentials(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListServiceSpecificCredentials, this, request, handler, context, m_executor.get());
 }
-
 ListSigningCertificatesOutcome IAMClient::ListSigningCertificates(const ListSigningCertificatesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListSigningCertificates, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2884,20 +2143,13 @@ ListSigningCertificatesOutcome IAMClient::ListSigningCertificates(const ListSign
 
 ListSigningCertificatesOutcomeCallable IAMClient::ListSigningCertificatesCallable(const ListSigningCertificatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSigningCertificatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSigningCertificates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListSigningCertificates, this, request, m_executor.get());
 }
 
 void IAMClient::ListSigningCertificatesAsync(const ListSigningCertificatesRequest& request, const ListSigningCertificatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSigningCertificates(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListSigningCertificates, this, request, handler, context, m_executor.get());
 }
-
 ListUserPoliciesOutcome IAMClient::ListUserPolicies(const ListUserPoliciesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListUserPolicies, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2908,20 +2160,13 @@ ListUserPoliciesOutcome IAMClient::ListUserPolicies(const ListUserPoliciesReques
 
 ListUserPoliciesOutcomeCallable IAMClient::ListUserPoliciesCallable(const ListUserPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUserPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUserPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListUserPolicies, this, request, m_executor.get());
 }
 
 void IAMClient::ListUserPoliciesAsync(const ListUserPoliciesRequest& request, const ListUserPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUserPolicies(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListUserPolicies, this, request, handler, context, m_executor.get());
 }
-
 ListUserTagsOutcome IAMClient::ListUserTags(const ListUserTagsRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListUserTags, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2932,20 +2177,13 @@ ListUserTagsOutcome IAMClient::ListUserTags(const ListUserTagsRequest& request) 
 
 ListUserTagsOutcomeCallable IAMClient::ListUserTagsCallable(const ListUserTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUserTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUserTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListUserTags, this, request, m_executor.get());
 }
 
 void IAMClient::ListUserTagsAsync(const ListUserTagsRequest& request, const ListUserTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUserTags(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListUserTags, this, request, handler, context, m_executor.get());
 }
-
 ListUsersOutcome IAMClient::ListUsers(const ListUsersRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListUsers, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2956,20 +2194,13 @@ ListUsersOutcome IAMClient::ListUsers(const ListUsersRequest& request) const
 
 ListUsersOutcomeCallable IAMClient::ListUsersCallable(const ListUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListUsers, this, request, m_executor.get());
 }
 
 void IAMClient::ListUsersAsync(const ListUsersRequest& request, const ListUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUsers(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListUsers, this, request, handler, context, m_executor.get());
 }
-
 ListVirtualMFADevicesOutcome IAMClient::ListVirtualMFADevices(const ListVirtualMFADevicesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ListVirtualMFADevices, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -2980,20 +2211,13 @@ ListVirtualMFADevicesOutcome IAMClient::ListVirtualMFADevices(const ListVirtualM
 
 ListVirtualMFADevicesOutcomeCallable IAMClient::ListVirtualMFADevicesCallable(const ListVirtualMFADevicesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVirtualMFADevicesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVirtualMFADevices(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ListVirtualMFADevices, this, request, m_executor.get());
 }
 
 void IAMClient::ListVirtualMFADevicesAsync(const ListVirtualMFADevicesRequest& request, const ListVirtualMFADevicesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVirtualMFADevices(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ListVirtualMFADevices, this, request, handler, context, m_executor.get());
 }
-
 PutGroupPolicyOutcome IAMClient::PutGroupPolicy(const PutGroupPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutGroupPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3004,20 +2228,13 @@ PutGroupPolicyOutcome IAMClient::PutGroupPolicy(const PutGroupPolicyRequest& req
 
 PutGroupPolicyOutcomeCallable IAMClient::PutGroupPolicyCallable(const PutGroupPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutGroupPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutGroupPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::PutGroupPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::PutGroupPolicyAsync(const PutGroupPolicyRequest& request, const PutGroupPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutGroupPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::PutGroupPolicy, this, request, handler, context, m_executor.get());
 }
-
 PutRolePermissionsBoundaryOutcome IAMClient::PutRolePermissionsBoundary(const PutRolePermissionsBoundaryRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutRolePermissionsBoundary, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3028,20 +2245,13 @@ PutRolePermissionsBoundaryOutcome IAMClient::PutRolePermissionsBoundary(const Pu
 
 PutRolePermissionsBoundaryOutcomeCallable IAMClient::PutRolePermissionsBoundaryCallable(const PutRolePermissionsBoundaryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRolePermissionsBoundaryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRolePermissionsBoundary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::PutRolePermissionsBoundary, this, request, m_executor.get());
 }
 
 void IAMClient::PutRolePermissionsBoundaryAsync(const PutRolePermissionsBoundaryRequest& request, const PutRolePermissionsBoundaryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRolePermissionsBoundary(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::PutRolePermissionsBoundary, this, request, handler, context, m_executor.get());
 }
-
 PutRolePolicyOutcome IAMClient::PutRolePolicy(const PutRolePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutRolePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3052,20 +2262,13 @@ PutRolePolicyOutcome IAMClient::PutRolePolicy(const PutRolePolicyRequest& reques
 
 PutRolePolicyOutcomeCallable IAMClient::PutRolePolicyCallable(const PutRolePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRolePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRolePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::PutRolePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::PutRolePolicyAsync(const PutRolePolicyRequest& request, const PutRolePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRolePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::PutRolePolicy, this, request, handler, context, m_executor.get());
 }
-
 PutUserPermissionsBoundaryOutcome IAMClient::PutUserPermissionsBoundary(const PutUserPermissionsBoundaryRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutUserPermissionsBoundary, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3076,20 +2279,13 @@ PutUserPermissionsBoundaryOutcome IAMClient::PutUserPermissionsBoundary(const Pu
 
 PutUserPermissionsBoundaryOutcomeCallable IAMClient::PutUserPermissionsBoundaryCallable(const PutUserPermissionsBoundaryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutUserPermissionsBoundaryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutUserPermissionsBoundary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::PutUserPermissionsBoundary, this, request, m_executor.get());
 }
 
 void IAMClient::PutUserPermissionsBoundaryAsync(const PutUserPermissionsBoundaryRequest& request, const PutUserPermissionsBoundaryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutUserPermissionsBoundary(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::PutUserPermissionsBoundary, this, request, handler, context, m_executor.get());
 }
-
 PutUserPolicyOutcome IAMClient::PutUserPolicy(const PutUserPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, PutUserPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3100,20 +2296,13 @@ PutUserPolicyOutcome IAMClient::PutUserPolicy(const PutUserPolicyRequest& reques
 
 PutUserPolicyOutcomeCallable IAMClient::PutUserPolicyCallable(const PutUserPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutUserPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutUserPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::PutUserPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::PutUserPolicyAsync(const PutUserPolicyRequest& request, const PutUserPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutUserPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::PutUserPolicy, this, request, handler, context, m_executor.get());
 }
-
 RemoveClientIDFromOpenIDConnectProviderOutcome IAMClient::RemoveClientIDFromOpenIDConnectProvider(const RemoveClientIDFromOpenIDConnectProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, RemoveClientIDFromOpenIDConnectProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3124,20 +2313,13 @@ RemoveClientIDFromOpenIDConnectProviderOutcome IAMClient::RemoveClientIDFromOpen
 
 RemoveClientIDFromOpenIDConnectProviderOutcomeCallable IAMClient::RemoveClientIDFromOpenIDConnectProviderCallable(const RemoveClientIDFromOpenIDConnectProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveClientIDFromOpenIDConnectProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveClientIDFromOpenIDConnectProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::RemoveClientIDFromOpenIDConnectProvider, this, request, m_executor.get());
 }
 
 void IAMClient::RemoveClientIDFromOpenIDConnectProviderAsync(const RemoveClientIDFromOpenIDConnectProviderRequest& request, const RemoveClientIDFromOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveClientIDFromOpenIDConnectProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::RemoveClientIDFromOpenIDConnectProvider, this, request, handler, context, m_executor.get());
 }
-
 RemoveRoleFromInstanceProfileOutcome IAMClient::RemoveRoleFromInstanceProfile(const RemoveRoleFromInstanceProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, RemoveRoleFromInstanceProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3148,20 +2330,13 @@ RemoveRoleFromInstanceProfileOutcome IAMClient::RemoveRoleFromInstanceProfile(co
 
 RemoveRoleFromInstanceProfileOutcomeCallable IAMClient::RemoveRoleFromInstanceProfileCallable(const RemoveRoleFromInstanceProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveRoleFromInstanceProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveRoleFromInstanceProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::RemoveRoleFromInstanceProfile, this, request, m_executor.get());
 }
 
 void IAMClient::RemoveRoleFromInstanceProfileAsync(const RemoveRoleFromInstanceProfileRequest& request, const RemoveRoleFromInstanceProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveRoleFromInstanceProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::RemoveRoleFromInstanceProfile, this, request, handler, context, m_executor.get());
 }
-
 RemoveUserFromGroupOutcome IAMClient::RemoveUserFromGroup(const RemoveUserFromGroupRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, RemoveUserFromGroup, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3172,20 +2347,13 @@ RemoveUserFromGroupOutcome IAMClient::RemoveUserFromGroup(const RemoveUserFromGr
 
 RemoveUserFromGroupOutcomeCallable IAMClient::RemoveUserFromGroupCallable(const RemoveUserFromGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveUserFromGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveUserFromGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::RemoveUserFromGroup, this, request, m_executor.get());
 }
 
 void IAMClient::RemoveUserFromGroupAsync(const RemoveUserFromGroupRequest& request, const RemoveUserFromGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveUserFromGroup(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::RemoveUserFromGroup, this, request, handler, context, m_executor.get());
 }
-
 ResetServiceSpecificCredentialOutcome IAMClient::ResetServiceSpecificCredential(const ResetServiceSpecificCredentialRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ResetServiceSpecificCredential, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3196,20 +2364,13 @@ ResetServiceSpecificCredentialOutcome IAMClient::ResetServiceSpecificCredential(
 
 ResetServiceSpecificCredentialOutcomeCallable IAMClient::ResetServiceSpecificCredentialCallable(const ResetServiceSpecificCredentialRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ResetServiceSpecificCredentialOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ResetServiceSpecificCredential(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ResetServiceSpecificCredential, this, request, m_executor.get());
 }
 
 void IAMClient::ResetServiceSpecificCredentialAsync(const ResetServiceSpecificCredentialRequest& request, const ResetServiceSpecificCredentialResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ResetServiceSpecificCredential(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ResetServiceSpecificCredential, this, request, handler, context, m_executor.get());
 }
-
 ResyncMFADeviceOutcome IAMClient::ResyncMFADevice(const ResyncMFADeviceRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, ResyncMFADevice, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3220,20 +2381,13 @@ ResyncMFADeviceOutcome IAMClient::ResyncMFADevice(const ResyncMFADeviceRequest& 
 
 ResyncMFADeviceOutcomeCallable IAMClient::ResyncMFADeviceCallable(const ResyncMFADeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ResyncMFADeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ResyncMFADevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::ResyncMFADevice, this, request, m_executor.get());
 }
 
 void IAMClient::ResyncMFADeviceAsync(const ResyncMFADeviceRequest& request, const ResyncMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ResyncMFADevice(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::ResyncMFADevice, this, request, handler, context, m_executor.get());
 }
-
 SetDefaultPolicyVersionOutcome IAMClient::SetDefaultPolicyVersion(const SetDefaultPolicyVersionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SetDefaultPolicyVersion, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3244,20 +2398,13 @@ SetDefaultPolicyVersionOutcome IAMClient::SetDefaultPolicyVersion(const SetDefau
 
 SetDefaultPolicyVersionOutcomeCallable IAMClient::SetDefaultPolicyVersionCallable(const SetDefaultPolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetDefaultPolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetDefaultPolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::SetDefaultPolicyVersion, this, request, m_executor.get());
 }
 
 void IAMClient::SetDefaultPolicyVersionAsync(const SetDefaultPolicyVersionRequest& request, const SetDefaultPolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetDefaultPolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::SetDefaultPolicyVersion, this, request, handler, context, m_executor.get());
 }
-
 SetSecurityTokenServicePreferencesOutcome IAMClient::SetSecurityTokenServicePreferences(const SetSecurityTokenServicePreferencesRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SetSecurityTokenServicePreferences, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3268,20 +2415,13 @@ SetSecurityTokenServicePreferencesOutcome IAMClient::SetSecurityTokenServicePref
 
 SetSecurityTokenServicePreferencesOutcomeCallable IAMClient::SetSecurityTokenServicePreferencesCallable(const SetSecurityTokenServicePreferencesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetSecurityTokenServicePreferencesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetSecurityTokenServicePreferences(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::SetSecurityTokenServicePreferences, this, request, m_executor.get());
 }
 
 void IAMClient::SetSecurityTokenServicePreferencesAsync(const SetSecurityTokenServicePreferencesRequest& request, const SetSecurityTokenServicePreferencesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetSecurityTokenServicePreferences(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::SetSecurityTokenServicePreferences, this, request, handler, context, m_executor.get());
 }
-
 SimulateCustomPolicyOutcome IAMClient::SimulateCustomPolicy(const SimulateCustomPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SimulateCustomPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3292,20 +2432,13 @@ SimulateCustomPolicyOutcome IAMClient::SimulateCustomPolicy(const SimulateCustom
 
 SimulateCustomPolicyOutcomeCallable IAMClient::SimulateCustomPolicyCallable(const SimulateCustomPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SimulateCustomPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SimulateCustomPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::SimulateCustomPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::SimulateCustomPolicyAsync(const SimulateCustomPolicyRequest& request, const SimulateCustomPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SimulateCustomPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::SimulateCustomPolicy, this, request, handler, context, m_executor.get());
 }
-
 SimulatePrincipalPolicyOutcome IAMClient::SimulatePrincipalPolicy(const SimulatePrincipalPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, SimulatePrincipalPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3316,20 +2449,13 @@ SimulatePrincipalPolicyOutcome IAMClient::SimulatePrincipalPolicy(const Simulate
 
 SimulatePrincipalPolicyOutcomeCallable IAMClient::SimulatePrincipalPolicyCallable(const SimulatePrincipalPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SimulatePrincipalPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SimulatePrincipalPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::SimulatePrincipalPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::SimulatePrincipalPolicyAsync(const SimulatePrincipalPolicyRequest& request, const SimulatePrincipalPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SimulatePrincipalPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::SimulatePrincipalPolicy, this, request, handler, context, m_executor.get());
 }
-
 TagInstanceProfileOutcome IAMClient::TagInstanceProfile(const TagInstanceProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagInstanceProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3340,20 +2466,13 @@ TagInstanceProfileOutcome IAMClient::TagInstanceProfile(const TagInstanceProfile
 
 TagInstanceProfileOutcomeCallable IAMClient::TagInstanceProfileCallable(const TagInstanceProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagInstanceProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagInstanceProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagInstanceProfile, this, request, m_executor.get());
 }
 
 void IAMClient::TagInstanceProfileAsync(const TagInstanceProfileRequest& request, const TagInstanceProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagInstanceProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagInstanceProfile, this, request, handler, context, m_executor.get());
 }
-
 TagMFADeviceOutcome IAMClient::TagMFADevice(const TagMFADeviceRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagMFADevice, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3364,20 +2483,13 @@ TagMFADeviceOutcome IAMClient::TagMFADevice(const TagMFADeviceRequest& request) 
 
 TagMFADeviceOutcomeCallable IAMClient::TagMFADeviceCallable(const TagMFADeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagMFADeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagMFADevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagMFADevice, this, request, m_executor.get());
 }
 
 void IAMClient::TagMFADeviceAsync(const TagMFADeviceRequest& request, const TagMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagMFADevice(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagMFADevice, this, request, handler, context, m_executor.get());
 }
-
 TagOpenIDConnectProviderOutcome IAMClient::TagOpenIDConnectProvider(const TagOpenIDConnectProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagOpenIDConnectProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3388,20 +2500,13 @@ TagOpenIDConnectProviderOutcome IAMClient::TagOpenIDConnectProvider(const TagOpe
 
 TagOpenIDConnectProviderOutcomeCallable IAMClient::TagOpenIDConnectProviderCallable(const TagOpenIDConnectProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagOpenIDConnectProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagOpenIDConnectProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagOpenIDConnectProvider, this, request, m_executor.get());
 }
 
 void IAMClient::TagOpenIDConnectProviderAsync(const TagOpenIDConnectProviderRequest& request, const TagOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagOpenIDConnectProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagOpenIDConnectProvider, this, request, handler, context, m_executor.get());
 }
-
 TagPolicyOutcome IAMClient::TagPolicy(const TagPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3412,20 +2517,13 @@ TagPolicyOutcome IAMClient::TagPolicy(const TagPolicyRequest& request) const
 
 TagPolicyOutcomeCallable IAMClient::TagPolicyCallable(const TagPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::TagPolicyAsync(const TagPolicyRequest& request, const TagPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagPolicy, this, request, handler, context, m_executor.get());
 }
-
 TagRoleOutcome IAMClient::TagRole(const TagRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3436,20 +2534,13 @@ TagRoleOutcome IAMClient::TagRole(const TagRoleRequest& request) const
 
 TagRoleOutcomeCallable IAMClient::TagRoleCallable(const TagRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagRole, this, request, m_executor.get());
 }
 
 void IAMClient::TagRoleAsync(const TagRoleRequest& request, const TagRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagRole, this, request, handler, context, m_executor.get());
 }
-
 TagSAMLProviderOutcome IAMClient::TagSAMLProvider(const TagSAMLProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagSAMLProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3460,20 +2551,13 @@ TagSAMLProviderOutcome IAMClient::TagSAMLProvider(const TagSAMLProviderRequest& 
 
 TagSAMLProviderOutcomeCallable IAMClient::TagSAMLProviderCallable(const TagSAMLProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagSAMLProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagSAMLProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagSAMLProvider, this, request, m_executor.get());
 }
 
 void IAMClient::TagSAMLProviderAsync(const TagSAMLProviderRequest& request, const TagSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagSAMLProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagSAMLProvider, this, request, handler, context, m_executor.get());
 }
-
 TagServerCertificateOutcome IAMClient::TagServerCertificate(const TagServerCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagServerCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3484,20 +2568,13 @@ TagServerCertificateOutcome IAMClient::TagServerCertificate(const TagServerCerti
 
 TagServerCertificateOutcomeCallable IAMClient::TagServerCertificateCallable(const TagServerCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagServerCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagServerCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagServerCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::TagServerCertificateAsync(const TagServerCertificateRequest& request, const TagServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagServerCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagServerCertificate, this, request, handler, context, m_executor.get());
 }
-
 TagUserOutcome IAMClient::TagUser(const TagUserRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, TagUser, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3508,20 +2585,13 @@ TagUserOutcome IAMClient::TagUser(const TagUserRequest& request) const
 
 TagUserOutcomeCallable IAMClient::TagUserCallable(const TagUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::TagUser, this, request, m_executor.get());
 }
 
 void IAMClient::TagUserAsync(const TagUserRequest& request, const TagUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagUser(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::TagUser, this, request, handler, context, m_executor.get());
 }
-
 UntagInstanceProfileOutcome IAMClient::UntagInstanceProfile(const UntagInstanceProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagInstanceProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3532,20 +2602,13 @@ UntagInstanceProfileOutcome IAMClient::UntagInstanceProfile(const UntagInstanceP
 
 UntagInstanceProfileOutcomeCallable IAMClient::UntagInstanceProfileCallable(const UntagInstanceProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagInstanceProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagInstanceProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagInstanceProfile, this, request, m_executor.get());
 }
 
 void IAMClient::UntagInstanceProfileAsync(const UntagInstanceProfileRequest& request, const UntagInstanceProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagInstanceProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagInstanceProfile, this, request, handler, context, m_executor.get());
 }
-
 UntagMFADeviceOutcome IAMClient::UntagMFADevice(const UntagMFADeviceRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagMFADevice, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3556,20 +2619,13 @@ UntagMFADeviceOutcome IAMClient::UntagMFADevice(const UntagMFADeviceRequest& req
 
 UntagMFADeviceOutcomeCallable IAMClient::UntagMFADeviceCallable(const UntagMFADeviceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagMFADeviceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagMFADevice(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagMFADevice, this, request, m_executor.get());
 }
 
 void IAMClient::UntagMFADeviceAsync(const UntagMFADeviceRequest& request, const UntagMFADeviceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagMFADevice(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagMFADevice, this, request, handler, context, m_executor.get());
 }
-
 UntagOpenIDConnectProviderOutcome IAMClient::UntagOpenIDConnectProvider(const UntagOpenIDConnectProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagOpenIDConnectProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3580,20 +2636,13 @@ UntagOpenIDConnectProviderOutcome IAMClient::UntagOpenIDConnectProvider(const Un
 
 UntagOpenIDConnectProviderOutcomeCallable IAMClient::UntagOpenIDConnectProviderCallable(const UntagOpenIDConnectProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagOpenIDConnectProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagOpenIDConnectProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagOpenIDConnectProvider, this, request, m_executor.get());
 }
 
 void IAMClient::UntagOpenIDConnectProviderAsync(const UntagOpenIDConnectProviderRequest& request, const UntagOpenIDConnectProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagOpenIDConnectProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagOpenIDConnectProvider, this, request, handler, context, m_executor.get());
 }
-
 UntagPolicyOutcome IAMClient::UntagPolicy(const UntagPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3604,20 +2653,13 @@ UntagPolicyOutcome IAMClient::UntagPolicy(const UntagPolicyRequest& request) con
 
 UntagPolicyOutcomeCallable IAMClient::UntagPolicyCallable(const UntagPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::UntagPolicyAsync(const UntagPolicyRequest& request, const UntagPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagPolicy, this, request, handler, context, m_executor.get());
 }
-
 UntagRoleOutcome IAMClient::UntagRole(const UntagRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3628,20 +2670,13 @@ UntagRoleOutcome IAMClient::UntagRole(const UntagRoleRequest& request) const
 
 UntagRoleOutcomeCallable IAMClient::UntagRoleCallable(const UntagRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagRole, this, request, m_executor.get());
 }
 
 void IAMClient::UntagRoleAsync(const UntagRoleRequest& request, const UntagRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagRole, this, request, handler, context, m_executor.get());
 }
-
 UntagSAMLProviderOutcome IAMClient::UntagSAMLProvider(const UntagSAMLProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagSAMLProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3652,20 +2687,13 @@ UntagSAMLProviderOutcome IAMClient::UntagSAMLProvider(const UntagSAMLProviderReq
 
 UntagSAMLProviderOutcomeCallable IAMClient::UntagSAMLProviderCallable(const UntagSAMLProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagSAMLProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagSAMLProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagSAMLProvider, this, request, m_executor.get());
 }
 
 void IAMClient::UntagSAMLProviderAsync(const UntagSAMLProviderRequest& request, const UntagSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagSAMLProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagSAMLProvider, this, request, handler, context, m_executor.get());
 }
-
 UntagServerCertificateOutcome IAMClient::UntagServerCertificate(const UntagServerCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagServerCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3676,20 +2704,13 @@ UntagServerCertificateOutcome IAMClient::UntagServerCertificate(const UntagServe
 
 UntagServerCertificateOutcomeCallable IAMClient::UntagServerCertificateCallable(const UntagServerCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagServerCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagServerCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagServerCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::UntagServerCertificateAsync(const UntagServerCertificateRequest& request, const UntagServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagServerCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagServerCertificate, this, request, handler, context, m_executor.get());
 }
-
 UntagUserOutcome IAMClient::UntagUser(const UntagUserRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UntagUser, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3700,20 +2721,13 @@ UntagUserOutcome IAMClient::UntagUser(const UntagUserRequest& request) const
 
 UntagUserOutcomeCallable IAMClient::UntagUserCallable(const UntagUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UntagUser, this, request, m_executor.get());
 }
 
 void IAMClient::UntagUserAsync(const UntagUserRequest& request, const UntagUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagUser(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UntagUser, this, request, handler, context, m_executor.get());
 }
-
 UpdateAccessKeyOutcome IAMClient::UpdateAccessKey(const UpdateAccessKeyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateAccessKey, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3724,20 +2738,13 @@ UpdateAccessKeyOutcome IAMClient::UpdateAccessKey(const UpdateAccessKeyRequest& 
 
 UpdateAccessKeyOutcomeCallable IAMClient::UpdateAccessKeyCallable(const UpdateAccessKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccessKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccessKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateAccessKey, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateAccessKeyAsync(const UpdateAccessKeyRequest& request, const UpdateAccessKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccessKey(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateAccessKey, this, request, handler, context, m_executor.get());
 }
-
 UpdateAccountPasswordPolicyOutcome IAMClient::UpdateAccountPasswordPolicy(const UpdateAccountPasswordPolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateAccountPasswordPolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3748,20 +2755,13 @@ UpdateAccountPasswordPolicyOutcome IAMClient::UpdateAccountPasswordPolicy(const 
 
 UpdateAccountPasswordPolicyOutcomeCallable IAMClient::UpdateAccountPasswordPolicyCallable(const UpdateAccountPasswordPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccountPasswordPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccountPasswordPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateAccountPasswordPolicy, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateAccountPasswordPolicyAsync(const UpdateAccountPasswordPolicyRequest& request, const UpdateAccountPasswordPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccountPasswordPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateAccountPasswordPolicy, this, request, handler, context, m_executor.get());
 }
-
 UpdateAssumeRolePolicyOutcome IAMClient::UpdateAssumeRolePolicy(const UpdateAssumeRolePolicyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateAssumeRolePolicy, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3772,20 +2772,13 @@ UpdateAssumeRolePolicyOutcome IAMClient::UpdateAssumeRolePolicy(const UpdateAssu
 
 UpdateAssumeRolePolicyOutcomeCallable IAMClient::UpdateAssumeRolePolicyCallable(const UpdateAssumeRolePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssumeRolePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAssumeRolePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateAssumeRolePolicy, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateAssumeRolePolicyAsync(const UpdateAssumeRolePolicyRequest& request, const UpdateAssumeRolePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAssumeRolePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateAssumeRolePolicy, this, request, handler, context, m_executor.get());
 }
-
 UpdateGroupOutcome IAMClient::UpdateGroup(const UpdateGroupRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateGroup, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3796,20 +2789,13 @@ UpdateGroupOutcome IAMClient::UpdateGroup(const UpdateGroupRequest& request) con
 
 UpdateGroupOutcomeCallable IAMClient::UpdateGroupCallable(const UpdateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateGroup, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateGroupAsync(const UpdateGroupRequest& request, const UpdateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGroup(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateGroup, this, request, handler, context, m_executor.get());
 }
-
 UpdateLoginProfileOutcome IAMClient::UpdateLoginProfile(const UpdateLoginProfileRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateLoginProfile, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3820,20 +2806,13 @@ UpdateLoginProfileOutcome IAMClient::UpdateLoginProfile(const UpdateLoginProfile
 
 UpdateLoginProfileOutcomeCallable IAMClient::UpdateLoginProfileCallable(const UpdateLoginProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateLoginProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateLoginProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateLoginProfile, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateLoginProfileAsync(const UpdateLoginProfileRequest& request, const UpdateLoginProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateLoginProfile(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateLoginProfile, this, request, handler, context, m_executor.get());
 }
-
 UpdateOpenIDConnectProviderThumbprintOutcome IAMClient::UpdateOpenIDConnectProviderThumbprint(const UpdateOpenIDConnectProviderThumbprintRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateOpenIDConnectProviderThumbprint, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3844,20 +2823,13 @@ UpdateOpenIDConnectProviderThumbprintOutcome IAMClient::UpdateOpenIDConnectProvi
 
 UpdateOpenIDConnectProviderThumbprintOutcomeCallable IAMClient::UpdateOpenIDConnectProviderThumbprintCallable(const UpdateOpenIDConnectProviderThumbprintRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateOpenIDConnectProviderThumbprintOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateOpenIDConnectProviderThumbprint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateOpenIDConnectProviderThumbprint, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateOpenIDConnectProviderThumbprintAsync(const UpdateOpenIDConnectProviderThumbprintRequest& request, const UpdateOpenIDConnectProviderThumbprintResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateOpenIDConnectProviderThumbprint(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateOpenIDConnectProviderThumbprint, this, request, handler, context, m_executor.get());
 }
-
 UpdateRoleOutcome IAMClient::UpdateRole(const UpdateRoleRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateRole, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3868,20 +2840,13 @@ UpdateRoleOutcome IAMClient::UpdateRole(const UpdateRoleRequest& request) const
 
 UpdateRoleOutcomeCallable IAMClient::UpdateRoleCallable(const UpdateRoleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRole(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateRole, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateRoleAsync(const UpdateRoleRequest& request, const UpdateRoleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRole(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateRole, this, request, handler, context, m_executor.get());
 }
-
 UpdateRoleDescriptionOutcome IAMClient::UpdateRoleDescription(const UpdateRoleDescriptionRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateRoleDescription, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3892,20 +2857,13 @@ UpdateRoleDescriptionOutcome IAMClient::UpdateRoleDescription(const UpdateRoleDe
 
 UpdateRoleDescriptionOutcomeCallable IAMClient::UpdateRoleDescriptionCallable(const UpdateRoleDescriptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoleDescriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoleDescription(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateRoleDescription, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateRoleDescriptionAsync(const UpdateRoleDescriptionRequest& request, const UpdateRoleDescriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoleDescription(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateRoleDescription, this, request, handler, context, m_executor.get());
 }
-
 UpdateSAMLProviderOutcome IAMClient::UpdateSAMLProvider(const UpdateSAMLProviderRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateSAMLProvider, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3916,20 +2874,13 @@ UpdateSAMLProviderOutcome IAMClient::UpdateSAMLProvider(const UpdateSAMLProvider
 
 UpdateSAMLProviderOutcomeCallable IAMClient::UpdateSAMLProviderCallable(const UpdateSAMLProviderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSAMLProviderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSAMLProvider(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateSAMLProvider, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateSAMLProviderAsync(const UpdateSAMLProviderRequest& request, const UpdateSAMLProviderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSAMLProvider(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateSAMLProvider, this, request, handler, context, m_executor.get());
 }
-
 UpdateSSHPublicKeyOutcome IAMClient::UpdateSSHPublicKey(const UpdateSSHPublicKeyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateSSHPublicKey, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3940,20 +2891,13 @@ UpdateSSHPublicKeyOutcome IAMClient::UpdateSSHPublicKey(const UpdateSSHPublicKey
 
 UpdateSSHPublicKeyOutcomeCallable IAMClient::UpdateSSHPublicKeyCallable(const UpdateSSHPublicKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSSHPublicKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSSHPublicKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateSSHPublicKey, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateSSHPublicKeyAsync(const UpdateSSHPublicKeyRequest& request, const UpdateSSHPublicKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSSHPublicKey(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateSSHPublicKey, this, request, handler, context, m_executor.get());
 }
-
 UpdateServerCertificateOutcome IAMClient::UpdateServerCertificate(const UpdateServerCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateServerCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3964,20 +2908,13 @@ UpdateServerCertificateOutcome IAMClient::UpdateServerCertificate(const UpdateSe
 
 UpdateServerCertificateOutcomeCallable IAMClient::UpdateServerCertificateCallable(const UpdateServerCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateServerCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateServerCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateServerCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateServerCertificateAsync(const UpdateServerCertificateRequest& request, const UpdateServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateServerCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateServerCertificate, this, request, handler, context, m_executor.get());
 }
-
 UpdateServiceSpecificCredentialOutcome IAMClient::UpdateServiceSpecificCredential(const UpdateServiceSpecificCredentialRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateServiceSpecificCredential, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -3988,20 +2925,13 @@ UpdateServiceSpecificCredentialOutcome IAMClient::UpdateServiceSpecificCredentia
 
 UpdateServiceSpecificCredentialOutcomeCallable IAMClient::UpdateServiceSpecificCredentialCallable(const UpdateServiceSpecificCredentialRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateServiceSpecificCredentialOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateServiceSpecificCredential(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateServiceSpecificCredential, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateServiceSpecificCredentialAsync(const UpdateServiceSpecificCredentialRequest& request, const UpdateServiceSpecificCredentialResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateServiceSpecificCredential(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateServiceSpecificCredential, this, request, handler, context, m_executor.get());
 }
-
 UpdateSigningCertificateOutcome IAMClient::UpdateSigningCertificate(const UpdateSigningCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateSigningCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -4012,20 +2942,13 @@ UpdateSigningCertificateOutcome IAMClient::UpdateSigningCertificate(const Update
 
 UpdateSigningCertificateOutcomeCallable IAMClient::UpdateSigningCertificateCallable(const UpdateSigningCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSigningCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSigningCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateSigningCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateSigningCertificateAsync(const UpdateSigningCertificateRequest& request, const UpdateSigningCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSigningCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateSigningCertificate, this, request, handler, context, m_executor.get());
 }
-
 UpdateUserOutcome IAMClient::UpdateUser(const UpdateUserRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UpdateUser, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -4036,20 +2959,13 @@ UpdateUserOutcome IAMClient::UpdateUser(const UpdateUserRequest& request) const
 
 UpdateUserOutcomeCallable IAMClient::UpdateUserCallable(const UpdateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UpdateUser, this, request, m_executor.get());
 }
 
 void IAMClient::UpdateUserAsync(const UpdateUserRequest& request, const UpdateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUser(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UpdateUser, this, request, handler, context, m_executor.get());
 }
-
 UploadSSHPublicKeyOutcome IAMClient::UploadSSHPublicKey(const UploadSSHPublicKeyRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UploadSSHPublicKey, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -4060,20 +2976,13 @@ UploadSSHPublicKeyOutcome IAMClient::UploadSSHPublicKey(const UploadSSHPublicKey
 
 UploadSSHPublicKeyOutcomeCallable IAMClient::UploadSSHPublicKeyCallable(const UploadSSHPublicKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UploadSSHPublicKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UploadSSHPublicKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UploadSSHPublicKey, this, request, m_executor.get());
 }
 
 void IAMClient::UploadSSHPublicKeyAsync(const UploadSSHPublicKeyRequest& request, const UploadSSHPublicKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UploadSSHPublicKey(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UploadSSHPublicKey, this, request, handler, context, m_executor.get());
 }
-
 UploadServerCertificateOutcome IAMClient::UploadServerCertificate(const UploadServerCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UploadServerCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -4084,20 +2993,13 @@ UploadServerCertificateOutcome IAMClient::UploadServerCertificate(const UploadSe
 
 UploadServerCertificateOutcomeCallable IAMClient::UploadServerCertificateCallable(const UploadServerCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UploadServerCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UploadServerCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UploadServerCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::UploadServerCertificateAsync(const UploadServerCertificateRequest& request, const UploadServerCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UploadServerCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UploadServerCertificate, this, request, handler, context, m_executor.get());
 }
-
 UploadSigningCertificateOutcome IAMClient::UploadSigningCertificate(const UploadSigningCertificateRequest& request) const
 {
   AWS_OPERATION_CHECK_PTR(m_endpointProvider, UploadSigningCertificate, CoreErrors, CoreErrors::ENDPOINT_RESOLUTION_FAILURE);
@@ -4108,17 +3010,10 @@ UploadSigningCertificateOutcome IAMClient::UploadSigningCertificate(const Upload
 
 UploadSigningCertificateOutcomeCallable IAMClient::UploadSigningCertificateCallable(const UploadSigningCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UploadSigningCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UploadSigningCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IAMClient::UploadSigningCertificate, this, request, m_executor.get());
 }
 
 void IAMClient::UploadSigningCertificateAsync(const UploadSigningCertificateRequest& request, const UploadSigningCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UploadSigningCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IAMClient::UploadSigningCertificate, this, request, handler, context, m_executor.get());
 }
-

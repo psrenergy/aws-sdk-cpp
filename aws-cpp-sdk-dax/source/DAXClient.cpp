@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -180,18 +181,12 @@ CreateClusterOutcome DAXClient::CreateCluster(const CreateClusterRequest& reques
 
 CreateClusterOutcomeCallable DAXClient::CreateClusterCallable(const CreateClusterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateClusterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCluster(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::CreateCluster, this, request, m_executor.get());
 }
 
 void DAXClient::CreateClusterAsync(const CreateClusterRequest& request, const CreateClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCluster(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::CreateCluster, this, request, handler, context, m_executor.get());
 }
 
 CreateParameterGroupOutcome DAXClient::CreateParameterGroup(const CreateParameterGroupRequest& request) const
@@ -204,18 +199,12 @@ CreateParameterGroupOutcome DAXClient::CreateParameterGroup(const CreateParamete
 
 CreateParameterGroupOutcomeCallable DAXClient::CreateParameterGroupCallable(const CreateParameterGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateParameterGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateParameterGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::CreateParameterGroup, this, request, m_executor.get());
 }
 
 void DAXClient::CreateParameterGroupAsync(const CreateParameterGroupRequest& request, const CreateParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateParameterGroup(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::CreateParameterGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateSubnetGroupOutcome DAXClient::CreateSubnetGroup(const CreateSubnetGroupRequest& request) const
@@ -228,18 +217,12 @@ CreateSubnetGroupOutcome DAXClient::CreateSubnetGroup(const CreateSubnetGroupReq
 
 CreateSubnetGroupOutcomeCallable DAXClient::CreateSubnetGroupCallable(const CreateSubnetGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSubnetGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSubnetGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::CreateSubnetGroup, this, request, m_executor.get());
 }
 
 void DAXClient::CreateSubnetGroupAsync(const CreateSubnetGroupRequest& request, const CreateSubnetGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSubnetGroup(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::CreateSubnetGroup, this, request, handler, context, m_executor.get());
 }
 
 DecreaseReplicationFactorOutcome DAXClient::DecreaseReplicationFactor(const DecreaseReplicationFactorRequest& request) const
@@ -252,18 +235,12 @@ DecreaseReplicationFactorOutcome DAXClient::DecreaseReplicationFactor(const Decr
 
 DecreaseReplicationFactorOutcomeCallable DAXClient::DecreaseReplicationFactorCallable(const DecreaseReplicationFactorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DecreaseReplicationFactorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DecreaseReplicationFactor(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DecreaseReplicationFactor, this, request, m_executor.get());
 }
 
 void DAXClient::DecreaseReplicationFactorAsync(const DecreaseReplicationFactorRequest& request, const DecreaseReplicationFactorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DecreaseReplicationFactor(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DecreaseReplicationFactor, this, request, handler, context, m_executor.get());
 }
 
 DeleteClusterOutcome DAXClient::DeleteCluster(const DeleteClusterRequest& request) const
@@ -276,18 +253,12 @@ DeleteClusterOutcome DAXClient::DeleteCluster(const DeleteClusterRequest& reques
 
 DeleteClusterOutcomeCallable DAXClient::DeleteClusterCallable(const DeleteClusterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteClusterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCluster(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DeleteCluster, this, request, m_executor.get());
 }
 
 void DAXClient::DeleteClusterAsync(const DeleteClusterRequest& request, const DeleteClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCluster(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DeleteCluster, this, request, handler, context, m_executor.get());
 }
 
 DeleteParameterGroupOutcome DAXClient::DeleteParameterGroup(const DeleteParameterGroupRequest& request) const
@@ -300,18 +271,12 @@ DeleteParameterGroupOutcome DAXClient::DeleteParameterGroup(const DeleteParamete
 
 DeleteParameterGroupOutcomeCallable DAXClient::DeleteParameterGroupCallable(const DeleteParameterGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteParameterGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteParameterGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DeleteParameterGroup, this, request, m_executor.get());
 }
 
 void DAXClient::DeleteParameterGroupAsync(const DeleteParameterGroupRequest& request, const DeleteParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteParameterGroup(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DeleteParameterGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteSubnetGroupOutcome DAXClient::DeleteSubnetGroup(const DeleteSubnetGroupRequest& request) const
@@ -324,18 +289,12 @@ DeleteSubnetGroupOutcome DAXClient::DeleteSubnetGroup(const DeleteSubnetGroupReq
 
 DeleteSubnetGroupOutcomeCallable DAXClient::DeleteSubnetGroupCallable(const DeleteSubnetGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSubnetGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSubnetGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DeleteSubnetGroup, this, request, m_executor.get());
 }
 
 void DAXClient::DeleteSubnetGroupAsync(const DeleteSubnetGroupRequest& request, const DeleteSubnetGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSubnetGroup(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DeleteSubnetGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeClustersOutcome DAXClient::DescribeClusters(const DescribeClustersRequest& request) const
@@ -348,18 +307,12 @@ DescribeClustersOutcome DAXClient::DescribeClusters(const DescribeClustersReques
 
 DescribeClustersOutcomeCallable DAXClient::DescribeClustersCallable(const DescribeClustersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeClustersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeClusters(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DescribeClusters, this, request, m_executor.get());
 }
 
 void DAXClient::DescribeClustersAsync(const DescribeClustersRequest& request, const DescribeClustersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeClusters(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DescribeClusters, this, request, handler, context, m_executor.get());
 }
 
 DescribeDefaultParametersOutcome DAXClient::DescribeDefaultParameters(const DescribeDefaultParametersRequest& request) const
@@ -372,18 +325,12 @@ DescribeDefaultParametersOutcome DAXClient::DescribeDefaultParameters(const Desc
 
 DescribeDefaultParametersOutcomeCallable DAXClient::DescribeDefaultParametersCallable(const DescribeDefaultParametersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDefaultParametersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDefaultParameters(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DescribeDefaultParameters, this, request, m_executor.get());
 }
 
 void DAXClient::DescribeDefaultParametersAsync(const DescribeDefaultParametersRequest& request, const DescribeDefaultParametersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDefaultParameters(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DescribeDefaultParameters, this, request, handler, context, m_executor.get());
 }
 
 DescribeEventsOutcome DAXClient::DescribeEvents(const DescribeEventsRequest& request) const
@@ -396,18 +343,12 @@ DescribeEventsOutcome DAXClient::DescribeEvents(const DescribeEventsRequest& req
 
 DescribeEventsOutcomeCallable DAXClient::DescribeEventsCallable(const DescribeEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DescribeEvents, this, request, m_executor.get());
 }
 
 void DAXClient::DescribeEventsAsync(const DescribeEventsRequest& request, const DescribeEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEvents(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DescribeEvents, this, request, handler, context, m_executor.get());
 }
 
 DescribeParameterGroupsOutcome DAXClient::DescribeParameterGroups(const DescribeParameterGroupsRequest& request) const
@@ -420,18 +361,12 @@ DescribeParameterGroupsOutcome DAXClient::DescribeParameterGroups(const Describe
 
 DescribeParameterGroupsOutcomeCallable DAXClient::DescribeParameterGroupsCallable(const DescribeParameterGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeParameterGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeParameterGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DescribeParameterGroups, this, request, m_executor.get());
 }
 
 void DAXClient::DescribeParameterGroupsAsync(const DescribeParameterGroupsRequest& request, const DescribeParameterGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeParameterGroups(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DescribeParameterGroups, this, request, handler, context, m_executor.get());
 }
 
 DescribeParametersOutcome DAXClient::DescribeParameters(const DescribeParametersRequest& request) const
@@ -444,18 +379,12 @@ DescribeParametersOutcome DAXClient::DescribeParameters(const DescribeParameters
 
 DescribeParametersOutcomeCallable DAXClient::DescribeParametersCallable(const DescribeParametersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeParametersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeParameters(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DescribeParameters, this, request, m_executor.get());
 }
 
 void DAXClient::DescribeParametersAsync(const DescribeParametersRequest& request, const DescribeParametersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeParameters(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DescribeParameters, this, request, handler, context, m_executor.get());
 }
 
 DescribeSubnetGroupsOutcome DAXClient::DescribeSubnetGroups(const DescribeSubnetGroupsRequest& request) const
@@ -468,18 +397,12 @@ DescribeSubnetGroupsOutcome DAXClient::DescribeSubnetGroups(const DescribeSubnet
 
 DescribeSubnetGroupsOutcomeCallable DAXClient::DescribeSubnetGroupsCallable(const DescribeSubnetGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSubnetGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSubnetGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::DescribeSubnetGroups, this, request, m_executor.get());
 }
 
 void DAXClient::DescribeSubnetGroupsAsync(const DescribeSubnetGroupsRequest& request, const DescribeSubnetGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSubnetGroups(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::DescribeSubnetGroups, this, request, handler, context, m_executor.get());
 }
 
 IncreaseReplicationFactorOutcome DAXClient::IncreaseReplicationFactor(const IncreaseReplicationFactorRequest& request) const
@@ -492,18 +415,12 @@ IncreaseReplicationFactorOutcome DAXClient::IncreaseReplicationFactor(const Incr
 
 IncreaseReplicationFactorOutcomeCallable DAXClient::IncreaseReplicationFactorCallable(const IncreaseReplicationFactorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< IncreaseReplicationFactorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->IncreaseReplicationFactor(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::IncreaseReplicationFactor, this, request, m_executor.get());
 }
 
 void DAXClient::IncreaseReplicationFactorAsync(const IncreaseReplicationFactorRequest& request, const IncreaseReplicationFactorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, IncreaseReplicationFactor(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::IncreaseReplicationFactor, this, request, handler, context, m_executor.get());
 }
 
 ListTagsOutcome DAXClient::ListTags(const ListTagsRequest& request) const
@@ -516,18 +433,12 @@ ListTagsOutcome DAXClient::ListTags(const ListTagsRequest& request) const
 
 ListTagsOutcomeCallable DAXClient::ListTagsCallable(const ListTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::ListTags, this, request, m_executor.get());
 }
 
 void DAXClient::ListTagsAsync(const ListTagsRequest& request, const ListTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTags(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::ListTags, this, request, handler, context, m_executor.get());
 }
 
 RebootNodeOutcome DAXClient::RebootNode(const RebootNodeRequest& request) const
@@ -540,18 +451,12 @@ RebootNodeOutcome DAXClient::RebootNode(const RebootNodeRequest& request) const
 
 RebootNodeOutcomeCallable DAXClient::RebootNodeCallable(const RebootNodeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RebootNodeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RebootNode(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::RebootNode, this, request, m_executor.get());
 }
 
 void DAXClient::RebootNodeAsync(const RebootNodeRequest& request, const RebootNodeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RebootNode(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::RebootNode, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome DAXClient::TagResource(const TagResourceRequest& request) const
@@ -564,18 +469,12 @@ TagResourceOutcome DAXClient::TagResource(const TagResourceRequest& request) con
 
 TagResourceOutcomeCallable DAXClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::TagResource, this, request, m_executor.get());
 }
 
 void DAXClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome DAXClient::UntagResource(const UntagResourceRequest& request) const
@@ -588,18 +487,12 @@ UntagResourceOutcome DAXClient::UntagResource(const UntagResourceRequest& reques
 
 UntagResourceOutcomeCallable DAXClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::UntagResource, this, request, m_executor.get());
 }
 
 void DAXClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateClusterOutcome DAXClient::UpdateCluster(const UpdateClusterRequest& request) const
@@ -612,18 +505,12 @@ UpdateClusterOutcome DAXClient::UpdateCluster(const UpdateClusterRequest& reques
 
 UpdateClusterOutcomeCallable DAXClient::UpdateClusterCallable(const UpdateClusterRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateClusterOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCluster(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::UpdateCluster, this, request, m_executor.get());
 }
 
 void DAXClient::UpdateClusterAsync(const UpdateClusterRequest& request, const UpdateClusterResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCluster(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::UpdateCluster, this, request, handler, context, m_executor.get());
 }
 
 UpdateParameterGroupOutcome DAXClient::UpdateParameterGroup(const UpdateParameterGroupRequest& request) const
@@ -636,18 +523,12 @@ UpdateParameterGroupOutcome DAXClient::UpdateParameterGroup(const UpdateParamete
 
 UpdateParameterGroupOutcomeCallable DAXClient::UpdateParameterGroupCallable(const UpdateParameterGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateParameterGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateParameterGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::UpdateParameterGroup, this, request, m_executor.get());
 }
 
 void DAXClient::UpdateParameterGroupAsync(const UpdateParameterGroupRequest& request, const UpdateParameterGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateParameterGroup(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::UpdateParameterGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateSubnetGroupOutcome DAXClient::UpdateSubnetGroup(const UpdateSubnetGroupRequest& request) const
@@ -660,17 +541,11 @@ UpdateSubnetGroupOutcome DAXClient::UpdateSubnetGroup(const UpdateSubnetGroupReq
 
 UpdateSubnetGroupOutcomeCallable DAXClient::UpdateSubnetGroupCallable(const UpdateSubnetGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSubnetGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSubnetGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DAXClient::UpdateSubnetGroup, this, request, m_executor.get());
 }
 
 void DAXClient::UpdateSubnetGroupAsync(const UpdateSubnetGroupRequest& request, const UpdateSubnetGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSubnetGroup(request), context);
-    } );
+  MakeAsyncOperation(&DAXClient::UpdateSubnetGroup, this, request, handler, context, m_executor.get());
 }
 

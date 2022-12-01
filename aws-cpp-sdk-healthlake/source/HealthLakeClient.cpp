@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -172,18 +173,12 @@ CreateFHIRDatastoreOutcome HealthLakeClient::CreateFHIRDatastore(const CreateFHI
 
 CreateFHIRDatastoreOutcomeCallable HealthLakeClient::CreateFHIRDatastoreCallable(const CreateFHIRDatastoreRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateFHIRDatastoreOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateFHIRDatastore(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::CreateFHIRDatastore, this, request, m_executor.get());
 }
 
 void HealthLakeClient::CreateFHIRDatastoreAsync(const CreateFHIRDatastoreRequest& request, const CreateFHIRDatastoreResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateFHIRDatastore(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::CreateFHIRDatastore, this, request, handler, context, m_executor.get());
 }
 
 DeleteFHIRDatastoreOutcome HealthLakeClient::DeleteFHIRDatastore(const DeleteFHIRDatastoreRequest& request) const
@@ -196,18 +191,12 @@ DeleteFHIRDatastoreOutcome HealthLakeClient::DeleteFHIRDatastore(const DeleteFHI
 
 DeleteFHIRDatastoreOutcomeCallable HealthLakeClient::DeleteFHIRDatastoreCallable(const DeleteFHIRDatastoreRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteFHIRDatastoreOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteFHIRDatastore(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::DeleteFHIRDatastore, this, request, m_executor.get());
 }
 
 void HealthLakeClient::DeleteFHIRDatastoreAsync(const DeleteFHIRDatastoreRequest& request, const DeleteFHIRDatastoreResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteFHIRDatastore(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::DeleteFHIRDatastore, this, request, handler, context, m_executor.get());
 }
 
 DescribeFHIRDatastoreOutcome HealthLakeClient::DescribeFHIRDatastore(const DescribeFHIRDatastoreRequest& request) const
@@ -220,18 +209,12 @@ DescribeFHIRDatastoreOutcome HealthLakeClient::DescribeFHIRDatastore(const Descr
 
 DescribeFHIRDatastoreOutcomeCallable HealthLakeClient::DescribeFHIRDatastoreCallable(const DescribeFHIRDatastoreRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFHIRDatastoreOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFHIRDatastore(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::DescribeFHIRDatastore, this, request, m_executor.get());
 }
 
 void HealthLakeClient::DescribeFHIRDatastoreAsync(const DescribeFHIRDatastoreRequest& request, const DescribeFHIRDatastoreResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFHIRDatastore(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::DescribeFHIRDatastore, this, request, handler, context, m_executor.get());
 }
 
 DescribeFHIRExportJobOutcome HealthLakeClient::DescribeFHIRExportJob(const DescribeFHIRExportJobRequest& request) const
@@ -244,18 +227,12 @@ DescribeFHIRExportJobOutcome HealthLakeClient::DescribeFHIRExportJob(const Descr
 
 DescribeFHIRExportJobOutcomeCallable HealthLakeClient::DescribeFHIRExportJobCallable(const DescribeFHIRExportJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFHIRExportJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFHIRExportJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::DescribeFHIRExportJob, this, request, m_executor.get());
 }
 
 void HealthLakeClient::DescribeFHIRExportJobAsync(const DescribeFHIRExportJobRequest& request, const DescribeFHIRExportJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFHIRExportJob(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::DescribeFHIRExportJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeFHIRImportJobOutcome HealthLakeClient::DescribeFHIRImportJob(const DescribeFHIRImportJobRequest& request) const
@@ -268,18 +245,12 @@ DescribeFHIRImportJobOutcome HealthLakeClient::DescribeFHIRImportJob(const Descr
 
 DescribeFHIRImportJobOutcomeCallable HealthLakeClient::DescribeFHIRImportJobCallable(const DescribeFHIRImportJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFHIRImportJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFHIRImportJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::DescribeFHIRImportJob, this, request, m_executor.get());
 }
 
 void HealthLakeClient::DescribeFHIRImportJobAsync(const DescribeFHIRImportJobRequest& request, const DescribeFHIRImportJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFHIRImportJob(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::DescribeFHIRImportJob, this, request, handler, context, m_executor.get());
 }
 
 ListFHIRDatastoresOutcome HealthLakeClient::ListFHIRDatastores(const ListFHIRDatastoresRequest& request) const
@@ -292,18 +263,12 @@ ListFHIRDatastoresOutcome HealthLakeClient::ListFHIRDatastores(const ListFHIRDat
 
 ListFHIRDatastoresOutcomeCallable HealthLakeClient::ListFHIRDatastoresCallable(const ListFHIRDatastoresRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFHIRDatastoresOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFHIRDatastores(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::ListFHIRDatastores, this, request, m_executor.get());
 }
 
 void HealthLakeClient::ListFHIRDatastoresAsync(const ListFHIRDatastoresRequest& request, const ListFHIRDatastoresResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFHIRDatastores(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::ListFHIRDatastores, this, request, handler, context, m_executor.get());
 }
 
 ListFHIRExportJobsOutcome HealthLakeClient::ListFHIRExportJobs(const ListFHIRExportJobsRequest& request) const
@@ -316,18 +281,12 @@ ListFHIRExportJobsOutcome HealthLakeClient::ListFHIRExportJobs(const ListFHIRExp
 
 ListFHIRExportJobsOutcomeCallable HealthLakeClient::ListFHIRExportJobsCallable(const ListFHIRExportJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFHIRExportJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFHIRExportJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::ListFHIRExportJobs, this, request, m_executor.get());
 }
 
 void HealthLakeClient::ListFHIRExportJobsAsync(const ListFHIRExportJobsRequest& request, const ListFHIRExportJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFHIRExportJobs(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::ListFHIRExportJobs, this, request, handler, context, m_executor.get());
 }
 
 ListFHIRImportJobsOutcome HealthLakeClient::ListFHIRImportJobs(const ListFHIRImportJobsRequest& request) const
@@ -340,18 +299,12 @@ ListFHIRImportJobsOutcome HealthLakeClient::ListFHIRImportJobs(const ListFHIRImp
 
 ListFHIRImportJobsOutcomeCallable HealthLakeClient::ListFHIRImportJobsCallable(const ListFHIRImportJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFHIRImportJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFHIRImportJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::ListFHIRImportJobs, this, request, m_executor.get());
 }
 
 void HealthLakeClient::ListFHIRImportJobsAsync(const ListFHIRImportJobsRequest& request, const ListFHIRImportJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFHIRImportJobs(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::ListFHIRImportJobs, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome HealthLakeClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -364,18 +317,12 @@ ListTagsForResourceOutcome HealthLakeClient::ListTagsForResource(const ListTagsF
 
 ListTagsForResourceOutcomeCallable HealthLakeClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void HealthLakeClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 StartFHIRExportJobOutcome HealthLakeClient::StartFHIRExportJob(const StartFHIRExportJobRequest& request) const
@@ -388,18 +335,12 @@ StartFHIRExportJobOutcome HealthLakeClient::StartFHIRExportJob(const StartFHIREx
 
 StartFHIRExportJobOutcomeCallable HealthLakeClient::StartFHIRExportJobCallable(const StartFHIRExportJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartFHIRExportJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartFHIRExportJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::StartFHIRExportJob, this, request, m_executor.get());
 }
 
 void HealthLakeClient::StartFHIRExportJobAsync(const StartFHIRExportJobRequest& request, const StartFHIRExportJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartFHIRExportJob(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::StartFHIRExportJob, this, request, handler, context, m_executor.get());
 }
 
 StartFHIRImportJobOutcome HealthLakeClient::StartFHIRImportJob(const StartFHIRImportJobRequest& request) const
@@ -412,18 +353,12 @@ StartFHIRImportJobOutcome HealthLakeClient::StartFHIRImportJob(const StartFHIRIm
 
 StartFHIRImportJobOutcomeCallable HealthLakeClient::StartFHIRImportJobCallable(const StartFHIRImportJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartFHIRImportJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartFHIRImportJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::StartFHIRImportJob, this, request, m_executor.get());
 }
 
 void HealthLakeClient::StartFHIRImportJobAsync(const StartFHIRImportJobRequest& request, const StartFHIRImportJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartFHIRImportJob(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::StartFHIRImportJob, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome HealthLakeClient::TagResource(const TagResourceRequest& request) const
@@ -436,18 +371,12 @@ TagResourceOutcome HealthLakeClient::TagResource(const TagResourceRequest& reque
 
 TagResourceOutcomeCallable HealthLakeClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::TagResource, this, request, m_executor.get());
 }
 
 void HealthLakeClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome HealthLakeClient::UntagResource(const UntagResourceRequest& request) const
@@ -460,17 +389,11 @@ UntagResourceOutcome HealthLakeClient::UntagResource(const UntagResourceRequest&
 
 UntagResourceOutcomeCallable HealthLakeClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &HealthLakeClient::UntagResource, this, request, m_executor.get());
 }
 
 void HealthLakeClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&HealthLakeClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 

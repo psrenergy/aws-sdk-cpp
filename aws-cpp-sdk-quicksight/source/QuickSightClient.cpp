@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -300,18 +301,12 @@ CancelIngestionOutcome QuickSightClient::CancelIngestion(const CancelIngestionRe
 
 CancelIngestionOutcomeCallable QuickSightClient::CancelIngestionCallable(const CancelIngestionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelIngestionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelIngestion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CancelIngestion, this, request, m_executor.get());
 }
 
 void QuickSightClient::CancelIngestionAsync(const CancelIngestionRequest& request, const CancelIngestionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelIngestion(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CancelIngestion, this, request, handler, context, m_executor.get());
 }
 
 CreateAccountCustomizationOutcome QuickSightClient::CreateAccountCustomization(const CreateAccountCustomizationRequest& request) const
@@ -332,18 +327,12 @@ CreateAccountCustomizationOutcome QuickSightClient::CreateAccountCustomization(c
 
 CreateAccountCustomizationOutcomeCallable QuickSightClient::CreateAccountCustomizationCallable(const CreateAccountCustomizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAccountCustomizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAccountCustomization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateAccountCustomization, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateAccountCustomizationAsync(const CreateAccountCustomizationRequest& request, const CreateAccountCustomizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAccountCustomization(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateAccountCustomization, this, request, handler, context, m_executor.get());
 }
 
 CreateAccountSubscriptionOutcome QuickSightClient::CreateAccountSubscription(const CreateAccountSubscriptionRequest& request) const
@@ -363,18 +352,12 @@ CreateAccountSubscriptionOutcome QuickSightClient::CreateAccountSubscription(con
 
 CreateAccountSubscriptionOutcomeCallable QuickSightClient::CreateAccountSubscriptionCallable(const CreateAccountSubscriptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAccountSubscriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAccountSubscription(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateAccountSubscription, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateAccountSubscriptionAsync(const CreateAccountSubscriptionRequest& request, const CreateAccountSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAccountSubscription(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateAccountSubscription, this, request, handler, context, m_executor.get());
 }
 
 CreateAnalysisOutcome QuickSightClient::CreateAnalysis(const CreateAnalysisRequest& request) const
@@ -401,18 +384,12 @@ CreateAnalysisOutcome QuickSightClient::CreateAnalysis(const CreateAnalysisReque
 
 CreateAnalysisOutcomeCallable QuickSightClient::CreateAnalysisCallable(const CreateAnalysisRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAnalysisOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAnalysis(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateAnalysis, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateAnalysisAsync(const CreateAnalysisRequest& request, const CreateAnalysisResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAnalysis(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateAnalysis, this, request, handler, context, m_executor.get());
 }
 
 CreateDashboardOutcome QuickSightClient::CreateDashboard(const CreateDashboardRequest& request) const
@@ -439,18 +416,12 @@ CreateDashboardOutcome QuickSightClient::CreateDashboard(const CreateDashboardRe
 
 CreateDashboardOutcomeCallable QuickSightClient::CreateDashboardCallable(const CreateDashboardRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDashboardOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDashboard(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateDashboard, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateDashboardAsync(const CreateDashboardRequest& request, const CreateDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDashboard(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateDashboard, this, request, handler, context, m_executor.get());
 }
 
 CreateDataSetOutcome QuickSightClient::CreateDataSet(const CreateDataSetRequest& request) const
@@ -471,18 +442,12 @@ CreateDataSetOutcome QuickSightClient::CreateDataSet(const CreateDataSetRequest&
 
 CreateDataSetOutcomeCallable QuickSightClient::CreateDataSetCallable(const CreateDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateDataSet, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateDataSetAsync(const CreateDataSetRequest& request, const CreateDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDataSet(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateDataSet, this, request, handler, context, m_executor.get());
 }
 
 CreateDataSourceOutcome QuickSightClient::CreateDataSource(const CreateDataSourceRequest& request) const
@@ -503,18 +468,12 @@ CreateDataSourceOutcome QuickSightClient::CreateDataSource(const CreateDataSourc
 
 CreateDataSourceOutcomeCallable QuickSightClient::CreateDataSourceCallable(const CreateDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateDataSource, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateDataSourceAsync(const CreateDataSourceRequest& request, const CreateDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDataSource(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateDataSource, this, request, handler, context, m_executor.get());
 }
 
 CreateFolderOutcome QuickSightClient::CreateFolder(const CreateFolderRequest& request) const
@@ -541,18 +500,12 @@ CreateFolderOutcome QuickSightClient::CreateFolder(const CreateFolderRequest& re
 
 CreateFolderOutcomeCallable QuickSightClient::CreateFolderCallable(const CreateFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateFolder, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateFolderAsync(const CreateFolderRequest& request, const CreateFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateFolder(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateFolder, this, request, handler, context, m_executor.get());
 }
 
 CreateFolderMembershipOutcome QuickSightClient::CreateFolderMembership(const CreateFolderMembershipRequest& request) const
@@ -592,18 +545,12 @@ CreateFolderMembershipOutcome QuickSightClient::CreateFolderMembership(const Cre
 
 CreateFolderMembershipOutcomeCallable QuickSightClient::CreateFolderMembershipCallable(const CreateFolderMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateFolderMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateFolderMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateFolderMembership, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateFolderMembershipAsync(const CreateFolderMembershipRequest& request, const CreateFolderMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateFolderMembership(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateFolderMembership, this, request, handler, context, m_executor.get());
 }
 
 CreateGroupOutcome QuickSightClient::CreateGroup(const CreateGroupRequest& request) const
@@ -631,18 +578,12 @@ CreateGroupOutcome QuickSightClient::CreateGroup(const CreateGroupRequest& reque
 
 CreateGroupOutcomeCallable QuickSightClient::CreateGroupCallable(const CreateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateGroup, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateGroupAsync(const CreateGroupRequest& request, const CreateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGroup(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateGroupMembershipOutcome QuickSightClient::CreateGroupMembership(const CreateGroupMembershipRequest& request) const
@@ -683,18 +624,12 @@ CreateGroupMembershipOutcome QuickSightClient::CreateGroupMembership(const Creat
 
 CreateGroupMembershipOutcomeCallable QuickSightClient::CreateGroupMembershipCallable(const CreateGroupMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGroupMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGroupMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateGroupMembership, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateGroupMembershipAsync(const CreateGroupMembershipRequest& request, const CreateGroupMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGroupMembership(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateGroupMembership, this, request, handler, context, m_executor.get());
 }
 
 CreateIAMPolicyAssignmentOutcome QuickSightClient::CreateIAMPolicyAssignment(const CreateIAMPolicyAssignmentRequest& request) const
@@ -722,18 +657,12 @@ CreateIAMPolicyAssignmentOutcome QuickSightClient::CreateIAMPolicyAssignment(con
 
 CreateIAMPolicyAssignmentOutcomeCallable QuickSightClient::CreateIAMPolicyAssignmentCallable(const CreateIAMPolicyAssignmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateIAMPolicyAssignmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateIAMPolicyAssignment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateIAMPolicyAssignment, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateIAMPolicyAssignmentAsync(const CreateIAMPolicyAssignmentRequest& request, const CreateIAMPolicyAssignmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateIAMPolicyAssignment(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateIAMPolicyAssignment, this, request, handler, context, m_executor.get());
 }
 
 CreateIngestionOutcome QuickSightClient::CreateIngestion(const CreateIngestionRequest& request) const
@@ -767,18 +696,12 @@ CreateIngestionOutcome QuickSightClient::CreateIngestion(const CreateIngestionRe
 
 CreateIngestionOutcomeCallable QuickSightClient::CreateIngestionCallable(const CreateIngestionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateIngestionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateIngestion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateIngestion, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateIngestionAsync(const CreateIngestionRequest& request, const CreateIngestionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateIngestion(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateIngestion, this, request, handler, context, m_executor.get());
 }
 
 CreateNamespaceOutcome QuickSightClient::CreateNamespace(const CreateNamespaceRequest& request) const
@@ -798,18 +721,12 @@ CreateNamespaceOutcome QuickSightClient::CreateNamespace(const CreateNamespaceRe
 
 CreateNamespaceOutcomeCallable QuickSightClient::CreateNamespaceCallable(const CreateNamespaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateNamespaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateNamespace(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateNamespace, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateNamespaceAsync(const CreateNamespaceRequest& request, const CreateNamespaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateNamespace(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateNamespace, this, request, handler, context, m_executor.get());
 }
 
 CreateTemplateOutcome QuickSightClient::CreateTemplate(const CreateTemplateRequest& request) const
@@ -836,18 +753,12 @@ CreateTemplateOutcome QuickSightClient::CreateTemplate(const CreateTemplateReque
 
 CreateTemplateOutcomeCallable QuickSightClient::CreateTemplateCallable(const CreateTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateTemplate, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateTemplateAsync(const CreateTemplateRequest& request, const CreateTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTemplate(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateTemplate, this, request, handler, context, m_executor.get());
 }
 
 CreateTemplateAliasOutcome QuickSightClient::CreateTemplateAlias(const CreateTemplateAliasRequest& request) const
@@ -881,18 +792,12 @@ CreateTemplateAliasOutcome QuickSightClient::CreateTemplateAlias(const CreateTem
 
 CreateTemplateAliasOutcomeCallable QuickSightClient::CreateTemplateAliasCallable(const CreateTemplateAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTemplateAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTemplateAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateTemplateAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateTemplateAliasAsync(const CreateTemplateAliasRequest& request, const CreateTemplateAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTemplateAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateTemplateAlias, this, request, handler, context, m_executor.get());
 }
 
 CreateThemeOutcome QuickSightClient::CreateTheme(const CreateThemeRequest& request) const
@@ -919,18 +824,12 @@ CreateThemeOutcome QuickSightClient::CreateTheme(const CreateThemeRequest& reque
 
 CreateThemeOutcomeCallable QuickSightClient::CreateThemeCallable(const CreateThemeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateThemeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTheme(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateTheme, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateThemeAsync(const CreateThemeRequest& request, const CreateThemeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTheme(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateTheme, this, request, handler, context, m_executor.get());
 }
 
 CreateThemeAliasOutcome QuickSightClient::CreateThemeAlias(const CreateThemeAliasRequest& request) const
@@ -964,18 +863,12 @@ CreateThemeAliasOutcome QuickSightClient::CreateThemeAlias(const CreateThemeAlia
 
 CreateThemeAliasOutcomeCallable QuickSightClient::CreateThemeAliasCallable(const CreateThemeAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateThemeAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateThemeAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::CreateThemeAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::CreateThemeAliasAsync(const CreateThemeAliasRequest& request, const CreateThemeAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateThemeAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::CreateThemeAlias, this, request, handler, context, m_executor.get());
 }
 
 DeleteAccountCustomizationOutcome QuickSightClient::DeleteAccountCustomization(const DeleteAccountCustomizationRequest& request) const
@@ -996,18 +889,12 @@ DeleteAccountCustomizationOutcome QuickSightClient::DeleteAccountCustomization(c
 
 DeleteAccountCustomizationOutcomeCallable QuickSightClient::DeleteAccountCustomizationCallable(const DeleteAccountCustomizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAccountCustomizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAccountCustomization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteAccountCustomization, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteAccountCustomizationAsync(const DeleteAccountCustomizationRequest& request, const DeleteAccountCustomizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAccountCustomization(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteAccountCustomization, this, request, handler, context, m_executor.get());
 }
 
 DeleteAnalysisOutcome QuickSightClient::DeleteAnalysis(const DeleteAnalysisRequest& request) const
@@ -1034,18 +921,12 @@ DeleteAnalysisOutcome QuickSightClient::DeleteAnalysis(const DeleteAnalysisReque
 
 DeleteAnalysisOutcomeCallable QuickSightClient::DeleteAnalysisCallable(const DeleteAnalysisRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAnalysisOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAnalysis(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteAnalysis, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteAnalysisAsync(const DeleteAnalysisRequest& request, const DeleteAnalysisResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAnalysis(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteAnalysis, this, request, handler, context, m_executor.get());
 }
 
 DeleteDashboardOutcome QuickSightClient::DeleteDashboard(const DeleteDashboardRequest& request) const
@@ -1072,18 +953,12 @@ DeleteDashboardOutcome QuickSightClient::DeleteDashboard(const DeleteDashboardRe
 
 DeleteDashboardOutcomeCallable QuickSightClient::DeleteDashboardCallable(const DeleteDashboardRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDashboardOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDashboard(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteDashboard, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteDashboardAsync(const DeleteDashboardRequest& request, const DeleteDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDashboard(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteDashboard, this, request, handler, context, m_executor.get());
 }
 
 DeleteDataSetOutcome QuickSightClient::DeleteDataSet(const DeleteDataSetRequest& request) const
@@ -1110,18 +985,12 @@ DeleteDataSetOutcome QuickSightClient::DeleteDataSet(const DeleteDataSetRequest&
 
 DeleteDataSetOutcomeCallable QuickSightClient::DeleteDataSetCallable(const DeleteDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteDataSet, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteDataSetAsync(const DeleteDataSetRequest& request, const DeleteDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDataSet(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteDataSet, this, request, handler, context, m_executor.get());
 }
 
 DeleteDataSourceOutcome QuickSightClient::DeleteDataSource(const DeleteDataSourceRequest& request) const
@@ -1148,18 +1017,12 @@ DeleteDataSourceOutcome QuickSightClient::DeleteDataSource(const DeleteDataSourc
 
 DeleteDataSourceOutcomeCallable QuickSightClient::DeleteDataSourceCallable(const DeleteDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteDataSource, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteDataSourceAsync(const DeleteDataSourceRequest& request, const DeleteDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDataSource(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteDataSource, this, request, handler, context, m_executor.get());
 }
 
 DeleteFolderOutcome QuickSightClient::DeleteFolder(const DeleteFolderRequest& request) const
@@ -1186,18 +1049,12 @@ DeleteFolderOutcome QuickSightClient::DeleteFolder(const DeleteFolderRequest& re
 
 DeleteFolderOutcomeCallable QuickSightClient::DeleteFolderCallable(const DeleteFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteFolder, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteFolderAsync(const DeleteFolderRequest& request, const DeleteFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteFolder(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteFolder, this, request, handler, context, m_executor.get());
 }
 
 DeleteFolderMembershipOutcome QuickSightClient::DeleteFolderMembership(const DeleteFolderMembershipRequest& request) const
@@ -1237,18 +1094,12 @@ DeleteFolderMembershipOutcome QuickSightClient::DeleteFolderMembership(const Del
 
 DeleteFolderMembershipOutcomeCallable QuickSightClient::DeleteFolderMembershipCallable(const DeleteFolderMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteFolderMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteFolderMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteFolderMembership, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteFolderMembershipAsync(const DeleteFolderMembershipRequest& request, const DeleteFolderMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteFolderMembership(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteFolderMembership, this, request, handler, context, m_executor.get());
 }
 
 DeleteGroupOutcome QuickSightClient::DeleteGroup(const DeleteGroupRequest& request) const
@@ -1282,18 +1133,12 @@ DeleteGroupOutcome QuickSightClient::DeleteGroup(const DeleteGroupRequest& reque
 
 DeleteGroupOutcomeCallable QuickSightClient::DeleteGroupCallable(const DeleteGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteGroup, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteGroupAsync(const DeleteGroupRequest& request, const DeleteGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroup(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteGroupMembershipOutcome QuickSightClient::DeleteGroupMembership(const DeleteGroupMembershipRequest& request) const
@@ -1334,18 +1179,12 @@ DeleteGroupMembershipOutcome QuickSightClient::DeleteGroupMembership(const Delet
 
 DeleteGroupMembershipOutcomeCallable QuickSightClient::DeleteGroupMembershipCallable(const DeleteGroupMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroupMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteGroupMembership, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteGroupMembershipAsync(const DeleteGroupMembershipRequest& request, const DeleteGroupMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroupMembership(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteGroupMembership, this, request, handler, context, m_executor.get());
 }
 
 DeleteIAMPolicyAssignmentOutcome QuickSightClient::DeleteIAMPolicyAssignment(const DeleteIAMPolicyAssignmentRequest& request) const
@@ -1379,18 +1218,12 @@ DeleteIAMPolicyAssignmentOutcome QuickSightClient::DeleteIAMPolicyAssignment(con
 
 DeleteIAMPolicyAssignmentOutcomeCallable QuickSightClient::DeleteIAMPolicyAssignmentCallable(const DeleteIAMPolicyAssignmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteIAMPolicyAssignmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteIAMPolicyAssignment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteIAMPolicyAssignment, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteIAMPolicyAssignmentAsync(const DeleteIAMPolicyAssignmentRequest& request, const DeleteIAMPolicyAssignmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteIAMPolicyAssignment(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteIAMPolicyAssignment, this, request, handler, context, m_executor.get());
 }
 
 DeleteNamespaceOutcome QuickSightClient::DeleteNamespace(const DeleteNamespaceRequest& request) const
@@ -1417,18 +1250,12 @@ DeleteNamespaceOutcome QuickSightClient::DeleteNamespace(const DeleteNamespaceRe
 
 DeleteNamespaceOutcomeCallable QuickSightClient::DeleteNamespaceCallable(const DeleteNamespaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteNamespaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteNamespace(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteNamespace, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteNamespaceAsync(const DeleteNamespaceRequest& request, const DeleteNamespaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteNamespace(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteNamespace, this, request, handler, context, m_executor.get());
 }
 
 DeleteTemplateOutcome QuickSightClient::DeleteTemplate(const DeleteTemplateRequest& request) const
@@ -1455,18 +1282,12 @@ DeleteTemplateOutcome QuickSightClient::DeleteTemplate(const DeleteTemplateReque
 
 DeleteTemplateOutcomeCallable QuickSightClient::DeleteTemplateCallable(const DeleteTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteTemplate, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteTemplateAsync(const DeleteTemplateRequest& request, const DeleteTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTemplate(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteTemplate, this, request, handler, context, m_executor.get());
 }
 
 DeleteTemplateAliasOutcome QuickSightClient::DeleteTemplateAlias(const DeleteTemplateAliasRequest& request) const
@@ -1500,18 +1321,12 @@ DeleteTemplateAliasOutcome QuickSightClient::DeleteTemplateAlias(const DeleteTem
 
 DeleteTemplateAliasOutcomeCallable QuickSightClient::DeleteTemplateAliasCallable(const DeleteTemplateAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTemplateAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTemplateAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteTemplateAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteTemplateAliasAsync(const DeleteTemplateAliasRequest& request, const DeleteTemplateAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTemplateAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteTemplateAlias, this, request, handler, context, m_executor.get());
 }
 
 DeleteThemeOutcome QuickSightClient::DeleteTheme(const DeleteThemeRequest& request) const
@@ -1538,18 +1353,12 @@ DeleteThemeOutcome QuickSightClient::DeleteTheme(const DeleteThemeRequest& reque
 
 DeleteThemeOutcomeCallable QuickSightClient::DeleteThemeCallable(const DeleteThemeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteThemeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTheme(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteTheme, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteThemeAsync(const DeleteThemeRequest& request, const DeleteThemeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTheme(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteTheme, this, request, handler, context, m_executor.get());
 }
 
 DeleteThemeAliasOutcome QuickSightClient::DeleteThemeAlias(const DeleteThemeAliasRequest& request) const
@@ -1583,18 +1392,12 @@ DeleteThemeAliasOutcome QuickSightClient::DeleteThemeAlias(const DeleteThemeAlia
 
 DeleteThemeAliasOutcomeCallable QuickSightClient::DeleteThemeAliasCallable(const DeleteThemeAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteThemeAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteThemeAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteThemeAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteThemeAliasAsync(const DeleteThemeAliasRequest& request, const DeleteThemeAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteThemeAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteThemeAlias, this, request, handler, context, m_executor.get());
 }
 
 DeleteUserOutcome QuickSightClient::DeleteUser(const DeleteUserRequest& request) const
@@ -1628,18 +1431,12 @@ DeleteUserOutcome QuickSightClient::DeleteUser(const DeleteUserRequest& request)
 
 DeleteUserOutcomeCallable QuickSightClient::DeleteUserCallable(const DeleteUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteUser, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteUserAsync(const DeleteUserRequest& request, const DeleteUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUser(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteUser, this, request, handler, context, m_executor.get());
 }
 
 DeleteUserByPrincipalIdOutcome QuickSightClient::DeleteUserByPrincipalId(const DeleteUserByPrincipalIdRequest& request) const
@@ -1673,18 +1470,12 @@ DeleteUserByPrincipalIdOutcome QuickSightClient::DeleteUserByPrincipalId(const D
 
 DeleteUserByPrincipalIdOutcomeCallable QuickSightClient::DeleteUserByPrincipalIdCallable(const DeleteUserByPrincipalIdRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserByPrincipalIdOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUserByPrincipalId(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DeleteUserByPrincipalId, this, request, m_executor.get());
 }
 
 void QuickSightClient::DeleteUserByPrincipalIdAsync(const DeleteUserByPrincipalIdRequest& request, const DeleteUserByPrincipalIdResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUserByPrincipalId(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DeleteUserByPrincipalId, this, request, handler, context, m_executor.get());
 }
 
 DescribeAccountCustomizationOutcome QuickSightClient::DescribeAccountCustomization(const DescribeAccountCustomizationRequest& request) const
@@ -1705,18 +1496,12 @@ DescribeAccountCustomizationOutcome QuickSightClient::DescribeAccountCustomizati
 
 DescribeAccountCustomizationOutcomeCallable QuickSightClient::DescribeAccountCustomizationCallable(const DescribeAccountCustomizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAccountCustomizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAccountCustomization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeAccountCustomization, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeAccountCustomizationAsync(const DescribeAccountCustomizationRequest& request, const DescribeAccountCustomizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAccountCustomization(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeAccountCustomization, this, request, handler, context, m_executor.get());
 }
 
 DescribeAccountSettingsOutcome QuickSightClient::DescribeAccountSettings(const DescribeAccountSettingsRequest& request) const
@@ -1737,18 +1522,12 @@ DescribeAccountSettingsOutcome QuickSightClient::DescribeAccountSettings(const D
 
 DescribeAccountSettingsOutcomeCallable QuickSightClient::DescribeAccountSettingsCallable(const DescribeAccountSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAccountSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAccountSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeAccountSettings, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeAccountSettingsAsync(const DescribeAccountSettingsRequest& request, const DescribeAccountSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAccountSettings(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeAccountSettings, this, request, handler, context, m_executor.get());
 }
 
 DescribeAccountSubscriptionOutcome QuickSightClient::DescribeAccountSubscription(const DescribeAccountSubscriptionRequest& request) const
@@ -1768,18 +1547,12 @@ DescribeAccountSubscriptionOutcome QuickSightClient::DescribeAccountSubscription
 
 DescribeAccountSubscriptionOutcomeCallable QuickSightClient::DescribeAccountSubscriptionCallable(const DescribeAccountSubscriptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAccountSubscriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAccountSubscription(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeAccountSubscription, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeAccountSubscriptionAsync(const DescribeAccountSubscriptionRequest& request, const DescribeAccountSubscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAccountSubscription(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeAccountSubscription, this, request, handler, context, m_executor.get());
 }
 
 DescribeAnalysisOutcome QuickSightClient::DescribeAnalysis(const DescribeAnalysisRequest& request) const
@@ -1806,18 +1579,12 @@ DescribeAnalysisOutcome QuickSightClient::DescribeAnalysis(const DescribeAnalysi
 
 DescribeAnalysisOutcomeCallable QuickSightClient::DescribeAnalysisCallable(const DescribeAnalysisRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAnalysisOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAnalysis(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeAnalysis, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeAnalysisAsync(const DescribeAnalysisRequest& request, const DescribeAnalysisResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAnalysis(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeAnalysis, this, request, handler, context, m_executor.get());
 }
 
 DescribeAnalysisPermissionsOutcome QuickSightClient::DescribeAnalysisPermissions(const DescribeAnalysisPermissionsRequest& request) const
@@ -1845,18 +1612,12 @@ DescribeAnalysisPermissionsOutcome QuickSightClient::DescribeAnalysisPermissions
 
 DescribeAnalysisPermissionsOutcomeCallable QuickSightClient::DescribeAnalysisPermissionsCallable(const DescribeAnalysisPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAnalysisPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAnalysisPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeAnalysisPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeAnalysisPermissionsAsync(const DescribeAnalysisPermissionsRequest& request, const DescribeAnalysisPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAnalysisPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeAnalysisPermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeDashboardOutcome QuickSightClient::DescribeDashboard(const DescribeDashboardRequest& request) const
@@ -1883,18 +1644,12 @@ DescribeDashboardOutcome QuickSightClient::DescribeDashboard(const DescribeDashb
 
 DescribeDashboardOutcomeCallable QuickSightClient::DescribeDashboardCallable(const DescribeDashboardRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDashboardOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDashboard(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeDashboard, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeDashboardAsync(const DescribeDashboardRequest& request, const DescribeDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDashboard(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeDashboard, this, request, handler, context, m_executor.get());
 }
 
 DescribeDashboardPermissionsOutcome QuickSightClient::DescribeDashboardPermissions(const DescribeDashboardPermissionsRequest& request) const
@@ -1922,18 +1677,12 @@ DescribeDashboardPermissionsOutcome QuickSightClient::DescribeDashboardPermissio
 
 DescribeDashboardPermissionsOutcomeCallable QuickSightClient::DescribeDashboardPermissionsCallable(const DescribeDashboardPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDashboardPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDashboardPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeDashboardPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeDashboardPermissionsAsync(const DescribeDashboardPermissionsRequest& request, const DescribeDashboardPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDashboardPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeDashboardPermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeDataSetOutcome QuickSightClient::DescribeDataSet(const DescribeDataSetRequest& request) const
@@ -1960,18 +1709,12 @@ DescribeDataSetOutcome QuickSightClient::DescribeDataSet(const DescribeDataSetRe
 
 DescribeDataSetOutcomeCallable QuickSightClient::DescribeDataSetCallable(const DescribeDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeDataSet, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeDataSetAsync(const DescribeDataSetRequest& request, const DescribeDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDataSet(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeDataSet, this, request, handler, context, m_executor.get());
 }
 
 DescribeDataSetPermissionsOutcome QuickSightClient::DescribeDataSetPermissions(const DescribeDataSetPermissionsRequest& request) const
@@ -1999,18 +1742,12 @@ DescribeDataSetPermissionsOutcome QuickSightClient::DescribeDataSetPermissions(c
 
 DescribeDataSetPermissionsOutcomeCallable QuickSightClient::DescribeDataSetPermissionsCallable(const DescribeDataSetPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDataSetPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDataSetPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeDataSetPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeDataSetPermissionsAsync(const DescribeDataSetPermissionsRequest& request, const DescribeDataSetPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDataSetPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeDataSetPermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeDataSourceOutcome QuickSightClient::DescribeDataSource(const DescribeDataSourceRequest& request) const
@@ -2037,18 +1774,12 @@ DescribeDataSourceOutcome QuickSightClient::DescribeDataSource(const DescribeDat
 
 DescribeDataSourceOutcomeCallable QuickSightClient::DescribeDataSourceCallable(const DescribeDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeDataSource, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeDataSourceAsync(const DescribeDataSourceRequest& request, const DescribeDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDataSource(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeDataSource, this, request, handler, context, m_executor.get());
 }
 
 DescribeDataSourcePermissionsOutcome QuickSightClient::DescribeDataSourcePermissions(const DescribeDataSourcePermissionsRequest& request) const
@@ -2076,18 +1807,12 @@ DescribeDataSourcePermissionsOutcome QuickSightClient::DescribeDataSourcePermiss
 
 DescribeDataSourcePermissionsOutcomeCallable QuickSightClient::DescribeDataSourcePermissionsCallable(const DescribeDataSourcePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDataSourcePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDataSourcePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeDataSourcePermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeDataSourcePermissionsAsync(const DescribeDataSourcePermissionsRequest& request, const DescribeDataSourcePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDataSourcePermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeDataSourcePermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeFolderOutcome QuickSightClient::DescribeFolder(const DescribeFolderRequest& request) const
@@ -2114,18 +1839,12 @@ DescribeFolderOutcome QuickSightClient::DescribeFolder(const DescribeFolderReque
 
 DescribeFolderOutcomeCallable QuickSightClient::DescribeFolderCallable(const DescribeFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeFolder, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeFolderAsync(const DescribeFolderRequest& request, const DescribeFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFolder(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeFolder, this, request, handler, context, m_executor.get());
 }
 
 DescribeFolderPermissionsOutcome QuickSightClient::DescribeFolderPermissions(const DescribeFolderPermissionsRequest& request) const
@@ -2153,18 +1872,12 @@ DescribeFolderPermissionsOutcome QuickSightClient::DescribeFolderPermissions(con
 
 DescribeFolderPermissionsOutcomeCallable QuickSightClient::DescribeFolderPermissionsCallable(const DescribeFolderPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFolderPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFolderPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeFolderPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeFolderPermissionsAsync(const DescribeFolderPermissionsRequest& request, const DescribeFolderPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFolderPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeFolderPermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeFolderResolvedPermissionsOutcome QuickSightClient::DescribeFolderResolvedPermissions(const DescribeFolderResolvedPermissionsRequest& request) const
@@ -2192,18 +1905,12 @@ DescribeFolderResolvedPermissionsOutcome QuickSightClient::DescribeFolderResolve
 
 DescribeFolderResolvedPermissionsOutcomeCallable QuickSightClient::DescribeFolderResolvedPermissionsCallable(const DescribeFolderResolvedPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFolderResolvedPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFolderResolvedPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeFolderResolvedPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeFolderResolvedPermissionsAsync(const DescribeFolderResolvedPermissionsRequest& request, const DescribeFolderResolvedPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFolderResolvedPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeFolderResolvedPermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeGroupOutcome QuickSightClient::DescribeGroup(const DescribeGroupRequest& request) const
@@ -2237,18 +1944,12 @@ DescribeGroupOutcome QuickSightClient::DescribeGroup(const DescribeGroupRequest&
 
 DescribeGroupOutcomeCallable QuickSightClient::DescribeGroupCallable(const DescribeGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeGroup, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeGroupAsync(const DescribeGroupRequest& request, const DescribeGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeGroup(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeGroupMembershipOutcome QuickSightClient::DescribeGroupMembership(const DescribeGroupMembershipRequest& request) const
@@ -2289,18 +1990,12 @@ DescribeGroupMembershipOutcome QuickSightClient::DescribeGroupMembership(const D
 
 DescribeGroupMembershipOutcomeCallable QuickSightClient::DescribeGroupMembershipCallable(const DescribeGroupMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeGroupMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeGroupMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeGroupMembership, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeGroupMembershipAsync(const DescribeGroupMembershipRequest& request, const DescribeGroupMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeGroupMembership(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeGroupMembership, this, request, handler, context, m_executor.get());
 }
 
 DescribeIAMPolicyAssignmentOutcome QuickSightClient::DescribeIAMPolicyAssignment(const DescribeIAMPolicyAssignmentRequest& request) const
@@ -2334,18 +2029,12 @@ DescribeIAMPolicyAssignmentOutcome QuickSightClient::DescribeIAMPolicyAssignment
 
 DescribeIAMPolicyAssignmentOutcomeCallable QuickSightClient::DescribeIAMPolicyAssignmentCallable(const DescribeIAMPolicyAssignmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeIAMPolicyAssignmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeIAMPolicyAssignment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeIAMPolicyAssignment, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeIAMPolicyAssignmentAsync(const DescribeIAMPolicyAssignmentRequest& request, const DescribeIAMPolicyAssignmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeIAMPolicyAssignment(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeIAMPolicyAssignment, this, request, handler, context, m_executor.get());
 }
 
 DescribeIngestionOutcome QuickSightClient::DescribeIngestion(const DescribeIngestionRequest& request) const
@@ -2379,18 +2068,12 @@ DescribeIngestionOutcome QuickSightClient::DescribeIngestion(const DescribeInges
 
 DescribeIngestionOutcomeCallable QuickSightClient::DescribeIngestionCallable(const DescribeIngestionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeIngestionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeIngestion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeIngestion, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeIngestionAsync(const DescribeIngestionRequest& request, const DescribeIngestionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeIngestion(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeIngestion, this, request, handler, context, m_executor.get());
 }
 
 DescribeIpRestrictionOutcome QuickSightClient::DescribeIpRestriction(const DescribeIpRestrictionRequest& request) const
@@ -2411,18 +2094,12 @@ DescribeIpRestrictionOutcome QuickSightClient::DescribeIpRestriction(const Descr
 
 DescribeIpRestrictionOutcomeCallable QuickSightClient::DescribeIpRestrictionCallable(const DescribeIpRestrictionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeIpRestrictionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeIpRestriction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeIpRestriction, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeIpRestrictionAsync(const DescribeIpRestrictionRequest& request, const DescribeIpRestrictionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeIpRestriction(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeIpRestriction, this, request, handler, context, m_executor.get());
 }
 
 DescribeNamespaceOutcome QuickSightClient::DescribeNamespace(const DescribeNamespaceRequest& request) const
@@ -2449,18 +2126,12 @@ DescribeNamespaceOutcome QuickSightClient::DescribeNamespace(const DescribeNames
 
 DescribeNamespaceOutcomeCallable QuickSightClient::DescribeNamespaceCallable(const DescribeNamespaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeNamespaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeNamespace(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeNamespace, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeNamespaceAsync(const DescribeNamespaceRequest& request, const DescribeNamespaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeNamespace(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeNamespace, this, request, handler, context, m_executor.get());
 }
 
 DescribeTemplateOutcome QuickSightClient::DescribeTemplate(const DescribeTemplateRequest& request) const
@@ -2487,18 +2158,12 @@ DescribeTemplateOutcome QuickSightClient::DescribeTemplate(const DescribeTemplat
 
 DescribeTemplateOutcomeCallable QuickSightClient::DescribeTemplateCallable(const DescribeTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeTemplate, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeTemplateAsync(const DescribeTemplateRequest& request, const DescribeTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTemplate(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeTemplate, this, request, handler, context, m_executor.get());
 }
 
 DescribeTemplateAliasOutcome QuickSightClient::DescribeTemplateAlias(const DescribeTemplateAliasRequest& request) const
@@ -2532,18 +2197,12 @@ DescribeTemplateAliasOutcome QuickSightClient::DescribeTemplateAlias(const Descr
 
 DescribeTemplateAliasOutcomeCallable QuickSightClient::DescribeTemplateAliasCallable(const DescribeTemplateAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTemplateAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTemplateAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeTemplateAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeTemplateAliasAsync(const DescribeTemplateAliasRequest& request, const DescribeTemplateAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTemplateAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeTemplateAlias, this, request, handler, context, m_executor.get());
 }
 
 DescribeTemplatePermissionsOutcome QuickSightClient::DescribeTemplatePermissions(const DescribeTemplatePermissionsRequest& request) const
@@ -2571,18 +2230,12 @@ DescribeTemplatePermissionsOutcome QuickSightClient::DescribeTemplatePermissions
 
 DescribeTemplatePermissionsOutcomeCallable QuickSightClient::DescribeTemplatePermissionsCallable(const DescribeTemplatePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTemplatePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTemplatePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeTemplatePermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeTemplatePermissionsAsync(const DescribeTemplatePermissionsRequest& request, const DescribeTemplatePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTemplatePermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeTemplatePermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeThemeOutcome QuickSightClient::DescribeTheme(const DescribeThemeRequest& request) const
@@ -2609,18 +2262,12 @@ DescribeThemeOutcome QuickSightClient::DescribeTheme(const DescribeThemeRequest&
 
 DescribeThemeOutcomeCallable QuickSightClient::DescribeThemeCallable(const DescribeThemeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeThemeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTheme(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeTheme, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeThemeAsync(const DescribeThemeRequest& request, const DescribeThemeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTheme(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeTheme, this, request, handler, context, m_executor.get());
 }
 
 DescribeThemeAliasOutcome QuickSightClient::DescribeThemeAlias(const DescribeThemeAliasRequest& request) const
@@ -2654,18 +2301,12 @@ DescribeThemeAliasOutcome QuickSightClient::DescribeThemeAlias(const DescribeThe
 
 DescribeThemeAliasOutcomeCallable QuickSightClient::DescribeThemeAliasCallable(const DescribeThemeAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeThemeAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeThemeAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeThemeAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeThemeAliasAsync(const DescribeThemeAliasRequest& request, const DescribeThemeAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeThemeAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeThemeAlias, this, request, handler, context, m_executor.get());
 }
 
 DescribeThemePermissionsOutcome QuickSightClient::DescribeThemePermissions(const DescribeThemePermissionsRequest& request) const
@@ -2693,18 +2334,12 @@ DescribeThemePermissionsOutcome QuickSightClient::DescribeThemePermissions(const
 
 DescribeThemePermissionsOutcomeCallable QuickSightClient::DescribeThemePermissionsCallable(const DescribeThemePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeThemePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeThemePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeThemePermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeThemePermissionsAsync(const DescribeThemePermissionsRequest& request, const DescribeThemePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeThemePermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeThemePermissions, this, request, handler, context, m_executor.get());
 }
 
 DescribeUserOutcome QuickSightClient::DescribeUser(const DescribeUserRequest& request) const
@@ -2738,18 +2373,12 @@ DescribeUserOutcome QuickSightClient::DescribeUser(const DescribeUserRequest& re
 
 DescribeUserOutcomeCallable QuickSightClient::DescribeUserCallable(const DescribeUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::DescribeUser, this, request, m_executor.get());
 }
 
 void QuickSightClient::DescribeUserAsync(const DescribeUserRequest& request, const DescribeUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeUser(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::DescribeUser, this, request, handler, context, m_executor.get());
 }
 
 GenerateEmbedUrlForAnonymousUserOutcome QuickSightClient::GenerateEmbedUrlForAnonymousUser(const GenerateEmbedUrlForAnonymousUserRequest& request) const
@@ -2770,18 +2399,12 @@ GenerateEmbedUrlForAnonymousUserOutcome QuickSightClient::GenerateEmbedUrlForAno
 
 GenerateEmbedUrlForAnonymousUserOutcomeCallable QuickSightClient::GenerateEmbedUrlForAnonymousUserCallable(const GenerateEmbedUrlForAnonymousUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GenerateEmbedUrlForAnonymousUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GenerateEmbedUrlForAnonymousUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::GenerateEmbedUrlForAnonymousUser, this, request, m_executor.get());
 }
 
 void QuickSightClient::GenerateEmbedUrlForAnonymousUserAsync(const GenerateEmbedUrlForAnonymousUserRequest& request, const GenerateEmbedUrlForAnonymousUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GenerateEmbedUrlForAnonymousUser(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::GenerateEmbedUrlForAnonymousUser, this, request, handler, context, m_executor.get());
 }
 
 GenerateEmbedUrlForRegisteredUserOutcome QuickSightClient::GenerateEmbedUrlForRegisteredUser(const GenerateEmbedUrlForRegisteredUserRequest& request) const
@@ -2802,18 +2425,12 @@ GenerateEmbedUrlForRegisteredUserOutcome QuickSightClient::GenerateEmbedUrlForRe
 
 GenerateEmbedUrlForRegisteredUserOutcomeCallable QuickSightClient::GenerateEmbedUrlForRegisteredUserCallable(const GenerateEmbedUrlForRegisteredUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GenerateEmbedUrlForRegisteredUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GenerateEmbedUrlForRegisteredUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::GenerateEmbedUrlForRegisteredUser, this, request, m_executor.get());
 }
 
 void QuickSightClient::GenerateEmbedUrlForRegisteredUserAsync(const GenerateEmbedUrlForRegisteredUserRequest& request, const GenerateEmbedUrlForRegisteredUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GenerateEmbedUrlForRegisteredUser(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::GenerateEmbedUrlForRegisteredUser, this, request, handler, context, m_executor.get());
 }
 
 GetDashboardEmbedUrlOutcome QuickSightClient::GetDashboardEmbedUrl(const GetDashboardEmbedUrlRequest& request) const
@@ -2846,18 +2463,12 @@ GetDashboardEmbedUrlOutcome QuickSightClient::GetDashboardEmbedUrl(const GetDash
 
 GetDashboardEmbedUrlOutcomeCallable QuickSightClient::GetDashboardEmbedUrlCallable(const GetDashboardEmbedUrlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDashboardEmbedUrlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDashboardEmbedUrl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::GetDashboardEmbedUrl, this, request, m_executor.get());
 }
 
 void QuickSightClient::GetDashboardEmbedUrlAsync(const GetDashboardEmbedUrlRequest& request, const GetDashboardEmbedUrlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDashboardEmbedUrl(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::GetDashboardEmbedUrl, this, request, handler, context, m_executor.get());
 }
 
 GetSessionEmbedUrlOutcome QuickSightClient::GetSessionEmbedUrl(const GetSessionEmbedUrlRequest& request) const
@@ -2878,18 +2489,12 @@ GetSessionEmbedUrlOutcome QuickSightClient::GetSessionEmbedUrl(const GetSessionE
 
 GetSessionEmbedUrlOutcomeCallable QuickSightClient::GetSessionEmbedUrlCallable(const GetSessionEmbedUrlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSessionEmbedUrlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSessionEmbedUrl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::GetSessionEmbedUrl, this, request, m_executor.get());
 }
 
 void QuickSightClient::GetSessionEmbedUrlAsync(const GetSessionEmbedUrlRequest& request, const GetSessionEmbedUrlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSessionEmbedUrl(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::GetSessionEmbedUrl, this, request, handler, context, m_executor.get());
 }
 
 ListAnalysesOutcome QuickSightClient::ListAnalyses(const ListAnalysesRequest& request) const
@@ -2910,18 +2515,12 @@ ListAnalysesOutcome QuickSightClient::ListAnalyses(const ListAnalysesRequest& re
 
 ListAnalysesOutcomeCallable QuickSightClient::ListAnalysesCallable(const ListAnalysesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAnalysesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAnalyses(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListAnalyses, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListAnalysesAsync(const ListAnalysesRequest& request, const ListAnalysesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAnalyses(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListAnalyses, this, request, handler, context, m_executor.get());
 }
 
 ListDashboardVersionsOutcome QuickSightClient::ListDashboardVersions(const ListDashboardVersionsRequest& request) const
@@ -2949,18 +2548,12 @@ ListDashboardVersionsOutcome QuickSightClient::ListDashboardVersions(const ListD
 
 ListDashboardVersionsOutcomeCallable QuickSightClient::ListDashboardVersionsCallable(const ListDashboardVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDashboardVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDashboardVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListDashboardVersions, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListDashboardVersionsAsync(const ListDashboardVersionsRequest& request, const ListDashboardVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDashboardVersions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListDashboardVersions, this, request, handler, context, m_executor.get());
 }
 
 ListDashboardsOutcome QuickSightClient::ListDashboards(const ListDashboardsRequest& request) const
@@ -2981,18 +2574,12 @@ ListDashboardsOutcome QuickSightClient::ListDashboards(const ListDashboardsReque
 
 ListDashboardsOutcomeCallable QuickSightClient::ListDashboardsCallable(const ListDashboardsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDashboardsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDashboards(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListDashboards, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListDashboardsAsync(const ListDashboardsRequest& request, const ListDashboardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDashboards(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListDashboards, this, request, handler, context, m_executor.get());
 }
 
 ListDataSetsOutcome QuickSightClient::ListDataSets(const ListDataSetsRequest& request) const
@@ -3013,18 +2600,12 @@ ListDataSetsOutcome QuickSightClient::ListDataSets(const ListDataSetsRequest& re
 
 ListDataSetsOutcomeCallable QuickSightClient::ListDataSetsCallable(const ListDataSetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDataSetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDataSets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListDataSets, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListDataSetsAsync(const ListDataSetsRequest& request, const ListDataSetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDataSets(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListDataSets, this, request, handler, context, m_executor.get());
 }
 
 ListDataSourcesOutcome QuickSightClient::ListDataSources(const ListDataSourcesRequest& request) const
@@ -3045,18 +2626,12 @@ ListDataSourcesOutcome QuickSightClient::ListDataSources(const ListDataSourcesRe
 
 ListDataSourcesOutcomeCallable QuickSightClient::ListDataSourcesCallable(const ListDataSourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDataSourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDataSources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListDataSources, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListDataSourcesAsync(const ListDataSourcesRequest& request, const ListDataSourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDataSources(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListDataSources, this, request, handler, context, m_executor.get());
 }
 
 ListFolderMembersOutcome QuickSightClient::ListFolderMembers(const ListFolderMembersRequest& request) const
@@ -3084,18 +2659,12 @@ ListFolderMembersOutcome QuickSightClient::ListFolderMembers(const ListFolderMem
 
 ListFolderMembersOutcomeCallable QuickSightClient::ListFolderMembersCallable(const ListFolderMembersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFolderMembersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFolderMembers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListFolderMembers, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListFolderMembersAsync(const ListFolderMembersRequest& request, const ListFolderMembersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFolderMembers(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListFolderMembers, this, request, handler, context, m_executor.get());
 }
 
 ListFoldersOutcome QuickSightClient::ListFolders(const ListFoldersRequest& request) const
@@ -3116,18 +2685,12 @@ ListFoldersOutcome QuickSightClient::ListFolders(const ListFoldersRequest& reque
 
 ListFoldersOutcomeCallable QuickSightClient::ListFoldersCallable(const ListFoldersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFoldersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFolders(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListFolders, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListFoldersAsync(const ListFoldersRequest& request, const ListFoldersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFolders(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListFolders, this, request, handler, context, m_executor.get());
 }
 
 ListGroupMembershipsOutcome QuickSightClient::ListGroupMemberships(const ListGroupMembershipsRequest& request) const
@@ -3162,18 +2725,12 @@ ListGroupMembershipsOutcome QuickSightClient::ListGroupMemberships(const ListGro
 
 ListGroupMembershipsOutcomeCallable QuickSightClient::ListGroupMembershipsCallable(const ListGroupMembershipsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupMembershipsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroupMemberships(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListGroupMemberships, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListGroupMembershipsAsync(const ListGroupMembershipsRequest& request, const ListGroupMembershipsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroupMemberships(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListGroupMemberships, this, request, handler, context, m_executor.get());
 }
 
 ListGroupsOutcome QuickSightClient::ListGroups(const ListGroupsRequest& request) const
@@ -3201,18 +2758,12 @@ ListGroupsOutcome QuickSightClient::ListGroups(const ListGroupsRequest& request)
 
 ListGroupsOutcomeCallable QuickSightClient::ListGroupsCallable(const ListGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListGroups, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListGroupsAsync(const ListGroupsRequest& request, const ListGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroups(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListGroups, this, request, handler, context, m_executor.get());
 }
 
 ListIAMPolicyAssignmentsOutcome QuickSightClient::ListIAMPolicyAssignments(const ListIAMPolicyAssignmentsRequest& request) const
@@ -3240,18 +2791,12 @@ ListIAMPolicyAssignmentsOutcome QuickSightClient::ListIAMPolicyAssignments(const
 
 ListIAMPolicyAssignmentsOutcomeCallable QuickSightClient::ListIAMPolicyAssignmentsCallable(const ListIAMPolicyAssignmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListIAMPolicyAssignmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListIAMPolicyAssignments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListIAMPolicyAssignments, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListIAMPolicyAssignmentsAsync(const ListIAMPolicyAssignmentsRequest& request, const ListIAMPolicyAssignmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListIAMPolicyAssignments(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListIAMPolicyAssignments, this, request, handler, context, m_executor.get());
 }
 
 ListIAMPolicyAssignmentsForUserOutcome QuickSightClient::ListIAMPolicyAssignmentsForUser(const ListIAMPolicyAssignmentsForUserRequest& request) const
@@ -3286,18 +2831,12 @@ ListIAMPolicyAssignmentsForUserOutcome QuickSightClient::ListIAMPolicyAssignment
 
 ListIAMPolicyAssignmentsForUserOutcomeCallable QuickSightClient::ListIAMPolicyAssignmentsForUserCallable(const ListIAMPolicyAssignmentsForUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListIAMPolicyAssignmentsForUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListIAMPolicyAssignmentsForUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListIAMPolicyAssignmentsForUser, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListIAMPolicyAssignmentsForUserAsync(const ListIAMPolicyAssignmentsForUserRequest& request, const ListIAMPolicyAssignmentsForUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListIAMPolicyAssignmentsForUser(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListIAMPolicyAssignmentsForUser, this, request, handler, context, m_executor.get());
 }
 
 ListIngestionsOutcome QuickSightClient::ListIngestions(const ListIngestionsRequest& request) const
@@ -3325,18 +2864,12 @@ ListIngestionsOutcome QuickSightClient::ListIngestions(const ListIngestionsReque
 
 ListIngestionsOutcomeCallable QuickSightClient::ListIngestionsCallable(const ListIngestionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListIngestionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListIngestions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListIngestions, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListIngestionsAsync(const ListIngestionsRequest& request, const ListIngestionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListIngestions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListIngestions, this, request, handler, context, m_executor.get());
 }
 
 ListNamespacesOutcome QuickSightClient::ListNamespaces(const ListNamespacesRequest& request) const
@@ -3357,18 +2890,12 @@ ListNamespacesOutcome QuickSightClient::ListNamespaces(const ListNamespacesReque
 
 ListNamespacesOutcomeCallable QuickSightClient::ListNamespacesCallable(const ListNamespacesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListNamespacesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListNamespaces(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListNamespaces, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListNamespacesAsync(const ListNamespacesRequest& request, const ListNamespacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListNamespaces(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListNamespaces, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome QuickSightClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -3389,18 +2916,12 @@ ListTagsForResourceOutcome QuickSightClient::ListTagsForResource(const ListTagsF
 
 ListTagsForResourceOutcomeCallable QuickSightClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListTemplateAliasesOutcome QuickSightClient::ListTemplateAliases(const ListTemplateAliasesRequest& request) const
@@ -3428,18 +2949,12 @@ ListTemplateAliasesOutcome QuickSightClient::ListTemplateAliases(const ListTempl
 
 ListTemplateAliasesOutcomeCallable QuickSightClient::ListTemplateAliasesCallable(const ListTemplateAliasesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTemplateAliasesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTemplateAliases(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListTemplateAliases, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListTemplateAliasesAsync(const ListTemplateAliasesRequest& request, const ListTemplateAliasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTemplateAliases(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListTemplateAliases, this, request, handler, context, m_executor.get());
 }
 
 ListTemplateVersionsOutcome QuickSightClient::ListTemplateVersions(const ListTemplateVersionsRequest& request) const
@@ -3467,18 +2982,12 @@ ListTemplateVersionsOutcome QuickSightClient::ListTemplateVersions(const ListTem
 
 ListTemplateVersionsOutcomeCallable QuickSightClient::ListTemplateVersionsCallable(const ListTemplateVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTemplateVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTemplateVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListTemplateVersions, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListTemplateVersionsAsync(const ListTemplateVersionsRequest& request, const ListTemplateVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTemplateVersions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListTemplateVersions, this, request, handler, context, m_executor.get());
 }
 
 ListTemplatesOutcome QuickSightClient::ListTemplates(const ListTemplatesRequest& request) const
@@ -3499,18 +3008,12 @@ ListTemplatesOutcome QuickSightClient::ListTemplates(const ListTemplatesRequest&
 
 ListTemplatesOutcomeCallable QuickSightClient::ListTemplatesCallable(const ListTemplatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTemplatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTemplates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListTemplates, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListTemplatesAsync(const ListTemplatesRequest& request, const ListTemplatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTemplates(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListTemplates, this, request, handler, context, m_executor.get());
 }
 
 ListThemeAliasesOutcome QuickSightClient::ListThemeAliases(const ListThemeAliasesRequest& request) const
@@ -3538,18 +3041,12 @@ ListThemeAliasesOutcome QuickSightClient::ListThemeAliases(const ListThemeAliase
 
 ListThemeAliasesOutcomeCallable QuickSightClient::ListThemeAliasesCallable(const ListThemeAliasesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThemeAliasesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThemeAliases(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListThemeAliases, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListThemeAliasesAsync(const ListThemeAliasesRequest& request, const ListThemeAliasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThemeAliases(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListThemeAliases, this, request, handler, context, m_executor.get());
 }
 
 ListThemeVersionsOutcome QuickSightClient::ListThemeVersions(const ListThemeVersionsRequest& request) const
@@ -3577,18 +3074,12 @@ ListThemeVersionsOutcome QuickSightClient::ListThemeVersions(const ListThemeVers
 
 ListThemeVersionsOutcomeCallable QuickSightClient::ListThemeVersionsCallable(const ListThemeVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThemeVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThemeVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListThemeVersions, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListThemeVersionsAsync(const ListThemeVersionsRequest& request, const ListThemeVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThemeVersions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListThemeVersions, this, request, handler, context, m_executor.get());
 }
 
 ListThemesOutcome QuickSightClient::ListThemes(const ListThemesRequest& request) const
@@ -3609,18 +3100,12 @@ ListThemesOutcome QuickSightClient::ListThemes(const ListThemesRequest& request)
 
 ListThemesOutcomeCallable QuickSightClient::ListThemesCallable(const ListThemesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThemesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThemes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListThemes, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListThemesAsync(const ListThemesRequest& request, const ListThemesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThemes(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListThemes, this, request, handler, context, m_executor.get());
 }
 
 ListUserGroupsOutcome QuickSightClient::ListUserGroups(const ListUserGroupsRequest& request) const
@@ -3655,18 +3140,12 @@ ListUserGroupsOutcome QuickSightClient::ListUserGroups(const ListUserGroupsReque
 
 ListUserGroupsOutcomeCallable QuickSightClient::ListUserGroupsCallable(const ListUserGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUserGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUserGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListUserGroups, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListUserGroupsAsync(const ListUserGroupsRequest& request, const ListUserGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUserGroups(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListUserGroups, this, request, handler, context, m_executor.get());
 }
 
 ListUsersOutcome QuickSightClient::ListUsers(const ListUsersRequest& request) const
@@ -3694,18 +3173,12 @@ ListUsersOutcome QuickSightClient::ListUsers(const ListUsersRequest& request) co
 
 ListUsersOutcomeCallable QuickSightClient::ListUsersCallable(const ListUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::ListUsers, this, request, m_executor.get());
 }
 
 void QuickSightClient::ListUsersAsync(const ListUsersRequest& request, const ListUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUsers(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::ListUsers, this, request, handler, context, m_executor.get());
 }
 
 RegisterUserOutcome QuickSightClient::RegisterUser(const RegisterUserRequest& request) const
@@ -3733,18 +3206,12 @@ RegisterUserOutcome QuickSightClient::RegisterUser(const RegisterUserRequest& re
 
 RegisterUserOutcomeCallable QuickSightClient::RegisterUserCallable(const RegisterUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::RegisterUser, this, request, m_executor.get());
 }
 
 void QuickSightClient::RegisterUserAsync(const RegisterUserRequest& request, const RegisterUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterUser(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::RegisterUser, this, request, handler, context, m_executor.get());
 }
 
 RestoreAnalysisOutcome QuickSightClient::RestoreAnalysis(const RestoreAnalysisRequest& request) const
@@ -3771,18 +3238,12 @@ RestoreAnalysisOutcome QuickSightClient::RestoreAnalysis(const RestoreAnalysisRe
 
 RestoreAnalysisOutcomeCallable QuickSightClient::RestoreAnalysisCallable(const RestoreAnalysisRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RestoreAnalysisOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RestoreAnalysis(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::RestoreAnalysis, this, request, m_executor.get());
 }
 
 void QuickSightClient::RestoreAnalysisAsync(const RestoreAnalysisRequest& request, const RestoreAnalysisResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RestoreAnalysis(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::RestoreAnalysis, this, request, handler, context, m_executor.get());
 }
 
 SearchAnalysesOutcome QuickSightClient::SearchAnalyses(const SearchAnalysesRequest& request) const
@@ -3803,18 +3264,12 @@ SearchAnalysesOutcome QuickSightClient::SearchAnalyses(const SearchAnalysesReque
 
 SearchAnalysesOutcomeCallable QuickSightClient::SearchAnalysesCallable(const SearchAnalysesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchAnalysesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchAnalyses(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::SearchAnalyses, this, request, m_executor.get());
 }
 
 void QuickSightClient::SearchAnalysesAsync(const SearchAnalysesRequest& request, const SearchAnalysesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchAnalyses(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::SearchAnalyses, this, request, handler, context, m_executor.get());
 }
 
 SearchDashboardsOutcome QuickSightClient::SearchDashboards(const SearchDashboardsRequest& request) const
@@ -3835,18 +3290,12 @@ SearchDashboardsOutcome QuickSightClient::SearchDashboards(const SearchDashboard
 
 SearchDashboardsOutcomeCallable QuickSightClient::SearchDashboardsCallable(const SearchDashboardsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchDashboardsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchDashboards(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::SearchDashboards, this, request, m_executor.get());
 }
 
 void QuickSightClient::SearchDashboardsAsync(const SearchDashboardsRequest& request, const SearchDashboardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchDashboards(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::SearchDashboards, this, request, handler, context, m_executor.get());
 }
 
 SearchFoldersOutcome QuickSightClient::SearchFolders(const SearchFoldersRequest& request) const
@@ -3867,18 +3316,12 @@ SearchFoldersOutcome QuickSightClient::SearchFolders(const SearchFoldersRequest&
 
 SearchFoldersOutcomeCallable QuickSightClient::SearchFoldersCallable(const SearchFoldersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchFoldersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchFolders(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::SearchFolders, this, request, m_executor.get());
 }
 
 void QuickSightClient::SearchFoldersAsync(const SearchFoldersRequest& request, const SearchFoldersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchFolders(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::SearchFolders, this, request, handler, context, m_executor.get());
 }
 
 SearchGroupsOutcome QuickSightClient::SearchGroups(const SearchGroupsRequest& request) const
@@ -3906,18 +3349,12 @@ SearchGroupsOutcome QuickSightClient::SearchGroups(const SearchGroupsRequest& re
 
 SearchGroupsOutcomeCallable QuickSightClient::SearchGroupsCallable(const SearchGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::SearchGroups, this, request, m_executor.get());
 }
 
 void QuickSightClient::SearchGroupsAsync(const SearchGroupsRequest& request, const SearchGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchGroups(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::SearchGroups, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome QuickSightClient::TagResource(const TagResourceRequest& request) const
@@ -3938,18 +3375,12 @@ TagResourceOutcome QuickSightClient::TagResource(const TagResourceRequest& reque
 
 TagResourceOutcomeCallable QuickSightClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::TagResource, this, request, m_executor.get());
 }
 
 void QuickSightClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome QuickSightClient::UntagResource(const UntagResourceRequest& request) const
@@ -3975,18 +3406,12 @@ UntagResourceOutcome QuickSightClient::UntagResource(const UntagResourceRequest&
 
 UntagResourceOutcomeCallable QuickSightClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UntagResource, this, request, m_executor.get());
 }
 
 void QuickSightClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAccountCustomizationOutcome QuickSightClient::UpdateAccountCustomization(const UpdateAccountCustomizationRequest& request) const
@@ -4007,18 +3432,12 @@ UpdateAccountCustomizationOutcome QuickSightClient::UpdateAccountCustomization(c
 
 UpdateAccountCustomizationOutcomeCallable QuickSightClient::UpdateAccountCustomizationCallable(const UpdateAccountCustomizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccountCustomizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccountCustomization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateAccountCustomization, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateAccountCustomizationAsync(const UpdateAccountCustomizationRequest& request, const UpdateAccountCustomizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccountCustomization(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateAccountCustomization, this, request, handler, context, m_executor.get());
 }
 
 UpdateAccountSettingsOutcome QuickSightClient::UpdateAccountSettings(const UpdateAccountSettingsRequest& request) const
@@ -4039,18 +3458,12 @@ UpdateAccountSettingsOutcome QuickSightClient::UpdateAccountSettings(const Updat
 
 UpdateAccountSettingsOutcomeCallable QuickSightClient::UpdateAccountSettingsCallable(const UpdateAccountSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccountSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccountSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateAccountSettings, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateAccountSettingsAsync(const UpdateAccountSettingsRequest& request, const UpdateAccountSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccountSettings(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateAccountSettings, this, request, handler, context, m_executor.get());
 }
 
 UpdateAnalysisOutcome QuickSightClient::UpdateAnalysis(const UpdateAnalysisRequest& request) const
@@ -4077,18 +3490,12 @@ UpdateAnalysisOutcome QuickSightClient::UpdateAnalysis(const UpdateAnalysisReque
 
 UpdateAnalysisOutcomeCallable QuickSightClient::UpdateAnalysisCallable(const UpdateAnalysisRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAnalysisOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAnalysis(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateAnalysis, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateAnalysisAsync(const UpdateAnalysisRequest& request, const UpdateAnalysisResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAnalysis(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateAnalysis, this, request, handler, context, m_executor.get());
 }
 
 UpdateAnalysisPermissionsOutcome QuickSightClient::UpdateAnalysisPermissions(const UpdateAnalysisPermissionsRequest& request) const
@@ -4116,18 +3523,12 @@ UpdateAnalysisPermissionsOutcome QuickSightClient::UpdateAnalysisPermissions(con
 
 UpdateAnalysisPermissionsOutcomeCallable QuickSightClient::UpdateAnalysisPermissionsCallable(const UpdateAnalysisPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAnalysisPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAnalysisPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateAnalysisPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateAnalysisPermissionsAsync(const UpdateAnalysisPermissionsRequest& request, const UpdateAnalysisPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAnalysisPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateAnalysisPermissions, this, request, handler, context, m_executor.get());
 }
 
 UpdateDashboardOutcome QuickSightClient::UpdateDashboard(const UpdateDashboardRequest& request) const
@@ -4154,18 +3555,12 @@ UpdateDashboardOutcome QuickSightClient::UpdateDashboard(const UpdateDashboardRe
 
 UpdateDashboardOutcomeCallable QuickSightClient::UpdateDashboardCallable(const UpdateDashboardRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDashboardOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDashboard(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateDashboard, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateDashboardAsync(const UpdateDashboardRequest& request, const UpdateDashboardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDashboard(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateDashboard, this, request, handler, context, m_executor.get());
 }
 
 UpdateDashboardPermissionsOutcome QuickSightClient::UpdateDashboardPermissions(const UpdateDashboardPermissionsRequest& request) const
@@ -4193,18 +3588,12 @@ UpdateDashboardPermissionsOutcome QuickSightClient::UpdateDashboardPermissions(c
 
 UpdateDashboardPermissionsOutcomeCallable QuickSightClient::UpdateDashboardPermissionsCallable(const UpdateDashboardPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDashboardPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDashboardPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateDashboardPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateDashboardPermissionsAsync(const UpdateDashboardPermissionsRequest& request, const UpdateDashboardPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDashboardPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateDashboardPermissions, this, request, handler, context, m_executor.get());
 }
 
 UpdateDashboardPublishedVersionOutcome QuickSightClient::UpdateDashboardPublishedVersion(const UpdateDashboardPublishedVersionRequest& request) const
@@ -4238,18 +3627,12 @@ UpdateDashboardPublishedVersionOutcome QuickSightClient::UpdateDashboardPublishe
 
 UpdateDashboardPublishedVersionOutcomeCallable QuickSightClient::UpdateDashboardPublishedVersionCallable(const UpdateDashboardPublishedVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDashboardPublishedVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDashboardPublishedVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateDashboardPublishedVersion, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateDashboardPublishedVersionAsync(const UpdateDashboardPublishedVersionRequest& request, const UpdateDashboardPublishedVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDashboardPublishedVersion(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateDashboardPublishedVersion, this, request, handler, context, m_executor.get());
 }
 
 UpdateDataSetOutcome QuickSightClient::UpdateDataSet(const UpdateDataSetRequest& request) const
@@ -4276,18 +3659,12 @@ UpdateDataSetOutcome QuickSightClient::UpdateDataSet(const UpdateDataSetRequest&
 
 UpdateDataSetOutcomeCallable QuickSightClient::UpdateDataSetCallable(const UpdateDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateDataSet, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateDataSetAsync(const UpdateDataSetRequest& request, const UpdateDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDataSet(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateDataSet, this, request, handler, context, m_executor.get());
 }
 
 UpdateDataSetPermissionsOutcome QuickSightClient::UpdateDataSetPermissions(const UpdateDataSetPermissionsRequest& request) const
@@ -4315,18 +3692,12 @@ UpdateDataSetPermissionsOutcome QuickSightClient::UpdateDataSetPermissions(const
 
 UpdateDataSetPermissionsOutcomeCallable QuickSightClient::UpdateDataSetPermissionsCallable(const UpdateDataSetPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDataSetPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDataSetPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateDataSetPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateDataSetPermissionsAsync(const UpdateDataSetPermissionsRequest& request, const UpdateDataSetPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDataSetPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateDataSetPermissions, this, request, handler, context, m_executor.get());
 }
 
 UpdateDataSourceOutcome QuickSightClient::UpdateDataSource(const UpdateDataSourceRequest& request) const
@@ -4353,18 +3724,12 @@ UpdateDataSourceOutcome QuickSightClient::UpdateDataSource(const UpdateDataSourc
 
 UpdateDataSourceOutcomeCallable QuickSightClient::UpdateDataSourceCallable(const UpdateDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateDataSource, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateDataSourceAsync(const UpdateDataSourceRequest& request, const UpdateDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDataSource(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateDataSource, this, request, handler, context, m_executor.get());
 }
 
 UpdateDataSourcePermissionsOutcome QuickSightClient::UpdateDataSourcePermissions(const UpdateDataSourcePermissionsRequest& request) const
@@ -4392,18 +3757,12 @@ UpdateDataSourcePermissionsOutcome QuickSightClient::UpdateDataSourcePermissions
 
 UpdateDataSourcePermissionsOutcomeCallable QuickSightClient::UpdateDataSourcePermissionsCallable(const UpdateDataSourcePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDataSourcePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDataSourcePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateDataSourcePermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateDataSourcePermissionsAsync(const UpdateDataSourcePermissionsRequest& request, const UpdateDataSourcePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDataSourcePermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateDataSourcePermissions, this, request, handler, context, m_executor.get());
 }
 
 UpdateFolderOutcome QuickSightClient::UpdateFolder(const UpdateFolderRequest& request) const
@@ -4430,18 +3789,12 @@ UpdateFolderOutcome QuickSightClient::UpdateFolder(const UpdateFolderRequest& re
 
 UpdateFolderOutcomeCallable QuickSightClient::UpdateFolderCallable(const UpdateFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateFolder, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateFolderAsync(const UpdateFolderRequest& request, const UpdateFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateFolder(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateFolder, this, request, handler, context, m_executor.get());
 }
 
 UpdateFolderPermissionsOutcome QuickSightClient::UpdateFolderPermissions(const UpdateFolderPermissionsRequest& request) const
@@ -4469,18 +3822,12 @@ UpdateFolderPermissionsOutcome QuickSightClient::UpdateFolderPermissions(const U
 
 UpdateFolderPermissionsOutcomeCallable QuickSightClient::UpdateFolderPermissionsCallable(const UpdateFolderPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateFolderPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateFolderPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateFolderPermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateFolderPermissionsAsync(const UpdateFolderPermissionsRequest& request, const UpdateFolderPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateFolderPermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateFolderPermissions, this, request, handler, context, m_executor.get());
 }
 
 UpdateGroupOutcome QuickSightClient::UpdateGroup(const UpdateGroupRequest& request) const
@@ -4514,18 +3861,12 @@ UpdateGroupOutcome QuickSightClient::UpdateGroup(const UpdateGroupRequest& reque
 
 UpdateGroupOutcomeCallable QuickSightClient::UpdateGroupCallable(const UpdateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateGroup, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateGroupAsync(const UpdateGroupRequest& request, const UpdateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGroup(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateIAMPolicyAssignmentOutcome QuickSightClient::UpdateIAMPolicyAssignment(const UpdateIAMPolicyAssignmentRequest& request) const
@@ -4559,18 +3900,12 @@ UpdateIAMPolicyAssignmentOutcome QuickSightClient::UpdateIAMPolicyAssignment(con
 
 UpdateIAMPolicyAssignmentOutcomeCallable QuickSightClient::UpdateIAMPolicyAssignmentCallable(const UpdateIAMPolicyAssignmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateIAMPolicyAssignmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateIAMPolicyAssignment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateIAMPolicyAssignment, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateIAMPolicyAssignmentAsync(const UpdateIAMPolicyAssignmentRequest& request, const UpdateIAMPolicyAssignmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateIAMPolicyAssignment(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateIAMPolicyAssignment, this, request, handler, context, m_executor.get());
 }
 
 UpdateIpRestrictionOutcome QuickSightClient::UpdateIpRestriction(const UpdateIpRestrictionRequest& request) const
@@ -4591,18 +3926,12 @@ UpdateIpRestrictionOutcome QuickSightClient::UpdateIpRestriction(const UpdateIpR
 
 UpdateIpRestrictionOutcomeCallable QuickSightClient::UpdateIpRestrictionCallable(const UpdateIpRestrictionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateIpRestrictionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateIpRestriction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateIpRestriction, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateIpRestrictionAsync(const UpdateIpRestrictionRequest& request, const UpdateIpRestrictionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateIpRestriction(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateIpRestriction, this, request, handler, context, m_executor.get());
 }
 
 UpdatePublicSharingSettingsOutcome QuickSightClient::UpdatePublicSharingSettings(const UpdatePublicSharingSettingsRequest& request) const
@@ -4623,18 +3952,12 @@ UpdatePublicSharingSettingsOutcome QuickSightClient::UpdatePublicSharingSettings
 
 UpdatePublicSharingSettingsOutcomeCallable QuickSightClient::UpdatePublicSharingSettingsCallable(const UpdatePublicSharingSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePublicSharingSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePublicSharingSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdatePublicSharingSettings, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdatePublicSharingSettingsAsync(const UpdatePublicSharingSettingsRequest& request, const UpdatePublicSharingSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePublicSharingSettings(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdatePublicSharingSettings, this, request, handler, context, m_executor.get());
 }
 
 UpdateTemplateOutcome QuickSightClient::UpdateTemplate(const UpdateTemplateRequest& request) const
@@ -4661,18 +3984,12 @@ UpdateTemplateOutcome QuickSightClient::UpdateTemplate(const UpdateTemplateReque
 
 UpdateTemplateOutcomeCallable QuickSightClient::UpdateTemplateCallable(const UpdateTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateTemplate, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateTemplateAsync(const UpdateTemplateRequest& request, const UpdateTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTemplate(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateTemplate, this, request, handler, context, m_executor.get());
 }
 
 UpdateTemplateAliasOutcome QuickSightClient::UpdateTemplateAlias(const UpdateTemplateAliasRequest& request) const
@@ -4706,18 +4023,12 @@ UpdateTemplateAliasOutcome QuickSightClient::UpdateTemplateAlias(const UpdateTem
 
 UpdateTemplateAliasOutcomeCallable QuickSightClient::UpdateTemplateAliasCallable(const UpdateTemplateAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTemplateAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTemplateAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateTemplateAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateTemplateAliasAsync(const UpdateTemplateAliasRequest& request, const UpdateTemplateAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTemplateAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateTemplateAlias, this, request, handler, context, m_executor.get());
 }
 
 UpdateTemplatePermissionsOutcome QuickSightClient::UpdateTemplatePermissions(const UpdateTemplatePermissionsRequest& request) const
@@ -4745,18 +4056,12 @@ UpdateTemplatePermissionsOutcome QuickSightClient::UpdateTemplatePermissions(con
 
 UpdateTemplatePermissionsOutcomeCallable QuickSightClient::UpdateTemplatePermissionsCallable(const UpdateTemplatePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTemplatePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTemplatePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateTemplatePermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateTemplatePermissionsAsync(const UpdateTemplatePermissionsRequest& request, const UpdateTemplatePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTemplatePermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateTemplatePermissions, this, request, handler, context, m_executor.get());
 }
 
 UpdateThemeOutcome QuickSightClient::UpdateTheme(const UpdateThemeRequest& request) const
@@ -4783,18 +4088,12 @@ UpdateThemeOutcome QuickSightClient::UpdateTheme(const UpdateThemeRequest& reque
 
 UpdateThemeOutcomeCallable QuickSightClient::UpdateThemeCallable(const UpdateThemeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateThemeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTheme(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateTheme, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateThemeAsync(const UpdateThemeRequest& request, const UpdateThemeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTheme(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateTheme, this, request, handler, context, m_executor.get());
 }
 
 UpdateThemeAliasOutcome QuickSightClient::UpdateThemeAlias(const UpdateThemeAliasRequest& request) const
@@ -4828,18 +4127,12 @@ UpdateThemeAliasOutcome QuickSightClient::UpdateThemeAlias(const UpdateThemeAlia
 
 UpdateThemeAliasOutcomeCallable QuickSightClient::UpdateThemeAliasCallable(const UpdateThemeAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateThemeAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateThemeAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateThemeAlias, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateThemeAliasAsync(const UpdateThemeAliasRequest& request, const UpdateThemeAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateThemeAlias(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateThemeAlias, this, request, handler, context, m_executor.get());
 }
 
 UpdateThemePermissionsOutcome QuickSightClient::UpdateThemePermissions(const UpdateThemePermissionsRequest& request) const
@@ -4867,18 +4160,12 @@ UpdateThemePermissionsOutcome QuickSightClient::UpdateThemePermissions(const Upd
 
 UpdateThemePermissionsOutcomeCallable QuickSightClient::UpdateThemePermissionsCallable(const UpdateThemePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateThemePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateThemePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateThemePermissions, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateThemePermissionsAsync(const UpdateThemePermissionsRequest& request, const UpdateThemePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateThemePermissions(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateThemePermissions, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserOutcome QuickSightClient::UpdateUser(const UpdateUserRequest& request) const
@@ -4912,17 +4199,11 @@ UpdateUserOutcome QuickSightClient::UpdateUser(const UpdateUserRequest& request)
 
 UpdateUserOutcomeCallable QuickSightClient::UpdateUserCallable(const UpdateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &QuickSightClient::UpdateUser, this, request, m_executor.get());
 }
 
 void QuickSightClient::UpdateUserAsync(const UpdateUserRequest& request, const UpdateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUser(request), context);
-    } );
+  MakeAsyncOperation(&QuickSightClient::UpdateUser, this, request, handler, context, m_executor.get());
 }
 

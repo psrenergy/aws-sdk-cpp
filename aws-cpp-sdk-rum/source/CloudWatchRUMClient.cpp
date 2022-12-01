@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -184,18 +185,12 @@ BatchCreateRumMetricDefinitionsOutcome CloudWatchRUMClient::BatchCreateRumMetric
 
 BatchCreateRumMetricDefinitionsOutcomeCallable CloudWatchRUMClient::BatchCreateRumMetricDefinitionsCallable(const BatchCreateRumMetricDefinitionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchCreateRumMetricDefinitionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchCreateRumMetricDefinitions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::BatchCreateRumMetricDefinitions, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::BatchCreateRumMetricDefinitionsAsync(const BatchCreateRumMetricDefinitionsRequest& request, const BatchCreateRumMetricDefinitionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchCreateRumMetricDefinitions(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::BatchCreateRumMetricDefinitions, this, request, handler, context, m_executor.get());
 }
 
 BatchDeleteRumMetricDefinitionsOutcome CloudWatchRUMClient::BatchDeleteRumMetricDefinitions(const BatchDeleteRumMetricDefinitionsRequest& request) const
@@ -226,18 +221,12 @@ BatchDeleteRumMetricDefinitionsOutcome CloudWatchRUMClient::BatchDeleteRumMetric
 
 BatchDeleteRumMetricDefinitionsOutcomeCallable CloudWatchRUMClient::BatchDeleteRumMetricDefinitionsCallable(const BatchDeleteRumMetricDefinitionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDeleteRumMetricDefinitionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDeleteRumMetricDefinitions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::BatchDeleteRumMetricDefinitions, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::BatchDeleteRumMetricDefinitionsAsync(const BatchDeleteRumMetricDefinitionsRequest& request, const BatchDeleteRumMetricDefinitionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDeleteRumMetricDefinitions(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::BatchDeleteRumMetricDefinitions, this, request, handler, context, m_executor.get());
 }
 
 BatchGetRumMetricDefinitionsOutcome CloudWatchRUMClient::BatchGetRumMetricDefinitions(const BatchGetRumMetricDefinitionsRequest& request) const
@@ -263,18 +252,12 @@ BatchGetRumMetricDefinitionsOutcome CloudWatchRUMClient::BatchGetRumMetricDefini
 
 BatchGetRumMetricDefinitionsOutcomeCallable CloudWatchRUMClient::BatchGetRumMetricDefinitionsCallable(const BatchGetRumMetricDefinitionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetRumMetricDefinitionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetRumMetricDefinitions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::BatchGetRumMetricDefinitions, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::BatchGetRumMetricDefinitionsAsync(const BatchGetRumMetricDefinitionsRequest& request, const BatchGetRumMetricDefinitionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetRumMetricDefinitions(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::BatchGetRumMetricDefinitions, this, request, handler, context, m_executor.get());
 }
 
 CreateAppMonitorOutcome CloudWatchRUMClient::CreateAppMonitor(const CreateAppMonitorRequest& request) const
@@ -288,18 +271,12 @@ CreateAppMonitorOutcome CloudWatchRUMClient::CreateAppMonitor(const CreateAppMon
 
 CreateAppMonitorOutcomeCallable CloudWatchRUMClient::CreateAppMonitorCallable(const CreateAppMonitorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAppMonitorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAppMonitor(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::CreateAppMonitor, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::CreateAppMonitorAsync(const CreateAppMonitorRequest& request, const CreateAppMonitorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAppMonitor(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::CreateAppMonitor, this, request, handler, context, m_executor.get());
 }
 
 DeleteAppMonitorOutcome CloudWatchRUMClient::DeleteAppMonitor(const DeleteAppMonitorRequest& request) const
@@ -319,18 +296,12 @@ DeleteAppMonitorOutcome CloudWatchRUMClient::DeleteAppMonitor(const DeleteAppMon
 
 DeleteAppMonitorOutcomeCallable CloudWatchRUMClient::DeleteAppMonitorCallable(const DeleteAppMonitorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAppMonitorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAppMonitor(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::DeleteAppMonitor, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::DeleteAppMonitorAsync(const DeleteAppMonitorRequest& request, const DeleteAppMonitorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAppMonitor(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::DeleteAppMonitor, this, request, handler, context, m_executor.get());
 }
 
 DeleteRumMetricsDestinationOutcome CloudWatchRUMClient::DeleteRumMetricsDestination(const DeleteRumMetricsDestinationRequest& request) const
@@ -356,18 +327,12 @@ DeleteRumMetricsDestinationOutcome CloudWatchRUMClient::DeleteRumMetricsDestinat
 
 DeleteRumMetricsDestinationOutcomeCallable CloudWatchRUMClient::DeleteRumMetricsDestinationCallable(const DeleteRumMetricsDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRumMetricsDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRumMetricsDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::DeleteRumMetricsDestination, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::DeleteRumMetricsDestinationAsync(const DeleteRumMetricsDestinationRequest& request, const DeleteRumMetricsDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRumMetricsDestination(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::DeleteRumMetricsDestination, this, request, handler, context, m_executor.get());
 }
 
 GetAppMonitorOutcome CloudWatchRUMClient::GetAppMonitor(const GetAppMonitorRequest& request) const
@@ -387,18 +352,12 @@ GetAppMonitorOutcome CloudWatchRUMClient::GetAppMonitor(const GetAppMonitorReque
 
 GetAppMonitorOutcomeCallable CloudWatchRUMClient::GetAppMonitorCallable(const GetAppMonitorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAppMonitorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAppMonitor(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::GetAppMonitor, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::GetAppMonitorAsync(const GetAppMonitorRequest& request, const GetAppMonitorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAppMonitor(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::GetAppMonitor, this, request, handler, context, m_executor.get());
 }
 
 GetAppMonitorDataOutcome CloudWatchRUMClient::GetAppMonitorData(const GetAppMonitorDataRequest& request) const
@@ -419,18 +378,12 @@ GetAppMonitorDataOutcome CloudWatchRUMClient::GetAppMonitorData(const GetAppMoni
 
 GetAppMonitorDataOutcomeCallable CloudWatchRUMClient::GetAppMonitorDataCallable(const GetAppMonitorDataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAppMonitorDataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAppMonitorData(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::GetAppMonitorData, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::GetAppMonitorDataAsync(const GetAppMonitorDataRequest& request, const GetAppMonitorDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAppMonitorData(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::GetAppMonitorData, this, request, handler, context, m_executor.get());
 }
 
 ListAppMonitorsOutcome CloudWatchRUMClient::ListAppMonitors(const ListAppMonitorsRequest& request) const
@@ -444,18 +397,12 @@ ListAppMonitorsOutcome CloudWatchRUMClient::ListAppMonitors(const ListAppMonitor
 
 ListAppMonitorsOutcomeCallable CloudWatchRUMClient::ListAppMonitorsCallable(const ListAppMonitorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAppMonitorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAppMonitors(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::ListAppMonitors, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::ListAppMonitorsAsync(const ListAppMonitorsRequest& request, const ListAppMonitorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAppMonitors(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::ListAppMonitors, this, request, handler, context, m_executor.get());
 }
 
 ListRumMetricsDestinationsOutcome CloudWatchRUMClient::ListRumMetricsDestinations(const ListRumMetricsDestinationsRequest& request) const
@@ -476,18 +423,12 @@ ListRumMetricsDestinationsOutcome CloudWatchRUMClient::ListRumMetricsDestination
 
 ListRumMetricsDestinationsOutcomeCallable CloudWatchRUMClient::ListRumMetricsDestinationsCallable(const ListRumMetricsDestinationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRumMetricsDestinationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRumMetricsDestinations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::ListRumMetricsDestinations, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::ListRumMetricsDestinationsAsync(const ListRumMetricsDestinationsRequest& request, const ListRumMetricsDestinationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRumMetricsDestinations(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::ListRumMetricsDestinations, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome CloudWatchRUMClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -507,18 +448,12 @@ ListTagsForResourceOutcome CloudWatchRUMClient::ListTagsForResource(const ListTa
 
 ListTagsForResourceOutcomeCallable CloudWatchRUMClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutRumEventsOutcome CloudWatchRUMClient::PutRumEvents(const PutRumEventsRequest& request) const
@@ -540,18 +475,12 @@ PutRumEventsOutcome CloudWatchRUMClient::PutRumEvents(const PutRumEventsRequest&
 
 PutRumEventsOutcomeCallable CloudWatchRUMClient::PutRumEventsCallable(const PutRumEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRumEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRumEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::PutRumEvents, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::PutRumEventsAsync(const PutRumEventsRequest& request, const PutRumEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRumEvents(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::PutRumEvents, this, request, handler, context, m_executor.get());
 }
 
 PutRumMetricsDestinationOutcome CloudWatchRUMClient::PutRumMetricsDestination(const PutRumMetricsDestinationRequest& request) const
@@ -572,18 +501,12 @@ PutRumMetricsDestinationOutcome CloudWatchRUMClient::PutRumMetricsDestination(co
 
 PutRumMetricsDestinationOutcomeCallable CloudWatchRUMClient::PutRumMetricsDestinationCallable(const PutRumMetricsDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRumMetricsDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRumMetricsDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::PutRumMetricsDestination, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::PutRumMetricsDestinationAsync(const PutRumMetricsDestinationRequest& request, const PutRumMetricsDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRumMetricsDestination(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::PutRumMetricsDestination, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome CloudWatchRUMClient::TagResource(const TagResourceRequest& request) const
@@ -603,18 +526,12 @@ TagResourceOutcome CloudWatchRUMClient::TagResource(const TagResourceRequest& re
 
 TagResourceOutcomeCallable CloudWatchRUMClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::TagResource, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome CloudWatchRUMClient::UntagResource(const UntagResourceRequest& request) const
@@ -639,18 +556,12 @@ UntagResourceOutcome CloudWatchRUMClient::UntagResource(const UntagResourceReque
 
 UntagResourceOutcomeCallable CloudWatchRUMClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::UntagResource, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAppMonitorOutcome CloudWatchRUMClient::UpdateAppMonitor(const UpdateAppMonitorRequest& request) const
@@ -670,18 +581,12 @@ UpdateAppMonitorOutcome CloudWatchRUMClient::UpdateAppMonitor(const UpdateAppMon
 
 UpdateAppMonitorOutcomeCallable CloudWatchRUMClient::UpdateAppMonitorCallable(const UpdateAppMonitorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAppMonitorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAppMonitor(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::UpdateAppMonitor, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::UpdateAppMonitorAsync(const UpdateAppMonitorRequest& request, const UpdateAppMonitorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAppMonitor(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::UpdateAppMonitor, this, request, handler, context, m_executor.get());
 }
 
 UpdateRumMetricDefinitionOutcome CloudWatchRUMClient::UpdateRumMetricDefinition(const UpdateRumMetricDefinitionRequest& request) const
@@ -702,17 +607,11 @@ UpdateRumMetricDefinitionOutcome CloudWatchRUMClient::UpdateRumMetricDefinition(
 
 UpdateRumMetricDefinitionOutcomeCallable CloudWatchRUMClient::UpdateRumMetricDefinitionCallable(const UpdateRumMetricDefinitionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRumMetricDefinitionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRumMetricDefinition(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CloudWatchRUMClient::UpdateRumMetricDefinition, this, request, m_executor.get());
 }
 
 void CloudWatchRUMClient::UpdateRumMetricDefinitionAsync(const UpdateRumMetricDefinitionRequest& request, const UpdateRumMetricDefinitionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRumMetricDefinition(request), context);
-    } );
+  MakeAsyncOperation(&CloudWatchRUMClient::UpdateRumMetricDefinition, this, request, handler, context, m_executor.get());
 }
 

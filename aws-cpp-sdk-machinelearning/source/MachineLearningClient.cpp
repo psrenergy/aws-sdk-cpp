@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -187,20 +188,13 @@ AddTagsOutcome MachineLearningClient::AddTags(const AddTagsRequest& request) con
 
 AddTagsOutcomeCallable MachineLearningClient::AddTagsCallable(const AddTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::AddTags, this, request, m_executor.get());
 }
 
 void MachineLearningClient::AddTagsAsync(const AddTagsRequest& request, const AddTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddTags(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::AddTags, this, request, handler, context, m_executor.get());
 }
-
 
 CreateBatchPredictionOutcome MachineLearningClient::CreateBatchPrediction(const CreateBatchPredictionRequest& request) const
 {
@@ -212,20 +206,13 @@ CreateBatchPredictionOutcome MachineLearningClient::CreateBatchPrediction(const 
 
 CreateBatchPredictionOutcomeCallable MachineLearningClient::CreateBatchPredictionCallable(const CreateBatchPredictionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateBatchPredictionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateBatchPrediction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::CreateBatchPrediction, this, request, m_executor.get());
 }
 
 void MachineLearningClient::CreateBatchPredictionAsync(const CreateBatchPredictionRequest& request, const CreateBatchPredictionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateBatchPrediction(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::CreateBatchPrediction, this, request, handler, context, m_executor.get());
 }
-
 
 CreateDataSourceFromRDSOutcome MachineLearningClient::CreateDataSourceFromRDS(const CreateDataSourceFromRDSRequest& request) const
 {
@@ -237,20 +224,13 @@ CreateDataSourceFromRDSOutcome MachineLearningClient::CreateDataSourceFromRDS(co
 
 CreateDataSourceFromRDSOutcomeCallable MachineLearningClient::CreateDataSourceFromRDSCallable(const CreateDataSourceFromRDSRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDataSourceFromRDSOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDataSourceFromRDS(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::CreateDataSourceFromRDS, this, request, m_executor.get());
 }
 
 void MachineLearningClient::CreateDataSourceFromRDSAsync(const CreateDataSourceFromRDSRequest& request, const CreateDataSourceFromRDSResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDataSourceFromRDS(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::CreateDataSourceFromRDS, this, request, handler, context, m_executor.get());
 }
-
 
 CreateDataSourceFromRedshiftOutcome MachineLearningClient::CreateDataSourceFromRedshift(const CreateDataSourceFromRedshiftRequest& request) const
 {
@@ -262,20 +242,13 @@ CreateDataSourceFromRedshiftOutcome MachineLearningClient::CreateDataSourceFromR
 
 CreateDataSourceFromRedshiftOutcomeCallable MachineLearningClient::CreateDataSourceFromRedshiftCallable(const CreateDataSourceFromRedshiftRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDataSourceFromRedshiftOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDataSourceFromRedshift(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::CreateDataSourceFromRedshift, this, request, m_executor.get());
 }
 
 void MachineLearningClient::CreateDataSourceFromRedshiftAsync(const CreateDataSourceFromRedshiftRequest& request, const CreateDataSourceFromRedshiftResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDataSourceFromRedshift(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::CreateDataSourceFromRedshift, this, request, handler, context, m_executor.get());
 }
-
 
 CreateDataSourceFromS3Outcome MachineLearningClient::CreateDataSourceFromS3(const CreateDataSourceFromS3Request& request) const
 {
@@ -287,20 +260,13 @@ CreateDataSourceFromS3Outcome MachineLearningClient::CreateDataSourceFromS3(cons
 
 CreateDataSourceFromS3OutcomeCallable MachineLearningClient::CreateDataSourceFromS3Callable(const CreateDataSourceFromS3Request& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDataSourceFromS3Outcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDataSourceFromS3(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::CreateDataSourceFromS3, this, request, m_executor.get());
 }
 
 void MachineLearningClient::CreateDataSourceFromS3Async(const CreateDataSourceFromS3Request& request, const CreateDataSourceFromS3ResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDataSourceFromS3(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::CreateDataSourceFromS3, this, request, handler, context, m_executor.get());
 }
-
 
 CreateEvaluationOutcome MachineLearningClient::CreateEvaluation(const CreateEvaluationRequest& request) const
 {
@@ -312,20 +278,13 @@ CreateEvaluationOutcome MachineLearningClient::CreateEvaluation(const CreateEval
 
 CreateEvaluationOutcomeCallable MachineLearningClient::CreateEvaluationCallable(const CreateEvaluationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEvaluationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEvaluation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::CreateEvaluation, this, request, m_executor.get());
 }
 
 void MachineLearningClient::CreateEvaluationAsync(const CreateEvaluationRequest& request, const CreateEvaluationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEvaluation(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::CreateEvaluation, this, request, handler, context, m_executor.get());
 }
-
 
 CreateMLModelOutcome MachineLearningClient::CreateMLModel(const CreateMLModelRequest& request) const
 {
@@ -337,20 +296,13 @@ CreateMLModelOutcome MachineLearningClient::CreateMLModel(const CreateMLModelReq
 
 CreateMLModelOutcomeCallable MachineLearningClient::CreateMLModelCallable(const CreateMLModelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateMLModelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateMLModel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::CreateMLModel, this, request, m_executor.get());
 }
 
 void MachineLearningClient::CreateMLModelAsync(const CreateMLModelRequest& request, const CreateMLModelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateMLModel(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::CreateMLModel, this, request, handler, context, m_executor.get());
 }
-
 
 CreateRealtimeEndpointOutcome MachineLearningClient::CreateRealtimeEndpoint(const CreateRealtimeEndpointRequest& request) const
 {
@@ -362,20 +314,13 @@ CreateRealtimeEndpointOutcome MachineLearningClient::CreateRealtimeEndpoint(cons
 
 CreateRealtimeEndpointOutcomeCallable MachineLearningClient::CreateRealtimeEndpointCallable(const CreateRealtimeEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRealtimeEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRealtimeEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::CreateRealtimeEndpoint, this, request, m_executor.get());
 }
 
 void MachineLearningClient::CreateRealtimeEndpointAsync(const CreateRealtimeEndpointRequest& request, const CreateRealtimeEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRealtimeEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::CreateRealtimeEndpoint, this, request, handler, context, m_executor.get());
 }
-
 
 DeleteBatchPredictionOutcome MachineLearningClient::DeleteBatchPrediction(const DeleteBatchPredictionRequest& request) const
 {
@@ -387,20 +332,13 @@ DeleteBatchPredictionOutcome MachineLearningClient::DeleteBatchPrediction(const 
 
 DeleteBatchPredictionOutcomeCallable MachineLearningClient::DeleteBatchPredictionCallable(const DeleteBatchPredictionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBatchPredictionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBatchPrediction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DeleteBatchPrediction, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DeleteBatchPredictionAsync(const DeleteBatchPredictionRequest& request, const DeleteBatchPredictionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBatchPrediction(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DeleteBatchPrediction, this, request, handler, context, m_executor.get());
 }
-
 
 DeleteDataSourceOutcome MachineLearningClient::DeleteDataSource(const DeleteDataSourceRequest& request) const
 {
@@ -412,20 +350,13 @@ DeleteDataSourceOutcome MachineLearningClient::DeleteDataSource(const DeleteData
 
 DeleteDataSourceOutcomeCallable MachineLearningClient::DeleteDataSourceCallable(const DeleteDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DeleteDataSource, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DeleteDataSourceAsync(const DeleteDataSourceRequest& request, const DeleteDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDataSource(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DeleteDataSource, this, request, handler, context, m_executor.get());
 }
-
 
 DeleteEvaluationOutcome MachineLearningClient::DeleteEvaluation(const DeleteEvaluationRequest& request) const
 {
@@ -437,20 +368,13 @@ DeleteEvaluationOutcome MachineLearningClient::DeleteEvaluation(const DeleteEval
 
 DeleteEvaluationOutcomeCallable MachineLearningClient::DeleteEvaluationCallable(const DeleteEvaluationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEvaluationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEvaluation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DeleteEvaluation, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DeleteEvaluationAsync(const DeleteEvaluationRequest& request, const DeleteEvaluationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEvaluation(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DeleteEvaluation, this, request, handler, context, m_executor.get());
 }
-
 
 DeleteMLModelOutcome MachineLearningClient::DeleteMLModel(const DeleteMLModelRequest& request) const
 {
@@ -462,20 +386,13 @@ DeleteMLModelOutcome MachineLearningClient::DeleteMLModel(const DeleteMLModelReq
 
 DeleteMLModelOutcomeCallable MachineLearningClient::DeleteMLModelCallable(const DeleteMLModelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteMLModelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteMLModel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DeleteMLModel, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DeleteMLModelAsync(const DeleteMLModelRequest& request, const DeleteMLModelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteMLModel(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DeleteMLModel, this, request, handler, context, m_executor.get());
 }
-
 
 DeleteRealtimeEndpointOutcome MachineLearningClient::DeleteRealtimeEndpoint(const DeleteRealtimeEndpointRequest& request) const
 {
@@ -487,20 +404,13 @@ DeleteRealtimeEndpointOutcome MachineLearningClient::DeleteRealtimeEndpoint(cons
 
 DeleteRealtimeEndpointOutcomeCallable MachineLearningClient::DeleteRealtimeEndpointCallable(const DeleteRealtimeEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRealtimeEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRealtimeEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DeleteRealtimeEndpoint, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DeleteRealtimeEndpointAsync(const DeleteRealtimeEndpointRequest& request, const DeleteRealtimeEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRealtimeEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DeleteRealtimeEndpoint, this, request, handler, context, m_executor.get());
 }
-
 
 DeleteTagsOutcome MachineLearningClient::DeleteTags(const DeleteTagsRequest& request) const
 {
@@ -512,20 +422,13 @@ DeleteTagsOutcome MachineLearningClient::DeleteTags(const DeleteTagsRequest& req
 
 DeleteTagsOutcomeCallable MachineLearningClient::DeleteTagsCallable(const DeleteTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DeleteTags, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DeleteTagsAsync(const DeleteTagsRequest& request, const DeleteTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTags(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DeleteTags, this, request, handler, context, m_executor.get());
 }
-
 
 DescribeBatchPredictionsOutcome MachineLearningClient::DescribeBatchPredictions(const DescribeBatchPredictionsRequest& request) const
 {
@@ -537,20 +440,13 @@ DescribeBatchPredictionsOutcome MachineLearningClient::DescribeBatchPredictions(
 
 DescribeBatchPredictionsOutcomeCallable MachineLearningClient::DescribeBatchPredictionsCallable(const DescribeBatchPredictionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeBatchPredictionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeBatchPredictions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DescribeBatchPredictions, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DescribeBatchPredictionsAsync(const DescribeBatchPredictionsRequest& request, const DescribeBatchPredictionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeBatchPredictions(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DescribeBatchPredictions, this, request, handler, context, m_executor.get());
 }
-
 
 DescribeDataSourcesOutcome MachineLearningClient::DescribeDataSources(const DescribeDataSourcesRequest& request) const
 {
@@ -562,20 +458,13 @@ DescribeDataSourcesOutcome MachineLearningClient::DescribeDataSources(const Desc
 
 DescribeDataSourcesOutcomeCallable MachineLearningClient::DescribeDataSourcesCallable(const DescribeDataSourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDataSourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDataSources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DescribeDataSources, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DescribeDataSourcesAsync(const DescribeDataSourcesRequest& request, const DescribeDataSourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDataSources(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DescribeDataSources, this, request, handler, context, m_executor.get());
 }
-
 
 DescribeEvaluationsOutcome MachineLearningClient::DescribeEvaluations(const DescribeEvaluationsRequest& request) const
 {
@@ -587,20 +476,13 @@ DescribeEvaluationsOutcome MachineLearningClient::DescribeEvaluations(const Desc
 
 DescribeEvaluationsOutcomeCallable MachineLearningClient::DescribeEvaluationsCallable(const DescribeEvaluationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEvaluationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEvaluations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DescribeEvaluations, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DescribeEvaluationsAsync(const DescribeEvaluationsRequest& request, const DescribeEvaluationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEvaluations(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DescribeEvaluations, this, request, handler, context, m_executor.get());
 }
-
 
 DescribeMLModelsOutcome MachineLearningClient::DescribeMLModels(const DescribeMLModelsRequest& request) const
 {
@@ -612,20 +494,13 @@ DescribeMLModelsOutcome MachineLearningClient::DescribeMLModels(const DescribeML
 
 DescribeMLModelsOutcomeCallable MachineLearningClient::DescribeMLModelsCallable(const DescribeMLModelsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeMLModelsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeMLModels(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DescribeMLModels, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DescribeMLModelsAsync(const DescribeMLModelsRequest& request, const DescribeMLModelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeMLModels(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DescribeMLModels, this, request, handler, context, m_executor.get());
 }
-
 
 DescribeTagsOutcome MachineLearningClient::DescribeTags(const DescribeTagsRequest& request) const
 {
@@ -637,20 +512,13 @@ DescribeTagsOutcome MachineLearningClient::DescribeTags(const DescribeTagsReques
 
 DescribeTagsOutcomeCallable MachineLearningClient::DescribeTagsCallable(const DescribeTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::DescribeTags, this, request, m_executor.get());
 }
 
 void MachineLearningClient::DescribeTagsAsync(const DescribeTagsRequest& request, const DescribeTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTags(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::DescribeTags, this, request, handler, context, m_executor.get());
 }
-
 
 GetBatchPredictionOutcome MachineLearningClient::GetBatchPrediction(const GetBatchPredictionRequest& request) const
 {
@@ -662,20 +530,13 @@ GetBatchPredictionOutcome MachineLearningClient::GetBatchPrediction(const GetBat
 
 GetBatchPredictionOutcomeCallable MachineLearningClient::GetBatchPredictionCallable(const GetBatchPredictionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBatchPredictionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBatchPrediction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::GetBatchPrediction, this, request, m_executor.get());
 }
 
 void MachineLearningClient::GetBatchPredictionAsync(const GetBatchPredictionRequest& request, const GetBatchPredictionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBatchPrediction(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::GetBatchPrediction, this, request, handler, context, m_executor.get());
 }
-
 
 GetDataSourceOutcome MachineLearningClient::GetDataSource(const GetDataSourceRequest& request) const
 {
@@ -687,20 +548,13 @@ GetDataSourceOutcome MachineLearningClient::GetDataSource(const GetDataSourceReq
 
 GetDataSourceOutcomeCallable MachineLearningClient::GetDataSourceCallable(const GetDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::GetDataSource, this, request, m_executor.get());
 }
 
 void MachineLearningClient::GetDataSourceAsync(const GetDataSourceRequest& request, const GetDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDataSource(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::GetDataSource, this, request, handler, context, m_executor.get());
 }
-
 
 GetEvaluationOutcome MachineLearningClient::GetEvaluation(const GetEvaluationRequest& request) const
 {
@@ -712,20 +566,13 @@ GetEvaluationOutcome MachineLearningClient::GetEvaluation(const GetEvaluationReq
 
 GetEvaluationOutcomeCallable MachineLearningClient::GetEvaluationCallable(const GetEvaluationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEvaluationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEvaluation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::GetEvaluation, this, request, m_executor.get());
 }
 
 void MachineLearningClient::GetEvaluationAsync(const GetEvaluationRequest& request, const GetEvaluationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEvaluation(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::GetEvaluation, this, request, handler, context, m_executor.get());
 }
-
 
 GetMLModelOutcome MachineLearningClient::GetMLModel(const GetMLModelRequest& request) const
 {
@@ -737,20 +584,13 @@ GetMLModelOutcome MachineLearningClient::GetMLModel(const GetMLModelRequest& req
 
 GetMLModelOutcomeCallable MachineLearningClient::GetMLModelCallable(const GetMLModelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetMLModelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetMLModel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::GetMLModel, this, request, m_executor.get());
 }
 
 void MachineLearningClient::GetMLModelAsync(const GetMLModelRequest& request, const GetMLModelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetMLModel(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::GetMLModel, this, request, handler, context, m_executor.get());
 }
-
 
 PredictOutcome MachineLearningClient::Predict(const PredictRequest& request) const
 {
@@ -762,20 +602,13 @@ PredictOutcome MachineLearningClient::Predict(const PredictRequest& request) con
 
 PredictOutcomeCallable MachineLearningClient::PredictCallable(const PredictRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PredictOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->Predict(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::Predict, this, request, m_executor.get());
 }
 
 void MachineLearningClient::PredictAsync(const PredictRequest& request, const PredictResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, Predict(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::Predict, this, request, handler, context, m_executor.get());
 }
-
 
 UpdateBatchPredictionOutcome MachineLearningClient::UpdateBatchPrediction(const UpdateBatchPredictionRequest& request) const
 {
@@ -787,20 +620,13 @@ UpdateBatchPredictionOutcome MachineLearningClient::UpdateBatchPrediction(const 
 
 UpdateBatchPredictionOutcomeCallable MachineLearningClient::UpdateBatchPredictionCallable(const UpdateBatchPredictionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateBatchPredictionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateBatchPrediction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::UpdateBatchPrediction, this, request, m_executor.get());
 }
 
 void MachineLearningClient::UpdateBatchPredictionAsync(const UpdateBatchPredictionRequest& request, const UpdateBatchPredictionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateBatchPrediction(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::UpdateBatchPrediction, this, request, handler, context, m_executor.get());
 }
-
 
 UpdateDataSourceOutcome MachineLearningClient::UpdateDataSource(const UpdateDataSourceRequest& request) const
 {
@@ -812,20 +638,13 @@ UpdateDataSourceOutcome MachineLearningClient::UpdateDataSource(const UpdateData
 
 UpdateDataSourceOutcomeCallable MachineLearningClient::UpdateDataSourceCallable(const UpdateDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::UpdateDataSource, this, request, m_executor.get());
 }
 
 void MachineLearningClient::UpdateDataSourceAsync(const UpdateDataSourceRequest& request, const UpdateDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDataSource(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::UpdateDataSource, this, request, handler, context, m_executor.get());
 }
-
 
 UpdateEvaluationOutcome MachineLearningClient::UpdateEvaluation(const UpdateEvaluationRequest& request) const
 {
@@ -837,20 +656,13 @@ UpdateEvaluationOutcome MachineLearningClient::UpdateEvaluation(const UpdateEval
 
 UpdateEvaluationOutcomeCallable MachineLearningClient::UpdateEvaluationCallable(const UpdateEvaluationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEvaluationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEvaluation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::UpdateEvaluation, this, request, m_executor.get());
 }
 
 void MachineLearningClient::UpdateEvaluationAsync(const UpdateEvaluationRequest& request, const UpdateEvaluationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEvaluation(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::UpdateEvaluation, this, request, handler, context, m_executor.get());
 }
-
 
 UpdateMLModelOutcome MachineLearningClient::UpdateMLModel(const UpdateMLModelRequest& request) const
 {
@@ -862,18 +674,11 @@ UpdateMLModelOutcome MachineLearningClient::UpdateMLModel(const UpdateMLModelReq
 
 UpdateMLModelOutcomeCallable MachineLearningClient::UpdateMLModelCallable(const UpdateMLModelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateMLModelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateMLModel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MachineLearningClient::UpdateMLModel, this, request, m_executor.get());
 }
 
 void MachineLearningClient::UpdateMLModelAsync(const UpdateMLModelRequest& request, const UpdateMLModelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateMLModel(request), context);
-    } );
+  MakeAsyncOperation(&MachineLearningClient::UpdateMLModel, this, request, handler, context, m_executor.get());
 }
-
 

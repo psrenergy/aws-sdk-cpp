@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -117,10 +118,10 @@ GlacierClient::GlacierClient(const std::shared_ptr<AWSCredentialsProvider>& cred
     /* Legacy constructors due deprecation */
   GlacierClient::GlacierClient(const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             Aws::MakeShared<DefaultAWSCredentialsProviderChain>(ALLOCATION_TAG),
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  Aws::MakeShared<DefaultAWSCredentialsProviderChain>(ALLOCATION_TAG),
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<GlacierErrorMarshaller>(ALLOCATION_TAG)),
   m_clientConfiguration(clientConfiguration),
   m_executor(clientConfiguration.executor),
@@ -132,10 +133,10 @@ GlacierClient::GlacierClient(const std::shared_ptr<AWSCredentialsProvider>& cred
 GlacierClient::GlacierClient(const AWSCredentials& credentials,
                              const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             Aws::MakeShared<SimpleAWSCredentialsProvider>(ALLOCATION_TAG, credentials),
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  Aws::MakeShared<SimpleAWSCredentialsProvider>(ALLOCATION_TAG, credentials),
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<GlacierErrorMarshaller>(ALLOCATION_TAG)),
     m_clientConfiguration(clientConfiguration),
     m_executor(clientConfiguration.executor),
@@ -147,10 +148,10 @@ GlacierClient::GlacierClient(const AWSCredentials& credentials,
 GlacierClient::GlacierClient(const std::shared_ptr<AWSCredentialsProvider>& credentialsProvider,
                              const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             credentialsProvider,
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  credentialsProvider,
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<GlacierErrorMarshaller>(ALLOCATION_TAG)),
     m_clientConfiguration(clientConfiguration),
     m_executor(clientConfiguration.executor),
@@ -217,18 +218,12 @@ AbortMultipartUploadOutcome GlacierClient::AbortMultipartUpload(const AbortMulti
 
 AbortMultipartUploadOutcomeCallable GlacierClient::AbortMultipartUploadCallable(const AbortMultipartUploadRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AbortMultipartUploadOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AbortMultipartUpload(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::AbortMultipartUpload, this, request, m_executor.get());
 }
 
 void GlacierClient::AbortMultipartUploadAsync(const AbortMultipartUploadRequest& request, const AbortMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AbortMultipartUpload(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::AbortMultipartUpload, this, request, handler, context, m_executor.get());
 }
 
 AbortVaultLockOutcome GlacierClient::AbortVaultLock(const AbortVaultLockRequest& request) const
@@ -260,18 +255,12 @@ AbortVaultLockOutcome GlacierClient::AbortVaultLock(const AbortVaultLockRequest&
 
 AbortVaultLockOutcomeCallable GlacierClient::AbortVaultLockCallable(const AbortVaultLockRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AbortVaultLockOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AbortVaultLock(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::AbortVaultLock, this, request, m_executor.get());
 }
 
 void GlacierClient::AbortVaultLockAsync(const AbortVaultLockRequest& request, const AbortVaultLockResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AbortVaultLock(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::AbortVaultLock, this, request, handler, context, m_executor.get());
 }
 
 AddTagsToVaultOutcome GlacierClient::AddTagsToVault(const AddTagsToVaultRequest& request) const
@@ -306,18 +295,12 @@ AddTagsToVaultOutcome GlacierClient::AddTagsToVault(const AddTagsToVaultRequest&
 
 AddTagsToVaultOutcomeCallable GlacierClient::AddTagsToVaultCallable(const AddTagsToVaultRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddTagsToVaultOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddTagsToVault(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::AddTagsToVault, this, request, m_executor.get());
 }
 
 void GlacierClient::AddTagsToVaultAsync(const AddTagsToVaultRequest& request, const AddTagsToVaultResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddTagsToVault(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::AddTagsToVault, this, request, handler, context, m_executor.get());
 }
 
 CompleteMultipartUploadOutcome GlacierClient::CompleteMultipartUpload(const CompleteMultipartUploadRequest& request) const
@@ -355,18 +338,12 @@ CompleteMultipartUploadOutcome GlacierClient::CompleteMultipartUpload(const Comp
 
 CompleteMultipartUploadOutcomeCallable GlacierClient::CompleteMultipartUploadCallable(const CompleteMultipartUploadRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CompleteMultipartUploadOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CompleteMultipartUpload(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::CompleteMultipartUpload, this, request, m_executor.get());
 }
 
 void GlacierClient::CompleteMultipartUploadAsync(const CompleteMultipartUploadRequest& request, const CompleteMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CompleteMultipartUpload(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::CompleteMultipartUpload, this, request, handler, context, m_executor.get());
 }
 
 CompleteVaultLockOutcome GlacierClient::CompleteVaultLock(const CompleteVaultLockRequest& request) const
@@ -404,18 +381,12 @@ CompleteVaultLockOutcome GlacierClient::CompleteVaultLock(const CompleteVaultLoc
 
 CompleteVaultLockOutcomeCallable GlacierClient::CompleteVaultLockCallable(const CompleteVaultLockRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CompleteVaultLockOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CompleteVaultLock(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::CompleteVaultLock, this, request, m_executor.get());
 }
 
 void GlacierClient::CompleteVaultLockAsync(const CompleteVaultLockRequest& request, const CompleteVaultLockResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CompleteVaultLock(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::CompleteVaultLock, this, request, handler, context, m_executor.get());
 }
 
 CreateVaultOutcome GlacierClient::CreateVault(const CreateVaultRequest& request) const
@@ -446,18 +417,12 @@ CreateVaultOutcome GlacierClient::CreateVault(const CreateVaultRequest& request)
 
 CreateVaultOutcomeCallable GlacierClient::CreateVaultCallable(const CreateVaultRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateVaultOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateVault(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::CreateVault, this, request, m_executor.get());
 }
 
 void GlacierClient::CreateVaultAsync(const CreateVaultRequest& request, const CreateVaultResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateVault(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::CreateVault, this, request, handler, context, m_executor.get());
 }
 
 DeleteArchiveOutcome GlacierClient::DeleteArchive(const DeleteArchiveRequest& request) const
@@ -495,18 +460,12 @@ DeleteArchiveOutcome GlacierClient::DeleteArchive(const DeleteArchiveRequest& re
 
 DeleteArchiveOutcomeCallable GlacierClient::DeleteArchiveCallable(const DeleteArchiveRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteArchiveOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteArchive(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::DeleteArchive, this, request, m_executor.get());
 }
 
 void GlacierClient::DeleteArchiveAsync(const DeleteArchiveRequest& request, const DeleteArchiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteArchive(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::DeleteArchive, this, request, handler, context, m_executor.get());
 }
 
 DeleteVaultOutcome GlacierClient::DeleteVault(const DeleteVaultRequest& request) const
@@ -537,18 +496,12 @@ DeleteVaultOutcome GlacierClient::DeleteVault(const DeleteVaultRequest& request)
 
 DeleteVaultOutcomeCallable GlacierClient::DeleteVaultCallable(const DeleteVaultRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVaultOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVault(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::DeleteVault, this, request, m_executor.get());
 }
 
 void GlacierClient::DeleteVaultAsync(const DeleteVaultRequest& request, const DeleteVaultResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVault(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::DeleteVault, this, request, handler, context, m_executor.get());
 }
 
 DeleteVaultAccessPolicyOutcome GlacierClient::DeleteVaultAccessPolicy(const DeleteVaultAccessPolicyRequest& request) const
@@ -580,18 +533,12 @@ DeleteVaultAccessPolicyOutcome GlacierClient::DeleteVaultAccessPolicy(const Dele
 
 DeleteVaultAccessPolicyOutcomeCallable GlacierClient::DeleteVaultAccessPolicyCallable(const DeleteVaultAccessPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVaultAccessPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVaultAccessPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::DeleteVaultAccessPolicy, this, request, m_executor.get());
 }
 
 void GlacierClient::DeleteVaultAccessPolicyAsync(const DeleteVaultAccessPolicyRequest& request, const DeleteVaultAccessPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVaultAccessPolicy(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::DeleteVaultAccessPolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteVaultNotificationsOutcome GlacierClient::DeleteVaultNotifications(const DeleteVaultNotificationsRequest& request) const
@@ -623,18 +570,12 @@ DeleteVaultNotificationsOutcome GlacierClient::DeleteVaultNotifications(const De
 
 DeleteVaultNotificationsOutcomeCallable GlacierClient::DeleteVaultNotificationsCallable(const DeleteVaultNotificationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVaultNotificationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVaultNotifications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::DeleteVaultNotifications, this, request, m_executor.get());
 }
 
 void GlacierClient::DeleteVaultNotificationsAsync(const DeleteVaultNotificationsRequest& request, const DeleteVaultNotificationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVaultNotifications(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::DeleteVaultNotifications, this, request, handler, context, m_executor.get());
 }
 
 DescribeJobOutcome GlacierClient::DescribeJob(const DescribeJobRequest& request) const
@@ -672,18 +613,12 @@ DescribeJobOutcome GlacierClient::DescribeJob(const DescribeJobRequest& request)
 
 DescribeJobOutcomeCallable GlacierClient::DescribeJobCallable(const DescribeJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::DescribeJob, this, request, m_executor.get());
 }
 
 void GlacierClient::DescribeJobAsync(const DescribeJobRequest& request, const DescribeJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeJob(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::DescribeJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeVaultOutcome GlacierClient::DescribeVault(const DescribeVaultRequest& request) const
@@ -714,18 +649,12 @@ DescribeVaultOutcome GlacierClient::DescribeVault(const DescribeVaultRequest& re
 
 DescribeVaultOutcomeCallable GlacierClient::DescribeVaultCallable(const DescribeVaultRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeVaultOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeVault(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::DescribeVault, this, request, m_executor.get());
 }
 
 void GlacierClient::DescribeVaultAsync(const DescribeVaultRequest& request, const DescribeVaultResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeVault(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::DescribeVault, this, request, handler, context, m_executor.get());
 }
 
 GetDataRetrievalPolicyOutcome GlacierClient::GetDataRetrievalPolicy(const GetDataRetrievalPolicyRequest& request) const
@@ -750,18 +679,12 @@ GetDataRetrievalPolicyOutcome GlacierClient::GetDataRetrievalPolicy(const GetDat
 
 GetDataRetrievalPolicyOutcomeCallable GlacierClient::GetDataRetrievalPolicyCallable(const GetDataRetrievalPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDataRetrievalPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDataRetrievalPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::GetDataRetrievalPolicy, this, request, m_executor.get());
 }
 
 void GlacierClient::GetDataRetrievalPolicyAsync(const GetDataRetrievalPolicyRequest& request, const GetDataRetrievalPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDataRetrievalPolicy(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::GetDataRetrievalPolicy, this, request, handler, context, m_executor.get());
 }
 
 GetJobOutputOutcome GlacierClient::GetJobOutput(const GetJobOutputRequest& request) const
@@ -800,18 +723,12 @@ GetJobOutputOutcome GlacierClient::GetJobOutput(const GetJobOutputRequest& reque
 
 GetJobOutputOutcomeCallable GlacierClient::GetJobOutputCallable(const GetJobOutputRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetJobOutputOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetJobOutput(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::GetJobOutput, this, request, m_executor.get());
 }
 
 void GlacierClient::GetJobOutputAsync(const GetJobOutputRequest& request, const GetJobOutputResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetJobOutput(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::GetJobOutput, this, request, handler, context, m_executor.get());
 }
 
 GetVaultAccessPolicyOutcome GlacierClient::GetVaultAccessPolicy(const GetVaultAccessPolicyRequest& request) const
@@ -843,18 +760,12 @@ GetVaultAccessPolicyOutcome GlacierClient::GetVaultAccessPolicy(const GetVaultAc
 
 GetVaultAccessPolicyOutcomeCallable GlacierClient::GetVaultAccessPolicyCallable(const GetVaultAccessPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVaultAccessPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVaultAccessPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::GetVaultAccessPolicy, this, request, m_executor.get());
 }
 
 void GlacierClient::GetVaultAccessPolicyAsync(const GetVaultAccessPolicyRequest& request, const GetVaultAccessPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVaultAccessPolicy(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::GetVaultAccessPolicy, this, request, handler, context, m_executor.get());
 }
 
 GetVaultLockOutcome GlacierClient::GetVaultLock(const GetVaultLockRequest& request) const
@@ -886,18 +797,12 @@ GetVaultLockOutcome GlacierClient::GetVaultLock(const GetVaultLockRequest& reque
 
 GetVaultLockOutcomeCallable GlacierClient::GetVaultLockCallable(const GetVaultLockRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVaultLockOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVaultLock(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::GetVaultLock, this, request, m_executor.get());
 }
 
 void GlacierClient::GetVaultLockAsync(const GetVaultLockRequest& request, const GetVaultLockResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVaultLock(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::GetVaultLock, this, request, handler, context, m_executor.get());
 }
 
 GetVaultNotificationsOutcome GlacierClient::GetVaultNotifications(const GetVaultNotificationsRequest& request) const
@@ -929,18 +834,12 @@ GetVaultNotificationsOutcome GlacierClient::GetVaultNotifications(const GetVault
 
 GetVaultNotificationsOutcomeCallable GlacierClient::GetVaultNotificationsCallable(const GetVaultNotificationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVaultNotificationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVaultNotifications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::GetVaultNotifications, this, request, m_executor.get());
 }
 
 void GlacierClient::GetVaultNotificationsAsync(const GetVaultNotificationsRequest& request, const GetVaultNotificationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVaultNotifications(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::GetVaultNotifications, this, request, handler, context, m_executor.get());
 }
 
 InitiateJobOutcome GlacierClient::InitiateJob(const InitiateJobRequest& request) const
@@ -972,18 +871,12 @@ InitiateJobOutcome GlacierClient::InitiateJob(const InitiateJobRequest& request)
 
 InitiateJobOutcomeCallable GlacierClient::InitiateJobCallable(const InitiateJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< InitiateJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->InitiateJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::InitiateJob, this, request, m_executor.get());
 }
 
 void GlacierClient::InitiateJobAsync(const InitiateJobRequest& request, const InitiateJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, InitiateJob(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::InitiateJob, this, request, handler, context, m_executor.get());
 }
 
 InitiateMultipartUploadOutcome GlacierClient::InitiateMultipartUpload(const InitiateMultipartUploadRequest& request) const
@@ -1015,18 +908,12 @@ InitiateMultipartUploadOutcome GlacierClient::InitiateMultipartUpload(const Init
 
 InitiateMultipartUploadOutcomeCallable GlacierClient::InitiateMultipartUploadCallable(const InitiateMultipartUploadRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< InitiateMultipartUploadOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->InitiateMultipartUpload(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::InitiateMultipartUpload, this, request, m_executor.get());
 }
 
 void GlacierClient::InitiateMultipartUploadAsync(const InitiateMultipartUploadRequest& request, const InitiateMultipartUploadResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, InitiateMultipartUpload(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::InitiateMultipartUpload, this, request, handler, context, m_executor.get());
 }
 
 InitiateVaultLockOutcome GlacierClient::InitiateVaultLock(const InitiateVaultLockRequest& request) const
@@ -1058,18 +945,12 @@ InitiateVaultLockOutcome GlacierClient::InitiateVaultLock(const InitiateVaultLoc
 
 InitiateVaultLockOutcomeCallable GlacierClient::InitiateVaultLockCallable(const InitiateVaultLockRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< InitiateVaultLockOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->InitiateVaultLock(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::InitiateVaultLock, this, request, m_executor.get());
 }
 
 void GlacierClient::InitiateVaultLockAsync(const InitiateVaultLockRequest& request, const InitiateVaultLockResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, InitiateVaultLock(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::InitiateVaultLock, this, request, handler, context, m_executor.get());
 }
 
 ListJobsOutcome GlacierClient::ListJobs(const ListJobsRequest& request) const
@@ -1101,18 +982,12 @@ ListJobsOutcome GlacierClient::ListJobs(const ListJobsRequest& request) const
 
 ListJobsOutcomeCallable GlacierClient::ListJobsCallable(const ListJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::ListJobs, this, request, m_executor.get());
 }
 
 void GlacierClient::ListJobsAsync(const ListJobsRequest& request, const ListJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobs(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::ListJobs, this, request, handler, context, m_executor.get());
 }
 
 ListMultipartUploadsOutcome GlacierClient::ListMultipartUploads(const ListMultipartUploadsRequest& request) const
@@ -1144,18 +1019,12 @@ ListMultipartUploadsOutcome GlacierClient::ListMultipartUploads(const ListMultip
 
 ListMultipartUploadsOutcomeCallable GlacierClient::ListMultipartUploadsCallable(const ListMultipartUploadsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMultipartUploadsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMultipartUploads(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::ListMultipartUploads, this, request, m_executor.get());
 }
 
 void GlacierClient::ListMultipartUploadsAsync(const ListMultipartUploadsRequest& request, const ListMultipartUploadsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMultipartUploads(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::ListMultipartUploads, this, request, handler, context, m_executor.get());
 }
 
 ListPartsOutcome GlacierClient::ListParts(const ListPartsRequest& request) const
@@ -1193,18 +1062,12 @@ ListPartsOutcome GlacierClient::ListParts(const ListPartsRequest& request) const
 
 ListPartsOutcomeCallable GlacierClient::ListPartsCallable(const ListPartsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPartsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListParts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::ListParts, this, request, m_executor.get());
 }
 
 void GlacierClient::ListPartsAsync(const ListPartsRequest& request, const ListPartsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListParts(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::ListParts, this, request, handler, context, m_executor.get());
 }
 
 ListProvisionedCapacityOutcome GlacierClient::ListProvisionedCapacity(const ListProvisionedCapacityRequest& request) const
@@ -1229,18 +1092,12 @@ ListProvisionedCapacityOutcome GlacierClient::ListProvisionedCapacity(const List
 
 ListProvisionedCapacityOutcomeCallable GlacierClient::ListProvisionedCapacityCallable(const ListProvisionedCapacityRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProvisionedCapacityOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProvisionedCapacity(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::ListProvisionedCapacity, this, request, m_executor.get());
 }
 
 void GlacierClient::ListProvisionedCapacityAsync(const ListProvisionedCapacityRequest& request, const ListProvisionedCapacityResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProvisionedCapacity(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::ListProvisionedCapacity, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForVaultOutcome GlacierClient::ListTagsForVault(const ListTagsForVaultRequest& request) const
@@ -1272,18 +1129,12 @@ ListTagsForVaultOutcome GlacierClient::ListTagsForVault(const ListTagsForVaultRe
 
 ListTagsForVaultOutcomeCallable GlacierClient::ListTagsForVaultCallable(const ListTagsForVaultRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForVaultOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForVault(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::ListTagsForVault, this, request, m_executor.get());
 }
 
 void GlacierClient::ListTagsForVaultAsync(const ListTagsForVaultRequest& request, const ListTagsForVaultResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForVault(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::ListTagsForVault, this, request, handler, context, m_executor.get());
 }
 
 ListVaultsOutcome GlacierClient::ListVaults(const ListVaultsRequest& request) const
@@ -1308,18 +1159,12 @@ ListVaultsOutcome GlacierClient::ListVaults(const ListVaultsRequest& request) co
 
 ListVaultsOutcomeCallable GlacierClient::ListVaultsCallable(const ListVaultsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVaultsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVaults(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::ListVaults, this, request, m_executor.get());
 }
 
 void GlacierClient::ListVaultsAsync(const ListVaultsRequest& request, const ListVaultsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVaults(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::ListVaults, this, request, handler, context, m_executor.get());
 }
 
 PurchaseProvisionedCapacityOutcome GlacierClient::PurchaseProvisionedCapacity(const PurchaseProvisionedCapacityRequest& request) const
@@ -1344,18 +1189,12 @@ PurchaseProvisionedCapacityOutcome GlacierClient::PurchaseProvisionedCapacity(co
 
 PurchaseProvisionedCapacityOutcomeCallable GlacierClient::PurchaseProvisionedCapacityCallable(const PurchaseProvisionedCapacityRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PurchaseProvisionedCapacityOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PurchaseProvisionedCapacity(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::PurchaseProvisionedCapacity, this, request, m_executor.get());
 }
 
 void GlacierClient::PurchaseProvisionedCapacityAsync(const PurchaseProvisionedCapacityRequest& request, const PurchaseProvisionedCapacityResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PurchaseProvisionedCapacity(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::PurchaseProvisionedCapacity, this, request, handler, context, m_executor.get());
 }
 
 RemoveTagsFromVaultOutcome GlacierClient::RemoveTagsFromVault(const RemoveTagsFromVaultRequest& request) const
@@ -1390,18 +1229,12 @@ RemoveTagsFromVaultOutcome GlacierClient::RemoveTagsFromVault(const RemoveTagsFr
 
 RemoveTagsFromVaultOutcomeCallable GlacierClient::RemoveTagsFromVaultCallable(const RemoveTagsFromVaultRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveTagsFromVaultOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveTagsFromVault(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::RemoveTagsFromVault, this, request, m_executor.get());
 }
 
 void GlacierClient::RemoveTagsFromVaultAsync(const RemoveTagsFromVaultRequest& request, const RemoveTagsFromVaultResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveTagsFromVault(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::RemoveTagsFromVault, this, request, handler, context, m_executor.get());
 }
 
 SetDataRetrievalPolicyOutcome GlacierClient::SetDataRetrievalPolicy(const SetDataRetrievalPolicyRequest& request) const
@@ -1426,18 +1259,12 @@ SetDataRetrievalPolicyOutcome GlacierClient::SetDataRetrievalPolicy(const SetDat
 
 SetDataRetrievalPolicyOutcomeCallable GlacierClient::SetDataRetrievalPolicyCallable(const SetDataRetrievalPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetDataRetrievalPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetDataRetrievalPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::SetDataRetrievalPolicy, this, request, m_executor.get());
 }
 
 void GlacierClient::SetDataRetrievalPolicyAsync(const SetDataRetrievalPolicyRequest& request, const SetDataRetrievalPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetDataRetrievalPolicy(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::SetDataRetrievalPolicy, this, request, handler, context, m_executor.get());
 }
 
 SetVaultAccessPolicyOutcome GlacierClient::SetVaultAccessPolicy(const SetVaultAccessPolicyRequest& request) const
@@ -1469,18 +1296,12 @@ SetVaultAccessPolicyOutcome GlacierClient::SetVaultAccessPolicy(const SetVaultAc
 
 SetVaultAccessPolicyOutcomeCallable GlacierClient::SetVaultAccessPolicyCallable(const SetVaultAccessPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetVaultAccessPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetVaultAccessPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::SetVaultAccessPolicy, this, request, m_executor.get());
 }
 
 void GlacierClient::SetVaultAccessPolicyAsync(const SetVaultAccessPolicyRequest& request, const SetVaultAccessPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetVaultAccessPolicy(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::SetVaultAccessPolicy, this, request, handler, context, m_executor.get());
 }
 
 SetVaultNotificationsOutcome GlacierClient::SetVaultNotifications(const SetVaultNotificationsRequest& request) const
@@ -1512,18 +1333,12 @@ SetVaultNotificationsOutcome GlacierClient::SetVaultNotifications(const SetVault
 
 SetVaultNotificationsOutcomeCallable GlacierClient::SetVaultNotificationsCallable(const SetVaultNotificationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetVaultNotificationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetVaultNotifications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::SetVaultNotifications, this, request, m_executor.get());
 }
 
 void GlacierClient::SetVaultNotificationsAsync(const SetVaultNotificationsRequest& request, const SetVaultNotificationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetVaultNotifications(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::SetVaultNotifications, this, request, handler, context, m_executor.get());
 }
 
 UploadArchiveOutcome GlacierClient::UploadArchive(const UploadArchiveRequest& request) const
@@ -1555,18 +1370,12 @@ UploadArchiveOutcome GlacierClient::UploadArchive(const UploadArchiveRequest& re
 
 UploadArchiveOutcomeCallable GlacierClient::UploadArchiveCallable(const UploadArchiveRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UploadArchiveOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UploadArchive(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::UploadArchive, this, request, m_executor.get());
 }
 
 void GlacierClient::UploadArchiveAsync(const UploadArchiveRequest& request, const UploadArchiveResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UploadArchive(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::UploadArchive, this, request, handler, context, m_executor.get());
 }
 
 UploadMultipartPartOutcome GlacierClient::UploadMultipartPart(const UploadMultipartPartRequest& request) const
@@ -1604,17 +1413,11 @@ UploadMultipartPartOutcome GlacierClient::UploadMultipartPart(const UploadMultip
 
 UploadMultipartPartOutcomeCallable GlacierClient::UploadMultipartPartCallable(const UploadMultipartPartRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UploadMultipartPartOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UploadMultipartPart(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlacierClient::UploadMultipartPart, this, request, m_executor.get());
 }
 
 void GlacierClient::UploadMultipartPartAsync(const UploadMultipartPartRequest& request, const UploadMultipartPartResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UploadMultipartPart(request), context);
-    } );
+  MakeAsyncOperation(&GlacierClient::UploadMultipartPart, this, request, handler, context, m_executor.get());
 }
 

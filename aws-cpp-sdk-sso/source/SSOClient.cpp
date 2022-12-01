@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -184,18 +185,12 @@ GetRoleCredentialsOutcome SSOClient::GetRoleCredentials(const GetRoleCredentials
 
 GetRoleCredentialsOutcomeCallable SSOClient::GetRoleCredentialsCallable(const GetRoleCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRoleCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRoleCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SSOClient::GetRoleCredentials, this, request, m_executor.get());
 }
 
 void SSOClient::GetRoleCredentialsAsync(const GetRoleCredentialsRequest& request, const GetRoleCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRoleCredentials(request), context);
-    } );
+  MakeAsyncOperation(&SSOClient::GetRoleCredentials, this, request, handler, context, m_executor.get());
 }
 
 ListAccountRolesOutcome SSOClient::ListAccountRoles(const ListAccountRolesRequest& request) const
@@ -224,18 +219,12 @@ ListAccountRolesOutcome SSOClient::ListAccountRoles(const ListAccountRolesReques
 
 ListAccountRolesOutcomeCallable SSOClient::ListAccountRolesCallable(const ListAccountRolesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccountRolesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccountRoles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SSOClient::ListAccountRoles, this, request, m_executor.get());
 }
 
 void SSOClient::ListAccountRolesAsync(const ListAccountRolesRequest& request, const ListAccountRolesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccountRoles(request), context);
-    } );
+  MakeAsyncOperation(&SSOClient::ListAccountRoles, this, request, handler, context, m_executor.get());
 }
 
 ListAccountsOutcome SSOClient::ListAccounts(const ListAccountsRequest& request) const
@@ -254,18 +243,12 @@ ListAccountsOutcome SSOClient::ListAccounts(const ListAccountsRequest& request) 
 
 ListAccountsOutcomeCallable SSOClient::ListAccountsCallable(const ListAccountsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccountsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccounts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SSOClient::ListAccounts, this, request, m_executor.get());
 }
 
 void SSOClient::ListAccountsAsync(const ListAccountsRequest& request, const ListAccountsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccounts(request), context);
-    } );
+  MakeAsyncOperation(&SSOClient::ListAccounts, this, request, handler, context, m_executor.get());
 }
 
 LogoutOutcome SSOClient::Logout(const LogoutRequest& request) const
@@ -284,17 +267,11 @@ LogoutOutcome SSOClient::Logout(const LogoutRequest& request) const
 
 LogoutOutcomeCallable SSOClient::LogoutCallable(const LogoutRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< LogoutOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->Logout(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SSOClient::Logout, this, request, m_executor.get());
 }
 
 void SSOClient::LogoutAsync(const LogoutRequest& request, const LogoutResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, Logout(request), context);
-    } );
+  MakeAsyncOperation(&SSOClient::Logout, this, request, handler, context, m_executor.get());
 }
 

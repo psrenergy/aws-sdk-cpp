@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -113,10 +114,10 @@ DataExchangeClient::DataExchangeClient(const std::shared_ptr<AWSCredentialsProvi
     /* Legacy constructors due deprecation */
   DataExchangeClient::DataExchangeClient(const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             Aws::MakeShared<DefaultAWSCredentialsProviderChain>(ALLOCATION_TAG),
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  Aws::MakeShared<DefaultAWSCredentialsProviderChain>(ALLOCATION_TAG),
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<DataExchangeErrorMarshaller>(ALLOCATION_TAG)),
   m_clientConfiguration(clientConfiguration),
   m_executor(clientConfiguration.executor),
@@ -128,10 +129,10 @@ DataExchangeClient::DataExchangeClient(const std::shared_ptr<AWSCredentialsProvi
 DataExchangeClient::DataExchangeClient(const AWSCredentials& credentials,
                                        const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             Aws::MakeShared<SimpleAWSCredentialsProvider>(ALLOCATION_TAG, credentials),
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  Aws::MakeShared<SimpleAWSCredentialsProvider>(ALLOCATION_TAG, credentials),
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<DataExchangeErrorMarshaller>(ALLOCATION_TAG)),
     m_clientConfiguration(clientConfiguration),
     m_executor(clientConfiguration.executor),
@@ -143,10 +144,10 @@ DataExchangeClient::DataExchangeClient(const AWSCredentials& credentials,
 DataExchangeClient::DataExchangeClient(const std::shared_ptr<AWSCredentialsProvider>& credentialsProvider,
                                        const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             credentialsProvider,
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  credentialsProvider,
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<DataExchangeErrorMarshaller>(ALLOCATION_TAG)),
     m_clientConfiguration(clientConfiguration),
     m_executor(clientConfiguration.executor),
@@ -195,18 +196,12 @@ CancelJobOutcome DataExchangeClient::CancelJob(const CancelJobRequest& request) 
 
 CancelJobOutcomeCallable DataExchangeClient::CancelJobCallable(const CancelJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::CancelJob, this, request, m_executor.get());
 }
 
 void DataExchangeClient::CancelJobAsync(const CancelJobRequest& request, const CancelJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelJob(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::CancelJob, this, request, handler, context, m_executor.get());
 }
 
 CreateDataSetOutcome DataExchangeClient::CreateDataSet(const CreateDataSetRequest& request) const
@@ -220,18 +215,12 @@ CreateDataSetOutcome DataExchangeClient::CreateDataSet(const CreateDataSetReques
 
 CreateDataSetOutcomeCallable DataExchangeClient::CreateDataSetCallable(const CreateDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::CreateDataSet, this, request, m_executor.get());
 }
 
 void DataExchangeClient::CreateDataSetAsync(const CreateDataSetRequest& request, const CreateDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDataSet(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::CreateDataSet, this, request, handler, context, m_executor.get());
 }
 
 CreateEventActionOutcome DataExchangeClient::CreateEventAction(const CreateEventActionRequest& request) const
@@ -245,18 +234,12 @@ CreateEventActionOutcome DataExchangeClient::CreateEventAction(const CreateEvent
 
 CreateEventActionOutcomeCallable DataExchangeClient::CreateEventActionCallable(const CreateEventActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEventActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEventAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::CreateEventAction, this, request, m_executor.get());
 }
 
 void DataExchangeClient::CreateEventActionAsync(const CreateEventActionRequest& request, const CreateEventActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEventAction(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::CreateEventAction, this, request, handler, context, m_executor.get());
 }
 
 CreateJobOutcome DataExchangeClient::CreateJob(const CreateJobRequest& request) const
@@ -270,18 +253,12 @@ CreateJobOutcome DataExchangeClient::CreateJob(const CreateJobRequest& request) 
 
 CreateJobOutcomeCallable DataExchangeClient::CreateJobCallable(const CreateJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::CreateJob, this, request, m_executor.get());
 }
 
 void DataExchangeClient::CreateJobAsync(const CreateJobRequest& request, const CreateJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateJob(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::CreateJob, this, request, handler, context, m_executor.get());
 }
 
 CreateRevisionOutcome DataExchangeClient::CreateRevision(const CreateRevisionRequest& request) const
@@ -302,18 +279,12 @@ CreateRevisionOutcome DataExchangeClient::CreateRevision(const CreateRevisionReq
 
 CreateRevisionOutcomeCallable DataExchangeClient::CreateRevisionCallable(const CreateRevisionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRevisionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRevision(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::CreateRevision, this, request, m_executor.get());
 }
 
 void DataExchangeClient::CreateRevisionAsync(const CreateRevisionRequest& request, const CreateRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRevision(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::CreateRevision, this, request, handler, context, m_executor.get());
 }
 
 DeleteAssetOutcome DataExchangeClient::DeleteAsset(const DeleteAssetRequest& request) const
@@ -347,18 +318,12 @@ DeleteAssetOutcome DataExchangeClient::DeleteAsset(const DeleteAssetRequest& req
 
 DeleteAssetOutcomeCallable DataExchangeClient::DeleteAssetCallable(const DeleteAssetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAssetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAsset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::DeleteAsset, this, request, m_executor.get());
 }
 
 void DataExchangeClient::DeleteAssetAsync(const DeleteAssetRequest& request, const DeleteAssetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAsset(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::DeleteAsset, this, request, handler, context, m_executor.get());
 }
 
 DeleteDataSetOutcome DataExchangeClient::DeleteDataSet(const DeleteDataSetRequest& request) const
@@ -378,18 +343,12 @@ DeleteDataSetOutcome DataExchangeClient::DeleteDataSet(const DeleteDataSetReques
 
 DeleteDataSetOutcomeCallable DataExchangeClient::DeleteDataSetCallable(const DeleteDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::DeleteDataSet, this, request, m_executor.get());
 }
 
 void DataExchangeClient::DeleteDataSetAsync(const DeleteDataSetRequest& request, const DeleteDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDataSet(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::DeleteDataSet, this, request, handler, context, m_executor.get());
 }
 
 DeleteEventActionOutcome DataExchangeClient::DeleteEventAction(const DeleteEventActionRequest& request) const
@@ -409,18 +368,12 @@ DeleteEventActionOutcome DataExchangeClient::DeleteEventAction(const DeleteEvent
 
 DeleteEventActionOutcomeCallable DataExchangeClient::DeleteEventActionCallable(const DeleteEventActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEventActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEventAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::DeleteEventAction, this, request, m_executor.get());
 }
 
 void DataExchangeClient::DeleteEventActionAsync(const DeleteEventActionRequest& request, const DeleteEventActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEventAction(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::DeleteEventAction, this, request, handler, context, m_executor.get());
 }
 
 DeleteRevisionOutcome DataExchangeClient::DeleteRevision(const DeleteRevisionRequest& request) const
@@ -447,18 +400,12 @@ DeleteRevisionOutcome DataExchangeClient::DeleteRevision(const DeleteRevisionReq
 
 DeleteRevisionOutcomeCallable DataExchangeClient::DeleteRevisionCallable(const DeleteRevisionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRevisionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRevision(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::DeleteRevision, this, request, m_executor.get());
 }
 
 void DataExchangeClient::DeleteRevisionAsync(const DeleteRevisionRequest& request, const DeleteRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRevision(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::DeleteRevision, this, request, handler, context, m_executor.get());
 }
 
 GetAssetOutcome DataExchangeClient::GetAsset(const GetAssetRequest& request) const
@@ -492,18 +439,12 @@ GetAssetOutcome DataExchangeClient::GetAsset(const GetAssetRequest& request) con
 
 GetAssetOutcomeCallable DataExchangeClient::GetAssetCallable(const GetAssetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAssetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAsset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::GetAsset, this, request, m_executor.get());
 }
 
 void DataExchangeClient::GetAssetAsync(const GetAssetRequest& request, const GetAssetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAsset(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::GetAsset, this, request, handler, context, m_executor.get());
 }
 
 GetDataSetOutcome DataExchangeClient::GetDataSet(const GetDataSetRequest& request) const
@@ -523,18 +464,12 @@ GetDataSetOutcome DataExchangeClient::GetDataSet(const GetDataSetRequest& reques
 
 GetDataSetOutcomeCallable DataExchangeClient::GetDataSetCallable(const GetDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::GetDataSet, this, request, m_executor.get());
 }
 
 void DataExchangeClient::GetDataSetAsync(const GetDataSetRequest& request, const GetDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDataSet(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::GetDataSet, this, request, handler, context, m_executor.get());
 }
 
 GetEventActionOutcome DataExchangeClient::GetEventAction(const GetEventActionRequest& request) const
@@ -554,18 +489,12 @@ GetEventActionOutcome DataExchangeClient::GetEventAction(const GetEventActionReq
 
 GetEventActionOutcomeCallable DataExchangeClient::GetEventActionCallable(const GetEventActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEventActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEventAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::GetEventAction, this, request, m_executor.get());
 }
 
 void DataExchangeClient::GetEventActionAsync(const GetEventActionRequest& request, const GetEventActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEventAction(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::GetEventAction, this, request, handler, context, m_executor.get());
 }
 
 GetJobOutcome DataExchangeClient::GetJob(const GetJobRequest& request) const
@@ -585,18 +514,12 @@ GetJobOutcome DataExchangeClient::GetJob(const GetJobRequest& request) const
 
 GetJobOutcomeCallable DataExchangeClient::GetJobCallable(const GetJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::GetJob, this, request, m_executor.get());
 }
 
 void DataExchangeClient::GetJobAsync(const GetJobRequest& request, const GetJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetJob(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::GetJob, this, request, handler, context, m_executor.get());
 }
 
 GetRevisionOutcome DataExchangeClient::GetRevision(const GetRevisionRequest& request) const
@@ -623,18 +546,12 @@ GetRevisionOutcome DataExchangeClient::GetRevision(const GetRevisionRequest& req
 
 GetRevisionOutcomeCallable DataExchangeClient::GetRevisionCallable(const GetRevisionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRevisionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRevision(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::GetRevision, this, request, m_executor.get());
 }
 
 void DataExchangeClient::GetRevisionAsync(const GetRevisionRequest& request, const GetRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRevision(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::GetRevision, this, request, handler, context, m_executor.get());
 }
 
 ListDataSetRevisionsOutcome DataExchangeClient::ListDataSetRevisions(const ListDataSetRevisionsRequest& request) const
@@ -655,18 +572,12 @@ ListDataSetRevisionsOutcome DataExchangeClient::ListDataSetRevisions(const ListD
 
 ListDataSetRevisionsOutcomeCallable DataExchangeClient::ListDataSetRevisionsCallable(const ListDataSetRevisionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDataSetRevisionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDataSetRevisions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::ListDataSetRevisions, this, request, m_executor.get());
 }
 
 void DataExchangeClient::ListDataSetRevisionsAsync(const ListDataSetRevisionsRequest& request, const ListDataSetRevisionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDataSetRevisions(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::ListDataSetRevisions, this, request, handler, context, m_executor.get());
 }
 
 ListDataSetsOutcome DataExchangeClient::ListDataSets(const ListDataSetsRequest& request) const
@@ -680,18 +591,12 @@ ListDataSetsOutcome DataExchangeClient::ListDataSets(const ListDataSetsRequest& 
 
 ListDataSetsOutcomeCallable DataExchangeClient::ListDataSetsCallable(const ListDataSetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDataSetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDataSets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::ListDataSets, this, request, m_executor.get());
 }
 
 void DataExchangeClient::ListDataSetsAsync(const ListDataSetsRequest& request, const ListDataSetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDataSets(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::ListDataSets, this, request, handler, context, m_executor.get());
 }
 
 ListEventActionsOutcome DataExchangeClient::ListEventActions(const ListEventActionsRequest& request) const
@@ -705,18 +610,12 @@ ListEventActionsOutcome DataExchangeClient::ListEventActions(const ListEventActi
 
 ListEventActionsOutcomeCallable DataExchangeClient::ListEventActionsCallable(const ListEventActionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEventActionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEventActions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::ListEventActions, this, request, m_executor.get());
 }
 
 void DataExchangeClient::ListEventActionsAsync(const ListEventActionsRequest& request, const ListEventActionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEventActions(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::ListEventActions, this, request, handler, context, m_executor.get());
 }
 
 ListJobsOutcome DataExchangeClient::ListJobs(const ListJobsRequest& request) const
@@ -730,18 +629,12 @@ ListJobsOutcome DataExchangeClient::ListJobs(const ListJobsRequest& request) con
 
 ListJobsOutcomeCallable DataExchangeClient::ListJobsCallable(const ListJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::ListJobs, this, request, m_executor.get());
 }
 
 void DataExchangeClient::ListJobsAsync(const ListJobsRequest& request, const ListJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobs(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::ListJobs, this, request, handler, context, m_executor.get());
 }
 
 ListRevisionAssetsOutcome DataExchangeClient::ListRevisionAssets(const ListRevisionAssetsRequest& request) const
@@ -769,18 +662,12 @@ ListRevisionAssetsOutcome DataExchangeClient::ListRevisionAssets(const ListRevis
 
 ListRevisionAssetsOutcomeCallable DataExchangeClient::ListRevisionAssetsCallable(const ListRevisionAssetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRevisionAssetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRevisionAssets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::ListRevisionAssets, this, request, m_executor.get());
 }
 
 void DataExchangeClient::ListRevisionAssetsAsync(const ListRevisionAssetsRequest& request, const ListRevisionAssetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRevisionAssets(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::ListRevisionAssets, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome DataExchangeClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -800,18 +687,12 @@ ListTagsForResourceOutcome DataExchangeClient::ListTagsForResource(const ListTag
 
 ListTagsForResourceOutcomeCallable DataExchangeClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void DataExchangeClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 RevokeRevisionOutcome DataExchangeClient::RevokeRevision(const RevokeRevisionRequest& request) const
@@ -839,18 +720,12 @@ RevokeRevisionOutcome DataExchangeClient::RevokeRevision(const RevokeRevisionReq
 
 RevokeRevisionOutcomeCallable DataExchangeClient::RevokeRevisionCallable(const RevokeRevisionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RevokeRevisionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RevokeRevision(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::RevokeRevision, this, request, m_executor.get());
 }
 
 void DataExchangeClient::RevokeRevisionAsync(const RevokeRevisionRequest& request, const RevokeRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RevokeRevision(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::RevokeRevision, this, request, handler, context, m_executor.get());
 }
 
 SendApiAssetOutcome DataExchangeClient::SendApiAsset(const SendApiAssetRequest& request) const
@@ -881,18 +756,12 @@ SendApiAssetOutcome DataExchangeClient::SendApiAsset(const SendApiAssetRequest& 
 
 SendApiAssetOutcomeCallable DataExchangeClient::SendApiAssetCallable(const SendApiAssetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SendApiAssetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SendApiAsset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::SendApiAsset, this, request, m_executor.get());
 }
 
 void DataExchangeClient::SendApiAssetAsync(const SendApiAssetRequest& request, const SendApiAssetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SendApiAsset(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::SendApiAsset, this, request, handler, context, m_executor.get());
 }
 
 StartJobOutcome DataExchangeClient::StartJob(const StartJobRequest& request) const
@@ -912,18 +781,12 @@ StartJobOutcome DataExchangeClient::StartJob(const StartJobRequest& request) con
 
 StartJobOutcomeCallable DataExchangeClient::StartJobCallable(const StartJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::StartJob, this, request, m_executor.get());
 }
 
 void DataExchangeClient::StartJobAsync(const StartJobRequest& request, const StartJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartJob(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::StartJob, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome DataExchangeClient::TagResource(const TagResourceRequest& request) const
@@ -943,18 +806,12 @@ TagResourceOutcome DataExchangeClient::TagResource(const TagResourceRequest& req
 
 TagResourceOutcomeCallable DataExchangeClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::TagResource, this, request, m_executor.get());
 }
 
 void DataExchangeClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome DataExchangeClient::UntagResource(const UntagResourceRequest& request) const
@@ -979,18 +836,12 @@ UntagResourceOutcome DataExchangeClient::UntagResource(const UntagResourceReques
 
 UntagResourceOutcomeCallable DataExchangeClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::UntagResource, this, request, m_executor.get());
 }
 
 void DataExchangeClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAssetOutcome DataExchangeClient::UpdateAsset(const UpdateAssetRequest& request) const
@@ -1024,18 +875,12 @@ UpdateAssetOutcome DataExchangeClient::UpdateAsset(const UpdateAssetRequest& req
 
 UpdateAssetOutcomeCallable DataExchangeClient::UpdateAssetCallable(const UpdateAssetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAsset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::UpdateAsset, this, request, m_executor.get());
 }
 
 void DataExchangeClient::UpdateAssetAsync(const UpdateAssetRequest& request, const UpdateAssetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAsset(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::UpdateAsset, this, request, handler, context, m_executor.get());
 }
 
 UpdateDataSetOutcome DataExchangeClient::UpdateDataSet(const UpdateDataSetRequest& request) const
@@ -1055,18 +900,12 @@ UpdateDataSetOutcome DataExchangeClient::UpdateDataSet(const UpdateDataSetReques
 
 UpdateDataSetOutcomeCallable DataExchangeClient::UpdateDataSetCallable(const UpdateDataSetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDataSetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDataSet(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::UpdateDataSet, this, request, m_executor.get());
 }
 
 void DataExchangeClient::UpdateDataSetAsync(const UpdateDataSetRequest& request, const UpdateDataSetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDataSet(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::UpdateDataSet, this, request, handler, context, m_executor.get());
 }
 
 UpdateEventActionOutcome DataExchangeClient::UpdateEventAction(const UpdateEventActionRequest& request) const
@@ -1086,18 +925,12 @@ UpdateEventActionOutcome DataExchangeClient::UpdateEventAction(const UpdateEvent
 
 UpdateEventActionOutcomeCallable DataExchangeClient::UpdateEventActionCallable(const UpdateEventActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEventActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEventAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::UpdateEventAction, this, request, m_executor.get());
 }
 
 void DataExchangeClient::UpdateEventActionAsync(const UpdateEventActionRequest& request, const UpdateEventActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEventAction(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::UpdateEventAction, this, request, handler, context, m_executor.get());
 }
 
 UpdateRevisionOutcome DataExchangeClient::UpdateRevision(const UpdateRevisionRequest& request) const
@@ -1124,17 +957,11 @@ UpdateRevisionOutcome DataExchangeClient::UpdateRevision(const UpdateRevisionReq
 
 UpdateRevisionOutcomeCallable DataExchangeClient::UpdateRevisionCallable(const UpdateRevisionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRevisionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRevision(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &DataExchangeClient::UpdateRevision, this, request, m_executor.get());
 }
 
 void DataExchangeClient::UpdateRevisionAsync(const UpdateRevisionRequest& request, const UpdateRevisionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRevision(request), context);
-    } );
+  MakeAsyncOperation(&DataExchangeClient::UpdateRevision, this, request, handler, context, m_executor.get());
 }
 

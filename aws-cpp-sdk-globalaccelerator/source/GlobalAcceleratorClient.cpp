@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -208,18 +209,12 @@ AddCustomRoutingEndpointsOutcome GlobalAcceleratorClient::AddCustomRoutingEndpoi
 
 AddCustomRoutingEndpointsOutcomeCallable GlobalAcceleratorClient::AddCustomRoutingEndpointsCallable(const AddCustomRoutingEndpointsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddCustomRoutingEndpointsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddCustomRoutingEndpoints(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::AddCustomRoutingEndpoints, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::AddCustomRoutingEndpointsAsync(const AddCustomRoutingEndpointsRequest& request, const AddCustomRoutingEndpointsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddCustomRoutingEndpoints(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::AddCustomRoutingEndpoints, this, request, handler, context, m_executor.get());
 }
 
 AddEndpointsOutcome GlobalAcceleratorClient::AddEndpoints(const AddEndpointsRequest& request) const
@@ -232,18 +227,12 @@ AddEndpointsOutcome GlobalAcceleratorClient::AddEndpoints(const AddEndpointsRequ
 
 AddEndpointsOutcomeCallable GlobalAcceleratorClient::AddEndpointsCallable(const AddEndpointsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddEndpointsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddEndpoints(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::AddEndpoints, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::AddEndpointsAsync(const AddEndpointsRequest& request, const AddEndpointsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddEndpoints(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::AddEndpoints, this, request, handler, context, m_executor.get());
 }
 
 AdvertiseByoipCidrOutcome GlobalAcceleratorClient::AdvertiseByoipCidr(const AdvertiseByoipCidrRequest& request) const
@@ -256,18 +245,12 @@ AdvertiseByoipCidrOutcome GlobalAcceleratorClient::AdvertiseByoipCidr(const Adve
 
 AdvertiseByoipCidrOutcomeCallable GlobalAcceleratorClient::AdvertiseByoipCidrCallable(const AdvertiseByoipCidrRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AdvertiseByoipCidrOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AdvertiseByoipCidr(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::AdvertiseByoipCidr, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::AdvertiseByoipCidrAsync(const AdvertiseByoipCidrRequest& request, const AdvertiseByoipCidrResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AdvertiseByoipCidr(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::AdvertiseByoipCidr, this, request, handler, context, m_executor.get());
 }
 
 AllowCustomRoutingTrafficOutcome GlobalAcceleratorClient::AllowCustomRoutingTraffic(const AllowCustomRoutingTrafficRequest& request) const
@@ -280,18 +263,12 @@ AllowCustomRoutingTrafficOutcome GlobalAcceleratorClient::AllowCustomRoutingTraf
 
 AllowCustomRoutingTrafficOutcomeCallable GlobalAcceleratorClient::AllowCustomRoutingTrafficCallable(const AllowCustomRoutingTrafficRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AllowCustomRoutingTrafficOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AllowCustomRoutingTraffic(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::AllowCustomRoutingTraffic, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::AllowCustomRoutingTrafficAsync(const AllowCustomRoutingTrafficRequest& request, const AllowCustomRoutingTrafficResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AllowCustomRoutingTraffic(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::AllowCustomRoutingTraffic, this, request, handler, context, m_executor.get());
 }
 
 CreateAcceleratorOutcome GlobalAcceleratorClient::CreateAccelerator(const CreateAcceleratorRequest& request) const
@@ -304,18 +281,12 @@ CreateAcceleratorOutcome GlobalAcceleratorClient::CreateAccelerator(const Create
 
 CreateAcceleratorOutcomeCallable GlobalAcceleratorClient::CreateAcceleratorCallable(const CreateAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::CreateAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::CreateAcceleratorAsync(const CreateAcceleratorRequest& request, const CreateAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::CreateAccelerator, this, request, handler, context, m_executor.get());
 }
 
 CreateCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::CreateCustomRoutingAccelerator(const CreateCustomRoutingAcceleratorRequest& request) const
@@ -328,18 +299,12 @@ CreateCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::CreateCustomRouti
 
 CreateCustomRoutingAcceleratorOutcomeCallable GlobalAcceleratorClient::CreateCustomRoutingAcceleratorCallable(const CreateCustomRoutingAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCustomRoutingAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCustomRoutingAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::CreateCustomRoutingAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::CreateCustomRoutingAcceleratorAsync(const CreateCustomRoutingAcceleratorRequest& request, const CreateCustomRoutingAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCustomRoutingAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::CreateCustomRoutingAccelerator, this, request, handler, context, m_executor.get());
 }
 
 CreateCustomRoutingEndpointGroupOutcome GlobalAcceleratorClient::CreateCustomRoutingEndpointGroup(const CreateCustomRoutingEndpointGroupRequest& request) const
@@ -352,18 +317,12 @@ CreateCustomRoutingEndpointGroupOutcome GlobalAcceleratorClient::CreateCustomRou
 
 CreateCustomRoutingEndpointGroupOutcomeCallable GlobalAcceleratorClient::CreateCustomRoutingEndpointGroupCallable(const CreateCustomRoutingEndpointGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCustomRoutingEndpointGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCustomRoutingEndpointGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::CreateCustomRoutingEndpointGroup, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::CreateCustomRoutingEndpointGroupAsync(const CreateCustomRoutingEndpointGroupRequest& request, const CreateCustomRoutingEndpointGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCustomRoutingEndpointGroup(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::CreateCustomRoutingEndpointGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateCustomRoutingListenerOutcome GlobalAcceleratorClient::CreateCustomRoutingListener(const CreateCustomRoutingListenerRequest& request) const
@@ -376,18 +335,12 @@ CreateCustomRoutingListenerOutcome GlobalAcceleratorClient::CreateCustomRoutingL
 
 CreateCustomRoutingListenerOutcomeCallable GlobalAcceleratorClient::CreateCustomRoutingListenerCallable(const CreateCustomRoutingListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCustomRoutingListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCustomRoutingListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::CreateCustomRoutingListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::CreateCustomRoutingListenerAsync(const CreateCustomRoutingListenerRequest& request, const CreateCustomRoutingListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCustomRoutingListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::CreateCustomRoutingListener, this, request, handler, context, m_executor.get());
 }
 
 CreateEndpointGroupOutcome GlobalAcceleratorClient::CreateEndpointGroup(const CreateEndpointGroupRequest& request) const
@@ -400,18 +353,12 @@ CreateEndpointGroupOutcome GlobalAcceleratorClient::CreateEndpointGroup(const Cr
 
 CreateEndpointGroupOutcomeCallable GlobalAcceleratorClient::CreateEndpointGroupCallable(const CreateEndpointGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEndpointGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEndpointGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::CreateEndpointGroup, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::CreateEndpointGroupAsync(const CreateEndpointGroupRequest& request, const CreateEndpointGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEndpointGroup(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::CreateEndpointGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateListenerOutcome GlobalAcceleratorClient::CreateListener(const CreateListenerRequest& request) const
@@ -424,18 +371,12 @@ CreateListenerOutcome GlobalAcceleratorClient::CreateListener(const CreateListen
 
 CreateListenerOutcomeCallable GlobalAcceleratorClient::CreateListenerCallable(const CreateListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::CreateListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::CreateListenerAsync(const CreateListenerRequest& request, const CreateListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::CreateListener, this, request, handler, context, m_executor.get());
 }
 
 DeleteAcceleratorOutcome GlobalAcceleratorClient::DeleteAccelerator(const DeleteAcceleratorRequest& request) const
@@ -448,18 +389,12 @@ DeleteAcceleratorOutcome GlobalAcceleratorClient::DeleteAccelerator(const Delete
 
 DeleteAcceleratorOutcomeCallable GlobalAcceleratorClient::DeleteAcceleratorCallable(const DeleteAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DeleteAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DeleteAcceleratorAsync(const DeleteAcceleratorRequest& request, const DeleteAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DeleteAccelerator, this, request, handler, context, m_executor.get());
 }
 
 DeleteCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::DeleteCustomRoutingAccelerator(const DeleteCustomRoutingAcceleratorRequest& request) const
@@ -472,18 +407,12 @@ DeleteCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::DeleteCustomRouti
 
 DeleteCustomRoutingAcceleratorOutcomeCallable GlobalAcceleratorClient::DeleteCustomRoutingAcceleratorCallable(const DeleteCustomRoutingAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCustomRoutingAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCustomRoutingAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DeleteCustomRoutingAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DeleteCustomRoutingAcceleratorAsync(const DeleteCustomRoutingAcceleratorRequest& request, const DeleteCustomRoutingAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCustomRoutingAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DeleteCustomRoutingAccelerator, this, request, handler, context, m_executor.get());
 }
 
 DeleteCustomRoutingEndpointGroupOutcome GlobalAcceleratorClient::DeleteCustomRoutingEndpointGroup(const DeleteCustomRoutingEndpointGroupRequest& request) const
@@ -496,18 +425,12 @@ DeleteCustomRoutingEndpointGroupOutcome GlobalAcceleratorClient::DeleteCustomRou
 
 DeleteCustomRoutingEndpointGroupOutcomeCallable GlobalAcceleratorClient::DeleteCustomRoutingEndpointGroupCallable(const DeleteCustomRoutingEndpointGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCustomRoutingEndpointGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCustomRoutingEndpointGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DeleteCustomRoutingEndpointGroup, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DeleteCustomRoutingEndpointGroupAsync(const DeleteCustomRoutingEndpointGroupRequest& request, const DeleteCustomRoutingEndpointGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCustomRoutingEndpointGroup(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DeleteCustomRoutingEndpointGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteCustomRoutingListenerOutcome GlobalAcceleratorClient::DeleteCustomRoutingListener(const DeleteCustomRoutingListenerRequest& request) const
@@ -520,18 +443,12 @@ DeleteCustomRoutingListenerOutcome GlobalAcceleratorClient::DeleteCustomRoutingL
 
 DeleteCustomRoutingListenerOutcomeCallable GlobalAcceleratorClient::DeleteCustomRoutingListenerCallable(const DeleteCustomRoutingListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCustomRoutingListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCustomRoutingListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DeleteCustomRoutingListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DeleteCustomRoutingListenerAsync(const DeleteCustomRoutingListenerRequest& request, const DeleteCustomRoutingListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCustomRoutingListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DeleteCustomRoutingListener, this, request, handler, context, m_executor.get());
 }
 
 DeleteEndpointGroupOutcome GlobalAcceleratorClient::DeleteEndpointGroup(const DeleteEndpointGroupRequest& request) const
@@ -544,18 +461,12 @@ DeleteEndpointGroupOutcome GlobalAcceleratorClient::DeleteEndpointGroup(const De
 
 DeleteEndpointGroupOutcomeCallable GlobalAcceleratorClient::DeleteEndpointGroupCallable(const DeleteEndpointGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEndpointGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEndpointGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DeleteEndpointGroup, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DeleteEndpointGroupAsync(const DeleteEndpointGroupRequest& request, const DeleteEndpointGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEndpointGroup(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DeleteEndpointGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteListenerOutcome GlobalAcceleratorClient::DeleteListener(const DeleteListenerRequest& request) const
@@ -568,18 +479,12 @@ DeleteListenerOutcome GlobalAcceleratorClient::DeleteListener(const DeleteListen
 
 DeleteListenerOutcomeCallable GlobalAcceleratorClient::DeleteListenerCallable(const DeleteListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DeleteListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DeleteListenerAsync(const DeleteListenerRequest& request, const DeleteListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DeleteListener, this, request, handler, context, m_executor.get());
 }
 
 DenyCustomRoutingTrafficOutcome GlobalAcceleratorClient::DenyCustomRoutingTraffic(const DenyCustomRoutingTrafficRequest& request) const
@@ -592,18 +497,12 @@ DenyCustomRoutingTrafficOutcome GlobalAcceleratorClient::DenyCustomRoutingTraffi
 
 DenyCustomRoutingTrafficOutcomeCallable GlobalAcceleratorClient::DenyCustomRoutingTrafficCallable(const DenyCustomRoutingTrafficRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DenyCustomRoutingTrafficOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DenyCustomRoutingTraffic(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DenyCustomRoutingTraffic, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DenyCustomRoutingTrafficAsync(const DenyCustomRoutingTrafficRequest& request, const DenyCustomRoutingTrafficResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DenyCustomRoutingTraffic(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DenyCustomRoutingTraffic, this, request, handler, context, m_executor.get());
 }
 
 DeprovisionByoipCidrOutcome GlobalAcceleratorClient::DeprovisionByoipCidr(const DeprovisionByoipCidrRequest& request) const
@@ -616,18 +515,12 @@ DeprovisionByoipCidrOutcome GlobalAcceleratorClient::DeprovisionByoipCidr(const 
 
 DeprovisionByoipCidrOutcomeCallable GlobalAcceleratorClient::DeprovisionByoipCidrCallable(const DeprovisionByoipCidrRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeprovisionByoipCidrOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeprovisionByoipCidr(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DeprovisionByoipCidr, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DeprovisionByoipCidrAsync(const DeprovisionByoipCidrRequest& request, const DeprovisionByoipCidrResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeprovisionByoipCidr(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DeprovisionByoipCidr, this, request, handler, context, m_executor.get());
 }
 
 DescribeAcceleratorOutcome GlobalAcceleratorClient::DescribeAccelerator(const DescribeAcceleratorRequest& request) const
@@ -640,18 +533,12 @@ DescribeAcceleratorOutcome GlobalAcceleratorClient::DescribeAccelerator(const De
 
 DescribeAcceleratorOutcomeCallable GlobalAcceleratorClient::DescribeAcceleratorCallable(const DescribeAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeAcceleratorAsync(const DescribeAcceleratorRequest& request, const DescribeAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeAccelerator, this, request, handler, context, m_executor.get());
 }
 
 DescribeAcceleratorAttributesOutcome GlobalAcceleratorClient::DescribeAcceleratorAttributes(const DescribeAcceleratorAttributesRequest& request) const
@@ -664,18 +551,12 @@ DescribeAcceleratorAttributesOutcome GlobalAcceleratorClient::DescribeAccelerato
 
 DescribeAcceleratorAttributesOutcomeCallable GlobalAcceleratorClient::DescribeAcceleratorAttributesCallable(const DescribeAcceleratorAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAcceleratorAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAcceleratorAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeAcceleratorAttributes, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeAcceleratorAttributesAsync(const DescribeAcceleratorAttributesRequest& request, const DescribeAcceleratorAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAcceleratorAttributes(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeAcceleratorAttributes, this, request, handler, context, m_executor.get());
 }
 
 DescribeCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::DescribeCustomRoutingAccelerator(const DescribeCustomRoutingAcceleratorRequest& request) const
@@ -688,18 +569,12 @@ DescribeCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::DescribeCustomR
 
 DescribeCustomRoutingAcceleratorOutcomeCallable GlobalAcceleratorClient::DescribeCustomRoutingAcceleratorCallable(const DescribeCustomRoutingAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCustomRoutingAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCustomRoutingAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeCustomRoutingAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeCustomRoutingAcceleratorAsync(const DescribeCustomRoutingAcceleratorRequest& request, const DescribeCustomRoutingAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCustomRoutingAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeCustomRoutingAccelerator, this, request, handler, context, m_executor.get());
 }
 
 DescribeCustomRoutingAcceleratorAttributesOutcome GlobalAcceleratorClient::DescribeCustomRoutingAcceleratorAttributes(const DescribeCustomRoutingAcceleratorAttributesRequest& request) const
@@ -712,18 +587,12 @@ DescribeCustomRoutingAcceleratorAttributesOutcome GlobalAcceleratorClient::Descr
 
 DescribeCustomRoutingAcceleratorAttributesOutcomeCallable GlobalAcceleratorClient::DescribeCustomRoutingAcceleratorAttributesCallable(const DescribeCustomRoutingAcceleratorAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCustomRoutingAcceleratorAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCustomRoutingAcceleratorAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeCustomRoutingAcceleratorAttributes, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeCustomRoutingAcceleratorAttributesAsync(const DescribeCustomRoutingAcceleratorAttributesRequest& request, const DescribeCustomRoutingAcceleratorAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCustomRoutingAcceleratorAttributes(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeCustomRoutingAcceleratorAttributes, this, request, handler, context, m_executor.get());
 }
 
 DescribeCustomRoutingEndpointGroupOutcome GlobalAcceleratorClient::DescribeCustomRoutingEndpointGroup(const DescribeCustomRoutingEndpointGroupRequest& request) const
@@ -736,18 +605,12 @@ DescribeCustomRoutingEndpointGroupOutcome GlobalAcceleratorClient::DescribeCusto
 
 DescribeCustomRoutingEndpointGroupOutcomeCallable GlobalAcceleratorClient::DescribeCustomRoutingEndpointGroupCallable(const DescribeCustomRoutingEndpointGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCustomRoutingEndpointGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCustomRoutingEndpointGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeCustomRoutingEndpointGroup, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeCustomRoutingEndpointGroupAsync(const DescribeCustomRoutingEndpointGroupRequest& request, const DescribeCustomRoutingEndpointGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCustomRoutingEndpointGroup(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeCustomRoutingEndpointGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeCustomRoutingListenerOutcome GlobalAcceleratorClient::DescribeCustomRoutingListener(const DescribeCustomRoutingListenerRequest& request) const
@@ -760,18 +623,12 @@ DescribeCustomRoutingListenerOutcome GlobalAcceleratorClient::DescribeCustomRout
 
 DescribeCustomRoutingListenerOutcomeCallable GlobalAcceleratorClient::DescribeCustomRoutingListenerCallable(const DescribeCustomRoutingListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCustomRoutingListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCustomRoutingListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeCustomRoutingListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeCustomRoutingListenerAsync(const DescribeCustomRoutingListenerRequest& request, const DescribeCustomRoutingListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCustomRoutingListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeCustomRoutingListener, this, request, handler, context, m_executor.get());
 }
 
 DescribeEndpointGroupOutcome GlobalAcceleratorClient::DescribeEndpointGroup(const DescribeEndpointGroupRequest& request) const
@@ -784,18 +641,12 @@ DescribeEndpointGroupOutcome GlobalAcceleratorClient::DescribeEndpointGroup(cons
 
 DescribeEndpointGroupOutcomeCallable GlobalAcceleratorClient::DescribeEndpointGroupCallable(const DescribeEndpointGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEndpointGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEndpointGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeEndpointGroup, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeEndpointGroupAsync(const DescribeEndpointGroupRequest& request, const DescribeEndpointGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEndpointGroup(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeEndpointGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeListenerOutcome GlobalAcceleratorClient::DescribeListener(const DescribeListenerRequest& request) const
@@ -808,18 +659,12 @@ DescribeListenerOutcome GlobalAcceleratorClient::DescribeListener(const Describe
 
 DescribeListenerOutcomeCallable GlobalAcceleratorClient::DescribeListenerCallable(const DescribeListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::DescribeListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::DescribeListenerAsync(const DescribeListenerRequest& request, const DescribeListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::DescribeListener, this, request, handler, context, m_executor.get());
 }
 
 ListAcceleratorsOutcome GlobalAcceleratorClient::ListAccelerators(const ListAcceleratorsRequest& request) const
@@ -832,18 +677,12 @@ ListAcceleratorsOutcome GlobalAcceleratorClient::ListAccelerators(const ListAcce
 
 ListAcceleratorsOutcomeCallable GlobalAcceleratorClient::ListAcceleratorsCallable(const ListAcceleratorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAcceleratorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccelerators(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListAccelerators, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListAcceleratorsAsync(const ListAcceleratorsRequest& request, const ListAcceleratorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccelerators(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListAccelerators, this, request, handler, context, m_executor.get());
 }
 
 ListByoipCidrsOutcome GlobalAcceleratorClient::ListByoipCidrs(const ListByoipCidrsRequest& request) const
@@ -856,18 +695,12 @@ ListByoipCidrsOutcome GlobalAcceleratorClient::ListByoipCidrs(const ListByoipCid
 
 ListByoipCidrsOutcomeCallable GlobalAcceleratorClient::ListByoipCidrsCallable(const ListByoipCidrsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListByoipCidrsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListByoipCidrs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListByoipCidrs, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListByoipCidrsAsync(const ListByoipCidrsRequest& request, const ListByoipCidrsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListByoipCidrs(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListByoipCidrs, this, request, handler, context, m_executor.get());
 }
 
 ListCustomRoutingAcceleratorsOutcome GlobalAcceleratorClient::ListCustomRoutingAccelerators(const ListCustomRoutingAcceleratorsRequest& request) const
@@ -880,18 +713,12 @@ ListCustomRoutingAcceleratorsOutcome GlobalAcceleratorClient::ListCustomRoutingA
 
 ListCustomRoutingAcceleratorsOutcomeCallable GlobalAcceleratorClient::ListCustomRoutingAcceleratorsCallable(const ListCustomRoutingAcceleratorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomRoutingAcceleratorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomRoutingAccelerators(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListCustomRoutingAccelerators, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListCustomRoutingAcceleratorsAsync(const ListCustomRoutingAcceleratorsRequest& request, const ListCustomRoutingAcceleratorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomRoutingAccelerators(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListCustomRoutingAccelerators, this, request, handler, context, m_executor.get());
 }
 
 ListCustomRoutingEndpointGroupsOutcome GlobalAcceleratorClient::ListCustomRoutingEndpointGroups(const ListCustomRoutingEndpointGroupsRequest& request) const
@@ -904,18 +731,12 @@ ListCustomRoutingEndpointGroupsOutcome GlobalAcceleratorClient::ListCustomRoutin
 
 ListCustomRoutingEndpointGroupsOutcomeCallable GlobalAcceleratorClient::ListCustomRoutingEndpointGroupsCallable(const ListCustomRoutingEndpointGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomRoutingEndpointGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomRoutingEndpointGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListCustomRoutingEndpointGroups, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListCustomRoutingEndpointGroupsAsync(const ListCustomRoutingEndpointGroupsRequest& request, const ListCustomRoutingEndpointGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomRoutingEndpointGroups(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListCustomRoutingEndpointGroups, this, request, handler, context, m_executor.get());
 }
 
 ListCustomRoutingListenersOutcome GlobalAcceleratorClient::ListCustomRoutingListeners(const ListCustomRoutingListenersRequest& request) const
@@ -928,18 +749,12 @@ ListCustomRoutingListenersOutcome GlobalAcceleratorClient::ListCustomRoutingList
 
 ListCustomRoutingListenersOutcomeCallable GlobalAcceleratorClient::ListCustomRoutingListenersCallable(const ListCustomRoutingListenersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomRoutingListenersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomRoutingListeners(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListCustomRoutingListeners, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListCustomRoutingListenersAsync(const ListCustomRoutingListenersRequest& request, const ListCustomRoutingListenersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomRoutingListeners(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListCustomRoutingListeners, this, request, handler, context, m_executor.get());
 }
 
 ListCustomRoutingPortMappingsOutcome GlobalAcceleratorClient::ListCustomRoutingPortMappings(const ListCustomRoutingPortMappingsRequest& request) const
@@ -952,18 +767,12 @@ ListCustomRoutingPortMappingsOutcome GlobalAcceleratorClient::ListCustomRoutingP
 
 ListCustomRoutingPortMappingsOutcomeCallable GlobalAcceleratorClient::ListCustomRoutingPortMappingsCallable(const ListCustomRoutingPortMappingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomRoutingPortMappingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomRoutingPortMappings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListCustomRoutingPortMappings, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListCustomRoutingPortMappingsAsync(const ListCustomRoutingPortMappingsRequest& request, const ListCustomRoutingPortMappingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomRoutingPortMappings(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListCustomRoutingPortMappings, this, request, handler, context, m_executor.get());
 }
 
 ListCustomRoutingPortMappingsByDestinationOutcome GlobalAcceleratorClient::ListCustomRoutingPortMappingsByDestination(const ListCustomRoutingPortMappingsByDestinationRequest& request) const
@@ -976,18 +785,12 @@ ListCustomRoutingPortMappingsByDestinationOutcome GlobalAcceleratorClient::ListC
 
 ListCustomRoutingPortMappingsByDestinationOutcomeCallable GlobalAcceleratorClient::ListCustomRoutingPortMappingsByDestinationCallable(const ListCustomRoutingPortMappingsByDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomRoutingPortMappingsByDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomRoutingPortMappingsByDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListCustomRoutingPortMappingsByDestination, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListCustomRoutingPortMappingsByDestinationAsync(const ListCustomRoutingPortMappingsByDestinationRequest& request, const ListCustomRoutingPortMappingsByDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomRoutingPortMappingsByDestination(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListCustomRoutingPortMappingsByDestination, this, request, handler, context, m_executor.get());
 }
 
 ListEndpointGroupsOutcome GlobalAcceleratorClient::ListEndpointGroups(const ListEndpointGroupsRequest& request) const
@@ -1000,18 +803,12 @@ ListEndpointGroupsOutcome GlobalAcceleratorClient::ListEndpointGroups(const List
 
 ListEndpointGroupsOutcomeCallable GlobalAcceleratorClient::ListEndpointGroupsCallable(const ListEndpointGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEndpointGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEndpointGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListEndpointGroups, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListEndpointGroupsAsync(const ListEndpointGroupsRequest& request, const ListEndpointGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEndpointGroups(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListEndpointGroups, this, request, handler, context, m_executor.get());
 }
 
 ListListenersOutcome GlobalAcceleratorClient::ListListeners(const ListListenersRequest& request) const
@@ -1024,18 +821,12 @@ ListListenersOutcome GlobalAcceleratorClient::ListListeners(const ListListenersR
 
 ListListenersOutcomeCallable GlobalAcceleratorClient::ListListenersCallable(const ListListenersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListListenersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListListeners(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListListeners, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListListenersAsync(const ListListenersRequest& request, const ListListenersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListListeners(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListListeners, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome GlobalAcceleratorClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1048,18 +839,12 @@ ListTagsForResourceOutcome GlobalAcceleratorClient::ListTagsForResource(const Li
 
 ListTagsForResourceOutcomeCallable GlobalAcceleratorClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ProvisionByoipCidrOutcome GlobalAcceleratorClient::ProvisionByoipCidr(const ProvisionByoipCidrRequest& request) const
@@ -1072,18 +857,12 @@ ProvisionByoipCidrOutcome GlobalAcceleratorClient::ProvisionByoipCidr(const Prov
 
 ProvisionByoipCidrOutcomeCallable GlobalAcceleratorClient::ProvisionByoipCidrCallable(const ProvisionByoipCidrRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ProvisionByoipCidrOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ProvisionByoipCidr(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::ProvisionByoipCidr, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::ProvisionByoipCidrAsync(const ProvisionByoipCidrRequest& request, const ProvisionByoipCidrResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ProvisionByoipCidr(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::ProvisionByoipCidr, this, request, handler, context, m_executor.get());
 }
 
 RemoveCustomRoutingEndpointsOutcome GlobalAcceleratorClient::RemoveCustomRoutingEndpoints(const RemoveCustomRoutingEndpointsRequest& request) const
@@ -1096,18 +875,12 @@ RemoveCustomRoutingEndpointsOutcome GlobalAcceleratorClient::RemoveCustomRouting
 
 RemoveCustomRoutingEndpointsOutcomeCallable GlobalAcceleratorClient::RemoveCustomRoutingEndpointsCallable(const RemoveCustomRoutingEndpointsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveCustomRoutingEndpointsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveCustomRoutingEndpoints(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::RemoveCustomRoutingEndpoints, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::RemoveCustomRoutingEndpointsAsync(const RemoveCustomRoutingEndpointsRequest& request, const RemoveCustomRoutingEndpointsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveCustomRoutingEndpoints(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::RemoveCustomRoutingEndpoints, this, request, handler, context, m_executor.get());
 }
 
 RemoveEndpointsOutcome GlobalAcceleratorClient::RemoveEndpoints(const RemoveEndpointsRequest& request) const
@@ -1120,18 +893,12 @@ RemoveEndpointsOutcome GlobalAcceleratorClient::RemoveEndpoints(const RemoveEndp
 
 RemoveEndpointsOutcomeCallable GlobalAcceleratorClient::RemoveEndpointsCallable(const RemoveEndpointsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveEndpointsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveEndpoints(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::RemoveEndpoints, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::RemoveEndpointsAsync(const RemoveEndpointsRequest& request, const RemoveEndpointsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveEndpoints(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::RemoveEndpoints, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome GlobalAcceleratorClient::TagResource(const TagResourceRequest& request) const
@@ -1144,18 +911,12 @@ TagResourceOutcome GlobalAcceleratorClient::TagResource(const TagResourceRequest
 
 TagResourceOutcomeCallable GlobalAcceleratorClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::TagResource, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome GlobalAcceleratorClient::UntagResource(const UntagResourceRequest& request) const
@@ -1168,18 +929,12 @@ UntagResourceOutcome GlobalAcceleratorClient::UntagResource(const UntagResourceR
 
 UntagResourceOutcomeCallable GlobalAcceleratorClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UntagResource, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAcceleratorOutcome GlobalAcceleratorClient::UpdateAccelerator(const UpdateAcceleratorRequest& request) const
@@ -1192,18 +947,12 @@ UpdateAcceleratorOutcome GlobalAcceleratorClient::UpdateAccelerator(const Update
 
 UpdateAcceleratorOutcomeCallable GlobalAcceleratorClient::UpdateAcceleratorCallable(const UpdateAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UpdateAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UpdateAcceleratorAsync(const UpdateAcceleratorRequest& request, const UpdateAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UpdateAccelerator, this, request, handler, context, m_executor.get());
 }
 
 UpdateAcceleratorAttributesOutcome GlobalAcceleratorClient::UpdateAcceleratorAttributes(const UpdateAcceleratorAttributesRequest& request) const
@@ -1216,18 +965,12 @@ UpdateAcceleratorAttributesOutcome GlobalAcceleratorClient::UpdateAcceleratorAtt
 
 UpdateAcceleratorAttributesOutcomeCallable GlobalAcceleratorClient::UpdateAcceleratorAttributesCallable(const UpdateAcceleratorAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAcceleratorAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAcceleratorAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UpdateAcceleratorAttributes, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UpdateAcceleratorAttributesAsync(const UpdateAcceleratorAttributesRequest& request, const UpdateAcceleratorAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAcceleratorAttributes(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UpdateAcceleratorAttributes, this, request, handler, context, m_executor.get());
 }
 
 UpdateCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::UpdateCustomRoutingAccelerator(const UpdateCustomRoutingAcceleratorRequest& request) const
@@ -1240,18 +983,12 @@ UpdateCustomRoutingAcceleratorOutcome GlobalAcceleratorClient::UpdateCustomRouti
 
 UpdateCustomRoutingAcceleratorOutcomeCallable GlobalAcceleratorClient::UpdateCustomRoutingAcceleratorCallable(const UpdateCustomRoutingAcceleratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCustomRoutingAcceleratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCustomRoutingAccelerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UpdateCustomRoutingAccelerator, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UpdateCustomRoutingAcceleratorAsync(const UpdateCustomRoutingAcceleratorRequest& request, const UpdateCustomRoutingAcceleratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCustomRoutingAccelerator(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UpdateCustomRoutingAccelerator, this, request, handler, context, m_executor.get());
 }
 
 UpdateCustomRoutingAcceleratorAttributesOutcome GlobalAcceleratorClient::UpdateCustomRoutingAcceleratorAttributes(const UpdateCustomRoutingAcceleratorAttributesRequest& request) const
@@ -1264,18 +1001,12 @@ UpdateCustomRoutingAcceleratorAttributesOutcome GlobalAcceleratorClient::UpdateC
 
 UpdateCustomRoutingAcceleratorAttributesOutcomeCallable GlobalAcceleratorClient::UpdateCustomRoutingAcceleratorAttributesCallable(const UpdateCustomRoutingAcceleratorAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCustomRoutingAcceleratorAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCustomRoutingAcceleratorAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UpdateCustomRoutingAcceleratorAttributes, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UpdateCustomRoutingAcceleratorAttributesAsync(const UpdateCustomRoutingAcceleratorAttributesRequest& request, const UpdateCustomRoutingAcceleratorAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCustomRoutingAcceleratorAttributes(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UpdateCustomRoutingAcceleratorAttributes, this, request, handler, context, m_executor.get());
 }
 
 UpdateCustomRoutingListenerOutcome GlobalAcceleratorClient::UpdateCustomRoutingListener(const UpdateCustomRoutingListenerRequest& request) const
@@ -1288,18 +1019,12 @@ UpdateCustomRoutingListenerOutcome GlobalAcceleratorClient::UpdateCustomRoutingL
 
 UpdateCustomRoutingListenerOutcomeCallable GlobalAcceleratorClient::UpdateCustomRoutingListenerCallable(const UpdateCustomRoutingListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCustomRoutingListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCustomRoutingListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UpdateCustomRoutingListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UpdateCustomRoutingListenerAsync(const UpdateCustomRoutingListenerRequest& request, const UpdateCustomRoutingListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCustomRoutingListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UpdateCustomRoutingListener, this, request, handler, context, m_executor.get());
 }
 
 UpdateEndpointGroupOutcome GlobalAcceleratorClient::UpdateEndpointGroup(const UpdateEndpointGroupRequest& request) const
@@ -1312,18 +1037,12 @@ UpdateEndpointGroupOutcome GlobalAcceleratorClient::UpdateEndpointGroup(const Up
 
 UpdateEndpointGroupOutcomeCallable GlobalAcceleratorClient::UpdateEndpointGroupCallable(const UpdateEndpointGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEndpointGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEndpointGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UpdateEndpointGroup, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UpdateEndpointGroupAsync(const UpdateEndpointGroupRequest& request, const UpdateEndpointGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEndpointGroup(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UpdateEndpointGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateListenerOutcome GlobalAcceleratorClient::UpdateListener(const UpdateListenerRequest& request) const
@@ -1336,18 +1055,12 @@ UpdateListenerOutcome GlobalAcceleratorClient::UpdateListener(const UpdateListen
 
 UpdateListenerOutcomeCallable GlobalAcceleratorClient::UpdateListenerCallable(const UpdateListenerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateListenerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateListener(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::UpdateListener, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::UpdateListenerAsync(const UpdateListenerRequest& request, const UpdateListenerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateListener(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::UpdateListener, this, request, handler, context, m_executor.get());
 }
 
 WithdrawByoipCidrOutcome GlobalAcceleratorClient::WithdrawByoipCidr(const WithdrawByoipCidrRequest& request) const
@@ -1360,17 +1073,11 @@ WithdrawByoipCidrOutcome GlobalAcceleratorClient::WithdrawByoipCidr(const Withdr
 
 WithdrawByoipCidrOutcomeCallable GlobalAcceleratorClient::WithdrawByoipCidrCallable(const WithdrawByoipCidrRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< WithdrawByoipCidrOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->WithdrawByoipCidr(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GlobalAcceleratorClient::WithdrawByoipCidr, this, request, m_executor.get());
 }
 
 void GlobalAcceleratorClient::WithdrawByoipCidrAsync(const WithdrawByoipCidrRequest& request, const WithdrawByoipCidrResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, WithdrawByoipCidr(request), context);
-    } );
+  MakeAsyncOperation(&GlobalAcceleratorClient::WithdrawByoipCidr, this, request, handler, context, m_executor.get());
 }
 

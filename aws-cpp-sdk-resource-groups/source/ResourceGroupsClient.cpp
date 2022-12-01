@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -176,18 +177,12 @@ CreateGroupOutcome ResourceGroupsClient::CreateGroup(const CreateGroupRequest& r
 
 CreateGroupOutcomeCallable ResourceGroupsClient::CreateGroupCallable(const CreateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::CreateGroup, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::CreateGroupAsync(const CreateGroupRequest& request, const CreateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGroup(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::CreateGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteGroupOutcome ResourceGroupsClient::DeleteGroup(const DeleteGroupRequest& request) const
@@ -201,18 +196,12 @@ DeleteGroupOutcome ResourceGroupsClient::DeleteGroup(const DeleteGroupRequest& r
 
 DeleteGroupOutcomeCallable ResourceGroupsClient::DeleteGroupCallable(const DeleteGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::DeleteGroup, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::DeleteGroupAsync(const DeleteGroupRequest& request, const DeleteGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroup(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::DeleteGroup, this, request, handler, context, m_executor.get());
 }
 
 GetGroupOutcome ResourceGroupsClient::GetGroup(const GetGroupRequest& request) const
@@ -226,18 +215,12 @@ GetGroupOutcome ResourceGroupsClient::GetGroup(const GetGroupRequest& request) c
 
 GetGroupOutcomeCallable ResourceGroupsClient::GetGroupCallable(const GetGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::GetGroup, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::GetGroupAsync(const GetGroupRequest& request, const GetGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroup(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::GetGroup, this, request, handler, context, m_executor.get());
 }
 
 GetGroupConfigurationOutcome ResourceGroupsClient::GetGroupConfiguration(const GetGroupConfigurationRequest& request) const
@@ -251,18 +234,12 @@ GetGroupConfigurationOutcome ResourceGroupsClient::GetGroupConfiguration(const G
 
 GetGroupConfigurationOutcomeCallable ResourceGroupsClient::GetGroupConfigurationCallable(const GetGroupConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroupConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::GetGroupConfiguration, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::GetGroupConfigurationAsync(const GetGroupConfigurationRequest& request, const GetGroupConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroupConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::GetGroupConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetGroupQueryOutcome ResourceGroupsClient::GetGroupQuery(const GetGroupQueryRequest& request) const
@@ -276,18 +253,12 @@ GetGroupQueryOutcome ResourceGroupsClient::GetGroupQuery(const GetGroupQueryRequ
 
 GetGroupQueryOutcomeCallable ResourceGroupsClient::GetGroupQueryCallable(const GetGroupQueryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupQueryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroupQuery(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::GetGroupQuery, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::GetGroupQueryAsync(const GetGroupQueryRequest& request, const GetGroupQueryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroupQuery(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::GetGroupQuery, this, request, handler, context, m_executor.get());
 }
 
 GetTagsOutcome ResourceGroupsClient::GetTags(const GetTagsRequest& request) const
@@ -308,18 +279,12 @@ GetTagsOutcome ResourceGroupsClient::GetTags(const GetTagsRequest& request) cons
 
 GetTagsOutcomeCallable ResourceGroupsClient::GetTagsCallable(const GetTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::GetTags, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::GetTagsAsync(const GetTagsRequest& request, const GetTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTags(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::GetTags, this, request, handler, context, m_executor.get());
 }
 
 GroupResourcesOutcome ResourceGroupsClient::GroupResources(const GroupResourcesRequest& request) const
@@ -333,18 +298,12 @@ GroupResourcesOutcome ResourceGroupsClient::GroupResources(const GroupResourcesR
 
 GroupResourcesOutcomeCallable ResourceGroupsClient::GroupResourcesCallable(const GroupResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GroupResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GroupResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::GroupResources, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::GroupResourcesAsync(const GroupResourcesRequest& request, const GroupResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GroupResources(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::GroupResources, this, request, handler, context, m_executor.get());
 }
 
 ListGroupResourcesOutcome ResourceGroupsClient::ListGroupResources(const ListGroupResourcesRequest& request) const
@@ -358,18 +317,12 @@ ListGroupResourcesOutcome ResourceGroupsClient::ListGroupResources(const ListGro
 
 ListGroupResourcesOutcomeCallable ResourceGroupsClient::ListGroupResourcesCallable(const ListGroupResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroupResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::ListGroupResources, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::ListGroupResourcesAsync(const ListGroupResourcesRequest& request, const ListGroupResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroupResources(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::ListGroupResources, this, request, handler, context, m_executor.get());
 }
 
 ListGroupsOutcome ResourceGroupsClient::ListGroups(const ListGroupsRequest& request) const
@@ -383,18 +336,12 @@ ListGroupsOutcome ResourceGroupsClient::ListGroups(const ListGroupsRequest& requ
 
 ListGroupsOutcomeCallable ResourceGroupsClient::ListGroupsCallable(const ListGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::ListGroups, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::ListGroupsAsync(const ListGroupsRequest& request, const ListGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroups(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::ListGroups, this, request, handler, context, m_executor.get());
 }
 
 PutGroupConfigurationOutcome ResourceGroupsClient::PutGroupConfiguration(const PutGroupConfigurationRequest& request) const
@@ -408,18 +355,12 @@ PutGroupConfigurationOutcome ResourceGroupsClient::PutGroupConfiguration(const P
 
 PutGroupConfigurationOutcomeCallable ResourceGroupsClient::PutGroupConfigurationCallable(const PutGroupConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutGroupConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutGroupConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::PutGroupConfiguration, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::PutGroupConfigurationAsync(const PutGroupConfigurationRequest& request, const PutGroupConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutGroupConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::PutGroupConfiguration, this, request, handler, context, m_executor.get());
 }
 
 SearchResourcesOutcome ResourceGroupsClient::SearchResources(const SearchResourcesRequest& request) const
@@ -433,18 +374,12 @@ SearchResourcesOutcome ResourceGroupsClient::SearchResources(const SearchResourc
 
 SearchResourcesOutcomeCallable ResourceGroupsClient::SearchResourcesCallable(const SearchResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::SearchResources, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::SearchResourcesAsync(const SearchResourcesRequest& request, const SearchResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchResources(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::SearchResources, this, request, handler, context, m_executor.get());
 }
 
 TagOutcome ResourceGroupsClient::Tag(const TagRequest& request) const
@@ -465,18 +400,12 @@ TagOutcome ResourceGroupsClient::Tag(const TagRequest& request) const
 
 TagOutcomeCallable ResourceGroupsClient::TagCallable(const TagRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->Tag(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::Tag, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::TagAsync(const TagRequest& request, const TagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, Tag(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::Tag, this, request, handler, context, m_executor.get());
 }
 
 UngroupResourcesOutcome ResourceGroupsClient::UngroupResources(const UngroupResourcesRequest& request) const
@@ -490,18 +419,12 @@ UngroupResourcesOutcome ResourceGroupsClient::UngroupResources(const UngroupReso
 
 UngroupResourcesOutcomeCallable ResourceGroupsClient::UngroupResourcesCallable(const UngroupResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UngroupResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UngroupResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::UngroupResources, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::UngroupResourcesAsync(const UngroupResourcesRequest& request, const UngroupResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UngroupResources(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::UngroupResources, this, request, handler, context, m_executor.get());
 }
 
 UntagOutcome ResourceGroupsClient::Untag(const UntagRequest& request) const
@@ -522,18 +445,12 @@ UntagOutcome ResourceGroupsClient::Untag(const UntagRequest& request) const
 
 UntagOutcomeCallable ResourceGroupsClient::UntagCallable(const UntagRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->Untag(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::Untag, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::UntagAsync(const UntagRequest& request, const UntagResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, Untag(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::Untag, this, request, handler, context, m_executor.get());
 }
 
 UpdateGroupOutcome ResourceGroupsClient::UpdateGroup(const UpdateGroupRequest& request) const
@@ -547,18 +464,12 @@ UpdateGroupOutcome ResourceGroupsClient::UpdateGroup(const UpdateGroupRequest& r
 
 UpdateGroupOutcomeCallable ResourceGroupsClient::UpdateGroupCallable(const UpdateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::UpdateGroup, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::UpdateGroupAsync(const UpdateGroupRequest& request, const UpdateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGroup(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::UpdateGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateGroupQueryOutcome ResourceGroupsClient::UpdateGroupQuery(const UpdateGroupQueryRequest& request) const
@@ -572,17 +483,11 @@ UpdateGroupQueryOutcome ResourceGroupsClient::UpdateGroupQuery(const UpdateGroup
 
 UpdateGroupQueryOutcomeCallable ResourceGroupsClient::UpdateGroupQueryCallable(const UpdateGroupQueryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGroupQueryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGroupQuery(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ResourceGroupsClient::UpdateGroupQuery, this, request, m_executor.get());
 }
 
 void ResourceGroupsClient::UpdateGroupQueryAsync(const UpdateGroupQueryRequest& request, const UpdateGroupQueryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGroupQuery(request), context);
-    } );
+  MakeAsyncOperation(&ResourceGroupsClient::UpdateGroupQuery, this, request, handler, context, m_executor.get());
 }
 

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -191,18 +192,12 @@ CreateApplicationOutcome MigrationHubRefactorSpacesClient::CreateApplication(con
 
 CreateApplicationOutcomeCallable MigrationHubRefactorSpacesClient::CreateApplicationCallable(const CreateApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::CreateApplication, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::CreateApplicationAsync(const CreateApplicationRequest& request, const CreateApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateApplication(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::CreateApplication, this, request, handler, context, m_executor.get());
 }
 
 CreateEnvironmentOutcome MigrationHubRefactorSpacesClient::CreateEnvironment(const CreateEnvironmentRequest& request) const
@@ -216,18 +211,12 @@ CreateEnvironmentOutcome MigrationHubRefactorSpacesClient::CreateEnvironment(con
 
 CreateEnvironmentOutcomeCallable MigrationHubRefactorSpacesClient::CreateEnvironmentCallable(const CreateEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::CreateEnvironment, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::CreateEnvironmentAsync(const CreateEnvironmentRequest& request, const CreateEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::CreateEnvironment, this, request, handler, context, m_executor.get());
 }
 
 CreateRouteOutcome MigrationHubRefactorSpacesClient::CreateRoute(const CreateRouteRequest& request) const
@@ -255,18 +244,12 @@ CreateRouteOutcome MigrationHubRefactorSpacesClient::CreateRoute(const CreateRou
 
 CreateRouteOutcomeCallable MigrationHubRefactorSpacesClient::CreateRouteCallable(const CreateRouteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRouteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRoute(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::CreateRoute, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::CreateRouteAsync(const CreateRouteRequest& request, const CreateRouteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRoute(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::CreateRoute, this, request, handler, context, m_executor.get());
 }
 
 CreateServiceOutcome MigrationHubRefactorSpacesClient::CreateService(const CreateServiceRequest& request) const
@@ -294,18 +277,12 @@ CreateServiceOutcome MigrationHubRefactorSpacesClient::CreateService(const Creat
 
 CreateServiceOutcomeCallable MigrationHubRefactorSpacesClient::CreateServiceCallable(const CreateServiceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateServiceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateService(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::CreateService, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::CreateServiceAsync(const CreateServiceRequest& request, const CreateServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateService(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::CreateService, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationOutcome MigrationHubRefactorSpacesClient::DeleteApplication(const DeleteApplicationRequest& request) const
@@ -332,18 +309,12 @@ DeleteApplicationOutcome MigrationHubRefactorSpacesClient::DeleteApplication(con
 
 DeleteApplicationOutcomeCallable MigrationHubRefactorSpacesClient::DeleteApplicationCallable(const DeleteApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::DeleteApplication, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::DeleteApplicationAsync(const DeleteApplicationRequest& request, const DeleteApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplication(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::DeleteApplication, this, request, handler, context, m_executor.get());
 }
 
 DeleteEnvironmentOutcome MigrationHubRefactorSpacesClient::DeleteEnvironment(const DeleteEnvironmentRequest& request) const
@@ -363,18 +334,12 @@ DeleteEnvironmentOutcome MigrationHubRefactorSpacesClient::DeleteEnvironment(con
 
 DeleteEnvironmentOutcomeCallable MigrationHubRefactorSpacesClient::DeleteEnvironmentCallable(const DeleteEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::DeleteEnvironment, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::DeleteEnvironmentAsync(const DeleteEnvironmentRequest& request, const DeleteEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::DeleteEnvironment, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourcePolicyOutcome MigrationHubRefactorSpacesClient::DeleteResourcePolicy(const DeleteResourcePolicyRequest& request) const
@@ -394,18 +359,12 @@ DeleteResourcePolicyOutcome MigrationHubRefactorSpacesClient::DeleteResourcePoli
 
 DeleteResourcePolicyOutcomeCallable MigrationHubRefactorSpacesClient::DeleteResourcePolicyCallable(const DeleteResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::DeleteResourcePolicy, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::DeleteResourcePolicyAsync(const DeleteResourcePolicyRequest& request, const DeleteResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::DeleteResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteRouteOutcome MigrationHubRefactorSpacesClient::DeleteRoute(const DeleteRouteRequest& request) const
@@ -439,18 +398,12 @@ DeleteRouteOutcome MigrationHubRefactorSpacesClient::DeleteRoute(const DeleteRou
 
 DeleteRouteOutcomeCallable MigrationHubRefactorSpacesClient::DeleteRouteCallable(const DeleteRouteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRouteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRoute(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::DeleteRoute, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::DeleteRouteAsync(const DeleteRouteRequest& request, const DeleteRouteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRoute(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::DeleteRoute, this, request, handler, context, m_executor.get());
 }
 
 DeleteServiceOutcome MigrationHubRefactorSpacesClient::DeleteService(const DeleteServiceRequest& request) const
@@ -484,18 +437,12 @@ DeleteServiceOutcome MigrationHubRefactorSpacesClient::DeleteService(const Delet
 
 DeleteServiceOutcomeCallable MigrationHubRefactorSpacesClient::DeleteServiceCallable(const DeleteServiceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteServiceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteService(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::DeleteService, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::DeleteServiceAsync(const DeleteServiceRequest& request, const DeleteServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteService(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::DeleteService, this, request, handler, context, m_executor.get());
 }
 
 GetApplicationOutcome MigrationHubRefactorSpacesClient::GetApplication(const GetApplicationRequest& request) const
@@ -522,18 +469,12 @@ GetApplicationOutcome MigrationHubRefactorSpacesClient::GetApplication(const Get
 
 GetApplicationOutcomeCallable MigrationHubRefactorSpacesClient::GetApplicationCallable(const GetApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::GetApplication, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::GetApplicationAsync(const GetApplicationRequest& request, const GetApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetApplication(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::GetApplication, this, request, handler, context, m_executor.get());
 }
 
 GetEnvironmentOutcome MigrationHubRefactorSpacesClient::GetEnvironment(const GetEnvironmentRequest& request) const
@@ -553,18 +494,12 @@ GetEnvironmentOutcome MigrationHubRefactorSpacesClient::GetEnvironment(const Get
 
 GetEnvironmentOutcomeCallable MigrationHubRefactorSpacesClient::GetEnvironmentCallable(const GetEnvironmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEnvironmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEnvironment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::GetEnvironment, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::GetEnvironmentAsync(const GetEnvironmentRequest& request, const GetEnvironmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEnvironment(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::GetEnvironment, this, request, handler, context, m_executor.get());
 }
 
 GetResourcePolicyOutcome MigrationHubRefactorSpacesClient::GetResourcePolicy(const GetResourcePolicyRequest& request) const
@@ -584,18 +519,12 @@ GetResourcePolicyOutcome MigrationHubRefactorSpacesClient::GetResourcePolicy(con
 
 GetResourcePolicyOutcomeCallable MigrationHubRefactorSpacesClient::GetResourcePolicyCallable(const GetResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::GetResourcePolicy, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::GetResourcePolicyAsync(const GetResourcePolicyRequest& request, const GetResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::GetResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 GetRouteOutcome MigrationHubRefactorSpacesClient::GetRoute(const GetRouteRequest& request) const
@@ -629,18 +558,12 @@ GetRouteOutcome MigrationHubRefactorSpacesClient::GetRoute(const GetRouteRequest
 
 GetRouteOutcomeCallable MigrationHubRefactorSpacesClient::GetRouteCallable(const GetRouteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRouteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRoute(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::GetRoute, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::GetRouteAsync(const GetRouteRequest& request, const GetRouteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRoute(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::GetRoute, this, request, handler, context, m_executor.get());
 }
 
 GetServiceOutcome MigrationHubRefactorSpacesClient::GetService(const GetServiceRequest& request) const
@@ -674,18 +597,12 @@ GetServiceOutcome MigrationHubRefactorSpacesClient::GetService(const GetServiceR
 
 GetServiceOutcomeCallable MigrationHubRefactorSpacesClient::GetServiceCallable(const GetServiceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetService(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::GetService, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::GetServiceAsync(const GetServiceRequest& request, const GetServiceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetService(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::GetService, this, request, handler, context, m_executor.get());
 }
 
 ListApplicationsOutcome MigrationHubRefactorSpacesClient::ListApplications(const ListApplicationsRequest& request) const
@@ -706,18 +623,12 @@ ListApplicationsOutcome MigrationHubRefactorSpacesClient::ListApplications(const
 
 ListApplicationsOutcomeCallable MigrationHubRefactorSpacesClient::ListApplicationsCallable(const ListApplicationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListApplicationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListApplications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::ListApplications, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::ListApplicationsAsync(const ListApplicationsRequest& request, const ListApplicationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListApplications(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::ListApplications, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentVpcsOutcome MigrationHubRefactorSpacesClient::ListEnvironmentVpcs(const ListEnvironmentVpcsRequest& request) const
@@ -738,18 +649,12 @@ ListEnvironmentVpcsOutcome MigrationHubRefactorSpacesClient::ListEnvironmentVpcs
 
 ListEnvironmentVpcsOutcomeCallable MigrationHubRefactorSpacesClient::ListEnvironmentVpcsCallable(const ListEnvironmentVpcsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentVpcsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironmentVpcs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::ListEnvironmentVpcs, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::ListEnvironmentVpcsAsync(const ListEnvironmentVpcsRequest& request, const ListEnvironmentVpcsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironmentVpcs(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::ListEnvironmentVpcs, this, request, handler, context, m_executor.get());
 }
 
 ListEnvironmentsOutcome MigrationHubRefactorSpacesClient::ListEnvironments(const ListEnvironmentsRequest& request) const
@@ -763,18 +668,12 @@ ListEnvironmentsOutcome MigrationHubRefactorSpacesClient::ListEnvironments(const
 
 ListEnvironmentsOutcomeCallable MigrationHubRefactorSpacesClient::ListEnvironmentsCallable(const ListEnvironmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEnvironmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEnvironments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::ListEnvironments, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::ListEnvironmentsAsync(const ListEnvironmentsRequest& request, const ListEnvironmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEnvironments(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::ListEnvironments, this, request, handler, context, m_executor.get());
 }
 
 ListRoutesOutcome MigrationHubRefactorSpacesClient::ListRoutes(const ListRoutesRequest& request) const
@@ -802,18 +701,12 @@ ListRoutesOutcome MigrationHubRefactorSpacesClient::ListRoutes(const ListRoutesR
 
 ListRoutesOutcomeCallable MigrationHubRefactorSpacesClient::ListRoutesCallable(const ListRoutesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRoutesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoutes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::ListRoutes, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::ListRoutesAsync(const ListRoutesRequest& request, const ListRoutesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoutes(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::ListRoutes, this, request, handler, context, m_executor.get());
 }
 
 ListServicesOutcome MigrationHubRefactorSpacesClient::ListServices(const ListServicesRequest& request) const
@@ -841,18 +734,12 @@ ListServicesOutcome MigrationHubRefactorSpacesClient::ListServices(const ListSer
 
 ListServicesOutcomeCallable MigrationHubRefactorSpacesClient::ListServicesCallable(const ListServicesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListServicesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListServices(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::ListServices, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::ListServicesAsync(const ListServicesRequest& request, const ListServicesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListServices(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::ListServices, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome MigrationHubRefactorSpacesClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -872,18 +759,12 @@ ListTagsForResourceOutcome MigrationHubRefactorSpacesClient::ListTagsForResource
 
 ListTagsForResourceOutcomeCallable MigrationHubRefactorSpacesClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutResourcePolicyOutcome MigrationHubRefactorSpacesClient::PutResourcePolicy(const PutResourcePolicyRequest& request) const
@@ -897,18 +778,12 @@ PutResourcePolicyOutcome MigrationHubRefactorSpacesClient::PutResourcePolicy(con
 
 PutResourcePolicyOutcomeCallable MigrationHubRefactorSpacesClient::PutResourcePolicyCallable(const PutResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::PutResourcePolicy, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::PutResourcePolicyAsync(const PutResourcePolicyRequest& request, const PutResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::PutResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome MigrationHubRefactorSpacesClient::TagResource(const TagResourceRequest& request) const
@@ -928,18 +803,12 @@ TagResourceOutcome MigrationHubRefactorSpacesClient::TagResource(const TagResour
 
 TagResourceOutcomeCallable MigrationHubRefactorSpacesClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::TagResource, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome MigrationHubRefactorSpacesClient::UntagResource(const UntagResourceRequest& request) const
@@ -964,18 +833,12 @@ UntagResourceOutcome MigrationHubRefactorSpacesClient::UntagResource(const Untag
 
 UntagResourceOutcomeCallable MigrationHubRefactorSpacesClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::UntagResource, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateRouteOutcome MigrationHubRefactorSpacesClient::UpdateRoute(const UpdateRouteRequest& request) const
@@ -1009,17 +872,11 @@ UpdateRouteOutcome MigrationHubRefactorSpacesClient::UpdateRoute(const UpdateRou
 
 UpdateRouteOutcomeCallable MigrationHubRefactorSpacesClient::UpdateRouteCallable(const UpdateRouteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRouteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoute(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubRefactorSpacesClient::UpdateRoute, this, request, m_executor.get());
 }
 
 void MigrationHubRefactorSpacesClient::UpdateRouteAsync(const UpdateRouteRequest& request, const UpdateRouteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoute(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubRefactorSpacesClient::UpdateRoute, this, request, handler, context, m_executor.get());
 }
 

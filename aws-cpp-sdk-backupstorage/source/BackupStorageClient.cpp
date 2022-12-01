@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -93,10 +94,10 @@ BackupStorageClient::BackupStorageClient(const std::shared_ptr<AWSCredentialsPro
     /* Legacy constructors due deprecation */
   BackupStorageClient::BackupStorageClient(const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             Aws::MakeShared<DefaultAWSCredentialsProviderChain>(ALLOCATION_TAG),
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  Aws::MakeShared<DefaultAWSCredentialsProviderChain>(ALLOCATION_TAG),
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<BackupStorageErrorMarshaller>(ALLOCATION_TAG)),
   m_clientConfiguration(clientConfiguration),
   m_executor(clientConfiguration.executor),
@@ -108,10 +109,10 @@ BackupStorageClient::BackupStorageClient(const std::shared_ptr<AWSCredentialsPro
 BackupStorageClient::BackupStorageClient(const AWSCredentials& credentials,
                                          const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             Aws::MakeShared<SimpleAWSCredentialsProvider>(ALLOCATION_TAG, credentials),
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  Aws::MakeShared<SimpleAWSCredentialsProvider>(ALLOCATION_TAG, credentials),
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<BackupStorageErrorMarshaller>(ALLOCATION_TAG)),
     m_clientConfiguration(clientConfiguration),
     m_executor(clientConfiguration.executor),
@@ -123,10 +124,10 @@ BackupStorageClient::BackupStorageClient(const AWSCredentials& credentials,
 BackupStorageClient::BackupStorageClient(const std::shared_ptr<AWSCredentialsProvider>& credentialsProvider,
                                          const Client::ClientConfiguration& clientConfiguration) :
   BASECLASS(clientConfiguration,
-            Aws::MakeShared<AWSAuthV4Signer>(ALLOCATION_TAG,
-                                             credentialsProvider,
-                                             SERVICE_NAME,
-                                             Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
+            Aws::MakeShared<Aws::Auth::DefaultAuthSignerProvider>(ALLOCATION_TAG,
+                                                                  credentialsProvider,
+                                                                  SERVICE_NAME,
+                                                                  Aws::Region::ComputeSignerRegion(clientConfiguration.region)),
             Aws::MakeShared<BackupStorageErrorMarshaller>(ALLOCATION_TAG)),
     m_clientConfiguration(clientConfiguration),
     m_executor(clientConfiguration.executor),
@@ -182,18 +183,12 @@ DeleteObjectOutcome BackupStorageClient::DeleteObject(const DeleteObjectRequest&
 
 DeleteObjectOutcomeCallable BackupStorageClient::DeleteObjectCallable(const DeleteObjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteObjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteObject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::DeleteObject, this, request, m_executor.get());
 }
 
 void BackupStorageClient::DeleteObjectAsync(const DeleteObjectRequest& request, const DeleteObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteObject(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::DeleteObject, this, request, handler, context, m_executor.get());
 }
 
 GetChunkOutcome BackupStorageClient::GetChunk(const GetChunkRequest& request) const
@@ -220,18 +215,12 @@ GetChunkOutcome BackupStorageClient::GetChunk(const GetChunkRequest& request) co
 
 GetChunkOutcomeCallable BackupStorageClient::GetChunkCallable(const GetChunkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetChunkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetChunk(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::GetChunk, this, request, m_executor.get());
 }
 
 void BackupStorageClient::GetChunkAsync(const GetChunkRequest& request, const GetChunkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetChunk(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::GetChunk, this, request, handler, context, m_executor.get());
 }
 
 GetObjectMetadataOutcome BackupStorageClient::GetObjectMetadata(const GetObjectMetadataRequest& request) const
@@ -259,18 +248,12 @@ GetObjectMetadataOutcome BackupStorageClient::GetObjectMetadata(const GetObjectM
 
 GetObjectMetadataOutcomeCallable BackupStorageClient::GetObjectMetadataCallable(const GetObjectMetadataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetObjectMetadataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetObjectMetadata(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::GetObjectMetadata, this, request, m_executor.get());
 }
 
 void BackupStorageClient::GetObjectMetadataAsync(const GetObjectMetadataRequest& request, const GetObjectMetadataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetObjectMetadata(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::GetObjectMetadata, this, request, handler, context, m_executor.get());
 }
 
 ListChunksOutcome BackupStorageClient::ListChunks(const ListChunksRequest& request) const
@@ -298,18 +281,12 @@ ListChunksOutcome BackupStorageClient::ListChunks(const ListChunksRequest& reque
 
 ListChunksOutcomeCallable BackupStorageClient::ListChunksCallable(const ListChunksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChunksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChunks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::ListChunks, this, request, m_executor.get());
 }
 
 void BackupStorageClient::ListChunksAsync(const ListChunksRequest& request, const ListChunksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChunks(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::ListChunks, this, request, handler, context, m_executor.get());
 }
 
 ListObjectsOutcome BackupStorageClient::ListObjects(const ListObjectsRequest& request) const
@@ -330,18 +307,12 @@ ListObjectsOutcome BackupStorageClient::ListObjects(const ListObjectsRequest& re
 
 ListObjectsOutcomeCallable BackupStorageClient::ListObjectsCallable(const ListObjectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListObjectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListObjects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::ListObjects, this, request, m_executor.get());
 }
 
 void BackupStorageClient::ListObjectsAsync(const ListObjectsRequest& request, const ListObjectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListObjects(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::ListObjects, this, request, handler, context, m_executor.get());
 }
 
 NotifyObjectCompleteOutcome BackupStorageClient::NotifyObjectComplete(const NotifyObjectCompleteRequest& request) const
@@ -379,18 +350,12 @@ NotifyObjectCompleteOutcome BackupStorageClient::NotifyObjectComplete(const Noti
 
 NotifyObjectCompleteOutcomeCallable BackupStorageClient::NotifyObjectCompleteCallable(const NotifyObjectCompleteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< NotifyObjectCompleteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->NotifyObjectComplete(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::NotifyObjectComplete, this, request, m_executor.get());
 }
 
 void BackupStorageClient::NotifyObjectCompleteAsync(const NotifyObjectCompleteRequest& request, const NotifyObjectCompleteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, NotifyObjectComplete(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::NotifyObjectComplete, this, request, handler, context, m_executor.get());
 }
 
 PutChunkOutcome BackupStorageClient::PutChunk(const PutChunkRequest& request) const
@@ -438,18 +403,12 @@ PutChunkOutcome BackupStorageClient::PutChunk(const PutChunkRequest& request) co
 
 PutChunkOutcomeCallable BackupStorageClient::PutChunkCallable(const PutChunkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutChunkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutChunk(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::PutChunk, this, request, m_executor.get());
 }
 
 void BackupStorageClient::PutChunkAsync(const PutChunkRequest& request, const PutChunkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutChunk(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::PutChunk, this, request, handler, context, m_executor.get());
 }
 
 PutObjectOutcome BackupStorageClient::PutObject(const PutObjectRequest& request) const
@@ -477,18 +436,12 @@ PutObjectOutcome BackupStorageClient::PutObject(const PutObjectRequest& request)
 
 PutObjectOutcomeCallable BackupStorageClient::PutObjectCallable(const PutObjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutObjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutObject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::PutObject, this, request, m_executor.get());
 }
 
 void BackupStorageClient::PutObjectAsync(const PutObjectRequest& request, const PutObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutObject(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::PutObject, this, request, handler, context, m_executor.get());
 }
 
 StartObjectOutcome BackupStorageClient::StartObject(const StartObjectRequest& request) const
@@ -515,17 +468,11 @@ StartObjectOutcome BackupStorageClient::StartObject(const StartObjectRequest& re
 
 StartObjectOutcomeCallable BackupStorageClient::StartObjectCallable(const StartObjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartObjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartObject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BackupStorageClient::StartObject, this, request, m_executor.get());
 }
 
 void BackupStorageClient::StartObjectAsync(const StartObjectRequest& request, const StartObjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartObject(request), context);
-    } );
+  MakeAsyncOperation(&BackupStorageClient::StartObject, this, request, handler, context, m_executor.get());
 }
 

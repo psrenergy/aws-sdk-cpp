@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -179,18 +180,12 @@ AddApplicationCloudWatchLoggingOptionOutcome KinesisAnalyticsClient::AddApplicat
 
 AddApplicationCloudWatchLoggingOptionOutcomeCallable KinesisAnalyticsClient::AddApplicationCloudWatchLoggingOptionCallable(const AddApplicationCloudWatchLoggingOptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddApplicationCloudWatchLoggingOptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddApplicationCloudWatchLoggingOption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::AddApplicationCloudWatchLoggingOption, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::AddApplicationCloudWatchLoggingOptionAsync(const AddApplicationCloudWatchLoggingOptionRequest& request, const AddApplicationCloudWatchLoggingOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddApplicationCloudWatchLoggingOption(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::AddApplicationCloudWatchLoggingOption, this, request, handler, context, m_executor.get());
 }
 
 AddApplicationInputOutcome KinesisAnalyticsClient::AddApplicationInput(const AddApplicationInputRequest& request) const
@@ -203,18 +198,12 @@ AddApplicationInputOutcome KinesisAnalyticsClient::AddApplicationInput(const Add
 
 AddApplicationInputOutcomeCallable KinesisAnalyticsClient::AddApplicationInputCallable(const AddApplicationInputRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddApplicationInputOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddApplicationInput(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::AddApplicationInput, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::AddApplicationInputAsync(const AddApplicationInputRequest& request, const AddApplicationInputResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddApplicationInput(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::AddApplicationInput, this, request, handler, context, m_executor.get());
 }
 
 AddApplicationInputProcessingConfigurationOutcome KinesisAnalyticsClient::AddApplicationInputProcessingConfiguration(const AddApplicationInputProcessingConfigurationRequest& request) const
@@ -227,18 +216,12 @@ AddApplicationInputProcessingConfigurationOutcome KinesisAnalyticsClient::AddApp
 
 AddApplicationInputProcessingConfigurationOutcomeCallable KinesisAnalyticsClient::AddApplicationInputProcessingConfigurationCallable(const AddApplicationInputProcessingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddApplicationInputProcessingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddApplicationInputProcessingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::AddApplicationInputProcessingConfiguration, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::AddApplicationInputProcessingConfigurationAsync(const AddApplicationInputProcessingConfigurationRequest& request, const AddApplicationInputProcessingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddApplicationInputProcessingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::AddApplicationInputProcessingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 AddApplicationOutputOutcome KinesisAnalyticsClient::AddApplicationOutput(const AddApplicationOutputRequest& request) const
@@ -251,18 +234,12 @@ AddApplicationOutputOutcome KinesisAnalyticsClient::AddApplicationOutput(const A
 
 AddApplicationOutputOutcomeCallable KinesisAnalyticsClient::AddApplicationOutputCallable(const AddApplicationOutputRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddApplicationOutputOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddApplicationOutput(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::AddApplicationOutput, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::AddApplicationOutputAsync(const AddApplicationOutputRequest& request, const AddApplicationOutputResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddApplicationOutput(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::AddApplicationOutput, this, request, handler, context, m_executor.get());
 }
 
 AddApplicationReferenceDataSourceOutcome KinesisAnalyticsClient::AddApplicationReferenceDataSource(const AddApplicationReferenceDataSourceRequest& request) const
@@ -275,18 +252,12 @@ AddApplicationReferenceDataSourceOutcome KinesisAnalyticsClient::AddApplicationR
 
 AddApplicationReferenceDataSourceOutcomeCallable KinesisAnalyticsClient::AddApplicationReferenceDataSourceCallable(const AddApplicationReferenceDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddApplicationReferenceDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddApplicationReferenceDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::AddApplicationReferenceDataSource, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::AddApplicationReferenceDataSourceAsync(const AddApplicationReferenceDataSourceRequest& request, const AddApplicationReferenceDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddApplicationReferenceDataSource(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::AddApplicationReferenceDataSource, this, request, handler, context, m_executor.get());
 }
 
 CreateApplicationOutcome KinesisAnalyticsClient::CreateApplication(const CreateApplicationRequest& request) const
@@ -299,18 +270,12 @@ CreateApplicationOutcome KinesisAnalyticsClient::CreateApplication(const CreateA
 
 CreateApplicationOutcomeCallable KinesisAnalyticsClient::CreateApplicationCallable(const CreateApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::CreateApplication, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::CreateApplicationAsync(const CreateApplicationRequest& request, const CreateApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateApplication(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::CreateApplication, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationOutcome KinesisAnalyticsClient::DeleteApplication(const DeleteApplicationRequest& request) const
@@ -323,18 +288,12 @@ DeleteApplicationOutcome KinesisAnalyticsClient::DeleteApplication(const DeleteA
 
 DeleteApplicationOutcomeCallable KinesisAnalyticsClient::DeleteApplicationCallable(const DeleteApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::DeleteApplication, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::DeleteApplicationAsync(const DeleteApplicationRequest& request, const DeleteApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplication(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::DeleteApplication, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationCloudWatchLoggingOptionOutcome KinesisAnalyticsClient::DeleteApplicationCloudWatchLoggingOption(const DeleteApplicationCloudWatchLoggingOptionRequest& request) const
@@ -347,18 +306,12 @@ DeleteApplicationCloudWatchLoggingOptionOutcome KinesisAnalyticsClient::DeleteAp
 
 DeleteApplicationCloudWatchLoggingOptionOutcomeCallable KinesisAnalyticsClient::DeleteApplicationCloudWatchLoggingOptionCallable(const DeleteApplicationCloudWatchLoggingOptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationCloudWatchLoggingOptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplicationCloudWatchLoggingOption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::DeleteApplicationCloudWatchLoggingOption, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::DeleteApplicationCloudWatchLoggingOptionAsync(const DeleteApplicationCloudWatchLoggingOptionRequest& request, const DeleteApplicationCloudWatchLoggingOptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplicationCloudWatchLoggingOption(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::DeleteApplicationCloudWatchLoggingOption, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationInputProcessingConfigurationOutcome KinesisAnalyticsClient::DeleteApplicationInputProcessingConfiguration(const DeleteApplicationInputProcessingConfigurationRequest& request) const
@@ -371,18 +324,12 @@ DeleteApplicationInputProcessingConfigurationOutcome KinesisAnalyticsClient::Del
 
 DeleteApplicationInputProcessingConfigurationOutcomeCallable KinesisAnalyticsClient::DeleteApplicationInputProcessingConfigurationCallable(const DeleteApplicationInputProcessingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationInputProcessingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplicationInputProcessingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::DeleteApplicationInputProcessingConfiguration, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::DeleteApplicationInputProcessingConfigurationAsync(const DeleteApplicationInputProcessingConfigurationRequest& request, const DeleteApplicationInputProcessingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplicationInputProcessingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::DeleteApplicationInputProcessingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationOutputOutcome KinesisAnalyticsClient::DeleteApplicationOutput(const DeleteApplicationOutputRequest& request) const
@@ -395,18 +342,12 @@ DeleteApplicationOutputOutcome KinesisAnalyticsClient::DeleteApplicationOutput(c
 
 DeleteApplicationOutputOutcomeCallable KinesisAnalyticsClient::DeleteApplicationOutputCallable(const DeleteApplicationOutputRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationOutputOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplicationOutput(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::DeleteApplicationOutput, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::DeleteApplicationOutputAsync(const DeleteApplicationOutputRequest& request, const DeleteApplicationOutputResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplicationOutput(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::DeleteApplicationOutput, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationReferenceDataSourceOutcome KinesisAnalyticsClient::DeleteApplicationReferenceDataSource(const DeleteApplicationReferenceDataSourceRequest& request) const
@@ -419,18 +360,12 @@ DeleteApplicationReferenceDataSourceOutcome KinesisAnalyticsClient::DeleteApplic
 
 DeleteApplicationReferenceDataSourceOutcomeCallable KinesisAnalyticsClient::DeleteApplicationReferenceDataSourceCallable(const DeleteApplicationReferenceDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationReferenceDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplicationReferenceDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::DeleteApplicationReferenceDataSource, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::DeleteApplicationReferenceDataSourceAsync(const DeleteApplicationReferenceDataSourceRequest& request, const DeleteApplicationReferenceDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplicationReferenceDataSource(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::DeleteApplicationReferenceDataSource, this, request, handler, context, m_executor.get());
 }
 
 DescribeApplicationOutcome KinesisAnalyticsClient::DescribeApplication(const DescribeApplicationRequest& request) const
@@ -443,18 +378,12 @@ DescribeApplicationOutcome KinesisAnalyticsClient::DescribeApplication(const Des
 
 DescribeApplicationOutcomeCallable KinesisAnalyticsClient::DescribeApplicationCallable(const DescribeApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::DescribeApplication, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::DescribeApplicationAsync(const DescribeApplicationRequest& request, const DescribeApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeApplication(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::DescribeApplication, this, request, handler, context, m_executor.get());
 }
 
 DiscoverInputSchemaOutcome KinesisAnalyticsClient::DiscoverInputSchema(const DiscoverInputSchemaRequest& request) const
@@ -467,18 +396,12 @@ DiscoverInputSchemaOutcome KinesisAnalyticsClient::DiscoverInputSchema(const Dis
 
 DiscoverInputSchemaOutcomeCallable KinesisAnalyticsClient::DiscoverInputSchemaCallable(const DiscoverInputSchemaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DiscoverInputSchemaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DiscoverInputSchema(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::DiscoverInputSchema, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::DiscoverInputSchemaAsync(const DiscoverInputSchemaRequest& request, const DiscoverInputSchemaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DiscoverInputSchema(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::DiscoverInputSchema, this, request, handler, context, m_executor.get());
 }
 
 ListApplicationsOutcome KinesisAnalyticsClient::ListApplications(const ListApplicationsRequest& request) const
@@ -491,18 +414,12 @@ ListApplicationsOutcome KinesisAnalyticsClient::ListApplications(const ListAppli
 
 ListApplicationsOutcomeCallable KinesisAnalyticsClient::ListApplicationsCallable(const ListApplicationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListApplicationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListApplications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::ListApplications, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::ListApplicationsAsync(const ListApplicationsRequest& request, const ListApplicationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListApplications(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::ListApplications, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome KinesisAnalyticsClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -515,18 +432,12 @@ ListTagsForResourceOutcome KinesisAnalyticsClient::ListTagsForResource(const Lis
 
 ListTagsForResourceOutcomeCallable KinesisAnalyticsClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 StartApplicationOutcome KinesisAnalyticsClient::StartApplication(const StartApplicationRequest& request) const
@@ -539,18 +450,12 @@ StartApplicationOutcome KinesisAnalyticsClient::StartApplication(const StartAppl
 
 StartApplicationOutcomeCallable KinesisAnalyticsClient::StartApplicationCallable(const StartApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::StartApplication, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::StartApplicationAsync(const StartApplicationRequest& request, const StartApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartApplication(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::StartApplication, this, request, handler, context, m_executor.get());
 }
 
 StopApplicationOutcome KinesisAnalyticsClient::StopApplication(const StopApplicationRequest& request) const
@@ -563,18 +468,12 @@ StopApplicationOutcome KinesisAnalyticsClient::StopApplication(const StopApplica
 
 StopApplicationOutcomeCallable KinesisAnalyticsClient::StopApplicationCallable(const StopApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::StopApplication, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::StopApplicationAsync(const StopApplicationRequest& request, const StopApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopApplication(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::StopApplication, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome KinesisAnalyticsClient::TagResource(const TagResourceRequest& request) const
@@ -587,18 +486,12 @@ TagResourceOutcome KinesisAnalyticsClient::TagResource(const TagResourceRequest&
 
 TagResourceOutcomeCallable KinesisAnalyticsClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::TagResource, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome KinesisAnalyticsClient::UntagResource(const UntagResourceRequest& request) const
@@ -611,18 +504,12 @@ UntagResourceOutcome KinesisAnalyticsClient::UntagResource(const UntagResourceRe
 
 UntagResourceOutcomeCallable KinesisAnalyticsClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::UntagResource, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateApplicationOutcome KinesisAnalyticsClient::UpdateApplication(const UpdateApplicationRequest& request) const
@@ -635,17 +522,11 @@ UpdateApplicationOutcome KinesisAnalyticsClient::UpdateApplication(const UpdateA
 
 UpdateApplicationOutcomeCallable KinesisAnalyticsClient::UpdateApplicationCallable(const UpdateApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisAnalyticsClient::UpdateApplication, this, request, m_executor.get());
 }
 
 void KinesisAnalyticsClient::UpdateApplicationAsync(const UpdateApplicationRequest& request, const UpdateApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateApplication(request), context);
-    } );
+  MakeAsyncOperation(&KinesisAnalyticsClient::UpdateApplication, this, request, handler, context, m_executor.get());
 }
 

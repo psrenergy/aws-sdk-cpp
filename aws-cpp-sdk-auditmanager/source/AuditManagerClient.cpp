@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -228,18 +229,12 @@ AssociateAssessmentReportEvidenceFolderOutcome AuditManagerClient::AssociateAsse
 
 AssociateAssessmentReportEvidenceFolderOutcomeCallable AuditManagerClient::AssociateAssessmentReportEvidenceFolderCallable(const AssociateAssessmentReportEvidenceFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateAssessmentReportEvidenceFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateAssessmentReportEvidenceFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::AssociateAssessmentReportEvidenceFolder, this, request, m_executor.get());
 }
 
 void AuditManagerClient::AssociateAssessmentReportEvidenceFolderAsync(const AssociateAssessmentReportEvidenceFolderRequest& request, const AssociateAssessmentReportEvidenceFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateAssessmentReportEvidenceFolder(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::AssociateAssessmentReportEvidenceFolder, this, request, handler, context, m_executor.get());
 }
 
 BatchAssociateAssessmentReportEvidenceOutcome AuditManagerClient::BatchAssociateAssessmentReportEvidence(const BatchAssociateAssessmentReportEvidenceRequest& request) const
@@ -260,18 +255,12 @@ BatchAssociateAssessmentReportEvidenceOutcome AuditManagerClient::BatchAssociate
 
 BatchAssociateAssessmentReportEvidenceOutcomeCallable AuditManagerClient::BatchAssociateAssessmentReportEvidenceCallable(const BatchAssociateAssessmentReportEvidenceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchAssociateAssessmentReportEvidenceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchAssociateAssessmentReportEvidence(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::BatchAssociateAssessmentReportEvidence, this, request, m_executor.get());
 }
 
 void AuditManagerClient::BatchAssociateAssessmentReportEvidenceAsync(const BatchAssociateAssessmentReportEvidenceRequest& request, const BatchAssociateAssessmentReportEvidenceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchAssociateAssessmentReportEvidence(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::BatchAssociateAssessmentReportEvidence, this, request, handler, context, m_executor.get());
 }
 
 BatchCreateDelegationByAssessmentOutcome AuditManagerClient::BatchCreateDelegationByAssessment(const BatchCreateDelegationByAssessmentRequest& request) const
@@ -292,18 +281,12 @@ BatchCreateDelegationByAssessmentOutcome AuditManagerClient::BatchCreateDelegati
 
 BatchCreateDelegationByAssessmentOutcomeCallable AuditManagerClient::BatchCreateDelegationByAssessmentCallable(const BatchCreateDelegationByAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchCreateDelegationByAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchCreateDelegationByAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::BatchCreateDelegationByAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::BatchCreateDelegationByAssessmentAsync(const BatchCreateDelegationByAssessmentRequest& request, const BatchCreateDelegationByAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchCreateDelegationByAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::BatchCreateDelegationByAssessment, this, request, handler, context, m_executor.get());
 }
 
 BatchDeleteDelegationByAssessmentOutcome AuditManagerClient::BatchDeleteDelegationByAssessment(const BatchDeleteDelegationByAssessmentRequest& request) const
@@ -324,18 +307,12 @@ BatchDeleteDelegationByAssessmentOutcome AuditManagerClient::BatchDeleteDelegati
 
 BatchDeleteDelegationByAssessmentOutcomeCallable AuditManagerClient::BatchDeleteDelegationByAssessmentCallable(const BatchDeleteDelegationByAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDeleteDelegationByAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDeleteDelegationByAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::BatchDeleteDelegationByAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::BatchDeleteDelegationByAssessmentAsync(const BatchDeleteDelegationByAssessmentRequest& request, const BatchDeleteDelegationByAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDeleteDelegationByAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::BatchDeleteDelegationByAssessment, this, request, handler, context, m_executor.get());
 }
 
 BatchDisassociateAssessmentReportEvidenceOutcome AuditManagerClient::BatchDisassociateAssessmentReportEvidence(const BatchDisassociateAssessmentReportEvidenceRequest& request) const
@@ -356,18 +333,12 @@ BatchDisassociateAssessmentReportEvidenceOutcome AuditManagerClient::BatchDisass
 
 BatchDisassociateAssessmentReportEvidenceOutcomeCallable AuditManagerClient::BatchDisassociateAssessmentReportEvidenceCallable(const BatchDisassociateAssessmentReportEvidenceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDisassociateAssessmentReportEvidenceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDisassociateAssessmentReportEvidence(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::BatchDisassociateAssessmentReportEvidence, this, request, m_executor.get());
 }
 
 void AuditManagerClient::BatchDisassociateAssessmentReportEvidenceAsync(const BatchDisassociateAssessmentReportEvidenceRequest& request, const BatchDisassociateAssessmentReportEvidenceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDisassociateAssessmentReportEvidence(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::BatchDisassociateAssessmentReportEvidence, this, request, handler, context, m_executor.get());
 }
 
 BatchImportEvidenceToAssessmentControlOutcome AuditManagerClient::BatchImportEvidenceToAssessmentControl(const BatchImportEvidenceToAssessmentControlRequest& request) const
@@ -402,18 +373,12 @@ BatchImportEvidenceToAssessmentControlOutcome AuditManagerClient::BatchImportEvi
 
 BatchImportEvidenceToAssessmentControlOutcomeCallable AuditManagerClient::BatchImportEvidenceToAssessmentControlCallable(const BatchImportEvidenceToAssessmentControlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchImportEvidenceToAssessmentControlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchImportEvidenceToAssessmentControl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::BatchImportEvidenceToAssessmentControl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::BatchImportEvidenceToAssessmentControlAsync(const BatchImportEvidenceToAssessmentControlRequest& request, const BatchImportEvidenceToAssessmentControlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchImportEvidenceToAssessmentControl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::BatchImportEvidenceToAssessmentControl, this, request, handler, context, m_executor.get());
 }
 
 CreateAssessmentOutcome AuditManagerClient::CreateAssessment(const CreateAssessmentRequest& request) const
@@ -427,18 +392,12 @@ CreateAssessmentOutcome AuditManagerClient::CreateAssessment(const CreateAssessm
 
 CreateAssessmentOutcomeCallable AuditManagerClient::CreateAssessmentCallable(const CreateAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::CreateAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::CreateAssessmentAsync(const CreateAssessmentRequest& request, const CreateAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::CreateAssessment, this, request, handler, context, m_executor.get());
 }
 
 CreateAssessmentFrameworkOutcome AuditManagerClient::CreateAssessmentFramework(const CreateAssessmentFrameworkRequest& request) const
@@ -452,18 +411,12 @@ CreateAssessmentFrameworkOutcome AuditManagerClient::CreateAssessmentFramework(c
 
 CreateAssessmentFrameworkOutcomeCallable AuditManagerClient::CreateAssessmentFrameworkCallable(const CreateAssessmentFrameworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAssessmentFrameworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAssessmentFramework(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::CreateAssessmentFramework, this, request, m_executor.get());
 }
 
 void AuditManagerClient::CreateAssessmentFrameworkAsync(const CreateAssessmentFrameworkRequest& request, const CreateAssessmentFrameworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAssessmentFramework(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::CreateAssessmentFramework, this, request, handler, context, m_executor.get());
 }
 
 CreateAssessmentReportOutcome AuditManagerClient::CreateAssessmentReport(const CreateAssessmentReportRequest& request) const
@@ -484,18 +437,12 @@ CreateAssessmentReportOutcome AuditManagerClient::CreateAssessmentReport(const C
 
 CreateAssessmentReportOutcomeCallable AuditManagerClient::CreateAssessmentReportCallable(const CreateAssessmentReportRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAssessmentReportOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAssessmentReport(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::CreateAssessmentReport, this, request, m_executor.get());
 }
 
 void AuditManagerClient::CreateAssessmentReportAsync(const CreateAssessmentReportRequest& request, const CreateAssessmentReportResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAssessmentReport(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::CreateAssessmentReport, this, request, handler, context, m_executor.get());
 }
 
 CreateControlOutcome AuditManagerClient::CreateControl(const CreateControlRequest& request) const
@@ -509,18 +456,12 @@ CreateControlOutcome AuditManagerClient::CreateControl(const CreateControlReques
 
 CreateControlOutcomeCallable AuditManagerClient::CreateControlCallable(const CreateControlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateControlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateControl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::CreateControl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::CreateControlAsync(const CreateControlRequest& request, const CreateControlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateControl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::CreateControl, this, request, handler, context, m_executor.get());
 }
 
 DeleteAssessmentOutcome AuditManagerClient::DeleteAssessment(const DeleteAssessmentRequest& request) const
@@ -540,18 +481,12 @@ DeleteAssessmentOutcome AuditManagerClient::DeleteAssessment(const DeleteAssessm
 
 DeleteAssessmentOutcomeCallable AuditManagerClient::DeleteAssessmentCallable(const DeleteAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DeleteAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DeleteAssessmentAsync(const DeleteAssessmentRequest& request, const DeleteAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DeleteAssessment, this, request, handler, context, m_executor.get());
 }
 
 DeleteAssessmentFrameworkOutcome AuditManagerClient::DeleteAssessmentFramework(const DeleteAssessmentFrameworkRequest& request) const
@@ -571,18 +506,12 @@ DeleteAssessmentFrameworkOutcome AuditManagerClient::DeleteAssessmentFramework(c
 
 DeleteAssessmentFrameworkOutcomeCallable AuditManagerClient::DeleteAssessmentFrameworkCallable(const DeleteAssessmentFrameworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAssessmentFrameworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAssessmentFramework(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DeleteAssessmentFramework, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DeleteAssessmentFrameworkAsync(const DeleteAssessmentFrameworkRequest& request, const DeleteAssessmentFrameworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAssessmentFramework(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DeleteAssessmentFramework, this, request, handler, context, m_executor.get());
 }
 
 DeleteAssessmentFrameworkShareOutcome AuditManagerClient::DeleteAssessmentFrameworkShare(const DeleteAssessmentFrameworkShareRequest& request) const
@@ -607,18 +536,12 @@ DeleteAssessmentFrameworkShareOutcome AuditManagerClient::DeleteAssessmentFramew
 
 DeleteAssessmentFrameworkShareOutcomeCallable AuditManagerClient::DeleteAssessmentFrameworkShareCallable(const DeleteAssessmentFrameworkShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAssessmentFrameworkShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAssessmentFrameworkShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DeleteAssessmentFrameworkShare, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DeleteAssessmentFrameworkShareAsync(const DeleteAssessmentFrameworkShareRequest& request, const DeleteAssessmentFrameworkShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAssessmentFrameworkShare(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DeleteAssessmentFrameworkShare, this, request, handler, context, m_executor.get());
 }
 
 DeleteAssessmentReportOutcome AuditManagerClient::DeleteAssessmentReport(const DeleteAssessmentReportRequest& request) const
@@ -645,18 +568,12 @@ DeleteAssessmentReportOutcome AuditManagerClient::DeleteAssessmentReport(const D
 
 DeleteAssessmentReportOutcomeCallable AuditManagerClient::DeleteAssessmentReportCallable(const DeleteAssessmentReportRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAssessmentReportOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAssessmentReport(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DeleteAssessmentReport, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DeleteAssessmentReportAsync(const DeleteAssessmentReportRequest& request, const DeleteAssessmentReportResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAssessmentReport(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DeleteAssessmentReport, this, request, handler, context, m_executor.get());
 }
 
 DeleteControlOutcome AuditManagerClient::DeleteControl(const DeleteControlRequest& request) const
@@ -676,18 +593,12 @@ DeleteControlOutcome AuditManagerClient::DeleteControl(const DeleteControlReques
 
 DeleteControlOutcomeCallable AuditManagerClient::DeleteControlCallable(const DeleteControlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteControlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteControl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DeleteControl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DeleteControlAsync(const DeleteControlRequest& request, const DeleteControlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteControl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DeleteControl, this, request, handler, context, m_executor.get());
 }
 
 DeregisterAccountOutcome AuditManagerClient::DeregisterAccount(const DeregisterAccountRequest& request) const
@@ -701,18 +612,12 @@ DeregisterAccountOutcome AuditManagerClient::DeregisterAccount(const DeregisterA
 
 DeregisterAccountOutcomeCallable AuditManagerClient::DeregisterAccountCallable(const DeregisterAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeregisterAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeregisterAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DeregisterAccount, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DeregisterAccountAsync(const DeregisterAccountRequest& request, const DeregisterAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeregisterAccount(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DeregisterAccount, this, request, handler, context, m_executor.get());
 }
 
 DeregisterOrganizationAdminAccountOutcome AuditManagerClient::DeregisterOrganizationAdminAccount(const DeregisterOrganizationAdminAccountRequest& request) const
@@ -726,18 +631,12 @@ DeregisterOrganizationAdminAccountOutcome AuditManagerClient::DeregisterOrganiza
 
 DeregisterOrganizationAdminAccountOutcomeCallable AuditManagerClient::DeregisterOrganizationAdminAccountCallable(const DeregisterOrganizationAdminAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeregisterOrganizationAdminAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeregisterOrganizationAdminAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DeregisterOrganizationAdminAccount, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DeregisterOrganizationAdminAccountAsync(const DeregisterOrganizationAdminAccountRequest& request, const DeregisterOrganizationAdminAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeregisterOrganizationAdminAccount(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DeregisterOrganizationAdminAccount, this, request, handler, context, m_executor.get());
 }
 
 DisassociateAssessmentReportEvidenceFolderOutcome AuditManagerClient::DisassociateAssessmentReportEvidenceFolder(const DisassociateAssessmentReportEvidenceFolderRequest& request) const
@@ -758,18 +657,12 @@ DisassociateAssessmentReportEvidenceFolderOutcome AuditManagerClient::Disassocia
 
 DisassociateAssessmentReportEvidenceFolderOutcomeCallable AuditManagerClient::DisassociateAssessmentReportEvidenceFolderCallable(const DisassociateAssessmentReportEvidenceFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateAssessmentReportEvidenceFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateAssessmentReportEvidenceFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::DisassociateAssessmentReportEvidenceFolder, this, request, m_executor.get());
 }
 
 void AuditManagerClient::DisassociateAssessmentReportEvidenceFolderAsync(const DisassociateAssessmentReportEvidenceFolderRequest& request, const DisassociateAssessmentReportEvidenceFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateAssessmentReportEvidenceFolder(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::DisassociateAssessmentReportEvidenceFolder, this, request, handler, context, m_executor.get());
 }
 
 GetAccountStatusOutcome AuditManagerClient::GetAccountStatus(const GetAccountStatusRequest& request) const
@@ -783,18 +676,12 @@ GetAccountStatusOutcome AuditManagerClient::GetAccountStatus(const GetAccountSta
 
 GetAccountStatusOutcomeCallable AuditManagerClient::GetAccountStatusCallable(const GetAccountStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccountStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccountStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetAccountStatus, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetAccountStatusAsync(const GetAccountStatusRequest& request, const GetAccountStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccountStatus(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetAccountStatus, this, request, handler, context, m_executor.get());
 }
 
 GetAssessmentOutcome AuditManagerClient::GetAssessment(const GetAssessmentRequest& request) const
@@ -814,18 +701,12 @@ GetAssessmentOutcome AuditManagerClient::GetAssessment(const GetAssessmentReques
 
 GetAssessmentOutcomeCallable AuditManagerClient::GetAssessmentCallable(const GetAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetAssessmentAsync(const GetAssessmentRequest& request, const GetAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetAssessment, this, request, handler, context, m_executor.get());
 }
 
 GetAssessmentFrameworkOutcome AuditManagerClient::GetAssessmentFramework(const GetAssessmentFrameworkRequest& request) const
@@ -845,18 +726,12 @@ GetAssessmentFrameworkOutcome AuditManagerClient::GetAssessmentFramework(const G
 
 GetAssessmentFrameworkOutcomeCallable AuditManagerClient::GetAssessmentFrameworkCallable(const GetAssessmentFrameworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAssessmentFrameworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAssessmentFramework(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetAssessmentFramework, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetAssessmentFrameworkAsync(const GetAssessmentFrameworkRequest& request, const GetAssessmentFrameworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAssessmentFramework(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetAssessmentFramework, this, request, handler, context, m_executor.get());
 }
 
 GetAssessmentReportUrlOutcome AuditManagerClient::GetAssessmentReportUrl(const GetAssessmentReportUrlRequest& request) const
@@ -884,18 +759,12 @@ GetAssessmentReportUrlOutcome AuditManagerClient::GetAssessmentReportUrl(const G
 
 GetAssessmentReportUrlOutcomeCallable AuditManagerClient::GetAssessmentReportUrlCallable(const GetAssessmentReportUrlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAssessmentReportUrlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAssessmentReportUrl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetAssessmentReportUrl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetAssessmentReportUrlAsync(const GetAssessmentReportUrlRequest& request, const GetAssessmentReportUrlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAssessmentReportUrl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetAssessmentReportUrl, this, request, handler, context, m_executor.get());
 }
 
 GetChangeLogsOutcome AuditManagerClient::GetChangeLogs(const GetChangeLogsRequest& request) const
@@ -916,18 +785,12 @@ GetChangeLogsOutcome AuditManagerClient::GetChangeLogs(const GetChangeLogsReques
 
 GetChangeLogsOutcomeCallable AuditManagerClient::GetChangeLogsCallable(const GetChangeLogsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetChangeLogsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetChangeLogs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetChangeLogs, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetChangeLogsAsync(const GetChangeLogsRequest& request, const GetChangeLogsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetChangeLogs(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetChangeLogs, this, request, handler, context, m_executor.get());
 }
 
 GetControlOutcome AuditManagerClient::GetControl(const GetControlRequest& request) const
@@ -947,18 +810,12 @@ GetControlOutcome AuditManagerClient::GetControl(const GetControlRequest& reques
 
 GetControlOutcomeCallable AuditManagerClient::GetControlCallable(const GetControlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetControlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetControl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetControl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetControlAsync(const GetControlRequest& request, const GetControlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetControl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetControl, this, request, handler, context, m_executor.get());
 }
 
 GetDelegationsOutcome AuditManagerClient::GetDelegations(const GetDelegationsRequest& request) const
@@ -972,18 +829,12 @@ GetDelegationsOutcome AuditManagerClient::GetDelegations(const GetDelegationsReq
 
 GetDelegationsOutcomeCallable AuditManagerClient::GetDelegationsCallable(const GetDelegationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDelegationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDelegations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetDelegations, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetDelegationsAsync(const GetDelegationsRequest& request, const GetDelegationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDelegations(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetDelegations, this, request, handler, context, m_executor.get());
 }
 
 GetEvidenceOutcome AuditManagerClient::GetEvidence(const GetEvidenceRequest& request) const
@@ -1024,18 +875,12 @@ GetEvidenceOutcome AuditManagerClient::GetEvidence(const GetEvidenceRequest& req
 
 GetEvidenceOutcomeCallable AuditManagerClient::GetEvidenceCallable(const GetEvidenceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEvidenceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEvidence(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetEvidence, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetEvidenceAsync(const GetEvidenceRequest& request, const GetEvidenceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEvidence(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetEvidence, this, request, handler, context, m_executor.get());
 }
 
 GetEvidenceByEvidenceFolderOutcome AuditManagerClient::GetEvidenceByEvidenceFolder(const GetEvidenceByEvidenceFolderRequest& request) const
@@ -1070,18 +915,12 @@ GetEvidenceByEvidenceFolderOutcome AuditManagerClient::GetEvidenceByEvidenceFold
 
 GetEvidenceByEvidenceFolderOutcomeCallable AuditManagerClient::GetEvidenceByEvidenceFolderCallable(const GetEvidenceByEvidenceFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEvidenceByEvidenceFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEvidenceByEvidenceFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetEvidenceByEvidenceFolder, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetEvidenceByEvidenceFolderAsync(const GetEvidenceByEvidenceFolderRequest& request, const GetEvidenceByEvidenceFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEvidenceByEvidenceFolder(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetEvidenceByEvidenceFolder, this, request, handler, context, m_executor.get());
 }
 
 GetEvidenceFolderOutcome AuditManagerClient::GetEvidenceFolder(const GetEvidenceFolderRequest& request) const
@@ -1115,18 +954,12 @@ GetEvidenceFolderOutcome AuditManagerClient::GetEvidenceFolder(const GetEvidence
 
 GetEvidenceFolderOutcomeCallable AuditManagerClient::GetEvidenceFolderCallable(const GetEvidenceFolderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEvidenceFolderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEvidenceFolder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetEvidenceFolder, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetEvidenceFolderAsync(const GetEvidenceFolderRequest& request, const GetEvidenceFolderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEvidenceFolder(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetEvidenceFolder, this, request, handler, context, m_executor.get());
 }
 
 GetEvidenceFoldersByAssessmentOutcome AuditManagerClient::GetEvidenceFoldersByAssessment(const GetEvidenceFoldersByAssessmentRequest& request) const
@@ -1147,18 +980,12 @@ GetEvidenceFoldersByAssessmentOutcome AuditManagerClient::GetEvidenceFoldersByAs
 
 GetEvidenceFoldersByAssessmentOutcomeCallable AuditManagerClient::GetEvidenceFoldersByAssessmentCallable(const GetEvidenceFoldersByAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEvidenceFoldersByAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEvidenceFoldersByAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetEvidenceFoldersByAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetEvidenceFoldersByAssessmentAsync(const GetEvidenceFoldersByAssessmentRequest& request, const GetEvidenceFoldersByAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEvidenceFoldersByAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetEvidenceFoldersByAssessment, this, request, handler, context, m_executor.get());
 }
 
 GetEvidenceFoldersByAssessmentControlOutcome AuditManagerClient::GetEvidenceFoldersByAssessmentControl(const GetEvidenceFoldersByAssessmentControlRequest& request) const
@@ -1191,18 +1018,12 @@ GetEvidenceFoldersByAssessmentControlOutcome AuditManagerClient::GetEvidenceFold
 
 GetEvidenceFoldersByAssessmentControlOutcomeCallable AuditManagerClient::GetEvidenceFoldersByAssessmentControlCallable(const GetEvidenceFoldersByAssessmentControlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEvidenceFoldersByAssessmentControlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEvidenceFoldersByAssessmentControl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetEvidenceFoldersByAssessmentControl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetEvidenceFoldersByAssessmentControlAsync(const GetEvidenceFoldersByAssessmentControlRequest& request, const GetEvidenceFoldersByAssessmentControlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEvidenceFoldersByAssessmentControl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetEvidenceFoldersByAssessmentControl, this, request, handler, context, m_executor.get());
 }
 
 GetInsightsOutcome AuditManagerClient::GetInsights(const GetInsightsRequest& request) const
@@ -1216,18 +1037,12 @@ GetInsightsOutcome AuditManagerClient::GetInsights(const GetInsightsRequest& req
 
 GetInsightsOutcomeCallable AuditManagerClient::GetInsightsCallable(const GetInsightsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetInsightsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetInsights(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetInsights, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetInsightsAsync(const GetInsightsRequest& request, const GetInsightsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetInsights(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetInsights, this, request, handler, context, m_executor.get());
 }
 
 GetInsightsByAssessmentOutcome AuditManagerClient::GetInsightsByAssessment(const GetInsightsByAssessmentRequest& request) const
@@ -1247,18 +1062,12 @@ GetInsightsByAssessmentOutcome AuditManagerClient::GetInsightsByAssessment(const
 
 GetInsightsByAssessmentOutcomeCallable AuditManagerClient::GetInsightsByAssessmentCallable(const GetInsightsByAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetInsightsByAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetInsightsByAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetInsightsByAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetInsightsByAssessmentAsync(const GetInsightsByAssessmentRequest& request, const GetInsightsByAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetInsightsByAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetInsightsByAssessment, this, request, handler, context, m_executor.get());
 }
 
 GetOrganizationAdminAccountOutcome AuditManagerClient::GetOrganizationAdminAccount(const GetOrganizationAdminAccountRequest& request) const
@@ -1272,18 +1081,12 @@ GetOrganizationAdminAccountOutcome AuditManagerClient::GetOrganizationAdminAccou
 
 GetOrganizationAdminAccountOutcomeCallable AuditManagerClient::GetOrganizationAdminAccountCallable(const GetOrganizationAdminAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOrganizationAdminAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOrganizationAdminAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetOrganizationAdminAccount, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetOrganizationAdminAccountAsync(const GetOrganizationAdminAccountRequest& request, const GetOrganizationAdminAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOrganizationAdminAccount(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetOrganizationAdminAccount, this, request, handler, context, m_executor.get());
 }
 
 GetServicesInScopeOutcome AuditManagerClient::GetServicesInScope(const GetServicesInScopeRequest& request) const
@@ -1297,18 +1100,12 @@ GetServicesInScopeOutcome AuditManagerClient::GetServicesInScope(const GetServic
 
 GetServicesInScopeOutcomeCallable AuditManagerClient::GetServicesInScopeCallable(const GetServicesInScopeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServicesInScopeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServicesInScope(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetServicesInScope, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetServicesInScopeAsync(const GetServicesInScopeRequest& request, const GetServicesInScopeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServicesInScope(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetServicesInScope, this, request, handler, context, m_executor.get());
 }
 
 GetSettingsOutcome AuditManagerClient::GetSettings(const GetSettingsRequest& request) const
@@ -1328,18 +1125,12 @@ GetSettingsOutcome AuditManagerClient::GetSettings(const GetSettingsRequest& req
 
 GetSettingsOutcomeCallable AuditManagerClient::GetSettingsCallable(const GetSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::GetSettings, this, request, m_executor.get());
 }
 
 void AuditManagerClient::GetSettingsAsync(const GetSettingsRequest& request, const GetSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSettings(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::GetSettings, this, request, handler, context, m_executor.get());
 }
 
 ListAssessmentControlInsightsByControlDomainOutcome AuditManagerClient::ListAssessmentControlInsightsByControlDomain(const ListAssessmentControlInsightsByControlDomainRequest& request) const
@@ -1363,18 +1154,12 @@ ListAssessmentControlInsightsByControlDomainOutcome AuditManagerClient::ListAsse
 
 ListAssessmentControlInsightsByControlDomainOutcomeCallable AuditManagerClient::ListAssessmentControlInsightsByControlDomainCallable(const ListAssessmentControlInsightsByControlDomainRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAssessmentControlInsightsByControlDomainOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAssessmentControlInsightsByControlDomain(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListAssessmentControlInsightsByControlDomain, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListAssessmentControlInsightsByControlDomainAsync(const ListAssessmentControlInsightsByControlDomainRequest& request, const ListAssessmentControlInsightsByControlDomainResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAssessmentControlInsightsByControlDomain(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListAssessmentControlInsightsByControlDomain, this, request, handler, context, m_executor.get());
 }
 
 ListAssessmentFrameworkShareRequestsOutcome AuditManagerClient::ListAssessmentFrameworkShareRequests(const ListAssessmentFrameworkShareRequestsRequest& request) const
@@ -1393,18 +1178,12 @@ ListAssessmentFrameworkShareRequestsOutcome AuditManagerClient::ListAssessmentFr
 
 ListAssessmentFrameworkShareRequestsOutcomeCallable AuditManagerClient::ListAssessmentFrameworkShareRequestsCallable(const ListAssessmentFrameworkShareRequestsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAssessmentFrameworkShareRequestsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAssessmentFrameworkShareRequests(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListAssessmentFrameworkShareRequests, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListAssessmentFrameworkShareRequestsAsync(const ListAssessmentFrameworkShareRequestsRequest& request, const ListAssessmentFrameworkShareRequestsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAssessmentFrameworkShareRequests(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListAssessmentFrameworkShareRequests, this, request, handler, context, m_executor.get());
 }
 
 ListAssessmentFrameworksOutcome AuditManagerClient::ListAssessmentFrameworks(const ListAssessmentFrameworksRequest& request) const
@@ -1423,18 +1202,12 @@ ListAssessmentFrameworksOutcome AuditManagerClient::ListAssessmentFrameworks(con
 
 ListAssessmentFrameworksOutcomeCallable AuditManagerClient::ListAssessmentFrameworksCallable(const ListAssessmentFrameworksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAssessmentFrameworksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAssessmentFrameworks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListAssessmentFrameworks, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListAssessmentFrameworksAsync(const ListAssessmentFrameworksRequest& request, const ListAssessmentFrameworksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAssessmentFrameworks(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListAssessmentFrameworks, this, request, handler, context, m_executor.get());
 }
 
 ListAssessmentReportsOutcome AuditManagerClient::ListAssessmentReports(const ListAssessmentReportsRequest& request) const
@@ -1448,18 +1221,12 @@ ListAssessmentReportsOutcome AuditManagerClient::ListAssessmentReports(const Lis
 
 ListAssessmentReportsOutcomeCallable AuditManagerClient::ListAssessmentReportsCallable(const ListAssessmentReportsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAssessmentReportsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAssessmentReports(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListAssessmentReports, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListAssessmentReportsAsync(const ListAssessmentReportsRequest& request, const ListAssessmentReportsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAssessmentReports(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListAssessmentReports, this, request, handler, context, m_executor.get());
 }
 
 ListAssessmentsOutcome AuditManagerClient::ListAssessments(const ListAssessmentsRequest& request) const
@@ -1473,18 +1240,12 @@ ListAssessmentsOutcome AuditManagerClient::ListAssessments(const ListAssessments
 
 ListAssessmentsOutcomeCallable AuditManagerClient::ListAssessmentsCallable(const ListAssessmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAssessmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAssessments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListAssessments, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListAssessmentsAsync(const ListAssessmentsRequest& request, const ListAssessmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAssessments(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListAssessments, this, request, handler, context, m_executor.get());
 }
 
 ListControlDomainInsightsOutcome AuditManagerClient::ListControlDomainInsights(const ListControlDomainInsightsRequest& request) const
@@ -1498,18 +1259,12 @@ ListControlDomainInsightsOutcome AuditManagerClient::ListControlDomainInsights(c
 
 ListControlDomainInsightsOutcomeCallable AuditManagerClient::ListControlDomainInsightsCallable(const ListControlDomainInsightsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListControlDomainInsightsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListControlDomainInsights(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListControlDomainInsights, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListControlDomainInsightsAsync(const ListControlDomainInsightsRequest& request, const ListControlDomainInsightsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListControlDomainInsights(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListControlDomainInsights, this, request, handler, context, m_executor.get());
 }
 
 ListControlDomainInsightsByAssessmentOutcome AuditManagerClient::ListControlDomainInsightsByAssessment(const ListControlDomainInsightsByAssessmentRequest& request) const
@@ -1528,18 +1283,12 @@ ListControlDomainInsightsByAssessmentOutcome AuditManagerClient::ListControlDoma
 
 ListControlDomainInsightsByAssessmentOutcomeCallable AuditManagerClient::ListControlDomainInsightsByAssessmentCallable(const ListControlDomainInsightsByAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListControlDomainInsightsByAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListControlDomainInsightsByAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListControlDomainInsightsByAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListControlDomainInsightsByAssessmentAsync(const ListControlDomainInsightsByAssessmentRequest& request, const ListControlDomainInsightsByAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListControlDomainInsightsByAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListControlDomainInsightsByAssessment, this, request, handler, context, m_executor.get());
 }
 
 ListControlInsightsByControlDomainOutcome AuditManagerClient::ListControlInsightsByControlDomain(const ListControlInsightsByControlDomainRequest& request) const
@@ -1558,18 +1307,12 @@ ListControlInsightsByControlDomainOutcome AuditManagerClient::ListControlInsight
 
 ListControlInsightsByControlDomainOutcomeCallable AuditManagerClient::ListControlInsightsByControlDomainCallable(const ListControlInsightsByControlDomainRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListControlInsightsByControlDomainOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListControlInsightsByControlDomain(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListControlInsightsByControlDomain, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListControlInsightsByControlDomainAsync(const ListControlInsightsByControlDomainRequest& request, const ListControlInsightsByControlDomainResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListControlInsightsByControlDomain(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListControlInsightsByControlDomain, this, request, handler, context, m_executor.get());
 }
 
 ListControlsOutcome AuditManagerClient::ListControls(const ListControlsRequest& request) const
@@ -1588,18 +1331,12 @@ ListControlsOutcome AuditManagerClient::ListControls(const ListControlsRequest& 
 
 ListControlsOutcomeCallable AuditManagerClient::ListControlsCallable(const ListControlsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListControlsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListControls(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListControls, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListControlsAsync(const ListControlsRequest& request, const ListControlsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListControls(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListControls, this, request, handler, context, m_executor.get());
 }
 
 ListKeywordsForDataSourceOutcome AuditManagerClient::ListKeywordsForDataSource(const ListKeywordsForDataSourceRequest& request) const
@@ -1618,18 +1355,12 @@ ListKeywordsForDataSourceOutcome AuditManagerClient::ListKeywordsForDataSource(c
 
 ListKeywordsForDataSourceOutcomeCallable AuditManagerClient::ListKeywordsForDataSourceCallable(const ListKeywordsForDataSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListKeywordsForDataSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListKeywordsForDataSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListKeywordsForDataSource, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListKeywordsForDataSourceAsync(const ListKeywordsForDataSourceRequest& request, const ListKeywordsForDataSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListKeywordsForDataSource(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListKeywordsForDataSource, this, request, handler, context, m_executor.get());
 }
 
 ListNotificationsOutcome AuditManagerClient::ListNotifications(const ListNotificationsRequest& request) const
@@ -1643,18 +1374,12 @@ ListNotificationsOutcome AuditManagerClient::ListNotifications(const ListNotific
 
 ListNotificationsOutcomeCallable AuditManagerClient::ListNotificationsCallable(const ListNotificationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListNotificationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListNotifications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListNotifications, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListNotificationsAsync(const ListNotificationsRequest& request, const ListNotificationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListNotifications(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListNotifications, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome AuditManagerClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1674,18 +1399,12 @@ ListTagsForResourceOutcome AuditManagerClient::ListTagsForResource(const ListTag
 
 ListTagsForResourceOutcomeCallable AuditManagerClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 RegisterAccountOutcome AuditManagerClient::RegisterAccount(const RegisterAccountRequest& request) const
@@ -1699,18 +1418,12 @@ RegisterAccountOutcome AuditManagerClient::RegisterAccount(const RegisterAccount
 
 RegisterAccountOutcomeCallable AuditManagerClient::RegisterAccountCallable(const RegisterAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::RegisterAccount, this, request, m_executor.get());
 }
 
 void AuditManagerClient::RegisterAccountAsync(const RegisterAccountRequest& request, const RegisterAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterAccount(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::RegisterAccount, this, request, handler, context, m_executor.get());
 }
 
 RegisterOrganizationAdminAccountOutcome AuditManagerClient::RegisterOrganizationAdminAccount(const RegisterOrganizationAdminAccountRequest& request) const
@@ -1724,18 +1437,12 @@ RegisterOrganizationAdminAccountOutcome AuditManagerClient::RegisterOrganization
 
 RegisterOrganizationAdminAccountOutcomeCallable AuditManagerClient::RegisterOrganizationAdminAccountCallable(const RegisterOrganizationAdminAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterOrganizationAdminAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterOrganizationAdminAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::RegisterOrganizationAdminAccount, this, request, m_executor.get());
 }
 
 void AuditManagerClient::RegisterOrganizationAdminAccountAsync(const RegisterOrganizationAdminAccountRequest& request, const RegisterOrganizationAdminAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterOrganizationAdminAccount(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::RegisterOrganizationAdminAccount, this, request, handler, context, m_executor.get());
 }
 
 StartAssessmentFrameworkShareOutcome AuditManagerClient::StartAssessmentFrameworkShare(const StartAssessmentFrameworkShareRequest& request) const
@@ -1756,18 +1463,12 @@ StartAssessmentFrameworkShareOutcome AuditManagerClient::StartAssessmentFramewor
 
 StartAssessmentFrameworkShareOutcomeCallable AuditManagerClient::StartAssessmentFrameworkShareCallable(const StartAssessmentFrameworkShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartAssessmentFrameworkShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartAssessmentFrameworkShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::StartAssessmentFrameworkShare, this, request, m_executor.get());
 }
 
 void AuditManagerClient::StartAssessmentFrameworkShareAsync(const StartAssessmentFrameworkShareRequest& request, const StartAssessmentFrameworkShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartAssessmentFrameworkShare(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::StartAssessmentFrameworkShare, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome AuditManagerClient::TagResource(const TagResourceRequest& request) const
@@ -1787,18 +1488,12 @@ TagResourceOutcome AuditManagerClient::TagResource(const TagResourceRequest& req
 
 TagResourceOutcomeCallable AuditManagerClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::TagResource, this, request, m_executor.get());
 }
 
 void AuditManagerClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome AuditManagerClient::UntagResource(const UntagResourceRequest& request) const
@@ -1823,18 +1518,12 @@ UntagResourceOutcome AuditManagerClient::UntagResource(const UntagResourceReques
 
 UntagResourceOutcomeCallable AuditManagerClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UntagResource, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAssessmentOutcome AuditManagerClient::UpdateAssessment(const UpdateAssessmentRequest& request) const
@@ -1854,18 +1543,12 @@ UpdateAssessmentOutcome AuditManagerClient::UpdateAssessment(const UpdateAssessm
 
 UpdateAssessmentOutcomeCallable AuditManagerClient::UpdateAssessmentCallable(const UpdateAssessmentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssessmentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAssessment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateAssessment, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateAssessmentAsync(const UpdateAssessmentRequest& request, const UpdateAssessmentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAssessment(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateAssessment, this, request, handler, context, m_executor.get());
 }
 
 UpdateAssessmentControlOutcome AuditManagerClient::UpdateAssessmentControl(const UpdateAssessmentControlRequest& request) const
@@ -1899,18 +1582,12 @@ UpdateAssessmentControlOutcome AuditManagerClient::UpdateAssessmentControl(const
 
 UpdateAssessmentControlOutcomeCallable AuditManagerClient::UpdateAssessmentControlCallable(const UpdateAssessmentControlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssessmentControlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAssessmentControl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateAssessmentControl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateAssessmentControlAsync(const UpdateAssessmentControlRequest& request, const UpdateAssessmentControlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAssessmentControl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateAssessmentControl, this, request, handler, context, m_executor.get());
 }
 
 UpdateAssessmentControlSetStatusOutcome AuditManagerClient::UpdateAssessmentControlSetStatus(const UpdateAssessmentControlSetStatusRequest& request) const
@@ -1938,18 +1615,12 @@ UpdateAssessmentControlSetStatusOutcome AuditManagerClient::UpdateAssessmentCont
 
 UpdateAssessmentControlSetStatusOutcomeCallable AuditManagerClient::UpdateAssessmentControlSetStatusCallable(const UpdateAssessmentControlSetStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssessmentControlSetStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAssessmentControlSetStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateAssessmentControlSetStatus, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateAssessmentControlSetStatusAsync(const UpdateAssessmentControlSetStatusRequest& request, const UpdateAssessmentControlSetStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAssessmentControlSetStatus(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateAssessmentControlSetStatus, this, request, handler, context, m_executor.get());
 }
 
 UpdateAssessmentFrameworkOutcome AuditManagerClient::UpdateAssessmentFramework(const UpdateAssessmentFrameworkRequest& request) const
@@ -1969,18 +1640,12 @@ UpdateAssessmentFrameworkOutcome AuditManagerClient::UpdateAssessmentFramework(c
 
 UpdateAssessmentFrameworkOutcomeCallable AuditManagerClient::UpdateAssessmentFrameworkCallable(const UpdateAssessmentFrameworkRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssessmentFrameworkOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAssessmentFramework(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateAssessmentFramework, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateAssessmentFrameworkAsync(const UpdateAssessmentFrameworkRequest& request, const UpdateAssessmentFrameworkResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAssessmentFramework(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateAssessmentFramework, this, request, handler, context, m_executor.get());
 }
 
 UpdateAssessmentFrameworkShareOutcome AuditManagerClient::UpdateAssessmentFrameworkShare(const UpdateAssessmentFrameworkShareRequest& request) const
@@ -2000,18 +1665,12 @@ UpdateAssessmentFrameworkShareOutcome AuditManagerClient::UpdateAssessmentFramew
 
 UpdateAssessmentFrameworkShareOutcomeCallable AuditManagerClient::UpdateAssessmentFrameworkShareCallable(const UpdateAssessmentFrameworkShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssessmentFrameworkShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAssessmentFrameworkShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateAssessmentFrameworkShare, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateAssessmentFrameworkShareAsync(const UpdateAssessmentFrameworkShareRequest& request, const UpdateAssessmentFrameworkShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAssessmentFrameworkShare(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateAssessmentFrameworkShare, this, request, handler, context, m_executor.get());
 }
 
 UpdateAssessmentStatusOutcome AuditManagerClient::UpdateAssessmentStatus(const UpdateAssessmentStatusRequest& request) const
@@ -2032,18 +1691,12 @@ UpdateAssessmentStatusOutcome AuditManagerClient::UpdateAssessmentStatus(const U
 
 UpdateAssessmentStatusOutcomeCallable AuditManagerClient::UpdateAssessmentStatusCallable(const UpdateAssessmentStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAssessmentStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAssessmentStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateAssessmentStatus, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateAssessmentStatusAsync(const UpdateAssessmentStatusRequest& request, const UpdateAssessmentStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAssessmentStatus(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateAssessmentStatus, this, request, handler, context, m_executor.get());
 }
 
 UpdateControlOutcome AuditManagerClient::UpdateControl(const UpdateControlRequest& request) const
@@ -2063,18 +1716,12 @@ UpdateControlOutcome AuditManagerClient::UpdateControl(const UpdateControlReques
 
 UpdateControlOutcomeCallable AuditManagerClient::UpdateControlCallable(const UpdateControlRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateControlOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateControl(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateControl, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateControlAsync(const UpdateControlRequest& request, const UpdateControlResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateControl(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateControl, this, request, handler, context, m_executor.get());
 }
 
 UpdateSettingsOutcome AuditManagerClient::UpdateSettings(const UpdateSettingsRequest& request) const
@@ -2088,18 +1735,12 @@ UpdateSettingsOutcome AuditManagerClient::UpdateSettings(const UpdateSettingsReq
 
 UpdateSettingsOutcomeCallable AuditManagerClient::UpdateSettingsCallable(const UpdateSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::UpdateSettings, this, request, m_executor.get());
 }
 
 void AuditManagerClient::UpdateSettingsAsync(const UpdateSettingsRequest& request, const UpdateSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSettings(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::UpdateSettings, this, request, handler, context, m_executor.get());
 }
 
 ValidateAssessmentReportIntegrityOutcome AuditManagerClient::ValidateAssessmentReportIntegrity(const ValidateAssessmentReportIntegrityRequest& request) const
@@ -2113,17 +1754,11 @@ ValidateAssessmentReportIntegrityOutcome AuditManagerClient::ValidateAssessmentR
 
 ValidateAssessmentReportIntegrityOutcomeCallable AuditManagerClient::ValidateAssessmentReportIntegrityCallable(const ValidateAssessmentReportIntegrityRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ValidateAssessmentReportIntegrityOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ValidateAssessmentReportIntegrity(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &AuditManagerClient::ValidateAssessmentReportIntegrity, this, request, m_executor.get());
 }
 
 void AuditManagerClient::ValidateAssessmentReportIntegrityAsync(const ValidateAssessmentReportIntegrityRequest& request, const ValidateAssessmentReportIntegrityResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ValidateAssessmentReportIntegrity(request), context);
-    } );
+  MakeAsyncOperation(&AuditManagerClient::ValidateAssessmentReportIntegrity, this, request, handler, context, m_executor.get());
 }
 

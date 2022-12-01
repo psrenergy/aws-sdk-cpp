@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -178,18 +179,12 @@ CreateGroupOutcome IdentityStoreClient::CreateGroup(const CreateGroupRequest& re
 
 CreateGroupOutcomeCallable IdentityStoreClient::CreateGroupCallable(const CreateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::CreateGroup, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::CreateGroupAsync(const CreateGroupRequest& request, const CreateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGroup(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::CreateGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateGroupMembershipOutcome IdentityStoreClient::CreateGroupMembership(const CreateGroupMembershipRequest& request) const
@@ -202,18 +197,12 @@ CreateGroupMembershipOutcome IdentityStoreClient::CreateGroupMembership(const Cr
 
 CreateGroupMembershipOutcomeCallable IdentityStoreClient::CreateGroupMembershipCallable(const CreateGroupMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGroupMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGroupMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::CreateGroupMembership, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::CreateGroupMembershipAsync(const CreateGroupMembershipRequest& request, const CreateGroupMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGroupMembership(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::CreateGroupMembership, this, request, handler, context, m_executor.get());
 }
 
 CreateUserOutcome IdentityStoreClient::CreateUser(const CreateUserRequest& request) const
@@ -226,18 +215,12 @@ CreateUserOutcome IdentityStoreClient::CreateUser(const CreateUserRequest& reque
 
 CreateUserOutcomeCallable IdentityStoreClient::CreateUserCallable(const CreateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::CreateUser, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::CreateUserAsync(const CreateUserRequest& request, const CreateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateUser(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::CreateUser, this, request, handler, context, m_executor.get());
 }
 
 DeleteGroupOutcome IdentityStoreClient::DeleteGroup(const DeleteGroupRequest& request) const
@@ -250,18 +233,12 @@ DeleteGroupOutcome IdentityStoreClient::DeleteGroup(const DeleteGroupRequest& re
 
 DeleteGroupOutcomeCallable IdentityStoreClient::DeleteGroupCallable(const DeleteGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::DeleteGroup, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::DeleteGroupAsync(const DeleteGroupRequest& request, const DeleteGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroup(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::DeleteGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteGroupMembershipOutcome IdentityStoreClient::DeleteGroupMembership(const DeleteGroupMembershipRequest& request) const
@@ -274,18 +251,12 @@ DeleteGroupMembershipOutcome IdentityStoreClient::DeleteGroupMembership(const De
 
 DeleteGroupMembershipOutcomeCallable IdentityStoreClient::DeleteGroupMembershipCallable(const DeleteGroupMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroupMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::DeleteGroupMembership, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::DeleteGroupMembershipAsync(const DeleteGroupMembershipRequest& request, const DeleteGroupMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroupMembership(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::DeleteGroupMembership, this, request, handler, context, m_executor.get());
 }
 
 DeleteUserOutcome IdentityStoreClient::DeleteUser(const DeleteUserRequest& request) const
@@ -298,18 +269,12 @@ DeleteUserOutcome IdentityStoreClient::DeleteUser(const DeleteUserRequest& reque
 
 DeleteUserOutcomeCallable IdentityStoreClient::DeleteUserCallable(const DeleteUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::DeleteUser, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::DeleteUserAsync(const DeleteUserRequest& request, const DeleteUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUser(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::DeleteUser, this, request, handler, context, m_executor.get());
 }
 
 DescribeGroupOutcome IdentityStoreClient::DescribeGroup(const DescribeGroupRequest& request) const
@@ -322,18 +287,12 @@ DescribeGroupOutcome IdentityStoreClient::DescribeGroup(const DescribeGroupReque
 
 DescribeGroupOutcomeCallable IdentityStoreClient::DescribeGroupCallable(const DescribeGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::DescribeGroup, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::DescribeGroupAsync(const DescribeGroupRequest& request, const DescribeGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeGroup(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::DescribeGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeGroupMembershipOutcome IdentityStoreClient::DescribeGroupMembership(const DescribeGroupMembershipRequest& request) const
@@ -346,18 +305,12 @@ DescribeGroupMembershipOutcome IdentityStoreClient::DescribeGroupMembership(cons
 
 DescribeGroupMembershipOutcomeCallable IdentityStoreClient::DescribeGroupMembershipCallable(const DescribeGroupMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeGroupMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeGroupMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::DescribeGroupMembership, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::DescribeGroupMembershipAsync(const DescribeGroupMembershipRequest& request, const DescribeGroupMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeGroupMembership(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::DescribeGroupMembership, this, request, handler, context, m_executor.get());
 }
 
 DescribeUserOutcome IdentityStoreClient::DescribeUser(const DescribeUserRequest& request) const
@@ -370,18 +323,12 @@ DescribeUserOutcome IdentityStoreClient::DescribeUser(const DescribeUserRequest&
 
 DescribeUserOutcomeCallable IdentityStoreClient::DescribeUserCallable(const DescribeUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::DescribeUser, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::DescribeUserAsync(const DescribeUserRequest& request, const DescribeUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeUser(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::DescribeUser, this, request, handler, context, m_executor.get());
 }
 
 GetGroupIdOutcome IdentityStoreClient::GetGroupId(const GetGroupIdRequest& request) const
@@ -394,18 +341,12 @@ GetGroupIdOutcome IdentityStoreClient::GetGroupId(const GetGroupIdRequest& reque
 
 GetGroupIdOutcomeCallable IdentityStoreClient::GetGroupIdCallable(const GetGroupIdRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupIdOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroupId(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::GetGroupId, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::GetGroupIdAsync(const GetGroupIdRequest& request, const GetGroupIdResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroupId(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::GetGroupId, this, request, handler, context, m_executor.get());
 }
 
 GetGroupMembershipIdOutcome IdentityStoreClient::GetGroupMembershipId(const GetGroupMembershipIdRequest& request) const
@@ -418,18 +359,12 @@ GetGroupMembershipIdOutcome IdentityStoreClient::GetGroupMembershipId(const GetG
 
 GetGroupMembershipIdOutcomeCallable IdentityStoreClient::GetGroupMembershipIdCallable(const GetGroupMembershipIdRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupMembershipIdOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroupMembershipId(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::GetGroupMembershipId, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::GetGroupMembershipIdAsync(const GetGroupMembershipIdRequest& request, const GetGroupMembershipIdResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroupMembershipId(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::GetGroupMembershipId, this, request, handler, context, m_executor.get());
 }
 
 GetUserIdOutcome IdentityStoreClient::GetUserId(const GetUserIdRequest& request) const
@@ -442,18 +377,12 @@ GetUserIdOutcome IdentityStoreClient::GetUserId(const GetUserIdRequest& request)
 
 GetUserIdOutcomeCallable IdentityStoreClient::GetUserIdCallable(const GetUserIdRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetUserIdOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetUserId(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::GetUserId, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::GetUserIdAsync(const GetUserIdRequest& request, const GetUserIdResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetUserId(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::GetUserId, this, request, handler, context, m_executor.get());
 }
 
 IsMemberInGroupsOutcome IdentityStoreClient::IsMemberInGroups(const IsMemberInGroupsRequest& request) const
@@ -466,18 +395,12 @@ IsMemberInGroupsOutcome IdentityStoreClient::IsMemberInGroups(const IsMemberInGr
 
 IsMemberInGroupsOutcomeCallable IdentityStoreClient::IsMemberInGroupsCallable(const IsMemberInGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< IsMemberInGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->IsMemberInGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::IsMemberInGroups, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::IsMemberInGroupsAsync(const IsMemberInGroupsRequest& request, const IsMemberInGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, IsMemberInGroups(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::IsMemberInGroups, this, request, handler, context, m_executor.get());
 }
 
 ListGroupMembershipsOutcome IdentityStoreClient::ListGroupMemberships(const ListGroupMembershipsRequest& request) const
@@ -490,18 +413,12 @@ ListGroupMembershipsOutcome IdentityStoreClient::ListGroupMemberships(const List
 
 ListGroupMembershipsOutcomeCallable IdentityStoreClient::ListGroupMembershipsCallable(const ListGroupMembershipsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupMembershipsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroupMemberships(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::ListGroupMemberships, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::ListGroupMembershipsAsync(const ListGroupMembershipsRequest& request, const ListGroupMembershipsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroupMemberships(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::ListGroupMemberships, this, request, handler, context, m_executor.get());
 }
 
 ListGroupMembershipsForMemberOutcome IdentityStoreClient::ListGroupMembershipsForMember(const ListGroupMembershipsForMemberRequest& request) const
@@ -514,18 +431,12 @@ ListGroupMembershipsForMemberOutcome IdentityStoreClient::ListGroupMembershipsFo
 
 ListGroupMembershipsForMemberOutcomeCallable IdentityStoreClient::ListGroupMembershipsForMemberCallable(const ListGroupMembershipsForMemberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupMembershipsForMemberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroupMembershipsForMember(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::ListGroupMembershipsForMember, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::ListGroupMembershipsForMemberAsync(const ListGroupMembershipsForMemberRequest& request, const ListGroupMembershipsForMemberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroupMembershipsForMember(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::ListGroupMembershipsForMember, this, request, handler, context, m_executor.get());
 }
 
 ListGroupsOutcome IdentityStoreClient::ListGroups(const ListGroupsRequest& request) const
@@ -538,18 +449,12 @@ ListGroupsOutcome IdentityStoreClient::ListGroups(const ListGroupsRequest& reque
 
 ListGroupsOutcomeCallable IdentityStoreClient::ListGroupsCallable(const ListGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::ListGroups, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::ListGroupsAsync(const ListGroupsRequest& request, const ListGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGroups(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::ListGroups, this, request, handler, context, m_executor.get());
 }
 
 ListUsersOutcome IdentityStoreClient::ListUsers(const ListUsersRequest& request) const
@@ -562,18 +467,12 @@ ListUsersOutcome IdentityStoreClient::ListUsers(const ListUsersRequest& request)
 
 ListUsersOutcomeCallable IdentityStoreClient::ListUsersCallable(const ListUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::ListUsers, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::ListUsersAsync(const ListUsersRequest& request, const ListUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUsers(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::ListUsers, this, request, handler, context, m_executor.get());
 }
 
 UpdateGroupOutcome IdentityStoreClient::UpdateGroup(const UpdateGroupRequest& request) const
@@ -586,18 +485,12 @@ UpdateGroupOutcome IdentityStoreClient::UpdateGroup(const UpdateGroupRequest& re
 
 UpdateGroupOutcomeCallable IdentityStoreClient::UpdateGroupCallable(const UpdateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::UpdateGroup, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::UpdateGroupAsync(const UpdateGroupRequest& request, const UpdateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGroup(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::UpdateGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserOutcome IdentityStoreClient::UpdateUser(const UpdateUserRequest& request) const
@@ -610,17 +503,11 @@ UpdateUserOutcome IdentityStoreClient::UpdateUser(const UpdateUserRequest& reque
 
 UpdateUserOutcomeCallable IdentityStoreClient::UpdateUserCallable(const UpdateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IdentityStoreClient::UpdateUser, this, request, m_executor.get());
 }
 
 void IdentityStoreClient::UpdateUserAsync(const UpdateUserRequest& request, const UpdateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUser(request), context);
-    } );
+  MakeAsyncOperation(&IdentityStoreClient::UpdateUser, this, request, handler, context, m_executor.get());
 }
 

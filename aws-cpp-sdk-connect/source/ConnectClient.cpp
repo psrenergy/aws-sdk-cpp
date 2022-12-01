@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -330,18 +331,12 @@ AssociateApprovedOriginOutcome ConnectClient::AssociateApprovedOrigin(const Asso
 
 AssociateApprovedOriginOutcomeCallable ConnectClient::AssociateApprovedOriginCallable(const AssociateApprovedOriginRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateApprovedOriginOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateApprovedOrigin(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateApprovedOrigin, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateApprovedOriginAsync(const AssociateApprovedOriginRequest& request, const AssociateApprovedOriginResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateApprovedOrigin(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateApprovedOrigin, this, request, handler, context, m_executor.get());
 }
 
 AssociateBotOutcome ConnectClient::AssociateBot(const AssociateBotRequest& request) const
@@ -362,18 +357,12 @@ AssociateBotOutcome ConnectClient::AssociateBot(const AssociateBotRequest& reque
 
 AssociateBotOutcomeCallable ConnectClient::AssociateBotCallable(const AssociateBotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateBotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateBot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateBot, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateBotAsync(const AssociateBotRequest& request, const AssociateBotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateBot(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateBot, this, request, handler, context, m_executor.get());
 }
 
 AssociateDefaultVocabularyOutcome ConnectClient::AssociateDefaultVocabulary(const AssociateDefaultVocabularyRequest& request) const
@@ -399,18 +388,12 @@ AssociateDefaultVocabularyOutcome ConnectClient::AssociateDefaultVocabulary(cons
 
 AssociateDefaultVocabularyOutcomeCallable ConnectClient::AssociateDefaultVocabularyCallable(const AssociateDefaultVocabularyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateDefaultVocabularyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateDefaultVocabulary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateDefaultVocabulary, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateDefaultVocabularyAsync(const AssociateDefaultVocabularyRequest& request, const AssociateDefaultVocabularyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateDefaultVocabulary(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateDefaultVocabulary, this, request, handler, context, m_executor.get());
 }
 
 AssociateInstanceStorageConfigOutcome ConnectClient::AssociateInstanceStorageConfig(const AssociateInstanceStorageConfigRequest& request) const
@@ -431,18 +414,12 @@ AssociateInstanceStorageConfigOutcome ConnectClient::AssociateInstanceStorageCon
 
 AssociateInstanceStorageConfigOutcomeCallable ConnectClient::AssociateInstanceStorageConfigCallable(const AssociateInstanceStorageConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateInstanceStorageConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateInstanceStorageConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateInstanceStorageConfig, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateInstanceStorageConfigAsync(const AssociateInstanceStorageConfigRequest& request, const AssociateInstanceStorageConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateInstanceStorageConfig(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateInstanceStorageConfig, this, request, handler, context, m_executor.get());
 }
 
 AssociateLambdaFunctionOutcome ConnectClient::AssociateLambdaFunction(const AssociateLambdaFunctionRequest& request) const
@@ -463,18 +440,12 @@ AssociateLambdaFunctionOutcome ConnectClient::AssociateLambdaFunction(const Asso
 
 AssociateLambdaFunctionOutcomeCallable ConnectClient::AssociateLambdaFunctionCallable(const AssociateLambdaFunctionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateLambdaFunctionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateLambdaFunction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateLambdaFunction, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateLambdaFunctionAsync(const AssociateLambdaFunctionRequest& request, const AssociateLambdaFunctionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateLambdaFunction(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateLambdaFunction, this, request, handler, context, m_executor.get());
 }
 
 AssociateLexBotOutcome ConnectClient::AssociateLexBot(const AssociateLexBotRequest& request) const
@@ -495,18 +466,12 @@ AssociateLexBotOutcome ConnectClient::AssociateLexBot(const AssociateLexBotReque
 
 AssociateLexBotOutcomeCallable ConnectClient::AssociateLexBotCallable(const AssociateLexBotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateLexBotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateLexBot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateLexBot, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateLexBotAsync(const AssociateLexBotRequest& request, const AssociateLexBotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateLexBot(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateLexBot, this, request, handler, context, m_executor.get());
 }
 
 AssociatePhoneNumberContactFlowOutcome ConnectClient::AssociatePhoneNumberContactFlow(const AssociatePhoneNumberContactFlowRequest& request) const
@@ -527,18 +492,12 @@ AssociatePhoneNumberContactFlowOutcome ConnectClient::AssociatePhoneNumberContac
 
 AssociatePhoneNumberContactFlowOutcomeCallable ConnectClient::AssociatePhoneNumberContactFlowCallable(const AssociatePhoneNumberContactFlowRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociatePhoneNumberContactFlowOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociatePhoneNumberContactFlow(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociatePhoneNumberContactFlow, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociatePhoneNumberContactFlowAsync(const AssociatePhoneNumberContactFlowRequest& request, const AssociatePhoneNumberContactFlowResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociatePhoneNumberContactFlow(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociatePhoneNumberContactFlow, this, request, handler, context, m_executor.get());
 }
 
 AssociateQueueQuickConnectsOutcome ConnectClient::AssociateQueueQuickConnects(const AssociateQueueQuickConnectsRequest& request) const
@@ -565,18 +524,12 @@ AssociateQueueQuickConnectsOutcome ConnectClient::AssociateQueueQuickConnects(co
 
 AssociateQueueQuickConnectsOutcomeCallable ConnectClient::AssociateQueueQuickConnectsCallable(const AssociateQueueQuickConnectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateQueueQuickConnectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateQueueQuickConnects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateQueueQuickConnects, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateQueueQuickConnectsAsync(const AssociateQueueQuickConnectsRequest& request, const AssociateQueueQuickConnectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateQueueQuickConnects(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateQueueQuickConnects, this, request, handler, context, m_executor.get());
 }
 
 AssociateRoutingProfileQueuesOutcome ConnectClient::AssociateRoutingProfileQueues(const AssociateRoutingProfileQueuesRequest& request) const
@@ -603,18 +556,12 @@ AssociateRoutingProfileQueuesOutcome ConnectClient::AssociateRoutingProfileQueue
 
 AssociateRoutingProfileQueuesOutcomeCallable ConnectClient::AssociateRoutingProfileQueuesCallable(const AssociateRoutingProfileQueuesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateRoutingProfileQueuesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateRoutingProfileQueues(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateRoutingProfileQueues, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateRoutingProfileQueuesAsync(const AssociateRoutingProfileQueuesRequest& request, const AssociateRoutingProfileQueuesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateRoutingProfileQueues(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateRoutingProfileQueues, this, request, handler, context, m_executor.get());
 }
 
 AssociateSecurityKeyOutcome ConnectClient::AssociateSecurityKey(const AssociateSecurityKeyRequest& request) const
@@ -635,18 +582,12 @@ AssociateSecurityKeyOutcome ConnectClient::AssociateSecurityKey(const AssociateS
 
 AssociateSecurityKeyOutcomeCallable ConnectClient::AssociateSecurityKeyCallable(const AssociateSecurityKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateSecurityKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateSecurityKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::AssociateSecurityKey, this, request, m_executor.get());
 }
 
 void ConnectClient::AssociateSecurityKeyAsync(const AssociateSecurityKeyRequest& request, const AssociateSecurityKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateSecurityKey(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::AssociateSecurityKey, this, request, handler, context, m_executor.get());
 }
 
 ClaimPhoneNumberOutcome ConnectClient::ClaimPhoneNumber(const ClaimPhoneNumberRequest& request) const
@@ -660,18 +601,12 @@ ClaimPhoneNumberOutcome ConnectClient::ClaimPhoneNumber(const ClaimPhoneNumberRe
 
 ClaimPhoneNumberOutcomeCallable ConnectClient::ClaimPhoneNumberCallable(const ClaimPhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ClaimPhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ClaimPhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ClaimPhoneNumber, this, request, m_executor.get());
 }
 
 void ConnectClient::ClaimPhoneNumberAsync(const ClaimPhoneNumberRequest& request, const ClaimPhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ClaimPhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ClaimPhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 CreateAgentStatusOutcome ConnectClient::CreateAgentStatus(const CreateAgentStatusRequest& request) const
@@ -691,18 +626,12 @@ CreateAgentStatusOutcome ConnectClient::CreateAgentStatus(const CreateAgentStatu
 
 CreateAgentStatusOutcomeCallable ConnectClient::CreateAgentStatusCallable(const CreateAgentStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAgentStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAgentStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateAgentStatus, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateAgentStatusAsync(const CreateAgentStatusRequest& request, const CreateAgentStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAgentStatus(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateAgentStatus, this, request, handler, context, m_executor.get());
 }
 
 CreateContactFlowOutcome ConnectClient::CreateContactFlow(const CreateContactFlowRequest& request) const
@@ -722,18 +651,12 @@ CreateContactFlowOutcome ConnectClient::CreateContactFlow(const CreateContactFlo
 
 CreateContactFlowOutcomeCallable ConnectClient::CreateContactFlowCallable(const CreateContactFlowRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateContactFlowOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateContactFlow(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateContactFlow, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateContactFlowAsync(const CreateContactFlowRequest& request, const CreateContactFlowResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateContactFlow(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateContactFlow, this, request, handler, context, m_executor.get());
 }
 
 CreateContactFlowModuleOutcome ConnectClient::CreateContactFlowModule(const CreateContactFlowModuleRequest& request) const
@@ -753,18 +676,12 @@ CreateContactFlowModuleOutcome ConnectClient::CreateContactFlowModule(const Crea
 
 CreateContactFlowModuleOutcomeCallable ConnectClient::CreateContactFlowModuleCallable(const CreateContactFlowModuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateContactFlowModuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateContactFlowModule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateContactFlowModule, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateContactFlowModuleAsync(const CreateContactFlowModuleRequest& request, const CreateContactFlowModuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateContactFlowModule(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateContactFlowModule, this, request, handler, context, m_executor.get());
 }
 
 CreateHoursOfOperationOutcome ConnectClient::CreateHoursOfOperation(const CreateHoursOfOperationRequest& request) const
@@ -784,18 +701,12 @@ CreateHoursOfOperationOutcome ConnectClient::CreateHoursOfOperation(const Create
 
 CreateHoursOfOperationOutcomeCallable ConnectClient::CreateHoursOfOperationCallable(const CreateHoursOfOperationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateHoursOfOperationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateHoursOfOperation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateHoursOfOperation, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateHoursOfOperationAsync(const CreateHoursOfOperationRequest& request, const CreateHoursOfOperationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateHoursOfOperation(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateHoursOfOperation, this, request, handler, context, m_executor.get());
 }
 
 CreateInstanceOutcome ConnectClient::CreateInstance(const CreateInstanceRequest& request) const
@@ -809,18 +720,12 @@ CreateInstanceOutcome ConnectClient::CreateInstance(const CreateInstanceRequest&
 
 CreateInstanceOutcomeCallable ConnectClient::CreateInstanceCallable(const CreateInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateInstance, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateInstanceAsync(const CreateInstanceRequest& request, const CreateInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateInstance(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateInstance, this, request, handler, context, m_executor.get());
 }
 
 CreateIntegrationAssociationOutcome ConnectClient::CreateIntegrationAssociation(const CreateIntegrationAssociationRequest& request) const
@@ -841,18 +746,12 @@ CreateIntegrationAssociationOutcome ConnectClient::CreateIntegrationAssociation(
 
 CreateIntegrationAssociationOutcomeCallable ConnectClient::CreateIntegrationAssociationCallable(const CreateIntegrationAssociationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateIntegrationAssociationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateIntegrationAssociation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateIntegrationAssociation, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateIntegrationAssociationAsync(const CreateIntegrationAssociationRequest& request, const CreateIntegrationAssociationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateIntegrationAssociation(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateIntegrationAssociation, this, request, handler, context, m_executor.get());
 }
 
 CreateQueueOutcome ConnectClient::CreateQueue(const CreateQueueRequest& request) const
@@ -872,18 +771,12 @@ CreateQueueOutcome ConnectClient::CreateQueue(const CreateQueueRequest& request)
 
 CreateQueueOutcomeCallable ConnectClient::CreateQueueCallable(const CreateQueueRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateQueueOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateQueue(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateQueue, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateQueueAsync(const CreateQueueRequest& request, const CreateQueueResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateQueue(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateQueue, this, request, handler, context, m_executor.get());
 }
 
 CreateQuickConnectOutcome ConnectClient::CreateQuickConnect(const CreateQuickConnectRequest& request) const
@@ -903,18 +796,12 @@ CreateQuickConnectOutcome ConnectClient::CreateQuickConnect(const CreateQuickCon
 
 CreateQuickConnectOutcomeCallable ConnectClient::CreateQuickConnectCallable(const CreateQuickConnectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateQuickConnectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateQuickConnect(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateQuickConnect, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateQuickConnectAsync(const CreateQuickConnectRequest& request, const CreateQuickConnectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateQuickConnect(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateQuickConnect, this, request, handler, context, m_executor.get());
 }
 
 CreateRoutingProfileOutcome ConnectClient::CreateRoutingProfile(const CreateRoutingProfileRequest& request) const
@@ -934,18 +821,12 @@ CreateRoutingProfileOutcome ConnectClient::CreateRoutingProfile(const CreateRout
 
 CreateRoutingProfileOutcomeCallable ConnectClient::CreateRoutingProfileCallable(const CreateRoutingProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRoutingProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRoutingProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateRoutingProfile, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateRoutingProfileAsync(const CreateRoutingProfileRequest& request, const CreateRoutingProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRoutingProfile(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateRoutingProfile, this, request, handler, context, m_executor.get());
 }
 
 CreateSecurityProfileOutcome ConnectClient::CreateSecurityProfile(const CreateSecurityProfileRequest& request) const
@@ -965,18 +846,12 @@ CreateSecurityProfileOutcome ConnectClient::CreateSecurityProfile(const CreateSe
 
 CreateSecurityProfileOutcomeCallable ConnectClient::CreateSecurityProfileCallable(const CreateSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateSecurityProfile, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateSecurityProfileAsync(const CreateSecurityProfileRequest& request, const CreateSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 CreateTaskTemplateOutcome ConnectClient::CreateTaskTemplate(const CreateTaskTemplateRequest& request) const
@@ -997,18 +872,12 @@ CreateTaskTemplateOutcome ConnectClient::CreateTaskTemplate(const CreateTaskTemp
 
 CreateTaskTemplateOutcomeCallable ConnectClient::CreateTaskTemplateCallable(const CreateTaskTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTaskTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTaskTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateTaskTemplate, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateTaskTemplateAsync(const CreateTaskTemplateRequest& request, const CreateTaskTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTaskTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateTaskTemplate, this, request, handler, context, m_executor.get());
 }
 
 CreateTrafficDistributionGroupOutcome ConnectClient::CreateTrafficDistributionGroup(const CreateTrafficDistributionGroupRequest& request) const
@@ -1022,18 +891,12 @@ CreateTrafficDistributionGroupOutcome ConnectClient::CreateTrafficDistributionGr
 
 CreateTrafficDistributionGroupOutcomeCallable ConnectClient::CreateTrafficDistributionGroupCallable(const CreateTrafficDistributionGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTrafficDistributionGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTrafficDistributionGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateTrafficDistributionGroup, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateTrafficDistributionGroupAsync(const CreateTrafficDistributionGroupRequest& request, const CreateTrafficDistributionGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTrafficDistributionGroup(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateTrafficDistributionGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateUseCaseOutcome ConnectClient::CreateUseCase(const CreateUseCaseRequest& request) const
@@ -1061,18 +924,12 @@ CreateUseCaseOutcome ConnectClient::CreateUseCase(const CreateUseCaseRequest& re
 
 CreateUseCaseOutcomeCallable ConnectClient::CreateUseCaseCallable(const CreateUseCaseRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateUseCaseOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateUseCase(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateUseCase, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateUseCaseAsync(const CreateUseCaseRequest& request, const CreateUseCaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateUseCase(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateUseCase, this, request, handler, context, m_executor.get());
 }
 
 CreateUserOutcome ConnectClient::CreateUser(const CreateUserRequest& request) const
@@ -1092,18 +949,12 @@ CreateUserOutcome ConnectClient::CreateUser(const CreateUserRequest& request) co
 
 CreateUserOutcomeCallable ConnectClient::CreateUserCallable(const CreateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateUser, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateUserAsync(const CreateUserRequest& request, const CreateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateUser(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateUser, this, request, handler, context, m_executor.get());
 }
 
 CreateUserHierarchyGroupOutcome ConnectClient::CreateUserHierarchyGroup(const CreateUserHierarchyGroupRequest& request) const
@@ -1123,18 +974,12 @@ CreateUserHierarchyGroupOutcome ConnectClient::CreateUserHierarchyGroup(const Cr
 
 CreateUserHierarchyGroupOutcomeCallable ConnectClient::CreateUserHierarchyGroupCallable(const CreateUserHierarchyGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateUserHierarchyGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateUserHierarchyGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateUserHierarchyGroup, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateUserHierarchyGroupAsync(const CreateUserHierarchyGroupRequest& request, const CreateUserHierarchyGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateUserHierarchyGroup(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateUserHierarchyGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateVocabularyOutcome ConnectClient::CreateVocabulary(const CreateVocabularyRequest& request) const
@@ -1154,18 +999,12 @@ CreateVocabularyOutcome ConnectClient::CreateVocabulary(const CreateVocabularyRe
 
 CreateVocabularyOutcomeCallable ConnectClient::CreateVocabularyCallable(const CreateVocabularyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateVocabularyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateVocabulary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::CreateVocabulary, this, request, m_executor.get());
 }
 
 void ConnectClient::CreateVocabularyAsync(const CreateVocabularyRequest& request, const CreateVocabularyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateVocabulary(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::CreateVocabulary, this, request, handler, context, m_executor.get());
 }
 
 DeleteContactFlowOutcome ConnectClient::DeleteContactFlow(const DeleteContactFlowRequest& request) const
@@ -1191,18 +1030,12 @@ DeleteContactFlowOutcome ConnectClient::DeleteContactFlow(const DeleteContactFlo
 
 DeleteContactFlowOutcomeCallable ConnectClient::DeleteContactFlowCallable(const DeleteContactFlowRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteContactFlowOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteContactFlow(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteContactFlow, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteContactFlowAsync(const DeleteContactFlowRequest& request, const DeleteContactFlowResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteContactFlow(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteContactFlow, this, request, handler, context, m_executor.get());
 }
 
 DeleteContactFlowModuleOutcome ConnectClient::DeleteContactFlowModule(const DeleteContactFlowModuleRequest& request) const
@@ -1228,18 +1061,12 @@ DeleteContactFlowModuleOutcome ConnectClient::DeleteContactFlowModule(const Dele
 
 DeleteContactFlowModuleOutcomeCallable ConnectClient::DeleteContactFlowModuleCallable(const DeleteContactFlowModuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteContactFlowModuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteContactFlowModule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteContactFlowModule, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteContactFlowModuleAsync(const DeleteContactFlowModuleRequest& request, const DeleteContactFlowModuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteContactFlowModule(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteContactFlowModule, this, request, handler, context, m_executor.get());
 }
 
 DeleteHoursOfOperationOutcome ConnectClient::DeleteHoursOfOperation(const DeleteHoursOfOperationRequest& request) const
@@ -1265,18 +1092,12 @@ DeleteHoursOfOperationOutcome ConnectClient::DeleteHoursOfOperation(const Delete
 
 DeleteHoursOfOperationOutcomeCallable ConnectClient::DeleteHoursOfOperationCallable(const DeleteHoursOfOperationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteHoursOfOperationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteHoursOfOperation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteHoursOfOperation, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteHoursOfOperationAsync(const DeleteHoursOfOperationRequest& request, const DeleteHoursOfOperationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteHoursOfOperation(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteHoursOfOperation, this, request, handler, context, m_executor.get());
 }
 
 DeleteInstanceOutcome ConnectClient::DeleteInstance(const DeleteInstanceRequest& request) const
@@ -1296,18 +1117,12 @@ DeleteInstanceOutcome ConnectClient::DeleteInstance(const DeleteInstanceRequest&
 
 DeleteInstanceOutcomeCallable ConnectClient::DeleteInstanceCallable(const DeleteInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteInstance, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteInstanceAsync(const DeleteInstanceRequest& request, const DeleteInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteInstance(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteInstance, this, request, handler, context, m_executor.get());
 }
 
 DeleteIntegrationAssociationOutcome ConnectClient::DeleteIntegrationAssociation(const DeleteIntegrationAssociationRequest& request) const
@@ -1334,18 +1149,12 @@ DeleteIntegrationAssociationOutcome ConnectClient::DeleteIntegrationAssociation(
 
 DeleteIntegrationAssociationOutcomeCallable ConnectClient::DeleteIntegrationAssociationCallable(const DeleteIntegrationAssociationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteIntegrationAssociationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteIntegrationAssociation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteIntegrationAssociation, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteIntegrationAssociationAsync(const DeleteIntegrationAssociationRequest& request, const DeleteIntegrationAssociationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteIntegrationAssociation(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteIntegrationAssociation, this, request, handler, context, m_executor.get());
 }
 
 DeleteQuickConnectOutcome ConnectClient::DeleteQuickConnect(const DeleteQuickConnectRequest& request) const
@@ -1371,18 +1180,12 @@ DeleteQuickConnectOutcome ConnectClient::DeleteQuickConnect(const DeleteQuickCon
 
 DeleteQuickConnectOutcomeCallable ConnectClient::DeleteQuickConnectCallable(const DeleteQuickConnectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteQuickConnectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteQuickConnect(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteQuickConnect, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteQuickConnectAsync(const DeleteQuickConnectRequest& request, const DeleteQuickConnectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteQuickConnect(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteQuickConnect, this, request, handler, context, m_executor.get());
 }
 
 DeleteSecurityProfileOutcome ConnectClient::DeleteSecurityProfile(const DeleteSecurityProfileRequest& request) const
@@ -1408,18 +1211,12 @@ DeleteSecurityProfileOutcome ConnectClient::DeleteSecurityProfile(const DeleteSe
 
 DeleteSecurityProfileOutcomeCallable ConnectClient::DeleteSecurityProfileCallable(const DeleteSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteSecurityProfile, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteSecurityProfileAsync(const DeleteSecurityProfileRequest& request, const DeleteSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 DeleteTaskTemplateOutcome ConnectClient::DeleteTaskTemplate(const DeleteTaskTemplateRequest& request) const
@@ -1446,18 +1243,12 @@ DeleteTaskTemplateOutcome ConnectClient::DeleteTaskTemplate(const DeleteTaskTemp
 
 DeleteTaskTemplateOutcomeCallable ConnectClient::DeleteTaskTemplateCallable(const DeleteTaskTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTaskTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTaskTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteTaskTemplate, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteTaskTemplateAsync(const DeleteTaskTemplateRequest& request, const DeleteTaskTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTaskTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteTaskTemplate, this, request, handler, context, m_executor.get());
 }
 
 DeleteTrafficDistributionGroupOutcome ConnectClient::DeleteTrafficDistributionGroup(const DeleteTrafficDistributionGroupRequest& request) const
@@ -1477,18 +1268,12 @@ DeleteTrafficDistributionGroupOutcome ConnectClient::DeleteTrafficDistributionGr
 
 DeleteTrafficDistributionGroupOutcomeCallable ConnectClient::DeleteTrafficDistributionGroupCallable(const DeleteTrafficDistributionGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTrafficDistributionGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTrafficDistributionGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteTrafficDistributionGroup, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteTrafficDistributionGroupAsync(const DeleteTrafficDistributionGroupRequest& request, const DeleteTrafficDistributionGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTrafficDistributionGroup(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteTrafficDistributionGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteUseCaseOutcome ConnectClient::DeleteUseCase(const DeleteUseCaseRequest& request) const
@@ -1522,18 +1307,12 @@ DeleteUseCaseOutcome ConnectClient::DeleteUseCase(const DeleteUseCaseRequest& re
 
 DeleteUseCaseOutcomeCallable ConnectClient::DeleteUseCaseCallable(const DeleteUseCaseRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUseCaseOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUseCase(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteUseCase, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteUseCaseAsync(const DeleteUseCaseRequest& request, const DeleteUseCaseResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUseCase(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteUseCase, this, request, handler, context, m_executor.get());
 }
 
 DeleteUserOutcome ConnectClient::DeleteUser(const DeleteUserRequest& request) const
@@ -1559,18 +1338,12 @@ DeleteUserOutcome ConnectClient::DeleteUser(const DeleteUserRequest& request) co
 
 DeleteUserOutcomeCallable ConnectClient::DeleteUserCallable(const DeleteUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteUser, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteUserAsync(const DeleteUserRequest& request, const DeleteUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUser(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteUser, this, request, handler, context, m_executor.get());
 }
 
 DeleteUserHierarchyGroupOutcome ConnectClient::DeleteUserHierarchyGroup(const DeleteUserHierarchyGroupRequest& request) const
@@ -1596,18 +1369,12 @@ DeleteUserHierarchyGroupOutcome ConnectClient::DeleteUserHierarchyGroup(const De
 
 DeleteUserHierarchyGroupOutcomeCallable ConnectClient::DeleteUserHierarchyGroupCallable(const DeleteUserHierarchyGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserHierarchyGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUserHierarchyGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteUserHierarchyGroup, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteUserHierarchyGroupAsync(const DeleteUserHierarchyGroupRequest& request, const DeleteUserHierarchyGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUserHierarchyGroup(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteUserHierarchyGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteVocabularyOutcome ConnectClient::DeleteVocabulary(const DeleteVocabularyRequest& request) const
@@ -1633,18 +1400,12 @@ DeleteVocabularyOutcome ConnectClient::DeleteVocabulary(const DeleteVocabularyRe
 
 DeleteVocabularyOutcomeCallable ConnectClient::DeleteVocabularyCallable(const DeleteVocabularyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVocabularyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVocabulary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DeleteVocabulary, this, request, m_executor.get());
 }
 
 void ConnectClient::DeleteVocabularyAsync(const DeleteVocabularyRequest& request, const DeleteVocabularyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVocabulary(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DeleteVocabulary, this, request, handler, context, m_executor.get());
 }
 
 DescribeAgentStatusOutcome ConnectClient::DescribeAgentStatus(const DescribeAgentStatusRequest& request) const
@@ -1670,18 +1431,12 @@ DescribeAgentStatusOutcome ConnectClient::DescribeAgentStatus(const DescribeAgen
 
 DescribeAgentStatusOutcomeCallable ConnectClient::DescribeAgentStatusCallable(const DescribeAgentStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAgentStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAgentStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeAgentStatus, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeAgentStatusAsync(const DescribeAgentStatusRequest& request, const DescribeAgentStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAgentStatus(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeAgentStatus, this, request, handler, context, m_executor.get());
 }
 
 DescribeContactOutcome ConnectClient::DescribeContact(const DescribeContactRequest& request) const
@@ -1707,18 +1462,12 @@ DescribeContactOutcome ConnectClient::DescribeContact(const DescribeContactReque
 
 DescribeContactOutcomeCallable ConnectClient::DescribeContactCallable(const DescribeContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeContact, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeContactAsync(const DescribeContactRequest& request, const DescribeContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeContact, this, request, handler, context, m_executor.get());
 }
 
 DescribeContactFlowOutcome ConnectClient::DescribeContactFlow(const DescribeContactFlowRequest& request) const
@@ -1744,18 +1493,12 @@ DescribeContactFlowOutcome ConnectClient::DescribeContactFlow(const DescribeCont
 
 DescribeContactFlowOutcomeCallable ConnectClient::DescribeContactFlowCallable(const DescribeContactFlowRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeContactFlowOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeContactFlow(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeContactFlow, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeContactFlowAsync(const DescribeContactFlowRequest& request, const DescribeContactFlowResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeContactFlow(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeContactFlow, this, request, handler, context, m_executor.get());
 }
 
 DescribeContactFlowModuleOutcome ConnectClient::DescribeContactFlowModule(const DescribeContactFlowModuleRequest& request) const
@@ -1781,18 +1524,12 @@ DescribeContactFlowModuleOutcome ConnectClient::DescribeContactFlowModule(const 
 
 DescribeContactFlowModuleOutcomeCallable ConnectClient::DescribeContactFlowModuleCallable(const DescribeContactFlowModuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeContactFlowModuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeContactFlowModule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeContactFlowModule, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeContactFlowModuleAsync(const DescribeContactFlowModuleRequest& request, const DescribeContactFlowModuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeContactFlowModule(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeContactFlowModule, this, request, handler, context, m_executor.get());
 }
 
 DescribeHoursOfOperationOutcome ConnectClient::DescribeHoursOfOperation(const DescribeHoursOfOperationRequest& request) const
@@ -1818,18 +1555,12 @@ DescribeHoursOfOperationOutcome ConnectClient::DescribeHoursOfOperation(const De
 
 DescribeHoursOfOperationOutcomeCallable ConnectClient::DescribeHoursOfOperationCallable(const DescribeHoursOfOperationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeHoursOfOperationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeHoursOfOperation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeHoursOfOperation, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeHoursOfOperationAsync(const DescribeHoursOfOperationRequest& request, const DescribeHoursOfOperationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeHoursOfOperation(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeHoursOfOperation, this, request, handler, context, m_executor.get());
 }
 
 DescribeInstanceOutcome ConnectClient::DescribeInstance(const DescribeInstanceRequest& request) const
@@ -1849,18 +1580,12 @@ DescribeInstanceOutcome ConnectClient::DescribeInstance(const DescribeInstanceRe
 
 DescribeInstanceOutcomeCallable ConnectClient::DescribeInstanceCallable(const DescribeInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeInstance, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeInstanceAsync(const DescribeInstanceRequest& request, const DescribeInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeInstance(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeInstance, this, request, handler, context, m_executor.get());
 }
 
 DescribeInstanceAttributeOutcome ConnectClient::DescribeInstanceAttribute(const DescribeInstanceAttributeRequest& request) const
@@ -1887,18 +1612,12 @@ DescribeInstanceAttributeOutcome ConnectClient::DescribeInstanceAttribute(const 
 
 DescribeInstanceAttributeOutcomeCallable ConnectClient::DescribeInstanceAttributeCallable(const DescribeInstanceAttributeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeInstanceAttributeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeInstanceAttribute(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeInstanceAttribute, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeInstanceAttributeAsync(const DescribeInstanceAttributeRequest& request, const DescribeInstanceAttributeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeInstanceAttribute(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeInstanceAttribute, this, request, handler, context, m_executor.get());
 }
 
 DescribeInstanceStorageConfigOutcome ConnectClient::DescribeInstanceStorageConfig(const DescribeInstanceStorageConfigRequest& request) const
@@ -1930,18 +1649,12 @@ DescribeInstanceStorageConfigOutcome ConnectClient::DescribeInstanceStorageConfi
 
 DescribeInstanceStorageConfigOutcomeCallable ConnectClient::DescribeInstanceStorageConfigCallable(const DescribeInstanceStorageConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeInstanceStorageConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeInstanceStorageConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeInstanceStorageConfig, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeInstanceStorageConfigAsync(const DescribeInstanceStorageConfigRequest& request, const DescribeInstanceStorageConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeInstanceStorageConfig(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeInstanceStorageConfig, this, request, handler, context, m_executor.get());
 }
 
 DescribePhoneNumberOutcome ConnectClient::DescribePhoneNumber(const DescribePhoneNumberRequest& request) const
@@ -1961,18 +1674,12 @@ DescribePhoneNumberOutcome ConnectClient::DescribePhoneNumber(const DescribePhon
 
 DescribePhoneNumberOutcomeCallable ConnectClient::DescribePhoneNumberCallable(const DescribePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribePhoneNumber, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribePhoneNumberAsync(const DescribePhoneNumberRequest& request, const DescribePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 DescribeQueueOutcome ConnectClient::DescribeQueue(const DescribeQueueRequest& request) const
@@ -1998,18 +1705,12 @@ DescribeQueueOutcome ConnectClient::DescribeQueue(const DescribeQueueRequest& re
 
 DescribeQueueOutcomeCallable ConnectClient::DescribeQueueCallable(const DescribeQueueRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeQueueOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeQueue(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeQueue, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeQueueAsync(const DescribeQueueRequest& request, const DescribeQueueResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeQueue(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeQueue, this, request, handler, context, m_executor.get());
 }
 
 DescribeQuickConnectOutcome ConnectClient::DescribeQuickConnect(const DescribeQuickConnectRequest& request) const
@@ -2035,18 +1736,12 @@ DescribeQuickConnectOutcome ConnectClient::DescribeQuickConnect(const DescribeQu
 
 DescribeQuickConnectOutcomeCallable ConnectClient::DescribeQuickConnectCallable(const DescribeQuickConnectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeQuickConnectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeQuickConnect(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeQuickConnect, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeQuickConnectAsync(const DescribeQuickConnectRequest& request, const DescribeQuickConnectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeQuickConnect(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeQuickConnect, this, request, handler, context, m_executor.get());
 }
 
 DescribeRoutingProfileOutcome ConnectClient::DescribeRoutingProfile(const DescribeRoutingProfileRequest& request) const
@@ -2072,18 +1767,12 @@ DescribeRoutingProfileOutcome ConnectClient::DescribeRoutingProfile(const Descri
 
 DescribeRoutingProfileOutcomeCallable ConnectClient::DescribeRoutingProfileCallable(const DescribeRoutingProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeRoutingProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeRoutingProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeRoutingProfile, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeRoutingProfileAsync(const DescribeRoutingProfileRequest& request, const DescribeRoutingProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeRoutingProfile(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeRoutingProfile, this, request, handler, context, m_executor.get());
 }
 
 DescribeSecurityProfileOutcome ConnectClient::DescribeSecurityProfile(const DescribeSecurityProfileRequest& request) const
@@ -2109,18 +1798,12 @@ DescribeSecurityProfileOutcome ConnectClient::DescribeSecurityProfile(const Desc
 
 DescribeSecurityProfileOutcomeCallable ConnectClient::DescribeSecurityProfileCallable(const DescribeSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeSecurityProfile, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeSecurityProfileAsync(const DescribeSecurityProfileRequest& request, const DescribeSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 DescribeTrafficDistributionGroupOutcome ConnectClient::DescribeTrafficDistributionGroup(const DescribeTrafficDistributionGroupRequest& request) const
@@ -2140,18 +1823,12 @@ DescribeTrafficDistributionGroupOutcome ConnectClient::DescribeTrafficDistributi
 
 DescribeTrafficDistributionGroupOutcomeCallable ConnectClient::DescribeTrafficDistributionGroupCallable(const DescribeTrafficDistributionGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTrafficDistributionGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTrafficDistributionGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeTrafficDistributionGroup, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeTrafficDistributionGroupAsync(const DescribeTrafficDistributionGroupRequest& request, const DescribeTrafficDistributionGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTrafficDistributionGroup(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeTrafficDistributionGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeUserOutcome ConnectClient::DescribeUser(const DescribeUserRequest& request) const
@@ -2177,18 +1854,12 @@ DescribeUserOutcome ConnectClient::DescribeUser(const DescribeUserRequest& reque
 
 DescribeUserOutcomeCallable ConnectClient::DescribeUserCallable(const DescribeUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeUser, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeUserAsync(const DescribeUserRequest& request, const DescribeUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeUser(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeUser, this, request, handler, context, m_executor.get());
 }
 
 DescribeUserHierarchyGroupOutcome ConnectClient::DescribeUserHierarchyGroup(const DescribeUserHierarchyGroupRequest& request) const
@@ -2214,18 +1885,12 @@ DescribeUserHierarchyGroupOutcome ConnectClient::DescribeUserHierarchyGroup(cons
 
 DescribeUserHierarchyGroupOutcomeCallable ConnectClient::DescribeUserHierarchyGroupCallable(const DescribeUserHierarchyGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeUserHierarchyGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeUserHierarchyGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeUserHierarchyGroup, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeUserHierarchyGroupAsync(const DescribeUserHierarchyGroupRequest& request, const DescribeUserHierarchyGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeUserHierarchyGroup(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeUserHierarchyGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeUserHierarchyStructureOutcome ConnectClient::DescribeUserHierarchyStructure(const DescribeUserHierarchyStructureRequest& request) const
@@ -2245,18 +1910,12 @@ DescribeUserHierarchyStructureOutcome ConnectClient::DescribeUserHierarchyStruct
 
 DescribeUserHierarchyStructureOutcomeCallable ConnectClient::DescribeUserHierarchyStructureCallable(const DescribeUserHierarchyStructureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeUserHierarchyStructureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeUserHierarchyStructure(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeUserHierarchyStructure, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeUserHierarchyStructureAsync(const DescribeUserHierarchyStructureRequest& request, const DescribeUserHierarchyStructureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeUserHierarchyStructure(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeUserHierarchyStructure, this, request, handler, context, m_executor.get());
 }
 
 DescribeVocabularyOutcome ConnectClient::DescribeVocabulary(const DescribeVocabularyRequest& request) const
@@ -2282,18 +1941,12 @@ DescribeVocabularyOutcome ConnectClient::DescribeVocabulary(const DescribeVocabu
 
 DescribeVocabularyOutcomeCallable ConnectClient::DescribeVocabularyCallable(const DescribeVocabularyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeVocabularyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeVocabulary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DescribeVocabulary, this, request, m_executor.get());
 }
 
 void ConnectClient::DescribeVocabularyAsync(const DescribeVocabularyRequest& request, const DescribeVocabularyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeVocabulary(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DescribeVocabulary, this, request, handler, context, m_executor.get());
 }
 
 DisassociateApprovedOriginOutcome ConnectClient::DisassociateApprovedOrigin(const DisassociateApprovedOriginRequest& request) const
@@ -2319,18 +1972,12 @@ DisassociateApprovedOriginOutcome ConnectClient::DisassociateApprovedOrigin(cons
 
 DisassociateApprovedOriginOutcomeCallable ConnectClient::DisassociateApprovedOriginCallable(const DisassociateApprovedOriginRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateApprovedOriginOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateApprovedOrigin(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateApprovedOrigin, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateApprovedOriginAsync(const DisassociateApprovedOriginRequest& request, const DisassociateApprovedOriginResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateApprovedOrigin(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateApprovedOrigin, this, request, handler, context, m_executor.get());
 }
 
 DisassociateBotOutcome ConnectClient::DisassociateBot(const DisassociateBotRequest& request) const
@@ -2351,18 +1998,12 @@ DisassociateBotOutcome ConnectClient::DisassociateBot(const DisassociateBotReque
 
 DisassociateBotOutcomeCallable ConnectClient::DisassociateBotCallable(const DisassociateBotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateBotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateBot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateBot, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateBotAsync(const DisassociateBotRequest& request, const DisassociateBotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateBot(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateBot, this, request, handler, context, m_executor.get());
 }
 
 DisassociateInstanceStorageConfigOutcome ConnectClient::DisassociateInstanceStorageConfig(const DisassociateInstanceStorageConfigRequest& request) const
@@ -2394,18 +2035,12 @@ DisassociateInstanceStorageConfigOutcome ConnectClient::DisassociateInstanceStor
 
 DisassociateInstanceStorageConfigOutcomeCallable ConnectClient::DisassociateInstanceStorageConfigCallable(const DisassociateInstanceStorageConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateInstanceStorageConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateInstanceStorageConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateInstanceStorageConfig, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateInstanceStorageConfigAsync(const DisassociateInstanceStorageConfigRequest& request, const DisassociateInstanceStorageConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateInstanceStorageConfig(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateInstanceStorageConfig, this, request, handler, context, m_executor.get());
 }
 
 DisassociateLambdaFunctionOutcome ConnectClient::DisassociateLambdaFunction(const DisassociateLambdaFunctionRequest& request) const
@@ -2431,18 +2066,12 @@ DisassociateLambdaFunctionOutcome ConnectClient::DisassociateLambdaFunction(cons
 
 DisassociateLambdaFunctionOutcomeCallable ConnectClient::DisassociateLambdaFunctionCallable(const DisassociateLambdaFunctionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateLambdaFunctionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateLambdaFunction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateLambdaFunction, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateLambdaFunctionAsync(const DisassociateLambdaFunctionRequest& request, const DisassociateLambdaFunctionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateLambdaFunction(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateLambdaFunction, this, request, handler, context, m_executor.get());
 }
 
 DisassociateLexBotOutcome ConnectClient::DisassociateLexBot(const DisassociateLexBotRequest& request) const
@@ -2473,18 +2102,12 @@ DisassociateLexBotOutcome ConnectClient::DisassociateLexBot(const DisassociateLe
 
 DisassociateLexBotOutcomeCallable ConnectClient::DisassociateLexBotCallable(const DisassociateLexBotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateLexBotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateLexBot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateLexBot, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateLexBotAsync(const DisassociateLexBotRequest& request, const DisassociateLexBotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateLexBot(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateLexBot, this, request, handler, context, m_executor.get());
 }
 
 DisassociatePhoneNumberContactFlowOutcome ConnectClient::DisassociatePhoneNumberContactFlow(const DisassociatePhoneNumberContactFlowRequest& request) const
@@ -2510,18 +2133,12 @@ DisassociatePhoneNumberContactFlowOutcome ConnectClient::DisassociatePhoneNumber
 
 DisassociatePhoneNumberContactFlowOutcomeCallable ConnectClient::DisassociatePhoneNumberContactFlowCallable(const DisassociatePhoneNumberContactFlowRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociatePhoneNumberContactFlowOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociatePhoneNumberContactFlow(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociatePhoneNumberContactFlow, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociatePhoneNumberContactFlowAsync(const DisassociatePhoneNumberContactFlowRequest& request, const DisassociatePhoneNumberContactFlowResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociatePhoneNumberContactFlow(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociatePhoneNumberContactFlow, this, request, handler, context, m_executor.get());
 }
 
 DisassociateQueueQuickConnectsOutcome ConnectClient::DisassociateQueueQuickConnects(const DisassociateQueueQuickConnectsRequest& request) const
@@ -2548,18 +2165,12 @@ DisassociateQueueQuickConnectsOutcome ConnectClient::DisassociateQueueQuickConne
 
 DisassociateQueueQuickConnectsOutcomeCallable ConnectClient::DisassociateQueueQuickConnectsCallable(const DisassociateQueueQuickConnectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateQueueQuickConnectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateQueueQuickConnects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateQueueQuickConnects, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateQueueQuickConnectsAsync(const DisassociateQueueQuickConnectsRequest& request, const DisassociateQueueQuickConnectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateQueueQuickConnects(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateQueueQuickConnects, this, request, handler, context, m_executor.get());
 }
 
 DisassociateRoutingProfileQueuesOutcome ConnectClient::DisassociateRoutingProfileQueues(const DisassociateRoutingProfileQueuesRequest& request) const
@@ -2586,18 +2197,12 @@ DisassociateRoutingProfileQueuesOutcome ConnectClient::DisassociateRoutingProfil
 
 DisassociateRoutingProfileQueuesOutcomeCallable ConnectClient::DisassociateRoutingProfileQueuesCallable(const DisassociateRoutingProfileQueuesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateRoutingProfileQueuesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateRoutingProfileQueues(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateRoutingProfileQueues, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateRoutingProfileQueuesAsync(const DisassociateRoutingProfileQueuesRequest& request, const DisassociateRoutingProfileQueuesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateRoutingProfileQueues(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateRoutingProfileQueues, this, request, handler, context, m_executor.get());
 }
 
 DisassociateSecurityKeyOutcome ConnectClient::DisassociateSecurityKey(const DisassociateSecurityKeyRequest& request) const
@@ -2624,18 +2229,12 @@ DisassociateSecurityKeyOutcome ConnectClient::DisassociateSecurityKey(const Disa
 
 DisassociateSecurityKeyOutcomeCallable ConnectClient::DisassociateSecurityKeyCallable(const DisassociateSecurityKeyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateSecurityKeyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateSecurityKey(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DisassociateSecurityKey, this, request, m_executor.get());
 }
 
 void ConnectClient::DisassociateSecurityKeyAsync(const DisassociateSecurityKeyRequest& request, const DisassociateSecurityKeyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateSecurityKey(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DisassociateSecurityKey, this, request, handler, context, m_executor.get());
 }
 
 DismissUserContactOutcome ConnectClient::DismissUserContact(const DismissUserContactRequest& request) const
@@ -2662,18 +2261,12 @@ DismissUserContactOutcome ConnectClient::DismissUserContact(const DismissUserCon
 
 DismissUserContactOutcomeCallable ConnectClient::DismissUserContactCallable(const DismissUserContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DismissUserContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DismissUserContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::DismissUserContact, this, request, m_executor.get());
 }
 
 void ConnectClient::DismissUserContactAsync(const DismissUserContactRequest& request, const DismissUserContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DismissUserContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::DismissUserContact, this, request, handler, context, m_executor.get());
 }
 
 GetContactAttributesOutcome ConnectClient::GetContactAttributes(const GetContactAttributesRequest& request) const
@@ -2699,18 +2292,12 @@ GetContactAttributesOutcome ConnectClient::GetContactAttributes(const GetContact
 
 GetContactAttributesOutcomeCallable ConnectClient::GetContactAttributesCallable(const GetContactAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetContactAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetContactAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::GetContactAttributes, this, request, m_executor.get());
 }
 
 void ConnectClient::GetContactAttributesAsync(const GetContactAttributesRequest& request, const GetContactAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetContactAttributes(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::GetContactAttributes, this, request, handler, context, m_executor.get());
 }
 
 GetCurrentMetricDataOutcome ConnectClient::GetCurrentMetricData(const GetCurrentMetricDataRequest& request) const
@@ -2730,18 +2317,12 @@ GetCurrentMetricDataOutcome ConnectClient::GetCurrentMetricData(const GetCurrent
 
 GetCurrentMetricDataOutcomeCallable ConnectClient::GetCurrentMetricDataCallable(const GetCurrentMetricDataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCurrentMetricDataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCurrentMetricData(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::GetCurrentMetricData, this, request, m_executor.get());
 }
 
 void ConnectClient::GetCurrentMetricDataAsync(const GetCurrentMetricDataRequest& request, const GetCurrentMetricDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCurrentMetricData(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::GetCurrentMetricData, this, request, handler, context, m_executor.get());
 }
 
 GetCurrentUserDataOutcome ConnectClient::GetCurrentUserData(const GetCurrentUserDataRequest& request) const
@@ -2761,18 +2342,12 @@ GetCurrentUserDataOutcome ConnectClient::GetCurrentUserData(const GetCurrentUser
 
 GetCurrentUserDataOutcomeCallable ConnectClient::GetCurrentUserDataCallable(const GetCurrentUserDataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCurrentUserDataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCurrentUserData(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::GetCurrentUserData, this, request, m_executor.get());
 }
 
 void ConnectClient::GetCurrentUserDataAsync(const GetCurrentUserDataRequest& request, const GetCurrentUserDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCurrentUserData(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::GetCurrentUserData, this, request, handler, context, m_executor.get());
 }
 
 GetFederationTokenOutcome ConnectClient::GetFederationToken(const GetFederationTokenRequest& request) const
@@ -2792,18 +2367,12 @@ GetFederationTokenOutcome ConnectClient::GetFederationToken(const GetFederationT
 
 GetFederationTokenOutcomeCallable ConnectClient::GetFederationTokenCallable(const GetFederationTokenRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetFederationTokenOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetFederationToken(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::GetFederationToken, this, request, m_executor.get());
 }
 
 void ConnectClient::GetFederationTokenAsync(const GetFederationTokenRequest& request, const GetFederationTokenResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetFederationToken(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::GetFederationToken, this, request, handler, context, m_executor.get());
 }
 
 GetMetricDataOutcome ConnectClient::GetMetricData(const GetMetricDataRequest& request) const
@@ -2823,18 +2392,12 @@ GetMetricDataOutcome ConnectClient::GetMetricData(const GetMetricDataRequest& re
 
 GetMetricDataOutcomeCallable ConnectClient::GetMetricDataCallable(const GetMetricDataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetMetricDataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetMetricData(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::GetMetricData, this, request, m_executor.get());
 }
 
 void ConnectClient::GetMetricDataAsync(const GetMetricDataRequest& request, const GetMetricDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetMetricData(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::GetMetricData, this, request, handler, context, m_executor.get());
 }
 
 GetTaskTemplateOutcome ConnectClient::GetTaskTemplate(const GetTaskTemplateRequest& request) const
@@ -2861,18 +2424,12 @@ GetTaskTemplateOutcome ConnectClient::GetTaskTemplate(const GetTaskTemplateReque
 
 GetTaskTemplateOutcomeCallable ConnectClient::GetTaskTemplateCallable(const GetTaskTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTaskTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTaskTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::GetTaskTemplate, this, request, m_executor.get());
 }
 
 void ConnectClient::GetTaskTemplateAsync(const GetTaskTemplateRequest& request, const GetTaskTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTaskTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::GetTaskTemplate, this, request, handler, context, m_executor.get());
 }
 
 GetTrafficDistributionOutcome ConnectClient::GetTrafficDistribution(const GetTrafficDistributionRequest& request) const
@@ -2892,18 +2449,12 @@ GetTrafficDistributionOutcome ConnectClient::GetTrafficDistribution(const GetTra
 
 GetTrafficDistributionOutcomeCallable ConnectClient::GetTrafficDistributionCallable(const GetTrafficDistributionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTrafficDistributionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTrafficDistribution(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::GetTrafficDistribution, this, request, m_executor.get());
 }
 
 void ConnectClient::GetTrafficDistributionAsync(const GetTrafficDistributionRequest& request, const GetTrafficDistributionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTrafficDistribution(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::GetTrafficDistribution, this, request, handler, context, m_executor.get());
 }
 
 ListAgentStatusesOutcome ConnectClient::ListAgentStatuses(const ListAgentStatusesRequest& request) const
@@ -2923,18 +2474,12 @@ ListAgentStatusesOutcome ConnectClient::ListAgentStatuses(const ListAgentStatuse
 
 ListAgentStatusesOutcomeCallable ConnectClient::ListAgentStatusesCallable(const ListAgentStatusesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAgentStatusesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAgentStatuses(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListAgentStatuses, this, request, m_executor.get());
 }
 
 void ConnectClient::ListAgentStatusesAsync(const ListAgentStatusesRequest& request, const ListAgentStatusesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAgentStatuses(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListAgentStatuses, this, request, handler, context, m_executor.get());
 }
 
 ListApprovedOriginsOutcome ConnectClient::ListApprovedOrigins(const ListApprovedOriginsRequest& request) const
@@ -2955,18 +2500,12 @@ ListApprovedOriginsOutcome ConnectClient::ListApprovedOrigins(const ListApproved
 
 ListApprovedOriginsOutcomeCallable ConnectClient::ListApprovedOriginsCallable(const ListApprovedOriginsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListApprovedOriginsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListApprovedOrigins(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListApprovedOrigins, this, request, m_executor.get());
 }
 
 void ConnectClient::ListApprovedOriginsAsync(const ListApprovedOriginsRequest& request, const ListApprovedOriginsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListApprovedOrigins(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListApprovedOrigins, this, request, handler, context, m_executor.get());
 }
 
 ListBotsOutcome ConnectClient::ListBots(const ListBotsRequest& request) const
@@ -2992,18 +2531,12 @@ ListBotsOutcome ConnectClient::ListBots(const ListBotsRequest& request) const
 
 ListBotsOutcomeCallable ConnectClient::ListBotsCallable(const ListBotsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBotsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBots(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListBots, this, request, m_executor.get());
 }
 
 void ConnectClient::ListBotsAsync(const ListBotsRequest& request, const ListBotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBots(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListBots, this, request, handler, context, m_executor.get());
 }
 
 ListContactFlowModulesOutcome ConnectClient::ListContactFlowModules(const ListContactFlowModulesRequest& request) const
@@ -3023,18 +2556,12 @@ ListContactFlowModulesOutcome ConnectClient::ListContactFlowModules(const ListCo
 
 ListContactFlowModulesOutcomeCallable ConnectClient::ListContactFlowModulesCallable(const ListContactFlowModulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListContactFlowModulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListContactFlowModules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListContactFlowModules, this, request, m_executor.get());
 }
 
 void ConnectClient::ListContactFlowModulesAsync(const ListContactFlowModulesRequest& request, const ListContactFlowModulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListContactFlowModules(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListContactFlowModules, this, request, handler, context, m_executor.get());
 }
 
 ListContactFlowsOutcome ConnectClient::ListContactFlows(const ListContactFlowsRequest& request) const
@@ -3054,18 +2581,12 @@ ListContactFlowsOutcome ConnectClient::ListContactFlows(const ListContactFlowsRe
 
 ListContactFlowsOutcomeCallable ConnectClient::ListContactFlowsCallable(const ListContactFlowsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListContactFlowsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListContactFlows(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListContactFlows, this, request, m_executor.get());
 }
 
 void ConnectClient::ListContactFlowsAsync(const ListContactFlowsRequest& request, const ListContactFlowsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListContactFlows(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListContactFlows, this, request, handler, context, m_executor.get());
 }
 
 ListContactReferencesOutcome ConnectClient::ListContactReferences(const ListContactReferencesRequest& request) const
@@ -3096,18 +2617,12 @@ ListContactReferencesOutcome ConnectClient::ListContactReferences(const ListCont
 
 ListContactReferencesOutcomeCallable ConnectClient::ListContactReferencesCallable(const ListContactReferencesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListContactReferencesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListContactReferences(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListContactReferences, this, request, m_executor.get());
 }
 
 void ConnectClient::ListContactReferencesAsync(const ListContactReferencesRequest& request, const ListContactReferencesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListContactReferences(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListContactReferences, this, request, handler, context, m_executor.get());
 }
 
 ListDefaultVocabulariesOutcome ConnectClient::ListDefaultVocabularies(const ListDefaultVocabulariesRequest& request) const
@@ -3127,18 +2642,12 @@ ListDefaultVocabulariesOutcome ConnectClient::ListDefaultVocabularies(const List
 
 ListDefaultVocabulariesOutcomeCallable ConnectClient::ListDefaultVocabulariesCallable(const ListDefaultVocabulariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDefaultVocabulariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDefaultVocabularies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListDefaultVocabularies, this, request, m_executor.get());
 }
 
 void ConnectClient::ListDefaultVocabulariesAsync(const ListDefaultVocabulariesRequest& request, const ListDefaultVocabulariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDefaultVocabularies(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListDefaultVocabularies, this, request, handler, context, m_executor.get());
 }
 
 ListHoursOfOperationsOutcome ConnectClient::ListHoursOfOperations(const ListHoursOfOperationsRequest& request) const
@@ -3158,18 +2667,12 @@ ListHoursOfOperationsOutcome ConnectClient::ListHoursOfOperations(const ListHour
 
 ListHoursOfOperationsOutcomeCallable ConnectClient::ListHoursOfOperationsCallable(const ListHoursOfOperationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListHoursOfOperationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListHoursOfOperations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListHoursOfOperations, this, request, m_executor.get());
 }
 
 void ConnectClient::ListHoursOfOperationsAsync(const ListHoursOfOperationsRequest& request, const ListHoursOfOperationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListHoursOfOperations(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListHoursOfOperations, this, request, handler, context, m_executor.get());
 }
 
 ListInstanceAttributesOutcome ConnectClient::ListInstanceAttributes(const ListInstanceAttributesRequest& request) const
@@ -3190,18 +2693,12 @@ ListInstanceAttributesOutcome ConnectClient::ListInstanceAttributes(const ListIn
 
 ListInstanceAttributesOutcomeCallable ConnectClient::ListInstanceAttributesCallable(const ListInstanceAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListInstanceAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListInstanceAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListInstanceAttributes, this, request, m_executor.get());
 }
 
 void ConnectClient::ListInstanceAttributesAsync(const ListInstanceAttributesRequest& request, const ListInstanceAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListInstanceAttributes(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListInstanceAttributes, this, request, handler, context, m_executor.get());
 }
 
 ListInstanceStorageConfigsOutcome ConnectClient::ListInstanceStorageConfigs(const ListInstanceStorageConfigsRequest& request) const
@@ -3227,18 +2724,12 @@ ListInstanceStorageConfigsOutcome ConnectClient::ListInstanceStorageConfigs(cons
 
 ListInstanceStorageConfigsOutcomeCallable ConnectClient::ListInstanceStorageConfigsCallable(const ListInstanceStorageConfigsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListInstanceStorageConfigsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListInstanceStorageConfigs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListInstanceStorageConfigs, this, request, m_executor.get());
 }
 
 void ConnectClient::ListInstanceStorageConfigsAsync(const ListInstanceStorageConfigsRequest& request, const ListInstanceStorageConfigsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListInstanceStorageConfigs(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListInstanceStorageConfigs, this, request, handler, context, m_executor.get());
 }
 
 ListInstancesOutcome ConnectClient::ListInstances(const ListInstancesRequest& request) const
@@ -3252,18 +2743,12 @@ ListInstancesOutcome ConnectClient::ListInstances(const ListInstancesRequest& re
 
 ListInstancesOutcomeCallable ConnectClient::ListInstancesCallable(const ListInstancesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListInstancesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListInstances(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListInstances, this, request, m_executor.get());
 }
 
 void ConnectClient::ListInstancesAsync(const ListInstancesRequest& request, const ListInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListInstances(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListInstances, this, request, handler, context, m_executor.get());
 }
 
 ListIntegrationAssociationsOutcome ConnectClient::ListIntegrationAssociations(const ListIntegrationAssociationsRequest& request) const
@@ -3284,18 +2769,12 @@ ListIntegrationAssociationsOutcome ConnectClient::ListIntegrationAssociations(co
 
 ListIntegrationAssociationsOutcomeCallable ConnectClient::ListIntegrationAssociationsCallable(const ListIntegrationAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListIntegrationAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListIntegrationAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListIntegrationAssociations, this, request, m_executor.get());
 }
 
 void ConnectClient::ListIntegrationAssociationsAsync(const ListIntegrationAssociationsRequest& request, const ListIntegrationAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListIntegrationAssociations(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListIntegrationAssociations, this, request, handler, context, m_executor.get());
 }
 
 ListLambdaFunctionsOutcome ConnectClient::ListLambdaFunctions(const ListLambdaFunctionsRequest& request) const
@@ -3316,18 +2795,12 @@ ListLambdaFunctionsOutcome ConnectClient::ListLambdaFunctions(const ListLambdaFu
 
 ListLambdaFunctionsOutcomeCallable ConnectClient::ListLambdaFunctionsCallable(const ListLambdaFunctionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListLambdaFunctionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListLambdaFunctions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListLambdaFunctions, this, request, m_executor.get());
 }
 
 void ConnectClient::ListLambdaFunctionsAsync(const ListLambdaFunctionsRequest& request, const ListLambdaFunctionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListLambdaFunctions(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListLambdaFunctions, this, request, handler, context, m_executor.get());
 }
 
 ListLexBotsOutcome ConnectClient::ListLexBots(const ListLexBotsRequest& request) const
@@ -3348,18 +2821,12 @@ ListLexBotsOutcome ConnectClient::ListLexBots(const ListLexBotsRequest& request)
 
 ListLexBotsOutcomeCallable ConnectClient::ListLexBotsCallable(const ListLexBotsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListLexBotsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListLexBots(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListLexBots, this, request, m_executor.get());
 }
 
 void ConnectClient::ListLexBotsAsync(const ListLexBotsRequest& request, const ListLexBotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListLexBots(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListLexBots, this, request, handler, context, m_executor.get());
 }
 
 ListPhoneNumbersOutcome ConnectClient::ListPhoneNumbers(const ListPhoneNumbersRequest& request) const
@@ -3379,18 +2846,12 @@ ListPhoneNumbersOutcome ConnectClient::ListPhoneNumbers(const ListPhoneNumbersRe
 
 ListPhoneNumbersOutcomeCallable ConnectClient::ListPhoneNumbersCallable(const ListPhoneNumbersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPhoneNumbersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPhoneNumbers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListPhoneNumbers, this, request, m_executor.get());
 }
 
 void ConnectClient::ListPhoneNumbersAsync(const ListPhoneNumbersRequest& request, const ListPhoneNumbersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPhoneNumbers(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListPhoneNumbers, this, request, handler, context, m_executor.get());
 }
 
 ListPhoneNumbersV2Outcome ConnectClient::ListPhoneNumbersV2(const ListPhoneNumbersV2Request& request) const
@@ -3404,18 +2865,12 @@ ListPhoneNumbersV2Outcome ConnectClient::ListPhoneNumbersV2(const ListPhoneNumbe
 
 ListPhoneNumbersV2OutcomeCallable ConnectClient::ListPhoneNumbersV2Callable(const ListPhoneNumbersV2Request& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPhoneNumbersV2Outcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPhoneNumbersV2(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListPhoneNumbersV2, this, request, m_executor.get());
 }
 
 void ConnectClient::ListPhoneNumbersV2Async(const ListPhoneNumbersV2Request& request, const ListPhoneNumbersV2ResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPhoneNumbersV2(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListPhoneNumbersV2, this, request, handler, context, m_executor.get());
 }
 
 ListPromptsOutcome ConnectClient::ListPrompts(const ListPromptsRequest& request) const
@@ -3435,18 +2890,12 @@ ListPromptsOutcome ConnectClient::ListPrompts(const ListPromptsRequest& request)
 
 ListPromptsOutcomeCallable ConnectClient::ListPromptsCallable(const ListPromptsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPromptsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPrompts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListPrompts, this, request, m_executor.get());
 }
 
 void ConnectClient::ListPromptsAsync(const ListPromptsRequest& request, const ListPromptsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPrompts(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListPrompts, this, request, handler, context, m_executor.get());
 }
 
 ListQueueQuickConnectsOutcome ConnectClient::ListQueueQuickConnects(const ListQueueQuickConnectsRequest& request) const
@@ -3473,18 +2922,12 @@ ListQueueQuickConnectsOutcome ConnectClient::ListQueueQuickConnects(const ListQu
 
 ListQueueQuickConnectsOutcomeCallable ConnectClient::ListQueueQuickConnectsCallable(const ListQueueQuickConnectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListQueueQuickConnectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListQueueQuickConnects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListQueueQuickConnects, this, request, m_executor.get());
 }
 
 void ConnectClient::ListQueueQuickConnectsAsync(const ListQueueQuickConnectsRequest& request, const ListQueueQuickConnectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListQueueQuickConnects(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListQueueQuickConnects, this, request, handler, context, m_executor.get());
 }
 
 ListQueuesOutcome ConnectClient::ListQueues(const ListQueuesRequest& request) const
@@ -3504,18 +2947,12 @@ ListQueuesOutcome ConnectClient::ListQueues(const ListQueuesRequest& request) co
 
 ListQueuesOutcomeCallable ConnectClient::ListQueuesCallable(const ListQueuesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListQueuesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListQueues(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListQueues, this, request, m_executor.get());
 }
 
 void ConnectClient::ListQueuesAsync(const ListQueuesRequest& request, const ListQueuesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListQueues(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListQueues, this, request, handler, context, m_executor.get());
 }
 
 ListQuickConnectsOutcome ConnectClient::ListQuickConnects(const ListQuickConnectsRequest& request) const
@@ -3535,18 +2972,12 @@ ListQuickConnectsOutcome ConnectClient::ListQuickConnects(const ListQuickConnect
 
 ListQuickConnectsOutcomeCallable ConnectClient::ListQuickConnectsCallable(const ListQuickConnectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListQuickConnectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListQuickConnects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListQuickConnects, this, request, m_executor.get());
 }
 
 void ConnectClient::ListQuickConnectsAsync(const ListQuickConnectsRequest& request, const ListQuickConnectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListQuickConnects(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListQuickConnects, this, request, handler, context, m_executor.get());
 }
 
 ListRoutingProfileQueuesOutcome ConnectClient::ListRoutingProfileQueues(const ListRoutingProfileQueuesRequest& request) const
@@ -3573,18 +3004,12 @@ ListRoutingProfileQueuesOutcome ConnectClient::ListRoutingProfileQueues(const Li
 
 ListRoutingProfileQueuesOutcomeCallable ConnectClient::ListRoutingProfileQueuesCallable(const ListRoutingProfileQueuesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRoutingProfileQueuesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoutingProfileQueues(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListRoutingProfileQueues, this, request, m_executor.get());
 }
 
 void ConnectClient::ListRoutingProfileQueuesAsync(const ListRoutingProfileQueuesRequest& request, const ListRoutingProfileQueuesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoutingProfileQueues(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListRoutingProfileQueues, this, request, handler, context, m_executor.get());
 }
 
 ListRoutingProfilesOutcome ConnectClient::ListRoutingProfiles(const ListRoutingProfilesRequest& request) const
@@ -3604,18 +3029,12 @@ ListRoutingProfilesOutcome ConnectClient::ListRoutingProfiles(const ListRoutingP
 
 ListRoutingProfilesOutcomeCallable ConnectClient::ListRoutingProfilesCallable(const ListRoutingProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRoutingProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoutingProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListRoutingProfiles, this, request, m_executor.get());
 }
 
 void ConnectClient::ListRoutingProfilesAsync(const ListRoutingProfilesRequest& request, const ListRoutingProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoutingProfiles(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListRoutingProfiles, this, request, handler, context, m_executor.get());
 }
 
 ListSecurityKeysOutcome ConnectClient::ListSecurityKeys(const ListSecurityKeysRequest& request) const
@@ -3636,18 +3055,12 @@ ListSecurityKeysOutcome ConnectClient::ListSecurityKeys(const ListSecurityKeysRe
 
 ListSecurityKeysOutcomeCallable ConnectClient::ListSecurityKeysCallable(const ListSecurityKeysRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSecurityKeysOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSecurityKeys(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListSecurityKeys, this, request, m_executor.get());
 }
 
 void ConnectClient::ListSecurityKeysAsync(const ListSecurityKeysRequest& request, const ListSecurityKeysResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSecurityKeys(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListSecurityKeys, this, request, handler, context, m_executor.get());
 }
 
 ListSecurityProfilePermissionsOutcome ConnectClient::ListSecurityProfilePermissions(const ListSecurityProfilePermissionsRequest& request) const
@@ -3673,18 +3086,12 @@ ListSecurityProfilePermissionsOutcome ConnectClient::ListSecurityProfilePermissi
 
 ListSecurityProfilePermissionsOutcomeCallable ConnectClient::ListSecurityProfilePermissionsCallable(const ListSecurityProfilePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSecurityProfilePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSecurityProfilePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListSecurityProfilePermissions, this, request, m_executor.get());
 }
 
 void ConnectClient::ListSecurityProfilePermissionsAsync(const ListSecurityProfilePermissionsRequest& request, const ListSecurityProfilePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSecurityProfilePermissions(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListSecurityProfilePermissions, this, request, handler, context, m_executor.get());
 }
 
 ListSecurityProfilesOutcome ConnectClient::ListSecurityProfiles(const ListSecurityProfilesRequest& request) const
@@ -3704,18 +3111,12 @@ ListSecurityProfilesOutcome ConnectClient::ListSecurityProfiles(const ListSecuri
 
 ListSecurityProfilesOutcomeCallable ConnectClient::ListSecurityProfilesCallable(const ListSecurityProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSecurityProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSecurityProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListSecurityProfiles, this, request, m_executor.get());
 }
 
 void ConnectClient::ListSecurityProfilesAsync(const ListSecurityProfilesRequest& request, const ListSecurityProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSecurityProfiles(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListSecurityProfiles, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome ConnectClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -3735,18 +3136,12 @@ ListTagsForResourceOutcome ConnectClient::ListTagsForResource(const ListTagsForR
 
 ListTagsForResourceOutcomeCallable ConnectClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void ConnectClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListTaskTemplatesOutcome ConnectClient::ListTaskTemplates(const ListTaskTemplatesRequest& request) const
@@ -3767,18 +3162,12 @@ ListTaskTemplatesOutcome ConnectClient::ListTaskTemplates(const ListTaskTemplate
 
 ListTaskTemplatesOutcomeCallable ConnectClient::ListTaskTemplatesCallable(const ListTaskTemplatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTaskTemplatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTaskTemplates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListTaskTemplates, this, request, m_executor.get());
 }
 
 void ConnectClient::ListTaskTemplatesAsync(const ListTaskTemplatesRequest& request, const ListTaskTemplatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTaskTemplates(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListTaskTemplates, this, request, handler, context, m_executor.get());
 }
 
 ListTrafficDistributionGroupsOutcome ConnectClient::ListTrafficDistributionGroups(const ListTrafficDistributionGroupsRequest& request) const
@@ -3792,18 +3181,12 @@ ListTrafficDistributionGroupsOutcome ConnectClient::ListTrafficDistributionGroup
 
 ListTrafficDistributionGroupsOutcomeCallable ConnectClient::ListTrafficDistributionGroupsCallable(const ListTrafficDistributionGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTrafficDistributionGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTrafficDistributionGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListTrafficDistributionGroups, this, request, m_executor.get());
 }
 
 void ConnectClient::ListTrafficDistributionGroupsAsync(const ListTrafficDistributionGroupsRequest& request, const ListTrafficDistributionGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTrafficDistributionGroups(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListTrafficDistributionGroups, this, request, handler, context, m_executor.get());
 }
 
 ListUseCasesOutcome ConnectClient::ListUseCases(const ListUseCasesRequest& request) const
@@ -3831,18 +3214,12 @@ ListUseCasesOutcome ConnectClient::ListUseCases(const ListUseCasesRequest& reque
 
 ListUseCasesOutcomeCallable ConnectClient::ListUseCasesCallable(const ListUseCasesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUseCasesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUseCases(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListUseCases, this, request, m_executor.get());
 }
 
 void ConnectClient::ListUseCasesAsync(const ListUseCasesRequest& request, const ListUseCasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUseCases(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListUseCases, this, request, handler, context, m_executor.get());
 }
 
 ListUserHierarchyGroupsOutcome ConnectClient::ListUserHierarchyGroups(const ListUserHierarchyGroupsRequest& request) const
@@ -3862,18 +3239,12 @@ ListUserHierarchyGroupsOutcome ConnectClient::ListUserHierarchyGroups(const List
 
 ListUserHierarchyGroupsOutcomeCallable ConnectClient::ListUserHierarchyGroupsCallable(const ListUserHierarchyGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUserHierarchyGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUserHierarchyGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListUserHierarchyGroups, this, request, m_executor.get());
 }
 
 void ConnectClient::ListUserHierarchyGroupsAsync(const ListUserHierarchyGroupsRequest& request, const ListUserHierarchyGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUserHierarchyGroups(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListUserHierarchyGroups, this, request, handler, context, m_executor.get());
 }
 
 ListUsersOutcome ConnectClient::ListUsers(const ListUsersRequest& request) const
@@ -3893,18 +3264,12 @@ ListUsersOutcome ConnectClient::ListUsers(const ListUsersRequest& request) const
 
 ListUsersOutcomeCallable ConnectClient::ListUsersCallable(const ListUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ListUsers, this, request, m_executor.get());
 }
 
 void ConnectClient::ListUsersAsync(const ListUsersRequest& request, const ListUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUsers(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ListUsers, this, request, handler, context, m_executor.get());
 }
 
 MonitorContactOutcome ConnectClient::MonitorContact(const MonitorContactRequest& request) const
@@ -3918,18 +3283,12 @@ MonitorContactOutcome ConnectClient::MonitorContact(const MonitorContactRequest&
 
 MonitorContactOutcomeCallable ConnectClient::MonitorContactCallable(const MonitorContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< MonitorContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->MonitorContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::MonitorContact, this, request, m_executor.get());
 }
 
 void ConnectClient::MonitorContactAsync(const MonitorContactRequest& request, const MonitorContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, MonitorContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::MonitorContact, this, request, handler, context, m_executor.get());
 }
 
 PutUserStatusOutcome ConnectClient::PutUserStatus(const PutUserStatusRequest& request) const
@@ -3956,18 +3315,12 @@ PutUserStatusOutcome ConnectClient::PutUserStatus(const PutUserStatusRequest& re
 
 PutUserStatusOutcomeCallable ConnectClient::PutUserStatusCallable(const PutUserStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutUserStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutUserStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::PutUserStatus, this, request, m_executor.get());
 }
 
 void ConnectClient::PutUserStatusAsync(const PutUserStatusRequest& request, const PutUserStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutUserStatus(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::PutUserStatus, this, request, handler, context, m_executor.get());
 }
 
 ReleasePhoneNumberOutcome ConnectClient::ReleasePhoneNumber(const ReleasePhoneNumberRequest& request) const
@@ -3987,18 +3340,12 @@ ReleasePhoneNumberOutcome ConnectClient::ReleasePhoneNumber(const ReleasePhoneNu
 
 ReleasePhoneNumberOutcomeCallable ConnectClient::ReleasePhoneNumberCallable(const ReleasePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ReleasePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ReleasePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ReleasePhoneNumber, this, request, m_executor.get());
 }
 
 void ConnectClient::ReleasePhoneNumberAsync(const ReleasePhoneNumberRequest& request, const ReleasePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ReleasePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ReleasePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 ReplicateInstanceOutcome ConnectClient::ReplicateInstance(const ReplicateInstanceRequest& request) const
@@ -4019,18 +3366,12 @@ ReplicateInstanceOutcome ConnectClient::ReplicateInstance(const ReplicateInstanc
 
 ReplicateInstanceOutcomeCallable ConnectClient::ReplicateInstanceCallable(const ReplicateInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ReplicateInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ReplicateInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ReplicateInstance, this, request, m_executor.get());
 }
 
 void ConnectClient::ReplicateInstanceAsync(const ReplicateInstanceRequest& request, const ReplicateInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ReplicateInstance(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ReplicateInstance, this, request, handler, context, m_executor.get());
 }
 
 ResumeContactRecordingOutcome ConnectClient::ResumeContactRecording(const ResumeContactRecordingRequest& request) const
@@ -4044,18 +3385,12 @@ ResumeContactRecordingOutcome ConnectClient::ResumeContactRecording(const Resume
 
 ResumeContactRecordingOutcomeCallable ConnectClient::ResumeContactRecordingCallable(const ResumeContactRecordingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ResumeContactRecordingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ResumeContactRecording(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::ResumeContactRecording, this, request, m_executor.get());
 }
 
 void ConnectClient::ResumeContactRecordingAsync(const ResumeContactRecordingRequest& request, const ResumeContactRecordingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ResumeContactRecording(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::ResumeContactRecording, this, request, handler, context, m_executor.get());
 }
 
 SearchAvailablePhoneNumbersOutcome ConnectClient::SearchAvailablePhoneNumbers(const SearchAvailablePhoneNumbersRequest& request) const
@@ -4069,18 +3404,12 @@ SearchAvailablePhoneNumbersOutcome ConnectClient::SearchAvailablePhoneNumbers(co
 
 SearchAvailablePhoneNumbersOutcomeCallable ConnectClient::SearchAvailablePhoneNumbersCallable(const SearchAvailablePhoneNumbersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchAvailablePhoneNumbersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchAvailablePhoneNumbers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::SearchAvailablePhoneNumbers, this, request, m_executor.get());
 }
 
 void ConnectClient::SearchAvailablePhoneNumbersAsync(const SearchAvailablePhoneNumbersRequest& request, const SearchAvailablePhoneNumbersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchAvailablePhoneNumbers(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::SearchAvailablePhoneNumbers, this, request, handler, context, m_executor.get());
 }
 
 SearchQueuesOutcome ConnectClient::SearchQueues(const SearchQueuesRequest& request) const
@@ -4094,18 +3423,12 @@ SearchQueuesOutcome ConnectClient::SearchQueues(const SearchQueuesRequest& reque
 
 SearchQueuesOutcomeCallable ConnectClient::SearchQueuesCallable(const SearchQueuesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchQueuesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchQueues(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::SearchQueues, this, request, m_executor.get());
 }
 
 void ConnectClient::SearchQueuesAsync(const SearchQueuesRequest& request, const SearchQueuesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchQueues(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::SearchQueues, this, request, handler, context, m_executor.get());
 }
 
 SearchRoutingProfilesOutcome ConnectClient::SearchRoutingProfiles(const SearchRoutingProfilesRequest& request) const
@@ -4119,18 +3442,12 @@ SearchRoutingProfilesOutcome ConnectClient::SearchRoutingProfiles(const SearchRo
 
 SearchRoutingProfilesOutcomeCallable ConnectClient::SearchRoutingProfilesCallable(const SearchRoutingProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchRoutingProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchRoutingProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::SearchRoutingProfiles, this, request, m_executor.get());
 }
 
 void ConnectClient::SearchRoutingProfilesAsync(const SearchRoutingProfilesRequest& request, const SearchRoutingProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchRoutingProfiles(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::SearchRoutingProfiles, this, request, handler, context, m_executor.get());
 }
 
 SearchSecurityProfilesOutcome ConnectClient::SearchSecurityProfiles(const SearchSecurityProfilesRequest& request) const
@@ -4144,18 +3461,12 @@ SearchSecurityProfilesOutcome ConnectClient::SearchSecurityProfiles(const Search
 
 SearchSecurityProfilesOutcomeCallable ConnectClient::SearchSecurityProfilesCallable(const SearchSecurityProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchSecurityProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchSecurityProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::SearchSecurityProfiles, this, request, m_executor.get());
 }
 
 void ConnectClient::SearchSecurityProfilesAsync(const SearchSecurityProfilesRequest& request, const SearchSecurityProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchSecurityProfiles(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::SearchSecurityProfiles, this, request, handler, context, m_executor.get());
 }
 
 SearchUsersOutcome ConnectClient::SearchUsers(const SearchUsersRequest& request) const
@@ -4169,18 +3480,12 @@ SearchUsersOutcome ConnectClient::SearchUsers(const SearchUsersRequest& request)
 
 SearchUsersOutcomeCallable ConnectClient::SearchUsersCallable(const SearchUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::SearchUsers, this, request, m_executor.get());
 }
 
 void ConnectClient::SearchUsersAsync(const SearchUsersRequest& request, const SearchUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchUsers(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::SearchUsers, this, request, handler, context, m_executor.get());
 }
 
 SearchVocabulariesOutcome ConnectClient::SearchVocabularies(const SearchVocabulariesRequest& request) const
@@ -4200,18 +3505,12 @@ SearchVocabulariesOutcome ConnectClient::SearchVocabularies(const SearchVocabula
 
 SearchVocabulariesOutcomeCallable ConnectClient::SearchVocabulariesCallable(const SearchVocabulariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchVocabulariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchVocabularies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::SearchVocabularies, this, request, m_executor.get());
 }
 
 void ConnectClient::SearchVocabulariesAsync(const SearchVocabulariesRequest& request, const SearchVocabulariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchVocabularies(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::SearchVocabularies, this, request, handler, context, m_executor.get());
 }
 
 StartChatContactOutcome ConnectClient::StartChatContact(const StartChatContactRequest& request) const
@@ -4225,18 +3524,12 @@ StartChatContactOutcome ConnectClient::StartChatContact(const StartChatContactRe
 
 StartChatContactOutcomeCallable ConnectClient::StartChatContactCallable(const StartChatContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartChatContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartChatContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StartChatContact, this, request, m_executor.get());
 }
 
 void ConnectClient::StartChatContactAsync(const StartChatContactRequest& request, const StartChatContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartChatContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StartChatContact, this, request, handler, context, m_executor.get());
 }
 
 StartContactRecordingOutcome ConnectClient::StartContactRecording(const StartContactRecordingRequest& request) const
@@ -4250,18 +3543,12 @@ StartContactRecordingOutcome ConnectClient::StartContactRecording(const StartCon
 
 StartContactRecordingOutcomeCallable ConnectClient::StartContactRecordingCallable(const StartContactRecordingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartContactRecordingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartContactRecording(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StartContactRecording, this, request, m_executor.get());
 }
 
 void ConnectClient::StartContactRecordingAsync(const StartContactRecordingRequest& request, const StartContactRecordingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartContactRecording(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StartContactRecording, this, request, handler, context, m_executor.get());
 }
 
 StartContactStreamingOutcome ConnectClient::StartContactStreaming(const StartContactStreamingRequest& request) const
@@ -4275,18 +3562,12 @@ StartContactStreamingOutcome ConnectClient::StartContactStreaming(const StartCon
 
 StartContactStreamingOutcomeCallable ConnectClient::StartContactStreamingCallable(const StartContactStreamingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartContactStreamingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartContactStreaming(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StartContactStreaming, this, request, m_executor.get());
 }
 
 void ConnectClient::StartContactStreamingAsync(const StartContactStreamingRequest& request, const StartContactStreamingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartContactStreaming(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StartContactStreaming, this, request, handler, context, m_executor.get());
 }
 
 StartOutboundVoiceContactOutcome ConnectClient::StartOutboundVoiceContact(const StartOutboundVoiceContactRequest& request) const
@@ -4300,18 +3581,12 @@ StartOutboundVoiceContactOutcome ConnectClient::StartOutboundVoiceContact(const 
 
 StartOutboundVoiceContactOutcomeCallable ConnectClient::StartOutboundVoiceContactCallable(const StartOutboundVoiceContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartOutboundVoiceContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartOutboundVoiceContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StartOutboundVoiceContact, this, request, m_executor.get());
 }
 
 void ConnectClient::StartOutboundVoiceContactAsync(const StartOutboundVoiceContactRequest& request, const StartOutboundVoiceContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartOutboundVoiceContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StartOutboundVoiceContact, this, request, handler, context, m_executor.get());
 }
 
 StartTaskContactOutcome ConnectClient::StartTaskContact(const StartTaskContactRequest& request) const
@@ -4325,18 +3600,12 @@ StartTaskContactOutcome ConnectClient::StartTaskContact(const StartTaskContactRe
 
 StartTaskContactOutcomeCallable ConnectClient::StartTaskContactCallable(const StartTaskContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartTaskContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartTaskContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StartTaskContact, this, request, m_executor.get());
 }
 
 void ConnectClient::StartTaskContactAsync(const StartTaskContactRequest& request, const StartTaskContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartTaskContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StartTaskContact, this, request, handler, context, m_executor.get());
 }
 
 StopContactOutcome ConnectClient::StopContact(const StopContactRequest& request) const
@@ -4350,18 +3619,12 @@ StopContactOutcome ConnectClient::StopContact(const StopContactRequest& request)
 
 StopContactOutcomeCallable ConnectClient::StopContactCallable(const StopContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StopContact, this, request, m_executor.get());
 }
 
 void ConnectClient::StopContactAsync(const StopContactRequest& request, const StopContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StopContact, this, request, handler, context, m_executor.get());
 }
 
 StopContactRecordingOutcome ConnectClient::StopContactRecording(const StopContactRecordingRequest& request) const
@@ -4375,18 +3638,12 @@ StopContactRecordingOutcome ConnectClient::StopContactRecording(const StopContac
 
 StopContactRecordingOutcomeCallable ConnectClient::StopContactRecordingCallable(const StopContactRecordingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopContactRecordingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopContactRecording(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StopContactRecording, this, request, m_executor.get());
 }
 
 void ConnectClient::StopContactRecordingAsync(const StopContactRecordingRequest& request, const StopContactRecordingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopContactRecording(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StopContactRecording, this, request, handler, context, m_executor.get());
 }
 
 StopContactStreamingOutcome ConnectClient::StopContactStreaming(const StopContactStreamingRequest& request) const
@@ -4400,18 +3657,12 @@ StopContactStreamingOutcome ConnectClient::StopContactStreaming(const StopContac
 
 StopContactStreamingOutcomeCallable ConnectClient::StopContactStreamingCallable(const StopContactStreamingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopContactStreamingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopContactStreaming(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::StopContactStreaming, this, request, m_executor.get());
 }
 
 void ConnectClient::StopContactStreamingAsync(const StopContactStreamingRequest& request, const StopContactStreamingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopContactStreaming(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::StopContactStreaming, this, request, handler, context, m_executor.get());
 }
 
 SuspendContactRecordingOutcome ConnectClient::SuspendContactRecording(const SuspendContactRecordingRequest& request) const
@@ -4425,18 +3676,12 @@ SuspendContactRecordingOutcome ConnectClient::SuspendContactRecording(const Susp
 
 SuspendContactRecordingOutcomeCallable ConnectClient::SuspendContactRecordingCallable(const SuspendContactRecordingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SuspendContactRecordingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SuspendContactRecording(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::SuspendContactRecording, this, request, m_executor.get());
 }
 
 void ConnectClient::SuspendContactRecordingAsync(const SuspendContactRecordingRequest& request, const SuspendContactRecordingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SuspendContactRecording(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::SuspendContactRecording, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome ConnectClient::TagResource(const TagResourceRequest& request) const
@@ -4456,18 +3701,12 @@ TagResourceOutcome ConnectClient::TagResource(const TagResourceRequest& request)
 
 TagResourceOutcomeCallable ConnectClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::TagResource, this, request, m_executor.get());
 }
 
 void ConnectClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 TransferContactOutcome ConnectClient::TransferContact(const TransferContactRequest& request) const
@@ -4481,18 +3720,12 @@ TransferContactOutcome ConnectClient::TransferContact(const TransferContactReque
 
 TransferContactOutcomeCallable ConnectClient::TransferContactCallable(const TransferContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TransferContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TransferContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::TransferContact, this, request, m_executor.get());
 }
 
 void ConnectClient::TransferContactAsync(const TransferContactRequest& request, const TransferContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TransferContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::TransferContact, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome ConnectClient::UntagResource(const UntagResourceRequest& request) const
@@ -4517,18 +3750,12 @@ UntagResourceOutcome ConnectClient::UntagResource(const UntagResourceRequest& re
 
 UntagResourceOutcomeCallable ConnectClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UntagResource, this, request, m_executor.get());
 }
 
 void ConnectClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAgentStatusOutcome ConnectClient::UpdateAgentStatus(const UpdateAgentStatusRequest& request) const
@@ -4554,18 +3781,12 @@ UpdateAgentStatusOutcome ConnectClient::UpdateAgentStatus(const UpdateAgentStatu
 
 UpdateAgentStatusOutcomeCallable ConnectClient::UpdateAgentStatusCallable(const UpdateAgentStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAgentStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAgentStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateAgentStatus, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateAgentStatusAsync(const UpdateAgentStatusRequest& request, const UpdateAgentStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAgentStatus(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateAgentStatus, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactOutcome ConnectClient::UpdateContact(const UpdateContactRequest& request) const
@@ -4591,18 +3812,12 @@ UpdateContactOutcome ConnectClient::UpdateContact(const UpdateContactRequest& re
 
 UpdateContactOutcomeCallable ConnectClient::UpdateContactCallable(const UpdateContactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContact, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactAsync(const UpdateContactRequest& request, const UpdateContactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContact(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContact, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactAttributesOutcome ConnectClient::UpdateContactAttributes(const UpdateContactAttributesRequest& request) const
@@ -4616,18 +3831,12 @@ UpdateContactAttributesOutcome ConnectClient::UpdateContactAttributes(const Upda
 
 UpdateContactAttributesOutcomeCallable ConnectClient::UpdateContactAttributesCallable(const UpdateContactAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContactAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContactAttributes, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactAttributesAsync(const UpdateContactAttributesRequest& request, const UpdateContactAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContactAttributes(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContactAttributes, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactFlowContentOutcome ConnectClient::UpdateContactFlowContent(const UpdateContactFlowContentRequest& request) const
@@ -4654,18 +3863,12 @@ UpdateContactFlowContentOutcome ConnectClient::UpdateContactFlowContent(const Up
 
 UpdateContactFlowContentOutcomeCallable ConnectClient::UpdateContactFlowContentCallable(const UpdateContactFlowContentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactFlowContentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContactFlowContent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContactFlowContent, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactFlowContentAsync(const UpdateContactFlowContentRequest& request, const UpdateContactFlowContentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContactFlowContent(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContactFlowContent, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactFlowMetadataOutcome ConnectClient::UpdateContactFlowMetadata(const UpdateContactFlowMetadataRequest& request) const
@@ -4692,18 +3895,12 @@ UpdateContactFlowMetadataOutcome ConnectClient::UpdateContactFlowMetadata(const 
 
 UpdateContactFlowMetadataOutcomeCallable ConnectClient::UpdateContactFlowMetadataCallable(const UpdateContactFlowMetadataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactFlowMetadataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContactFlowMetadata(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContactFlowMetadata, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactFlowMetadataAsync(const UpdateContactFlowMetadataRequest& request, const UpdateContactFlowMetadataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContactFlowMetadata(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContactFlowMetadata, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactFlowModuleContentOutcome ConnectClient::UpdateContactFlowModuleContent(const UpdateContactFlowModuleContentRequest& request) const
@@ -4730,18 +3927,12 @@ UpdateContactFlowModuleContentOutcome ConnectClient::UpdateContactFlowModuleCont
 
 UpdateContactFlowModuleContentOutcomeCallable ConnectClient::UpdateContactFlowModuleContentCallable(const UpdateContactFlowModuleContentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactFlowModuleContentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContactFlowModuleContent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContactFlowModuleContent, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactFlowModuleContentAsync(const UpdateContactFlowModuleContentRequest& request, const UpdateContactFlowModuleContentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContactFlowModuleContent(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContactFlowModuleContent, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactFlowModuleMetadataOutcome ConnectClient::UpdateContactFlowModuleMetadata(const UpdateContactFlowModuleMetadataRequest& request) const
@@ -4768,18 +3959,12 @@ UpdateContactFlowModuleMetadataOutcome ConnectClient::UpdateContactFlowModuleMet
 
 UpdateContactFlowModuleMetadataOutcomeCallable ConnectClient::UpdateContactFlowModuleMetadataCallable(const UpdateContactFlowModuleMetadataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactFlowModuleMetadataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContactFlowModuleMetadata(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContactFlowModuleMetadata, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactFlowModuleMetadataAsync(const UpdateContactFlowModuleMetadataRequest& request, const UpdateContactFlowModuleMetadataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContactFlowModuleMetadata(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContactFlowModuleMetadata, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactFlowNameOutcome ConnectClient::UpdateContactFlowName(const UpdateContactFlowNameRequest& request) const
@@ -4806,18 +3991,12 @@ UpdateContactFlowNameOutcome ConnectClient::UpdateContactFlowName(const UpdateCo
 
 UpdateContactFlowNameOutcomeCallable ConnectClient::UpdateContactFlowNameCallable(const UpdateContactFlowNameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactFlowNameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContactFlowName(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContactFlowName, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactFlowNameAsync(const UpdateContactFlowNameRequest& request, const UpdateContactFlowNameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContactFlowName(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContactFlowName, this, request, handler, context, m_executor.get());
 }
 
 UpdateContactScheduleOutcome ConnectClient::UpdateContactSchedule(const UpdateContactScheduleRequest& request) const
@@ -4831,18 +4010,12 @@ UpdateContactScheduleOutcome ConnectClient::UpdateContactSchedule(const UpdateCo
 
 UpdateContactScheduleOutcomeCallable ConnectClient::UpdateContactScheduleCallable(const UpdateContactScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateContactScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateContactSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateContactSchedule, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateContactScheduleAsync(const UpdateContactScheduleRequest& request, const UpdateContactScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateContactSchedule(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateContactSchedule, this, request, handler, context, m_executor.get());
 }
 
 UpdateHoursOfOperationOutcome ConnectClient::UpdateHoursOfOperation(const UpdateHoursOfOperationRequest& request) const
@@ -4868,18 +4041,12 @@ UpdateHoursOfOperationOutcome ConnectClient::UpdateHoursOfOperation(const Update
 
 UpdateHoursOfOperationOutcomeCallable ConnectClient::UpdateHoursOfOperationCallable(const UpdateHoursOfOperationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateHoursOfOperationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateHoursOfOperation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateHoursOfOperation, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateHoursOfOperationAsync(const UpdateHoursOfOperationRequest& request, const UpdateHoursOfOperationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateHoursOfOperation(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateHoursOfOperation, this, request, handler, context, m_executor.get());
 }
 
 UpdateInstanceAttributeOutcome ConnectClient::UpdateInstanceAttribute(const UpdateInstanceAttributeRequest& request) const
@@ -4906,18 +4073,12 @@ UpdateInstanceAttributeOutcome ConnectClient::UpdateInstanceAttribute(const Upda
 
 UpdateInstanceAttributeOutcomeCallable ConnectClient::UpdateInstanceAttributeCallable(const UpdateInstanceAttributeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateInstanceAttributeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateInstanceAttribute(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateInstanceAttribute, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateInstanceAttributeAsync(const UpdateInstanceAttributeRequest& request, const UpdateInstanceAttributeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateInstanceAttribute(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateInstanceAttribute, this, request, handler, context, m_executor.get());
 }
 
 UpdateInstanceStorageConfigOutcome ConnectClient::UpdateInstanceStorageConfig(const UpdateInstanceStorageConfigRequest& request) const
@@ -4949,18 +4110,12 @@ UpdateInstanceStorageConfigOutcome ConnectClient::UpdateInstanceStorageConfig(co
 
 UpdateInstanceStorageConfigOutcomeCallable ConnectClient::UpdateInstanceStorageConfigCallable(const UpdateInstanceStorageConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateInstanceStorageConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateInstanceStorageConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateInstanceStorageConfig, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateInstanceStorageConfigAsync(const UpdateInstanceStorageConfigRequest& request, const UpdateInstanceStorageConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateInstanceStorageConfig(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateInstanceStorageConfig, this, request, handler, context, m_executor.get());
 }
 
 UpdatePhoneNumberOutcome ConnectClient::UpdatePhoneNumber(const UpdatePhoneNumberRequest& request) const
@@ -4980,18 +4135,12 @@ UpdatePhoneNumberOutcome ConnectClient::UpdatePhoneNumber(const UpdatePhoneNumbe
 
 UpdatePhoneNumberOutcomeCallable ConnectClient::UpdatePhoneNumberCallable(const UpdatePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdatePhoneNumber, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdatePhoneNumberAsync(const UpdatePhoneNumberRequest& request, const UpdatePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdatePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 UpdateQueueHoursOfOperationOutcome ConnectClient::UpdateQueueHoursOfOperation(const UpdateQueueHoursOfOperationRequest& request) const
@@ -5018,18 +4167,12 @@ UpdateQueueHoursOfOperationOutcome ConnectClient::UpdateQueueHoursOfOperation(co
 
 UpdateQueueHoursOfOperationOutcomeCallable ConnectClient::UpdateQueueHoursOfOperationCallable(const UpdateQueueHoursOfOperationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateQueueHoursOfOperationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateQueueHoursOfOperation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateQueueHoursOfOperation, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateQueueHoursOfOperationAsync(const UpdateQueueHoursOfOperationRequest& request, const UpdateQueueHoursOfOperationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateQueueHoursOfOperation(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateQueueHoursOfOperation, this, request, handler, context, m_executor.get());
 }
 
 UpdateQueueMaxContactsOutcome ConnectClient::UpdateQueueMaxContacts(const UpdateQueueMaxContactsRequest& request) const
@@ -5056,18 +4199,12 @@ UpdateQueueMaxContactsOutcome ConnectClient::UpdateQueueMaxContacts(const Update
 
 UpdateQueueMaxContactsOutcomeCallable ConnectClient::UpdateQueueMaxContactsCallable(const UpdateQueueMaxContactsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateQueueMaxContactsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateQueueMaxContacts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateQueueMaxContacts, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateQueueMaxContactsAsync(const UpdateQueueMaxContactsRequest& request, const UpdateQueueMaxContactsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateQueueMaxContacts(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateQueueMaxContacts, this, request, handler, context, m_executor.get());
 }
 
 UpdateQueueNameOutcome ConnectClient::UpdateQueueName(const UpdateQueueNameRequest& request) const
@@ -5094,18 +4231,12 @@ UpdateQueueNameOutcome ConnectClient::UpdateQueueName(const UpdateQueueNameReque
 
 UpdateQueueNameOutcomeCallable ConnectClient::UpdateQueueNameCallable(const UpdateQueueNameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateQueueNameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateQueueName(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateQueueName, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateQueueNameAsync(const UpdateQueueNameRequest& request, const UpdateQueueNameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateQueueName(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateQueueName, this, request, handler, context, m_executor.get());
 }
 
 UpdateQueueOutboundCallerConfigOutcome ConnectClient::UpdateQueueOutboundCallerConfig(const UpdateQueueOutboundCallerConfigRequest& request) const
@@ -5132,18 +4263,12 @@ UpdateQueueOutboundCallerConfigOutcome ConnectClient::UpdateQueueOutboundCallerC
 
 UpdateQueueOutboundCallerConfigOutcomeCallable ConnectClient::UpdateQueueOutboundCallerConfigCallable(const UpdateQueueOutboundCallerConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateQueueOutboundCallerConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateQueueOutboundCallerConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateQueueOutboundCallerConfig, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateQueueOutboundCallerConfigAsync(const UpdateQueueOutboundCallerConfigRequest& request, const UpdateQueueOutboundCallerConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateQueueOutboundCallerConfig(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateQueueOutboundCallerConfig, this, request, handler, context, m_executor.get());
 }
 
 UpdateQueueStatusOutcome ConnectClient::UpdateQueueStatus(const UpdateQueueStatusRequest& request) const
@@ -5170,18 +4295,12 @@ UpdateQueueStatusOutcome ConnectClient::UpdateQueueStatus(const UpdateQueueStatu
 
 UpdateQueueStatusOutcomeCallable ConnectClient::UpdateQueueStatusCallable(const UpdateQueueStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateQueueStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateQueueStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateQueueStatus, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateQueueStatusAsync(const UpdateQueueStatusRequest& request, const UpdateQueueStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateQueueStatus(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateQueueStatus, this, request, handler, context, m_executor.get());
 }
 
 UpdateQuickConnectConfigOutcome ConnectClient::UpdateQuickConnectConfig(const UpdateQuickConnectConfigRequest& request) const
@@ -5208,18 +4327,12 @@ UpdateQuickConnectConfigOutcome ConnectClient::UpdateQuickConnectConfig(const Up
 
 UpdateQuickConnectConfigOutcomeCallable ConnectClient::UpdateQuickConnectConfigCallable(const UpdateQuickConnectConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateQuickConnectConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateQuickConnectConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateQuickConnectConfig, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateQuickConnectConfigAsync(const UpdateQuickConnectConfigRequest& request, const UpdateQuickConnectConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateQuickConnectConfig(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateQuickConnectConfig, this, request, handler, context, m_executor.get());
 }
 
 UpdateQuickConnectNameOutcome ConnectClient::UpdateQuickConnectName(const UpdateQuickConnectNameRequest& request) const
@@ -5246,18 +4359,12 @@ UpdateQuickConnectNameOutcome ConnectClient::UpdateQuickConnectName(const Update
 
 UpdateQuickConnectNameOutcomeCallable ConnectClient::UpdateQuickConnectNameCallable(const UpdateQuickConnectNameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateQuickConnectNameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateQuickConnectName(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateQuickConnectName, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateQuickConnectNameAsync(const UpdateQuickConnectNameRequest& request, const UpdateQuickConnectNameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateQuickConnectName(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateQuickConnectName, this, request, handler, context, m_executor.get());
 }
 
 UpdateRoutingProfileConcurrencyOutcome ConnectClient::UpdateRoutingProfileConcurrency(const UpdateRoutingProfileConcurrencyRequest& request) const
@@ -5284,18 +4391,12 @@ UpdateRoutingProfileConcurrencyOutcome ConnectClient::UpdateRoutingProfileConcur
 
 UpdateRoutingProfileConcurrencyOutcomeCallable ConnectClient::UpdateRoutingProfileConcurrencyCallable(const UpdateRoutingProfileConcurrencyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoutingProfileConcurrencyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoutingProfileConcurrency(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateRoutingProfileConcurrency, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateRoutingProfileConcurrencyAsync(const UpdateRoutingProfileConcurrencyRequest& request, const UpdateRoutingProfileConcurrencyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoutingProfileConcurrency(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateRoutingProfileConcurrency, this, request, handler, context, m_executor.get());
 }
 
 UpdateRoutingProfileDefaultOutboundQueueOutcome ConnectClient::UpdateRoutingProfileDefaultOutboundQueue(const UpdateRoutingProfileDefaultOutboundQueueRequest& request) const
@@ -5322,18 +4423,12 @@ UpdateRoutingProfileDefaultOutboundQueueOutcome ConnectClient::UpdateRoutingProf
 
 UpdateRoutingProfileDefaultOutboundQueueOutcomeCallable ConnectClient::UpdateRoutingProfileDefaultOutboundQueueCallable(const UpdateRoutingProfileDefaultOutboundQueueRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoutingProfileDefaultOutboundQueueOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoutingProfileDefaultOutboundQueue(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateRoutingProfileDefaultOutboundQueue, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateRoutingProfileDefaultOutboundQueueAsync(const UpdateRoutingProfileDefaultOutboundQueueRequest& request, const UpdateRoutingProfileDefaultOutboundQueueResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoutingProfileDefaultOutboundQueue(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateRoutingProfileDefaultOutboundQueue, this, request, handler, context, m_executor.get());
 }
 
 UpdateRoutingProfileNameOutcome ConnectClient::UpdateRoutingProfileName(const UpdateRoutingProfileNameRequest& request) const
@@ -5360,18 +4455,12 @@ UpdateRoutingProfileNameOutcome ConnectClient::UpdateRoutingProfileName(const Up
 
 UpdateRoutingProfileNameOutcomeCallable ConnectClient::UpdateRoutingProfileNameCallable(const UpdateRoutingProfileNameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoutingProfileNameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoutingProfileName(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateRoutingProfileName, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateRoutingProfileNameAsync(const UpdateRoutingProfileNameRequest& request, const UpdateRoutingProfileNameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoutingProfileName(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateRoutingProfileName, this, request, handler, context, m_executor.get());
 }
 
 UpdateRoutingProfileQueuesOutcome ConnectClient::UpdateRoutingProfileQueues(const UpdateRoutingProfileQueuesRequest& request) const
@@ -5398,18 +4487,12 @@ UpdateRoutingProfileQueuesOutcome ConnectClient::UpdateRoutingProfileQueues(cons
 
 UpdateRoutingProfileQueuesOutcomeCallable ConnectClient::UpdateRoutingProfileQueuesCallable(const UpdateRoutingProfileQueuesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoutingProfileQueuesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoutingProfileQueues(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateRoutingProfileQueues, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateRoutingProfileQueuesAsync(const UpdateRoutingProfileQueuesRequest& request, const UpdateRoutingProfileQueuesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoutingProfileQueues(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateRoutingProfileQueues, this, request, handler, context, m_executor.get());
 }
 
 UpdateSecurityProfileOutcome ConnectClient::UpdateSecurityProfile(const UpdateSecurityProfileRequest& request) const
@@ -5435,18 +4518,12 @@ UpdateSecurityProfileOutcome ConnectClient::UpdateSecurityProfile(const UpdateSe
 
 UpdateSecurityProfileOutcomeCallable ConnectClient::UpdateSecurityProfileCallable(const UpdateSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateSecurityProfile, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateSecurityProfileAsync(const UpdateSecurityProfileRequest& request, const UpdateSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 UpdateTaskTemplateOutcome ConnectClient::UpdateTaskTemplate(const UpdateTaskTemplateRequest& request) const
@@ -5473,18 +4550,12 @@ UpdateTaskTemplateOutcome ConnectClient::UpdateTaskTemplate(const UpdateTaskTemp
 
 UpdateTaskTemplateOutcomeCallable ConnectClient::UpdateTaskTemplateCallable(const UpdateTaskTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTaskTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTaskTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateTaskTemplate, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateTaskTemplateAsync(const UpdateTaskTemplateRequest& request, const UpdateTaskTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTaskTemplate(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateTaskTemplate, this, request, handler, context, m_executor.get());
 }
 
 UpdateTrafficDistributionOutcome ConnectClient::UpdateTrafficDistribution(const UpdateTrafficDistributionRequest& request) const
@@ -5504,18 +4575,12 @@ UpdateTrafficDistributionOutcome ConnectClient::UpdateTrafficDistribution(const 
 
 UpdateTrafficDistributionOutcomeCallable ConnectClient::UpdateTrafficDistributionCallable(const UpdateTrafficDistributionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTrafficDistributionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTrafficDistribution(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateTrafficDistribution, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateTrafficDistributionAsync(const UpdateTrafficDistributionRequest& request, const UpdateTrafficDistributionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTrafficDistribution(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateTrafficDistribution, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserHierarchyOutcome ConnectClient::UpdateUserHierarchy(const UpdateUserHierarchyRequest& request) const
@@ -5542,18 +4607,12 @@ UpdateUserHierarchyOutcome ConnectClient::UpdateUserHierarchy(const UpdateUserHi
 
 UpdateUserHierarchyOutcomeCallable ConnectClient::UpdateUserHierarchyCallable(const UpdateUserHierarchyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserHierarchyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserHierarchy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateUserHierarchy, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateUserHierarchyAsync(const UpdateUserHierarchyRequest& request, const UpdateUserHierarchyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserHierarchy(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateUserHierarchy, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserHierarchyGroupNameOutcome ConnectClient::UpdateUserHierarchyGroupName(const UpdateUserHierarchyGroupNameRequest& request) const
@@ -5580,18 +4639,12 @@ UpdateUserHierarchyGroupNameOutcome ConnectClient::UpdateUserHierarchyGroupName(
 
 UpdateUserHierarchyGroupNameOutcomeCallable ConnectClient::UpdateUserHierarchyGroupNameCallable(const UpdateUserHierarchyGroupNameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserHierarchyGroupNameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserHierarchyGroupName(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateUserHierarchyGroupName, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateUserHierarchyGroupNameAsync(const UpdateUserHierarchyGroupNameRequest& request, const UpdateUserHierarchyGroupNameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserHierarchyGroupName(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateUserHierarchyGroupName, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserHierarchyStructureOutcome ConnectClient::UpdateUserHierarchyStructure(const UpdateUserHierarchyStructureRequest& request) const
@@ -5611,18 +4664,12 @@ UpdateUserHierarchyStructureOutcome ConnectClient::UpdateUserHierarchyStructure(
 
 UpdateUserHierarchyStructureOutcomeCallable ConnectClient::UpdateUserHierarchyStructureCallable(const UpdateUserHierarchyStructureRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserHierarchyStructureOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserHierarchyStructure(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateUserHierarchyStructure, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateUserHierarchyStructureAsync(const UpdateUserHierarchyStructureRequest& request, const UpdateUserHierarchyStructureResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserHierarchyStructure(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateUserHierarchyStructure, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserIdentityInfoOutcome ConnectClient::UpdateUserIdentityInfo(const UpdateUserIdentityInfoRequest& request) const
@@ -5649,18 +4696,12 @@ UpdateUserIdentityInfoOutcome ConnectClient::UpdateUserIdentityInfo(const Update
 
 UpdateUserIdentityInfoOutcomeCallable ConnectClient::UpdateUserIdentityInfoCallable(const UpdateUserIdentityInfoRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserIdentityInfoOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserIdentityInfo(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateUserIdentityInfo, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateUserIdentityInfoAsync(const UpdateUserIdentityInfoRequest& request, const UpdateUserIdentityInfoResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserIdentityInfo(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateUserIdentityInfo, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserPhoneConfigOutcome ConnectClient::UpdateUserPhoneConfig(const UpdateUserPhoneConfigRequest& request) const
@@ -5687,18 +4728,12 @@ UpdateUserPhoneConfigOutcome ConnectClient::UpdateUserPhoneConfig(const UpdateUs
 
 UpdateUserPhoneConfigOutcomeCallable ConnectClient::UpdateUserPhoneConfigCallable(const UpdateUserPhoneConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserPhoneConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserPhoneConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateUserPhoneConfig, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateUserPhoneConfigAsync(const UpdateUserPhoneConfigRequest& request, const UpdateUserPhoneConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserPhoneConfig(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateUserPhoneConfig, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserRoutingProfileOutcome ConnectClient::UpdateUserRoutingProfile(const UpdateUserRoutingProfileRequest& request) const
@@ -5725,18 +4760,12 @@ UpdateUserRoutingProfileOutcome ConnectClient::UpdateUserRoutingProfile(const Up
 
 UpdateUserRoutingProfileOutcomeCallable ConnectClient::UpdateUserRoutingProfileCallable(const UpdateUserRoutingProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserRoutingProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserRoutingProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateUserRoutingProfile, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateUserRoutingProfileAsync(const UpdateUserRoutingProfileRequest& request, const UpdateUserRoutingProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserRoutingProfile(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateUserRoutingProfile, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserSecurityProfilesOutcome ConnectClient::UpdateUserSecurityProfiles(const UpdateUserSecurityProfilesRequest& request) const
@@ -5763,17 +4792,11 @@ UpdateUserSecurityProfilesOutcome ConnectClient::UpdateUserSecurityProfiles(cons
 
 UpdateUserSecurityProfilesOutcomeCallable ConnectClient::UpdateUserSecurityProfilesCallable(const UpdateUserSecurityProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserSecurityProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserSecurityProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ConnectClient::UpdateUserSecurityProfiles, this, request, m_executor.get());
 }
 
 void ConnectClient::UpdateUserSecurityProfilesAsync(const UpdateUserSecurityProfilesRequest& request, const UpdateUserSecurityProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserSecurityProfiles(request), context);
-    } );
+  MakeAsyncOperation(&ConnectClient::UpdateUserSecurityProfiles, this, request, handler, context, m_executor.get());
 }
 

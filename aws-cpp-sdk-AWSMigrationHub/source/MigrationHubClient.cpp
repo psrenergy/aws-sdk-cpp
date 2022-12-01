@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -176,18 +177,12 @@ AssociateCreatedArtifactOutcome MigrationHubClient::AssociateCreatedArtifact(con
 
 AssociateCreatedArtifactOutcomeCallable MigrationHubClient::AssociateCreatedArtifactCallable(const AssociateCreatedArtifactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateCreatedArtifactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateCreatedArtifact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::AssociateCreatedArtifact, this, request, m_executor.get());
 }
 
 void MigrationHubClient::AssociateCreatedArtifactAsync(const AssociateCreatedArtifactRequest& request, const AssociateCreatedArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateCreatedArtifact(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::AssociateCreatedArtifact, this, request, handler, context, m_executor.get());
 }
 
 AssociateDiscoveredResourceOutcome MigrationHubClient::AssociateDiscoveredResource(const AssociateDiscoveredResourceRequest& request) const
@@ -200,18 +195,12 @@ AssociateDiscoveredResourceOutcome MigrationHubClient::AssociateDiscoveredResour
 
 AssociateDiscoveredResourceOutcomeCallable MigrationHubClient::AssociateDiscoveredResourceCallable(const AssociateDiscoveredResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateDiscoveredResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateDiscoveredResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::AssociateDiscoveredResource, this, request, m_executor.get());
 }
 
 void MigrationHubClient::AssociateDiscoveredResourceAsync(const AssociateDiscoveredResourceRequest& request, const AssociateDiscoveredResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateDiscoveredResource(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::AssociateDiscoveredResource, this, request, handler, context, m_executor.get());
 }
 
 CreateProgressUpdateStreamOutcome MigrationHubClient::CreateProgressUpdateStream(const CreateProgressUpdateStreamRequest& request) const
@@ -224,18 +213,12 @@ CreateProgressUpdateStreamOutcome MigrationHubClient::CreateProgressUpdateStream
 
 CreateProgressUpdateStreamOutcomeCallable MigrationHubClient::CreateProgressUpdateStreamCallable(const CreateProgressUpdateStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProgressUpdateStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProgressUpdateStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::CreateProgressUpdateStream, this, request, m_executor.get());
 }
 
 void MigrationHubClient::CreateProgressUpdateStreamAsync(const CreateProgressUpdateStreamRequest& request, const CreateProgressUpdateStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProgressUpdateStream(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::CreateProgressUpdateStream, this, request, handler, context, m_executor.get());
 }
 
 DeleteProgressUpdateStreamOutcome MigrationHubClient::DeleteProgressUpdateStream(const DeleteProgressUpdateStreamRequest& request) const
@@ -248,18 +231,12 @@ DeleteProgressUpdateStreamOutcome MigrationHubClient::DeleteProgressUpdateStream
 
 DeleteProgressUpdateStreamOutcomeCallable MigrationHubClient::DeleteProgressUpdateStreamCallable(const DeleteProgressUpdateStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteProgressUpdateStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteProgressUpdateStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::DeleteProgressUpdateStream, this, request, m_executor.get());
 }
 
 void MigrationHubClient::DeleteProgressUpdateStreamAsync(const DeleteProgressUpdateStreamRequest& request, const DeleteProgressUpdateStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteProgressUpdateStream(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::DeleteProgressUpdateStream, this, request, handler, context, m_executor.get());
 }
 
 DescribeApplicationStateOutcome MigrationHubClient::DescribeApplicationState(const DescribeApplicationStateRequest& request) const
@@ -272,18 +249,12 @@ DescribeApplicationStateOutcome MigrationHubClient::DescribeApplicationState(con
 
 DescribeApplicationStateOutcomeCallable MigrationHubClient::DescribeApplicationStateCallable(const DescribeApplicationStateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeApplicationStateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeApplicationState(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::DescribeApplicationState, this, request, m_executor.get());
 }
 
 void MigrationHubClient::DescribeApplicationStateAsync(const DescribeApplicationStateRequest& request, const DescribeApplicationStateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeApplicationState(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::DescribeApplicationState, this, request, handler, context, m_executor.get());
 }
 
 DescribeMigrationTaskOutcome MigrationHubClient::DescribeMigrationTask(const DescribeMigrationTaskRequest& request) const
@@ -296,18 +267,12 @@ DescribeMigrationTaskOutcome MigrationHubClient::DescribeMigrationTask(const Des
 
 DescribeMigrationTaskOutcomeCallable MigrationHubClient::DescribeMigrationTaskCallable(const DescribeMigrationTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeMigrationTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeMigrationTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::DescribeMigrationTask, this, request, m_executor.get());
 }
 
 void MigrationHubClient::DescribeMigrationTaskAsync(const DescribeMigrationTaskRequest& request, const DescribeMigrationTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeMigrationTask(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::DescribeMigrationTask, this, request, handler, context, m_executor.get());
 }
 
 DisassociateCreatedArtifactOutcome MigrationHubClient::DisassociateCreatedArtifact(const DisassociateCreatedArtifactRequest& request) const
@@ -320,18 +285,12 @@ DisassociateCreatedArtifactOutcome MigrationHubClient::DisassociateCreatedArtifa
 
 DisassociateCreatedArtifactOutcomeCallable MigrationHubClient::DisassociateCreatedArtifactCallable(const DisassociateCreatedArtifactRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateCreatedArtifactOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateCreatedArtifact(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::DisassociateCreatedArtifact, this, request, m_executor.get());
 }
 
 void MigrationHubClient::DisassociateCreatedArtifactAsync(const DisassociateCreatedArtifactRequest& request, const DisassociateCreatedArtifactResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateCreatedArtifact(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::DisassociateCreatedArtifact, this, request, handler, context, m_executor.get());
 }
 
 DisassociateDiscoveredResourceOutcome MigrationHubClient::DisassociateDiscoveredResource(const DisassociateDiscoveredResourceRequest& request) const
@@ -344,18 +303,12 @@ DisassociateDiscoveredResourceOutcome MigrationHubClient::DisassociateDiscovered
 
 DisassociateDiscoveredResourceOutcomeCallable MigrationHubClient::DisassociateDiscoveredResourceCallable(const DisassociateDiscoveredResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateDiscoveredResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateDiscoveredResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::DisassociateDiscoveredResource, this, request, m_executor.get());
 }
 
 void MigrationHubClient::DisassociateDiscoveredResourceAsync(const DisassociateDiscoveredResourceRequest& request, const DisassociateDiscoveredResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateDiscoveredResource(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::DisassociateDiscoveredResource, this, request, handler, context, m_executor.get());
 }
 
 ImportMigrationTaskOutcome MigrationHubClient::ImportMigrationTask(const ImportMigrationTaskRequest& request) const
@@ -368,18 +321,12 @@ ImportMigrationTaskOutcome MigrationHubClient::ImportMigrationTask(const ImportM
 
 ImportMigrationTaskOutcomeCallable MigrationHubClient::ImportMigrationTaskCallable(const ImportMigrationTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ImportMigrationTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ImportMigrationTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::ImportMigrationTask, this, request, m_executor.get());
 }
 
 void MigrationHubClient::ImportMigrationTaskAsync(const ImportMigrationTaskRequest& request, const ImportMigrationTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ImportMigrationTask(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::ImportMigrationTask, this, request, handler, context, m_executor.get());
 }
 
 ListApplicationStatesOutcome MigrationHubClient::ListApplicationStates(const ListApplicationStatesRequest& request) const
@@ -392,18 +339,12 @@ ListApplicationStatesOutcome MigrationHubClient::ListApplicationStates(const Lis
 
 ListApplicationStatesOutcomeCallable MigrationHubClient::ListApplicationStatesCallable(const ListApplicationStatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListApplicationStatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListApplicationStates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::ListApplicationStates, this, request, m_executor.get());
 }
 
 void MigrationHubClient::ListApplicationStatesAsync(const ListApplicationStatesRequest& request, const ListApplicationStatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListApplicationStates(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::ListApplicationStates, this, request, handler, context, m_executor.get());
 }
 
 ListCreatedArtifactsOutcome MigrationHubClient::ListCreatedArtifacts(const ListCreatedArtifactsRequest& request) const
@@ -416,18 +357,12 @@ ListCreatedArtifactsOutcome MigrationHubClient::ListCreatedArtifacts(const ListC
 
 ListCreatedArtifactsOutcomeCallable MigrationHubClient::ListCreatedArtifactsCallable(const ListCreatedArtifactsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCreatedArtifactsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCreatedArtifacts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::ListCreatedArtifacts, this, request, m_executor.get());
 }
 
 void MigrationHubClient::ListCreatedArtifactsAsync(const ListCreatedArtifactsRequest& request, const ListCreatedArtifactsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCreatedArtifacts(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::ListCreatedArtifacts, this, request, handler, context, m_executor.get());
 }
 
 ListDiscoveredResourcesOutcome MigrationHubClient::ListDiscoveredResources(const ListDiscoveredResourcesRequest& request) const
@@ -440,18 +375,12 @@ ListDiscoveredResourcesOutcome MigrationHubClient::ListDiscoveredResources(const
 
 ListDiscoveredResourcesOutcomeCallable MigrationHubClient::ListDiscoveredResourcesCallable(const ListDiscoveredResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDiscoveredResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDiscoveredResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::ListDiscoveredResources, this, request, m_executor.get());
 }
 
 void MigrationHubClient::ListDiscoveredResourcesAsync(const ListDiscoveredResourcesRequest& request, const ListDiscoveredResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDiscoveredResources(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::ListDiscoveredResources, this, request, handler, context, m_executor.get());
 }
 
 ListMigrationTasksOutcome MigrationHubClient::ListMigrationTasks(const ListMigrationTasksRequest& request) const
@@ -464,18 +393,12 @@ ListMigrationTasksOutcome MigrationHubClient::ListMigrationTasks(const ListMigra
 
 ListMigrationTasksOutcomeCallable MigrationHubClient::ListMigrationTasksCallable(const ListMigrationTasksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMigrationTasksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMigrationTasks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::ListMigrationTasks, this, request, m_executor.get());
 }
 
 void MigrationHubClient::ListMigrationTasksAsync(const ListMigrationTasksRequest& request, const ListMigrationTasksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMigrationTasks(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::ListMigrationTasks, this, request, handler, context, m_executor.get());
 }
 
 ListProgressUpdateStreamsOutcome MigrationHubClient::ListProgressUpdateStreams(const ListProgressUpdateStreamsRequest& request) const
@@ -488,18 +411,12 @@ ListProgressUpdateStreamsOutcome MigrationHubClient::ListProgressUpdateStreams(c
 
 ListProgressUpdateStreamsOutcomeCallable MigrationHubClient::ListProgressUpdateStreamsCallable(const ListProgressUpdateStreamsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProgressUpdateStreamsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProgressUpdateStreams(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::ListProgressUpdateStreams, this, request, m_executor.get());
 }
 
 void MigrationHubClient::ListProgressUpdateStreamsAsync(const ListProgressUpdateStreamsRequest& request, const ListProgressUpdateStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProgressUpdateStreams(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::ListProgressUpdateStreams, this, request, handler, context, m_executor.get());
 }
 
 NotifyApplicationStateOutcome MigrationHubClient::NotifyApplicationState(const NotifyApplicationStateRequest& request) const
@@ -512,18 +429,12 @@ NotifyApplicationStateOutcome MigrationHubClient::NotifyApplicationState(const N
 
 NotifyApplicationStateOutcomeCallable MigrationHubClient::NotifyApplicationStateCallable(const NotifyApplicationStateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< NotifyApplicationStateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->NotifyApplicationState(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::NotifyApplicationState, this, request, m_executor.get());
 }
 
 void MigrationHubClient::NotifyApplicationStateAsync(const NotifyApplicationStateRequest& request, const NotifyApplicationStateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, NotifyApplicationState(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::NotifyApplicationState, this, request, handler, context, m_executor.get());
 }
 
 NotifyMigrationTaskStateOutcome MigrationHubClient::NotifyMigrationTaskState(const NotifyMigrationTaskStateRequest& request) const
@@ -536,18 +447,12 @@ NotifyMigrationTaskStateOutcome MigrationHubClient::NotifyMigrationTaskState(con
 
 NotifyMigrationTaskStateOutcomeCallable MigrationHubClient::NotifyMigrationTaskStateCallable(const NotifyMigrationTaskStateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< NotifyMigrationTaskStateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->NotifyMigrationTaskState(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::NotifyMigrationTaskState, this, request, m_executor.get());
 }
 
 void MigrationHubClient::NotifyMigrationTaskStateAsync(const NotifyMigrationTaskStateRequest& request, const NotifyMigrationTaskStateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, NotifyMigrationTaskState(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::NotifyMigrationTaskState, this, request, handler, context, m_executor.get());
 }
 
 PutResourceAttributesOutcome MigrationHubClient::PutResourceAttributes(const PutResourceAttributesRequest& request) const
@@ -560,17 +465,11 @@ PutResourceAttributesOutcome MigrationHubClient::PutResourceAttributes(const Put
 
 PutResourceAttributesOutcomeCallable MigrationHubClient::PutResourceAttributesCallable(const PutResourceAttributesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutResourceAttributesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutResourceAttributes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MigrationHubClient::PutResourceAttributes, this, request, m_executor.get());
 }
 
 void MigrationHubClient::PutResourceAttributesAsync(const PutResourceAttributesRequest& request, const PutResourceAttributesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutResourceAttributes(request), context);
-    } );
+  MakeAsyncOperation(&MigrationHubClient::PutResourceAttributes, this, request, handler, context, m_executor.get());
 }
 

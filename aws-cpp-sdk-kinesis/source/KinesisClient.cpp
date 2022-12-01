@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -189,18 +190,12 @@ AddTagsToStreamOutcome KinesisClient::AddTagsToStream(const AddTagsToStreamReque
 
 AddTagsToStreamOutcomeCallable KinesisClient::AddTagsToStreamCallable(const AddTagsToStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddTagsToStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddTagsToStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::AddTagsToStream, this, request, m_executor.get());
 }
 
 void KinesisClient::AddTagsToStreamAsync(const AddTagsToStreamRequest& request, const AddTagsToStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddTagsToStream(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::AddTagsToStream, this, request, handler, context, m_executor.get());
 }
 
 CreateStreamOutcome KinesisClient::CreateStream(const CreateStreamRequest& request) const
@@ -213,18 +208,12 @@ CreateStreamOutcome KinesisClient::CreateStream(const CreateStreamRequest& reque
 
 CreateStreamOutcomeCallable KinesisClient::CreateStreamCallable(const CreateStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::CreateStream, this, request, m_executor.get());
 }
 
 void KinesisClient::CreateStreamAsync(const CreateStreamRequest& request, const CreateStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateStream(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::CreateStream, this, request, handler, context, m_executor.get());
 }
 
 DecreaseStreamRetentionPeriodOutcome KinesisClient::DecreaseStreamRetentionPeriod(const DecreaseStreamRetentionPeriodRequest& request) const
@@ -237,18 +226,12 @@ DecreaseStreamRetentionPeriodOutcome KinesisClient::DecreaseStreamRetentionPerio
 
 DecreaseStreamRetentionPeriodOutcomeCallable KinesisClient::DecreaseStreamRetentionPeriodCallable(const DecreaseStreamRetentionPeriodRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DecreaseStreamRetentionPeriodOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DecreaseStreamRetentionPeriod(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DecreaseStreamRetentionPeriod, this, request, m_executor.get());
 }
 
 void KinesisClient::DecreaseStreamRetentionPeriodAsync(const DecreaseStreamRetentionPeriodRequest& request, const DecreaseStreamRetentionPeriodResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DecreaseStreamRetentionPeriod(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DecreaseStreamRetentionPeriod, this, request, handler, context, m_executor.get());
 }
 
 DeleteStreamOutcome KinesisClient::DeleteStream(const DeleteStreamRequest& request) const
@@ -261,18 +244,12 @@ DeleteStreamOutcome KinesisClient::DeleteStream(const DeleteStreamRequest& reque
 
 DeleteStreamOutcomeCallable KinesisClient::DeleteStreamCallable(const DeleteStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DeleteStream, this, request, m_executor.get());
 }
 
 void KinesisClient::DeleteStreamAsync(const DeleteStreamRequest& request, const DeleteStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteStream(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DeleteStream, this, request, handler, context, m_executor.get());
 }
 
 DeregisterStreamConsumerOutcome KinesisClient::DeregisterStreamConsumer(const DeregisterStreamConsumerRequest& request) const
@@ -285,18 +262,12 @@ DeregisterStreamConsumerOutcome KinesisClient::DeregisterStreamConsumer(const De
 
 DeregisterStreamConsumerOutcomeCallable KinesisClient::DeregisterStreamConsumerCallable(const DeregisterStreamConsumerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeregisterStreamConsumerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeregisterStreamConsumer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DeregisterStreamConsumer, this, request, m_executor.get());
 }
 
 void KinesisClient::DeregisterStreamConsumerAsync(const DeregisterStreamConsumerRequest& request, const DeregisterStreamConsumerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeregisterStreamConsumer(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DeregisterStreamConsumer, this, request, handler, context, m_executor.get());
 }
 
 DescribeLimitsOutcome KinesisClient::DescribeLimits(const DescribeLimitsRequest& request) const
@@ -309,18 +280,12 @@ DescribeLimitsOutcome KinesisClient::DescribeLimits(const DescribeLimitsRequest&
 
 DescribeLimitsOutcomeCallable KinesisClient::DescribeLimitsCallable(const DescribeLimitsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLimitsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLimits(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DescribeLimits, this, request, m_executor.get());
 }
 
 void KinesisClient::DescribeLimitsAsync(const DescribeLimitsRequest& request, const DescribeLimitsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLimits(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DescribeLimits, this, request, handler, context, m_executor.get());
 }
 
 DescribeStreamOutcome KinesisClient::DescribeStream(const DescribeStreamRequest& request) const
@@ -333,18 +298,12 @@ DescribeStreamOutcome KinesisClient::DescribeStream(const DescribeStreamRequest&
 
 DescribeStreamOutcomeCallable KinesisClient::DescribeStreamCallable(const DescribeStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DescribeStream, this, request, m_executor.get());
 }
 
 void KinesisClient::DescribeStreamAsync(const DescribeStreamRequest& request, const DescribeStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeStream(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DescribeStream, this, request, handler, context, m_executor.get());
 }
 
 DescribeStreamConsumerOutcome KinesisClient::DescribeStreamConsumer(const DescribeStreamConsumerRequest& request) const
@@ -357,18 +316,12 @@ DescribeStreamConsumerOutcome KinesisClient::DescribeStreamConsumer(const Descri
 
 DescribeStreamConsumerOutcomeCallable KinesisClient::DescribeStreamConsumerCallable(const DescribeStreamConsumerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeStreamConsumerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeStreamConsumer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DescribeStreamConsumer, this, request, m_executor.get());
 }
 
 void KinesisClient::DescribeStreamConsumerAsync(const DescribeStreamConsumerRequest& request, const DescribeStreamConsumerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeStreamConsumer(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DescribeStreamConsumer, this, request, handler, context, m_executor.get());
 }
 
 DescribeStreamSummaryOutcome KinesisClient::DescribeStreamSummary(const DescribeStreamSummaryRequest& request) const
@@ -381,18 +334,12 @@ DescribeStreamSummaryOutcome KinesisClient::DescribeStreamSummary(const Describe
 
 DescribeStreamSummaryOutcomeCallable KinesisClient::DescribeStreamSummaryCallable(const DescribeStreamSummaryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeStreamSummaryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeStreamSummary(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DescribeStreamSummary, this, request, m_executor.get());
 }
 
 void KinesisClient::DescribeStreamSummaryAsync(const DescribeStreamSummaryRequest& request, const DescribeStreamSummaryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeStreamSummary(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DescribeStreamSummary, this, request, handler, context, m_executor.get());
 }
 
 DisableEnhancedMonitoringOutcome KinesisClient::DisableEnhancedMonitoring(const DisableEnhancedMonitoringRequest& request) const
@@ -405,18 +352,12 @@ DisableEnhancedMonitoringOutcome KinesisClient::DisableEnhancedMonitoring(const 
 
 DisableEnhancedMonitoringOutcomeCallable KinesisClient::DisableEnhancedMonitoringCallable(const DisableEnhancedMonitoringRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisableEnhancedMonitoringOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisableEnhancedMonitoring(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::DisableEnhancedMonitoring, this, request, m_executor.get());
 }
 
 void KinesisClient::DisableEnhancedMonitoringAsync(const DisableEnhancedMonitoringRequest& request, const DisableEnhancedMonitoringResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisableEnhancedMonitoring(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::DisableEnhancedMonitoring, this, request, handler, context, m_executor.get());
 }
 
 EnableEnhancedMonitoringOutcome KinesisClient::EnableEnhancedMonitoring(const EnableEnhancedMonitoringRequest& request) const
@@ -429,18 +370,12 @@ EnableEnhancedMonitoringOutcome KinesisClient::EnableEnhancedMonitoring(const En
 
 EnableEnhancedMonitoringOutcomeCallable KinesisClient::EnableEnhancedMonitoringCallable(const EnableEnhancedMonitoringRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnableEnhancedMonitoringOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnableEnhancedMonitoring(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::EnableEnhancedMonitoring, this, request, m_executor.get());
 }
 
 void KinesisClient::EnableEnhancedMonitoringAsync(const EnableEnhancedMonitoringRequest& request, const EnableEnhancedMonitoringResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnableEnhancedMonitoring(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::EnableEnhancedMonitoring, this, request, handler, context, m_executor.get());
 }
 
 GetRecordsOutcome KinesisClient::GetRecords(const GetRecordsRequest& request) const
@@ -453,18 +388,12 @@ GetRecordsOutcome KinesisClient::GetRecords(const GetRecordsRequest& request) co
 
 GetRecordsOutcomeCallable KinesisClient::GetRecordsCallable(const GetRecordsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRecordsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRecords(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::GetRecords, this, request, m_executor.get());
 }
 
 void KinesisClient::GetRecordsAsync(const GetRecordsRequest& request, const GetRecordsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRecords(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::GetRecords, this, request, handler, context, m_executor.get());
 }
 
 GetShardIteratorOutcome KinesisClient::GetShardIterator(const GetShardIteratorRequest& request) const
@@ -477,18 +406,12 @@ GetShardIteratorOutcome KinesisClient::GetShardIterator(const GetShardIteratorRe
 
 GetShardIteratorOutcomeCallable KinesisClient::GetShardIteratorCallable(const GetShardIteratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetShardIteratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetShardIterator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::GetShardIterator, this, request, m_executor.get());
 }
 
 void KinesisClient::GetShardIteratorAsync(const GetShardIteratorRequest& request, const GetShardIteratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetShardIterator(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::GetShardIterator, this, request, handler, context, m_executor.get());
 }
 
 IncreaseStreamRetentionPeriodOutcome KinesisClient::IncreaseStreamRetentionPeriod(const IncreaseStreamRetentionPeriodRequest& request) const
@@ -501,18 +424,12 @@ IncreaseStreamRetentionPeriodOutcome KinesisClient::IncreaseStreamRetentionPerio
 
 IncreaseStreamRetentionPeriodOutcomeCallable KinesisClient::IncreaseStreamRetentionPeriodCallable(const IncreaseStreamRetentionPeriodRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< IncreaseStreamRetentionPeriodOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->IncreaseStreamRetentionPeriod(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::IncreaseStreamRetentionPeriod, this, request, m_executor.get());
 }
 
 void KinesisClient::IncreaseStreamRetentionPeriodAsync(const IncreaseStreamRetentionPeriodRequest& request, const IncreaseStreamRetentionPeriodResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, IncreaseStreamRetentionPeriod(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::IncreaseStreamRetentionPeriod, this, request, handler, context, m_executor.get());
 }
 
 ListShardsOutcome KinesisClient::ListShards(const ListShardsRequest& request) const
@@ -525,18 +442,12 @@ ListShardsOutcome KinesisClient::ListShards(const ListShardsRequest& request) co
 
 ListShardsOutcomeCallable KinesisClient::ListShardsCallable(const ListShardsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListShardsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListShards(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::ListShards, this, request, m_executor.get());
 }
 
 void KinesisClient::ListShardsAsync(const ListShardsRequest& request, const ListShardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListShards(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::ListShards, this, request, handler, context, m_executor.get());
 }
 
 ListStreamConsumersOutcome KinesisClient::ListStreamConsumers(const ListStreamConsumersRequest& request) const
@@ -549,18 +460,12 @@ ListStreamConsumersOutcome KinesisClient::ListStreamConsumers(const ListStreamCo
 
 ListStreamConsumersOutcomeCallable KinesisClient::ListStreamConsumersCallable(const ListStreamConsumersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStreamConsumersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStreamConsumers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::ListStreamConsumers, this, request, m_executor.get());
 }
 
 void KinesisClient::ListStreamConsumersAsync(const ListStreamConsumersRequest& request, const ListStreamConsumersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStreamConsumers(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::ListStreamConsumers, this, request, handler, context, m_executor.get());
 }
 
 ListStreamsOutcome KinesisClient::ListStreams(const ListStreamsRequest& request) const
@@ -573,18 +478,12 @@ ListStreamsOutcome KinesisClient::ListStreams(const ListStreamsRequest& request)
 
 ListStreamsOutcomeCallable KinesisClient::ListStreamsCallable(const ListStreamsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStreamsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStreams(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::ListStreams, this, request, m_executor.get());
 }
 
 void KinesisClient::ListStreamsAsync(const ListStreamsRequest& request, const ListStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStreams(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::ListStreams, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForStreamOutcome KinesisClient::ListTagsForStream(const ListTagsForStreamRequest& request) const
@@ -597,18 +496,12 @@ ListTagsForStreamOutcome KinesisClient::ListTagsForStream(const ListTagsForStrea
 
 ListTagsForStreamOutcomeCallable KinesisClient::ListTagsForStreamCallable(const ListTagsForStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::ListTagsForStream, this, request, m_executor.get());
 }
 
 void KinesisClient::ListTagsForStreamAsync(const ListTagsForStreamRequest& request, const ListTagsForStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForStream(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::ListTagsForStream, this, request, handler, context, m_executor.get());
 }
 
 MergeShardsOutcome KinesisClient::MergeShards(const MergeShardsRequest& request) const
@@ -621,18 +514,12 @@ MergeShardsOutcome KinesisClient::MergeShards(const MergeShardsRequest& request)
 
 MergeShardsOutcomeCallable KinesisClient::MergeShardsCallable(const MergeShardsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< MergeShardsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->MergeShards(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::MergeShards, this, request, m_executor.get());
 }
 
 void KinesisClient::MergeShardsAsync(const MergeShardsRequest& request, const MergeShardsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, MergeShards(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::MergeShards, this, request, handler, context, m_executor.get());
 }
 
 PutRecordOutcome KinesisClient::PutRecord(const PutRecordRequest& request) const
@@ -645,18 +532,12 @@ PutRecordOutcome KinesisClient::PutRecord(const PutRecordRequest& request) const
 
 PutRecordOutcomeCallable KinesisClient::PutRecordCallable(const PutRecordRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRecordOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRecord(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::PutRecord, this, request, m_executor.get());
 }
 
 void KinesisClient::PutRecordAsync(const PutRecordRequest& request, const PutRecordResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRecord(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::PutRecord, this, request, handler, context, m_executor.get());
 }
 
 PutRecordsOutcome KinesisClient::PutRecords(const PutRecordsRequest& request) const
@@ -669,18 +550,12 @@ PutRecordsOutcome KinesisClient::PutRecords(const PutRecordsRequest& request) co
 
 PutRecordsOutcomeCallable KinesisClient::PutRecordsCallable(const PutRecordsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRecordsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRecords(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::PutRecords, this, request, m_executor.get());
 }
 
 void KinesisClient::PutRecordsAsync(const PutRecordsRequest& request, const PutRecordsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRecords(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::PutRecords, this, request, handler, context, m_executor.get());
 }
 
 RegisterStreamConsumerOutcome KinesisClient::RegisterStreamConsumer(const RegisterStreamConsumerRequest& request) const
@@ -693,18 +568,12 @@ RegisterStreamConsumerOutcome KinesisClient::RegisterStreamConsumer(const Regist
 
 RegisterStreamConsumerOutcomeCallable KinesisClient::RegisterStreamConsumerCallable(const RegisterStreamConsumerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterStreamConsumerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterStreamConsumer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::RegisterStreamConsumer, this, request, m_executor.get());
 }
 
 void KinesisClient::RegisterStreamConsumerAsync(const RegisterStreamConsumerRequest& request, const RegisterStreamConsumerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterStreamConsumer(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::RegisterStreamConsumer, this, request, handler, context, m_executor.get());
 }
 
 RemoveTagsFromStreamOutcome KinesisClient::RemoveTagsFromStream(const RemoveTagsFromStreamRequest& request) const
@@ -717,18 +586,12 @@ RemoveTagsFromStreamOutcome KinesisClient::RemoveTagsFromStream(const RemoveTags
 
 RemoveTagsFromStreamOutcomeCallable KinesisClient::RemoveTagsFromStreamCallable(const RemoveTagsFromStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveTagsFromStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveTagsFromStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::RemoveTagsFromStream, this, request, m_executor.get());
 }
 
 void KinesisClient::RemoveTagsFromStreamAsync(const RemoveTagsFromStreamRequest& request, const RemoveTagsFromStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveTagsFromStream(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::RemoveTagsFromStream, this, request, handler, context, m_executor.get());
 }
 
 SplitShardOutcome KinesisClient::SplitShard(const SplitShardRequest& request) const
@@ -741,18 +604,12 @@ SplitShardOutcome KinesisClient::SplitShard(const SplitShardRequest& request) co
 
 SplitShardOutcomeCallable KinesisClient::SplitShardCallable(const SplitShardRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SplitShardOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SplitShard(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::SplitShard, this, request, m_executor.get());
 }
 
 void KinesisClient::SplitShardAsync(const SplitShardRequest& request, const SplitShardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SplitShard(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::SplitShard, this, request, handler, context, m_executor.get());
 }
 
 StartStreamEncryptionOutcome KinesisClient::StartStreamEncryption(const StartStreamEncryptionRequest& request) const
@@ -765,18 +622,12 @@ StartStreamEncryptionOutcome KinesisClient::StartStreamEncryption(const StartStr
 
 StartStreamEncryptionOutcomeCallable KinesisClient::StartStreamEncryptionCallable(const StartStreamEncryptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartStreamEncryptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartStreamEncryption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::StartStreamEncryption, this, request, m_executor.get());
 }
 
 void KinesisClient::StartStreamEncryptionAsync(const StartStreamEncryptionRequest& request, const StartStreamEncryptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartStreamEncryption(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::StartStreamEncryption, this, request, handler, context, m_executor.get());
 }
 
 StopStreamEncryptionOutcome KinesisClient::StopStreamEncryption(const StopStreamEncryptionRequest& request) const
@@ -789,18 +640,12 @@ StopStreamEncryptionOutcome KinesisClient::StopStreamEncryption(const StopStream
 
 StopStreamEncryptionOutcomeCallable KinesisClient::StopStreamEncryptionCallable(const StopStreamEncryptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopStreamEncryptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopStreamEncryption(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::StopStreamEncryption, this, request, m_executor.get());
 }
 
 void KinesisClient::StopStreamEncryptionAsync(const StopStreamEncryptionRequest& request, const StopStreamEncryptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopStreamEncryption(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::StopStreamEncryption, this, request, handler, context, m_executor.get());
 }
 
 SubscribeToShardOutcome KinesisClient::SubscribeToShard(SubscribeToShardRequest& request) const
@@ -816,18 +661,12 @@ SubscribeToShardOutcome KinesisClient::SubscribeToShard(SubscribeToShardRequest&
 
 SubscribeToShardOutcomeCallable KinesisClient::SubscribeToShardCallable(SubscribeToShardRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SubscribeToShardOutcome() > >(ALLOCATION_TAG, [this, &request](){ return this->SubscribeToShard(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableStreamingOperation(ALLOCATION_TAG, &KinesisClient::SubscribeToShard, this, request, m_executor.get());
 }
 
 void KinesisClient::SubscribeToShardAsync(SubscribeToShardRequest& request, const SubscribeToShardResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, &request, handler, context]()
-    {
-      handler(this, request, SubscribeToShard(request), context);
-    } );
+  MakeAsyncStreamingOperation(&KinesisClient::SubscribeToShard, this, request, handler, context, m_executor.get());
 }
 
 UpdateShardCountOutcome KinesisClient::UpdateShardCount(const UpdateShardCountRequest& request) const
@@ -840,18 +679,12 @@ UpdateShardCountOutcome KinesisClient::UpdateShardCount(const UpdateShardCountRe
 
 UpdateShardCountOutcomeCallable KinesisClient::UpdateShardCountCallable(const UpdateShardCountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateShardCountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateShardCount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::UpdateShardCount, this, request, m_executor.get());
 }
 
 void KinesisClient::UpdateShardCountAsync(const UpdateShardCountRequest& request, const UpdateShardCountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateShardCount(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::UpdateShardCount, this, request, handler, context, m_executor.get());
 }
 
 UpdateStreamModeOutcome KinesisClient::UpdateStreamMode(const UpdateStreamModeRequest& request) const
@@ -864,17 +697,11 @@ UpdateStreamModeOutcome KinesisClient::UpdateStreamMode(const UpdateStreamModeRe
 
 UpdateStreamModeOutcomeCallable KinesisClient::UpdateStreamModeCallable(const UpdateStreamModeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateStreamModeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateStreamMode(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KinesisClient::UpdateStreamMode, this, request, m_executor.get());
 }
 
 void KinesisClient::UpdateStreamModeAsync(const UpdateStreamModeRequest& request, const UpdateStreamModeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateStreamMode(request), context);
-    } );
+  MakeAsyncOperation(&KinesisClient::UpdateStreamMode, this, request, handler, context, m_executor.get());
 }
 

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -232,18 +233,12 @@ BatchDetectDominantLanguageOutcome ComprehendClient::BatchDetectDominantLanguage
 
 BatchDetectDominantLanguageOutcomeCallable ComprehendClient::BatchDetectDominantLanguageCallable(const BatchDetectDominantLanguageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDetectDominantLanguageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDetectDominantLanguage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::BatchDetectDominantLanguage, this, request, m_executor.get());
 }
 
 void ComprehendClient::BatchDetectDominantLanguageAsync(const BatchDetectDominantLanguageRequest& request, const BatchDetectDominantLanguageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDetectDominantLanguage(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::BatchDetectDominantLanguage, this, request, handler, context, m_executor.get());
 }
 
 BatchDetectEntitiesOutcome ComprehendClient::BatchDetectEntities(const BatchDetectEntitiesRequest& request) const
@@ -256,18 +251,12 @@ BatchDetectEntitiesOutcome ComprehendClient::BatchDetectEntities(const BatchDete
 
 BatchDetectEntitiesOutcomeCallable ComprehendClient::BatchDetectEntitiesCallable(const BatchDetectEntitiesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDetectEntitiesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDetectEntities(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::BatchDetectEntities, this, request, m_executor.get());
 }
 
 void ComprehendClient::BatchDetectEntitiesAsync(const BatchDetectEntitiesRequest& request, const BatchDetectEntitiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDetectEntities(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::BatchDetectEntities, this, request, handler, context, m_executor.get());
 }
 
 BatchDetectKeyPhrasesOutcome ComprehendClient::BatchDetectKeyPhrases(const BatchDetectKeyPhrasesRequest& request) const
@@ -280,18 +269,12 @@ BatchDetectKeyPhrasesOutcome ComprehendClient::BatchDetectKeyPhrases(const Batch
 
 BatchDetectKeyPhrasesOutcomeCallable ComprehendClient::BatchDetectKeyPhrasesCallable(const BatchDetectKeyPhrasesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDetectKeyPhrasesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDetectKeyPhrases(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::BatchDetectKeyPhrases, this, request, m_executor.get());
 }
 
 void ComprehendClient::BatchDetectKeyPhrasesAsync(const BatchDetectKeyPhrasesRequest& request, const BatchDetectKeyPhrasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDetectKeyPhrases(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::BatchDetectKeyPhrases, this, request, handler, context, m_executor.get());
 }
 
 BatchDetectSentimentOutcome ComprehendClient::BatchDetectSentiment(const BatchDetectSentimentRequest& request) const
@@ -304,18 +287,12 @@ BatchDetectSentimentOutcome ComprehendClient::BatchDetectSentiment(const BatchDe
 
 BatchDetectSentimentOutcomeCallable ComprehendClient::BatchDetectSentimentCallable(const BatchDetectSentimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDetectSentimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDetectSentiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::BatchDetectSentiment, this, request, m_executor.get());
 }
 
 void ComprehendClient::BatchDetectSentimentAsync(const BatchDetectSentimentRequest& request, const BatchDetectSentimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDetectSentiment(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::BatchDetectSentiment, this, request, handler, context, m_executor.get());
 }
 
 BatchDetectSyntaxOutcome ComprehendClient::BatchDetectSyntax(const BatchDetectSyntaxRequest& request) const
@@ -328,18 +305,12 @@ BatchDetectSyntaxOutcome ComprehendClient::BatchDetectSyntax(const BatchDetectSy
 
 BatchDetectSyntaxOutcomeCallable ComprehendClient::BatchDetectSyntaxCallable(const BatchDetectSyntaxRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDetectSyntaxOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDetectSyntax(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::BatchDetectSyntax, this, request, m_executor.get());
 }
 
 void ComprehendClient::BatchDetectSyntaxAsync(const BatchDetectSyntaxRequest& request, const BatchDetectSyntaxResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDetectSyntax(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::BatchDetectSyntax, this, request, handler, context, m_executor.get());
 }
 
 BatchDetectTargetedSentimentOutcome ComprehendClient::BatchDetectTargetedSentiment(const BatchDetectTargetedSentimentRequest& request) const
@@ -352,18 +323,12 @@ BatchDetectTargetedSentimentOutcome ComprehendClient::BatchDetectTargetedSentime
 
 BatchDetectTargetedSentimentOutcomeCallable ComprehendClient::BatchDetectTargetedSentimentCallable(const BatchDetectTargetedSentimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDetectTargetedSentimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDetectTargetedSentiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::BatchDetectTargetedSentiment, this, request, m_executor.get());
 }
 
 void ComprehendClient::BatchDetectTargetedSentimentAsync(const BatchDetectTargetedSentimentRequest& request, const BatchDetectTargetedSentimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDetectTargetedSentiment(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::BatchDetectTargetedSentiment, this, request, handler, context, m_executor.get());
 }
 
 ClassifyDocumentOutcome ComprehendClient::ClassifyDocument(const ClassifyDocumentRequest& request) const
@@ -376,18 +341,12 @@ ClassifyDocumentOutcome ComprehendClient::ClassifyDocument(const ClassifyDocumen
 
 ClassifyDocumentOutcomeCallable ComprehendClient::ClassifyDocumentCallable(const ClassifyDocumentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ClassifyDocumentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ClassifyDocument(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ClassifyDocument, this, request, m_executor.get());
 }
 
 void ComprehendClient::ClassifyDocumentAsync(const ClassifyDocumentRequest& request, const ClassifyDocumentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ClassifyDocument(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ClassifyDocument, this, request, handler, context, m_executor.get());
 }
 
 ContainsPiiEntitiesOutcome ComprehendClient::ContainsPiiEntities(const ContainsPiiEntitiesRequest& request) const
@@ -400,18 +359,12 @@ ContainsPiiEntitiesOutcome ComprehendClient::ContainsPiiEntities(const ContainsP
 
 ContainsPiiEntitiesOutcomeCallable ComprehendClient::ContainsPiiEntitiesCallable(const ContainsPiiEntitiesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ContainsPiiEntitiesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ContainsPiiEntities(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ContainsPiiEntities, this, request, m_executor.get());
 }
 
 void ComprehendClient::ContainsPiiEntitiesAsync(const ContainsPiiEntitiesRequest& request, const ContainsPiiEntitiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ContainsPiiEntities(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ContainsPiiEntities, this, request, handler, context, m_executor.get());
 }
 
 CreateDocumentClassifierOutcome ComprehendClient::CreateDocumentClassifier(const CreateDocumentClassifierRequest& request) const
@@ -424,18 +377,12 @@ CreateDocumentClassifierOutcome ComprehendClient::CreateDocumentClassifier(const
 
 CreateDocumentClassifierOutcomeCallable ComprehendClient::CreateDocumentClassifierCallable(const CreateDocumentClassifierRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDocumentClassifierOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDocumentClassifier(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::CreateDocumentClassifier, this, request, m_executor.get());
 }
 
 void ComprehendClient::CreateDocumentClassifierAsync(const CreateDocumentClassifierRequest& request, const CreateDocumentClassifierResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDocumentClassifier(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::CreateDocumentClassifier, this, request, handler, context, m_executor.get());
 }
 
 CreateEndpointOutcome ComprehendClient::CreateEndpoint(const CreateEndpointRequest& request) const
@@ -448,18 +395,12 @@ CreateEndpointOutcome ComprehendClient::CreateEndpoint(const CreateEndpointReque
 
 CreateEndpointOutcomeCallable ComprehendClient::CreateEndpointCallable(const CreateEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::CreateEndpoint, this, request, m_executor.get());
 }
 
 void ComprehendClient::CreateEndpointAsync(const CreateEndpointRequest& request, const CreateEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::CreateEndpoint, this, request, handler, context, m_executor.get());
 }
 
 CreateEntityRecognizerOutcome ComprehendClient::CreateEntityRecognizer(const CreateEntityRecognizerRequest& request) const
@@ -472,18 +413,12 @@ CreateEntityRecognizerOutcome ComprehendClient::CreateEntityRecognizer(const Cre
 
 CreateEntityRecognizerOutcomeCallable ComprehendClient::CreateEntityRecognizerCallable(const CreateEntityRecognizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateEntityRecognizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateEntityRecognizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::CreateEntityRecognizer, this, request, m_executor.get());
 }
 
 void ComprehendClient::CreateEntityRecognizerAsync(const CreateEntityRecognizerRequest& request, const CreateEntityRecognizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateEntityRecognizer(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::CreateEntityRecognizer, this, request, handler, context, m_executor.get());
 }
 
 DeleteDocumentClassifierOutcome ComprehendClient::DeleteDocumentClassifier(const DeleteDocumentClassifierRequest& request) const
@@ -496,18 +431,12 @@ DeleteDocumentClassifierOutcome ComprehendClient::DeleteDocumentClassifier(const
 
 DeleteDocumentClassifierOutcomeCallable ComprehendClient::DeleteDocumentClassifierCallable(const DeleteDocumentClassifierRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDocumentClassifierOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDocumentClassifier(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DeleteDocumentClassifier, this, request, m_executor.get());
 }
 
 void ComprehendClient::DeleteDocumentClassifierAsync(const DeleteDocumentClassifierRequest& request, const DeleteDocumentClassifierResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDocumentClassifier(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DeleteDocumentClassifier, this, request, handler, context, m_executor.get());
 }
 
 DeleteEndpointOutcome ComprehendClient::DeleteEndpoint(const DeleteEndpointRequest& request) const
@@ -520,18 +449,12 @@ DeleteEndpointOutcome ComprehendClient::DeleteEndpoint(const DeleteEndpointReque
 
 DeleteEndpointOutcomeCallable ComprehendClient::DeleteEndpointCallable(const DeleteEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DeleteEndpoint, this, request, m_executor.get());
 }
 
 void ComprehendClient::DeleteEndpointAsync(const DeleteEndpointRequest& request, const DeleteEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DeleteEndpoint, this, request, handler, context, m_executor.get());
 }
 
 DeleteEntityRecognizerOutcome ComprehendClient::DeleteEntityRecognizer(const DeleteEntityRecognizerRequest& request) const
@@ -544,18 +467,12 @@ DeleteEntityRecognizerOutcome ComprehendClient::DeleteEntityRecognizer(const Del
 
 DeleteEntityRecognizerOutcomeCallable ComprehendClient::DeleteEntityRecognizerCallable(const DeleteEntityRecognizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEntityRecognizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEntityRecognizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DeleteEntityRecognizer, this, request, m_executor.get());
 }
 
 void ComprehendClient::DeleteEntityRecognizerAsync(const DeleteEntityRecognizerRequest& request, const DeleteEntityRecognizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEntityRecognizer(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DeleteEntityRecognizer, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourcePolicyOutcome ComprehendClient::DeleteResourcePolicy(const DeleteResourcePolicyRequest& request) const
@@ -568,18 +485,12 @@ DeleteResourcePolicyOutcome ComprehendClient::DeleteResourcePolicy(const DeleteR
 
 DeleteResourcePolicyOutcomeCallable ComprehendClient::DeleteResourcePolicyCallable(const DeleteResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DeleteResourcePolicy, this, request, m_executor.get());
 }
 
 void ComprehendClient::DeleteResourcePolicyAsync(const DeleteResourcePolicyRequest& request, const DeleteResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DeleteResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 DescribeDocumentClassificationJobOutcome ComprehendClient::DescribeDocumentClassificationJob(const DescribeDocumentClassificationJobRequest& request) const
@@ -592,18 +503,12 @@ DescribeDocumentClassificationJobOutcome ComprehendClient::DescribeDocumentClass
 
 DescribeDocumentClassificationJobOutcomeCallable ComprehendClient::DescribeDocumentClassificationJobCallable(const DescribeDocumentClassificationJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDocumentClassificationJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDocumentClassificationJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeDocumentClassificationJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeDocumentClassificationJobAsync(const DescribeDocumentClassificationJobRequest& request, const DescribeDocumentClassificationJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDocumentClassificationJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeDocumentClassificationJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeDocumentClassifierOutcome ComprehendClient::DescribeDocumentClassifier(const DescribeDocumentClassifierRequest& request) const
@@ -616,18 +521,12 @@ DescribeDocumentClassifierOutcome ComprehendClient::DescribeDocumentClassifier(c
 
 DescribeDocumentClassifierOutcomeCallable ComprehendClient::DescribeDocumentClassifierCallable(const DescribeDocumentClassifierRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDocumentClassifierOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDocumentClassifier(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeDocumentClassifier, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeDocumentClassifierAsync(const DescribeDocumentClassifierRequest& request, const DescribeDocumentClassifierResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDocumentClassifier(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeDocumentClassifier, this, request, handler, context, m_executor.get());
 }
 
 DescribeDominantLanguageDetectionJobOutcome ComprehendClient::DescribeDominantLanguageDetectionJob(const DescribeDominantLanguageDetectionJobRequest& request) const
@@ -640,18 +539,12 @@ DescribeDominantLanguageDetectionJobOutcome ComprehendClient::DescribeDominantLa
 
 DescribeDominantLanguageDetectionJobOutcomeCallable ComprehendClient::DescribeDominantLanguageDetectionJobCallable(const DescribeDominantLanguageDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDominantLanguageDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDominantLanguageDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeDominantLanguageDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeDominantLanguageDetectionJobAsync(const DescribeDominantLanguageDetectionJobRequest& request, const DescribeDominantLanguageDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDominantLanguageDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeDominantLanguageDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeEndpointOutcome ComprehendClient::DescribeEndpoint(const DescribeEndpointRequest& request) const
@@ -664,18 +557,12 @@ DescribeEndpointOutcome ComprehendClient::DescribeEndpoint(const DescribeEndpoin
 
 DescribeEndpointOutcomeCallable ComprehendClient::DescribeEndpointCallable(const DescribeEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeEndpoint, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeEndpointAsync(const DescribeEndpointRequest& request, const DescribeEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeEndpoint, this, request, handler, context, m_executor.get());
 }
 
 DescribeEntitiesDetectionJobOutcome ComprehendClient::DescribeEntitiesDetectionJob(const DescribeEntitiesDetectionJobRequest& request) const
@@ -688,18 +575,12 @@ DescribeEntitiesDetectionJobOutcome ComprehendClient::DescribeEntitiesDetectionJ
 
 DescribeEntitiesDetectionJobOutcomeCallable ComprehendClient::DescribeEntitiesDetectionJobCallable(const DescribeEntitiesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEntitiesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEntitiesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeEntitiesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeEntitiesDetectionJobAsync(const DescribeEntitiesDetectionJobRequest& request, const DescribeEntitiesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEntitiesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeEntitiesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeEntityRecognizerOutcome ComprehendClient::DescribeEntityRecognizer(const DescribeEntityRecognizerRequest& request) const
@@ -712,18 +593,12 @@ DescribeEntityRecognizerOutcome ComprehendClient::DescribeEntityRecognizer(const
 
 DescribeEntityRecognizerOutcomeCallable ComprehendClient::DescribeEntityRecognizerCallable(const DescribeEntityRecognizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEntityRecognizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEntityRecognizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeEntityRecognizer, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeEntityRecognizerAsync(const DescribeEntityRecognizerRequest& request, const DescribeEntityRecognizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEntityRecognizer(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeEntityRecognizer, this, request, handler, context, m_executor.get());
 }
 
 DescribeEventsDetectionJobOutcome ComprehendClient::DescribeEventsDetectionJob(const DescribeEventsDetectionJobRequest& request) const
@@ -736,18 +611,12 @@ DescribeEventsDetectionJobOutcome ComprehendClient::DescribeEventsDetectionJob(c
 
 DescribeEventsDetectionJobOutcomeCallable ComprehendClient::DescribeEventsDetectionJobCallable(const DescribeEventsDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEventsDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEventsDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeEventsDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeEventsDetectionJobAsync(const DescribeEventsDetectionJobRequest& request, const DescribeEventsDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEventsDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeEventsDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeKeyPhrasesDetectionJobOutcome ComprehendClient::DescribeKeyPhrasesDetectionJob(const DescribeKeyPhrasesDetectionJobRequest& request) const
@@ -760,18 +629,12 @@ DescribeKeyPhrasesDetectionJobOutcome ComprehendClient::DescribeKeyPhrasesDetect
 
 DescribeKeyPhrasesDetectionJobOutcomeCallable ComprehendClient::DescribeKeyPhrasesDetectionJobCallable(const DescribeKeyPhrasesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeKeyPhrasesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeKeyPhrasesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeKeyPhrasesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeKeyPhrasesDetectionJobAsync(const DescribeKeyPhrasesDetectionJobRequest& request, const DescribeKeyPhrasesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeKeyPhrasesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeKeyPhrasesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DescribePiiEntitiesDetectionJobOutcome ComprehendClient::DescribePiiEntitiesDetectionJob(const DescribePiiEntitiesDetectionJobRequest& request) const
@@ -784,18 +647,12 @@ DescribePiiEntitiesDetectionJobOutcome ComprehendClient::DescribePiiEntitiesDete
 
 DescribePiiEntitiesDetectionJobOutcomeCallable ComprehendClient::DescribePiiEntitiesDetectionJobCallable(const DescribePiiEntitiesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribePiiEntitiesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribePiiEntitiesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribePiiEntitiesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribePiiEntitiesDetectionJobAsync(const DescribePiiEntitiesDetectionJobRequest& request, const DescribePiiEntitiesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribePiiEntitiesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribePiiEntitiesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeResourcePolicyOutcome ComprehendClient::DescribeResourcePolicy(const DescribeResourcePolicyRequest& request) const
@@ -808,18 +665,12 @@ DescribeResourcePolicyOutcome ComprehendClient::DescribeResourcePolicy(const Des
 
 DescribeResourcePolicyOutcomeCallable ComprehendClient::DescribeResourcePolicyCallable(const DescribeResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeResourcePolicy, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeResourcePolicyAsync(const DescribeResourcePolicyRequest& request, const DescribeResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 DescribeSentimentDetectionJobOutcome ComprehendClient::DescribeSentimentDetectionJob(const DescribeSentimentDetectionJobRequest& request) const
@@ -832,18 +683,12 @@ DescribeSentimentDetectionJobOutcome ComprehendClient::DescribeSentimentDetectio
 
 DescribeSentimentDetectionJobOutcomeCallable ComprehendClient::DescribeSentimentDetectionJobCallable(const DescribeSentimentDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSentimentDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSentimentDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeSentimentDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeSentimentDetectionJobAsync(const DescribeSentimentDetectionJobRequest& request, const DescribeSentimentDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSentimentDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeSentimentDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeTargetedSentimentDetectionJobOutcome ComprehendClient::DescribeTargetedSentimentDetectionJob(const DescribeTargetedSentimentDetectionJobRequest& request) const
@@ -856,18 +701,12 @@ DescribeTargetedSentimentDetectionJobOutcome ComprehendClient::DescribeTargetedS
 
 DescribeTargetedSentimentDetectionJobOutcomeCallable ComprehendClient::DescribeTargetedSentimentDetectionJobCallable(const DescribeTargetedSentimentDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTargetedSentimentDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTargetedSentimentDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeTargetedSentimentDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeTargetedSentimentDetectionJobAsync(const DescribeTargetedSentimentDetectionJobRequest& request, const DescribeTargetedSentimentDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTargetedSentimentDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeTargetedSentimentDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeTopicsDetectionJobOutcome ComprehendClient::DescribeTopicsDetectionJob(const DescribeTopicsDetectionJobRequest& request) const
@@ -880,18 +719,12 @@ DescribeTopicsDetectionJobOutcome ComprehendClient::DescribeTopicsDetectionJob(c
 
 DescribeTopicsDetectionJobOutcomeCallable ComprehendClient::DescribeTopicsDetectionJobCallable(const DescribeTopicsDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeTopicsDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeTopicsDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DescribeTopicsDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::DescribeTopicsDetectionJobAsync(const DescribeTopicsDetectionJobRequest& request, const DescribeTopicsDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeTopicsDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DescribeTopicsDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 DetectDominantLanguageOutcome ComprehendClient::DetectDominantLanguage(const DetectDominantLanguageRequest& request) const
@@ -904,18 +737,12 @@ DetectDominantLanguageOutcome ComprehendClient::DetectDominantLanguage(const Det
 
 DetectDominantLanguageOutcomeCallable ComprehendClient::DetectDominantLanguageCallable(const DetectDominantLanguageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetectDominantLanguageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetectDominantLanguage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DetectDominantLanguage, this, request, m_executor.get());
 }
 
 void ComprehendClient::DetectDominantLanguageAsync(const DetectDominantLanguageRequest& request, const DetectDominantLanguageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetectDominantLanguage(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DetectDominantLanguage, this, request, handler, context, m_executor.get());
 }
 
 DetectEntitiesOutcome ComprehendClient::DetectEntities(const DetectEntitiesRequest& request) const
@@ -928,18 +755,12 @@ DetectEntitiesOutcome ComprehendClient::DetectEntities(const DetectEntitiesReque
 
 DetectEntitiesOutcomeCallable ComprehendClient::DetectEntitiesCallable(const DetectEntitiesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetectEntitiesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetectEntities(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DetectEntities, this, request, m_executor.get());
 }
 
 void ComprehendClient::DetectEntitiesAsync(const DetectEntitiesRequest& request, const DetectEntitiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetectEntities(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DetectEntities, this, request, handler, context, m_executor.get());
 }
 
 DetectKeyPhrasesOutcome ComprehendClient::DetectKeyPhrases(const DetectKeyPhrasesRequest& request) const
@@ -952,18 +773,12 @@ DetectKeyPhrasesOutcome ComprehendClient::DetectKeyPhrases(const DetectKeyPhrase
 
 DetectKeyPhrasesOutcomeCallable ComprehendClient::DetectKeyPhrasesCallable(const DetectKeyPhrasesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetectKeyPhrasesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetectKeyPhrases(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DetectKeyPhrases, this, request, m_executor.get());
 }
 
 void ComprehendClient::DetectKeyPhrasesAsync(const DetectKeyPhrasesRequest& request, const DetectKeyPhrasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetectKeyPhrases(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DetectKeyPhrases, this, request, handler, context, m_executor.get());
 }
 
 DetectPiiEntitiesOutcome ComprehendClient::DetectPiiEntities(const DetectPiiEntitiesRequest& request) const
@@ -976,18 +791,12 @@ DetectPiiEntitiesOutcome ComprehendClient::DetectPiiEntities(const DetectPiiEnti
 
 DetectPiiEntitiesOutcomeCallable ComprehendClient::DetectPiiEntitiesCallable(const DetectPiiEntitiesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetectPiiEntitiesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetectPiiEntities(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DetectPiiEntities, this, request, m_executor.get());
 }
 
 void ComprehendClient::DetectPiiEntitiesAsync(const DetectPiiEntitiesRequest& request, const DetectPiiEntitiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetectPiiEntities(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DetectPiiEntities, this, request, handler, context, m_executor.get());
 }
 
 DetectSentimentOutcome ComprehendClient::DetectSentiment(const DetectSentimentRequest& request) const
@@ -1000,18 +809,12 @@ DetectSentimentOutcome ComprehendClient::DetectSentiment(const DetectSentimentRe
 
 DetectSentimentOutcomeCallable ComprehendClient::DetectSentimentCallable(const DetectSentimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetectSentimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetectSentiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DetectSentiment, this, request, m_executor.get());
 }
 
 void ComprehendClient::DetectSentimentAsync(const DetectSentimentRequest& request, const DetectSentimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetectSentiment(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DetectSentiment, this, request, handler, context, m_executor.get());
 }
 
 DetectSyntaxOutcome ComprehendClient::DetectSyntax(const DetectSyntaxRequest& request) const
@@ -1024,18 +827,12 @@ DetectSyntaxOutcome ComprehendClient::DetectSyntax(const DetectSyntaxRequest& re
 
 DetectSyntaxOutcomeCallable ComprehendClient::DetectSyntaxCallable(const DetectSyntaxRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetectSyntaxOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetectSyntax(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DetectSyntax, this, request, m_executor.get());
 }
 
 void ComprehendClient::DetectSyntaxAsync(const DetectSyntaxRequest& request, const DetectSyntaxResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetectSyntax(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DetectSyntax, this, request, handler, context, m_executor.get());
 }
 
 DetectTargetedSentimentOutcome ComprehendClient::DetectTargetedSentiment(const DetectTargetedSentimentRequest& request) const
@@ -1048,18 +845,12 @@ DetectTargetedSentimentOutcome ComprehendClient::DetectTargetedSentiment(const D
 
 DetectTargetedSentimentOutcomeCallable ComprehendClient::DetectTargetedSentimentCallable(const DetectTargetedSentimentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetectTargetedSentimentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetectTargetedSentiment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::DetectTargetedSentiment, this, request, m_executor.get());
 }
 
 void ComprehendClient::DetectTargetedSentimentAsync(const DetectTargetedSentimentRequest& request, const DetectTargetedSentimentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetectTargetedSentiment(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::DetectTargetedSentiment, this, request, handler, context, m_executor.get());
 }
 
 ImportModelOutcome ComprehendClient::ImportModel(const ImportModelRequest& request) const
@@ -1072,18 +863,12 @@ ImportModelOutcome ComprehendClient::ImportModel(const ImportModelRequest& reque
 
 ImportModelOutcomeCallable ComprehendClient::ImportModelCallable(const ImportModelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ImportModelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ImportModel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ImportModel, this, request, m_executor.get());
 }
 
 void ComprehendClient::ImportModelAsync(const ImportModelRequest& request, const ImportModelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ImportModel(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ImportModel, this, request, handler, context, m_executor.get());
 }
 
 ListDocumentClassificationJobsOutcome ComprehendClient::ListDocumentClassificationJobs(const ListDocumentClassificationJobsRequest& request) const
@@ -1096,18 +881,12 @@ ListDocumentClassificationJobsOutcome ComprehendClient::ListDocumentClassificati
 
 ListDocumentClassificationJobsOutcomeCallable ComprehendClient::ListDocumentClassificationJobsCallable(const ListDocumentClassificationJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDocumentClassificationJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDocumentClassificationJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListDocumentClassificationJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListDocumentClassificationJobsAsync(const ListDocumentClassificationJobsRequest& request, const ListDocumentClassificationJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDocumentClassificationJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListDocumentClassificationJobs, this, request, handler, context, m_executor.get());
 }
 
 ListDocumentClassifierSummariesOutcome ComprehendClient::ListDocumentClassifierSummaries(const ListDocumentClassifierSummariesRequest& request) const
@@ -1120,18 +899,12 @@ ListDocumentClassifierSummariesOutcome ComprehendClient::ListDocumentClassifierS
 
 ListDocumentClassifierSummariesOutcomeCallable ComprehendClient::ListDocumentClassifierSummariesCallable(const ListDocumentClassifierSummariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDocumentClassifierSummariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDocumentClassifierSummaries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListDocumentClassifierSummaries, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListDocumentClassifierSummariesAsync(const ListDocumentClassifierSummariesRequest& request, const ListDocumentClassifierSummariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDocumentClassifierSummaries(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListDocumentClassifierSummaries, this, request, handler, context, m_executor.get());
 }
 
 ListDocumentClassifiersOutcome ComprehendClient::ListDocumentClassifiers(const ListDocumentClassifiersRequest& request) const
@@ -1144,18 +917,12 @@ ListDocumentClassifiersOutcome ComprehendClient::ListDocumentClassifiers(const L
 
 ListDocumentClassifiersOutcomeCallable ComprehendClient::ListDocumentClassifiersCallable(const ListDocumentClassifiersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDocumentClassifiersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDocumentClassifiers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListDocumentClassifiers, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListDocumentClassifiersAsync(const ListDocumentClassifiersRequest& request, const ListDocumentClassifiersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDocumentClassifiers(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListDocumentClassifiers, this, request, handler, context, m_executor.get());
 }
 
 ListDominantLanguageDetectionJobsOutcome ComprehendClient::ListDominantLanguageDetectionJobs(const ListDominantLanguageDetectionJobsRequest& request) const
@@ -1168,18 +935,12 @@ ListDominantLanguageDetectionJobsOutcome ComprehendClient::ListDominantLanguageD
 
 ListDominantLanguageDetectionJobsOutcomeCallable ComprehendClient::ListDominantLanguageDetectionJobsCallable(const ListDominantLanguageDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDominantLanguageDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDominantLanguageDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListDominantLanguageDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListDominantLanguageDetectionJobsAsync(const ListDominantLanguageDetectionJobsRequest& request, const ListDominantLanguageDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDominantLanguageDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListDominantLanguageDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 ListEndpointsOutcome ComprehendClient::ListEndpoints(const ListEndpointsRequest& request) const
@@ -1192,18 +953,12 @@ ListEndpointsOutcome ComprehendClient::ListEndpoints(const ListEndpointsRequest&
 
 ListEndpointsOutcomeCallable ComprehendClient::ListEndpointsCallable(const ListEndpointsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEndpointsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEndpoints(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListEndpoints, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListEndpointsAsync(const ListEndpointsRequest& request, const ListEndpointsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEndpoints(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListEndpoints, this, request, handler, context, m_executor.get());
 }
 
 ListEntitiesDetectionJobsOutcome ComprehendClient::ListEntitiesDetectionJobs(const ListEntitiesDetectionJobsRequest& request) const
@@ -1216,18 +971,12 @@ ListEntitiesDetectionJobsOutcome ComprehendClient::ListEntitiesDetectionJobs(con
 
 ListEntitiesDetectionJobsOutcomeCallable ComprehendClient::ListEntitiesDetectionJobsCallable(const ListEntitiesDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEntitiesDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEntitiesDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListEntitiesDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListEntitiesDetectionJobsAsync(const ListEntitiesDetectionJobsRequest& request, const ListEntitiesDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEntitiesDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListEntitiesDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 ListEntityRecognizerSummariesOutcome ComprehendClient::ListEntityRecognizerSummaries(const ListEntityRecognizerSummariesRequest& request) const
@@ -1240,18 +989,12 @@ ListEntityRecognizerSummariesOutcome ComprehendClient::ListEntityRecognizerSumma
 
 ListEntityRecognizerSummariesOutcomeCallable ComprehendClient::ListEntityRecognizerSummariesCallable(const ListEntityRecognizerSummariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEntityRecognizerSummariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEntityRecognizerSummaries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListEntityRecognizerSummaries, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListEntityRecognizerSummariesAsync(const ListEntityRecognizerSummariesRequest& request, const ListEntityRecognizerSummariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEntityRecognizerSummaries(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListEntityRecognizerSummaries, this, request, handler, context, m_executor.get());
 }
 
 ListEntityRecognizersOutcome ComprehendClient::ListEntityRecognizers(const ListEntityRecognizersRequest& request) const
@@ -1264,18 +1007,12 @@ ListEntityRecognizersOutcome ComprehendClient::ListEntityRecognizers(const ListE
 
 ListEntityRecognizersOutcomeCallable ComprehendClient::ListEntityRecognizersCallable(const ListEntityRecognizersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEntityRecognizersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEntityRecognizers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListEntityRecognizers, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListEntityRecognizersAsync(const ListEntityRecognizersRequest& request, const ListEntityRecognizersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEntityRecognizers(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListEntityRecognizers, this, request, handler, context, m_executor.get());
 }
 
 ListEventsDetectionJobsOutcome ComprehendClient::ListEventsDetectionJobs(const ListEventsDetectionJobsRequest& request) const
@@ -1288,18 +1025,12 @@ ListEventsDetectionJobsOutcome ComprehendClient::ListEventsDetectionJobs(const L
 
 ListEventsDetectionJobsOutcomeCallable ComprehendClient::ListEventsDetectionJobsCallable(const ListEventsDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListEventsDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListEventsDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListEventsDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListEventsDetectionJobsAsync(const ListEventsDetectionJobsRequest& request, const ListEventsDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListEventsDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListEventsDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 ListKeyPhrasesDetectionJobsOutcome ComprehendClient::ListKeyPhrasesDetectionJobs(const ListKeyPhrasesDetectionJobsRequest& request) const
@@ -1312,18 +1043,12 @@ ListKeyPhrasesDetectionJobsOutcome ComprehendClient::ListKeyPhrasesDetectionJobs
 
 ListKeyPhrasesDetectionJobsOutcomeCallable ComprehendClient::ListKeyPhrasesDetectionJobsCallable(const ListKeyPhrasesDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListKeyPhrasesDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListKeyPhrasesDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListKeyPhrasesDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListKeyPhrasesDetectionJobsAsync(const ListKeyPhrasesDetectionJobsRequest& request, const ListKeyPhrasesDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListKeyPhrasesDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListKeyPhrasesDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 ListPiiEntitiesDetectionJobsOutcome ComprehendClient::ListPiiEntitiesDetectionJobs(const ListPiiEntitiesDetectionJobsRequest& request) const
@@ -1336,18 +1061,12 @@ ListPiiEntitiesDetectionJobsOutcome ComprehendClient::ListPiiEntitiesDetectionJo
 
 ListPiiEntitiesDetectionJobsOutcomeCallable ComprehendClient::ListPiiEntitiesDetectionJobsCallable(const ListPiiEntitiesDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPiiEntitiesDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPiiEntitiesDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListPiiEntitiesDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListPiiEntitiesDetectionJobsAsync(const ListPiiEntitiesDetectionJobsRequest& request, const ListPiiEntitiesDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPiiEntitiesDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListPiiEntitiesDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 ListSentimentDetectionJobsOutcome ComprehendClient::ListSentimentDetectionJobs(const ListSentimentDetectionJobsRequest& request) const
@@ -1360,18 +1079,12 @@ ListSentimentDetectionJobsOutcome ComprehendClient::ListSentimentDetectionJobs(c
 
 ListSentimentDetectionJobsOutcomeCallable ComprehendClient::ListSentimentDetectionJobsCallable(const ListSentimentDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSentimentDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSentimentDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListSentimentDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListSentimentDetectionJobsAsync(const ListSentimentDetectionJobsRequest& request, const ListSentimentDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSentimentDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListSentimentDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome ComprehendClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1384,18 +1097,12 @@ ListTagsForResourceOutcome ComprehendClient::ListTagsForResource(const ListTagsF
 
 ListTagsForResourceOutcomeCallable ComprehendClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListTargetedSentimentDetectionJobsOutcome ComprehendClient::ListTargetedSentimentDetectionJobs(const ListTargetedSentimentDetectionJobsRequest& request) const
@@ -1408,18 +1115,12 @@ ListTargetedSentimentDetectionJobsOutcome ComprehendClient::ListTargetedSentimen
 
 ListTargetedSentimentDetectionJobsOutcomeCallable ComprehendClient::ListTargetedSentimentDetectionJobsCallable(const ListTargetedSentimentDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTargetedSentimentDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTargetedSentimentDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListTargetedSentimentDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListTargetedSentimentDetectionJobsAsync(const ListTargetedSentimentDetectionJobsRequest& request, const ListTargetedSentimentDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTargetedSentimentDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListTargetedSentimentDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 ListTopicsDetectionJobsOutcome ComprehendClient::ListTopicsDetectionJobs(const ListTopicsDetectionJobsRequest& request) const
@@ -1432,18 +1133,12 @@ ListTopicsDetectionJobsOutcome ComprehendClient::ListTopicsDetectionJobs(const L
 
 ListTopicsDetectionJobsOutcomeCallable ComprehendClient::ListTopicsDetectionJobsCallable(const ListTopicsDetectionJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTopicsDetectionJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTopicsDetectionJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::ListTopicsDetectionJobs, this, request, m_executor.get());
 }
 
 void ComprehendClient::ListTopicsDetectionJobsAsync(const ListTopicsDetectionJobsRequest& request, const ListTopicsDetectionJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTopicsDetectionJobs(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::ListTopicsDetectionJobs, this, request, handler, context, m_executor.get());
 }
 
 PutResourcePolicyOutcome ComprehendClient::PutResourcePolicy(const PutResourcePolicyRequest& request) const
@@ -1456,18 +1151,12 @@ PutResourcePolicyOutcome ComprehendClient::PutResourcePolicy(const PutResourcePo
 
 PutResourcePolicyOutcomeCallable ComprehendClient::PutResourcePolicyCallable(const PutResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::PutResourcePolicy, this, request, m_executor.get());
 }
 
 void ComprehendClient::PutResourcePolicyAsync(const PutResourcePolicyRequest& request, const PutResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::PutResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 StartDocumentClassificationJobOutcome ComprehendClient::StartDocumentClassificationJob(const StartDocumentClassificationJobRequest& request) const
@@ -1480,18 +1169,12 @@ StartDocumentClassificationJobOutcome ComprehendClient::StartDocumentClassificat
 
 StartDocumentClassificationJobOutcomeCallable ComprehendClient::StartDocumentClassificationJobCallable(const StartDocumentClassificationJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartDocumentClassificationJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartDocumentClassificationJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartDocumentClassificationJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartDocumentClassificationJobAsync(const StartDocumentClassificationJobRequest& request, const StartDocumentClassificationJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartDocumentClassificationJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartDocumentClassificationJob, this, request, handler, context, m_executor.get());
 }
 
 StartDominantLanguageDetectionJobOutcome ComprehendClient::StartDominantLanguageDetectionJob(const StartDominantLanguageDetectionJobRequest& request) const
@@ -1504,18 +1187,12 @@ StartDominantLanguageDetectionJobOutcome ComprehendClient::StartDominantLanguage
 
 StartDominantLanguageDetectionJobOutcomeCallable ComprehendClient::StartDominantLanguageDetectionJobCallable(const StartDominantLanguageDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartDominantLanguageDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartDominantLanguageDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartDominantLanguageDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartDominantLanguageDetectionJobAsync(const StartDominantLanguageDetectionJobRequest& request, const StartDominantLanguageDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartDominantLanguageDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartDominantLanguageDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StartEntitiesDetectionJobOutcome ComprehendClient::StartEntitiesDetectionJob(const StartEntitiesDetectionJobRequest& request) const
@@ -1528,18 +1205,12 @@ StartEntitiesDetectionJobOutcome ComprehendClient::StartEntitiesDetectionJob(con
 
 StartEntitiesDetectionJobOutcomeCallable ComprehendClient::StartEntitiesDetectionJobCallable(const StartEntitiesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartEntitiesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartEntitiesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartEntitiesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartEntitiesDetectionJobAsync(const StartEntitiesDetectionJobRequest& request, const StartEntitiesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartEntitiesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartEntitiesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StartEventsDetectionJobOutcome ComprehendClient::StartEventsDetectionJob(const StartEventsDetectionJobRequest& request) const
@@ -1552,18 +1223,12 @@ StartEventsDetectionJobOutcome ComprehendClient::StartEventsDetectionJob(const S
 
 StartEventsDetectionJobOutcomeCallable ComprehendClient::StartEventsDetectionJobCallable(const StartEventsDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartEventsDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartEventsDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartEventsDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartEventsDetectionJobAsync(const StartEventsDetectionJobRequest& request, const StartEventsDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartEventsDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartEventsDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StartKeyPhrasesDetectionJobOutcome ComprehendClient::StartKeyPhrasesDetectionJob(const StartKeyPhrasesDetectionJobRequest& request) const
@@ -1576,18 +1241,12 @@ StartKeyPhrasesDetectionJobOutcome ComprehendClient::StartKeyPhrasesDetectionJob
 
 StartKeyPhrasesDetectionJobOutcomeCallable ComprehendClient::StartKeyPhrasesDetectionJobCallable(const StartKeyPhrasesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartKeyPhrasesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartKeyPhrasesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartKeyPhrasesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartKeyPhrasesDetectionJobAsync(const StartKeyPhrasesDetectionJobRequest& request, const StartKeyPhrasesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartKeyPhrasesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartKeyPhrasesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StartPiiEntitiesDetectionJobOutcome ComprehendClient::StartPiiEntitiesDetectionJob(const StartPiiEntitiesDetectionJobRequest& request) const
@@ -1600,18 +1259,12 @@ StartPiiEntitiesDetectionJobOutcome ComprehendClient::StartPiiEntitiesDetectionJ
 
 StartPiiEntitiesDetectionJobOutcomeCallable ComprehendClient::StartPiiEntitiesDetectionJobCallable(const StartPiiEntitiesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartPiiEntitiesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartPiiEntitiesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartPiiEntitiesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartPiiEntitiesDetectionJobAsync(const StartPiiEntitiesDetectionJobRequest& request, const StartPiiEntitiesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartPiiEntitiesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartPiiEntitiesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StartSentimentDetectionJobOutcome ComprehendClient::StartSentimentDetectionJob(const StartSentimentDetectionJobRequest& request) const
@@ -1624,18 +1277,12 @@ StartSentimentDetectionJobOutcome ComprehendClient::StartSentimentDetectionJob(c
 
 StartSentimentDetectionJobOutcomeCallable ComprehendClient::StartSentimentDetectionJobCallable(const StartSentimentDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartSentimentDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartSentimentDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartSentimentDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartSentimentDetectionJobAsync(const StartSentimentDetectionJobRequest& request, const StartSentimentDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartSentimentDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartSentimentDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StartTargetedSentimentDetectionJobOutcome ComprehendClient::StartTargetedSentimentDetectionJob(const StartTargetedSentimentDetectionJobRequest& request) const
@@ -1648,18 +1295,12 @@ StartTargetedSentimentDetectionJobOutcome ComprehendClient::StartTargetedSentime
 
 StartTargetedSentimentDetectionJobOutcomeCallable ComprehendClient::StartTargetedSentimentDetectionJobCallable(const StartTargetedSentimentDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartTargetedSentimentDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartTargetedSentimentDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartTargetedSentimentDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartTargetedSentimentDetectionJobAsync(const StartTargetedSentimentDetectionJobRequest& request, const StartTargetedSentimentDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartTargetedSentimentDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartTargetedSentimentDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StartTopicsDetectionJobOutcome ComprehendClient::StartTopicsDetectionJob(const StartTopicsDetectionJobRequest& request) const
@@ -1672,18 +1313,12 @@ StartTopicsDetectionJobOutcome ComprehendClient::StartTopicsDetectionJob(const S
 
 StartTopicsDetectionJobOutcomeCallable ComprehendClient::StartTopicsDetectionJobCallable(const StartTopicsDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartTopicsDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartTopicsDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StartTopicsDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StartTopicsDetectionJobAsync(const StartTopicsDetectionJobRequest& request, const StartTopicsDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartTopicsDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StartTopicsDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopDominantLanguageDetectionJobOutcome ComprehendClient::StopDominantLanguageDetectionJob(const StopDominantLanguageDetectionJobRequest& request) const
@@ -1696,18 +1331,12 @@ StopDominantLanguageDetectionJobOutcome ComprehendClient::StopDominantLanguageDe
 
 StopDominantLanguageDetectionJobOutcomeCallable ComprehendClient::StopDominantLanguageDetectionJobCallable(const StopDominantLanguageDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopDominantLanguageDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopDominantLanguageDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopDominantLanguageDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopDominantLanguageDetectionJobAsync(const StopDominantLanguageDetectionJobRequest& request, const StopDominantLanguageDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopDominantLanguageDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopDominantLanguageDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopEntitiesDetectionJobOutcome ComprehendClient::StopEntitiesDetectionJob(const StopEntitiesDetectionJobRequest& request) const
@@ -1720,18 +1349,12 @@ StopEntitiesDetectionJobOutcome ComprehendClient::StopEntitiesDetectionJob(const
 
 StopEntitiesDetectionJobOutcomeCallable ComprehendClient::StopEntitiesDetectionJobCallable(const StopEntitiesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopEntitiesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopEntitiesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopEntitiesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopEntitiesDetectionJobAsync(const StopEntitiesDetectionJobRequest& request, const StopEntitiesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopEntitiesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopEntitiesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopEventsDetectionJobOutcome ComprehendClient::StopEventsDetectionJob(const StopEventsDetectionJobRequest& request) const
@@ -1744,18 +1367,12 @@ StopEventsDetectionJobOutcome ComprehendClient::StopEventsDetectionJob(const Sto
 
 StopEventsDetectionJobOutcomeCallable ComprehendClient::StopEventsDetectionJobCallable(const StopEventsDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopEventsDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopEventsDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopEventsDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopEventsDetectionJobAsync(const StopEventsDetectionJobRequest& request, const StopEventsDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopEventsDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopEventsDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopKeyPhrasesDetectionJobOutcome ComprehendClient::StopKeyPhrasesDetectionJob(const StopKeyPhrasesDetectionJobRequest& request) const
@@ -1768,18 +1385,12 @@ StopKeyPhrasesDetectionJobOutcome ComprehendClient::StopKeyPhrasesDetectionJob(c
 
 StopKeyPhrasesDetectionJobOutcomeCallable ComprehendClient::StopKeyPhrasesDetectionJobCallable(const StopKeyPhrasesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopKeyPhrasesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopKeyPhrasesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopKeyPhrasesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopKeyPhrasesDetectionJobAsync(const StopKeyPhrasesDetectionJobRequest& request, const StopKeyPhrasesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopKeyPhrasesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopKeyPhrasesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopPiiEntitiesDetectionJobOutcome ComprehendClient::StopPiiEntitiesDetectionJob(const StopPiiEntitiesDetectionJobRequest& request) const
@@ -1792,18 +1403,12 @@ StopPiiEntitiesDetectionJobOutcome ComprehendClient::StopPiiEntitiesDetectionJob
 
 StopPiiEntitiesDetectionJobOutcomeCallable ComprehendClient::StopPiiEntitiesDetectionJobCallable(const StopPiiEntitiesDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopPiiEntitiesDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopPiiEntitiesDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopPiiEntitiesDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopPiiEntitiesDetectionJobAsync(const StopPiiEntitiesDetectionJobRequest& request, const StopPiiEntitiesDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopPiiEntitiesDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopPiiEntitiesDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopSentimentDetectionJobOutcome ComprehendClient::StopSentimentDetectionJob(const StopSentimentDetectionJobRequest& request) const
@@ -1816,18 +1421,12 @@ StopSentimentDetectionJobOutcome ComprehendClient::StopSentimentDetectionJob(con
 
 StopSentimentDetectionJobOutcomeCallable ComprehendClient::StopSentimentDetectionJobCallable(const StopSentimentDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopSentimentDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopSentimentDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopSentimentDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopSentimentDetectionJobAsync(const StopSentimentDetectionJobRequest& request, const StopSentimentDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopSentimentDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopSentimentDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopTargetedSentimentDetectionJobOutcome ComprehendClient::StopTargetedSentimentDetectionJob(const StopTargetedSentimentDetectionJobRequest& request) const
@@ -1840,18 +1439,12 @@ StopTargetedSentimentDetectionJobOutcome ComprehendClient::StopTargetedSentiment
 
 StopTargetedSentimentDetectionJobOutcomeCallable ComprehendClient::StopTargetedSentimentDetectionJobCallable(const StopTargetedSentimentDetectionJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopTargetedSentimentDetectionJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopTargetedSentimentDetectionJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopTargetedSentimentDetectionJob, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopTargetedSentimentDetectionJobAsync(const StopTargetedSentimentDetectionJobRequest& request, const StopTargetedSentimentDetectionJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopTargetedSentimentDetectionJob(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopTargetedSentimentDetectionJob, this, request, handler, context, m_executor.get());
 }
 
 StopTrainingDocumentClassifierOutcome ComprehendClient::StopTrainingDocumentClassifier(const StopTrainingDocumentClassifierRequest& request) const
@@ -1864,18 +1457,12 @@ StopTrainingDocumentClassifierOutcome ComprehendClient::StopTrainingDocumentClas
 
 StopTrainingDocumentClassifierOutcomeCallable ComprehendClient::StopTrainingDocumentClassifierCallable(const StopTrainingDocumentClassifierRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopTrainingDocumentClassifierOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopTrainingDocumentClassifier(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopTrainingDocumentClassifier, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopTrainingDocumentClassifierAsync(const StopTrainingDocumentClassifierRequest& request, const StopTrainingDocumentClassifierResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopTrainingDocumentClassifier(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopTrainingDocumentClassifier, this, request, handler, context, m_executor.get());
 }
 
 StopTrainingEntityRecognizerOutcome ComprehendClient::StopTrainingEntityRecognizer(const StopTrainingEntityRecognizerRequest& request) const
@@ -1888,18 +1475,12 @@ StopTrainingEntityRecognizerOutcome ComprehendClient::StopTrainingEntityRecogniz
 
 StopTrainingEntityRecognizerOutcomeCallable ComprehendClient::StopTrainingEntityRecognizerCallable(const StopTrainingEntityRecognizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopTrainingEntityRecognizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopTrainingEntityRecognizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::StopTrainingEntityRecognizer, this, request, m_executor.get());
 }
 
 void ComprehendClient::StopTrainingEntityRecognizerAsync(const StopTrainingEntityRecognizerRequest& request, const StopTrainingEntityRecognizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopTrainingEntityRecognizer(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::StopTrainingEntityRecognizer, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome ComprehendClient::TagResource(const TagResourceRequest& request) const
@@ -1912,18 +1493,12 @@ TagResourceOutcome ComprehendClient::TagResource(const TagResourceRequest& reque
 
 TagResourceOutcomeCallable ComprehendClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::TagResource, this, request, m_executor.get());
 }
 
 void ComprehendClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome ComprehendClient::UntagResource(const UntagResourceRequest& request) const
@@ -1936,18 +1511,12 @@ UntagResourceOutcome ComprehendClient::UntagResource(const UntagResourceRequest&
 
 UntagResourceOutcomeCallable ComprehendClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::UntagResource, this, request, m_executor.get());
 }
 
 void ComprehendClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateEndpointOutcome ComprehendClient::UpdateEndpoint(const UpdateEndpointRequest& request) const
@@ -1960,17 +1529,11 @@ UpdateEndpointOutcome ComprehendClient::UpdateEndpoint(const UpdateEndpointReque
 
 UpdateEndpointOutcomeCallable ComprehendClient::UpdateEndpointCallable(const UpdateEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ComprehendClient::UpdateEndpoint, this, request, m_executor.get());
 }
 
 void ComprehendClient::UpdateEndpointAsync(const UpdateEndpointRequest& request, const UpdateEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&ComprehendClient::UpdateEndpoint, this, request, handler, context, m_executor.get());
 }
 

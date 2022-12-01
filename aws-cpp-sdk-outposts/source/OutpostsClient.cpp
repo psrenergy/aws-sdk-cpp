@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -193,18 +194,12 @@ CancelOrderOutcome OutpostsClient::CancelOrder(const CancelOrderRequest& request
 
 CancelOrderOutcomeCallable OutpostsClient::CancelOrderCallable(const CancelOrderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelOrderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelOrder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::CancelOrder, this, request, m_executor.get());
 }
 
 void OutpostsClient::CancelOrderAsync(const CancelOrderRequest& request, const CancelOrderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelOrder(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::CancelOrder, this, request, handler, context, m_executor.get());
 }
 
 CreateOrderOutcome OutpostsClient::CreateOrder(const CreateOrderRequest& request) const
@@ -218,18 +213,12 @@ CreateOrderOutcome OutpostsClient::CreateOrder(const CreateOrderRequest& request
 
 CreateOrderOutcomeCallable OutpostsClient::CreateOrderCallable(const CreateOrderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateOrderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateOrder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::CreateOrder, this, request, m_executor.get());
 }
 
 void OutpostsClient::CreateOrderAsync(const CreateOrderRequest& request, const CreateOrderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateOrder(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::CreateOrder, this, request, handler, context, m_executor.get());
 }
 
 CreateOutpostOutcome OutpostsClient::CreateOutpost(const CreateOutpostRequest& request) const
@@ -243,18 +232,12 @@ CreateOutpostOutcome OutpostsClient::CreateOutpost(const CreateOutpostRequest& r
 
 CreateOutpostOutcomeCallable OutpostsClient::CreateOutpostCallable(const CreateOutpostRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateOutpostOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateOutpost(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::CreateOutpost, this, request, m_executor.get());
 }
 
 void OutpostsClient::CreateOutpostAsync(const CreateOutpostRequest& request, const CreateOutpostResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateOutpost(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::CreateOutpost, this, request, handler, context, m_executor.get());
 }
 
 CreateSiteOutcome OutpostsClient::CreateSite(const CreateSiteRequest& request) const
@@ -268,18 +251,12 @@ CreateSiteOutcome OutpostsClient::CreateSite(const CreateSiteRequest& request) c
 
 CreateSiteOutcomeCallable OutpostsClient::CreateSiteCallable(const CreateSiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::CreateSite, this, request, m_executor.get());
 }
 
 void OutpostsClient::CreateSiteAsync(const CreateSiteRequest& request, const CreateSiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSite(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::CreateSite, this, request, handler, context, m_executor.get());
 }
 
 DeleteOutpostOutcome OutpostsClient::DeleteOutpost(const DeleteOutpostRequest& request) const
@@ -299,18 +276,12 @@ DeleteOutpostOutcome OutpostsClient::DeleteOutpost(const DeleteOutpostRequest& r
 
 DeleteOutpostOutcomeCallable OutpostsClient::DeleteOutpostCallable(const DeleteOutpostRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteOutpostOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteOutpost(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::DeleteOutpost, this, request, m_executor.get());
 }
 
 void OutpostsClient::DeleteOutpostAsync(const DeleteOutpostRequest& request, const DeleteOutpostResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteOutpost(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::DeleteOutpost, this, request, handler, context, m_executor.get());
 }
 
 DeleteSiteOutcome OutpostsClient::DeleteSite(const DeleteSiteRequest& request) const
@@ -330,18 +301,12 @@ DeleteSiteOutcome OutpostsClient::DeleteSite(const DeleteSiteRequest& request) c
 
 DeleteSiteOutcomeCallable OutpostsClient::DeleteSiteCallable(const DeleteSiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::DeleteSite, this, request, m_executor.get());
 }
 
 void OutpostsClient::DeleteSiteAsync(const DeleteSiteRequest& request, const DeleteSiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSite(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::DeleteSite, this, request, handler, context, m_executor.get());
 }
 
 GetCatalogItemOutcome OutpostsClient::GetCatalogItem(const GetCatalogItemRequest& request) const
@@ -361,18 +326,12 @@ GetCatalogItemOutcome OutpostsClient::GetCatalogItem(const GetCatalogItemRequest
 
 GetCatalogItemOutcomeCallable OutpostsClient::GetCatalogItemCallable(const GetCatalogItemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCatalogItemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCatalogItem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::GetCatalogItem, this, request, m_executor.get());
 }
 
 void OutpostsClient::GetCatalogItemAsync(const GetCatalogItemRequest& request, const GetCatalogItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCatalogItem(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::GetCatalogItem, this, request, handler, context, m_executor.get());
 }
 
 GetConnectionOutcome OutpostsClient::GetConnection(const GetConnectionRequest& request) const
@@ -392,18 +351,12 @@ GetConnectionOutcome OutpostsClient::GetConnection(const GetConnectionRequest& r
 
 GetConnectionOutcomeCallable OutpostsClient::GetConnectionCallable(const GetConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::GetConnection, this, request, m_executor.get());
 }
 
 void OutpostsClient::GetConnectionAsync(const GetConnectionRequest& request, const GetConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetConnection(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::GetConnection, this, request, handler, context, m_executor.get());
 }
 
 GetOrderOutcome OutpostsClient::GetOrder(const GetOrderRequest& request) const
@@ -423,18 +376,12 @@ GetOrderOutcome OutpostsClient::GetOrder(const GetOrderRequest& request) const
 
 GetOrderOutcomeCallable OutpostsClient::GetOrderCallable(const GetOrderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOrderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOrder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::GetOrder, this, request, m_executor.get());
 }
 
 void OutpostsClient::GetOrderAsync(const GetOrderRequest& request, const GetOrderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOrder(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::GetOrder, this, request, handler, context, m_executor.get());
 }
 
 GetOutpostOutcome OutpostsClient::GetOutpost(const GetOutpostRequest& request) const
@@ -454,18 +401,12 @@ GetOutpostOutcome OutpostsClient::GetOutpost(const GetOutpostRequest& request) c
 
 GetOutpostOutcomeCallable OutpostsClient::GetOutpostCallable(const GetOutpostRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOutpostOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOutpost(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::GetOutpost, this, request, m_executor.get());
 }
 
 void OutpostsClient::GetOutpostAsync(const GetOutpostRequest& request, const GetOutpostResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOutpost(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::GetOutpost, this, request, handler, context, m_executor.get());
 }
 
 GetOutpostInstanceTypesOutcome OutpostsClient::GetOutpostInstanceTypes(const GetOutpostInstanceTypesRequest& request) const
@@ -486,18 +427,12 @@ GetOutpostInstanceTypesOutcome OutpostsClient::GetOutpostInstanceTypes(const Get
 
 GetOutpostInstanceTypesOutcomeCallable OutpostsClient::GetOutpostInstanceTypesCallable(const GetOutpostInstanceTypesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOutpostInstanceTypesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOutpostInstanceTypes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::GetOutpostInstanceTypes, this, request, m_executor.get());
 }
 
 void OutpostsClient::GetOutpostInstanceTypesAsync(const GetOutpostInstanceTypesRequest& request, const GetOutpostInstanceTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOutpostInstanceTypes(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::GetOutpostInstanceTypes, this, request, handler, context, m_executor.get());
 }
 
 GetSiteOutcome OutpostsClient::GetSite(const GetSiteRequest& request) const
@@ -517,18 +452,12 @@ GetSiteOutcome OutpostsClient::GetSite(const GetSiteRequest& request) const
 
 GetSiteOutcomeCallable OutpostsClient::GetSiteCallable(const GetSiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::GetSite, this, request, m_executor.get());
 }
 
 void OutpostsClient::GetSiteAsync(const GetSiteRequest& request, const GetSiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSite(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::GetSite, this, request, handler, context, m_executor.get());
 }
 
 GetSiteAddressOutcome OutpostsClient::GetSiteAddress(const GetSiteAddressRequest& request) const
@@ -554,18 +483,12 @@ GetSiteAddressOutcome OutpostsClient::GetSiteAddress(const GetSiteAddressRequest
 
 GetSiteAddressOutcomeCallable OutpostsClient::GetSiteAddressCallable(const GetSiteAddressRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSiteAddressOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSiteAddress(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::GetSiteAddress, this, request, m_executor.get());
 }
 
 void OutpostsClient::GetSiteAddressAsync(const GetSiteAddressRequest& request, const GetSiteAddressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSiteAddress(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::GetSiteAddress, this, request, handler, context, m_executor.get());
 }
 
 ListAssetsOutcome OutpostsClient::ListAssets(const ListAssetsRequest& request) const
@@ -586,18 +509,12 @@ ListAssetsOutcome OutpostsClient::ListAssets(const ListAssetsRequest& request) c
 
 ListAssetsOutcomeCallable OutpostsClient::ListAssetsCallable(const ListAssetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAssetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAssets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::ListAssets, this, request, m_executor.get());
 }
 
 void OutpostsClient::ListAssetsAsync(const ListAssetsRequest& request, const ListAssetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAssets(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::ListAssets, this, request, handler, context, m_executor.get());
 }
 
 ListCatalogItemsOutcome OutpostsClient::ListCatalogItems(const ListCatalogItemsRequest& request) const
@@ -611,18 +528,12 @@ ListCatalogItemsOutcome OutpostsClient::ListCatalogItems(const ListCatalogItemsR
 
 ListCatalogItemsOutcomeCallable OutpostsClient::ListCatalogItemsCallable(const ListCatalogItemsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCatalogItemsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCatalogItems(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::ListCatalogItems, this, request, m_executor.get());
 }
 
 void OutpostsClient::ListCatalogItemsAsync(const ListCatalogItemsRequest& request, const ListCatalogItemsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCatalogItems(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::ListCatalogItems, this, request, handler, context, m_executor.get());
 }
 
 ListOrdersOutcome OutpostsClient::ListOrders(const ListOrdersRequest& request) const
@@ -636,18 +547,12 @@ ListOrdersOutcome OutpostsClient::ListOrders(const ListOrdersRequest& request) c
 
 ListOrdersOutcomeCallable OutpostsClient::ListOrdersCallable(const ListOrdersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOrdersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOrders(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::ListOrders, this, request, m_executor.get());
 }
 
 void OutpostsClient::ListOrdersAsync(const ListOrdersRequest& request, const ListOrdersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOrders(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::ListOrders, this, request, handler, context, m_executor.get());
 }
 
 ListOutpostsOutcome OutpostsClient::ListOutposts(const ListOutpostsRequest& request) const
@@ -661,18 +566,12 @@ ListOutpostsOutcome OutpostsClient::ListOutposts(const ListOutpostsRequest& requ
 
 ListOutpostsOutcomeCallable OutpostsClient::ListOutpostsCallable(const ListOutpostsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOutpostsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOutposts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::ListOutposts, this, request, m_executor.get());
 }
 
 void OutpostsClient::ListOutpostsAsync(const ListOutpostsRequest& request, const ListOutpostsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOutposts(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::ListOutposts, this, request, handler, context, m_executor.get());
 }
 
 ListSitesOutcome OutpostsClient::ListSites(const ListSitesRequest& request) const
@@ -686,18 +585,12 @@ ListSitesOutcome OutpostsClient::ListSites(const ListSitesRequest& request) cons
 
 ListSitesOutcomeCallable OutpostsClient::ListSitesCallable(const ListSitesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSitesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSites(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::ListSites, this, request, m_executor.get());
 }
 
 void OutpostsClient::ListSitesAsync(const ListSitesRequest& request, const ListSitesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSites(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::ListSites, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome OutpostsClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -717,18 +610,12 @@ ListTagsForResourceOutcome OutpostsClient::ListTagsForResource(const ListTagsFor
 
 ListTagsForResourceOutcomeCallable OutpostsClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void OutpostsClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 StartConnectionOutcome OutpostsClient::StartConnection(const StartConnectionRequest& request) const
@@ -742,18 +629,12 @@ StartConnectionOutcome OutpostsClient::StartConnection(const StartConnectionRequ
 
 StartConnectionOutcomeCallable OutpostsClient::StartConnectionCallable(const StartConnectionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartConnectionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartConnection(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::StartConnection, this, request, m_executor.get());
 }
 
 void OutpostsClient::StartConnectionAsync(const StartConnectionRequest& request, const StartConnectionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartConnection(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::StartConnection, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome OutpostsClient::TagResource(const TagResourceRequest& request) const
@@ -773,18 +654,12 @@ TagResourceOutcome OutpostsClient::TagResource(const TagResourceRequest& request
 
 TagResourceOutcomeCallable OutpostsClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::TagResource, this, request, m_executor.get());
 }
 
 void OutpostsClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome OutpostsClient::UntagResource(const UntagResourceRequest& request) const
@@ -809,18 +684,12 @@ UntagResourceOutcome OutpostsClient::UntagResource(const UntagResourceRequest& r
 
 UntagResourceOutcomeCallable OutpostsClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::UntagResource, this, request, m_executor.get());
 }
 
 void OutpostsClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateOutpostOutcome OutpostsClient::UpdateOutpost(const UpdateOutpostRequest& request) const
@@ -840,18 +709,12 @@ UpdateOutpostOutcome OutpostsClient::UpdateOutpost(const UpdateOutpostRequest& r
 
 UpdateOutpostOutcomeCallable OutpostsClient::UpdateOutpostCallable(const UpdateOutpostRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateOutpostOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateOutpost(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::UpdateOutpost, this, request, m_executor.get());
 }
 
 void OutpostsClient::UpdateOutpostAsync(const UpdateOutpostRequest& request, const UpdateOutpostResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateOutpost(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::UpdateOutpost, this, request, handler, context, m_executor.get());
 }
 
 UpdateSiteOutcome OutpostsClient::UpdateSite(const UpdateSiteRequest& request) const
@@ -871,18 +734,12 @@ UpdateSiteOutcome OutpostsClient::UpdateSite(const UpdateSiteRequest& request) c
 
 UpdateSiteOutcomeCallable OutpostsClient::UpdateSiteCallable(const UpdateSiteRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSiteOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSite(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::UpdateSite, this, request, m_executor.get());
 }
 
 void OutpostsClient::UpdateSiteAsync(const UpdateSiteRequest& request, const UpdateSiteResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSite(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::UpdateSite, this, request, handler, context, m_executor.get());
 }
 
 UpdateSiteAddressOutcome OutpostsClient::UpdateSiteAddress(const UpdateSiteAddressRequest& request) const
@@ -903,18 +760,12 @@ UpdateSiteAddressOutcome OutpostsClient::UpdateSiteAddress(const UpdateSiteAddre
 
 UpdateSiteAddressOutcomeCallable OutpostsClient::UpdateSiteAddressCallable(const UpdateSiteAddressRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSiteAddressOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSiteAddress(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::UpdateSiteAddress, this, request, m_executor.get());
 }
 
 void OutpostsClient::UpdateSiteAddressAsync(const UpdateSiteAddressRequest& request, const UpdateSiteAddressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSiteAddress(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::UpdateSiteAddress, this, request, handler, context, m_executor.get());
 }
 
 UpdateSiteRackPhysicalPropertiesOutcome OutpostsClient::UpdateSiteRackPhysicalProperties(const UpdateSiteRackPhysicalPropertiesRequest& request) const
@@ -935,17 +786,11 @@ UpdateSiteRackPhysicalPropertiesOutcome OutpostsClient::UpdateSiteRackPhysicalPr
 
 UpdateSiteRackPhysicalPropertiesOutcomeCallable OutpostsClient::UpdateSiteRackPhysicalPropertiesCallable(const UpdateSiteRackPhysicalPropertiesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSiteRackPhysicalPropertiesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSiteRackPhysicalProperties(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &OutpostsClient::UpdateSiteRackPhysicalProperties, this, request, m_executor.get());
 }
 
 void OutpostsClient::UpdateSiteRackPhysicalPropertiesAsync(const UpdateSiteRackPhysicalPropertiesRequest& request, const UpdateSiteRackPhysicalPropertiesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSiteRackPhysicalProperties(request), context);
-    } );
+  MakeAsyncOperation(&OutpostsClient::UpdateSiteRackPhysicalProperties, this, request, handler, context, m_executor.get());
 }
 

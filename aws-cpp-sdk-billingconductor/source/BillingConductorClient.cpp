@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -191,18 +192,12 @@ AssociateAccountsOutcome BillingConductorClient::AssociateAccounts(const Associa
 
 AssociateAccountsOutcomeCallable BillingConductorClient::AssociateAccountsCallable(const AssociateAccountsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateAccountsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateAccounts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::AssociateAccounts, this, request, m_executor.get());
 }
 
 void BillingConductorClient::AssociateAccountsAsync(const AssociateAccountsRequest& request, const AssociateAccountsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateAccounts(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::AssociateAccounts, this, request, handler, context, m_executor.get());
 }
 
 AssociatePricingRulesOutcome BillingConductorClient::AssociatePricingRules(const AssociatePricingRulesRequest& request) const
@@ -216,18 +211,12 @@ AssociatePricingRulesOutcome BillingConductorClient::AssociatePricingRules(const
 
 AssociatePricingRulesOutcomeCallable BillingConductorClient::AssociatePricingRulesCallable(const AssociatePricingRulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociatePricingRulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociatePricingRules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::AssociatePricingRules, this, request, m_executor.get());
 }
 
 void BillingConductorClient::AssociatePricingRulesAsync(const AssociatePricingRulesRequest& request, const AssociatePricingRulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociatePricingRules(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::AssociatePricingRules, this, request, handler, context, m_executor.get());
 }
 
 BatchAssociateResourcesToCustomLineItemOutcome BillingConductorClient::BatchAssociateResourcesToCustomLineItem(const BatchAssociateResourcesToCustomLineItemRequest& request) const
@@ -241,18 +230,12 @@ BatchAssociateResourcesToCustomLineItemOutcome BillingConductorClient::BatchAsso
 
 BatchAssociateResourcesToCustomLineItemOutcomeCallable BillingConductorClient::BatchAssociateResourcesToCustomLineItemCallable(const BatchAssociateResourcesToCustomLineItemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchAssociateResourcesToCustomLineItemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchAssociateResourcesToCustomLineItem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::BatchAssociateResourcesToCustomLineItem, this, request, m_executor.get());
 }
 
 void BillingConductorClient::BatchAssociateResourcesToCustomLineItemAsync(const BatchAssociateResourcesToCustomLineItemRequest& request, const BatchAssociateResourcesToCustomLineItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchAssociateResourcesToCustomLineItem(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::BatchAssociateResourcesToCustomLineItem, this, request, handler, context, m_executor.get());
 }
 
 BatchDisassociateResourcesFromCustomLineItemOutcome BillingConductorClient::BatchDisassociateResourcesFromCustomLineItem(const BatchDisassociateResourcesFromCustomLineItemRequest& request) const
@@ -266,18 +249,12 @@ BatchDisassociateResourcesFromCustomLineItemOutcome BillingConductorClient::Batc
 
 BatchDisassociateResourcesFromCustomLineItemOutcomeCallable BillingConductorClient::BatchDisassociateResourcesFromCustomLineItemCallable(const BatchDisassociateResourcesFromCustomLineItemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDisassociateResourcesFromCustomLineItemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDisassociateResourcesFromCustomLineItem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::BatchDisassociateResourcesFromCustomLineItem, this, request, m_executor.get());
 }
 
 void BillingConductorClient::BatchDisassociateResourcesFromCustomLineItemAsync(const BatchDisassociateResourcesFromCustomLineItemRequest& request, const BatchDisassociateResourcesFromCustomLineItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDisassociateResourcesFromCustomLineItem(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::BatchDisassociateResourcesFromCustomLineItem, this, request, handler, context, m_executor.get());
 }
 
 CreateBillingGroupOutcome BillingConductorClient::CreateBillingGroup(const CreateBillingGroupRequest& request) const
@@ -291,18 +268,12 @@ CreateBillingGroupOutcome BillingConductorClient::CreateBillingGroup(const Creat
 
 CreateBillingGroupOutcomeCallable BillingConductorClient::CreateBillingGroupCallable(const CreateBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::CreateBillingGroup, this, request, m_executor.get());
 }
 
 void BillingConductorClient::CreateBillingGroupAsync(const CreateBillingGroupRequest& request, const CreateBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::CreateBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateCustomLineItemOutcome BillingConductorClient::CreateCustomLineItem(const CreateCustomLineItemRequest& request) const
@@ -316,18 +287,12 @@ CreateCustomLineItemOutcome BillingConductorClient::CreateCustomLineItem(const C
 
 CreateCustomLineItemOutcomeCallable BillingConductorClient::CreateCustomLineItemCallable(const CreateCustomLineItemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCustomLineItemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCustomLineItem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::CreateCustomLineItem, this, request, m_executor.get());
 }
 
 void BillingConductorClient::CreateCustomLineItemAsync(const CreateCustomLineItemRequest& request, const CreateCustomLineItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCustomLineItem(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::CreateCustomLineItem, this, request, handler, context, m_executor.get());
 }
 
 CreatePricingPlanOutcome BillingConductorClient::CreatePricingPlan(const CreatePricingPlanRequest& request) const
@@ -341,18 +306,12 @@ CreatePricingPlanOutcome BillingConductorClient::CreatePricingPlan(const CreateP
 
 CreatePricingPlanOutcomeCallable BillingConductorClient::CreatePricingPlanCallable(const CreatePricingPlanRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePricingPlanOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePricingPlan(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::CreatePricingPlan, this, request, m_executor.get());
 }
 
 void BillingConductorClient::CreatePricingPlanAsync(const CreatePricingPlanRequest& request, const CreatePricingPlanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePricingPlan(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::CreatePricingPlan, this, request, handler, context, m_executor.get());
 }
 
 CreatePricingRuleOutcome BillingConductorClient::CreatePricingRule(const CreatePricingRuleRequest& request) const
@@ -366,18 +325,12 @@ CreatePricingRuleOutcome BillingConductorClient::CreatePricingRule(const CreateP
 
 CreatePricingRuleOutcomeCallable BillingConductorClient::CreatePricingRuleCallable(const CreatePricingRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePricingRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePricingRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::CreatePricingRule, this, request, m_executor.get());
 }
 
 void BillingConductorClient::CreatePricingRuleAsync(const CreatePricingRuleRequest& request, const CreatePricingRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePricingRule(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::CreatePricingRule, this, request, handler, context, m_executor.get());
 }
 
 DeleteBillingGroupOutcome BillingConductorClient::DeleteBillingGroup(const DeleteBillingGroupRequest& request) const
@@ -391,18 +344,12 @@ DeleteBillingGroupOutcome BillingConductorClient::DeleteBillingGroup(const Delet
 
 DeleteBillingGroupOutcomeCallable BillingConductorClient::DeleteBillingGroupCallable(const DeleteBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::DeleteBillingGroup, this, request, m_executor.get());
 }
 
 void BillingConductorClient::DeleteBillingGroupAsync(const DeleteBillingGroupRequest& request, const DeleteBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::DeleteBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteCustomLineItemOutcome BillingConductorClient::DeleteCustomLineItem(const DeleteCustomLineItemRequest& request) const
@@ -416,18 +363,12 @@ DeleteCustomLineItemOutcome BillingConductorClient::DeleteCustomLineItem(const D
 
 DeleteCustomLineItemOutcomeCallable BillingConductorClient::DeleteCustomLineItemCallable(const DeleteCustomLineItemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCustomLineItemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCustomLineItem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::DeleteCustomLineItem, this, request, m_executor.get());
 }
 
 void BillingConductorClient::DeleteCustomLineItemAsync(const DeleteCustomLineItemRequest& request, const DeleteCustomLineItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCustomLineItem(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::DeleteCustomLineItem, this, request, handler, context, m_executor.get());
 }
 
 DeletePricingPlanOutcome BillingConductorClient::DeletePricingPlan(const DeletePricingPlanRequest& request) const
@@ -441,18 +382,12 @@ DeletePricingPlanOutcome BillingConductorClient::DeletePricingPlan(const DeleteP
 
 DeletePricingPlanOutcomeCallable BillingConductorClient::DeletePricingPlanCallable(const DeletePricingPlanRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePricingPlanOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePricingPlan(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::DeletePricingPlan, this, request, m_executor.get());
 }
 
 void BillingConductorClient::DeletePricingPlanAsync(const DeletePricingPlanRequest& request, const DeletePricingPlanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePricingPlan(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::DeletePricingPlan, this, request, handler, context, m_executor.get());
 }
 
 DeletePricingRuleOutcome BillingConductorClient::DeletePricingRule(const DeletePricingRuleRequest& request) const
@@ -466,18 +401,12 @@ DeletePricingRuleOutcome BillingConductorClient::DeletePricingRule(const DeleteP
 
 DeletePricingRuleOutcomeCallable BillingConductorClient::DeletePricingRuleCallable(const DeletePricingRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePricingRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePricingRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::DeletePricingRule, this, request, m_executor.get());
 }
 
 void BillingConductorClient::DeletePricingRuleAsync(const DeletePricingRuleRequest& request, const DeletePricingRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePricingRule(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::DeletePricingRule, this, request, handler, context, m_executor.get());
 }
 
 DisassociateAccountsOutcome BillingConductorClient::DisassociateAccounts(const DisassociateAccountsRequest& request) const
@@ -491,18 +420,12 @@ DisassociateAccountsOutcome BillingConductorClient::DisassociateAccounts(const D
 
 DisassociateAccountsOutcomeCallable BillingConductorClient::DisassociateAccountsCallable(const DisassociateAccountsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateAccountsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateAccounts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::DisassociateAccounts, this, request, m_executor.get());
 }
 
 void BillingConductorClient::DisassociateAccountsAsync(const DisassociateAccountsRequest& request, const DisassociateAccountsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateAccounts(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::DisassociateAccounts, this, request, handler, context, m_executor.get());
 }
 
 DisassociatePricingRulesOutcome BillingConductorClient::DisassociatePricingRules(const DisassociatePricingRulesRequest& request) const
@@ -516,18 +439,12 @@ DisassociatePricingRulesOutcome BillingConductorClient::DisassociatePricingRules
 
 DisassociatePricingRulesOutcomeCallable BillingConductorClient::DisassociatePricingRulesCallable(const DisassociatePricingRulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociatePricingRulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociatePricingRules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::DisassociatePricingRules, this, request, m_executor.get());
 }
 
 void BillingConductorClient::DisassociatePricingRulesAsync(const DisassociatePricingRulesRequest& request, const DisassociatePricingRulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociatePricingRules(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::DisassociatePricingRules, this, request, handler, context, m_executor.get());
 }
 
 ListAccountAssociationsOutcome BillingConductorClient::ListAccountAssociations(const ListAccountAssociationsRequest& request) const
@@ -541,18 +458,12 @@ ListAccountAssociationsOutcome BillingConductorClient::ListAccountAssociations(c
 
 ListAccountAssociationsOutcomeCallable BillingConductorClient::ListAccountAssociationsCallable(const ListAccountAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccountAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccountAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListAccountAssociations, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListAccountAssociationsAsync(const ListAccountAssociationsRequest& request, const ListAccountAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccountAssociations(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListAccountAssociations, this, request, handler, context, m_executor.get());
 }
 
 ListBillingGroupCostReportsOutcome BillingConductorClient::ListBillingGroupCostReports(const ListBillingGroupCostReportsRequest& request) const
@@ -566,18 +477,12 @@ ListBillingGroupCostReportsOutcome BillingConductorClient::ListBillingGroupCostR
 
 ListBillingGroupCostReportsOutcomeCallable BillingConductorClient::ListBillingGroupCostReportsCallable(const ListBillingGroupCostReportsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBillingGroupCostReportsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBillingGroupCostReports(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListBillingGroupCostReports, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListBillingGroupCostReportsAsync(const ListBillingGroupCostReportsRequest& request, const ListBillingGroupCostReportsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBillingGroupCostReports(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListBillingGroupCostReports, this, request, handler, context, m_executor.get());
 }
 
 ListBillingGroupsOutcome BillingConductorClient::ListBillingGroups(const ListBillingGroupsRequest& request) const
@@ -591,18 +496,12 @@ ListBillingGroupsOutcome BillingConductorClient::ListBillingGroups(const ListBil
 
 ListBillingGroupsOutcomeCallable BillingConductorClient::ListBillingGroupsCallable(const ListBillingGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBillingGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBillingGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListBillingGroups, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListBillingGroupsAsync(const ListBillingGroupsRequest& request, const ListBillingGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBillingGroups(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListBillingGroups, this, request, handler, context, m_executor.get());
 }
 
 ListCustomLineItemVersionsOutcome BillingConductorClient::ListCustomLineItemVersions(const ListCustomLineItemVersionsRequest& request) const
@@ -616,18 +515,12 @@ ListCustomLineItemVersionsOutcome BillingConductorClient::ListCustomLineItemVers
 
 ListCustomLineItemVersionsOutcomeCallable BillingConductorClient::ListCustomLineItemVersionsCallable(const ListCustomLineItemVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomLineItemVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomLineItemVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListCustomLineItemVersions, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListCustomLineItemVersionsAsync(const ListCustomLineItemVersionsRequest& request, const ListCustomLineItemVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomLineItemVersions(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListCustomLineItemVersions, this, request, handler, context, m_executor.get());
 }
 
 ListCustomLineItemsOutcome BillingConductorClient::ListCustomLineItems(const ListCustomLineItemsRequest& request) const
@@ -641,18 +534,12 @@ ListCustomLineItemsOutcome BillingConductorClient::ListCustomLineItems(const Lis
 
 ListCustomLineItemsOutcomeCallable BillingConductorClient::ListCustomLineItemsCallable(const ListCustomLineItemsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomLineItemsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomLineItems(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListCustomLineItems, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListCustomLineItemsAsync(const ListCustomLineItemsRequest& request, const ListCustomLineItemsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomLineItems(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListCustomLineItems, this, request, handler, context, m_executor.get());
 }
 
 ListPricingPlansOutcome BillingConductorClient::ListPricingPlans(const ListPricingPlansRequest& request) const
@@ -666,18 +553,12 @@ ListPricingPlansOutcome BillingConductorClient::ListPricingPlans(const ListPrici
 
 ListPricingPlansOutcomeCallable BillingConductorClient::ListPricingPlansCallable(const ListPricingPlansRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPricingPlansOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPricingPlans(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListPricingPlans, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListPricingPlansAsync(const ListPricingPlansRequest& request, const ListPricingPlansResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPricingPlans(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListPricingPlans, this, request, handler, context, m_executor.get());
 }
 
 ListPricingPlansAssociatedWithPricingRuleOutcome BillingConductorClient::ListPricingPlansAssociatedWithPricingRule(const ListPricingPlansAssociatedWithPricingRuleRequest& request) const
@@ -691,18 +572,12 @@ ListPricingPlansAssociatedWithPricingRuleOutcome BillingConductorClient::ListPri
 
 ListPricingPlansAssociatedWithPricingRuleOutcomeCallable BillingConductorClient::ListPricingPlansAssociatedWithPricingRuleCallable(const ListPricingPlansAssociatedWithPricingRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPricingPlansAssociatedWithPricingRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPricingPlansAssociatedWithPricingRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListPricingPlansAssociatedWithPricingRule, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListPricingPlansAssociatedWithPricingRuleAsync(const ListPricingPlansAssociatedWithPricingRuleRequest& request, const ListPricingPlansAssociatedWithPricingRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPricingPlansAssociatedWithPricingRule(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListPricingPlansAssociatedWithPricingRule, this, request, handler, context, m_executor.get());
 }
 
 ListPricingRulesOutcome BillingConductorClient::ListPricingRules(const ListPricingRulesRequest& request) const
@@ -716,18 +591,12 @@ ListPricingRulesOutcome BillingConductorClient::ListPricingRules(const ListPrici
 
 ListPricingRulesOutcomeCallable BillingConductorClient::ListPricingRulesCallable(const ListPricingRulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPricingRulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPricingRules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListPricingRules, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListPricingRulesAsync(const ListPricingRulesRequest& request, const ListPricingRulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPricingRules(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListPricingRules, this, request, handler, context, m_executor.get());
 }
 
 ListPricingRulesAssociatedToPricingPlanOutcome BillingConductorClient::ListPricingRulesAssociatedToPricingPlan(const ListPricingRulesAssociatedToPricingPlanRequest& request) const
@@ -741,18 +610,12 @@ ListPricingRulesAssociatedToPricingPlanOutcome BillingConductorClient::ListPrici
 
 ListPricingRulesAssociatedToPricingPlanOutcomeCallable BillingConductorClient::ListPricingRulesAssociatedToPricingPlanCallable(const ListPricingRulesAssociatedToPricingPlanRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPricingRulesAssociatedToPricingPlanOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPricingRulesAssociatedToPricingPlan(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListPricingRulesAssociatedToPricingPlan, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListPricingRulesAssociatedToPricingPlanAsync(const ListPricingRulesAssociatedToPricingPlanRequest& request, const ListPricingRulesAssociatedToPricingPlanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPricingRulesAssociatedToPricingPlan(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListPricingRulesAssociatedToPricingPlan, this, request, handler, context, m_executor.get());
 }
 
 ListResourcesAssociatedToCustomLineItemOutcome BillingConductorClient::ListResourcesAssociatedToCustomLineItem(const ListResourcesAssociatedToCustomLineItemRequest& request) const
@@ -766,18 +629,12 @@ ListResourcesAssociatedToCustomLineItemOutcome BillingConductorClient::ListResou
 
 ListResourcesAssociatedToCustomLineItemOutcomeCallable BillingConductorClient::ListResourcesAssociatedToCustomLineItemCallable(const ListResourcesAssociatedToCustomLineItemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourcesAssociatedToCustomLineItemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResourcesAssociatedToCustomLineItem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListResourcesAssociatedToCustomLineItem, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListResourcesAssociatedToCustomLineItemAsync(const ListResourcesAssociatedToCustomLineItemRequest& request, const ListResourcesAssociatedToCustomLineItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResourcesAssociatedToCustomLineItem(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListResourcesAssociatedToCustomLineItem, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome BillingConductorClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -797,18 +654,12 @@ ListTagsForResourceOutcome BillingConductorClient::ListTagsForResource(const Lis
 
 ListTagsForResourceOutcomeCallable BillingConductorClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void BillingConductorClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome BillingConductorClient::TagResource(const TagResourceRequest& request) const
@@ -828,18 +679,12 @@ TagResourceOutcome BillingConductorClient::TagResource(const TagResourceRequest&
 
 TagResourceOutcomeCallable BillingConductorClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::TagResource, this, request, m_executor.get());
 }
 
 void BillingConductorClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome BillingConductorClient::UntagResource(const UntagResourceRequest& request) const
@@ -864,18 +709,12 @@ UntagResourceOutcome BillingConductorClient::UntagResource(const UntagResourceRe
 
 UntagResourceOutcomeCallable BillingConductorClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::UntagResource, this, request, m_executor.get());
 }
 
 void BillingConductorClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateBillingGroupOutcome BillingConductorClient::UpdateBillingGroup(const UpdateBillingGroupRequest& request) const
@@ -889,18 +728,12 @@ UpdateBillingGroupOutcome BillingConductorClient::UpdateBillingGroup(const Updat
 
 UpdateBillingGroupOutcomeCallable BillingConductorClient::UpdateBillingGroupCallable(const UpdateBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::UpdateBillingGroup, this, request, m_executor.get());
 }
 
 void BillingConductorClient::UpdateBillingGroupAsync(const UpdateBillingGroupRequest& request, const UpdateBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::UpdateBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateCustomLineItemOutcome BillingConductorClient::UpdateCustomLineItem(const UpdateCustomLineItemRequest& request) const
@@ -914,18 +747,12 @@ UpdateCustomLineItemOutcome BillingConductorClient::UpdateCustomLineItem(const U
 
 UpdateCustomLineItemOutcomeCallable BillingConductorClient::UpdateCustomLineItemCallable(const UpdateCustomLineItemRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCustomLineItemOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCustomLineItem(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::UpdateCustomLineItem, this, request, m_executor.get());
 }
 
 void BillingConductorClient::UpdateCustomLineItemAsync(const UpdateCustomLineItemRequest& request, const UpdateCustomLineItemResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCustomLineItem(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::UpdateCustomLineItem, this, request, handler, context, m_executor.get());
 }
 
 UpdatePricingPlanOutcome BillingConductorClient::UpdatePricingPlan(const UpdatePricingPlanRequest& request) const
@@ -939,18 +766,12 @@ UpdatePricingPlanOutcome BillingConductorClient::UpdatePricingPlan(const UpdateP
 
 UpdatePricingPlanOutcomeCallable BillingConductorClient::UpdatePricingPlanCallable(const UpdatePricingPlanRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePricingPlanOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePricingPlan(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::UpdatePricingPlan, this, request, m_executor.get());
 }
 
 void BillingConductorClient::UpdatePricingPlanAsync(const UpdatePricingPlanRequest& request, const UpdatePricingPlanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePricingPlan(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::UpdatePricingPlan, this, request, handler, context, m_executor.get());
 }
 
 UpdatePricingRuleOutcome BillingConductorClient::UpdatePricingRule(const UpdatePricingRuleRequest& request) const
@@ -964,17 +785,11 @@ UpdatePricingRuleOutcome BillingConductorClient::UpdatePricingRule(const UpdateP
 
 UpdatePricingRuleOutcomeCallable BillingConductorClient::UpdatePricingRuleCallable(const UpdatePricingRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePricingRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePricingRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &BillingConductorClient::UpdatePricingRule, this, request, m_executor.get());
 }
 
 void BillingConductorClient::UpdatePricingRuleAsync(const UpdatePricingRuleRequest& request, const UpdatePricingRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePricingRule(request), context);
-    } );
+  MakeAsyncOperation(&BillingConductorClient::UpdatePricingRule, this, request, handler, context, m_executor.get());
 }
 

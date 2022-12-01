@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -190,18 +191,12 @@ BatchGetTracesOutcome XRayClient::BatchGetTraces(const BatchGetTracesRequest& re
 
 BatchGetTracesOutcomeCallable XRayClient::BatchGetTracesCallable(const BatchGetTracesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchGetTracesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchGetTraces(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::BatchGetTraces, this, request, m_executor.get());
 }
 
 void XRayClient::BatchGetTracesAsync(const BatchGetTracesRequest& request, const BatchGetTracesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchGetTraces(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::BatchGetTraces, this, request, handler, context, m_executor.get());
 }
 
 CreateGroupOutcome XRayClient::CreateGroup(const CreateGroupRequest& request) const
@@ -215,18 +210,12 @@ CreateGroupOutcome XRayClient::CreateGroup(const CreateGroupRequest& request) co
 
 CreateGroupOutcomeCallable XRayClient::CreateGroupCallable(const CreateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::CreateGroup, this, request, m_executor.get());
 }
 
 void XRayClient::CreateGroupAsync(const CreateGroupRequest& request, const CreateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGroup(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::CreateGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateSamplingRuleOutcome XRayClient::CreateSamplingRule(const CreateSamplingRuleRequest& request) const
@@ -240,18 +229,12 @@ CreateSamplingRuleOutcome XRayClient::CreateSamplingRule(const CreateSamplingRul
 
 CreateSamplingRuleOutcomeCallable XRayClient::CreateSamplingRuleCallable(const CreateSamplingRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSamplingRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSamplingRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::CreateSamplingRule, this, request, m_executor.get());
 }
 
 void XRayClient::CreateSamplingRuleAsync(const CreateSamplingRuleRequest& request, const CreateSamplingRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSamplingRule(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::CreateSamplingRule, this, request, handler, context, m_executor.get());
 }
 
 DeleteGroupOutcome XRayClient::DeleteGroup(const DeleteGroupRequest& request) const
@@ -265,18 +248,12 @@ DeleteGroupOutcome XRayClient::DeleteGroup(const DeleteGroupRequest& request) co
 
 DeleteGroupOutcomeCallable XRayClient::DeleteGroupCallable(const DeleteGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::DeleteGroup, this, request, m_executor.get());
 }
 
 void XRayClient::DeleteGroupAsync(const DeleteGroupRequest& request, const DeleteGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGroup(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::DeleteGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourcePolicyOutcome XRayClient::DeleteResourcePolicy(const DeleteResourcePolicyRequest& request) const
@@ -290,18 +267,12 @@ DeleteResourcePolicyOutcome XRayClient::DeleteResourcePolicy(const DeleteResourc
 
 DeleteResourcePolicyOutcomeCallable XRayClient::DeleteResourcePolicyCallable(const DeleteResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::DeleteResourcePolicy, this, request, m_executor.get());
 }
 
 void XRayClient::DeleteResourcePolicyAsync(const DeleteResourcePolicyRequest& request, const DeleteResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::DeleteResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteSamplingRuleOutcome XRayClient::DeleteSamplingRule(const DeleteSamplingRuleRequest& request) const
@@ -315,18 +286,12 @@ DeleteSamplingRuleOutcome XRayClient::DeleteSamplingRule(const DeleteSamplingRul
 
 DeleteSamplingRuleOutcomeCallable XRayClient::DeleteSamplingRuleCallable(const DeleteSamplingRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSamplingRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSamplingRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::DeleteSamplingRule, this, request, m_executor.get());
 }
 
 void XRayClient::DeleteSamplingRuleAsync(const DeleteSamplingRuleRequest& request, const DeleteSamplingRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSamplingRule(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::DeleteSamplingRule, this, request, handler, context, m_executor.get());
 }
 
 GetEncryptionConfigOutcome XRayClient::GetEncryptionConfig(const GetEncryptionConfigRequest& request) const
@@ -340,18 +305,12 @@ GetEncryptionConfigOutcome XRayClient::GetEncryptionConfig(const GetEncryptionCo
 
 GetEncryptionConfigOutcomeCallable XRayClient::GetEncryptionConfigCallable(const GetEncryptionConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEncryptionConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEncryptionConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetEncryptionConfig, this, request, m_executor.get());
 }
 
 void XRayClient::GetEncryptionConfigAsync(const GetEncryptionConfigRequest& request, const GetEncryptionConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEncryptionConfig(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetEncryptionConfig, this, request, handler, context, m_executor.get());
 }
 
 GetGroupOutcome XRayClient::GetGroup(const GetGroupRequest& request) const
@@ -365,18 +324,12 @@ GetGroupOutcome XRayClient::GetGroup(const GetGroupRequest& request) const
 
 GetGroupOutcomeCallable XRayClient::GetGroupCallable(const GetGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetGroup, this, request, m_executor.get());
 }
 
 void XRayClient::GetGroupAsync(const GetGroupRequest& request, const GetGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroup(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetGroup, this, request, handler, context, m_executor.get());
 }
 
 GetGroupsOutcome XRayClient::GetGroups(const GetGroupsRequest& request) const
@@ -390,18 +343,12 @@ GetGroupsOutcome XRayClient::GetGroups(const GetGroupsRequest& request) const
 
 GetGroupsOutcomeCallable XRayClient::GetGroupsCallable(const GetGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetGroups, this, request, m_executor.get());
 }
 
 void XRayClient::GetGroupsAsync(const GetGroupsRequest& request, const GetGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGroups(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetGroups, this, request, handler, context, m_executor.get());
 }
 
 GetInsightOutcome XRayClient::GetInsight(const GetInsightRequest& request) const
@@ -415,18 +362,12 @@ GetInsightOutcome XRayClient::GetInsight(const GetInsightRequest& request) const
 
 GetInsightOutcomeCallable XRayClient::GetInsightCallable(const GetInsightRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetInsightOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetInsight(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetInsight, this, request, m_executor.get());
 }
 
 void XRayClient::GetInsightAsync(const GetInsightRequest& request, const GetInsightResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetInsight(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetInsight, this, request, handler, context, m_executor.get());
 }
 
 GetInsightEventsOutcome XRayClient::GetInsightEvents(const GetInsightEventsRequest& request) const
@@ -440,18 +381,12 @@ GetInsightEventsOutcome XRayClient::GetInsightEvents(const GetInsightEventsReque
 
 GetInsightEventsOutcomeCallable XRayClient::GetInsightEventsCallable(const GetInsightEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetInsightEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetInsightEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetInsightEvents, this, request, m_executor.get());
 }
 
 void XRayClient::GetInsightEventsAsync(const GetInsightEventsRequest& request, const GetInsightEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetInsightEvents(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetInsightEvents, this, request, handler, context, m_executor.get());
 }
 
 GetInsightImpactGraphOutcome XRayClient::GetInsightImpactGraph(const GetInsightImpactGraphRequest& request) const
@@ -465,18 +400,12 @@ GetInsightImpactGraphOutcome XRayClient::GetInsightImpactGraph(const GetInsightI
 
 GetInsightImpactGraphOutcomeCallable XRayClient::GetInsightImpactGraphCallable(const GetInsightImpactGraphRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetInsightImpactGraphOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetInsightImpactGraph(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetInsightImpactGraph, this, request, m_executor.get());
 }
 
 void XRayClient::GetInsightImpactGraphAsync(const GetInsightImpactGraphRequest& request, const GetInsightImpactGraphResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetInsightImpactGraph(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetInsightImpactGraph, this, request, handler, context, m_executor.get());
 }
 
 GetInsightSummariesOutcome XRayClient::GetInsightSummaries(const GetInsightSummariesRequest& request) const
@@ -490,18 +419,12 @@ GetInsightSummariesOutcome XRayClient::GetInsightSummaries(const GetInsightSumma
 
 GetInsightSummariesOutcomeCallable XRayClient::GetInsightSummariesCallable(const GetInsightSummariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetInsightSummariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetInsightSummaries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetInsightSummaries, this, request, m_executor.get());
 }
 
 void XRayClient::GetInsightSummariesAsync(const GetInsightSummariesRequest& request, const GetInsightSummariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetInsightSummaries(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetInsightSummaries, this, request, handler, context, m_executor.get());
 }
 
 GetSamplingRulesOutcome XRayClient::GetSamplingRules(const GetSamplingRulesRequest& request) const
@@ -515,18 +438,12 @@ GetSamplingRulesOutcome XRayClient::GetSamplingRules(const GetSamplingRulesReque
 
 GetSamplingRulesOutcomeCallable XRayClient::GetSamplingRulesCallable(const GetSamplingRulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSamplingRulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSamplingRules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetSamplingRules, this, request, m_executor.get());
 }
 
 void XRayClient::GetSamplingRulesAsync(const GetSamplingRulesRequest& request, const GetSamplingRulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSamplingRules(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetSamplingRules, this, request, handler, context, m_executor.get());
 }
 
 GetSamplingStatisticSummariesOutcome XRayClient::GetSamplingStatisticSummaries(const GetSamplingStatisticSummariesRequest& request) const
@@ -540,18 +457,12 @@ GetSamplingStatisticSummariesOutcome XRayClient::GetSamplingStatisticSummaries(c
 
 GetSamplingStatisticSummariesOutcomeCallable XRayClient::GetSamplingStatisticSummariesCallable(const GetSamplingStatisticSummariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSamplingStatisticSummariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSamplingStatisticSummaries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetSamplingStatisticSummaries, this, request, m_executor.get());
 }
 
 void XRayClient::GetSamplingStatisticSummariesAsync(const GetSamplingStatisticSummariesRequest& request, const GetSamplingStatisticSummariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSamplingStatisticSummaries(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetSamplingStatisticSummaries, this, request, handler, context, m_executor.get());
 }
 
 GetSamplingTargetsOutcome XRayClient::GetSamplingTargets(const GetSamplingTargetsRequest& request) const
@@ -565,18 +476,12 @@ GetSamplingTargetsOutcome XRayClient::GetSamplingTargets(const GetSamplingTarget
 
 GetSamplingTargetsOutcomeCallable XRayClient::GetSamplingTargetsCallable(const GetSamplingTargetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSamplingTargetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSamplingTargets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetSamplingTargets, this, request, m_executor.get());
 }
 
 void XRayClient::GetSamplingTargetsAsync(const GetSamplingTargetsRequest& request, const GetSamplingTargetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSamplingTargets(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetSamplingTargets, this, request, handler, context, m_executor.get());
 }
 
 GetServiceGraphOutcome XRayClient::GetServiceGraph(const GetServiceGraphRequest& request) const
@@ -590,18 +495,12 @@ GetServiceGraphOutcome XRayClient::GetServiceGraph(const GetServiceGraphRequest&
 
 GetServiceGraphOutcomeCallable XRayClient::GetServiceGraphCallable(const GetServiceGraphRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetServiceGraphOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetServiceGraph(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetServiceGraph, this, request, m_executor.get());
 }
 
 void XRayClient::GetServiceGraphAsync(const GetServiceGraphRequest& request, const GetServiceGraphResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetServiceGraph(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetServiceGraph, this, request, handler, context, m_executor.get());
 }
 
 GetTimeSeriesServiceStatisticsOutcome XRayClient::GetTimeSeriesServiceStatistics(const GetTimeSeriesServiceStatisticsRequest& request) const
@@ -615,18 +514,12 @@ GetTimeSeriesServiceStatisticsOutcome XRayClient::GetTimeSeriesServiceStatistics
 
 GetTimeSeriesServiceStatisticsOutcomeCallable XRayClient::GetTimeSeriesServiceStatisticsCallable(const GetTimeSeriesServiceStatisticsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTimeSeriesServiceStatisticsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTimeSeriesServiceStatistics(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetTimeSeriesServiceStatistics, this, request, m_executor.get());
 }
 
 void XRayClient::GetTimeSeriesServiceStatisticsAsync(const GetTimeSeriesServiceStatisticsRequest& request, const GetTimeSeriesServiceStatisticsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTimeSeriesServiceStatistics(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetTimeSeriesServiceStatistics, this, request, handler, context, m_executor.get());
 }
 
 GetTraceGraphOutcome XRayClient::GetTraceGraph(const GetTraceGraphRequest& request) const
@@ -640,18 +533,12 @@ GetTraceGraphOutcome XRayClient::GetTraceGraph(const GetTraceGraphRequest& reque
 
 GetTraceGraphOutcomeCallable XRayClient::GetTraceGraphCallable(const GetTraceGraphRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTraceGraphOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTraceGraph(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetTraceGraph, this, request, m_executor.get());
 }
 
 void XRayClient::GetTraceGraphAsync(const GetTraceGraphRequest& request, const GetTraceGraphResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTraceGraph(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetTraceGraph, this, request, handler, context, m_executor.get());
 }
 
 GetTraceSummariesOutcome XRayClient::GetTraceSummaries(const GetTraceSummariesRequest& request) const
@@ -665,18 +552,12 @@ GetTraceSummariesOutcome XRayClient::GetTraceSummaries(const GetTraceSummariesRe
 
 GetTraceSummariesOutcomeCallable XRayClient::GetTraceSummariesCallable(const GetTraceSummariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTraceSummariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTraceSummaries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::GetTraceSummaries, this, request, m_executor.get());
 }
 
 void XRayClient::GetTraceSummariesAsync(const GetTraceSummariesRequest& request, const GetTraceSummariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTraceSummaries(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::GetTraceSummaries, this, request, handler, context, m_executor.get());
 }
 
 ListResourcePoliciesOutcome XRayClient::ListResourcePolicies(const ListResourcePoliciesRequest& request) const
@@ -690,18 +571,12 @@ ListResourcePoliciesOutcome XRayClient::ListResourcePolicies(const ListResourceP
 
 ListResourcePoliciesOutcomeCallable XRayClient::ListResourcePoliciesCallable(const ListResourcePoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourcePoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResourcePolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::ListResourcePolicies, this, request, m_executor.get());
 }
 
 void XRayClient::ListResourcePoliciesAsync(const ListResourcePoliciesRequest& request, const ListResourcePoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResourcePolicies(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::ListResourcePolicies, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome XRayClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -715,18 +590,12 @@ ListTagsForResourceOutcome XRayClient::ListTagsForResource(const ListTagsForReso
 
 ListTagsForResourceOutcomeCallable XRayClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void XRayClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutEncryptionConfigOutcome XRayClient::PutEncryptionConfig(const PutEncryptionConfigRequest& request) const
@@ -740,18 +609,12 @@ PutEncryptionConfigOutcome XRayClient::PutEncryptionConfig(const PutEncryptionCo
 
 PutEncryptionConfigOutcomeCallable XRayClient::PutEncryptionConfigCallable(const PutEncryptionConfigRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutEncryptionConfigOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutEncryptionConfig(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::PutEncryptionConfig, this, request, m_executor.get());
 }
 
 void XRayClient::PutEncryptionConfigAsync(const PutEncryptionConfigRequest& request, const PutEncryptionConfigResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutEncryptionConfig(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::PutEncryptionConfig, this, request, handler, context, m_executor.get());
 }
 
 PutResourcePolicyOutcome XRayClient::PutResourcePolicy(const PutResourcePolicyRequest& request) const
@@ -765,18 +628,12 @@ PutResourcePolicyOutcome XRayClient::PutResourcePolicy(const PutResourcePolicyRe
 
 PutResourcePolicyOutcomeCallable XRayClient::PutResourcePolicyCallable(const PutResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::PutResourcePolicy, this, request, m_executor.get());
 }
 
 void XRayClient::PutResourcePolicyAsync(const PutResourcePolicyRequest& request, const PutResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::PutResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 PutTelemetryRecordsOutcome XRayClient::PutTelemetryRecords(const PutTelemetryRecordsRequest& request) const
@@ -790,18 +647,12 @@ PutTelemetryRecordsOutcome XRayClient::PutTelemetryRecords(const PutTelemetryRec
 
 PutTelemetryRecordsOutcomeCallable XRayClient::PutTelemetryRecordsCallable(const PutTelemetryRecordsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutTelemetryRecordsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutTelemetryRecords(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::PutTelemetryRecords, this, request, m_executor.get());
 }
 
 void XRayClient::PutTelemetryRecordsAsync(const PutTelemetryRecordsRequest& request, const PutTelemetryRecordsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutTelemetryRecords(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::PutTelemetryRecords, this, request, handler, context, m_executor.get());
 }
 
 PutTraceSegmentsOutcome XRayClient::PutTraceSegments(const PutTraceSegmentsRequest& request) const
@@ -815,18 +666,12 @@ PutTraceSegmentsOutcome XRayClient::PutTraceSegments(const PutTraceSegmentsReque
 
 PutTraceSegmentsOutcomeCallable XRayClient::PutTraceSegmentsCallable(const PutTraceSegmentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutTraceSegmentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutTraceSegments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::PutTraceSegments, this, request, m_executor.get());
 }
 
 void XRayClient::PutTraceSegmentsAsync(const PutTraceSegmentsRequest& request, const PutTraceSegmentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutTraceSegments(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::PutTraceSegments, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome XRayClient::TagResource(const TagResourceRequest& request) const
@@ -840,18 +685,12 @@ TagResourceOutcome XRayClient::TagResource(const TagResourceRequest& request) co
 
 TagResourceOutcomeCallable XRayClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::TagResource, this, request, m_executor.get());
 }
 
 void XRayClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome XRayClient::UntagResource(const UntagResourceRequest& request) const
@@ -865,18 +704,12 @@ UntagResourceOutcome XRayClient::UntagResource(const UntagResourceRequest& reque
 
 UntagResourceOutcomeCallable XRayClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::UntagResource, this, request, m_executor.get());
 }
 
 void XRayClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateGroupOutcome XRayClient::UpdateGroup(const UpdateGroupRequest& request) const
@@ -890,18 +723,12 @@ UpdateGroupOutcome XRayClient::UpdateGroup(const UpdateGroupRequest& request) co
 
 UpdateGroupOutcomeCallable XRayClient::UpdateGroupCallable(const UpdateGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::UpdateGroup, this, request, m_executor.get());
 }
 
 void XRayClient::UpdateGroupAsync(const UpdateGroupRequest& request, const UpdateGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGroup(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::UpdateGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateSamplingRuleOutcome XRayClient::UpdateSamplingRule(const UpdateSamplingRuleRequest& request) const
@@ -915,17 +742,11 @@ UpdateSamplingRuleOutcome XRayClient::UpdateSamplingRule(const UpdateSamplingRul
 
 UpdateSamplingRuleOutcomeCallable XRayClient::UpdateSamplingRuleCallable(const UpdateSamplingRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSamplingRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSamplingRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &XRayClient::UpdateSamplingRule, this, request, m_executor.get());
 }
 
 void XRayClient::UpdateSamplingRuleAsync(const UpdateSamplingRuleRequest& request, const UpdateSamplingRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSamplingRule(request), context);
-    } );
+  MakeAsyncOperation(&XRayClient::UpdateSamplingRule, this, request, handler, context, m_executor.get());
 }
 

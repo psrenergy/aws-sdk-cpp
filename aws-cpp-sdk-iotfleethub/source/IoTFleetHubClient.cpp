@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -168,18 +169,12 @@ CreateApplicationOutcome IoTFleetHubClient::CreateApplication(const CreateApplic
 
 CreateApplicationOutcomeCallable IoTFleetHubClient::CreateApplicationCallable(const CreateApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::CreateApplication, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::CreateApplicationAsync(const CreateApplicationRequest& request, const CreateApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateApplication(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::CreateApplication, this, request, handler, context, m_executor.get());
 }
 
 DeleteApplicationOutcome IoTFleetHubClient::DeleteApplication(const DeleteApplicationRequest& request) const
@@ -199,18 +194,12 @@ DeleteApplicationOutcome IoTFleetHubClient::DeleteApplication(const DeleteApplic
 
 DeleteApplicationOutcomeCallable IoTFleetHubClient::DeleteApplicationCallable(const DeleteApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::DeleteApplication, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::DeleteApplicationAsync(const DeleteApplicationRequest& request, const DeleteApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteApplication(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::DeleteApplication, this, request, handler, context, m_executor.get());
 }
 
 DescribeApplicationOutcome IoTFleetHubClient::DescribeApplication(const DescribeApplicationRequest& request) const
@@ -230,18 +219,12 @@ DescribeApplicationOutcome IoTFleetHubClient::DescribeApplication(const Describe
 
 DescribeApplicationOutcomeCallable IoTFleetHubClient::DescribeApplicationCallable(const DescribeApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::DescribeApplication, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::DescribeApplicationAsync(const DescribeApplicationRequest& request, const DescribeApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeApplication(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::DescribeApplication, this, request, handler, context, m_executor.get());
 }
 
 ListApplicationsOutcome IoTFleetHubClient::ListApplications(const ListApplicationsRequest& request) const
@@ -255,18 +238,12 @@ ListApplicationsOutcome IoTFleetHubClient::ListApplications(const ListApplicatio
 
 ListApplicationsOutcomeCallable IoTFleetHubClient::ListApplicationsCallable(const ListApplicationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListApplicationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListApplications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::ListApplications, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::ListApplicationsAsync(const ListApplicationsRequest& request, const ListApplicationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListApplications(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::ListApplications, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome IoTFleetHubClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -286,18 +263,12 @@ ListTagsForResourceOutcome IoTFleetHubClient::ListTagsForResource(const ListTags
 
 ListTagsForResourceOutcomeCallable IoTFleetHubClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome IoTFleetHubClient::TagResource(const TagResourceRequest& request) const
@@ -317,18 +288,12 @@ TagResourceOutcome IoTFleetHubClient::TagResource(const TagResourceRequest& requ
 
 TagResourceOutcomeCallable IoTFleetHubClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::TagResource, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome IoTFleetHubClient::UntagResource(const UntagResourceRequest& request) const
@@ -353,18 +318,12 @@ UntagResourceOutcome IoTFleetHubClient::UntagResource(const UntagResourceRequest
 
 UntagResourceOutcomeCallable IoTFleetHubClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::UntagResource, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateApplicationOutcome IoTFleetHubClient::UpdateApplication(const UpdateApplicationRequest& request) const
@@ -384,17 +343,11 @@ UpdateApplicationOutcome IoTFleetHubClient::UpdateApplication(const UpdateApplic
 
 UpdateApplicationOutcomeCallable IoTFleetHubClient::UpdateApplicationCallable(const UpdateApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTFleetHubClient::UpdateApplication, this, request, m_executor.get());
 }
 
 void IoTFleetHubClient::UpdateApplicationAsync(const UpdateApplicationRequest& request, const UpdateApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateApplication(request), context);
-    } );
+  MakeAsyncOperation(&IoTFleetHubClient::UpdateApplication, this, request, handler, context, m_executor.get());
 }
 

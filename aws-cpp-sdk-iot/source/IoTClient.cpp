@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -400,18 +401,12 @@ AcceptCertificateTransferOutcome IoTClient::AcceptCertificateTransfer(const Acce
 
 AcceptCertificateTransferOutcomeCallable IoTClient::AcceptCertificateTransferCallable(const AcceptCertificateTransferRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AcceptCertificateTransferOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AcceptCertificateTransfer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::AcceptCertificateTransfer, this, request, m_executor.get());
 }
 
 void IoTClient::AcceptCertificateTransferAsync(const AcceptCertificateTransferRequest& request, const AcceptCertificateTransferResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AcceptCertificateTransfer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::AcceptCertificateTransfer, this, request, handler, context, m_executor.get());
 }
 
 AddThingToBillingGroupOutcome IoTClient::AddThingToBillingGroup(const AddThingToBillingGroupRequest& request) const
@@ -425,18 +420,12 @@ AddThingToBillingGroupOutcome IoTClient::AddThingToBillingGroup(const AddThingTo
 
 AddThingToBillingGroupOutcomeCallable IoTClient::AddThingToBillingGroupCallable(const AddThingToBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddThingToBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddThingToBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::AddThingToBillingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::AddThingToBillingGroupAsync(const AddThingToBillingGroupRequest& request, const AddThingToBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddThingToBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::AddThingToBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 AddThingToThingGroupOutcome IoTClient::AddThingToThingGroup(const AddThingToThingGroupRequest& request) const
@@ -450,18 +439,12 @@ AddThingToThingGroupOutcome IoTClient::AddThingToThingGroup(const AddThingToThin
 
 AddThingToThingGroupOutcomeCallable IoTClient::AddThingToThingGroupCallable(const AddThingToThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AddThingToThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AddThingToThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::AddThingToThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::AddThingToThingGroupAsync(const AddThingToThingGroupRequest& request, const AddThingToThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AddThingToThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::AddThingToThingGroup, this, request, handler, context, m_executor.get());
 }
 
 AssociateTargetsWithJobOutcome IoTClient::AssociateTargetsWithJob(const AssociateTargetsWithJobRequest& request) const
@@ -482,18 +465,12 @@ AssociateTargetsWithJobOutcome IoTClient::AssociateTargetsWithJob(const Associat
 
 AssociateTargetsWithJobOutcomeCallable IoTClient::AssociateTargetsWithJobCallable(const AssociateTargetsWithJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateTargetsWithJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateTargetsWithJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::AssociateTargetsWithJob, this, request, m_executor.get());
 }
 
 void IoTClient::AssociateTargetsWithJobAsync(const AssociateTargetsWithJobRequest& request, const AssociateTargetsWithJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateTargetsWithJob(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::AssociateTargetsWithJob, this, request, handler, context, m_executor.get());
 }
 
 AttachPolicyOutcome IoTClient::AttachPolicy(const AttachPolicyRequest& request) const
@@ -513,18 +490,12 @@ AttachPolicyOutcome IoTClient::AttachPolicy(const AttachPolicyRequest& request) 
 
 AttachPolicyOutcomeCallable IoTClient::AttachPolicyCallable(const AttachPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::AttachPolicy, this, request, m_executor.get());
 }
 
 void IoTClient::AttachPolicyAsync(const AttachPolicyRequest& request, const AttachPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::AttachPolicy, this, request, handler, context, m_executor.get());
 }
 
 AttachSecurityProfileOutcome IoTClient::AttachSecurityProfile(const AttachSecurityProfileRequest& request) const
@@ -550,18 +521,12 @@ AttachSecurityProfileOutcome IoTClient::AttachSecurityProfile(const AttachSecuri
 
 AttachSecurityProfileOutcomeCallable IoTClient::AttachSecurityProfileCallable(const AttachSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::AttachSecurityProfile, this, request, m_executor.get());
 }
 
 void IoTClient::AttachSecurityProfileAsync(const AttachSecurityProfileRequest& request, const AttachSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::AttachSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 AttachThingPrincipalOutcome IoTClient::AttachThingPrincipal(const AttachThingPrincipalRequest& request) const
@@ -587,18 +552,12 @@ AttachThingPrincipalOutcome IoTClient::AttachThingPrincipal(const AttachThingPri
 
 AttachThingPrincipalOutcomeCallable IoTClient::AttachThingPrincipalCallable(const AttachThingPrincipalRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AttachThingPrincipalOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AttachThingPrincipal(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::AttachThingPrincipal, this, request, m_executor.get());
 }
 
 void IoTClient::AttachThingPrincipalAsync(const AttachThingPrincipalRequest& request, const AttachThingPrincipalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AttachThingPrincipal(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::AttachThingPrincipal, this, request, handler, context, m_executor.get());
 }
 
 CancelAuditMitigationActionsTaskOutcome IoTClient::CancelAuditMitigationActionsTask(const CancelAuditMitigationActionsTaskRequest& request) const
@@ -619,18 +578,12 @@ CancelAuditMitigationActionsTaskOutcome IoTClient::CancelAuditMitigationActionsT
 
 CancelAuditMitigationActionsTaskOutcomeCallable IoTClient::CancelAuditMitigationActionsTaskCallable(const CancelAuditMitigationActionsTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelAuditMitigationActionsTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelAuditMitigationActionsTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CancelAuditMitigationActionsTask, this, request, m_executor.get());
 }
 
 void IoTClient::CancelAuditMitigationActionsTaskAsync(const CancelAuditMitigationActionsTaskRequest& request, const CancelAuditMitigationActionsTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelAuditMitigationActionsTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CancelAuditMitigationActionsTask, this, request, handler, context, m_executor.get());
 }
 
 CancelAuditTaskOutcome IoTClient::CancelAuditTask(const CancelAuditTaskRequest& request) const
@@ -651,18 +604,12 @@ CancelAuditTaskOutcome IoTClient::CancelAuditTask(const CancelAuditTaskRequest& 
 
 CancelAuditTaskOutcomeCallable IoTClient::CancelAuditTaskCallable(const CancelAuditTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelAuditTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelAuditTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CancelAuditTask, this, request, m_executor.get());
 }
 
 void IoTClient::CancelAuditTaskAsync(const CancelAuditTaskRequest& request, const CancelAuditTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelAuditTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CancelAuditTask, this, request, handler, context, m_executor.get());
 }
 
 CancelCertificateTransferOutcome IoTClient::CancelCertificateTransfer(const CancelCertificateTransferRequest& request) const
@@ -682,18 +629,12 @@ CancelCertificateTransferOutcome IoTClient::CancelCertificateTransfer(const Canc
 
 CancelCertificateTransferOutcomeCallable IoTClient::CancelCertificateTransferCallable(const CancelCertificateTransferRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelCertificateTransferOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelCertificateTransfer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CancelCertificateTransfer, this, request, m_executor.get());
 }
 
 void IoTClient::CancelCertificateTransferAsync(const CancelCertificateTransferRequest& request, const CancelCertificateTransferResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelCertificateTransfer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CancelCertificateTransfer, this, request, handler, context, m_executor.get());
 }
 
 CancelDetectMitigationActionsTaskOutcome IoTClient::CancelDetectMitigationActionsTask(const CancelDetectMitigationActionsTaskRequest& request) const
@@ -714,18 +655,12 @@ CancelDetectMitigationActionsTaskOutcome IoTClient::CancelDetectMitigationAction
 
 CancelDetectMitigationActionsTaskOutcomeCallable IoTClient::CancelDetectMitigationActionsTaskCallable(const CancelDetectMitigationActionsTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelDetectMitigationActionsTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelDetectMitigationActionsTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CancelDetectMitigationActionsTask, this, request, m_executor.get());
 }
 
 void IoTClient::CancelDetectMitigationActionsTaskAsync(const CancelDetectMitigationActionsTaskRequest& request, const CancelDetectMitigationActionsTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelDetectMitigationActionsTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CancelDetectMitigationActionsTask, this, request, handler, context, m_executor.get());
 }
 
 CancelJobOutcome IoTClient::CancelJob(const CancelJobRequest& request) const
@@ -746,18 +681,12 @@ CancelJobOutcome IoTClient::CancelJob(const CancelJobRequest& request) const
 
 CancelJobOutcomeCallable IoTClient::CancelJobCallable(const CancelJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CancelJob, this, request, m_executor.get());
 }
 
 void IoTClient::CancelJobAsync(const CancelJobRequest& request, const CancelJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelJob(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CancelJob, this, request, handler, context, m_executor.get());
 }
 
 CancelJobExecutionOutcome IoTClient::CancelJobExecution(const CancelJobExecutionRequest& request) const
@@ -785,18 +714,12 @@ CancelJobExecutionOutcome IoTClient::CancelJobExecution(const CancelJobExecution
 
 CancelJobExecutionOutcomeCallable IoTClient::CancelJobExecutionCallable(const CancelJobExecutionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelJobExecutionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelJobExecution(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CancelJobExecution, this, request, m_executor.get());
 }
 
 void IoTClient::CancelJobExecutionAsync(const CancelJobExecutionRequest& request, const CancelJobExecutionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelJobExecution(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CancelJobExecution, this, request, handler, context, m_executor.get());
 }
 
 ClearDefaultAuthorizerOutcome IoTClient::ClearDefaultAuthorizer(const ClearDefaultAuthorizerRequest& request) const
@@ -810,18 +733,12 @@ ClearDefaultAuthorizerOutcome IoTClient::ClearDefaultAuthorizer(const ClearDefau
 
 ClearDefaultAuthorizerOutcomeCallable IoTClient::ClearDefaultAuthorizerCallable(const ClearDefaultAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ClearDefaultAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ClearDefaultAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ClearDefaultAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::ClearDefaultAuthorizerAsync(const ClearDefaultAuthorizerRequest& request, const ClearDefaultAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ClearDefaultAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ClearDefaultAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 ConfirmTopicRuleDestinationOutcome IoTClient::ConfirmTopicRuleDestination(const ConfirmTopicRuleDestinationRequest& request) const
@@ -841,18 +758,12 @@ ConfirmTopicRuleDestinationOutcome IoTClient::ConfirmTopicRuleDestination(const 
 
 ConfirmTopicRuleDestinationOutcomeCallable IoTClient::ConfirmTopicRuleDestinationCallable(const ConfirmTopicRuleDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfirmTopicRuleDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfirmTopicRuleDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ConfirmTopicRuleDestination, this, request, m_executor.get());
 }
 
 void IoTClient::ConfirmTopicRuleDestinationAsync(const ConfirmTopicRuleDestinationRequest& request, const ConfirmTopicRuleDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfirmTopicRuleDestination(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ConfirmTopicRuleDestination, this, request, handler, context, m_executor.get());
 }
 
 CreateAuditSuppressionOutcome IoTClient::CreateAuditSuppression(const CreateAuditSuppressionRequest& request) const
@@ -866,18 +777,12 @@ CreateAuditSuppressionOutcome IoTClient::CreateAuditSuppression(const CreateAudi
 
 CreateAuditSuppressionOutcomeCallable IoTClient::CreateAuditSuppressionCallable(const CreateAuditSuppressionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAuditSuppressionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAuditSuppression(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateAuditSuppression, this, request, m_executor.get());
 }
 
 void IoTClient::CreateAuditSuppressionAsync(const CreateAuditSuppressionRequest& request, const CreateAuditSuppressionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAuditSuppression(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateAuditSuppression, this, request, handler, context, m_executor.get());
 }
 
 CreateAuthorizerOutcome IoTClient::CreateAuthorizer(const CreateAuthorizerRequest& request) const
@@ -897,18 +802,12 @@ CreateAuthorizerOutcome IoTClient::CreateAuthorizer(const CreateAuthorizerReques
 
 CreateAuthorizerOutcomeCallable IoTClient::CreateAuthorizerCallable(const CreateAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::CreateAuthorizerAsync(const CreateAuthorizerRequest& request, const CreateAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 CreateBillingGroupOutcome IoTClient::CreateBillingGroup(const CreateBillingGroupRequest& request) const
@@ -928,18 +827,12 @@ CreateBillingGroupOutcome IoTClient::CreateBillingGroup(const CreateBillingGroup
 
 CreateBillingGroupOutcomeCallable IoTClient::CreateBillingGroupCallable(const CreateBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateBillingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::CreateBillingGroupAsync(const CreateBillingGroupRequest& request, const CreateBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateCertificateFromCsrOutcome IoTClient::CreateCertificateFromCsr(const CreateCertificateFromCsrRequest& request) const
@@ -953,18 +846,12 @@ CreateCertificateFromCsrOutcome IoTClient::CreateCertificateFromCsr(const Create
 
 CreateCertificateFromCsrOutcomeCallable IoTClient::CreateCertificateFromCsrCallable(const CreateCertificateFromCsrRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCertificateFromCsrOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCertificateFromCsr(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateCertificateFromCsr, this, request, m_executor.get());
 }
 
 void IoTClient::CreateCertificateFromCsrAsync(const CreateCertificateFromCsrRequest& request, const CreateCertificateFromCsrResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCertificateFromCsr(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateCertificateFromCsr, this, request, handler, context, m_executor.get());
 }
 
 CreateCustomMetricOutcome IoTClient::CreateCustomMetric(const CreateCustomMetricRequest& request) const
@@ -984,18 +871,12 @@ CreateCustomMetricOutcome IoTClient::CreateCustomMetric(const CreateCustomMetric
 
 CreateCustomMetricOutcomeCallable IoTClient::CreateCustomMetricCallable(const CreateCustomMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateCustomMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateCustomMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateCustomMetric, this, request, m_executor.get());
 }
 
 void IoTClient::CreateCustomMetricAsync(const CreateCustomMetricRequest& request, const CreateCustomMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateCustomMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateCustomMetric, this, request, handler, context, m_executor.get());
 }
 
 CreateDimensionOutcome IoTClient::CreateDimension(const CreateDimensionRequest& request) const
@@ -1015,18 +896,12 @@ CreateDimensionOutcome IoTClient::CreateDimension(const CreateDimensionRequest& 
 
 CreateDimensionOutcomeCallable IoTClient::CreateDimensionCallable(const CreateDimensionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDimensionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDimension(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateDimension, this, request, m_executor.get());
 }
 
 void IoTClient::CreateDimensionAsync(const CreateDimensionRequest& request, const CreateDimensionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDimension(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateDimension, this, request, handler, context, m_executor.get());
 }
 
 CreateDomainConfigurationOutcome IoTClient::CreateDomainConfiguration(const CreateDomainConfigurationRequest& request) const
@@ -1046,18 +921,12 @@ CreateDomainConfigurationOutcome IoTClient::CreateDomainConfiguration(const Crea
 
 CreateDomainConfigurationOutcomeCallable IoTClient::CreateDomainConfigurationCallable(const CreateDomainConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDomainConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDomainConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateDomainConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::CreateDomainConfigurationAsync(const CreateDomainConfigurationRequest& request, const CreateDomainConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDomainConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateDomainConfiguration, this, request, handler, context, m_executor.get());
 }
 
 CreateDynamicThingGroupOutcome IoTClient::CreateDynamicThingGroup(const CreateDynamicThingGroupRequest& request) const
@@ -1077,18 +946,12 @@ CreateDynamicThingGroupOutcome IoTClient::CreateDynamicThingGroup(const CreateDy
 
 CreateDynamicThingGroupOutcomeCallable IoTClient::CreateDynamicThingGroupCallable(const CreateDynamicThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDynamicThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDynamicThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateDynamicThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::CreateDynamicThingGroupAsync(const CreateDynamicThingGroupRequest& request, const CreateDynamicThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDynamicThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateDynamicThingGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateFleetMetricOutcome IoTClient::CreateFleetMetric(const CreateFleetMetricRequest& request) const
@@ -1108,18 +971,12 @@ CreateFleetMetricOutcome IoTClient::CreateFleetMetric(const CreateFleetMetricReq
 
 CreateFleetMetricOutcomeCallable IoTClient::CreateFleetMetricCallable(const CreateFleetMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateFleetMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateFleetMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateFleetMetric, this, request, m_executor.get());
 }
 
 void IoTClient::CreateFleetMetricAsync(const CreateFleetMetricRequest& request, const CreateFleetMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateFleetMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateFleetMetric, this, request, handler, context, m_executor.get());
 }
 
 CreateJobOutcome IoTClient::CreateJob(const CreateJobRequest& request) const
@@ -1139,18 +996,12 @@ CreateJobOutcome IoTClient::CreateJob(const CreateJobRequest& request) const
 
 CreateJobOutcomeCallable IoTClient::CreateJobCallable(const CreateJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateJob, this, request, m_executor.get());
 }
 
 void IoTClient::CreateJobAsync(const CreateJobRequest& request, const CreateJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateJob(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateJob, this, request, handler, context, m_executor.get());
 }
 
 CreateJobTemplateOutcome IoTClient::CreateJobTemplate(const CreateJobTemplateRequest& request) const
@@ -1170,18 +1021,12 @@ CreateJobTemplateOutcome IoTClient::CreateJobTemplate(const CreateJobTemplateReq
 
 CreateJobTemplateOutcomeCallable IoTClient::CreateJobTemplateCallable(const CreateJobTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateJobTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateJobTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateJobTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::CreateJobTemplateAsync(const CreateJobTemplateRequest& request, const CreateJobTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateJobTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateJobTemplate, this, request, handler, context, m_executor.get());
 }
 
 CreateKeysAndCertificateOutcome IoTClient::CreateKeysAndCertificate(const CreateKeysAndCertificateRequest& request) const
@@ -1195,18 +1040,12 @@ CreateKeysAndCertificateOutcome IoTClient::CreateKeysAndCertificate(const Create
 
 CreateKeysAndCertificateOutcomeCallable IoTClient::CreateKeysAndCertificateCallable(const CreateKeysAndCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateKeysAndCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateKeysAndCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateKeysAndCertificate, this, request, m_executor.get());
 }
 
 void IoTClient::CreateKeysAndCertificateAsync(const CreateKeysAndCertificateRequest& request, const CreateKeysAndCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateKeysAndCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateKeysAndCertificate, this, request, handler, context, m_executor.get());
 }
 
 CreateMitigationActionOutcome IoTClient::CreateMitigationAction(const CreateMitigationActionRequest& request) const
@@ -1226,18 +1065,12 @@ CreateMitigationActionOutcome IoTClient::CreateMitigationAction(const CreateMiti
 
 CreateMitigationActionOutcomeCallable IoTClient::CreateMitigationActionCallable(const CreateMitigationActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateMitigationActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateMitigationAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateMitigationAction, this, request, m_executor.get());
 }
 
 void IoTClient::CreateMitigationActionAsync(const CreateMitigationActionRequest& request, const CreateMitigationActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateMitigationAction(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateMitigationAction, this, request, handler, context, m_executor.get());
 }
 
 CreateOTAUpdateOutcome IoTClient::CreateOTAUpdate(const CreateOTAUpdateRequest& request) const
@@ -1257,18 +1090,12 @@ CreateOTAUpdateOutcome IoTClient::CreateOTAUpdate(const CreateOTAUpdateRequest& 
 
 CreateOTAUpdateOutcomeCallable IoTClient::CreateOTAUpdateCallable(const CreateOTAUpdateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateOTAUpdateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateOTAUpdate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateOTAUpdate, this, request, m_executor.get());
 }
 
 void IoTClient::CreateOTAUpdateAsync(const CreateOTAUpdateRequest& request, const CreateOTAUpdateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateOTAUpdate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateOTAUpdate, this, request, handler, context, m_executor.get());
 }
 
 CreatePolicyOutcome IoTClient::CreatePolicy(const CreatePolicyRequest& request) const
@@ -1288,18 +1115,12 @@ CreatePolicyOutcome IoTClient::CreatePolicy(const CreatePolicyRequest& request) 
 
 CreatePolicyOutcomeCallable IoTClient::CreatePolicyCallable(const CreatePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreatePolicy, this, request, m_executor.get());
 }
 
 void IoTClient::CreatePolicyAsync(const CreatePolicyRequest& request, const CreatePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreatePolicy, this, request, handler, context, m_executor.get());
 }
 
 CreatePolicyVersionOutcome IoTClient::CreatePolicyVersion(const CreatePolicyVersionRequest& request) const
@@ -1320,18 +1141,12 @@ CreatePolicyVersionOutcome IoTClient::CreatePolicyVersion(const CreatePolicyVers
 
 CreatePolicyVersionOutcomeCallable IoTClient::CreatePolicyVersionCallable(const CreatePolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreatePolicyVersion, this, request, m_executor.get());
 }
 
 void IoTClient::CreatePolicyVersionAsync(const CreatePolicyVersionRequest& request, const CreatePolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreatePolicyVersion, this, request, handler, context, m_executor.get());
 }
 
 CreateProvisioningClaimOutcome IoTClient::CreateProvisioningClaim(const CreateProvisioningClaimRequest& request) const
@@ -1352,18 +1167,12 @@ CreateProvisioningClaimOutcome IoTClient::CreateProvisioningClaim(const CreatePr
 
 CreateProvisioningClaimOutcomeCallable IoTClient::CreateProvisioningClaimCallable(const CreateProvisioningClaimRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProvisioningClaimOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProvisioningClaim(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateProvisioningClaim, this, request, m_executor.get());
 }
 
 void IoTClient::CreateProvisioningClaimAsync(const CreateProvisioningClaimRequest& request, const CreateProvisioningClaimResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProvisioningClaim(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateProvisioningClaim, this, request, handler, context, m_executor.get());
 }
 
 CreateProvisioningTemplateOutcome IoTClient::CreateProvisioningTemplate(const CreateProvisioningTemplateRequest& request) const
@@ -1377,18 +1186,12 @@ CreateProvisioningTemplateOutcome IoTClient::CreateProvisioningTemplate(const Cr
 
 CreateProvisioningTemplateOutcomeCallable IoTClient::CreateProvisioningTemplateCallable(const CreateProvisioningTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProvisioningTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProvisioningTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateProvisioningTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::CreateProvisioningTemplateAsync(const CreateProvisioningTemplateRequest& request, const CreateProvisioningTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProvisioningTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateProvisioningTemplate, this, request, handler, context, m_executor.get());
 }
 
 CreateProvisioningTemplateVersionOutcome IoTClient::CreateProvisioningTemplateVersion(const CreateProvisioningTemplateVersionRequest& request) const
@@ -1409,18 +1212,12 @@ CreateProvisioningTemplateVersionOutcome IoTClient::CreateProvisioningTemplateVe
 
 CreateProvisioningTemplateVersionOutcomeCallable IoTClient::CreateProvisioningTemplateVersionCallable(const CreateProvisioningTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProvisioningTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProvisioningTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateProvisioningTemplateVersion, this, request, m_executor.get());
 }
 
 void IoTClient::CreateProvisioningTemplateVersionAsync(const CreateProvisioningTemplateVersionRequest& request, const CreateProvisioningTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProvisioningTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateProvisioningTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 CreateRoleAliasOutcome IoTClient::CreateRoleAlias(const CreateRoleAliasRequest& request) const
@@ -1440,18 +1237,12 @@ CreateRoleAliasOutcome IoTClient::CreateRoleAlias(const CreateRoleAliasRequest& 
 
 CreateRoleAliasOutcomeCallable IoTClient::CreateRoleAliasCallable(const CreateRoleAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRoleAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRoleAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateRoleAlias, this, request, m_executor.get());
 }
 
 void IoTClient::CreateRoleAliasAsync(const CreateRoleAliasRequest& request, const CreateRoleAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRoleAlias(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateRoleAlias, this, request, handler, context, m_executor.get());
 }
 
 CreateScheduledAuditOutcome IoTClient::CreateScheduledAudit(const CreateScheduledAuditRequest& request) const
@@ -1471,18 +1262,12 @@ CreateScheduledAuditOutcome IoTClient::CreateScheduledAudit(const CreateSchedule
 
 CreateScheduledAuditOutcomeCallable IoTClient::CreateScheduledAuditCallable(const CreateScheduledAuditRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateScheduledAuditOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateScheduledAudit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateScheduledAudit, this, request, m_executor.get());
 }
 
 void IoTClient::CreateScheduledAuditAsync(const CreateScheduledAuditRequest& request, const CreateScheduledAuditResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateScheduledAudit(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateScheduledAudit, this, request, handler, context, m_executor.get());
 }
 
 CreateSecurityProfileOutcome IoTClient::CreateSecurityProfile(const CreateSecurityProfileRequest& request) const
@@ -1502,18 +1287,12 @@ CreateSecurityProfileOutcome IoTClient::CreateSecurityProfile(const CreateSecuri
 
 CreateSecurityProfileOutcomeCallable IoTClient::CreateSecurityProfileCallable(const CreateSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateSecurityProfile, this, request, m_executor.get());
 }
 
 void IoTClient::CreateSecurityProfileAsync(const CreateSecurityProfileRequest& request, const CreateSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 CreateStreamOutcome IoTClient::CreateStream(const CreateStreamRequest& request) const
@@ -1533,18 +1312,12 @@ CreateStreamOutcome IoTClient::CreateStream(const CreateStreamRequest& request) 
 
 CreateStreamOutcomeCallable IoTClient::CreateStreamCallable(const CreateStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateStream, this, request, m_executor.get());
 }
 
 void IoTClient::CreateStreamAsync(const CreateStreamRequest& request, const CreateStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateStream(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateStream, this, request, handler, context, m_executor.get());
 }
 
 CreateThingOutcome IoTClient::CreateThing(const CreateThingRequest& request) const
@@ -1564,18 +1337,12 @@ CreateThingOutcome IoTClient::CreateThing(const CreateThingRequest& request) con
 
 CreateThingOutcomeCallable IoTClient::CreateThingCallable(const CreateThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateThing, this, request, m_executor.get());
 }
 
 void IoTClient::CreateThingAsync(const CreateThingRequest& request, const CreateThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateThing, this, request, handler, context, m_executor.get());
 }
 
 CreateThingGroupOutcome IoTClient::CreateThingGroup(const CreateThingGroupRequest& request) const
@@ -1595,18 +1362,12 @@ CreateThingGroupOutcome IoTClient::CreateThingGroup(const CreateThingGroupReques
 
 CreateThingGroupOutcomeCallable IoTClient::CreateThingGroupCallable(const CreateThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::CreateThingGroupAsync(const CreateThingGroupRequest& request, const CreateThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateThingGroup, this, request, handler, context, m_executor.get());
 }
 
 CreateThingTypeOutcome IoTClient::CreateThingType(const CreateThingTypeRequest& request) const
@@ -1626,18 +1387,12 @@ CreateThingTypeOutcome IoTClient::CreateThingType(const CreateThingTypeRequest& 
 
 CreateThingTypeOutcomeCallable IoTClient::CreateThingTypeCallable(const CreateThingTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateThingTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateThingType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateThingType, this, request, m_executor.get());
 }
 
 void IoTClient::CreateThingTypeAsync(const CreateThingTypeRequest& request, const CreateThingTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateThingType(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateThingType, this, request, handler, context, m_executor.get());
 }
 
 CreateTopicRuleOutcome IoTClient::CreateTopicRule(const CreateTopicRuleRequest& request) const
@@ -1657,18 +1412,12 @@ CreateTopicRuleOutcome IoTClient::CreateTopicRule(const CreateTopicRuleRequest& 
 
 CreateTopicRuleOutcomeCallable IoTClient::CreateTopicRuleCallable(const CreateTopicRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTopicRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTopicRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateTopicRule, this, request, m_executor.get());
 }
 
 void IoTClient::CreateTopicRuleAsync(const CreateTopicRuleRequest& request, const CreateTopicRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTopicRule(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateTopicRule, this, request, handler, context, m_executor.get());
 }
 
 CreateTopicRuleDestinationOutcome IoTClient::CreateTopicRuleDestination(const CreateTopicRuleDestinationRequest& request) const
@@ -1682,18 +1431,12 @@ CreateTopicRuleDestinationOutcome IoTClient::CreateTopicRuleDestination(const Cr
 
 CreateTopicRuleDestinationOutcomeCallable IoTClient::CreateTopicRuleDestinationCallable(const CreateTopicRuleDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTopicRuleDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTopicRuleDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::CreateTopicRuleDestination, this, request, m_executor.get());
 }
 
 void IoTClient::CreateTopicRuleDestinationAsync(const CreateTopicRuleDestinationRequest& request, const CreateTopicRuleDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTopicRuleDestination(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::CreateTopicRuleDestination, this, request, handler, context, m_executor.get());
 }
 
 DeleteAccountAuditConfigurationOutcome IoTClient::DeleteAccountAuditConfiguration(const DeleteAccountAuditConfigurationRequest& request) const
@@ -1707,18 +1450,12 @@ DeleteAccountAuditConfigurationOutcome IoTClient::DeleteAccountAuditConfiguratio
 
 DeleteAccountAuditConfigurationOutcomeCallable IoTClient::DeleteAccountAuditConfigurationCallable(const DeleteAccountAuditConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAccountAuditConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAccountAuditConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteAccountAuditConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteAccountAuditConfigurationAsync(const DeleteAccountAuditConfigurationRequest& request, const DeleteAccountAuditConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAccountAuditConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteAccountAuditConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeleteAuditSuppressionOutcome IoTClient::DeleteAuditSuppression(const DeleteAuditSuppressionRequest& request) const
@@ -1732,18 +1469,12 @@ DeleteAuditSuppressionOutcome IoTClient::DeleteAuditSuppression(const DeleteAudi
 
 DeleteAuditSuppressionOutcomeCallable IoTClient::DeleteAuditSuppressionCallable(const DeleteAuditSuppressionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAuditSuppressionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAuditSuppression(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteAuditSuppression, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteAuditSuppressionAsync(const DeleteAuditSuppressionRequest& request, const DeleteAuditSuppressionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAuditSuppression(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteAuditSuppression, this, request, handler, context, m_executor.get());
 }
 
 DeleteAuthorizerOutcome IoTClient::DeleteAuthorizer(const DeleteAuthorizerRequest& request) const
@@ -1763,18 +1494,12 @@ DeleteAuthorizerOutcome IoTClient::DeleteAuthorizer(const DeleteAuthorizerReques
 
 DeleteAuthorizerOutcomeCallable IoTClient::DeleteAuthorizerCallable(const DeleteAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteAuthorizerAsync(const DeleteAuthorizerRequest& request, const DeleteAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 DeleteBillingGroupOutcome IoTClient::DeleteBillingGroup(const DeleteBillingGroupRequest& request) const
@@ -1794,18 +1519,12 @@ DeleteBillingGroupOutcome IoTClient::DeleteBillingGroup(const DeleteBillingGroup
 
 DeleteBillingGroupOutcomeCallable IoTClient::DeleteBillingGroupCallable(const DeleteBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteBillingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteBillingGroupAsync(const DeleteBillingGroupRequest& request, const DeleteBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteCACertificateOutcome IoTClient::DeleteCACertificate(const DeleteCACertificateRequest& request) const
@@ -1825,18 +1544,12 @@ DeleteCACertificateOutcome IoTClient::DeleteCACertificate(const DeleteCACertific
 
 DeleteCACertificateOutcomeCallable IoTClient::DeleteCACertificateCallable(const DeleteCACertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCACertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCACertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteCACertificate, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteCACertificateAsync(const DeleteCACertificateRequest& request, const DeleteCACertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCACertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteCACertificate, this, request, handler, context, m_executor.get());
 }
 
 DeleteCertificateOutcome IoTClient::DeleteCertificate(const DeleteCertificateRequest& request) const
@@ -1856,18 +1569,12 @@ DeleteCertificateOutcome IoTClient::DeleteCertificate(const DeleteCertificateReq
 
 DeleteCertificateOutcomeCallable IoTClient::DeleteCertificateCallable(const DeleteCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteCertificate, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteCertificateAsync(const DeleteCertificateRequest& request, const DeleteCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteCertificate, this, request, handler, context, m_executor.get());
 }
 
 DeleteCustomMetricOutcome IoTClient::DeleteCustomMetric(const DeleteCustomMetricRequest& request) const
@@ -1887,18 +1594,12 @@ DeleteCustomMetricOutcome IoTClient::DeleteCustomMetric(const DeleteCustomMetric
 
 DeleteCustomMetricOutcomeCallable IoTClient::DeleteCustomMetricCallable(const DeleteCustomMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteCustomMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteCustomMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteCustomMetric, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteCustomMetricAsync(const DeleteCustomMetricRequest& request, const DeleteCustomMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteCustomMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteCustomMetric, this, request, handler, context, m_executor.get());
 }
 
 DeleteDimensionOutcome IoTClient::DeleteDimension(const DeleteDimensionRequest& request) const
@@ -1918,18 +1619,12 @@ DeleteDimensionOutcome IoTClient::DeleteDimension(const DeleteDimensionRequest& 
 
 DeleteDimensionOutcomeCallable IoTClient::DeleteDimensionCallable(const DeleteDimensionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDimensionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDimension(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteDimension, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteDimensionAsync(const DeleteDimensionRequest& request, const DeleteDimensionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDimension(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteDimension, this, request, handler, context, m_executor.get());
 }
 
 DeleteDomainConfigurationOutcome IoTClient::DeleteDomainConfiguration(const DeleteDomainConfigurationRequest& request) const
@@ -1949,18 +1644,12 @@ DeleteDomainConfigurationOutcome IoTClient::DeleteDomainConfiguration(const Dele
 
 DeleteDomainConfigurationOutcomeCallable IoTClient::DeleteDomainConfigurationCallable(const DeleteDomainConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDomainConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDomainConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteDomainConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteDomainConfigurationAsync(const DeleteDomainConfigurationRequest& request, const DeleteDomainConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDomainConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteDomainConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeleteDynamicThingGroupOutcome IoTClient::DeleteDynamicThingGroup(const DeleteDynamicThingGroupRequest& request) const
@@ -1980,18 +1669,12 @@ DeleteDynamicThingGroupOutcome IoTClient::DeleteDynamicThingGroup(const DeleteDy
 
 DeleteDynamicThingGroupOutcomeCallable IoTClient::DeleteDynamicThingGroupCallable(const DeleteDynamicThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDynamicThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDynamicThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteDynamicThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteDynamicThingGroupAsync(const DeleteDynamicThingGroupRequest& request, const DeleteDynamicThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDynamicThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteDynamicThingGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteFleetMetricOutcome IoTClient::DeleteFleetMetric(const DeleteFleetMetricRequest& request) const
@@ -2011,18 +1694,12 @@ DeleteFleetMetricOutcome IoTClient::DeleteFleetMetric(const DeleteFleetMetricReq
 
 DeleteFleetMetricOutcomeCallable IoTClient::DeleteFleetMetricCallable(const DeleteFleetMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteFleetMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteFleetMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteFleetMetric, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteFleetMetricAsync(const DeleteFleetMetricRequest& request, const DeleteFleetMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteFleetMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteFleetMetric, this, request, handler, context, m_executor.get());
 }
 
 DeleteJobOutcome IoTClient::DeleteJob(const DeleteJobRequest& request) const
@@ -2042,18 +1719,12 @@ DeleteJobOutcome IoTClient::DeleteJob(const DeleteJobRequest& request) const
 
 DeleteJobOutcomeCallable IoTClient::DeleteJobCallable(const DeleteJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteJob, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteJobAsync(const DeleteJobRequest& request, const DeleteJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteJob(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteJob, this, request, handler, context, m_executor.get());
 }
 
 DeleteJobExecutionOutcome IoTClient::DeleteJobExecution(const DeleteJobExecutionRequest& request) const
@@ -2087,18 +1758,12 @@ DeleteJobExecutionOutcome IoTClient::DeleteJobExecution(const DeleteJobExecution
 
 DeleteJobExecutionOutcomeCallable IoTClient::DeleteJobExecutionCallable(const DeleteJobExecutionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteJobExecutionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteJobExecution(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteJobExecution, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteJobExecutionAsync(const DeleteJobExecutionRequest& request, const DeleteJobExecutionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteJobExecution(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteJobExecution, this, request, handler, context, m_executor.get());
 }
 
 DeleteJobTemplateOutcome IoTClient::DeleteJobTemplate(const DeleteJobTemplateRequest& request) const
@@ -2118,18 +1783,12 @@ DeleteJobTemplateOutcome IoTClient::DeleteJobTemplate(const DeleteJobTemplateReq
 
 DeleteJobTemplateOutcomeCallable IoTClient::DeleteJobTemplateCallable(const DeleteJobTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteJobTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteJobTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteJobTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteJobTemplateAsync(const DeleteJobTemplateRequest& request, const DeleteJobTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteJobTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteJobTemplate, this, request, handler, context, m_executor.get());
 }
 
 DeleteMitigationActionOutcome IoTClient::DeleteMitigationAction(const DeleteMitigationActionRequest& request) const
@@ -2149,18 +1808,12 @@ DeleteMitigationActionOutcome IoTClient::DeleteMitigationAction(const DeleteMiti
 
 DeleteMitigationActionOutcomeCallable IoTClient::DeleteMitigationActionCallable(const DeleteMitigationActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteMitigationActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteMitigationAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteMitigationAction, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteMitigationActionAsync(const DeleteMitigationActionRequest& request, const DeleteMitigationActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteMitigationAction(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteMitigationAction, this, request, handler, context, m_executor.get());
 }
 
 DeleteOTAUpdateOutcome IoTClient::DeleteOTAUpdate(const DeleteOTAUpdateRequest& request) const
@@ -2180,18 +1833,12 @@ DeleteOTAUpdateOutcome IoTClient::DeleteOTAUpdate(const DeleteOTAUpdateRequest& 
 
 DeleteOTAUpdateOutcomeCallable IoTClient::DeleteOTAUpdateCallable(const DeleteOTAUpdateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteOTAUpdateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteOTAUpdate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteOTAUpdate, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteOTAUpdateAsync(const DeleteOTAUpdateRequest& request, const DeleteOTAUpdateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteOTAUpdate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteOTAUpdate, this, request, handler, context, m_executor.get());
 }
 
 DeletePolicyOutcome IoTClient::DeletePolicy(const DeletePolicyRequest& request) const
@@ -2211,18 +1858,12 @@ DeletePolicyOutcome IoTClient::DeletePolicy(const DeletePolicyRequest& request) 
 
 DeletePolicyOutcomeCallable IoTClient::DeletePolicyCallable(const DeletePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeletePolicy, this, request, m_executor.get());
 }
 
 void IoTClient::DeletePolicyAsync(const DeletePolicyRequest& request, const DeletePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePolicy(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeletePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeletePolicyVersionOutcome IoTClient::DeletePolicyVersion(const DeletePolicyVersionRequest& request) const
@@ -2249,18 +1890,12 @@ DeletePolicyVersionOutcome IoTClient::DeletePolicyVersion(const DeletePolicyVers
 
 DeletePolicyVersionOutcomeCallable IoTClient::DeletePolicyVersionCallable(const DeletePolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeletePolicyVersion, this, request, m_executor.get());
 }
 
 void IoTClient::DeletePolicyVersionAsync(const DeletePolicyVersionRequest& request, const DeletePolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeletePolicyVersion, this, request, handler, context, m_executor.get());
 }
 
 DeleteProvisioningTemplateOutcome IoTClient::DeleteProvisioningTemplate(const DeleteProvisioningTemplateRequest& request) const
@@ -2280,18 +1915,12 @@ DeleteProvisioningTemplateOutcome IoTClient::DeleteProvisioningTemplate(const De
 
 DeleteProvisioningTemplateOutcomeCallable IoTClient::DeleteProvisioningTemplateCallable(const DeleteProvisioningTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteProvisioningTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteProvisioningTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteProvisioningTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteProvisioningTemplateAsync(const DeleteProvisioningTemplateRequest& request, const DeleteProvisioningTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteProvisioningTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteProvisioningTemplate, this, request, handler, context, m_executor.get());
 }
 
 DeleteProvisioningTemplateVersionOutcome IoTClient::DeleteProvisioningTemplateVersion(const DeleteProvisioningTemplateVersionRequest& request) const
@@ -2318,18 +1947,12 @@ DeleteProvisioningTemplateVersionOutcome IoTClient::DeleteProvisioningTemplateVe
 
 DeleteProvisioningTemplateVersionOutcomeCallable IoTClient::DeleteProvisioningTemplateVersionCallable(const DeleteProvisioningTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteProvisioningTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteProvisioningTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteProvisioningTemplateVersion, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteProvisioningTemplateVersionAsync(const DeleteProvisioningTemplateVersionRequest& request, const DeleteProvisioningTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteProvisioningTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteProvisioningTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 DeleteRegistrationCodeOutcome IoTClient::DeleteRegistrationCode(const DeleteRegistrationCodeRequest& request) const
@@ -2343,18 +1966,12 @@ DeleteRegistrationCodeOutcome IoTClient::DeleteRegistrationCode(const DeleteRegi
 
 DeleteRegistrationCodeOutcomeCallable IoTClient::DeleteRegistrationCodeCallable(const DeleteRegistrationCodeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRegistrationCodeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRegistrationCode(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteRegistrationCode, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteRegistrationCodeAsync(const DeleteRegistrationCodeRequest& request, const DeleteRegistrationCodeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRegistrationCode(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteRegistrationCode, this, request, handler, context, m_executor.get());
 }
 
 DeleteRoleAliasOutcome IoTClient::DeleteRoleAlias(const DeleteRoleAliasRequest& request) const
@@ -2374,18 +1991,12 @@ DeleteRoleAliasOutcome IoTClient::DeleteRoleAlias(const DeleteRoleAliasRequest& 
 
 DeleteRoleAliasOutcomeCallable IoTClient::DeleteRoleAliasCallable(const DeleteRoleAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRoleAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRoleAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteRoleAlias, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteRoleAliasAsync(const DeleteRoleAliasRequest& request, const DeleteRoleAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRoleAlias(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteRoleAlias, this, request, handler, context, m_executor.get());
 }
 
 DeleteScheduledAuditOutcome IoTClient::DeleteScheduledAudit(const DeleteScheduledAuditRequest& request) const
@@ -2405,18 +2016,12 @@ DeleteScheduledAuditOutcome IoTClient::DeleteScheduledAudit(const DeleteSchedule
 
 DeleteScheduledAuditOutcomeCallable IoTClient::DeleteScheduledAuditCallable(const DeleteScheduledAuditRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteScheduledAuditOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteScheduledAudit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteScheduledAudit, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteScheduledAuditAsync(const DeleteScheduledAuditRequest& request, const DeleteScheduledAuditResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteScheduledAudit(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteScheduledAudit, this, request, handler, context, m_executor.get());
 }
 
 DeleteSecurityProfileOutcome IoTClient::DeleteSecurityProfile(const DeleteSecurityProfileRequest& request) const
@@ -2436,18 +2041,12 @@ DeleteSecurityProfileOutcome IoTClient::DeleteSecurityProfile(const DeleteSecuri
 
 DeleteSecurityProfileOutcomeCallable IoTClient::DeleteSecurityProfileCallable(const DeleteSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteSecurityProfile, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteSecurityProfileAsync(const DeleteSecurityProfileRequest& request, const DeleteSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 DeleteStreamOutcome IoTClient::DeleteStream(const DeleteStreamRequest& request) const
@@ -2467,18 +2066,12 @@ DeleteStreamOutcome IoTClient::DeleteStream(const DeleteStreamRequest& request) 
 
 DeleteStreamOutcomeCallable IoTClient::DeleteStreamCallable(const DeleteStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteStream, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteStreamAsync(const DeleteStreamRequest& request, const DeleteStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteStream(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteStream, this, request, handler, context, m_executor.get());
 }
 
 DeleteThingOutcome IoTClient::DeleteThing(const DeleteThingRequest& request) const
@@ -2498,18 +2091,12 @@ DeleteThingOutcome IoTClient::DeleteThing(const DeleteThingRequest& request) con
 
 DeleteThingOutcomeCallable IoTClient::DeleteThingCallable(const DeleteThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteThing, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteThingAsync(const DeleteThingRequest& request, const DeleteThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteThing, this, request, handler, context, m_executor.get());
 }
 
 DeleteThingGroupOutcome IoTClient::DeleteThingGroup(const DeleteThingGroupRequest& request) const
@@ -2529,18 +2116,12 @@ DeleteThingGroupOutcome IoTClient::DeleteThingGroup(const DeleteThingGroupReques
 
 DeleteThingGroupOutcomeCallable IoTClient::DeleteThingGroupCallable(const DeleteThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteThingGroupAsync(const DeleteThingGroupRequest& request, const DeleteThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteThingGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteThingTypeOutcome IoTClient::DeleteThingType(const DeleteThingTypeRequest& request) const
@@ -2560,18 +2141,12 @@ DeleteThingTypeOutcome IoTClient::DeleteThingType(const DeleteThingTypeRequest& 
 
 DeleteThingTypeOutcomeCallable IoTClient::DeleteThingTypeCallable(const DeleteThingTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteThingTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteThingType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteThingType, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteThingTypeAsync(const DeleteThingTypeRequest& request, const DeleteThingTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteThingType(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteThingType, this, request, handler, context, m_executor.get());
 }
 
 DeleteTopicRuleOutcome IoTClient::DeleteTopicRule(const DeleteTopicRuleRequest& request) const
@@ -2591,18 +2166,12 @@ DeleteTopicRuleOutcome IoTClient::DeleteTopicRule(const DeleteTopicRuleRequest& 
 
 DeleteTopicRuleOutcomeCallable IoTClient::DeleteTopicRuleCallable(const DeleteTopicRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTopicRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTopicRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteTopicRule, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteTopicRuleAsync(const DeleteTopicRuleRequest& request, const DeleteTopicRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTopicRule(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteTopicRule, this, request, handler, context, m_executor.get());
 }
 
 DeleteTopicRuleDestinationOutcome IoTClient::DeleteTopicRuleDestination(const DeleteTopicRuleDestinationRequest& request) const
@@ -2622,18 +2191,12 @@ DeleteTopicRuleDestinationOutcome IoTClient::DeleteTopicRuleDestination(const De
 
 DeleteTopicRuleDestinationOutcomeCallable IoTClient::DeleteTopicRuleDestinationCallable(const DeleteTopicRuleDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTopicRuleDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTopicRuleDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteTopicRuleDestination, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteTopicRuleDestinationAsync(const DeleteTopicRuleDestinationRequest& request, const DeleteTopicRuleDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTopicRuleDestination(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteTopicRuleDestination, this, request, handler, context, m_executor.get());
 }
 
 DeleteV2LoggingLevelOutcome IoTClient::DeleteV2LoggingLevel(const DeleteV2LoggingLevelRequest& request) const
@@ -2657,18 +2220,12 @@ DeleteV2LoggingLevelOutcome IoTClient::DeleteV2LoggingLevel(const DeleteV2Loggin
 
 DeleteV2LoggingLevelOutcomeCallable IoTClient::DeleteV2LoggingLevelCallable(const DeleteV2LoggingLevelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteV2LoggingLevelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteV2LoggingLevel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeleteV2LoggingLevel, this, request, m_executor.get());
 }
 
 void IoTClient::DeleteV2LoggingLevelAsync(const DeleteV2LoggingLevelRequest& request, const DeleteV2LoggingLevelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteV2LoggingLevel(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeleteV2LoggingLevel, this, request, handler, context, m_executor.get());
 }
 
 DeprecateThingTypeOutcome IoTClient::DeprecateThingType(const DeprecateThingTypeRequest& request) const
@@ -2689,18 +2246,12 @@ DeprecateThingTypeOutcome IoTClient::DeprecateThingType(const DeprecateThingType
 
 DeprecateThingTypeOutcomeCallable IoTClient::DeprecateThingTypeCallable(const DeprecateThingTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeprecateThingTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeprecateThingType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DeprecateThingType, this, request, m_executor.get());
 }
 
 void IoTClient::DeprecateThingTypeAsync(const DeprecateThingTypeRequest& request, const DeprecateThingTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeprecateThingType(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DeprecateThingType, this, request, handler, context, m_executor.get());
 }
 
 DescribeAccountAuditConfigurationOutcome IoTClient::DescribeAccountAuditConfiguration(const DescribeAccountAuditConfigurationRequest& request) const
@@ -2714,18 +2265,12 @@ DescribeAccountAuditConfigurationOutcome IoTClient::DescribeAccountAuditConfigur
 
 DescribeAccountAuditConfigurationOutcomeCallable IoTClient::DescribeAccountAuditConfigurationCallable(const DescribeAccountAuditConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAccountAuditConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAccountAuditConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeAccountAuditConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeAccountAuditConfigurationAsync(const DescribeAccountAuditConfigurationRequest& request, const DescribeAccountAuditConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAccountAuditConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeAccountAuditConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DescribeAuditFindingOutcome IoTClient::DescribeAuditFinding(const DescribeAuditFindingRequest& request) const
@@ -2745,18 +2290,12 @@ DescribeAuditFindingOutcome IoTClient::DescribeAuditFinding(const DescribeAuditF
 
 DescribeAuditFindingOutcomeCallable IoTClient::DescribeAuditFindingCallable(const DescribeAuditFindingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAuditFindingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAuditFinding(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeAuditFinding, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeAuditFindingAsync(const DescribeAuditFindingRequest& request, const DescribeAuditFindingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAuditFinding(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeAuditFinding, this, request, handler, context, m_executor.get());
 }
 
 DescribeAuditMitigationActionsTaskOutcome IoTClient::DescribeAuditMitigationActionsTask(const DescribeAuditMitigationActionsTaskRequest& request) const
@@ -2776,18 +2315,12 @@ DescribeAuditMitigationActionsTaskOutcome IoTClient::DescribeAuditMitigationActi
 
 DescribeAuditMitigationActionsTaskOutcomeCallable IoTClient::DescribeAuditMitigationActionsTaskCallable(const DescribeAuditMitigationActionsTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAuditMitigationActionsTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAuditMitigationActionsTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeAuditMitigationActionsTask, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeAuditMitigationActionsTaskAsync(const DescribeAuditMitigationActionsTaskRequest& request, const DescribeAuditMitigationActionsTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAuditMitigationActionsTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeAuditMitigationActionsTask, this, request, handler, context, m_executor.get());
 }
 
 DescribeAuditSuppressionOutcome IoTClient::DescribeAuditSuppression(const DescribeAuditSuppressionRequest& request) const
@@ -2801,18 +2334,12 @@ DescribeAuditSuppressionOutcome IoTClient::DescribeAuditSuppression(const Descri
 
 DescribeAuditSuppressionOutcomeCallable IoTClient::DescribeAuditSuppressionCallable(const DescribeAuditSuppressionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAuditSuppressionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAuditSuppression(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeAuditSuppression, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeAuditSuppressionAsync(const DescribeAuditSuppressionRequest& request, const DescribeAuditSuppressionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAuditSuppression(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeAuditSuppression, this, request, handler, context, m_executor.get());
 }
 
 DescribeAuditTaskOutcome IoTClient::DescribeAuditTask(const DescribeAuditTaskRequest& request) const
@@ -2832,18 +2359,12 @@ DescribeAuditTaskOutcome IoTClient::DescribeAuditTask(const DescribeAuditTaskReq
 
 DescribeAuditTaskOutcomeCallable IoTClient::DescribeAuditTaskCallable(const DescribeAuditTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAuditTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAuditTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeAuditTask, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeAuditTaskAsync(const DescribeAuditTaskRequest& request, const DescribeAuditTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAuditTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeAuditTask, this, request, handler, context, m_executor.get());
 }
 
 DescribeAuthorizerOutcome IoTClient::DescribeAuthorizer(const DescribeAuthorizerRequest& request) const
@@ -2863,18 +2384,12 @@ DescribeAuthorizerOutcome IoTClient::DescribeAuthorizer(const DescribeAuthorizer
 
 DescribeAuthorizerOutcomeCallable IoTClient::DescribeAuthorizerCallable(const DescribeAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeAuthorizerAsync(const DescribeAuthorizerRequest& request, const DescribeAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 DescribeBillingGroupOutcome IoTClient::DescribeBillingGroup(const DescribeBillingGroupRequest& request) const
@@ -2894,18 +2409,12 @@ DescribeBillingGroupOutcome IoTClient::DescribeBillingGroup(const DescribeBillin
 
 DescribeBillingGroupOutcomeCallable IoTClient::DescribeBillingGroupCallable(const DescribeBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeBillingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeBillingGroupAsync(const DescribeBillingGroupRequest& request, const DescribeBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeCACertificateOutcome IoTClient::DescribeCACertificate(const DescribeCACertificateRequest& request) const
@@ -2925,18 +2434,12 @@ DescribeCACertificateOutcome IoTClient::DescribeCACertificate(const DescribeCACe
 
 DescribeCACertificateOutcomeCallable IoTClient::DescribeCACertificateCallable(const DescribeCACertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCACertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCACertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeCACertificate, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeCACertificateAsync(const DescribeCACertificateRequest& request, const DescribeCACertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCACertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeCACertificate, this, request, handler, context, m_executor.get());
 }
 
 DescribeCertificateOutcome IoTClient::DescribeCertificate(const DescribeCertificateRequest& request) const
@@ -2956,18 +2459,12 @@ DescribeCertificateOutcome IoTClient::DescribeCertificate(const DescribeCertific
 
 DescribeCertificateOutcomeCallable IoTClient::DescribeCertificateCallable(const DescribeCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeCertificate, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeCertificateAsync(const DescribeCertificateRequest& request, const DescribeCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeCertificate, this, request, handler, context, m_executor.get());
 }
 
 DescribeCustomMetricOutcome IoTClient::DescribeCustomMetric(const DescribeCustomMetricRequest& request) const
@@ -2987,18 +2484,12 @@ DescribeCustomMetricOutcome IoTClient::DescribeCustomMetric(const DescribeCustom
 
 DescribeCustomMetricOutcomeCallable IoTClient::DescribeCustomMetricCallable(const DescribeCustomMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCustomMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCustomMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeCustomMetric, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeCustomMetricAsync(const DescribeCustomMetricRequest& request, const DescribeCustomMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCustomMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeCustomMetric, this, request, handler, context, m_executor.get());
 }
 
 DescribeDefaultAuthorizerOutcome IoTClient::DescribeDefaultAuthorizer(const DescribeDefaultAuthorizerRequest& request) const
@@ -3012,18 +2503,12 @@ DescribeDefaultAuthorizerOutcome IoTClient::DescribeDefaultAuthorizer(const Desc
 
 DescribeDefaultAuthorizerOutcomeCallable IoTClient::DescribeDefaultAuthorizerCallable(const DescribeDefaultAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDefaultAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDefaultAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeDefaultAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeDefaultAuthorizerAsync(const DescribeDefaultAuthorizerRequest& request, const DescribeDefaultAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDefaultAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeDefaultAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 DescribeDetectMitigationActionsTaskOutcome IoTClient::DescribeDetectMitigationActionsTask(const DescribeDetectMitigationActionsTaskRequest& request) const
@@ -3043,18 +2528,12 @@ DescribeDetectMitigationActionsTaskOutcome IoTClient::DescribeDetectMitigationAc
 
 DescribeDetectMitigationActionsTaskOutcomeCallable IoTClient::DescribeDetectMitigationActionsTaskCallable(const DescribeDetectMitigationActionsTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDetectMitigationActionsTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDetectMitigationActionsTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeDetectMitigationActionsTask, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeDetectMitigationActionsTaskAsync(const DescribeDetectMitigationActionsTaskRequest& request, const DescribeDetectMitigationActionsTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDetectMitigationActionsTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeDetectMitigationActionsTask, this, request, handler, context, m_executor.get());
 }
 
 DescribeDimensionOutcome IoTClient::DescribeDimension(const DescribeDimensionRequest& request) const
@@ -3074,18 +2553,12 @@ DescribeDimensionOutcome IoTClient::DescribeDimension(const DescribeDimensionReq
 
 DescribeDimensionOutcomeCallable IoTClient::DescribeDimensionCallable(const DescribeDimensionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDimensionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDimension(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeDimension, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeDimensionAsync(const DescribeDimensionRequest& request, const DescribeDimensionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDimension(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeDimension, this, request, handler, context, m_executor.get());
 }
 
 DescribeDomainConfigurationOutcome IoTClient::DescribeDomainConfiguration(const DescribeDomainConfigurationRequest& request) const
@@ -3105,18 +2578,12 @@ DescribeDomainConfigurationOutcome IoTClient::DescribeDomainConfiguration(const 
 
 DescribeDomainConfigurationOutcomeCallable IoTClient::DescribeDomainConfigurationCallable(const DescribeDomainConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDomainConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDomainConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeDomainConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeDomainConfigurationAsync(const DescribeDomainConfigurationRequest& request, const DescribeDomainConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDomainConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeDomainConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DescribeEndpointOutcome IoTClient::DescribeEndpoint(const DescribeEndpointRequest& request) const
@@ -3130,18 +2597,12 @@ DescribeEndpointOutcome IoTClient::DescribeEndpoint(const DescribeEndpointReques
 
 DescribeEndpointOutcomeCallable IoTClient::DescribeEndpointCallable(const DescribeEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeEndpoint, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeEndpointAsync(const DescribeEndpointRequest& request, const DescribeEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeEndpoint, this, request, handler, context, m_executor.get());
 }
 
 DescribeEventConfigurationsOutcome IoTClient::DescribeEventConfigurations(const DescribeEventConfigurationsRequest& request) const
@@ -3155,18 +2616,12 @@ DescribeEventConfigurationsOutcome IoTClient::DescribeEventConfigurations(const 
 
 DescribeEventConfigurationsOutcomeCallable IoTClient::DescribeEventConfigurationsCallable(const DescribeEventConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeEventConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeEventConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeEventConfigurations, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeEventConfigurationsAsync(const DescribeEventConfigurationsRequest& request, const DescribeEventConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeEventConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeEventConfigurations, this, request, handler, context, m_executor.get());
 }
 
 DescribeFleetMetricOutcome IoTClient::DescribeFleetMetric(const DescribeFleetMetricRequest& request) const
@@ -3186,18 +2641,12 @@ DescribeFleetMetricOutcome IoTClient::DescribeFleetMetric(const DescribeFleetMet
 
 DescribeFleetMetricOutcomeCallable IoTClient::DescribeFleetMetricCallable(const DescribeFleetMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeFleetMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeFleetMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeFleetMetric, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeFleetMetricAsync(const DescribeFleetMetricRequest& request, const DescribeFleetMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeFleetMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeFleetMetric, this, request, handler, context, m_executor.get());
 }
 
 DescribeIndexOutcome IoTClient::DescribeIndex(const DescribeIndexRequest& request) const
@@ -3217,18 +2666,12 @@ DescribeIndexOutcome IoTClient::DescribeIndex(const DescribeIndexRequest& reques
 
 DescribeIndexOutcomeCallable IoTClient::DescribeIndexCallable(const DescribeIndexRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeIndexOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeIndex(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeIndex, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeIndexAsync(const DescribeIndexRequest& request, const DescribeIndexResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeIndex(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeIndex, this, request, handler, context, m_executor.get());
 }
 
 DescribeJobOutcome IoTClient::DescribeJob(const DescribeJobRequest& request) const
@@ -3248,18 +2691,12 @@ DescribeJobOutcome IoTClient::DescribeJob(const DescribeJobRequest& request) con
 
 DescribeJobOutcomeCallable IoTClient::DescribeJobCallable(const DescribeJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeJob, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeJobAsync(const DescribeJobRequest& request, const DescribeJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeJob(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeJob, this, request, handler, context, m_executor.get());
 }
 
 DescribeJobExecutionOutcome IoTClient::DescribeJobExecution(const DescribeJobExecutionRequest& request) const
@@ -3286,18 +2723,12 @@ DescribeJobExecutionOutcome IoTClient::DescribeJobExecution(const DescribeJobExe
 
 DescribeJobExecutionOutcomeCallable IoTClient::DescribeJobExecutionCallable(const DescribeJobExecutionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeJobExecutionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeJobExecution(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeJobExecution, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeJobExecutionAsync(const DescribeJobExecutionRequest& request, const DescribeJobExecutionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeJobExecution(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeJobExecution, this, request, handler, context, m_executor.get());
 }
 
 DescribeJobTemplateOutcome IoTClient::DescribeJobTemplate(const DescribeJobTemplateRequest& request) const
@@ -3317,18 +2748,12 @@ DescribeJobTemplateOutcome IoTClient::DescribeJobTemplate(const DescribeJobTempl
 
 DescribeJobTemplateOutcomeCallable IoTClient::DescribeJobTemplateCallable(const DescribeJobTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeJobTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeJobTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeJobTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeJobTemplateAsync(const DescribeJobTemplateRequest& request, const DescribeJobTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeJobTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeJobTemplate, this, request, handler, context, m_executor.get());
 }
 
 DescribeManagedJobTemplateOutcome IoTClient::DescribeManagedJobTemplate(const DescribeManagedJobTemplateRequest& request) const
@@ -3348,18 +2773,12 @@ DescribeManagedJobTemplateOutcome IoTClient::DescribeManagedJobTemplate(const De
 
 DescribeManagedJobTemplateOutcomeCallable IoTClient::DescribeManagedJobTemplateCallable(const DescribeManagedJobTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeManagedJobTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeManagedJobTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeManagedJobTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeManagedJobTemplateAsync(const DescribeManagedJobTemplateRequest& request, const DescribeManagedJobTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeManagedJobTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeManagedJobTemplate, this, request, handler, context, m_executor.get());
 }
 
 DescribeMitigationActionOutcome IoTClient::DescribeMitigationAction(const DescribeMitigationActionRequest& request) const
@@ -3379,18 +2798,12 @@ DescribeMitigationActionOutcome IoTClient::DescribeMitigationAction(const Descri
 
 DescribeMitigationActionOutcomeCallable IoTClient::DescribeMitigationActionCallable(const DescribeMitigationActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeMitigationActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeMitigationAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeMitigationAction, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeMitigationActionAsync(const DescribeMitigationActionRequest& request, const DescribeMitigationActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeMitigationAction(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeMitigationAction, this, request, handler, context, m_executor.get());
 }
 
 DescribeProvisioningTemplateOutcome IoTClient::DescribeProvisioningTemplate(const DescribeProvisioningTemplateRequest& request) const
@@ -3410,18 +2823,12 @@ DescribeProvisioningTemplateOutcome IoTClient::DescribeProvisioningTemplate(cons
 
 DescribeProvisioningTemplateOutcomeCallable IoTClient::DescribeProvisioningTemplateCallable(const DescribeProvisioningTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeProvisioningTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeProvisioningTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeProvisioningTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeProvisioningTemplateAsync(const DescribeProvisioningTemplateRequest& request, const DescribeProvisioningTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeProvisioningTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeProvisioningTemplate, this, request, handler, context, m_executor.get());
 }
 
 DescribeProvisioningTemplateVersionOutcome IoTClient::DescribeProvisioningTemplateVersion(const DescribeProvisioningTemplateVersionRequest& request) const
@@ -3448,18 +2855,12 @@ DescribeProvisioningTemplateVersionOutcome IoTClient::DescribeProvisioningTempla
 
 DescribeProvisioningTemplateVersionOutcomeCallable IoTClient::DescribeProvisioningTemplateVersionCallable(const DescribeProvisioningTemplateVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeProvisioningTemplateVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeProvisioningTemplateVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeProvisioningTemplateVersion, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeProvisioningTemplateVersionAsync(const DescribeProvisioningTemplateVersionRequest& request, const DescribeProvisioningTemplateVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeProvisioningTemplateVersion(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeProvisioningTemplateVersion, this, request, handler, context, m_executor.get());
 }
 
 DescribeRoleAliasOutcome IoTClient::DescribeRoleAlias(const DescribeRoleAliasRequest& request) const
@@ -3479,18 +2880,12 @@ DescribeRoleAliasOutcome IoTClient::DescribeRoleAlias(const DescribeRoleAliasReq
 
 DescribeRoleAliasOutcomeCallable IoTClient::DescribeRoleAliasCallable(const DescribeRoleAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeRoleAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeRoleAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeRoleAlias, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeRoleAliasAsync(const DescribeRoleAliasRequest& request, const DescribeRoleAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeRoleAlias(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeRoleAlias, this, request, handler, context, m_executor.get());
 }
 
 DescribeScheduledAuditOutcome IoTClient::DescribeScheduledAudit(const DescribeScheduledAuditRequest& request) const
@@ -3510,18 +2905,12 @@ DescribeScheduledAuditOutcome IoTClient::DescribeScheduledAudit(const DescribeSc
 
 DescribeScheduledAuditOutcomeCallable IoTClient::DescribeScheduledAuditCallable(const DescribeScheduledAuditRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeScheduledAuditOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeScheduledAudit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeScheduledAudit, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeScheduledAuditAsync(const DescribeScheduledAuditRequest& request, const DescribeScheduledAuditResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeScheduledAudit(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeScheduledAudit, this, request, handler, context, m_executor.get());
 }
 
 DescribeSecurityProfileOutcome IoTClient::DescribeSecurityProfile(const DescribeSecurityProfileRequest& request) const
@@ -3541,18 +2930,12 @@ DescribeSecurityProfileOutcome IoTClient::DescribeSecurityProfile(const Describe
 
 DescribeSecurityProfileOutcomeCallable IoTClient::DescribeSecurityProfileCallable(const DescribeSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeSecurityProfile, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeSecurityProfileAsync(const DescribeSecurityProfileRequest& request, const DescribeSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 DescribeStreamOutcome IoTClient::DescribeStream(const DescribeStreamRequest& request) const
@@ -3572,18 +2955,12 @@ DescribeStreamOutcome IoTClient::DescribeStream(const DescribeStreamRequest& req
 
 DescribeStreamOutcomeCallable IoTClient::DescribeStreamCallable(const DescribeStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeStream, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeStreamAsync(const DescribeStreamRequest& request, const DescribeStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeStream(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeStream, this, request, handler, context, m_executor.get());
 }
 
 DescribeThingOutcome IoTClient::DescribeThing(const DescribeThingRequest& request) const
@@ -3603,18 +2980,12 @@ DescribeThingOutcome IoTClient::DescribeThing(const DescribeThingRequest& reques
 
 DescribeThingOutcomeCallable IoTClient::DescribeThingCallable(const DescribeThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeThing, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeThingAsync(const DescribeThingRequest& request, const DescribeThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeThing, this, request, handler, context, m_executor.get());
 }
 
 DescribeThingGroupOutcome IoTClient::DescribeThingGroup(const DescribeThingGroupRequest& request) const
@@ -3634,18 +3005,12 @@ DescribeThingGroupOutcome IoTClient::DescribeThingGroup(const DescribeThingGroup
 
 DescribeThingGroupOutcomeCallable IoTClient::DescribeThingGroupCallable(const DescribeThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeThingGroupAsync(const DescribeThingGroupRequest& request, const DescribeThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeThingGroup, this, request, handler, context, m_executor.get());
 }
 
 DescribeThingRegistrationTaskOutcome IoTClient::DescribeThingRegistrationTask(const DescribeThingRegistrationTaskRequest& request) const
@@ -3665,18 +3030,12 @@ DescribeThingRegistrationTaskOutcome IoTClient::DescribeThingRegistrationTask(co
 
 DescribeThingRegistrationTaskOutcomeCallable IoTClient::DescribeThingRegistrationTaskCallable(const DescribeThingRegistrationTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeThingRegistrationTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeThingRegistrationTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeThingRegistrationTask, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeThingRegistrationTaskAsync(const DescribeThingRegistrationTaskRequest& request, const DescribeThingRegistrationTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeThingRegistrationTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeThingRegistrationTask, this, request, handler, context, m_executor.get());
 }
 
 DescribeThingTypeOutcome IoTClient::DescribeThingType(const DescribeThingTypeRequest& request) const
@@ -3696,18 +3055,12 @@ DescribeThingTypeOutcome IoTClient::DescribeThingType(const DescribeThingTypeReq
 
 DescribeThingTypeOutcomeCallable IoTClient::DescribeThingTypeCallable(const DescribeThingTypeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeThingTypeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeThingType(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DescribeThingType, this, request, m_executor.get());
 }
 
 void IoTClient::DescribeThingTypeAsync(const DescribeThingTypeRequest& request, const DescribeThingTypeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeThingType(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DescribeThingType, this, request, handler, context, m_executor.get());
 }
 
 DetachPolicyOutcome IoTClient::DetachPolicy(const DetachPolicyRequest& request) const
@@ -3727,18 +3080,12 @@ DetachPolicyOutcome IoTClient::DetachPolicy(const DetachPolicyRequest& request) 
 
 DetachPolicyOutcomeCallable IoTClient::DetachPolicyCallable(const DetachPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DetachPolicy, this, request, m_executor.get());
 }
 
 void IoTClient::DetachPolicyAsync(const DetachPolicyRequest& request, const DetachPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DetachPolicy, this, request, handler, context, m_executor.get());
 }
 
 DetachSecurityProfileOutcome IoTClient::DetachSecurityProfile(const DetachSecurityProfileRequest& request) const
@@ -3764,18 +3111,12 @@ DetachSecurityProfileOutcome IoTClient::DetachSecurityProfile(const DetachSecuri
 
 DetachSecurityProfileOutcomeCallable IoTClient::DetachSecurityProfileCallable(const DetachSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DetachSecurityProfile, this, request, m_executor.get());
 }
 
 void IoTClient::DetachSecurityProfileAsync(const DetachSecurityProfileRequest& request, const DetachSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DetachSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 DetachThingPrincipalOutcome IoTClient::DetachThingPrincipal(const DetachThingPrincipalRequest& request) const
@@ -3801,18 +3142,12 @@ DetachThingPrincipalOutcome IoTClient::DetachThingPrincipal(const DetachThingPri
 
 DetachThingPrincipalOutcomeCallable IoTClient::DetachThingPrincipalCallable(const DetachThingPrincipalRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DetachThingPrincipalOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DetachThingPrincipal(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DetachThingPrincipal, this, request, m_executor.get());
 }
 
 void IoTClient::DetachThingPrincipalAsync(const DetachThingPrincipalRequest& request, const DetachThingPrincipalResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DetachThingPrincipal(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DetachThingPrincipal, this, request, handler, context, m_executor.get());
 }
 
 DisableTopicRuleOutcome IoTClient::DisableTopicRule(const DisableTopicRuleRequest& request) const
@@ -3833,18 +3168,12 @@ DisableTopicRuleOutcome IoTClient::DisableTopicRule(const DisableTopicRuleReques
 
 DisableTopicRuleOutcomeCallable IoTClient::DisableTopicRuleCallable(const DisableTopicRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisableTopicRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisableTopicRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::DisableTopicRule, this, request, m_executor.get());
 }
 
 void IoTClient::DisableTopicRuleAsync(const DisableTopicRuleRequest& request, const DisableTopicRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisableTopicRule(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::DisableTopicRule, this, request, handler, context, m_executor.get());
 }
 
 EnableTopicRuleOutcome IoTClient::EnableTopicRule(const EnableTopicRuleRequest& request) const
@@ -3865,18 +3194,12 @@ EnableTopicRuleOutcome IoTClient::EnableTopicRule(const EnableTopicRuleRequest& 
 
 EnableTopicRuleOutcomeCallable IoTClient::EnableTopicRuleCallable(const EnableTopicRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnableTopicRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnableTopicRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::EnableTopicRule, this, request, m_executor.get());
 }
 
 void IoTClient::EnableTopicRuleAsync(const EnableTopicRuleRequest& request, const EnableTopicRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnableTopicRule(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::EnableTopicRule, this, request, handler, context, m_executor.get());
 }
 
 GetBehaviorModelTrainingSummariesOutcome IoTClient::GetBehaviorModelTrainingSummaries(const GetBehaviorModelTrainingSummariesRequest& request) const
@@ -3890,18 +3213,12 @@ GetBehaviorModelTrainingSummariesOutcome IoTClient::GetBehaviorModelTrainingSumm
 
 GetBehaviorModelTrainingSummariesOutcomeCallable IoTClient::GetBehaviorModelTrainingSummariesCallable(const GetBehaviorModelTrainingSummariesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBehaviorModelTrainingSummariesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBehaviorModelTrainingSummaries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetBehaviorModelTrainingSummaries, this, request, m_executor.get());
 }
 
 void IoTClient::GetBehaviorModelTrainingSummariesAsync(const GetBehaviorModelTrainingSummariesRequest& request, const GetBehaviorModelTrainingSummariesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBehaviorModelTrainingSummaries(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetBehaviorModelTrainingSummaries, this, request, handler, context, m_executor.get());
 }
 
 GetBucketsAggregationOutcome IoTClient::GetBucketsAggregation(const GetBucketsAggregationRequest& request) const
@@ -3915,18 +3232,12 @@ GetBucketsAggregationOutcome IoTClient::GetBucketsAggregation(const GetBucketsAg
 
 GetBucketsAggregationOutcomeCallable IoTClient::GetBucketsAggregationCallable(const GetBucketsAggregationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBucketsAggregationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBucketsAggregation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetBucketsAggregation, this, request, m_executor.get());
 }
 
 void IoTClient::GetBucketsAggregationAsync(const GetBucketsAggregationRequest& request, const GetBucketsAggregationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBucketsAggregation(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetBucketsAggregation, this, request, handler, context, m_executor.get());
 }
 
 GetCardinalityOutcome IoTClient::GetCardinality(const GetCardinalityRequest& request) const
@@ -3940,18 +3251,12 @@ GetCardinalityOutcome IoTClient::GetCardinality(const GetCardinalityRequest& req
 
 GetCardinalityOutcomeCallable IoTClient::GetCardinalityCallable(const GetCardinalityRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCardinalityOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCardinality(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetCardinality, this, request, m_executor.get());
 }
 
 void IoTClient::GetCardinalityAsync(const GetCardinalityRequest& request, const GetCardinalityResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCardinality(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetCardinality, this, request, handler, context, m_executor.get());
 }
 
 GetEffectivePoliciesOutcome IoTClient::GetEffectivePolicies(const GetEffectivePoliciesRequest& request) const
@@ -3965,18 +3270,12 @@ GetEffectivePoliciesOutcome IoTClient::GetEffectivePolicies(const GetEffectivePo
 
 GetEffectivePoliciesOutcomeCallable IoTClient::GetEffectivePoliciesCallable(const GetEffectivePoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEffectivePoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEffectivePolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetEffectivePolicies, this, request, m_executor.get());
 }
 
 void IoTClient::GetEffectivePoliciesAsync(const GetEffectivePoliciesRequest& request, const GetEffectivePoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEffectivePolicies(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetEffectivePolicies, this, request, handler, context, m_executor.get());
 }
 
 GetIndexingConfigurationOutcome IoTClient::GetIndexingConfiguration(const GetIndexingConfigurationRequest& request) const
@@ -3990,18 +3289,12 @@ GetIndexingConfigurationOutcome IoTClient::GetIndexingConfiguration(const GetInd
 
 GetIndexingConfigurationOutcomeCallable IoTClient::GetIndexingConfigurationCallable(const GetIndexingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetIndexingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetIndexingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetIndexingConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::GetIndexingConfigurationAsync(const GetIndexingConfigurationRequest& request, const GetIndexingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetIndexingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetIndexingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetJobDocumentOutcome IoTClient::GetJobDocument(const GetJobDocumentRequest& request) const
@@ -4022,18 +3315,12 @@ GetJobDocumentOutcome IoTClient::GetJobDocument(const GetJobDocumentRequest& req
 
 GetJobDocumentOutcomeCallable IoTClient::GetJobDocumentCallable(const GetJobDocumentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetJobDocumentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetJobDocument(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetJobDocument, this, request, m_executor.get());
 }
 
 void IoTClient::GetJobDocumentAsync(const GetJobDocumentRequest& request, const GetJobDocumentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetJobDocument(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetJobDocument, this, request, handler, context, m_executor.get());
 }
 
 GetLoggingOptionsOutcome IoTClient::GetLoggingOptions(const GetLoggingOptionsRequest& request) const
@@ -4047,18 +3334,12 @@ GetLoggingOptionsOutcome IoTClient::GetLoggingOptions(const GetLoggingOptionsReq
 
 GetLoggingOptionsOutcomeCallable IoTClient::GetLoggingOptionsCallable(const GetLoggingOptionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetLoggingOptionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetLoggingOptions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetLoggingOptions, this, request, m_executor.get());
 }
 
 void IoTClient::GetLoggingOptionsAsync(const GetLoggingOptionsRequest& request, const GetLoggingOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetLoggingOptions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetLoggingOptions, this, request, handler, context, m_executor.get());
 }
 
 GetOTAUpdateOutcome IoTClient::GetOTAUpdate(const GetOTAUpdateRequest& request) const
@@ -4078,18 +3359,12 @@ GetOTAUpdateOutcome IoTClient::GetOTAUpdate(const GetOTAUpdateRequest& request) 
 
 GetOTAUpdateOutcomeCallable IoTClient::GetOTAUpdateCallable(const GetOTAUpdateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetOTAUpdateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetOTAUpdate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetOTAUpdate, this, request, m_executor.get());
 }
 
 void IoTClient::GetOTAUpdateAsync(const GetOTAUpdateRequest& request, const GetOTAUpdateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetOTAUpdate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetOTAUpdate, this, request, handler, context, m_executor.get());
 }
 
 GetPercentilesOutcome IoTClient::GetPercentiles(const GetPercentilesRequest& request) const
@@ -4103,18 +3378,12 @@ GetPercentilesOutcome IoTClient::GetPercentiles(const GetPercentilesRequest& req
 
 GetPercentilesOutcomeCallable IoTClient::GetPercentilesCallable(const GetPercentilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPercentilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPercentiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetPercentiles, this, request, m_executor.get());
 }
 
 void IoTClient::GetPercentilesAsync(const GetPercentilesRequest& request, const GetPercentilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPercentiles(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetPercentiles, this, request, handler, context, m_executor.get());
 }
 
 GetPolicyOutcome IoTClient::GetPolicy(const GetPolicyRequest& request) const
@@ -4134,18 +3403,12 @@ GetPolicyOutcome IoTClient::GetPolicy(const GetPolicyRequest& request) const
 
 GetPolicyOutcomeCallable IoTClient::GetPolicyCallable(const GetPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetPolicy, this, request, m_executor.get());
 }
 
 void IoTClient::GetPolicyAsync(const GetPolicyRequest& request, const GetPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetPolicy, this, request, handler, context, m_executor.get());
 }
 
 GetPolicyVersionOutcome IoTClient::GetPolicyVersion(const GetPolicyVersionRequest& request) const
@@ -4172,18 +3435,12 @@ GetPolicyVersionOutcome IoTClient::GetPolicyVersion(const GetPolicyVersionReques
 
 GetPolicyVersionOutcomeCallable IoTClient::GetPolicyVersionCallable(const GetPolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetPolicyVersion, this, request, m_executor.get());
 }
 
 void IoTClient::GetPolicyVersionAsync(const GetPolicyVersionRequest& request, const GetPolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetPolicyVersion, this, request, handler, context, m_executor.get());
 }
 
 GetRegistrationCodeOutcome IoTClient::GetRegistrationCode(const GetRegistrationCodeRequest& request) const
@@ -4197,18 +3454,12 @@ GetRegistrationCodeOutcome IoTClient::GetRegistrationCode(const GetRegistrationC
 
 GetRegistrationCodeOutcomeCallable IoTClient::GetRegistrationCodeCallable(const GetRegistrationCodeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRegistrationCodeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRegistrationCode(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetRegistrationCode, this, request, m_executor.get());
 }
 
 void IoTClient::GetRegistrationCodeAsync(const GetRegistrationCodeRequest& request, const GetRegistrationCodeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRegistrationCode(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetRegistrationCode, this, request, handler, context, m_executor.get());
 }
 
 GetStatisticsOutcome IoTClient::GetStatistics(const GetStatisticsRequest& request) const
@@ -4222,18 +3473,12 @@ GetStatisticsOutcome IoTClient::GetStatistics(const GetStatisticsRequest& reques
 
 GetStatisticsOutcomeCallable IoTClient::GetStatisticsCallable(const GetStatisticsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetStatisticsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetStatistics(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetStatistics, this, request, m_executor.get());
 }
 
 void IoTClient::GetStatisticsAsync(const GetStatisticsRequest& request, const GetStatisticsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetStatistics(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetStatistics, this, request, handler, context, m_executor.get());
 }
 
 GetTopicRuleOutcome IoTClient::GetTopicRule(const GetTopicRuleRequest& request) const
@@ -4253,18 +3498,12 @@ GetTopicRuleOutcome IoTClient::GetTopicRule(const GetTopicRuleRequest& request) 
 
 GetTopicRuleOutcomeCallable IoTClient::GetTopicRuleCallable(const GetTopicRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTopicRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTopicRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetTopicRule, this, request, m_executor.get());
 }
 
 void IoTClient::GetTopicRuleAsync(const GetTopicRuleRequest& request, const GetTopicRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTopicRule(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetTopicRule, this, request, handler, context, m_executor.get());
 }
 
 GetTopicRuleDestinationOutcome IoTClient::GetTopicRuleDestination(const GetTopicRuleDestinationRequest& request) const
@@ -4284,18 +3523,12 @@ GetTopicRuleDestinationOutcome IoTClient::GetTopicRuleDestination(const GetTopic
 
 GetTopicRuleDestinationOutcomeCallable IoTClient::GetTopicRuleDestinationCallable(const GetTopicRuleDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTopicRuleDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTopicRuleDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetTopicRuleDestination, this, request, m_executor.get());
 }
 
 void IoTClient::GetTopicRuleDestinationAsync(const GetTopicRuleDestinationRequest& request, const GetTopicRuleDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTopicRuleDestination(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetTopicRuleDestination, this, request, handler, context, m_executor.get());
 }
 
 GetV2LoggingOptionsOutcome IoTClient::GetV2LoggingOptions(const GetV2LoggingOptionsRequest& request) const
@@ -4309,18 +3542,12 @@ GetV2LoggingOptionsOutcome IoTClient::GetV2LoggingOptions(const GetV2LoggingOpti
 
 GetV2LoggingOptionsOutcomeCallable IoTClient::GetV2LoggingOptionsCallable(const GetV2LoggingOptionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetV2LoggingOptionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetV2LoggingOptions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::GetV2LoggingOptions, this, request, m_executor.get());
 }
 
 void IoTClient::GetV2LoggingOptionsAsync(const GetV2LoggingOptionsRequest& request, const GetV2LoggingOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetV2LoggingOptions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::GetV2LoggingOptions, this, request, handler, context, m_executor.get());
 }
 
 ListActiveViolationsOutcome IoTClient::ListActiveViolations(const ListActiveViolationsRequest& request) const
@@ -4334,18 +3561,12 @@ ListActiveViolationsOutcome IoTClient::ListActiveViolations(const ListActiveViol
 
 ListActiveViolationsOutcomeCallable IoTClient::ListActiveViolationsCallable(const ListActiveViolationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListActiveViolationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListActiveViolations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListActiveViolations, this, request, m_executor.get());
 }
 
 void IoTClient::ListActiveViolationsAsync(const ListActiveViolationsRequest& request, const ListActiveViolationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListActiveViolations(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListActiveViolations, this, request, handler, context, m_executor.get());
 }
 
 ListAttachedPoliciesOutcome IoTClient::ListAttachedPolicies(const ListAttachedPoliciesRequest& request) const
@@ -4365,18 +3586,12 @@ ListAttachedPoliciesOutcome IoTClient::ListAttachedPolicies(const ListAttachedPo
 
 ListAttachedPoliciesOutcomeCallable IoTClient::ListAttachedPoliciesCallable(const ListAttachedPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAttachedPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAttachedPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListAttachedPolicies, this, request, m_executor.get());
 }
 
 void IoTClient::ListAttachedPoliciesAsync(const ListAttachedPoliciesRequest& request, const ListAttachedPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAttachedPolicies(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListAttachedPolicies, this, request, handler, context, m_executor.get());
 }
 
 ListAuditFindingsOutcome IoTClient::ListAuditFindings(const ListAuditFindingsRequest& request) const
@@ -4390,18 +3605,12 @@ ListAuditFindingsOutcome IoTClient::ListAuditFindings(const ListAuditFindingsReq
 
 ListAuditFindingsOutcomeCallable IoTClient::ListAuditFindingsCallable(const ListAuditFindingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAuditFindingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAuditFindings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListAuditFindings, this, request, m_executor.get());
 }
 
 void IoTClient::ListAuditFindingsAsync(const ListAuditFindingsRequest& request, const ListAuditFindingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAuditFindings(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListAuditFindings, this, request, handler, context, m_executor.get());
 }
 
 ListAuditMitigationActionsExecutionsOutcome IoTClient::ListAuditMitigationActionsExecutions(const ListAuditMitigationActionsExecutionsRequest& request) const
@@ -4425,18 +3634,12 @@ ListAuditMitigationActionsExecutionsOutcome IoTClient::ListAuditMitigationAction
 
 ListAuditMitigationActionsExecutionsOutcomeCallable IoTClient::ListAuditMitigationActionsExecutionsCallable(const ListAuditMitigationActionsExecutionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAuditMitigationActionsExecutionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAuditMitigationActionsExecutions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListAuditMitigationActionsExecutions, this, request, m_executor.get());
 }
 
 void IoTClient::ListAuditMitigationActionsExecutionsAsync(const ListAuditMitigationActionsExecutionsRequest& request, const ListAuditMitigationActionsExecutionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAuditMitigationActionsExecutions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListAuditMitigationActionsExecutions, this, request, handler, context, m_executor.get());
 }
 
 ListAuditMitigationActionsTasksOutcome IoTClient::ListAuditMitigationActionsTasks(const ListAuditMitigationActionsTasksRequest& request) const
@@ -4460,18 +3663,12 @@ ListAuditMitigationActionsTasksOutcome IoTClient::ListAuditMitigationActionsTask
 
 ListAuditMitigationActionsTasksOutcomeCallable IoTClient::ListAuditMitigationActionsTasksCallable(const ListAuditMitigationActionsTasksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAuditMitigationActionsTasksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAuditMitigationActionsTasks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListAuditMitigationActionsTasks, this, request, m_executor.get());
 }
 
 void IoTClient::ListAuditMitigationActionsTasksAsync(const ListAuditMitigationActionsTasksRequest& request, const ListAuditMitigationActionsTasksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAuditMitigationActionsTasks(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListAuditMitigationActionsTasks, this, request, handler, context, m_executor.get());
 }
 
 ListAuditSuppressionsOutcome IoTClient::ListAuditSuppressions(const ListAuditSuppressionsRequest& request) const
@@ -4485,18 +3682,12 @@ ListAuditSuppressionsOutcome IoTClient::ListAuditSuppressions(const ListAuditSup
 
 ListAuditSuppressionsOutcomeCallable IoTClient::ListAuditSuppressionsCallable(const ListAuditSuppressionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAuditSuppressionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAuditSuppressions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListAuditSuppressions, this, request, m_executor.get());
 }
 
 void IoTClient::ListAuditSuppressionsAsync(const ListAuditSuppressionsRequest& request, const ListAuditSuppressionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAuditSuppressions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListAuditSuppressions, this, request, handler, context, m_executor.get());
 }
 
 ListAuditTasksOutcome IoTClient::ListAuditTasks(const ListAuditTasksRequest& request) const
@@ -4520,18 +3711,12 @@ ListAuditTasksOutcome IoTClient::ListAuditTasks(const ListAuditTasksRequest& req
 
 ListAuditTasksOutcomeCallable IoTClient::ListAuditTasksCallable(const ListAuditTasksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAuditTasksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAuditTasks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListAuditTasks, this, request, m_executor.get());
 }
 
 void IoTClient::ListAuditTasksAsync(const ListAuditTasksRequest& request, const ListAuditTasksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAuditTasks(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListAuditTasks, this, request, handler, context, m_executor.get());
 }
 
 ListAuthorizersOutcome IoTClient::ListAuthorizers(const ListAuthorizersRequest& request) const
@@ -4545,18 +3730,12 @@ ListAuthorizersOutcome IoTClient::ListAuthorizers(const ListAuthorizersRequest& 
 
 ListAuthorizersOutcomeCallable IoTClient::ListAuthorizersCallable(const ListAuthorizersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAuthorizersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAuthorizers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListAuthorizers, this, request, m_executor.get());
 }
 
 void IoTClient::ListAuthorizersAsync(const ListAuthorizersRequest& request, const ListAuthorizersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAuthorizers(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListAuthorizers, this, request, handler, context, m_executor.get());
 }
 
 ListBillingGroupsOutcome IoTClient::ListBillingGroups(const ListBillingGroupsRequest& request) const
@@ -4570,18 +3749,12 @@ ListBillingGroupsOutcome IoTClient::ListBillingGroups(const ListBillingGroupsReq
 
 ListBillingGroupsOutcomeCallable IoTClient::ListBillingGroupsCallable(const ListBillingGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBillingGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBillingGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListBillingGroups, this, request, m_executor.get());
 }
 
 void IoTClient::ListBillingGroupsAsync(const ListBillingGroupsRequest& request, const ListBillingGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBillingGroups(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListBillingGroups, this, request, handler, context, m_executor.get());
 }
 
 ListCACertificatesOutcome IoTClient::ListCACertificates(const ListCACertificatesRequest& request) const
@@ -4595,18 +3768,12 @@ ListCACertificatesOutcome IoTClient::ListCACertificates(const ListCACertificates
 
 ListCACertificatesOutcomeCallable IoTClient::ListCACertificatesCallable(const ListCACertificatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCACertificatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCACertificates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListCACertificates, this, request, m_executor.get());
 }
 
 void IoTClient::ListCACertificatesAsync(const ListCACertificatesRequest& request, const ListCACertificatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCACertificates(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListCACertificates, this, request, handler, context, m_executor.get());
 }
 
 ListCertificatesOutcome IoTClient::ListCertificates(const ListCertificatesRequest& request) const
@@ -4620,18 +3787,12 @@ ListCertificatesOutcome IoTClient::ListCertificates(const ListCertificatesReques
 
 ListCertificatesOutcomeCallable IoTClient::ListCertificatesCallable(const ListCertificatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCertificatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCertificates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListCertificates, this, request, m_executor.get());
 }
 
 void IoTClient::ListCertificatesAsync(const ListCertificatesRequest& request, const ListCertificatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCertificates(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListCertificates, this, request, handler, context, m_executor.get());
 }
 
 ListCertificatesByCAOutcome IoTClient::ListCertificatesByCA(const ListCertificatesByCARequest& request) const
@@ -4651,18 +3812,12 @@ ListCertificatesByCAOutcome IoTClient::ListCertificatesByCA(const ListCertificat
 
 ListCertificatesByCAOutcomeCallable IoTClient::ListCertificatesByCACallable(const ListCertificatesByCARequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCertificatesByCAOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCertificatesByCA(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListCertificatesByCA, this, request, m_executor.get());
 }
 
 void IoTClient::ListCertificatesByCAAsync(const ListCertificatesByCARequest& request, const ListCertificatesByCAResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCertificatesByCA(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListCertificatesByCA, this, request, handler, context, m_executor.get());
 }
 
 ListCustomMetricsOutcome IoTClient::ListCustomMetrics(const ListCustomMetricsRequest& request) const
@@ -4676,18 +3831,12 @@ ListCustomMetricsOutcome IoTClient::ListCustomMetrics(const ListCustomMetricsReq
 
 ListCustomMetricsOutcomeCallable IoTClient::ListCustomMetricsCallable(const ListCustomMetricsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListCustomMetricsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListCustomMetrics(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListCustomMetrics, this, request, m_executor.get());
 }
 
 void IoTClient::ListCustomMetricsAsync(const ListCustomMetricsRequest& request, const ListCustomMetricsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListCustomMetrics(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListCustomMetrics, this, request, handler, context, m_executor.get());
 }
 
 ListDetectMitigationActionsExecutionsOutcome IoTClient::ListDetectMitigationActionsExecutions(const ListDetectMitigationActionsExecutionsRequest& request) const
@@ -4701,18 +3850,12 @@ ListDetectMitigationActionsExecutionsOutcome IoTClient::ListDetectMitigationActi
 
 ListDetectMitigationActionsExecutionsOutcomeCallable IoTClient::ListDetectMitigationActionsExecutionsCallable(const ListDetectMitigationActionsExecutionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDetectMitigationActionsExecutionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDetectMitigationActionsExecutions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListDetectMitigationActionsExecutions, this, request, m_executor.get());
 }
 
 void IoTClient::ListDetectMitigationActionsExecutionsAsync(const ListDetectMitigationActionsExecutionsRequest& request, const ListDetectMitigationActionsExecutionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDetectMitigationActionsExecutions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListDetectMitigationActionsExecutions, this, request, handler, context, m_executor.get());
 }
 
 ListDetectMitigationActionsTasksOutcome IoTClient::ListDetectMitigationActionsTasks(const ListDetectMitigationActionsTasksRequest& request) const
@@ -4736,18 +3879,12 @@ ListDetectMitigationActionsTasksOutcome IoTClient::ListDetectMitigationActionsTa
 
 ListDetectMitigationActionsTasksOutcomeCallable IoTClient::ListDetectMitigationActionsTasksCallable(const ListDetectMitigationActionsTasksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDetectMitigationActionsTasksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDetectMitigationActionsTasks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListDetectMitigationActionsTasks, this, request, m_executor.get());
 }
 
 void IoTClient::ListDetectMitigationActionsTasksAsync(const ListDetectMitigationActionsTasksRequest& request, const ListDetectMitigationActionsTasksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDetectMitigationActionsTasks(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListDetectMitigationActionsTasks, this, request, handler, context, m_executor.get());
 }
 
 ListDimensionsOutcome IoTClient::ListDimensions(const ListDimensionsRequest& request) const
@@ -4761,18 +3898,12 @@ ListDimensionsOutcome IoTClient::ListDimensions(const ListDimensionsRequest& req
 
 ListDimensionsOutcomeCallable IoTClient::ListDimensionsCallable(const ListDimensionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDimensionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDimensions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListDimensions, this, request, m_executor.get());
 }
 
 void IoTClient::ListDimensionsAsync(const ListDimensionsRequest& request, const ListDimensionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDimensions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListDimensions, this, request, handler, context, m_executor.get());
 }
 
 ListDomainConfigurationsOutcome IoTClient::ListDomainConfigurations(const ListDomainConfigurationsRequest& request) const
@@ -4786,18 +3917,12 @@ ListDomainConfigurationsOutcome IoTClient::ListDomainConfigurations(const ListDo
 
 ListDomainConfigurationsOutcomeCallable IoTClient::ListDomainConfigurationsCallable(const ListDomainConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDomainConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDomainConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListDomainConfigurations, this, request, m_executor.get());
 }
 
 void IoTClient::ListDomainConfigurationsAsync(const ListDomainConfigurationsRequest& request, const ListDomainConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDomainConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListDomainConfigurations, this, request, handler, context, m_executor.get());
 }
 
 ListFleetMetricsOutcome IoTClient::ListFleetMetrics(const ListFleetMetricsRequest& request) const
@@ -4811,18 +3936,12 @@ ListFleetMetricsOutcome IoTClient::ListFleetMetrics(const ListFleetMetricsReques
 
 ListFleetMetricsOutcomeCallable IoTClient::ListFleetMetricsCallable(const ListFleetMetricsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListFleetMetricsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListFleetMetrics(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListFleetMetrics, this, request, m_executor.get());
 }
 
 void IoTClient::ListFleetMetricsAsync(const ListFleetMetricsRequest& request, const ListFleetMetricsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListFleetMetrics(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListFleetMetrics, this, request, handler, context, m_executor.get());
 }
 
 ListIndicesOutcome IoTClient::ListIndices(const ListIndicesRequest& request) const
@@ -4836,18 +3955,12 @@ ListIndicesOutcome IoTClient::ListIndices(const ListIndicesRequest& request) con
 
 ListIndicesOutcomeCallable IoTClient::ListIndicesCallable(const ListIndicesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListIndicesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListIndices(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListIndices, this, request, m_executor.get());
 }
 
 void IoTClient::ListIndicesAsync(const ListIndicesRequest& request, const ListIndicesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListIndices(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListIndices, this, request, handler, context, m_executor.get());
 }
 
 ListJobExecutionsForJobOutcome IoTClient::ListJobExecutionsForJob(const ListJobExecutionsForJobRequest& request) const
@@ -4868,18 +3981,12 @@ ListJobExecutionsForJobOutcome IoTClient::ListJobExecutionsForJob(const ListJobE
 
 ListJobExecutionsForJobOutcomeCallable IoTClient::ListJobExecutionsForJobCallable(const ListJobExecutionsForJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobExecutionsForJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobExecutionsForJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListJobExecutionsForJob, this, request, m_executor.get());
 }
 
 void IoTClient::ListJobExecutionsForJobAsync(const ListJobExecutionsForJobRequest& request, const ListJobExecutionsForJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobExecutionsForJob(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListJobExecutionsForJob, this, request, handler, context, m_executor.get());
 }
 
 ListJobExecutionsForThingOutcome IoTClient::ListJobExecutionsForThing(const ListJobExecutionsForThingRequest& request) const
@@ -4900,18 +4007,12 @@ ListJobExecutionsForThingOutcome IoTClient::ListJobExecutionsForThing(const List
 
 ListJobExecutionsForThingOutcomeCallable IoTClient::ListJobExecutionsForThingCallable(const ListJobExecutionsForThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobExecutionsForThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobExecutionsForThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListJobExecutionsForThing, this, request, m_executor.get());
 }
 
 void IoTClient::ListJobExecutionsForThingAsync(const ListJobExecutionsForThingRequest& request, const ListJobExecutionsForThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobExecutionsForThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListJobExecutionsForThing, this, request, handler, context, m_executor.get());
 }
 
 ListJobTemplatesOutcome IoTClient::ListJobTemplates(const ListJobTemplatesRequest& request) const
@@ -4925,18 +4026,12 @@ ListJobTemplatesOutcome IoTClient::ListJobTemplates(const ListJobTemplatesReques
 
 ListJobTemplatesOutcomeCallable IoTClient::ListJobTemplatesCallable(const ListJobTemplatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobTemplatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobTemplates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListJobTemplates, this, request, m_executor.get());
 }
 
 void IoTClient::ListJobTemplatesAsync(const ListJobTemplatesRequest& request, const ListJobTemplatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobTemplates(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListJobTemplates, this, request, handler, context, m_executor.get());
 }
 
 ListJobsOutcome IoTClient::ListJobs(const ListJobsRequest& request) const
@@ -4950,18 +4045,12 @@ ListJobsOutcome IoTClient::ListJobs(const ListJobsRequest& request) const
 
 ListJobsOutcomeCallable IoTClient::ListJobsCallable(const ListJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListJobs, this, request, m_executor.get());
 }
 
 void IoTClient::ListJobsAsync(const ListJobsRequest& request, const ListJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobs(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListJobs, this, request, handler, context, m_executor.get());
 }
 
 ListManagedJobTemplatesOutcome IoTClient::ListManagedJobTemplates(const ListManagedJobTemplatesRequest& request) const
@@ -4975,18 +4064,12 @@ ListManagedJobTemplatesOutcome IoTClient::ListManagedJobTemplates(const ListMana
 
 ListManagedJobTemplatesOutcomeCallable IoTClient::ListManagedJobTemplatesCallable(const ListManagedJobTemplatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListManagedJobTemplatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListManagedJobTemplates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListManagedJobTemplates, this, request, m_executor.get());
 }
 
 void IoTClient::ListManagedJobTemplatesAsync(const ListManagedJobTemplatesRequest& request, const ListManagedJobTemplatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListManagedJobTemplates(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListManagedJobTemplates, this, request, handler, context, m_executor.get());
 }
 
 ListMetricValuesOutcome IoTClient::ListMetricValues(const ListMetricValuesRequest& request) const
@@ -5020,18 +4103,12 @@ ListMetricValuesOutcome IoTClient::ListMetricValues(const ListMetricValuesReques
 
 ListMetricValuesOutcomeCallable IoTClient::ListMetricValuesCallable(const ListMetricValuesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMetricValuesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMetricValues(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListMetricValues, this, request, m_executor.get());
 }
 
 void IoTClient::ListMetricValuesAsync(const ListMetricValuesRequest& request, const ListMetricValuesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMetricValues(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListMetricValues, this, request, handler, context, m_executor.get());
 }
 
 ListMitigationActionsOutcome IoTClient::ListMitigationActions(const ListMitigationActionsRequest& request) const
@@ -5045,18 +4122,12 @@ ListMitigationActionsOutcome IoTClient::ListMitigationActions(const ListMitigati
 
 ListMitigationActionsOutcomeCallable IoTClient::ListMitigationActionsCallable(const ListMitigationActionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMitigationActionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMitigationActions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListMitigationActions, this, request, m_executor.get());
 }
 
 void IoTClient::ListMitigationActionsAsync(const ListMitigationActionsRequest& request, const ListMitigationActionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMitigationActions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListMitigationActions, this, request, handler, context, m_executor.get());
 }
 
 ListOTAUpdatesOutcome IoTClient::ListOTAUpdates(const ListOTAUpdatesRequest& request) const
@@ -5070,18 +4141,12 @@ ListOTAUpdatesOutcome IoTClient::ListOTAUpdates(const ListOTAUpdatesRequest& req
 
 ListOTAUpdatesOutcomeCallable IoTClient::ListOTAUpdatesCallable(const ListOTAUpdatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOTAUpdatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOTAUpdates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListOTAUpdates, this, request, m_executor.get());
 }
 
 void IoTClient::ListOTAUpdatesAsync(const ListOTAUpdatesRequest& request, const ListOTAUpdatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOTAUpdates(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListOTAUpdates, this, request, handler, context, m_executor.get());
 }
 
 ListOutgoingCertificatesOutcome IoTClient::ListOutgoingCertificates(const ListOutgoingCertificatesRequest& request) const
@@ -5095,18 +4160,12 @@ ListOutgoingCertificatesOutcome IoTClient::ListOutgoingCertificates(const ListOu
 
 ListOutgoingCertificatesOutcomeCallable IoTClient::ListOutgoingCertificatesCallable(const ListOutgoingCertificatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListOutgoingCertificatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListOutgoingCertificates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListOutgoingCertificates, this, request, m_executor.get());
 }
 
 void IoTClient::ListOutgoingCertificatesAsync(const ListOutgoingCertificatesRequest& request, const ListOutgoingCertificatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListOutgoingCertificates(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListOutgoingCertificates, this, request, handler, context, m_executor.get());
 }
 
 ListPoliciesOutcome IoTClient::ListPolicies(const ListPoliciesRequest& request) const
@@ -5120,18 +4179,12 @@ ListPoliciesOutcome IoTClient::ListPolicies(const ListPoliciesRequest& request) 
 
 ListPoliciesOutcomeCallable IoTClient::ListPoliciesCallable(const ListPoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListPolicies, this, request, m_executor.get());
 }
 
 void IoTClient::ListPoliciesAsync(const ListPoliciesRequest& request, const ListPoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPolicies(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListPolicies, this, request, handler, context, m_executor.get());
 }
 
 ListPolicyVersionsOutcome IoTClient::ListPolicyVersions(const ListPolicyVersionsRequest& request) const
@@ -5152,18 +4205,12 @@ ListPolicyVersionsOutcome IoTClient::ListPolicyVersions(const ListPolicyVersions
 
 ListPolicyVersionsOutcomeCallable IoTClient::ListPolicyVersionsCallable(const ListPolicyVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPolicyVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPolicyVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListPolicyVersions, this, request, m_executor.get());
 }
 
 void IoTClient::ListPolicyVersionsAsync(const ListPolicyVersionsRequest& request, const ListPolicyVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPolicyVersions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListPolicyVersions, this, request, handler, context, m_executor.get());
 }
 
 ListPrincipalThingsOutcome IoTClient::ListPrincipalThings(const ListPrincipalThingsRequest& request) const
@@ -5182,18 +4229,12 @@ ListPrincipalThingsOutcome IoTClient::ListPrincipalThings(const ListPrincipalThi
 
 ListPrincipalThingsOutcomeCallable IoTClient::ListPrincipalThingsCallable(const ListPrincipalThingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPrincipalThingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPrincipalThings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListPrincipalThings, this, request, m_executor.get());
 }
 
 void IoTClient::ListPrincipalThingsAsync(const ListPrincipalThingsRequest& request, const ListPrincipalThingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPrincipalThings(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListPrincipalThings, this, request, handler, context, m_executor.get());
 }
 
 ListProvisioningTemplateVersionsOutcome IoTClient::ListProvisioningTemplateVersions(const ListProvisioningTemplateVersionsRequest& request) const
@@ -5214,18 +4255,12 @@ ListProvisioningTemplateVersionsOutcome IoTClient::ListProvisioningTemplateVersi
 
 ListProvisioningTemplateVersionsOutcomeCallable IoTClient::ListProvisioningTemplateVersionsCallable(const ListProvisioningTemplateVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProvisioningTemplateVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProvisioningTemplateVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListProvisioningTemplateVersions, this, request, m_executor.get());
 }
 
 void IoTClient::ListProvisioningTemplateVersionsAsync(const ListProvisioningTemplateVersionsRequest& request, const ListProvisioningTemplateVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProvisioningTemplateVersions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListProvisioningTemplateVersions, this, request, handler, context, m_executor.get());
 }
 
 ListProvisioningTemplatesOutcome IoTClient::ListProvisioningTemplates(const ListProvisioningTemplatesRequest& request) const
@@ -5239,18 +4274,12 @@ ListProvisioningTemplatesOutcome IoTClient::ListProvisioningTemplates(const List
 
 ListProvisioningTemplatesOutcomeCallable IoTClient::ListProvisioningTemplatesCallable(const ListProvisioningTemplatesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProvisioningTemplatesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProvisioningTemplates(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListProvisioningTemplates, this, request, m_executor.get());
 }
 
 void IoTClient::ListProvisioningTemplatesAsync(const ListProvisioningTemplatesRequest& request, const ListProvisioningTemplatesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProvisioningTemplates(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListProvisioningTemplates, this, request, handler, context, m_executor.get());
 }
 
 ListRelatedResourcesForAuditFindingOutcome IoTClient::ListRelatedResourcesForAuditFinding(const ListRelatedResourcesForAuditFindingRequest& request) const
@@ -5269,18 +4298,12 @@ ListRelatedResourcesForAuditFindingOutcome IoTClient::ListRelatedResourcesForAud
 
 ListRelatedResourcesForAuditFindingOutcomeCallable IoTClient::ListRelatedResourcesForAuditFindingCallable(const ListRelatedResourcesForAuditFindingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRelatedResourcesForAuditFindingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRelatedResourcesForAuditFinding(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListRelatedResourcesForAuditFinding, this, request, m_executor.get());
 }
 
 void IoTClient::ListRelatedResourcesForAuditFindingAsync(const ListRelatedResourcesForAuditFindingRequest& request, const ListRelatedResourcesForAuditFindingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRelatedResourcesForAuditFinding(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListRelatedResourcesForAuditFinding, this, request, handler, context, m_executor.get());
 }
 
 ListRoleAliasesOutcome IoTClient::ListRoleAliases(const ListRoleAliasesRequest& request) const
@@ -5294,18 +4317,12 @@ ListRoleAliasesOutcome IoTClient::ListRoleAliases(const ListRoleAliasesRequest& 
 
 ListRoleAliasesOutcomeCallable IoTClient::ListRoleAliasesCallable(const ListRoleAliasesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRoleAliasesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoleAliases(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListRoleAliases, this, request, m_executor.get());
 }
 
 void IoTClient::ListRoleAliasesAsync(const ListRoleAliasesRequest& request, const ListRoleAliasesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoleAliases(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListRoleAliases, this, request, handler, context, m_executor.get());
 }
 
 ListScheduledAuditsOutcome IoTClient::ListScheduledAudits(const ListScheduledAuditsRequest& request) const
@@ -5319,18 +4336,12 @@ ListScheduledAuditsOutcome IoTClient::ListScheduledAudits(const ListScheduledAud
 
 ListScheduledAuditsOutcomeCallable IoTClient::ListScheduledAuditsCallable(const ListScheduledAuditsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListScheduledAuditsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListScheduledAudits(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListScheduledAudits, this, request, m_executor.get());
 }
 
 void IoTClient::ListScheduledAuditsAsync(const ListScheduledAuditsRequest& request, const ListScheduledAuditsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListScheduledAudits(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListScheduledAudits, this, request, handler, context, m_executor.get());
 }
 
 ListSecurityProfilesOutcome IoTClient::ListSecurityProfiles(const ListSecurityProfilesRequest& request) const
@@ -5344,18 +4355,12 @@ ListSecurityProfilesOutcome IoTClient::ListSecurityProfiles(const ListSecurityPr
 
 ListSecurityProfilesOutcomeCallable IoTClient::ListSecurityProfilesCallable(const ListSecurityProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSecurityProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSecurityProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListSecurityProfiles, this, request, m_executor.get());
 }
 
 void IoTClient::ListSecurityProfilesAsync(const ListSecurityProfilesRequest& request, const ListSecurityProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSecurityProfiles(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListSecurityProfiles, this, request, handler, context, m_executor.get());
 }
 
 ListSecurityProfilesForTargetOutcome IoTClient::ListSecurityProfilesForTarget(const ListSecurityProfilesForTargetRequest& request) const
@@ -5374,18 +4379,12 @@ ListSecurityProfilesForTargetOutcome IoTClient::ListSecurityProfilesForTarget(co
 
 ListSecurityProfilesForTargetOutcomeCallable IoTClient::ListSecurityProfilesForTargetCallable(const ListSecurityProfilesForTargetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSecurityProfilesForTargetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSecurityProfilesForTarget(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListSecurityProfilesForTarget, this, request, m_executor.get());
 }
 
 void IoTClient::ListSecurityProfilesForTargetAsync(const ListSecurityProfilesForTargetRequest& request, const ListSecurityProfilesForTargetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSecurityProfilesForTarget(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListSecurityProfilesForTarget, this, request, handler, context, m_executor.get());
 }
 
 ListStreamsOutcome IoTClient::ListStreams(const ListStreamsRequest& request) const
@@ -5399,18 +4398,12 @@ ListStreamsOutcome IoTClient::ListStreams(const ListStreamsRequest& request) con
 
 ListStreamsOutcomeCallable IoTClient::ListStreamsCallable(const ListStreamsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStreamsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStreams(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListStreams, this, request, m_executor.get());
 }
 
 void IoTClient::ListStreamsAsync(const ListStreamsRequest& request, const ListStreamsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStreams(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListStreams, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome IoTClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -5429,18 +4422,12 @@ ListTagsForResourceOutcome IoTClient::ListTagsForResource(const ListTagsForResou
 
 ListTagsForResourceOutcomeCallable IoTClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void IoTClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListTargetsForPolicyOutcome IoTClient::ListTargetsForPolicy(const ListTargetsForPolicyRequest& request) const
@@ -5460,18 +4447,12 @@ ListTargetsForPolicyOutcome IoTClient::ListTargetsForPolicy(const ListTargetsFor
 
 ListTargetsForPolicyOutcomeCallable IoTClient::ListTargetsForPolicyCallable(const ListTargetsForPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTargetsForPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTargetsForPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListTargetsForPolicy, this, request, m_executor.get());
 }
 
 void IoTClient::ListTargetsForPolicyAsync(const ListTargetsForPolicyRequest& request, const ListTargetsForPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTargetsForPolicy(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListTargetsForPolicy, this, request, handler, context, m_executor.get());
 }
 
 ListTargetsForSecurityProfileOutcome IoTClient::ListTargetsForSecurityProfile(const ListTargetsForSecurityProfileRequest& request) const
@@ -5492,18 +4473,12 @@ ListTargetsForSecurityProfileOutcome IoTClient::ListTargetsForSecurityProfile(co
 
 ListTargetsForSecurityProfileOutcomeCallable IoTClient::ListTargetsForSecurityProfileCallable(const ListTargetsForSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTargetsForSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTargetsForSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListTargetsForSecurityProfile, this, request, m_executor.get());
 }
 
 void IoTClient::ListTargetsForSecurityProfileAsync(const ListTargetsForSecurityProfileRequest& request, const ListTargetsForSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTargetsForSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListTargetsForSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 ListThingGroupsOutcome IoTClient::ListThingGroups(const ListThingGroupsRequest& request) const
@@ -5517,18 +4492,12 @@ ListThingGroupsOutcome IoTClient::ListThingGroups(const ListThingGroupsRequest& 
 
 ListThingGroupsOutcomeCallable IoTClient::ListThingGroupsCallable(const ListThingGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingGroups, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingGroupsAsync(const ListThingGroupsRequest& request, const ListThingGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingGroups(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingGroups, this, request, handler, context, m_executor.get());
 }
 
 ListThingGroupsForThingOutcome IoTClient::ListThingGroupsForThing(const ListThingGroupsForThingRequest& request) const
@@ -5549,18 +4518,12 @@ ListThingGroupsForThingOutcome IoTClient::ListThingGroupsForThing(const ListThin
 
 ListThingGroupsForThingOutcomeCallable IoTClient::ListThingGroupsForThingCallable(const ListThingGroupsForThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingGroupsForThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingGroupsForThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingGroupsForThing, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingGroupsForThingAsync(const ListThingGroupsForThingRequest& request, const ListThingGroupsForThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingGroupsForThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingGroupsForThing, this, request, handler, context, m_executor.get());
 }
 
 ListThingPrincipalsOutcome IoTClient::ListThingPrincipals(const ListThingPrincipalsRequest& request) const
@@ -5581,18 +4544,12 @@ ListThingPrincipalsOutcome IoTClient::ListThingPrincipals(const ListThingPrincip
 
 ListThingPrincipalsOutcomeCallable IoTClient::ListThingPrincipalsCallable(const ListThingPrincipalsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingPrincipalsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingPrincipals(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingPrincipals, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingPrincipalsAsync(const ListThingPrincipalsRequest& request, const ListThingPrincipalsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingPrincipals(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingPrincipals, this, request, handler, context, m_executor.get());
 }
 
 ListThingRegistrationTaskReportsOutcome IoTClient::ListThingRegistrationTaskReports(const ListThingRegistrationTaskReportsRequest& request) const
@@ -5618,18 +4575,12 @@ ListThingRegistrationTaskReportsOutcome IoTClient::ListThingRegistrationTaskRepo
 
 ListThingRegistrationTaskReportsOutcomeCallable IoTClient::ListThingRegistrationTaskReportsCallable(const ListThingRegistrationTaskReportsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingRegistrationTaskReportsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingRegistrationTaskReports(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingRegistrationTaskReports, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingRegistrationTaskReportsAsync(const ListThingRegistrationTaskReportsRequest& request, const ListThingRegistrationTaskReportsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingRegistrationTaskReports(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingRegistrationTaskReports, this, request, handler, context, m_executor.get());
 }
 
 ListThingRegistrationTasksOutcome IoTClient::ListThingRegistrationTasks(const ListThingRegistrationTasksRequest& request) const
@@ -5643,18 +4594,12 @@ ListThingRegistrationTasksOutcome IoTClient::ListThingRegistrationTasks(const Li
 
 ListThingRegistrationTasksOutcomeCallable IoTClient::ListThingRegistrationTasksCallable(const ListThingRegistrationTasksRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingRegistrationTasksOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingRegistrationTasks(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingRegistrationTasks, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingRegistrationTasksAsync(const ListThingRegistrationTasksRequest& request, const ListThingRegistrationTasksResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingRegistrationTasks(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingRegistrationTasks, this, request, handler, context, m_executor.get());
 }
 
 ListThingTypesOutcome IoTClient::ListThingTypes(const ListThingTypesRequest& request) const
@@ -5668,18 +4613,12 @@ ListThingTypesOutcome IoTClient::ListThingTypes(const ListThingTypesRequest& req
 
 ListThingTypesOutcomeCallable IoTClient::ListThingTypesCallable(const ListThingTypesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingTypesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingTypes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingTypes, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingTypesAsync(const ListThingTypesRequest& request, const ListThingTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingTypes(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingTypes, this, request, handler, context, m_executor.get());
 }
 
 ListThingsOutcome IoTClient::ListThings(const ListThingsRequest& request) const
@@ -5693,18 +4632,12 @@ ListThingsOutcome IoTClient::ListThings(const ListThingsRequest& request) const
 
 ListThingsOutcomeCallable IoTClient::ListThingsCallable(const ListThingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThings, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingsAsync(const ListThingsRequest& request, const ListThingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThings(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThings, this, request, handler, context, m_executor.get());
 }
 
 ListThingsInBillingGroupOutcome IoTClient::ListThingsInBillingGroup(const ListThingsInBillingGroupRequest& request) const
@@ -5725,18 +4658,12 @@ ListThingsInBillingGroupOutcome IoTClient::ListThingsInBillingGroup(const ListTh
 
 ListThingsInBillingGroupOutcomeCallable IoTClient::ListThingsInBillingGroupCallable(const ListThingsInBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingsInBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingsInBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingsInBillingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingsInBillingGroupAsync(const ListThingsInBillingGroupRequest& request, const ListThingsInBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingsInBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingsInBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 ListThingsInThingGroupOutcome IoTClient::ListThingsInThingGroup(const ListThingsInThingGroupRequest& request) const
@@ -5757,18 +4684,12 @@ ListThingsInThingGroupOutcome IoTClient::ListThingsInThingGroup(const ListThings
 
 ListThingsInThingGroupOutcomeCallable IoTClient::ListThingsInThingGroupCallable(const ListThingsInThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListThingsInThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListThingsInThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListThingsInThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::ListThingsInThingGroupAsync(const ListThingsInThingGroupRequest& request, const ListThingsInThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListThingsInThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListThingsInThingGroup, this, request, handler, context, m_executor.get());
 }
 
 ListTopicRuleDestinationsOutcome IoTClient::ListTopicRuleDestinations(const ListTopicRuleDestinationsRequest& request) const
@@ -5782,18 +4703,12 @@ ListTopicRuleDestinationsOutcome IoTClient::ListTopicRuleDestinations(const List
 
 ListTopicRuleDestinationsOutcomeCallable IoTClient::ListTopicRuleDestinationsCallable(const ListTopicRuleDestinationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTopicRuleDestinationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTopicRuleDestinations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListTopicRuleDestinations, this, request, m_executor.get());
 }
 
 void IoTClient::ListTopicRuleDestinationsAsync(const ListTopicRuleDestinationsRequest& request, const ListTopicRuleDestinationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTopicRuleDestinations(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListTopicRuleDestinations, this, request, handler, context, m_executor.get());
 }
 
 ListTopicRulesOutcome IoTClient::ListTopicRules(const ListTopicRulesRequest& request) const
@@ -5807,18 +4722,12 @@ ListTopicRulesOutcome IoTClient::ListTopicRules(const ListTopicRulesRequest& req
 
 ListTopicRulesOutcomeCallable IoTClient::ListTopicRulesCallable(const ListTopicRulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTopicRulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTopicRules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListTopicRules, this, request, m_executor.get());
 }
 
 void IoTClient::ListTopicRulesAsync(const ListTopicRulesRequest& request, const ListTopicRulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTopicRules(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListTopicRules, this, request, handler, context, m_executor.get());
 }
 
 ListV2LoggingLevelsOutcome IoTClient::ListV2LoggingLevels(const ListV2LoggingLevelsRequest& request) const
@@ -5832,18 +4741,12 @@ ListV2LoggingLevelsOutcome IoTClient::ListV2LoggingLevels(const ListV2LoggingLev
 
 ListV2LoggingLevelsOutcomeCallable IoTClient::ListV2LoggingLevelsCallable(const ListV2LoggingLevelsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListV2LoggingLevelsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListV2LoggingLevels(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListV2LoggingLevels, this, request, m_executor.get());
 }
 
 void IoTClient::ListV2LoggingLevelsAsync(const ListV2LoggingLevelsRequest& request, const ListV2LoggingLevelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListV2LoggingLevels(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListV2LoggingLevels, this, request, handler, context, m_executor.get());
 }
 
 ListViolationEventsOutcome IoTClient::ListViolationEvents(const ListViolationEventsRequest& request) const
@@ -5867,18 +4770,12 @@ ListViolationEventsOutcome IoTClient::ListViolationEvents(const ListViolationEve
 
 ListViolationEventsOutcomeCallable IoTClient::ListViolationEventsCallable(const ListViolationEventsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListViolationEventsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListViolationEvents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ListViolationEvents, this, request, m_executor.get());
 }
 
 void IoTClient::ListViolationEventsAsync(const ListViolationEventsRequest& request, const ListViolationEventsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListViolationEvents(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ListViolationEvents, this, request, handler, context, m_executor.get());
 }
 
 PutVerificationStateOnViolationOutcome IoTClient::PutVerificationStateOnViolation(const PutVerificationStateOnViolationRequest& request) const
@@ -5898,18 +4795,12 @@ PutVerificationStateOnViolationOutcome IoTClient::PutVerificationStateOnViolatio
 
 PutVerificationStateOnViolationOutcomeCallable IoTClient::PutVerificationStateOnViolationCallable(const PutVerificationStateOnViolationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVerificationStateOnViolationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVerificationStateOnViolation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::PutVerificationStateOnViolation, this, request, m_executor.get());
 }
 
 void IoTClient::PutVerificationStateOnViolationAsync(const PutVerificationStateOnViolationRequest& request, const PutVerificationStateOnViolationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVerificationStateOnViolation(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::PutVerificationStateOnViolation, this, request, handler, context, m_executor.get());
 }
 
 RegisterCACertificateOutcome IoTClient::RegisterCACertificate(const RegisterCACertificateRequest& request) const
@@ -5923,18 +4814,12 @@ RegisterCACertificateOutcome IoTClient::RegisterCACertificate(const RegisterCACe
 
 RegisterCACertificateOutcomeCallable IoTClient::RegisterCACertificateCallable(const RegisterCACertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterCACertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterCACertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::RegisterCACertificate, this, request, m_executor.get());
 }
 
 void IoTClient::RegisterCACertificateAsync(const RegisterCACertificateRequest& request, const RegisterCACertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterCACertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::RegisterCACertificate, this, request, handler, context, m_executor.get());
 }
 
 RegisterCertificateOutcome IoTClient::RegisterCertificate(const RegisterCertificateRequest& request) const
@@ -5948,18 +4833,12 @@ RegisterCertificateOutcome IoTClient::RegisterCertificate(const RegisterCertific
 
 RegisterCertificateOutcomeCallable IoTClient::RegisterCertificateCallable(const RegisterCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::RegisterCertificate, this, request, m_executor.get());
 }
 
 void IoTClient::RegisterCertificateAsync(const RegisterCertificateRequest& request, const RegisterCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::RegisterCertificate, this, request, handler, context, m_executor.get());
 }
 
 RegisterCertificateWithoutCAOutcome IoTClient::RegisterCertificateWithoutCA(const RegisterCertificateWithoutCARequest& request) const
@@ -5973,18 +4852,12 @@ RegisterCertificateWithoutCAOutcome IoTClient::RegisterCertificateWithoutCA(cons
 
 RegisterCertificateWithoutCAOutcomeCallable IoTClient::RegisterCertificateWithoutCACallable(const RegisterCertificateWithoutCARequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterCertificateWithoutCAOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterCertificateWithoutCA(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::RegisterCertificateWithoutCA, this, request, m_executor.get());
 }
 
 void IoTClient::RegisterCertificateWithoutCAAsync(const RegisterCertificateWithoutCARequest& request, const RegisterCertificateWithoutCAResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterCertificateWithoutCA(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::RegisterCertificateWithoutCA, this, request, handler, context, m_executor.get());
 }
 
 RegisterThingOutcome IoTClient::RegisterThing(const RegisterThingRequest& request) const
@@ -5998,18 +4871,12 @@ RegisterThingOutcome IoTClient::RegisterThing(const RegisterThingRequest& reques
 
 RegisterThingOutcomeCallable IoTClient::RegisterThingCallable(const RegisterThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegisterThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegisterThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::RegisterThing, this, request, m_executor.get());
 }
 
 void IoTClient::RegisterThingAsync(const RegisterThingRequest& request, const RegisterThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegisterThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::RegisterThing, this, request, handler, context, m_executor.get());
 }
 
 RejectCertificateTransferOutcome IoTClient::RejectCertificateTransfer(const RejectCertificateTransferRequest& request) const
@@ -6029,18 +4896,12 @@ RejectCertificateTransferOutcome IoTClient::RejectCertificateTransfer(const Reje
 
 RejectCertificateTransferOutcomeCallable IoTClient::RejectCertificateTransferCallable(const RejectCertificateTransferRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RejectCertificateTransferOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RejectCertificateTransfer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::RejectCertificateTransfer, this, request, m_executor.get());
 }
 
 void IoTClient::RejectCertificateTransferAsync(const RejectCertificateTransferRequest& request, const RejectCertificateTransferResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RejectCertificateTransfer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::RejectCertificateTransfer, this, request, handler, context, m_executor.get());
 }
 
 RemoveThingFromBillingGroupOutcome IoTClient::RemoveThingFromBillingGroup(const RemoveThingFromBillingGroupRequest& request) const
@@ -6054,18 +4915,12 @@ RemoveThingFromBillingGroupOutcome IoTClient::RemoveThingFromBillingGroup(const 
 
 RemoveThingFromBillingGroupOutcomeCallable IoTClient::RemoveThingFromBillingGroupCallable(const RemoveThingFromBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveThingFromBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveThingFromBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::RemoveThingFromBillingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::RemoveThingFromBillingGroupAsync(const RemoveThingFromBillingGroupRequest& request, const RemoveThingFromBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveThingFromBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::RemoveThingFromBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 RemoveThingFromThingGroupOutcome IoTClient::RemoveThingFromThingGroup(const RemoveThingFromThingGroupRequest& request) const
@@ -6079,18 +4934,12 @@ RemoveThingFromThingGroupOutcome IoTClient::RemoveThingFromThingGroup(const Remo
 
 RemoveThingFromThingGroupOutcomeCallable IoTClient::RemoveThingFromThingGroupCallable(const RemoveThingFromThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RemoveThingFromThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RemoveThingFromThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::RemoveThingFromThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::RemoveThingFromThingGroupAsync(const RemoveThingFromThingGroupRequest& request, const RemoveThingFromThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RemoveThingFromThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::RemoveThingFromThingGroup, this, request, handler, context, m_executor.get());
 }
 
 ReplaceTopicRuleOutcome IoTClient::ReplaceTopicRule(const ReplaceTopicRuleRequest& request) const
@@ -6110,18 +4959,12 @@ ReplaceTopicRuleOutcome IoTClient::ReplaceTopicRule(const ReplaceTopicRuleReques
 
 ReplaceTopicRuleOutcomeCallable IoTClient::ReplaceTopicRuleCallable(const ReplaceTopicRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ReplaceTopicRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ReplaceTopicRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ReplaceTopicRule, this, request, m_executor.get());
 }
 
 void IoTClient::ReplaceTopicRuleAsync(const ReplaceTopicRuleRequest& request, const ReplaceTopicRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ReplaceTopicRule(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ReplaceTopicRule, this, request, handler, context, m_executor.get());
 }
 
 SearchIndexOutcome IoTClient::SearchIndex(const SearchIndexRequest& request) const
@@ -6135,18 +4978,12 @@ SearchIndexOutcome IoTClient::SearchIndex(const SearchIndexRequest& request) con
 
 SearchIndexOutcomeCallable IoTClient::SearchIndexCallable(const SearchIndexRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchIndexOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchIndex(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::SearchIndex, this, request, m_executor.get());
 }
 
 void IoTClient::SearchIndexAsync(const SearchIndexRequest& request, const SearchIndexResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchIndex(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::SearchIndex, this, request, handler, context, m_executor.get());
 }
 
 SetDefaultAuthorizerOutcome IoTClient::SetDefaultAuthorizer(const SetDefaultAuthorizerRequest& request) const
@@ -6160,18 +4997,12 @@ SetDefaultAuthorizerOutcome IoTClient::SetDefaultAuthorizer(const SetDefaultAuth
 
 SetDefaultAuthorizerOutcomeCallable IoTClient::SetDefaultAuthorizerCallable(const SetDefaultAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetDefaultAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetDefaultAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::SetDefaultAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::SetDefaultAuthorizerAsync(const SetDefaultAuthorizerRequest& request, const SetDefaultAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetDefaultAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::SetDefaultAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 SetDefaultPolicyVersionOutcome IoTClient::SetDefaultPolicyVersion(const SetDefaultPolicyVersionRequest& request) const
@@ -6198,18 +5029,12 @@ SetDefaultPolicyVersionOutcome IoTClient::SetDefaultPolicyVersion(const SetDefau
 
 SetDefaultPolicyVersionOutcomeCallable IoTClient::SetDefaultPolicyVersionCallable(const SetDefaultPolicyVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetDefaultPolicyVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetDefaultPolicyVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::SetDefaultPolicyVersion, this, request, m_executor.get());
 }
 
 void IoTClient::SetDefaultPolicyVersionAsync(const SetDefaultPolicyVersionRequest& request, const SetDefaultPolicyVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetDefaultPolicyVersion(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::SetDefaultPolicyVersion, this, request, handler, context, m_executor.get());
 }
 
 SetLoggingOptionsOutcome IoTClient::SetLoggingOptions(const SetLoggingOptionsRequest& request) const
@@ -6223,18 +5048,12 @@ SetLoggingOptionsOutcome IoTClient::SetLoggingOptions(const SetLoggingOptionsReq
 
 SetLoggingOptionsOutcomeCallable IoTClient::SetLoggingOptionsCallable(const SetLoggingOptionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetLoggingOptionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetLoggingOptions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::SetLoggingOptions, this, request, m_executor.get());
 }
 
 void IoTClient::SetLoggingOptionsAsync(const SetLoggingOptionsRequest& request, const SetLoggingOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetLoggingOptions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::SetLoggingOptions, this, request, handler, context, m_executor.get());
 }
 
 SetV2LoggingLevelOutcome IoTClient::SetV2LoggingLevel(const SetV2LoggingLevelRequest& request) const
@@ -6248,18 +5067,12 @@ SetV2LoggingLevelOutcome IoTClient::SetV2LoggingLevel(const SetV2LoggingLevelReq
 
 SetV2LoggingLevelOutcomeCallable IoTClient::SetV2LoggingLevelCallable(const SetV2LoggingLevelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetV2LoggingLevelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetV2LoggingLevel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::SetV2LoggingLevel, this, request, m_executor.get());
 }
 
 void IoTClient::SetV2LoggingLevelAsync(const SetV2LoggingLevelRequest& request, const SetV2LoggingLevelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetV2LoggingLevel(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::SetV2LoggingLevel, this, request, handler, context, m_executor.get());
 }
 
 SetV2LoggingOptionsOutcome IoTClient::SetV2LoggingOptions(const SetV2LoggingOptionsRequest& request) const
@@ -6273,18 +5086,12 @@ SetV2LoggingOptionsOutcome IoTClient::SetV2LoggingOptions(const SetV2LoggingOpti
 
 SetV2LoggingOptionsOutcomeCallable IoTClient::SetV2LoggingOptionsCallable(const SetV2LoggingOptionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SetV2LoggingOptionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SetV2LoggingOptions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::SetV2LoggingOptions, this, request, m_executor.get());
 }
 
 void IoTClient::SetV2LoggingOptionsAsync(const SetV2LoggingOptionsRequest& request, const SetV2LoggingOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SetV2LoggingOptions(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::SetV2LoggingOptions, this, request, handler, context, m_executor.get());
 }
 
 StartAuditMitigationActionsTaskOutcome IoTClient::StartAuditMitigationActionsTask(const StartAuditMitigationActionsTaskRequest& request) const
@@ -6304,18 +5111,12 @@ StartAuditMitigationActionsTaskOutcome IoTClient::StartAuditMitigationActionsTas
 
 StartAuditMitigationActionsTaskOutcomeCallable IoTClient::StartAuditMitigationActionsTaskCallable(const StartAuditMitigationActionsTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartAuditMitigationActionsTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartAuditMitigationActionsTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::StartAuditMitigationActionsTask, this, request, m_executor.get());
 }
 
 void IoTClient::StartAuditMitigationActionsTaskAsync(const StartAuditMitigationActionsTaskRequest& request, const StartAuditMitigationActionsTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartAuditMitigationActionsTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::StartAuditMitigationActionsTask, this, request, handler, context, m_executor.get());
 }
 
 StartDetectMitigationActionsTaskOutcome IoTClient::StartDetectMitigationActionsTask(const StartDetectMitigationActionsTaskRequest& request) const
@@ -6335,18 +5136,12 @@ StartDetectMitigationActionsTaskOutcome IoTClient::StartDetectMitigationActionsT
 
 StartDetectMitigationActionsTaskOutcomeCallable IoTClient::StartDetectMitigationActionsTaskCallable(const StartDetectMitigationActionsTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartDetectMitigationActionsTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartDetectMitigationActionsTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::StartDetectMitigationActionsTask, this, request, m_executor.get());
 }
 
 void IoTClient::StartDetectMitigationActionsTaskAsync(const StartDetectMitigationActionsTaskRequest& request, const StartDetectMitigationActionsTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartDetectMitigationActionsTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::StartDetectMitigationActionsTask, this, request, handler, context, m_executor.get());
 }
 
 StartOnDemandAuditTaskOutcome IoTClient::StartOnDemandAuditTask(const StartOnDemandAuditTaskRequest& request) const
@@ -6360,18 +5155,12 @@ StartOnDemandAuditTaskOutcome IoTClient::StartOnDemandAuditTask(const StartOnDem
 
 StartOnDemandAuditTaskOutcomeCallable IoTClient::StartOnDemandAuditTaskCallable(const StartOnDemandAuditTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartOnDemandAuditTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartOnDemandAuditTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::StartOnDemandAuditTask, this, request, m_executor.get());
 }
 
 void IoTClient::StartOnDemandAuditTaskAsync(const StartOnDemandAuditTaskRequest& request, const StartOnDemandAuditTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartOnDemandAuditTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::StartOnDemandAuditTask, this, request, handler, context, m_executor.get());
 }
 
 StartThingRegistrationTaskOutcome IoTClient::StartThingRegistrationTask(const StartThingRegistrationTaskRequest& request) const
@@ -6385,18 +5174,12 @@ StartThingRegistrationTaskOutcome IoTClient::StartThingRegistrationTask(const St
 
 StartThingRegistrationTaskOutcomeCallable IoTClient::StartThingRegistrationTaskCallable(const StartThingRegistrationTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartThingRegistrationTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartThingRegistrationTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::StartThingRegistrationTask, this, request, m_executor.get());
 }
 
 void IoTClient::StartThingRegistrationTaskAsync(const StartThingRegistrationTaskRequest& request, const StartThingRegistrationTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartThingRegistrationTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::StartThingRegistrationTask, this, request, handler, context, m_executor.get());
 }
 
 StopThingRegistrationTaskOutcome IoTClient::StopThingRegistrationTask(const StopThingRegistrationTaskRequest& request) const
@@ -6417,18 +5200,12 @@ StopThingRegistrationTaskOutcome IoTClient::StopThingRegistrationTask(const Stop
 
 StopThingRegistrationTaskOutcomeCallable IoTClient::StopThingRegistrationTaskCallable(const StopThingRegistrationTaskRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopThingRegistrationTaskOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopThingRegistrationTask(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::StopThingRegistrationTask, this, request, m_executor.get());
 }
 
 void IoTClient::StopThingRegistrationTaskAsync(const StopThingRegistrationTaskRequest& request, const StopThingRegistrationTaskResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopThingRegistrationTask(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::StopThingRegistrationTask, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome IoTClient::TagResource(const TagResourceRequest& request) const
@@ -6442,18 +5219,12 @@ TagResourceOutcome IoTClient::TagResource(const TagResourceRequest& request) con
 
 TagResourceOutcomeCallable IoTClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::TagResource, this, request, m_executor.get());
 }
 
 void IoTClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 TestAuthorizationOutcome IoTClient::TestAuthorization(const TestAuthorizationRequest& request) const
@@ -6467,18 +5238,12 @@ TestAuthorizationOutcome IoTClient::TestAuthorization(const TestAuthorizationReq
 
 TestAuthorizationOutcomeCallable IoTClient::TestAuthorizationCallable(const TestAuthorizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TestAuthorizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TestAuthorization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::TestAuthorization, this, request, m_executor.get());
 }
 
 void IoTClient::TestAuthorizationAsync(const TestAuthorizationRequest& request, const TestAuthorizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TestAuthorization(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::TestAuthorization, this, request, handler, context, m_executor.get());
 }
 
 TestInvokeAuthorizerOutcome IoTClient::TestInvokeAuthorizer(const TestInvokeAuthorizerRequest& request) const
@@ -6499,18 +5264,12 @@ TestInvokeAuthorizerOutcome IoTClient::TestInvokeAuthorizer(const TestInvokeAuth
 
 TestInvokeAuthorizerOutcomeCallable IoTClient::TestInvokeAuthorizerCallable(const TestInvokeAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TestInvokeAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TestInvokeAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::TestInvokeAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::TestInvokeAuthorizerAsync(const TestInvokeAuthorizerRequest& request, const TestInvokeAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TestInvokeAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::TestInvokeAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 TransferCertificateOutcome IoTClient::TransferCertificate(const TransferCertificateRequest& request) const
@@ -6535,18 +5294,12 @@ TransferCertificateOutcome IoTClient::TransferCertificate(const TransferCertific
 
 TransferCertificateOutcomeCallable IoTClient::TransferCertificateCallable(const TransferCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TransferCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TransferCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::TransferCertificate, this, request, m_executor.get());
 }
 
 void IoTClient::TransferCertificateAsync(const TransferCertificateRequest& request, const TransferCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TransferCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::TransferCertificate, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome IoTClient::UntagResource(const UntagResourceRequest& request) const
@@ -6560,18 +5313,12 @@ UntagResourceOutcome IoTClient::UntagResource(const UntagResourceRequest& reques
 
 UntagResourceOutcomeCallable IoTClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UntagResource, this, request, m_executor.get());
 }
 
 void IoTClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAccountAuditConfigurationOutcome IoTClient::UpdateAccountAuditConfiguration(const UpdateAccountAuditConfigurationRequest& request) const
@@ -6585,18 +5332,12 @@ UpdateAccountAuditConfigurationOutcome IoTClient::UpdateAccountAuditConfiguratio
 
 UpdateAccountAuditConfigurationOutcomeCallable IoTClient::UpdateAccountAuditConfigurationCallable(const UpdateAccountAuditConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccountAuditConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccountAuditConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateAccountAuditConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateAccountAuditConfigurationAsync(const UpdateAccountAuditConfigurationRequest& request, const UpdateAccountAuditConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccountAuditConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateAccountAuditConfiguration, this, request, handler, context, m_executor.get());
 }
 
 UpdateAuditSuppressionOutcome IoTClient::UpdateAuditSuppression(const UpdateAuditSuppressionRequest& request) const
@@ -6610,18 +5351,12 @@ UpdateAuditSuppressionOutcome IoTClient::UpdateAuditSuppression(const UpdateAudi
 
 UpdateAuditSuppressionOutcomeCallable IoTClient::UpdateAuditSuppressionCallable(const UpdateAuditSuppressionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAuditSuppressionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAuditSuppression(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateAuditSuppression, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateAuditSuppressionAsync(const UpdateAuditSuppressionRequest& request, const UpdateAuditSuppressionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAuditSuppression(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateAuditSuppression, this, request, handler, context, m_executor.get());
 }
 
 UpdateAuthorizerOutcome IoTClient::UpdateAuthorizer(const UpdateAuthorizerRequest& request) const
@@ -6641,18 +5376,12 @@ UpdateAuthorizerOutcome IoTClient::UpdateAuthorizer(const UpdateAuthorizerReques
 
 UpdateAuthorizerOutcomeCallable IoTClient::UpdateAuthorizerCallable(const UpdateAuthorizerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAuthorizerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAuthorizer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateAuthorizer, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateAuthorizerAsync(const UpdateAuthorizerRequest& request, const UpdateAuthorizerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAuthorizer(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateAuthorizer, this, request, handler, context, m_executor.get());
 }
 
 UpdateBillingGroupOutcome IoTClient::UpdateBillingGroup(const UpdateBillingGroupRequest& request) const
@@ -6672,18 +5401,12 @@ UpdateBillingGroupOutcome IoTClient::UpdateBillingGroup(const UpdateBillingGroup
 
 UpdateBillingGroupOutcomeCallable IoTClient::UpdateBillingGroupCallable(const UpdateBillingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateBillingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateBillingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateBillingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateBillingGroupAsync(const UpdateBillingGroupRequest& request, const UpdateBillingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateBillingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateBillingGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateCACertificateOutcome IoTClient::UpdateCACertificate(const UpdateCACertificateRequest& request) const
@@ -6703,18 +5426,12 @@ UpdateCACertificateOutcome IoTClient::UpdateCACertificate(const UpdateCACertific
 
 UpdateCACertificateOutcomeCallable IoTClient::UpdateCACertificateCallable(const UpdateCACertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCACertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCACertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateCACertificate, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateCACertificateAsync(const UpdateCACertificateRequest& request, const UpdateCACertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCACertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateCACertificate, this, request, handler, context, m_executor.get());
 }
 
 UpdateCertificateOutcome IoTClient::UpdateCertificate(const UpdateCertificateRequest& request) const
@@ -6739,18 +5456,12 @@ UpdateCertificateOutcome IoTClient::UpdateCertificate(const UpdateCertificateReq
 
 UpdateCertificateOutcomeCallable IoTClient::UpdateCertificateCallable(const UpdateCertificateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCertificateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCertificate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateCertificate, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateCertificateAsync(const UpdateCertificateRequest& request, const UpdateCertificateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCertificate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateCertificate, this, request, handler, context, m_executor.get());
 }
 
 UpdateCustomMetricOutcome IoTClient::UpdateCustomMetric(const UpdateCustomMetricRequest& request) const
@@ -6770,18 +5481,12 @@ UpdateCustomMetricOutcome IoTClient::UpdateCustomMetric(const UpdateCustomMetric
 
 UpdateCustomMetricOutcomeCallable IoTClient::UpdateCustomMetricCallable(const UpdateCustomMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateCustomMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateCustomMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateCustomMetric, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateCustomMetricAsync(const UpdateCustomMetricRequest& request, const UpdateCustomMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateCustomMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateCustomMetric, this, request, handler, context, m_executor.get());
 }
 
 UpdateDimensionOutcome IoTClient::UpdateDimension(const UpdateDimensionRequest& request) const
@@ -6801,18 +5506,12 @@ UpdateDimensionOutcome IoTClient::UpdateDimension(const UpdateDimensionRequest& 
 
 UpdateDimensionOutcomeCallable IoTClient::UpdateDimensionCallable(const UpdateDimensionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDimensionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDimension(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateDimension, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateDimensionAsync(const UpdateDimensionRequest& request, const UpdateDimensionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDimension(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateDimension, this, request, handler, context, m_executor.get());
 }
 
 UpdateDomainConfigurationOutcome IoTClient::UpdateDomainConfiguration(const UpdateDomainConfigurationRequest& request) const
@@ -6832,18 +5531,12 @@ UpdateDomainConfigurationOutcome IoTClient::UpdateDomainConfiguration(const Upda
 
 UpdateDomainConfigurationOutcomeCallable IoTClient::UpdateDomainConfigurationCallable(const UpdateDomainConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDomainConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDomainConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateDomainConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateDomainConfigurationAsync(const UpdateDomainConfigurationRequest& request, const UpdateDomainConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDomainConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateDomainConfiguration, this, request, handler, context, m_executor.get());
 }
 
 UpdateDynamicThingGroupOutcome IoTClient::UpdateDynamicThingGroup(const UpdateDynamicThingGroupRequest& request) const
@@ -6863,18 +5556,12 @@ UpdateDynamicThingGroupOutcome IoTClient::UpdateDynamicThingGroup(const UpdateDy
 
 UpdateDynamicThingGroupOutcomeCallable IoTClient::UpdateDynamicThingGroupCallable(const UpdateDynamicThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDynamicThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDynamicThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateDynamicThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateDynamicThingGroupAsync(const UpdateDynamicThingGroupRequest& request, const UpdateDynamicThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDynamicThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateDynamicThingGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateEventConfigurationsOutcome IoTClient::UpdateEventConfigurations(const UpdateEventConfigurationsRequest& request) const
@@ -6888,18 +5575,12 @@ UpdateEventConfigurationsOutcome IoTClient::UpdateEventConfigurations(const Upda
 
 UpdateEventConfigurationsOutcomeCallable IoTClient::UpdateEventConfigurationsCallable(const UpdateEventConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateEventConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateEventConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateEventConfigurations, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateEventConfigurationsAsync(const UpdateEventConfigurationsRequest& request, const UpdateEventConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateEventConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateEventConfigurations, this, request, handler, context, m_executor.get());
 }
 
 UpdateFleetMetricOutcome IoTClient::UpdateFleetMetric(const UpdateFleetMetricRequest& request) const
@@ -6919,18 +5600,12 @@ UpdateFleetMetricOutcome IoTClient::UpdateFleetMetric(const UpdateFleetMetricReq
 
 UpdateFleetMetricOutcomeCallable IoTClient::UpdateFleetMetricCallable(const UpdateFleetMetricRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateFleetMetricOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateFleetMetric(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateFleetMetric, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateFleetMetricAsync(const UpdateFleetMetricRequest& request, const UpdateFleetMetricResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateFleetMetric(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateFleetMetric, this, request, handler, context, m_executor.get());
 }
 
 UpdateIndexingConfigurationOutcome IoTClient::UpdateIndexingConfiguration(const UpdateIndexingConfigurationRequest& request) const
@@ -6944,18 +5619,12 @@ UpdateIndexingConfigurationOutcome IoTClient::UpdateIndexingConfiguration(const 
 
 UpdateIndexingConfigurationOutcomeCallable IoTClient::UpdateIndexingConfigurationCallable(const UpdateIndexingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateIndexingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateIndexingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateIndexingConfiguration, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateIndexingConfigurationAsync(const UpdateIndexingConfigurationRequest& request, const UpdateIndexingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateIndexingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateIndexingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 UpdateJobOutcome IoTClient::UpdateJob(const UpdateJobRequest& request) const
@@ -6975,18 +5644,12 @@ UpdateJobOutcome IoTClient::UpdateJob(const UpdateJobRequest& request) const
 
 UpdateJobOutcomeCallable IoTClient::UpdateJobCallable(const UpdateJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateJob, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateJobAsync(const UpdateJobRequest& request, const UpdateJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateJob(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateJob, this, request, handler, context, m_executor.get());
 }
 
 UpdateMitigationActionOutcome IoTClient::UpdateMitigationAction(const UpdateMitigationActionRequest& request) const
@@ -7006,18 +5669,12 @@ UpdateMitigationActionOutcome IoTClient::UpdateMitigationAction(const UpdateMiti
 
 UpdateMitigationActionOutcomeCallable IoTClient::UpdateMitigationActionCallable(const UpdateMitigationActionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateMitigationActionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateMitigationAction(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateMitigationAction, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateMitigationActionAsync(const UpdateMitigationActionRequest& request, const UpdateMitigationActionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateMitigationAction(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateMitigationAction, this, request, handler, context, m_executor.get());
 }
 
 UpdateProvisioningTemplateOutcome IoTClient::UpdateProvisioningTemplate(const UpdateProvisioningTemplateRequest& request) const
@@ -7037,18 +5694,12 @@ UpdateProvisioningTemplateOutcome IoTClient::UpdateProvisioningTemplate(const Up
 
 UpdateProvisioningTemplateOutcomeCallable IoTClient::UpdateProvisioningTemplateCallable(const UpdateProvisioningTemplateRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateProvisioningTemplateOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateProvisioningTemplate(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateProvisioningTemplate, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateProvisioningTemplateAsync(const UpdateProvisioningTemplateRequest& request, const UpdateProvisioningTemplateResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateProvisioningTemplate(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateProvisioningTemplate, this, request, handler, context, m_executor.get());
 }
 
 UpdateRoleAliasOutcome IoTClient::UpdateRoleAlias(const UpdateRoleAliasRequest& request) const
@@ -7068,18 +5719,12 @@ UpdateRoleAliasOutcome IoTClient::UpdateRoleAlias(const UpdateRoleAliasRequest& 
 
 UpdateRoleAliasOutcomeCallable IoTClient::UpdateRoleAliasCallable(const UpdateRoleAliasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoleAliasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoleAlias(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateRoleAlias, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateRoleAliasAsync(const UpdateRoleAliasRequest& request, const UpdateRoleAliasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoleAlias(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateRoleAlias, this, request, handler, context, m_executor.get());
 }
 
 UpdateScheduledAuditOutcome IoTClient::UpdateScheduledAudit(const UpdateScheduledAuditRequest& request) const
@@ -7099,18 +5744,12 @@ UpdateScheduledAuditOutcome IoTClient::UpdateScheduledAudit(const UpdateSchedule
 
 UpdateScheduledAuditOutcomeCallable IoTClient::UpdateScheduledAuditCallable(const UpdateScheduledAuditRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateScheduledAuditOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateScheduledAudit(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateScheduledAudit, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateScheduledAuditAsync(const UpdateScheduledAuditRequest& request, const UpdateScheduledAuditResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateScheduledAudit(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateScheduledAudit, this, request, handler, context, m_executor.get());
 }
 
 UpdateSecurityProfileOutcome IoTClient::UpdateSecurityProfile(const UpdateSecurityProfileRequest& request) const
@@ -7130,18 +5769,12 @@ UpdateSecurityProfileOutcome IoTClient::UpdateSecurityProfile(const UpdateSecuri
 
 UpdateSecurityProfileOutcomeCallable IoTClient::UpdateSecurityProfileCallable(const UpdateSecurityProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSecurityProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSecurityProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateSecurityProfile, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateSecurityProfileAsync(const UpdateSecurityProfileRequest& request, const UpdateSecurityProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSecurityProfile(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateSecurityProfile, this, request, handler, context, m_executor.get());
 }
 
 UpdateStreamOutcome IoTClient::UpdateStream(const UpdateStreamRequest& request) const
@@ -7161,18 +5794,12 @@ UpdateStreamOutcome IoTClient::UpdateStream(const UpdateStreamRequest& request) 
 
 UpdateStreamOutcomeCallable IoTClient::UpdateStreamCallable(const UpdateStreamRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateStreamOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateStream(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateStream, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateStreamAsync(const UpdateStreamRequest& request, const UpdateStreamResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateStream(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateStream, this, request, handler, context, m_executor.get());
 }
 
 UpdateThingOutcome IoTClient::UpdateThing(const UpdateThingRequest& request) const
@@ -7192,18 +5819,12 @@ UpdateThingOutcome IoTClient::UpdateThing(const UpdateThingRequest& request) con
 
 UpdateThingOutcomeCallable IoTClient::UpdateThingCallable(const UpdateThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateThing, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateThingAsync(const UpdateThingRequest& request, const UpdateThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateThing, this, request, handler, context, m_executor.get());
 }
 
 UpdateThingGroupOutcome IoTClient::UpdateThingGroup(const UpdateThingGroupRequest& request) const
@@ -7223,18 +5844,12 @@ UpdateThingGroupOutcome IoTClient::UpdateThingGroup(const UpdateThingGroupReques
 
 UpdateThingGroupOutcomeCallable IoTClient::UpdateThingGroupCallable(const UpdateThingGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateThingGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateThingGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateThingGroup, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateThingGroupAsync(const UpdateThingGroupRequest& request, const UpdateThingGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateThingGroup(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateThingGroup, this, request, handler, context, m_executor.get());
 }
 
 UpdateThingGroupsForThingOutcome IoTClient::UpdateThingGroupsForThing(const UpdateThingGroupsForThingRequest& request) const
@@ -7248,18 +5863,12 @@ UpdateThingGroupsForThingOutcome IoTClient::UpdateThingGroupsForThing(const Upda
 
 UpdateThingGroupsForThingOutcomeCallable IoTClient::UpdateThingGroupsForThingCallable(const UpdateThingGroupsForThingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateThingGroupsForThingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateThingGroupsForThing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateThingGroupsForThing, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateThingGroupsForThingAsync(const UpdateThingGroupsForThingRequest& request, const UpdateThingGroupsForThingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateThingGroupsForThing(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateThingGroupsForThing, this, request, handler, context, m_executor.get());
 }
 
 UpdateTopicRuleDestinationOutcome IoTClient::UpdateTopicRuleDestination(const UpdateTopicRuleDestinationRequest& request) const
@@ -7273,18 +5882,12 @@ UpdateTopicRuleDestinationOutcome IoTClient::UpdateTopicRuleDestination(const Up
 
 UpdateTopicRuleDestinationOutcomeCallable IoTClient::UpdateTopicRuleDestinationCallable(const UpdateTopicRuleDestinationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTopicRuleDestinationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTopicRuleDestination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::UpdateTopicRuleDestination, this, request, m_executor.get());
 }
 
 void IoTClient::UpdateTopicRuleDestinationAsync(const UpdateTopicRuleDestinationRequest& request, const UpdateTopicRuleDestinationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTopicRuleDestination(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::UpdateTopicRuleDestination, this, request, handler, context, m_executor.get());
 }
 
 ValidateSecurityProfileBehaviorsOutcome IoTClient::ValidateSecurityProfileBehaviors(const ValidateSecurityProfileBehaviorsRequest& request) const
@@ -7298,17 +5901,11 @@ ValidateSecurityProfileBehaviorsOutcome IoTClient::ValidateSecurityProfileBehavi
 
 ValidateSecurityProfileBehaviorsOutcomeCallable IoTClient::ValidateSecurityProfileBehaviorsCallable(const ValidateSecurityProfileBehaviorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ValidateSecurityProfileBehaviorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ValidateSecurityProfileBehaviors(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTClient::ValidateSecurityProfileBehaviors, this, request, m_executor.get());
 }
 
 void IoTClient::ValidateSecurityProfileBehaviorsAsync(const ValidateSecurityProfileBehaviorsRequest& request, const ValidateSecurityProfileBehaviorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ValidateSecurityProfileBehaviors(request), context);
-    } );
+  MakeAsyncOperation(&IoTClient::ValidateSecurityProfileBehaviors, this, request, handler, context, m_executor.get());
 }
 

@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -194,18 +195,12 @@ BatchPutMessageOutcome IoTAnalyticsClient::BatchPutMessage(const BatchPutMessage
 
 BatchPutMessageOutcomeCallable IoTAnalyticsClient::BatchPutMessageCallable(const BatchPutMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchPutMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchPutMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::BatchPutMessage, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::BatchPutMessageAsync(const BatchPutMessageRequest& request, const BatchPutMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchPutMessage(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::BatchPutMessage, this, request, handler, context, m_executor.get());
 }
 
 CancelPipelineReprocessingOutcome IoTAnalyticsClient::CancelPipelineReprocessing(const CancelPipelineReprocessingRequest& request) const
@@ -232,18 +227,12 @@ CancelPipelineReprocessingOutcome IoTAnalyticsClient::CancelPipelineReprocessing
 
 CancelPipelineReprocessingOutcomeCallable IoTAnalyticsClient::CancelPipelineReprocessingCallable(const CancelPipelineReprocessingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelPipelineReprocessingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelPipelineReprocessing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::CancelPipelineReprocessing, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::CancelPipelineReprocessingAsync(const CancelPipelineReprocessingRequest& request, const CancelPipelineReprocessingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelPipelineReprocessing(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::CancelPipelineReprocessing, this, request, handler, context, m_executor.get());
 }
 
 CreateChannelOutcome IoTAnalyticsClient::CreateChannel(const CreateChannelRequest& request) const
@@ -257,18 +246,12 @@ CreateChannelOutcome IoTAnalyticsClient::CreateChannel(const CreateChannelReques
 
 CreateChannelOutcomeCallable IoTAnalyticsClient::CreateChannelCallable(const CreateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::CreateChannel, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::CreateChannelAsync(const CreateChannelRequest& request, const CreateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateChannel(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::CreateChannel, this, request, handler, context, m_executor.get());
 }
 
 CreateDatasetOutcome IoTAnalyticsClient::CreateDataset(const CreateDatasetRequest& request) const
@@ -282,18 +265,12 @@ CreateDatasetOutcome IoTAnalyticsClient::CreateDataset(const CreateDatasetReques
 
 CreateDatasetOutcomeCallable IoTAnalyticsClient::CreateDatasetCallable(const CreateDatasetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDatasetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDataset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::CreateDataset, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::CreateDatasetAsync(const CreateDatasetRequest& request, const CreateDatasetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDataset(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::CreateDataset, this, request, handler, context, m_executor.get());
 }
 
 CreateDatasetContentOutcome IoTAnalyticsClient::CreateDatasetContent(const CreateDatasetContentRequest& request) const
@@ -314,18 +291,12 @@ CreateDatasetContentOutcome IoTAnalyticsClient::CreateDatasetContent(const Creat
 
 CreateDatasetContentOutcomeCallable IoTAnalyticsClient::CreateDatasetContentCallable(const CreateDatasetContentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDatasetContentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDatasetContent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::CreateDatasetContent, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::CreateDatasetContentAsync(const CreateDatasetContentRequest& request, const CreateDatasetContentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDatasetContent(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::CreateDatasetContent, this, request, handler, context, m_executor.get());
 }
 
 CreateDatastoreOutcome IoTAnalyticsClient::CreateDatastore(const CreateDatastoreRequest& request) const
@@ -339,18 +310,12 @@ CreateDatastoreOutcome IoTAnalyticsClient::CreateDatastore(const CreateDatastore
 
 CreateDatastoreOutcomeCallable IoTAnalyticsClient::CreateDatastoreCallable(const CreateDatastoreRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDatastoreOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDatastore(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::CreateDatastore, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::CreateDatastoreAsync(const CreateDatastoreRequest& request, const CreateDatastoreResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDatastore(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::CreateDatastore, this, request, handler, context, m_executor.get());
 }
 
 CreatePipelineOutcome IoTAnalyticsClient::CreatePipeline(const CreatePipelineRequest& request) const
@@ -364,18 +329,12 @@ CreatePipelineOutcome IoTAnalyticsClient::CreatePipeline(const CreatePipelineReq
 
 CreatePipelineOutcomeCallable IoTAnalyticsClient::CreatePipelineCallable(const CreatePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::CreatePipeline, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::CreatePipelineAsync(const CreatePipelineRequest& request, const CreatePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePipeline(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::CreatePipeline, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelOutcome IoTAnalyticsClient::DeleteChannel(const DeleteChannelRequest& request) const
@@ -395,18 +354,12 @@ DeleteChannelOutcome IoTAnalyticsClient::DeleteChannel(const DeleteChannelReques
 
 DeleteChannelOutcomeCallable IoTAnalyticsClient::DeleteChannelCallable(const DeleteChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DeleteChannel, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DeleteChannelAsync(const DeleteChannelRequest& request, const DeleteChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannel(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DeleteChannel, this, request, handler, context, m_executor.get());
 }
 
 DeleteDatasetOutcome IoTAnalyticsClient::DeleteDataset(const DeleteDatasetRequest& request) const
@@ -426,18 +379,12 @@ DeleteDatasetOutcome IoTAnalyticsClient::DeleteDataset(const DeleteDatasetReques
 
 DeleteDatasetOutcomeCallable IoTAnalyticsClient::DeleteDatasetCallable(const DeleteDatasetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDatasetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDataset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DeleteDataset, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DeleteDatasetAsync(const DeleteDatasetRequest& request, const DeleteDatasetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDataset(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DeleteDataset, this, request, handler, context, m_executor.get());
 }
 
 DeleteDatasetContentOutcome IoTAnalyticsClient::DeleteDatasetContent(const DeleteDatasetContentRequest& request) const
@@ -458,18 +405,12 @@ DeleteDatasetContentOutcome IoTAnalyticsClient::DeleteDatasetContent(const Delet
 
 DeleteDatasetContentOutcomeCallable IoTAnalyticsClient::DeleteDatasetContentCallable(const DeleteDatasetContentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDatasetContentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDatasetContent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DeleteDatasetContent, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DeleteDatasetContentAsync(const DeleteDatasetContentRequest& request, const DeleteDatasetContentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDatasetContent(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DeleteDatasetContent, this, request, handler, context, m_executor.get());
 }
 
 DeleteDatastoreOutcome IoTAnalyticsClient::DeleteDatastore(const DeleteDatastoreRequest& request) const
@@ -489,18 +430,12 @@ DeleteDatastoreOutcome IoTAnalyticsClient::DeleteDatastore(const DeleteDatastore
 
 DeleteDatastoreOutcomeCallable IoTAnalyticsClient::DeleteDatastoreCallable(const DeleteDatastoreRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDatastoreOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDatastore(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DeleteDatastore, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DeleteDatastoreAsync(const DeleteDatastoreRequest& request, const DeleteDatastoreResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDatastore(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DeleteDatastore, this, request, handler, context, m_executor.get());
 }
 
 DeletePipelineOutcome IoTAnalyticsClient::DeletePipeline(const DeletePipelineRequest& request) const
@@ -520,18 +455,12 @@ DeletePipelineOutcome IoTAnalyticsClient::DeletePipeline(const DeletePipelineReq
 
 DeletePipelineOutcomeCallable IoTAnalyticsClient::DeletePipelineCallable(const DeletePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DeletePipeline, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DeletePipelineAsync(const DeletePipelineRequest& request, const DeletePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePipeline(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DeletePipeline, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelOutcome IoTAnalyticsClient::DescribeChannel(const DescribeChannelRequest& request) const
@@ -551,18 +480,12 @@ DescribeChannelOutcome IoTAnalyticsClient::DescribeChannel(const DescribeChannel
 
 DescribeChannelOutcomeCallable IoTAnalyticsClient::DescribeChannelCallable(const DescribeChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DescribeChannel, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DescribeChannelAsync(const DescribeChannelRequest& request, const DescribeChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannel(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DescribeChannel, this, request, handler, context, m_executor.get());
 }
 
 DescribeDatasetOutcome IoTAnalyticsClient::DescribeDataset(const DescribeDatasetRequest& request) const
@@ -582,18 +505,12 @@ DescribeDatasetOutcome IoTAnalyticsClient::DescribeDataset(const DescribeDataset
 
 DescribeDatasetOutcomeCallable IoTAnalyticsClient::DescribeDatasetCallable(const DescribeDatasetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDatasetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDataset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DescribeDataset, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DescribeDatasetAsync(const DescribeDatasetRequest& request, const DescribeDatasetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDataset(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DescribeDataset, this, request, handler, context, m_executor.get());
 }
 
 DescribeDatastoreOutcome IoTAnalyticsClient::DescribeDatastore(const DescribeDatastoreRequest& request) const
@@ -613,18 +530,12 @@ DescribeDatastoreOutcome IoTAnalyticsClient::DescribeDatastore(const DescribeDat
 
 DescribeDatastoreOutcomeCallable IoTAnalyticsClient::DescribeDatastoreCallable(const DescribeDatastoreRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDatastoreOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDatastore(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DescribeDatastore, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DescribeDatastoreAsync(const DescribeDatastoreRequest& request, const DescribeDatastoreResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDatastore(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DescribeDatastore, this, request, handler, context, m_executor.get());
 }
 
 DescribeLoggingOptionsOutcome IoTAnalyticsClient::DescribeLoggingOptions(const DescribeLoggingOptionsRequest& request) const
@@ -638,18 +549,12 @@ DescribeLoggingOptionsOutcome IoTAnalyticsClient::DescribeLoggingOptions(const D
 
 DescribeLoggingOptionsOutcomeCallable IoTAnalyticsClient::DescribeLoggingOptionsCallable(const DescribeLoggingOptionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLoggingOptionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLoggingOptions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DescribeLoggingOptions, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DescribeLoggingOptionsAsync(const DescribeLoggingOptionsRequest& request, const DescribeLoggingOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLoggingOptions(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DescribeLoggingOptions, this, request, handler, context, m_executor.get());
 }
 
 DescribePipelineOutcome IoTAnalyticsClient::DescribePipeline(const DescribePipelineRequest& request) const
@@ -669,18 +574,12 @@ DescribePipelineOutcome IoTAnalyticsClient::DescribePipeline(const DescribePipel
 
 DescribePipelineOutcomeCallable IoTAnalyticsClient::DescribePipelineCallable(const DescribePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::DescribePipeline, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::DescribePipelineAsync(const DescribePipelineRequest& request, const DescribePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribePipeline(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::DescribePipeline, this, request, handler, context, m_executor.get());
 }
 
 GetDatasetContentOutcome IoTAnalyticsClient::GetDatasetContent(const GetDatasetContentRequest& request) const
@@ -701,18 +600,12 @@ GetDatasetContentOutcome IoTAnalyticsClient::GetDatasetContent(const GetDatasetC
 
 GetDatasetContentOutcomeCallable IoTAnalyticsClient::GetDatasetContentCallable(const GetDatasetContentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDatasetContentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDatasetContent(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::GetDatasetContent, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::GetDatasetContentAsync(const GetDatasetContentRequest& request, const GetDatasetContentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDatasetContent(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::GetDatasetContent, this, request, handler, context, m_executor.get());
 }
 
 ListChannelsOutcome IoTAnalyticsClient::ListChannels(const ListChannelsRequest& request) const
@@ -726,18 +619,12 @@ ListChannelsOutcome IoTAnalyticsClient::ListChannels(const ListChannelsRequest& 
 
 ListChannelsOutcomeCallable IoTAnalyticsClient::ListChannelsCallable(const ListChannelsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannels(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::ListChannels, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::ListChannelsAsync(const ListChannelsRequest& request, const ListChannelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannels(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::ListChannels, this, request, handler, context, m_executor.get());
 }
 
 ListDatasetContentsOutcome IoTAnalyticsClient::ListDatasetContents(const ListDatasetContentsRequest& request) const
@@ -758,18 +645,12 @@ ListDatasetContentsOutcome IoTAnalyticsClient::ListDatasetContents(const ListDat
 
 ListDatasetContentsOutcomeCallable IoTAnalyticsClient::ListDatasetContentsCallable(const ListDatasetContentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDatasetContentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDatasetContents(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::ListDatasetContents, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::ListDatasetContentsAsync(const ListDatasetContentsRequest& request, const ListDatasetContentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDatasetContents(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::ListDatasetContents, this, request, handler, context, m_executor.get());
 }
 
 ListDatasetsOutcome IoTAnalyticsClient::ListDatasets(const ListDatasetsRequest& request) const
@@ -783,18 +664,12 @@ ListDatasetsOutcome IoTAnalyticsClient::ListDatasets(const ListDatasetsRequest& 
 
 ListDatasetsOutcomeCallable IoTAnalyticsClient::ListDatasetsCallable(const ListDatasetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDatasetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDatasets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::ListDatasets, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::ListDatasetsAsync(const ListDatasetsRequest& request, const ListDatasetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDatasets(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::ListDatasets, this, request, handler, context, m_executor.get());
 }
 
 ListDatastoresOutcome IoTAnalyticsClient::ListDatastores(const ListDatastoresRequest& request) const
@@ -808,18 +683,12 @@ ListDatastoresOutcome IoTAnalyticsClient::ListDatastores(const ListDatastoresReq
 
 ListDatastoresOutcomeCallable IoTAnalyticsClient::ListDatastoresCallable(const ListDatastoresRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDatastoresOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDatastores(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::ListDatastores, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::ListDatastoresAsync(const ListDatastoresRequest& request, const ListDatastoresResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDatastores(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::ListDatastores, this, request, handler, context, m_executor.get());
 }
 
 ListPipelinesOutcome IoTAnalyticsClient::ListPipelines(const ListPipelinesRequest& request) const
@@ -833,18 +702,12 @@ ListPipelinesOutcome IoTAnalyticsClient::ListPipelines(const ListPipelinesReques
 
 ListPipelinesOutcomeCallable IoTAnalyticsClient::ListPipelinesCallable(const ListPipelinesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPipelinesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPipelines(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::ListPipelines, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::ListPipelinesAsync(const ListPipelinesRequest& request, const ListPipelinesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPipelines(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::ListPipelines, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome IoTAnalyticsClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -863,18 +726,12 @@ ListTagsForResourceOutcome IoTAnalyticsClient::ListTagsForResource(const ListTag
 
 ListTagsForResourceOutcomeCallable IoTAnalyticsClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutLoggingOptionsOutcome IoTAnalyticsClient::PutLoggingOptions(const PutLoggingOptionsRequest& request) const
@@ -888,18 +745,12 @@ PutLoggingOptionsOutcome IoTAnalyticsClient::PutLoggingOptions(const PutLoggingO
 
 PutLoggingOptionsOutcomeCallable IoTAnalyticsClient::PutLoggingOptionsCallable(const PutLoggingOptionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutLoggingOptionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutLoggingOptions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::PutLoggingOptions, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::PutLoggingOptionsAsync(const PutLoggingOptionsRequest& request, const PutLoggingOptionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutLoggingOptions(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::PutLoggingOptions, this, request, handler, context, m_executor.get());
 }
 
 RunPipelineActivityOutcome IoTAnalyticsClient::RunPipelineActivity(const RunPipelineActivityRequest& request) const
@@ -913,18 +764,12 @@ RunPipelineActivityOutcome IoTAnalyticsClient::RunPipelineActivity(const RunPipe
 
 RunPipelineActivityOutcomeCallable IoTAnalyticsClient::RunPipelineActivityCallable(const RunPipelineActivityRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RunPipelineActivityOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RunPipelineActivity(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::RunPipelineActivity, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::RunPipelineActivityAsync(const RunPipelineActivityRequest& request, const RunPipelineActivityResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RunPipelineActivity(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::RunPipelineActivity, this, request, handler, context, m_executor.get());
 }
 
 SampleChannelDataOutcome IoTAnalyticsClient::SampleChannelData(const SampleChannelDataRequest& request) const
@@ -945,18 +790,12 @@ SampleChannelDataOutcome IoTAnalyticsClient::SampleChannelData(const SampleChann
 
 SampleChannelDataOutcomeCallable IoTAnalyticsClient::SampleChannelDataCallable(const SampleChannelDataRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SampleChannelDataOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SampleChannelData(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::SampleChannelData, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::SampleChannelDataAsync(const SampleChannelDataRequest& request, const SampleChannelDataResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SampleChannelData(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::SampleChannelData, this, request, handler, context, m_executor.get());
 }
 
 StartPipelineReprocessingOutcome IoTAnalyticsClient::StartPipelineReprocessing(const StartPipelineReprocessingRequest& request) const
@@ -977,18 +816,12 @@ StartPipelineReprocessingOutcome IoTAnalyticsClient::StartPipelineReprocessing(c
 
 StartPipelineReprocessingOutcomeCallable IoTAnalyticsClient::StartPipelineReprocessingCallable(const StartPipelineReprocessingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartPipelineReprocessingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartPipelineReprocessing(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::StartPipelineReprocessing, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::StartPipelineReprocessingAsync(const StartPipelineReprocessingRequest& request, const StartPipelineReprocessingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartPipelineReprocessing(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::StartPipelineReprocessing, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome IoTAnalyticsClient::TagResource(const TagResourceRequest& request) const
@@ -1007,18 +840,12 @@ TagResourceOutcome IoTAnalyticsClient::TagResource(const TagResourceRequest& req
 
 TagResourceOutcomeCallable IoTAnalyticsClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::TagResource, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome IoTAnalyticsClient::UntagResource(const UntagResourceRequest& request) const
@@ -1042,18 +869,12 @@ UntagResourceOutcome IoTAnalyticsClient::UntagResource(const UntagResourceReques
 
 UntagResourceOutcomeCallable IoTAnalyticsClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::UntagResource, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateChannelOutcome IoTAnalyticsClient::UpdateChannel(const UpdateChannelRequest& request) const
@@ -1073,18 +894,12 @@ UpdateChannelOutcome IoTAnalyticsClient::UpdateChannel(const UpdateChannelReques
 
 UpdateChannelOutcomeCallable IoTAnalyticsClient::UpdateChannelCallable(const UpdateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::UpdateChannel, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::UpdateChannelAsync(const UpdateChannelRequest& request, const UpdateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateChannel(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::UpdateChannel, this, request, handler, context, m_executor.get());
 }
 
 UpdateDatasetOutcome IoTAnalyticsClient::UpdateDataset(const UpdateDatasetRequest& request) const
@@ -1104,18 +919,12 @@ UpdateDatasetOutcome IoTAnalyticsClient::UpdateDataset(const UpdateDatasetReques
 
 UpdateDatasetOutcomeCallable IoTAnalyticsClient::UpdateDatasetCallable(const UpdateDatasetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDatasetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDataset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::UpdateDataset, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::UpdateDatasetAsync(const UpdateDatasetRequest& request, const UpdateDatasetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDataset(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::UpdateDataset, this, request, handler, context, m_executor.get());
 }
 
 UpdateDatastoreOutcome IoTAnalyticsClient::UpdateDatastore(const UpdateDatastoreRequest& request) const
@@ -1135,18 +944,12 @@ UpdateDatastoreOutcome IoTAnalyticsClient::UpdateDatastore(const UpdateDatastore
 
 UpdateDatastoreOutcomeCallable IoTAnalyticsClient::UpdateDatastoreCallable(const UpdateDatastoreRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDatastoreOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDatastore(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::UpdateDatastore, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::UpdateDatastoreAsync(const UpdateDatastoreRequest& request, const UpdateDatastoreResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDatastore(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::UpdateDatastore, this, request, handler, context, m_executor.get());
 }
 
 UpdatePipelineOutcome IoTAnalyticsClient::UpdatePipeline(const UpdatePipelineRequest& request) const
@@ -1166,17 +969,11 @@ UpdatePipelineOutcome IoTAnalyticsClient::UpdatePipeline(const UpdatePipelineReq
 
 UpdatePipelineOutcomeCallable IoTAnalyticsClient::UpdatePipelineCallable(const UpdatePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &IoTAnalyticsClient::UpdatePipeline, this, request, m_executor.get());
 }
 
 void IoTAnalyticsClient::UpdatePipelineAsync(const UpdatePipelineRequest& request, const UpdatePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePipeline(request), context);
-    } );
+  MakeAsyncOperation(&IoTAnalyticsClient::UpdatePipeline, this, request, handler, context, m_executor.get());
 }
 

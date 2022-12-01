@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -182,18 +183,12 @@ CancelJobOutcome ElasticTranscoderClient::CancelJob(const CancelJobRequest& requ
 
 CancelJobOutcomeCallable ElasticTranscoderClient::CancelJobCallable(const CancelJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CancelJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CancelJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::CancelJob, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::CancelJobAsync(const CancelJobRequest& request, const CancelJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CancelJob(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::CancelJob, this, request, handler, context, m_executor.get());
 }
 
 CreateJobOutcome ElasticTranscoderClient::CreateJob(const CreateJobRequest& request) const
@@ -207,18 +202,12 @@ CreateJobOutcome ElasticTranscoderClient::CreateJob(const CreateJobRequest& requ
 
 CreateJobOutcomeCallable ElasticTranscoderClient::CreateJobCallable(const CreateJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::CreateJob, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::CreateJobAsync(const CreateJobRequest& request, const CreateJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateJob(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::CreateJob, this, request, handler, context, m_executor.get());
 }
 
 CreatePipelineOutcome ElasticTranscoderClient::CreatePipeline(const CreatePipelineRequest& request) const
@@ -232,18 +221,12 @@ CreatePipelineOutcome ElasticTranscoderClient::CreatePipeline(const CreatePipeli
 
 CreatePipelineOutcomeCallable ElasticTranscoderClient::CreatePipelineCallable(const CreatePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::CreatePipeline, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::CreatePipelineAsync(const CreatePipelineRequest& request, const CreatePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePipeline(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::CreatePipeline, this, request, handler, context, m_executor.get());
 }
 
 CreatePresetOutcome ElasticTranscoderClient::CreatePreset(const CreatePresetRequest& request) const
@@ -257,18 +240,12 @@ CreatePresetOutcome ElasticTranscoderClient::CreatePreset(const CreatePresetRequ
 
 CreatePresetOutcomeCallable ElasticTranscoderClient::CreatePresetCallable(const CreatePresetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePresetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePreset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::CreatePreset, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::CreatePresetAsync(const CreatePresetRequest& request, const CreatePresetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePreset(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::CreatePreset, this, request, handler, context, m_executor.get());
 }
 
 DeletePipelineOutcome ElasticTranscoderClient::DeletePipeline(const DeletePipelineRequest& request) const
@@ -288,18 +265,12 @@ DeletePipelineOutcome ElasticTranscoderClient::DeletePipeline(const DeletePipeli
 
 DeletePipelineOutcomeCallable ElasticTranscoderClient::DeletePipelineCallable(const DeletePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::DeletePipeline, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::DeletePipelineAsync(const DeletePipelineRequest& request, const DeletePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePipeline(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::DeletePipeline, this, request, handler, context, m_executor.get());
 }
 
 DeletePresetOutcome ElasticTranscoderClient::DeletePreset(const DeletePresetRequest& request) const
@@ -319,18 +290,12 @@ DeletePresetOutcome ElasticTranscoderClient::DeletePreset(const DeletePresetRequ
 
 DeletePresetOutcomeCallable ElasticTranscoderClient::DeletePresetCallable(const DeletePresetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePresetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePreset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::DeletePreset, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::DeletePresetAsync(const DeletePresetRequest& request, const DeletePresetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePreset(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::DeletePreset, this, request, handler, context, m_executor.get());
 }
 
 ListJobsByPipelineOutcome ElasticTranscoderClient::ListJobsByPipeline(const ListJobsByPipelineRequest& request) const
@@ -350,18 +315,12 @@ ListJobsByPipelineOutcome ElasticTranscoderClient::ListJobsByPipeline(const List
 
 ListJobsByPipelineOutcomeCallable ElasticTranscoderClient::ListJobsByPipelineCallable(const ListJobsByPipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobsByPipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobsByPipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::ListJobsByPipeline, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::ListJobsByPipelineAsync(const ListJobsByPipelineRequest& request, const ListJobsByPipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobsByPipeline(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::ListJobsByPipeline, this, request, handler, context, m_executor.get());
 }
 
 ListJobsByStatusOutcome ElasticTranscoderClient::ListJobsByStatus(const ListJobsByStatusRequest& request) const
@@ -381,18 +340,12 @@ ListJobsByStatusOutcome ElasticTranscoderClient::ListJobsByStatus(const ListJobs
 
 ListJobsByStatusOutcomeCallable ElasticTranscoderClient::ListJobsByStatusCallable(const ListJobsByStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListJobsByStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListJobsByStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::ListJobsByStatus, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::ListJobsByStatusAsync(const ListJobsByStatusRequest& request, const ListJobsByStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListJobsByStatus(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::ListJobsByStatus, this, request, handler, context, m_executor.get());
 }
 
 ListPipelinesOutcome ElasticTranscoderClient::ListPipelines(const ListPipelinesRequest& request) const
@@ -406,18 +359,12 @@ ListPipelinesOutcome ElasticTranscoderClient::ListPipelines(const ListPipelinesR
 
 ListPipelinesOutcomeCallable ElasticTranscoderClient::ListPipelinesCallable(const ListPipelinesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPipelinesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPipelines(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::ListPipelines, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::ListPipelinesAsync(const ListPipelinesRequest& request, const ListPipelinesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPipelines(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::ListPipelines, this, request, handler, context, m_executor.get());
 }
 
 ListPresetsOutcome ElasticTranscoderClient::ListPresets(const ListPresetsRequest& request) const
@@ -431,18 +378,12 @@ ListPresetsOutcome ElasticTranscoderClient::ListPresets(const ListPresetsRequest
 
 ListPresetsOutcomeCallable ElasticTranscoderClient::ListPresetsCallable(const ListPresetsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPresetsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPresets(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::ListPresets, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::ListPresetsAsync(const ListPresetsRequest& request, const ListPresetsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPresets(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::ListPresets, this, request, handler, context, m_executor.get());
 }
 
 ReadJobOutcome ElasticTranscoderClient::ReadJob(const ReadJobRequest& request) const
@@ -462,18 +403,12 @@ ReadJobOutcome ElasticTranscoderClient::ReadJob(const ReadJobRequest& request) c
 
 ReadJobOutcomeCallable ElasticTranscoderClient::ReadJobCallable(const ReadJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ReadJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ReadJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::ReadJob, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::ReadJobAsync(const ReadJobRequest& request, const ReadJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ReadJob(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::ReadJob, this, request, handler, context, m_executor.get());
 }
 
 ReadPipelineOutcome ElasticTranscoderClient::ReadPipeline(const ReadPipelineRequest& request) const
@@ -493,18 +428,12 @@ ReadPipelineOutcome ElasticTranscoderClient::ReadPipeline(const ReadPipelineRequ
 
 ReadPipelineOutcomeCallable ElasticTranscoderClient::ReadPipelineCallable(const ReadPipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ReadPipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ReadPipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::ReadPipeline, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::ReadPipelineAsync(const ReadPipelineRequest& request, const ReadPipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ReadPipeline(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::ReadPipeline, this, request, handler, context, m_executor.get());
 }
 
 ReadPresetOutcome ElasticTranscoderClient::ReadPreset(const ReadPresetRequest& request) const
@@ -524,18 +453,12 @@ ReadPresetOutcome ElasticTranscoderClient::ReadPreset(const ReadPresetRequest& r
 
 ReadPresetOutcomeCallable ElasticTranscoderClient::ReadPresetCallable(const ReadPresetRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ReadPresetOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ReadPreset(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::ReadPreset, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::ReadPresetAsync(const ReadPresetRequest& request, const ReadPresetResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ReadPreset(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::ReadPreset, this, request, handler, context, m_executor.get());
 }
 
 UpdatePipelineOutcome ElasticTranscoderClient::UpdatePipeline(const UpdatePipelineRequest& request) const
@@ -555,18 +478,12 @@ UpdatePipelineOutcome ElasticTranscoderClient::UpdatePipeline(const UpdatePipeli
 
 UpdatePipelineOutcomeCallable ElasticTranscoderClient::UpdatePipelineCallable(const UpdatePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::UpdatePipeline, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::UpdatePipelineAsync(const UpdatePipelineRequest& request, const UpdatePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePipeline(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::UpdatePipeline, this, request, handler, context, m_executor.get());
 }
 
 UpdatePipelineNotificationsOutcome ElasticTranscoderClient::UpdatePipelineNotifications(const UpdatePipelineNotificationsRequest& request) const
@@ -587,18 +504,12 @@ UpdatePipelineNotificationsOutcome ElasticTranscoderClient::UpdatePipelineNotifi
 
 UpdatePipelineNotificationsOutcomeCallable ElasticTranscoderClient::UpdatePipelineNotificationsCallable(const UpdatePipelineNotificationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePipelineNotificationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePipelineNotifications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::UpdatePipelineNotifications, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::UpdatePipelineNotificationsAsync(const UpdatePipelineNotificationsRequest& request, const UpdatePipelineNotificationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePipelineNotifications(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::UpdatePipelineNotifications, this, request, handler, context, m_executor.get());
 }
 
 UpdatePipelineStatusOutcome ElasticTranscoderClient::UpdatePipelineStatus(const UpdatePipelineStatusRequest& request) const
@@ -619,17 +530,11 @@ UpdatePipelineStatusOutcome ElasticTranscoderClient::UpdatePipelineStatus(const 
 
 UpdatePipelineStatusOutcomeCallable ElasticTranscoderClient::UpdatePipelineStatusCallable(const UpdatePipelineStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePipelineStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePipelineStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ElasticTranscoderClient::UpdatePipelineStatus, this, request, m_executor.get());
 }
 
 void ElasticTranscoderClient::UpdatePipelineStatusAsync(const UpdatePipelineStatusRequest& request, const UpdatePipelineStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePipelineStatus(request), context);
-    } );
+  MakeAsyncOperation(&ElasticTranscoderClient::UpdatePipelineStatus, this, request, handler, context, m_executor.get());
 }
 

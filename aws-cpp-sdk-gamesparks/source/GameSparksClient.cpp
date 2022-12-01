@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -193,18 +194,12 @@ CreateGameOutcome GameSparksClient::CreateGame(const CreateGameRequest& request)
 
 CreateGameOutcomeCallable GameSparksClient::CreateGameCallable(const CreateGameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateGameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateGame(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::CreateGame, this, request, m_executor.get());
 }
 
 void GameSparksClient::CreateGameAsync(const CreateGameRequest& request, const CreateGameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateGame(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::CreateGame, this, request, handler, context, m_executor.get());
 }
 
 CreateSnapshotOutcome GameSparksClient::CreateSnapshot(const CreateSnapshotRequest& request) const
@@ -225,18 +220,12 @@ CreateSnapshotOutcome GameSparksClient::CreateSnapshot(const CreateSnapshotReque
 
 CreateSnapshotOutcomeCallable GameSparksClient::CreateSnapshotCallable(const CreateSnapshotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSnapshot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::CreateSnapshot, this, request, m_executor.get());
 }
 
 void GameSparksClient::CreateSnapshotAsync(const CreateSnapshotRequest& request, const CreateSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSnapshot(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::CreateSnapshot, this, request, handler, context, m_executor.get());
 }
 
 CreateStageOutcome GameSparksClient::CreateStage(const CreateStageRequest& request) const
@@ -257,18 +246,12 @@ CreateStageOutcome GameSparksClient::CreateStage(const CreateStageRequest& reque
 
 CreateStageOutcomeCallable GameSparksClient::CreateStageCallable(const CreateStageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateStageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateStage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::CreateStage, this, request, m_executor.get());
 }
 
 void GameSparksClient::CreateStageAsync(const CreateStageRequest& request, const CreateStageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateStage(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::CreateStage, this, request, handler, context, m_executor.get());
 }
 
 DeleteGameOutcome GameSparksClient::DeleteGame(const DeleteGameRequest& request) const
@@ -288,18 +271,12 @@ DeleteGameOutcome GameSparksClient::DeleteGame(const DeleteGameRequest& request)
 
 DeleteGameOutcomeCallable GameSparksClient::DeleteGameCallable(const DeleteGameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteGameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteGame(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::DeleteGame, this, request, m_executor.get());
 }
 
 void GameSparksClient::DeleteGameAsync(const DeleteGameRequest& request, const DeleteGameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteGame(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::DeleteGame, this, request, handler, context, m_executor.get());
 }
 
 DeleteStageOutcome GameSparksClient::DeleteStage(const DeleteStageRequest& request) const
@@ -326,18 +303,12 @@ DeleteStageOutcome GameSparksClient::DeleteStage(const DeleteStageRequest& reque
 
 DeleteStageOutcomeCallable GameSparksClient::DeleteStageCallable(const DeleteStageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteStageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteStage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::DeleteStage, this, request, m_executor.get());
 }
 
 void GameSparksClient::DeleteStageAsync(const DeleteStageRequest& request, const DeleteStageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteStage(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::DeleteStage, this, request, handler, context, m_executor.get());
 }
 
 DisconnectPlayerOutcome GameSparksClient::DisconnectPlayer(const DisconnectPlayerRequest& request) const
@@ -372,18 +343,12 @@ DisconnectPlayerOutcome GameSparksClient::DisconnectPlayer(const DisconnectPlaye
 
 DisconnectPlayerOutcomeCallable GameSparksClient::DisconnectPlayerCallable(const DisconnectPlayerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisconnectPlayerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisconnectPlayer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::DisconnectPlayer, this, request, m_executor.get());
 }
 
 void GameSparksClient::DisconnectPlayerAsync(const DisconnectPlayerRequest& request, const DisconnectPlayerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisconnectPlayer(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::DisconnectPlayer, this, request, handler, context, m_executor.get());
 }
 
 ExportSnapshotOutcome GameSparksClient::ExportSnapshot(const ExportSnapshotRequest& request) const
@@ -411,18 +376,12 @@ ExportSnapshotOutcome GameSparksClient::ExportSnapshot(const ExportSnapshotReque
 
 ExportSnapshotOutcomeCallable GameSparksClient::ExportSnapshotCallable(const ExportSnapshotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ExportSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ExportSnapshot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ExportSnapshot, this, request, m_executor.get());
 }
 
 void GameSparksClient::ExportSnapshotAsync(const ExportSnapshotRequest& request, const ExportSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ExportSnapshot(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ExportSnapshot, this, request, handler, context, m_executor.get());
 }
 
 GetExtensionOutcome GameSparksClient::GetExtension(const GetExtensionRequest& request) const
@@ -448,18 +407,12 @@ GetExtensionOutcome GameSparksClient::GetExtension(const GetExtensionRequest& re
 
 GetExtensionOutcomeCallable GameSparksClient::GetExtensionCallable(const GetExtensionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetExtensionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetExtension(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetExtension, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetExtensionAsync(const GetExtensionRequest& request, const GetExtensionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetExtension(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetExtension, this, request, handler, context, m_executor.get());
 }
 
 GetExtensionVersionOutcome GameSparksClient::GetExtensionVersion(const GetExtensionVersionRequest& request) const
@@ -492,18 +445,12 @@ GetExtensionVersionOutcome GameSparksClient::GetExtensionVersion(const GetExtens
 
 GetExtensionVersionOutcomeCallable GameSparksClient::GetExtensionVersionCallable(const GetExtensionVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetExtensionVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetExtensionVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetExtensionVersion, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetExtensionVersionAsync(const GetExtensionVersionRequest& request, const GetExtensionVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetExtensionVersion(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetExtensionVersion, this, request, handler, context, m_executor.get());
 }
 
 GetGameOutcome GameSparksClient::GetGame(const GetGameRequest& request) const
@@ -523,18 +470,12 @@ GetGameOutcome GameSparksClient::GetGame(const GetGameRequest& request) const
 
 GetGameOutcomeCallable GameSparksClient::GetGameCallable(const GetGameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGame(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetGame, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetGameAsync(const GetGameRequest& request, const GetGameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGame(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetGame, this, request, handler, context, m_executor.get());
 }
 
 GetGameConfigurationOutcome GameSparksClient::GetGameConfiguration(const GetGameConfigurationRequest& request) const
@@ -555,18 +496,12 @@ GetGameConfigurationOutcome GameSparksClient::GetGameConfiguration(const GetGame
 
 GetGameConfigurationOutcomeCallable GameSparksClient::GetGameConfigurationCallable(const GetGameConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGameConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGameConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetGameConfiguration, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetGameConfigurationAsync(const GetGameConfigurationRequest& request, const GetGameConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGameConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetGameConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetGeneratedCodeJobOutcome GameSparksClient::GetGeneratedCodeJob(const GetGeneratedCodeJobRequest& request) const
@@ -600,18 +535,12 @@ GetGeneratedCodeJobOutcome GameSparksClient::GetGeneratedCodeJob(const GetGenera
 
 GetGeneratedCodeJobOutcomeCallable GameSparksClient::GetGeneratedCodeJobCallable(const GetGeneratedCodeJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetGeneratedCodeJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetGeneratedCodeJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetGeneratedCodeJob, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetGeneratedCodeJobAsync(const GetGeneratedCodeJobRequest& request, const GetGeneratedCodeJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetGeneratedCodeJob(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetGeneratedCodeJob, this, request, handler, context, m_executor.get());
 }
 
 GetPlayerConnectionStatusOutcome GameSparksClient::GetPlayerConnectionStatus(const GetPlayerConnectionStatusRequest& request) const
@@ -646,18 +575,12 @@ GetPlayerConnectionStatusOutcome GameSparksClient::GetPlayerConnectionStatus(con
 
 GetPlayerConnectionStatusOutcomeCallable GameSparksClient::GetPlayerConnectionStatusCallable(const GetPlayerConnectionStatusRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPlayerConnectionStatusOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPlayerConnectionStatus(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetPlayerConnectionStatus, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetPlayerConnectionStatusAsync(const GetPlayerConnectionStatusRequest& request, const GetPlayerConnectionStatusResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPlayerConnectionStatus(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetPlayerConnectionStatus, this, request, handler, context, m_executor.get());
 }
 
 GetSnapshotOutcome GameSparksClient::GetSnapshot(const GetSnapshotRequest& request) const
@@ -684,18 +607,12 @@ GetSnapshotOutcome GameSparksClient::GetSnapshot(const GetSnapshotRequest& reque
 
 GetSnapshotOutcomeCallable GameSparksClient::GetSnapshotCallable(const GetSnapshotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSnapshot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetSnapshot, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetSnapshotAsync(const GetSnapshotRequest& request, const GetSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSnapshot(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetSnapshot, this, request, handler, context, m_executor.get());
 }
 
 GetStageOutcome GameSparksClient::GetStage(const GetStageRequest& request) const
@@ -722,18 +639,12 @@ GetStageOutcome GameSparksClient::GetStage(const GetStageRequest& request) const
 
 GetStageOutcomeCallable GameSparksClient::GetStageCallable(const GetStageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetStageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetStage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetStage, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetStageAsync(const GetStageRequest& request, const GetStageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetStage(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetStage, this, request, handler, context, m_executor.get());
 }
 
 GetStageDeploymentOutcome GameSparksClient::GetStageDeployment(const GetStageDeploymentRequest& request) const
@@ -761,18 +672,12 @@ GetStageDeploymentOutcome GameSparksClient::GetStageDeployment(const GetStageDep
 
 GetStageDeploymentOutcomeCallable GameSparksClient::GetStageDeploymentCallable(const GetStageDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetStageDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetStageDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::GetStageDeployment, this, request, m_executor.get());
 }
 
 void GameSparksClient::GetStageDeploymentAsync(const GetStageDeploymentRequest& request, const GetStageDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetStageDeployment(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::GetStageDeployment, this, request, handler, context, m_executor.get());
 }
 
 ImportGameConfigurationOutcome GameSparksClient::ImportGameConfiguration(const ImportGameConfigurationRequest& request) const
@@ -793,18 +698,12 @@ ImportGameConfigurationOutcome GameSparksClient::ImportGameConfiguration(const I
 
 ImportGameConfigurationOutcomeCallable GameSparksClient::ImportGameConfigurationCallable(const ImportGameConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ImportGameConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ImportGameConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ImportGameConfiguration, this, request, m_executor.get());
 }
 
 void GameSparksClient::ImportGameConfigurationAsync(const ImportGameConfigurationRequest& request, const ImportGameConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ImportGameConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ImportGameConfiguration, this, request, handler, context, m_executor.get());
 }
 
 ListExtensionVersionsOutcome GameSparksClient::ListExtensionVersions(const ListExtensionVersionsRequest& request) const
@@ -831,18 +730,12 @@ ListExtensionVersionsOutcome GameSparksClient::ListExtensionVersions(const ListE
 
 ListExtensionVersionsOutcomeCallable GameSparksClient::ListExtensionVersionsCallable(const ListExtensionVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListExtensionVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListExtensionVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListExtensionVersions, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListExtensionVersionsAsync(const ListExtensionVersionsRequest& request, const ListExtensionVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListExtensionVersions(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListExtensionVersions, this, request, handler, context, m_executor.get());
 }
 
 ListExtensionsOutcome GameSparksClient::ListExtensions(const ListExtensionsRequest& request) const
@@ -856,18 +749,12 @@ ListExtensionsOutcome GameSparksClient::ListExtensions(const ListExtensionsReque
 
 ListExtensionsOutcomeCallable GameSparksClient::ListExtensionsCallable(const ListExtensionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListExtensionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListExtensions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListExtensions, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListExtensionsAsync(const ListExtensionsRequest& request, const ListExtensionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListExtensions(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListExtensions, this, request, handler, context, m_executor.get());
 }
 
 ListGamesOutcome GameSparksClient::ListGames(const ListGamesRequest& request) const
@@ -881,18 +768,12 @@ ListGamesOutcome GameSparksClient::ListGames(const ListGamesRequest& request) co
 
 ListGamesOutcomeCallable GameSparksClient::ListGamesCallable(const ListGamesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGamesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGames(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListGames, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListGamesAsync(const ListGamesRequest& request, const ListGamesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGames(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListGames, this, request, handler, context, m_executor.get());
 }
 
 ListGeneratedCodeJobsOutcome GameSparksClient::ListGeneratedCodeJobs(const ListGeneratedCodeJobsRequest& request) const
@@ -920,18 +801,12 @@ ListGeneratedCodeJobsOutcome GameSparksClient::ListGeneratedCodeJobs(const ListG
 
 ListGeneratedCodeJobsOutcomeCallable GameSparksClient::ListGeneratedCodeJobsCallable(const ListGeneratedCodeJobsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListGeneratedCodeJobsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListGeneratedCodeJobs(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListGeneratedCodeJobs, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListGeneratedCodeJobsAsync(const ListGeneratedCodeJobsRequest& request, const ListGeneratedCodeJobsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListGeneratedCodeJobs(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListGeneratedCodeJobs, this, request, handler, context, m_executor.get());
 }
 
 ListSnapshotsOutcome GameSparksClient::ListSnapshots(const ListSnapshotsRequest& request) const
@@ -952,18 +827,12 @@ ListSnapshotsOutcome GameSparksClient::ListSnapshots(const ListSnapshotsRequest&
 
 ListSnapshotsOutcomeCallable GameSparksClient::ListSnapshotsCallable(const ListSnapshotsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSnapshotsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSnapshots(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListSnapshots, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListSnapshotsAsync(const ListSnapshotsRequest& request, const ListSnapshotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSnapshots(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListSnapshots, this, request, handler, context, m_executor.get());
 }
 
 ListStageDeploymentsOutcome GameSparksClient::ListStageDeployments(const ListStageDeploymentsRequest& request) const
@@ -991,18 +860,12 @@ ListStageDeploymentsOutcome GameSparksClient::ListStageDeployments(const ListSta
 
 ListStageDeploymentsOutcomeCallable GameSparksClient::ListStageDeploymentsCallable(const ListStageDeploymentsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStageDeploymentsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStageDeployments(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListStageDeployments, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListStageDeploymentsAsync(const ListStageDeploymentsRequest& request, const ListStageDeploymentsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStageDeployments(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListStageDeployments, this, request, handler, context, m_executor.get());
 }
 
 ListStagesOutcome GameSparksClient::ListStages(const ListStagesRequest& request) const
@@ -1023,18 +886,12 @@ ListStagesOutcome GameSparksClient::ListStages(const ListStagesRequest& request)
 
 ListStagesOutcomeCallable GameSparksClient::ListStagesCallable(const ListStagesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListStagesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListStages(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListStages, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListStagesAsync(const ListStagesRequest& request, const ListStagesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListStages(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListStages, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome GameSparksClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1054,18 +911,12 @@ ListTagsForResourceOutcome GameSparksClient::ListTagsForResource(const ListTagsF
 
 ListTagsForResourceOutcomeCallable GameSparksClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void GameSparksClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 StartGeneratedCodeJobOutcome GameSparksClient::StartGeneratedCodeJob(const StartGeneratedCodeJobRequest& request) const
@@ -1093,18 +944,12 @@ StartGeneratedCodeJobOutcome GameSparksClient::StartGeneratedCodeJob(const Start
 
 StartGeneratedCodeJobOutcomeCallable GameSparksClient::StartGeneratedCodeJobCallable(const StartGeneratedCodeJobRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartGeneratedCodeJobOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartGeneratedCodeJob(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::StartGeneratedCodeJob, this, request, m_executor.get());
 }
 
 void GameSparksClient::StartGeneratedCodeJobAsync(const StartGeneratedCodeJobRequest& request, const StartGeneratedCodeJobResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartGeneratedCodeJob(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::StartGeneratedCodeJob, this, request, handler, context, m_executor.get());
 }
 
 StartStageDeploymentOutcome GameSparksClient::StartStageDeployment(const StartStageDeploymentRequest& request) const
@@ -1132,18 +977,12 @@ StartStageDeploymentOutcome GameSparksClient::StartStageDeployment(const StartSt
 
 StartStageDeploymentOutcomeCallable GameSparksClient::StartStageDeploymentCallable(const StartStageDeploymentRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartStageDeploymentOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartStageDeployment(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::StartStageDeployment, this, request, m_executor.get());
 }
 
 void GameSparksClient::StartStageDeploymentAsync(const StartStageDeploymentRequest& request, const StartStageDeploymentResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartStageDeployment(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::StartStageDeployment, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome GameSparksClient::TagResource(const TagResourceRequest& request) const
@@ -1163,18 +1002,12 @@ TagResourceOutcome GameSparksClient::TagResource(const TagResourceRequest& reque
 
 TagResourceOutcomeCallable GameSparksClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::TagResource, this, request, m_executor.get());
 }
 
 void GameSparksClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome GameSparksClient::UntagResource(const UntagResourceRequest& request) const
@@ -1199,18 +1032,12 @@ UntagResourceOutcome GameSparksClient::UntagResource(const UntagResourceRequest&
 
 UntagResourceOutcomeCallable GameSparksClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::UntagResource, this, request, m_executor.get());
 }
 
 void GameSparksClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateGameOutcome GameSparksClient::UpdateGame(const UpdateGameRequest& request) const
@@ -1230,18 +1057,12 @@ UpdateGameOutcome GameSparksClient::UpdateGame(const UpdateGameRequest& request)
 
 UpdateGameOutcomeCallable GameSparksClient::UpdateGameCallable(const UpdateGameRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGameOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGame(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::UpdateGame, this, request, m_executor.get());
 }
 
 void GameSparksClient::UpdateGameAsync(const UpdateGameRequest& request, const UpdateGameResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGame(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::UpdateGame, this, request, handler, context, m_executor.get());
 }
 
 UpdateGameConfigurationOutcome GameSparksClient::UpdateGameConfiguration(const UpdateGameConfigurationRequest& request) const
@@ -1262,18 +1083,12 @@ UpdateGameConfigurationOutcome GameSparksClient::UpdateGameConfiguration(const U
 
 UpdateGameConfigurationOutcomeCallable GameSparksClient::UpdateGameConfigurationCallable(const UpdateGameConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGameConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGameConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::UpdateGameConfiguration, this, request, m_executor.get());
 }
 
 void GameSparksClient::UpdateGameConfigurationAsync(const UpdateGameConfigurationRequest& request, const UpdateGameConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGameConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::UpdateGameConfiguration, this, request, handler, context, m_executor.get());
 }
 
 UpdateSnapshotOutcome GameSparksClient::UpdateSnapshot(const UpdateSnapshotRequest& request) const
@@ -1300,18 +1115,12 @@ UpdateSnapshotOutcome GameSparksClient::UpdateSnapshot(const UpdateSnapshotReque
 
 UpdateSnapshotOutcomeCallable GameSparksClient::UpdateSnapshotCallable(const UpdateSnapshotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSnapshotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSnapshot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::UpdateSnapshot, this, request, m_executor.get());
 }
 
 void GameSparksClient::UpdateSnapshotAsync(const UpdateSnapshotRequest& request, const UpdateSnapshotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSnapshot(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::UpdateSnapshot, this, request, handler, context, m_executor.get());
 }
 
 UpdateStageOutcome GameSparksClient::UpdateStage(const UpdateStageRequest& request) const
@@ -1338,17 +1147,11 @@ UpdateStageOutcome GameSparksClient::UpdateStage(const UpdateStageRequest& reque
 
 UpdateStageOutcomeCallable GameSparksClient::UpdateStageCallable(const UpdateStageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateStageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateStage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &GameSparksClient::UpdateStage, this, request, m_executor.get());
 }
 
 void GameSparksClient::UpdateStageAsync(const UpdateStageRequest& request, const UpdateStageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateStage(request), context);
-    } );
+  MakeAsyncOperation(&GameSparksClient::UpdateStage, this, request, handler, context, m_executor.get());
 }
 

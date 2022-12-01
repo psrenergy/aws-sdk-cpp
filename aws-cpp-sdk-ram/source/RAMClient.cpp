@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -185,18 +186,12 @@ AcceptResourceShareInvitationOutcome RAMClient::AcceptResourceShareInvitation(co
 
 AcceptResourceShareInvitationOutcomeCallable RAMClient::AcceptResourceShareInvitationCallable(const AcceptResourceShareInvitationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AcceptResourceShareInvitationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AcceptResourceShareInvitation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::AcceptResourceShareInvitation, this, request, m_executor.get());
 }
 
 void RAMClient::AcceptResourceShareInvitationAsync(const AcceptResourceShareInvitationRequest& request, const AcceptResourceShareInvitationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AcceptResourceShareInvitation(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::AcceptResourceShareInvitation, this, request, handler, context, m_executor.get());
 }
 
 AssociateResourceShareOutcome RAMClient::AssociateResourceShare(const AssociateResourceShareRequest& request) const
@@ -210,18 +205,12 @@ AssociateResourceShareOutcome RAMClient::AssociateResourceShare(const AssociateR
 
 AssociateResourceShareOutcomeCallable RAMClient::AssociateResourceShareCallable(const AssociateResourceShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateResourceShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateResourceShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::AssociateResourceShare, this, request, m_executor.get());
 }
 
 void RAMClient::AssociateResourceShareAsync(const AssociateResourceShareRequest& request, const AssociateResourceShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateResourceShare(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::AssociateResourceShare, this, request, handler, context, m_executor.get());
 }
 
 AssociateResourceSharePermissionOutcome RAMClient::AssociateResourceSharePermission(const AssociateResourceSharePermissionRequest& request) const
@@ -235,18 +224,12 @@ AssociateResourceSharePermissionOutcome RAMClient::AssociateResourceSharePermiss
 
 AssociateResourceSharePermissionOutcomeCallable RAMClient::AssociateResourceSharePermissionCallable(const AssociateResourceSharePermissionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateResourceSharePermissionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateResourceSharePermission(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::AssociateResourceSharePermission, this, request, m_executor.get());
 }
 
 void RAMClient::AssociateResourceSharePermissionAsync(const AssociateResourceSharePermissionRequest& request, const AssociateResourceSharePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateResourceSharePermission(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::AssociateResourceSharePermission, this, request, handler, context, m_executor.get());
 }
 
 CreateResourceShareOutcome RAMClient::CreateResourceShare(const CreateResourceShareRequest& request) const
@@ -260,18 +243,12 @@ CreateResourceShareOutcome RAMClient::CreateResourceShare(const CreateResourceSh
 
 CreateResourceShareOutcomeCallable RAMClient::CreateResourceShareCallable(const CreateResourceShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateResourceShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateResourceShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::CreateResourceShare, this, request, m_executor.get());
 }
 
 void RAMClient::CreateResourceShareAsync(const CreateResourceShareRequest& request, const CreateResourceShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateResourceShare(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::CreateResourceShare, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourceShareOutcome RAMClient::DeleteResourceShare(const DeleteResourceShareRequest& request) const
@@ -290,18 +267,12 @@ DeleteResourceShareOutcome RAMClient::DeleteResourceShare(const DeleteResourceSh
 
 DeleteResourceShareOutcomeCallable RAMClient::DeleteResourceShareCallable(const DeleteResourceShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourceShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourceShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::DeleteResourceShare, this, request, m_executor.get());
 }
 
 void RAMClient::DeleteResourceShareAsync(const DeleteResourceShareRequest& request, const DeleteResourceShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourceShare(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::DeleteResourceShare, this, request, handler, context, m_executor.get());
 }
 
 DisassociateResourceShareOutcome RAMClient::DisassociateResourceShare(const DisassociateResourceShareRequest& request) const
@@ -315,18 +286,12 @@ DisassociateResourceShareOutcome RAMClient::DisassociateResourceShare(const Disa
 
 DisassociateResourceShareOutcomeCallable RAMClient::DisassociateResourceShareCallable(const DisassociateResourceShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateResourceShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateResourceShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::DisassociateResourceShare, this, request, m_executor.get());
 }
 
 void RAMClient::DisassociateResourceShareAsync(const DisassociateResourceShareRequest& request, const DisassociateResourceShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateResourceShare(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::DisassociateResourceShare, this, request, handler, context, m_executor.get());
 }
 
 DisassociateResourceSharePermissionOutcome RAMClient::DisassociateResourceSharePermission(const DisassociateResourceSharePermissionRequest& request) const
@@ -340,18 +305,12 @@ DisassociateResourceSharePermissionOutcome RAMClient::DisassociateResourceShareP
 
 DisassociateResourceSharePermissionOutcomeCallable RAMClient::DisassociateResourceSharePermissionCallable(const DisassociateResourceSharePermissionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateResourceSharePermissionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateResourceSharePermission(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::DisassociateResourceSharePermission, this, request, m_executor.get());
 }
 
 void RAMClient::DisassociateResourceSharePermissionAsync(const DisassociateResourceSharePermissionRequest& request, const DisassociateResourceSharePermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateResourceSharePermission(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::DisassociateResourceSharePermission, this, request, handler, context, m_executor.get());
 }
 
 EnableSharingWithAwsOrganizationOutcome RAMClient::EnableSharingWithAwsOrganization(const EnableSharingWithAwsOrganizationRequest& request) const
@@ -365,18 +324,12 @@ EnableSharingWithAwsOrganizationOutcome RAMClient::EnableSharingWithAwsOrganizat
 
 EnableSharingWithAwsOrganizationOutcomeCallable RAMClient::EnableSharingWithAwsOrganizationCallable(const EnableSharingWithAwsOrganizationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< EnableSharingWithAwsOrganizationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->EnableSharingWithAwsOrganization(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::EnableSharingWithAwsOrganization, this, request, m_executor.get());
 }
 
 void RAMClient::EnableSharingWithAwsOrganizationAsync(const EnableSharingWithAwsOrganizationRequest& request, const EnableSharingWithAwsOrganizationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, EnableSharingWithAwsOrganization(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::EnableSharingWithAwsOrganization, this, request, handler, context, m_executor.get());
 }
 
 GetPermissionOutcome RAMClient::GetPermission(const GetPermissionRequest& request) const
@@ -390,18 +343,12 @@ GetPermissionOutcome RAMClient::GetPermission(const GetPermissionRequest& reques
 
 GetPermissionOutcomeCallable RAMClient::GetPermissionCallable(const GetPermissionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPermissionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPermission(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::GetPermission, this, request, m_executor.get());
 }
 
 void RAMClient::GetPermissionAsync(const GetPermissionRequest& request, const GetPermissionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPermission(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::GetPermission, this, request, handler, context, m_executor.get());
 }
 
 GetResourcePoliciesOutcome RAMClient::GetResourcePolicies(const GetResourcePoliciesRequest& request) const
@@ -415,18 +362,12 @@ GetResourcePoliciesOutcome RAMClient::GetResourcePolicies(const GetResourcePolic
 
 GetResourcePoliciesOutcomeCallable RAMClient::GetResourcePoliciesCallable(const GetResourcePoliciesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourcePoliciesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourcePolicies(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::GetResourcePolicies, this, request, m_executor.get());
 }
 
 void RAMClient::GetResourcePoliciesAsync(const GetResourcePoliciesRequest& request, const GetResourcePoliciesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourcePolicies(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::GetResourcePolicies, this, request, handler, context, m_executor.get());
 }
 
 GetResourceShareAssociationsOutcome RAMClient::GetResourceShareAssociations(const GetResourceShareAssociationsRequest& request) const
@@ -440,18 +381,12 @@ GetResourceShareAssociationsOutcome RAMClient::GetResourceShareAssociations(cons
 
 GetResourceShareAssociationsOutcomeCallable RAMClient::GetResourceShareAssociationsCallable(const GetResourceShareAssociationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourceShareAssociationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourceShareAssociations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::GetResourceShareAssociations, this, request, m_executor.get());
 }
 
 void RAMClient::GetResourceShareAssociationsAsync(const GetResourceShareAssociationsRequest& request, const GetResourceShareAssociationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourceShareAssociations(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::GetResourceShareAssociations, this, request, handler, context, m_executor.get());
 }
 
 GetResourceShareInvitationsOutcome RAMClient::GetResourceShareInvitations(const GetResourceShareInvitationsRequest& request) const
@@ -465,18 +400,12 @@ GetResourceShareInvitationsOutcome RAMClient::GetResourceShareInvitations(const 
 
 GetResourceShareInvitationsOutcomeCallable RAMClient::GetResourceShareInvitationsCallable(const GetResourceShareInvitationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourceShareInvitationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourceShareInvitations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::GetResourceShareInvitations, this, request, m_executor.get());
 }
 
 void RAMClient::GetResourceShareInvitationsAsync(const GetResourceShareInvitationsRequest& request, const GetResourceShareInvitationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourceShareInvitations(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::GetResourceShareInvitations, this, request, handler, context, m_executor.get());
 }
 
 GetResourceSharesOutcome RAMClient::GetResourceShares(const GetResourceSharesRequest& request) const
@@ -490,18 +419,12 @@ GetResourceSharesOutcome RAMClient::GetResourceShares(const GetResourceSharesReq
 
 GetResourceSharesOutcomeCallable RAMClient::GetResourceSharesCallable(const GetResourceSharesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourceSharesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourceShares(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::GetResourceShares, this, request, m_executor.get());
 }
 
 void RAMClient::GetResourceSharesAsync(const GetResourceSharesRequest& request, const GetResourceSharesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourceShares(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::GetResourceShares, this, request, handler, context, m_executor.get());
 }
 
 ListPendingInvitationResourcesOutcome RAMClient::ListPendingInvitationResources(const ListPendingInvitationResourcesRequest& request) const
@@ -515,18 +438,12 @@ ListPendingInvitationResourcesOutcome RAMClient::ListPendingInvitationResources(
 
 ListPendingInvitationResourcesOutcomeCallable RAMClient::ListPendingInvitationResourcesCallable(const ListPendingInvitationResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPendingInvitationResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPendingInvitationResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::ListPendingInvitationResources, this, request, m_executor.get());
 }
 
 void RAMClient::ListPendingInvitationResourcesAsync(const ListPendingInvitationResourcesRequest& request, const ListPendingInvitationResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPendingInvitationResources(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::ListPendingInvitationResources, this, request, handler, context, m_executor.get());
 }
 
 ListPermissionVersionsOutcome RAMClient::ListPermissionVersions(const ListPermissionVersionsRequest& request) const
@@ -540,18 +457,12 @@ ListPermissionVersionsOutcome RAMClient::ListPermissionVersions(const ListPermis
 
 ListPermissionVersionsOutcomeCallable RAMClient::ListPermissionVersionsCallable(const ListPermissionVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPermissionVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPermissionVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::ListPermissionVersions, this, request, m_executor.get());
 }
 
 void RAMClient::ListPermissionVersionsAsync(const ListPermissionVersionsRequest& request, const ListPermissionVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPermissionVersions(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::ListPermissionVersions, this, request, handler, context, m_executor.get());
 }
 
 ListPermissionsOutcome RAMClient::ListPermissions(const ListPermissionsRequest& request) const
@@ -565,18 +476,12 @@ ListPermissionsOutcome RAMClient::ListPermissions(const ListPermissionsRequest& 
 
 ListPermissionsOutcomeCallable RAMClient::ListPermissionsCallable(const ListPermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::ListPermissions, this, request, m_executor.get());
 }
 
 void RAMClient::ListPermissionsAsync(const ListPermissionsRequest& request, const ListPermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPermissions(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::ListPermissions, this, request, handler, context, m_executor.get());
 }
 
 ListPrincipalsOutcome RAMClient::ListPrincipals(const ListPrincipalsRequest& request) const
@@ -590,18 +495,12 @@ ListPrincipalsOutcome RAMClient::ListPrincipals(const ListPrincipalsRequest& req
 
 ListPrincipalsOutcomeCallable RAMClient::ListPrincipalsCallable(const ListPrincipalsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPrincipalsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPrincipals(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::ListPrincipals, this, request, m_executor.get());
 }
 
 void RAMClient::ListPrincipalsAsync(const ListPrincipalsRequest& request, const ListPrincipalsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPrincipals(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::ListPrincipals, this, request, handler, context, m_executor.get());
 }
 
 ListResourceSharePermissionsOutcome RAMClient::ListResourceSharePermissions(const ListResourceSharePermissionsRequest& request) const
@@ -615,18 +514,12 @@ ListResourceSharePermissionsOutcome RAMClient::ListResourceSharePermissions(cons
 
 ListResourceSharePermissionsOutcomeCallable RAMClient::ListResourceSharePermissionsCallable(const ListResourceSharePermissionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourceSharePermissionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResourceSharePermissions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::ListResourceSharePermissions, this, request, m_executor.get());
 }
 
 void RAMClient::ListResourceSharePermissionsAsync(const ListResourceSharePermissionsRequest& request, const ListResourceSharePermissionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResourceSharePermissions(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::ListResourceSharePermissions, this, request, handler, context, m_executor.get());
 }
 
 ListResourceTypesOutcome RAMClient::ListResourceTypes(const ListResourceTypesRequest& request) const
@@ -640,18 +533,12 @@ ListResourceTypesOutcome RAMClient::ListResourceTypes(const ListResourceTypesReq
 
 ListResourceTypesOutcomeCallable RAMClient::ListResourceTypesCallable(const ListResourceTypesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourceTypesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResourceTypes(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::ListResourceTypes, this, request, m_executor.get());
 }
 
 void RAMClient::ListResourceTypesAsync(const ListResourceTypesRequest& request, const ListResourceTypesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResourceTypes(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::ListResourceTypes, this, request, handler, context, m_executor.get());
 }
 
 ListResourcesOutcome RAMClient::ListResources(const ListResourcesRequest& request) const
@@ -665,18 +552,12 @@ ListResourcesOutcome RAMClient::ListResources(const ListResourcesRequest& reques
 
 ListResourcesOutcomeCallable RAMClient::ListResourcesCallable(const ListResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::ListResources, this, request, m_executor.get());
 }
 
 void RAMClient::ListResourcesAsync(const ListResourcesRequest& request, const ListResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResources(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::ListResources, this, request, handler, context, m_executor.get());
 }
 
 PromoteResourceShareCreatedFromPolicyOutcome RAMClient::PromoteResourceShareCreatedFromPolicy(const PromoteResourceShareCreatedFromPolicyRequest& request) const
@@ -695,18 +576,12 @@ PromoteResourceShareCreatedFromPolicyOutcome RAMClient::PromoteResourceShareCrea
 
 PromoteResourceShareCreatedFromPolicyOutcomeCallable RAMClient::PromoteResourceShareCreatedFromPolicyCallable(const PromoteResourceShareCreatedFromPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PromoteResourceShareCreatedFromPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PromoteResourceShareCreatedFromPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::PromoteResourceShareCreatedFromPolicy, this, request, m_executor.get());
 }
 
 void RAMClient::PromoteResourceShareCreatedFromPolicyAsync(const PromoteResourceShareCreatedFromPolicyRequest& request, const PromoteResourceShareCreatedFromPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PromoteResourceShareCreatedFromPolicy(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::PromoteResourceShareCreatedFromPolicy, this, request, handler, context, m_executor.get());
 }
 
 RejectResourceShareInvitationOutcome RAMClient::RejectResourceShareInvitation(const RejectResourceShareInvitationRequest& request) const
@@ -720,18 +595,12 @@ RejectResourceShareInvitationOutcome RAMClient::RejectResourceShareInvitation(co
 
 RejectResourceShareInvitationOutcomeCallable RAMClient::RejectResourceShareInvitationCallable(const RejectResourceShareInvitationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RejectResourceShareInvitationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RejectResourceShareInvitation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::RejectResourceShareInvitation, this, request, m_executor.get());
 }
 
 void RAMClient::RejectResourceShareInvitationAsync(const RejectResourceShareInvitationRequest& request, const RejectResourceShareInvitationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RejectResourceShareInvitation(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::RejectResourceShareInvitation, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome RAMClient::TagResource(const TagResourceRequest& request) const
@@ -745,18 +614,12 @@ TagResourceOutcome RAMClient::TagResource(const TagResourceRequest& request) con
 
 TagResourceOutcomeCallable RAMClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::TagResource, this, request, m_executor.get());
 }
 
 void RAMClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome RAMClient::UntagResource(const UntagResourceRequest& request) const
@@ -770,18 +633,12 @@ UntagResourceOutcome RAMClient::UntagResource(const UntagResourceRequest& reques
 
 UntagResourceOutcomeCallable RAMClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::UntagResource, this, request, m_executor.get());
 }
 
 void RAMClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateResourceShareOutcome RAMClient::UpdateResourceShare(const UpdateResourceShareRequest& request) const
@@ -795,17 +652,11 @@ UpdateResourceShareOutcome RAMClient::UpdateResourceShare(const UpdateResourceSh
 
 UpdateResourceShareOutcomeCallable RAMClient::UpdateResourceShareCallable(const UpdateResourceShareRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateResourceShareOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateResourceShare(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &RAMClient::UpdateResourceShare, this, request, m_executor.get());
 }
 
 void RAMClient::UpdateResourceShareAsync(const UpdateResourceShareRequest& request, const UpdateResourceShareResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateResourceShare(request), context);
-    } );
+  MakeAsyncOperation(&RAMClient::UpdateResourceShare, this, request, handler, context, m_executor.get());
 }
 

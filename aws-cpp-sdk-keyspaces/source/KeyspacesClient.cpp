@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -172,18 +173,12 @@ CreateKeyspaceOutcome KeyspacesClient::CreateKeyspace(const CreateKeyspaceReques
 
 CreateKeyspaceOutcomeCallable KeyspacesClient::CreateKeyspaceCallable(const CreateKeyspaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateKeyspaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateKeyspace(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::CreateKeyspace, this, request, m_executor.get());
 }
 
 void KeyspacesClient::CreateKeyspaceAsync(const CreateKeyspaceRequest& request, const CreateKeyspaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateKeyspace(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::CreateKeyspace, this, request, handler, context, m_executor.get());
 }
 
 CreateTableOutcome KeyspacesClient::CreateTable(const CreateTableRequest& request) const
@@ -196,18 +191,12 @@ CreateTableOutcome KeyspacesClient::CreateTable(const CreateTableRequest& reques
 
 CreateTableOutcomeCallable KeyspacesClient::CreateTableCallable(const CreateTableRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateTableOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateTable(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::CreateTable, this, request, m_executor.get());
 }
 
 void KeyspacesClient::CreateTableAsync(const CreateTableRequest& request, const CreateTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateTable(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::CreateTable, this, request, handler, context, m_executor.get());
 }
 
 DeleteKeyspaceOutcome KeyspacesClient::DeleteKeyspace(const DeleteKeyspaceRequest& request) const
@@ -220,18 +209,12 @@ DeleteKeyspaceOutcome KeyspacesClient::DeleteKeyspace(const DeleteKeyspaceReques
 
 DeleteKeyspaceOutcomeCallable KeyspacesClient::DeleteKeyspaceCallable(const DeleteKeyspaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteKeyspaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteKeyspace(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::DeleteKeyspace, this, request, m_executor.get());
 }
 
 void KeyspacesClient::DeleteKeyspaceAsync(const DeleteKeyspaceRequest& request, const DeleteKeyspaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteKeyspace(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::DeleteKeyspace, this, request, handler, context, m_executor.get());
 }
 
 DeleteTableOutcome KeyspacesClient::DeleteTable(const DeleteTableRequest& request) const
@@ -244,18 +227,12 @@ DeleteTableOutcome KeyspacesClient::DeleteTable(const DeleteTableRequest& reques
 
 DeleteTableOutcomeCallable KeyspacesClient::DeleteTableCallable(const DeleteTableRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteTableOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteTable(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::DeleteTable, this, request, m_executor.get());
 }
 
 void KeyspacesClient::DeleteTableAsync(const DeleteTableRequest& request, const DeleteTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteTable(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::DeleteTable, this, request, handler, context, m_executor.get());
 }
 
 GetKeyspaceOutcome KeyspacesClient::GetKeyspace(const GetKeyspaceRequest& request) const
@@ -268,18 +245,12 @@ GetKeyspaceOutcome KeyspacesClient::GetKeyspace(const GetKeyspaceRequest& reques
 
 GetKeyspaceOutcomeCallable KeyspacesClient::GetKeyspaceCallable(const GetKeyspaceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetKeyspaceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetKeyspace(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::GetKeyspace, this, request, m_executor.get());
 }
 
 void KeyspacesClient::GetKeyspaceAsync(const GetKeyspaceRequest& request, const GetKeyspaceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetKeyspace(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::GetKeyspace, this, request, handler, context, m_executor.get());
 }
 
 GetTableOutcome KeyspacesClient::GetTable(const GetTableRequest& request) const
@@ -292,18 +263,12 @@ GetTableOutcome KeyspacesClient::GetTable(const GetTableRequest& request) const
 
 GetTableOutcomeCallable KeyspacesClient::GetTableCallable(const GetTableRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetTableOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetTable(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::GetTable, this, request, m_executor.get());
 }
 
 void KeyspacesClient::GetTableAsync(const GetTableRequest& request, const GetTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetTable(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::GetTable, this, request, handler, context, m_executor.get());
 }
 
 ListKeyspacesOutcome KeyspacesClient::ListKeyspaces(const ListKeyspacesRequest& request) const
@@ -316,18 +281,12 @@ ListKeyspacesOutcome KeyspacesClient::ListKeyspaces(const ListKeyspacesRequest& 
 
 ListKeyspacesOutcomeCallable KeyspacesClient::ListKeyspacesCallable(const ListKeyspacesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListKeyspacesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListKeyspaces(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::ListKeyspaces, this, request, m_executor.get());
 }
 
 void KeyspacesClient::ListKeyspacesAsync(const ListKeyspacesRequest& request, const ListKeyspacesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListKeyspaces(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::ListKeyspaces, this, request, handler, context, m_executor.get());
 }
 
 ListTablesOutcome KeyspacesClient::ListTables(const ListTablesRequest& request) const
@@ -340,18 +299,12 @@ ListTablesOutcome KeyspacesClient::ListTables(const ListTablesRequest& request) 
 
 ListTablesOutcomeCallable KeyspacesClient::ListTablesCallable(const ListTablesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTablesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTables(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::ListTables, this, request, m_executor.get());
 }
 
 void KeyspacesClient::ListTablesAsync(const ListTablesRequest& request, const ListTablesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTables(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::ListTables, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome KeyspacesClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -364,18 +317,12 @@ ListTagsForResourceOutcome KeyspacesClient::ListTagsForResource(const ListTagsFo
 
 ListTagsForResourceOutcomeCallable KeyspacesClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void KeyspacesClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 RestoreTableOutcome KeyspacesClient::RestoreTable(const RestoreTableRequest& request) const
@@ -388,18 +335,12 @@ RestoreTableOutcome KeyspacesClient::RestoreTable(const RestoreTableRequest& req
 
 RestoreTableOutcomeCallable KeyspacesClient::RestoreTableCallable(const RestoreTableRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RestoreTableOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RestoreTable(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::RestoreTable, this, request, m_executor.get());
 }
 
 void KeyspacesClient::RestoreTableAsync(const RestoreTableRequest& request, const RestoreTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RestoreTable(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::RestoreTable, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome KeyspacesClient::TagResource(const TagResourceRequest& request) const
@@ -412,18 +353,12 @@ TagResourceOutcome KeyspacesClient::TagResource(const TagResourceRequest& reques
 
 TagResourceOutcomeCallable KeyspacesClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::TagResource, this, request, m_executor.get());
 }
 
 void KeyspacesClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome KeyspacesClient::UntagResource(const UntagResourceRequest& request) const
@@ -436,18 +371,12 @@ UntagResourceOutcome KeyspacesClient::UntagResource(const UntagResourceRequest& 
 
 UntagResourceOutcomeCallable KeyspacesClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::UntagResource, this, request, m_executor.get());
 }
 
 void KeyspacesClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateTableOutcome KeyspacesClient::UpdateTable(const UpdateTableRequest& request) const
@@ -460,17 +389,11 @@ UpdateTableOutcome KeyspacesClient::UpdateTable(const UpdateTableRequest& reques
 
 UpdateTableOutcomeCallable KeyspacesClient::UpdateTableCallable(const UpdateTableRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTableOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTable(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &KeyspacesClient::UpdateTable, this, request, m_executor.get());
 }
 
 void KeyspacesClient::UpdateTableAsync(const UpdateTableRequest& request, const UpdateTableResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTable(request), context);
-    } );
+  MakeAsyncOperation(&KeyspacesClient::UpdateTable, this, request, handler, context, m_executor.get());
 }
 

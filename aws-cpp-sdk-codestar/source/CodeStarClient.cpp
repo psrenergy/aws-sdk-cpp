@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -177,18 +178,12 @@ AssociateTeamMemberOutcome CodeStarClient::AssociateTeamMember(const AssociateTe
 
 AssociateTeamMemberOutcomeCallable CodeStarClient::AssociateTeamMemberCallable(const AssociateTeamMemberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateTeamMemberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateTeamMember(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::AssociateTeamMember, this, request, m_executor.get());
 }
 
 void CodeStarClient::AssociateTeamMemberAsync(const AssociateTeamMemberRequest& request, const AssociateTeamMemberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateTeamMember(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::AssociateTeamMember, this, request, handler, context, m_executor.get());
 }
 
 CreateProjectOutcome CodeStarClient::CreateProject(const CreateProjectRequest& request) const
@@ -201,18 +196,12 @@ CreateProjectOutcome CodeStarClient::CreateProject(const CreateProjectRequest& r
 
 CreateProjectOutcomeCallable CodeStarClient::CreateProjectCallable(const CreateProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::CreateProject, this, request, m_executor.get());
 }
 
 void CodeStarClient::CreateProjectAsync(const CreateProjectRequest& request, const CreateProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProject(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::CreateProject, this, request, handler, context, m_executor.get());
 }
 
 CreateUserProfileOutcome CodeStarClient::CreateUserProfile(const CreateUserProfileRequest& request) const
@@ -225,18 +214,12 @@ CreateUserProfileOutcome CodeStarClient::CreateUserProfile(const CreateUserProfi
 
 CreateUserProfileOutcomeCallable CodeStarClient::CreateUserProfileCallable(const CreateUserProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateUserProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateUserProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::CreateUserProfile, this, request, m_executor.get());
 }
 
 void CodeStarClient::CreateUserProfileAsync(const CreateUserProfileRequest& request, const CreateUserProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateUserProfile(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::CreateUserProfile, this, request, handler, context, m_executor.get());
 }
 
 DeleteProjectOutcome CodeStarClient::DeleteProject(const DeleteProjectRequest& request) const
@@ -249,18 +232,12 @@ DeleteProjectOutcome CodeStarClient::DeleteProject(const DeleteProjectRequest& r
 
 DeleteProjectOutcomeCallable CodeStarClient::DeleteProjectCallable(const DeleteProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::DeleteProject, this, request, m_executor.get());
 }
 
 void CodeStarClient::DeleteProjectAsync(const DeleteProjectRequest& request, const DeleteProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteProject(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::DeleteProject, this, request, handler, context, m_executor.get());
 }
 
 DeleteUserProfileOutcome CodeStarClient::DeleteUserProfile(const DeleteUserProfileRequest& request) const
@@ -273,18 +250,12 @@ DeleteUserProfileOutcome CodeStarClient::DeleteUserProfile(const DeleteUserProfi
 
 DeleteUserProfileOutcomeCallable CodeStarClient::DeleteUserProfileCallable(const DeleteUserProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteUserProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteUserProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::DeleteUserProfile, this, request, m_executor.get());
 }
 
 void CodeStarClient::DeleteUserProfileAsync(const DeleteUserProfileRequest& request, const DeleteUserProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteUserProfile(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::DeleteUserProfile, this, request, handler, context, m_executor.get());
 }
 
 DescribeProjectOutcome CodeStarClient::DescribeProject(const DescribeProjectRequest& request) const
@@ -297,18 +268,12 @@ DescribeProjectOutcome CodeStarClient::DescribeProject(const DescribeProjectRequ
 
 DescribeProjectOutcomeCallable CodeStarClient::DescribeProjectCallable(const DescribeProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::DescribeProject, this, request, m_executor.get());
 }
 
 void CodeStarClient::DescribeProjectAsync(const DescribeProjectRequest& request, const DescribeProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeProject(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::DescribeProject, this, request, handler, context, m_executor.get());
 }
 
 DescribeUserProfileOutcome CodeStarClient::DescribeUserProfile(const DescribeUserProfileRequest& request) const
@@ -321,18 +286,12 @@ DescribeUserProfileOutcome CodeStarClient::DescribeUserProfile(const DescribeUse
 
 DescribeUserProfileOutcomeCallable CodeStarClient::DescribeUserProfileCallable(const DescribeUserProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeUserProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeUserProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::DescribeUserProfile, this, request, m_executor.get());
 }
 
 void CodeStarClient::DescribeUserProfileAsync(const DescribeUserProfileRequest& request, const DescribeUserProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeUserProfile(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::DescribeUserProfile, this, request, handler, context, m_executor.get());
 }
 
 DisassociateTeamMemberOutcome CodeStarClient::DisassociateTeamMember(const DisassociateTeamMemberRequest& request) const
@@ -345,18 +304,12 @@ DisassociateTeamMemberOutcome CodeStarClient::DisassociateTeamMember(const Disas
 
 DisassociateTeamMemberOutcomeCallable CodeStarClient::DisassociateTeamMemberCallable(const DisassociateTeamMemberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateTeamMemberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateTeamMember(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::DisassociateTeamMember, this, request, m_executor.get());
 }
 
 void CodeStarClient::DisassociateTeamMemberAsync(const DisassociateTeamMemberRequest& request, const DisassociateTeamMemberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateTeamMember(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::DisassociateTeamMember, this, request, handler, context, m_executor.get());
 }
 
 ListProjectsOutcome CodeStarClient::ListProjects(const ListProjectsRequest& request) const
@@ -369,18 +322,12 @@ ListProjectsOutcome CodeStarClient::ListProjects(const ListProjectsRequest& requ
 
 ListProjectsOutcomeCallable CodeStarClient::ListProjectsCallable(const ListProjectsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProjectsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProjects(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::ListProjects, this, request, m_executor.get());
 }
 
 void CodeStarClient::ListProjectsAsync(const ListProjectsRequest& request, const ListProjectsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProjects(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::ListProjects, this, request, handler, context, m_executor.get());
 }
 
 ListResourcesOutcome CodeStarClient::ListResources(const ListResourcesRequest& request) const
@@ -393,18 +340,12 @@ ListResourcesOutcome CodeStarClient::ListResources(const ListResourcesRequest& r
 
 ListResourcesOutcomeCallable CodeStarClient::ListResourcesCallable(const ListResourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListResourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListResources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::ListResources, this, request, m_executor.get());
 }
 
 void CodeStarClient::ListResourcesAsync(const ListResourcesRequest& request, const ListResourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListResources(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::ListResources, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForProjectOutcome CodeStarClient::ListTagsForProject(const ListTagsForProjectRequest& request) const
@@ -417,18 +358,12 @@ ListTagsForProjectOutcome CodeStarClient::ListTagsForProject(const ListTagsForPr
 
 ListTagsForProjectOutcomeCallable CodeStarClient::ListTagsForProjectCallable(const ListTagsForProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::ListTagsForProject, this, request, m_executor.get());
 }
 
 void CodeStarClient::ListTagsForProjectAsync(const ListTagsForProjectRequest& request, const ListTagsForProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForProject(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::ListTagsForProject, this, request, handler, context, m_executor.get());
 }
 
 ListTeamMembersOutcome CodeStarClient::ListTeamMembers(const ListTeamMembersRequest& request) const
@@ -441,18 +376,12 @@ ListTeamMembersOutcome CodeStarClient::ListTeamMembers(const ListTeamMembersRequ
 
 ListTeamMembersOutcomeCallable CodeStarClient::ListTeamMembersCallable(const ListTeamMembersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTeamMembersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTeamMembers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::ListTeamMembers, this, request, m_executor.get());
 }
 
 void CodeStarClient::ListTeamMembersAsync(const ListTeamMembersRequest& request, const ListTeamMembersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTeamMembers(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::ListTeamMembers, this, request, handler, context, m_executor.get());
 }
 
 ListUserProfilesOutcome CodeStarClient::ListUserProfiles(const ListUserProfilesRequest& request) const
@@ -465,18 +394,12 @@ ListUserProfilesOutcome CodeStarClient::ListUserProfiles(const ListUserProfilesR
 
 ListUserProfilesOutcomeCallable CodeStarClient::ListUserProfilesCallable(const ListUserProfilesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUserProfilesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUserProfiles(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::ListUserProfiles, this, request, m_executor.get());
 }
 
 void CodeStarClient::ListUserProfilesAsync(const ListUserProfilesRequest& request, const ListUserProfilesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUserProfiles(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::ListUserProfiles, this, request, handler, context, m_executor.get());
 }
 
 TagProjectOutcome CodeStarClient::TagProject(const TagProjectRequest& request) const
@@ -489,18 +412,12 @@ TagProjectOutcome CodeStarClient::TagProject(const TagProjectRequest& request) c
 
 TagProjectOutcomeCallable CodeStarClient::TagProjectCallable(const TagProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::TagProject, this, request, m_executor.get());
 }
 
 void CodeStarClient::TagProjectAsync(const TagProjectRequest& request, const TagProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagProject(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::TagProject, this, request, handler, context, m_executor.get());
 }
 
 UntagProjectOutcome CodeStarClient::UntagProject(const UntagProjectRequest& request) const
@@ -513,18 +430,12 @@ UntagProjectOutcome CodeStarClient::UntagProject(const UntagProjectRequest& requ
 
 UntagProjectOutcomeCallable CodeStarClient::UntagProjectCallable(const UntagProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::UntagProject, this, request, m_executor.get());
 }
 
 void CodeStarClient::UntagProjectAsync(const UntagProjectRequest& request, const UntagProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagProject(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::UntagProject, this, request, handler, context, m_executor.get());
 }
 
 UpdateProjectOutcome CodeStarClient::UpdateProject(const UpdateProjectRequest& request) const
@@ -537,18 +448,12 @@ UpdateProjectOutcome CodeStarClient::UpdateProject(const UpdateProjectRequest& r
 
 UpdateProjectOutcomeCallable CodeStarClient::UpdateProjectCallable(const UpdateProjectRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateProjectOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateProject(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::UpdateProject, this, request, m_executor.get());
 }
 
 void CodeStarClient::UpdateProjectAsync(const UpdateProjectRequest& request, const UpdateProjectResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateProject(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::UpdateProject, this, request, handler, context, m_executor.get());
 }
 
 UpdateTeamMemberOutcome CodeStarClient::UpdateTeamMember(const UpdateTeamMemberRequest& request) const
@@ -561,18 +466,12 @@ UpdateTeamMemberOutcome CodeStarClient::UpdateTeamMember(const UpdateTeamMemberR
 
 UpdateTeamMemberOutcomeCallable CodeStarClient::UpdateTeamMemberCallable(const UpdateTeamMemberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateTeamMemberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateTeamMember(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::UpdateTeamMember, this, request, m_executor.get());
 }
 
 void CodeStarClient::UpdateTeamMemberAsync(const UpdateTeamMemberRequest& request, const UpdateTeamMemberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateTeamMember(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::UpdateTeamMember, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserProfileOutcome CodeStarClient::UpdateUserProfile(const UpdateUserProfileRequest& request) const
@@ -585,17 +484,11 @@ UpdateUserProfileOutcome CodeStarClient::UpdateUserProfile(const UpdateUserProfi
 
 UpdateUserProfileOutcomeCallable CodeStarClient::UpdateUserProfileCallable(const UpdateUserProfileRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserProfileOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserProfile(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &CodeStarClient::UpdateUserProfile, this, request, m_executor.get());
 }
 
 void CodeStarClient::UpdateUserProfileAsync(const UpdateUserProfileRequest& request, const UpdateUserProfileResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserProfile(request), context);
-    } );
+  MakeAsyncOperation(&CodeStarClient::UpdateUserProfile, this, request, handler, context, m_executor.get());
 }
 

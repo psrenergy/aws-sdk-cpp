@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -191,18 +192,12 @@ CreateDiscovererOutcome SchemasClient::CreateDiscoverer(const CreateDiscovererRe
 
 CreateDiscovererOutcomeCallable SchemasClient::CreateDiscovererCallable(const CreateDiscovererRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateDiscovererOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateDiscoverer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::CreateDiscoverer, this, request, m_executor.get());
 }
 
 void SchemasClient::CreateDiscovererAsync(const CreateDiscovererRequest& request, const CreateDiscovererResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateDiscoverer(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::CreateDiscoverer, this, request, handler, context, m_executor.get());
 }
 
 CreateRegistryOutcome SchemasClient::CreateRegistry(const CreateRegistryRequest& request) const
@@ -222,18 +217,12 @@ CreateRegistryOutcome SchemasClient::CreateRegistry(const CreateRegistryRequest&
 
 CreateRegistryOutcomeCallable SchemasClient::CreateRegistryCallable(const CreateRegistryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRegistryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRegistry(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::CreateRegistry, this, request, m_executor.get());
 }
 
 void SchemasClient::CreateRegistryAsync(const CreateRegistryRequest& request, const CreateRegistryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRegistry(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::CreateRegistry, this, request, handler, context, m_executor.get());
 }
 
 CreateSchemaOutcome SchemasClient::CreateSchema(const CreateSchemaRequest& request) const
@@ -260,18 +249,12 @@ CreateSchemaOutcome SchemasClient::CreateSchema(const CreateSchemaRequest& reque
 
 CreateSchemaOutcomeCallable SchemasClient::CreateSchemaCallable(const CreateSchemaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSchemaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSchema(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::CreateSchema, this, request, m_executor.get());
 }
 
 void SchemasClient::CreateSchemaAsync(const CreateSchemaRequest& request, const CreateSchemaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSchema(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::CreateSchema, this, request, handler, context, m_executor.get());
 }
 
 DeleteDiscovererOutcome SchemasClient::DeleteDiscoverer(const DeleteDiscovererRequest& request) const
@@ -291,18 +274,12 @@ DeleteDiscovererOutcome SchemasClient::DeleteDiscoverer(const DeleteDiscovererRe
 
 DeleteDiscovererOutcomeCallable SchemasClient::DeleteDiscovererCallable(const DeleteDiscovererRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteDiscovererOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteDiscoverer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DeleteDiscoverer, this, request, m_executor.get());
 }
 
 void SchemasClient::DeleteDiscovererAsync(const DeleteDiscovererRequest& request, const DeleteDiscovererResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteDiscoverer(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DeleteDiscoverer, this, request, handler, context, m_executor.get());
 }
 
 DeleteRegistryOutcome SchemasClient::DeleteRegistry(const DeleteRegistryRequest& request) const
@@ -322,18 +299,12 @@ DeleteRegistryOutcome SchemasClient::DeleteRegistry(const DeleteRegistryRequest&
 
 DeleteRegistryOutcomeCallable SchemasClient::DeleteRegistryCallable(const DeleteRegistryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRegistryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRegistry(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DeleteRegistry, this, request, m_executor.get());
 }
 
 void SchemasClient::DeleteRegistryAsync(const DeleteRegistryRequest& request, const DeleteRegistryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRegistry(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DeleteRegistry, this, request, handler, context, m_executor.get());
 }
 
 DeleteResourcePolicyOutcome SchemasClient::DeleteResourcePolicy(const DeleteResourcePolicyRequest& request) const
@@ -347,18 +318,12 @@ DeleteResourcePolicyOutcome SchemasClient::DeleteResourcePolicy(const DeleteReso
 
 DeleteResourcePolicyOutcomeCallable SchemasClient::DeleteResourcePolicyCallable(const DeleteResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DeleteResourcePolicy, this, request, m_executor.get());
 }
 
 void SchemasClient::DeleteResourcePolicyAsync(const DeleteResourcePolicyRequest& request, const DeleteResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DeleteResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteSchemaOutcome SchemasClient::DeleteSchema(const DeleteSchemaRequest& request) const
@@ -385,18 +350,12 @@ DeleteSchemaOutcome SchemasClient::DeleteSchema(const DeleteSchemaRequest& reque
 
 DeleteSchemaOutcomeCallable SchemasClient::DeleteSchemaCallable(const DeleteSchemaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSchemaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSchema(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DeleteSchema, this, request, m_executor.get());
 }
 
 void SchemasClient::DeleteSchemaAsync(const DeleteSchemaRequest& request, const DeleteSchemaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSchema(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DeleteSchema, this, request, handler, context, m_executor.get());
 }
 
 DeleteSchemaVersionOutcome SchemasClient::DeleteSchemaVersion(const DeleteSchemaVersionRequest& request) const
@@ -430,18 +389,12 @@ DeleteSchemaVersionOutcome SchemasClient::DeleteSchemaVersion(const DeleteSchema
 
 DeleteSchemaVersionOutcomeCallable SchemasClient::DeleteSchemaVersionCallable(const DeleteSchemaVersionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSchemaVersionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSchemaVersion(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DeleteSchemaVersion, this, request, m_executor.get());
 }
 
 void SchemasClient::DeleteSchemaVersionAsync(const DeleteSchemaVersionRequest& request, const DeleteSchemaVersionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSchemaVersion(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DeleteSchemaVersion, this, request, handler, context, m_executor.get());
 }
 
 DescribeCodeBindingOutcome SchemasClient::DescribeCodeBinding(const DescribeCodeBindingRequest& request) const
@@ -475,18 +428,12 @@ DescribeCodeBindingOutcome SchemasClient::DescribeCodeBinding(const DescribeCode
 
 DescribeCodeBindingOutcomeCallable SchemasClient::DescribeCodeBindingCallable(const DescribeCodeBindingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeCodeBindingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeCodeBinding(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DescribeCodeBinding, this, request, m_executor.get());
 }
 
 void SchemasClient::DescribeCodeBindingAsync(const DescribeCodeBindingRequest& request, const DescribeCodeBindingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeCodeBinding(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DescribeCodeBinding, this, request, handler, context, m_executor.get());
 }
 
 DescribeDiscovererOutcome SchemasClient::DescribeDiscoverer(const DescribeDiscovererRequest& request) const
@@ -506,18 +453,12 @@ DescribeDiscovererOutcome SchemasClient::DescribeDiscoverer(const DescribeDiscov
 
 DescribeDiscovererOutcomeCallable SchemasClient::DescribeDiscovererCallable(const DescribeDiscovererRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeDiscovererOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeDiscoverer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DescribeDiscoverer, this, request, m_executor.get());
 }
 
 void SchemasClient::DescribeDiscovererAsync(const DescribeDiscovererRequest& request, const DescribeDiscovererResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeDiscoverer(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DescribeDiscoverer, this, request, handler, context, m_executor.get());
 }
 
 DescribeRegistryOutcome SchemasClient::DescribeRegistry(const DescribeRegistryRequest& request) const
@@ -537,18 +478,12 @@ DescribeRegistryOutcome SchemasClient::DescribeRegistry(const DescribeRegistryRe
 
 DescribeRegistryOutcomeCallable SchemasClient::DescribeRegistryCallable(const DescribeRegistryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeRegistryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeRegistry(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DescribeRegistry, this, request, m_executor.get());
 }
 
 void SchemasClient::DescribeRegistryAsync(const DescribeRegistryRequest& request, const DescribeRegistryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeRegistry(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DescribeRegistry, this, request, handler, context, m_executor.get());
 }
 
 DescribeSchemaOutcome SchemasClient::DescribeSchema(const DescribeSchemaRequest& request) const
@@ -575,18 +510,12 @@ DescribeSchemaOutcome SchemasClient::DescribeSchema(const DescribeSchemaRequest&
 
 DescribeSchemaOutcomeCallable SchemasClient::DescribeSchemaCallable(const DescribeSchemaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSchemaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSchema(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::DescribeSchema, this, request, m_executor.get());
 }
 
 void SchemasClient::DescribeSchemaAsync(const DescribeSchemaRequest& request, const DescribeSchemaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSchema(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::DescribeSchema, this, request, handler, context, m_executor.get());
 }
 
 ExportSchemaOutcome SchemasClient::ExportSchema(const ExportSchemaRequest& request) const
@@ -619,18 +548,12 @@ ExportSchemaOutcome SchemasClient::ExportSchema(const ExportSchemaRequest& reque
 
 ExportSchemaOutcomeCallable SchemasClient::ExportSchemaCallable(const ExportSchemaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ExportSchemaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ExportSchema(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::ExportSchema, this, request, m_executor.get());
 }
 
 void SchemasClient::ExportSchemaAsync(const ExportSchemaRequest& request, const ExportSchemaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ExportSchema(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::ExportSchema, this, request, handler, context, m_executor.get());
 }
 
 GetCodeBindingSourceOutcome SchemasClient::GetCodeBindingSource(const GetCodeBindingSourceRequest& request) const
@@ -665,18 +588,12 @@ GetCodeBindingSourceOutcome SchemasClient::GetCodeBindingSource(const GetCodeBin
 
 GetCodeBindingSourceOutcomeCallable SchemasClient::GetCodeBindingSourceCallable(const GetCodeBindingSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetCodeBindingSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetCodeBindingSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::GetCodeBindingSource, this, request, m_executor.get());
 }
 
 void SchemasClient::GetCodeBindingSourceAsync(const GetCodeBindingSourceRequest& request, const GetCodeBindingSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetCodeBindingSource(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::GetCodeBindingSource, this, request, handler, context, m_executor.get());
 }
 
 GetDiscoveredSchemaOutcome SchemasClient::GetDiscoveredSchema(const GetDiscoveredSchemaRequest& request) const
@@ -690,18 +607,12 @@ GetDiscoveredSchemaOutcome SchemasClient::GetDiscoveredSchema(const GetDiscovere
 
 GetDiscoveredSchemaOutcomeCallable SchemasClient::GetDiscoveredSchemaCallable(const GetDiscoveredSchemaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetDiscoveredSchemaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetDiscoveredSchema(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::GetDiscoveredSchema, this, request, m_executor.get());
 }
 
 void SchemasClient::GetDiscoveredSchemaAsync(const GetDiscoveredSchemaRequest& request, const GetDiscoveredSchemaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetDiscoveredSchema(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::GetDiscoveredSchema, this, request, handler, context, m_executor.get());
 }
 
 GetResourcePolicyOutcome SchemasClient::GetResourcePolicy(const GetResourcePolicyRequest& request) const
@@ -715,18 +626,12 @@ GetResourcePolicyOutcome SchemasClient::GetResourcePolicy(const GetResourcePolic
 
 GetResourcePolicyOutcomeCallable SchemasClient::GetResourcePolicyCallable(const GetResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::GetResourcePolicy, this, request, m_executor.get());
 }
 
 void SchemasClient::GetResourcePolicyAsync(const GetResourcePolicyRequest& request, const GetResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::GetResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 ListDiscoverersOutcome SchemasClient::ListDiscoverers(const ListDiscoverersRequest& request) const
@@ -740,18 +645,12 @@ ListDiscoverersOutcome SchemasClient::ListDiscoverers(const ListDiscoverersReque
 
 ListDiscoverersOutcomeCallable SchemasClient::ListDiscoverersCallable(const ListDiscoverersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListDiscoverersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListDiscoverers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::ListDiscoverers, this, request, m_executor.get());
 }
 
 void SchemasClient::ListDiscoverersAsync(const ListDiscoverersRequest& request, const ListDiscoverersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListDiscoverers(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::ListDiscoverers, this, request, handler, context, m_executor.get());
 }
 
 ListRegistriesOutcome SchemasClient::ListRegistries(const ListRegistriesRequest& request) const
@@ -765,18 +664,12 @@ ListRegistriesOutcome SchemasClient::ListRegistries(const ListRegistriesRequest&
 
 ListRegistriesOutcomeCallable SchemasClient::ListRegistriesCallable(const ListRegistriesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRegistriesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRegistries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::ListRegistries, this, request, m_executor.get());
 }
 
 void SchemasClient::ListRegistriesAsync(const ListRegistriesRequest& request, const ListRegistriesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRegistries(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::ListRegistries, this, request, handler, context, m_executor.get());
 }
 
 ListSchemaVersionsOutcome SchemasClient::ListSchemaVersions(const ListSchemaVersionsRequest& request) const
@@ -804,18 +697,12 @@ ListSchemaVersionsOutcome SchemasClient::ListSchemaVersions(const ListSchemaVers
 
 ListSchemaVersionsOutcomeCallable SchemasClient::ListSchemaVersionsCallable(const ListSchemaVersionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSchemaVersionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSchemaVersions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::ListSchemaVersions, this, request, m_executor.get());
 }
 
 void SchemasClient::ListSchemaVersionsAsync(const ListSchemaVersionsRequest& request, const ListSchemaVersionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSchemaVersions(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::ListSchemaVersions, this, request, handler, context, m_executor.get());
 }
 
 ListSchemasOutcome SchemasClient::ListSchemas(const ListSchemasRequest& request) const
@@ -836,18 +723,12 @@ ListSchemasOutcome SchemasClient::ListSchemas(const ListSchemasRequest& request)
 
 ListSchemasOutcomeCallable SchemasClient::ListSchemasCallable(const ListSchemasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSchemasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSchemas(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::ListSchemas, this, request, m_executor.get());
 }
 
 void SchemasClient::ListSchemasAsync(const ListSchemasRequest& request, const ListSchemasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSchemas(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::ListSchemas, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome SchemasClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -867,18 +748,12 @@ ListTagsForResourceOutcome SchemasClient::ListTagsForResource(const ListTagsForR
 
 ListTagsForResourceOutcomeCallable SchemasClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void SchemasClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 PutCodeBindingOutcome SchemasClient::PutCodeBinding(const PutCodeBindingRequest& request) const
@@ -912,18 +787,12 @@ PutCodeBindingOutcome SchemasClient::PutCodeBinding(const PutCodeBindingRequest&
 
 PutCodeBindingOutcomeCallable SchemasClient::PutCodeBindingCallable(const PutCodeBindingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutCodeBindingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutCodeBinding(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::PutCodeBinding, this, request, m_executor.get());
 }
 
 void SchemasClient::PutCodeBindingAsync(const PutCodeBindingRequest& request, const PutCodeBindingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutCodeBinding(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::PutCodeBinding, this, request, handler, context, m_executor.get());
 }
 
 PutResourcePolicyOutcome SchemasClient::PutResourcePolicy(const PutResourcePolicyRequest& request) const
@@ -937,18 +806,12 @@ PutResourcePolicyOutcome SchemasClient::PutResourcePolicy(const PutResourcePolic
 
 PutResourcePolicyOutcomeCallable SchemasClient::PutResourcePolicyCallable(const PutResourcePolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutResourcePolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutResourcePolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::PutResourcePolicy, this, request, m_executor.get());
 }
 
 void SchemasClient::PutResourcePolicyAsync(const PutResourcePolicyRequest& request, const PutResourcePolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutResourcePolicy(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::PutResourcePolicy, this, request, handler, context, m_executor.get());
 }
 
 SearchSchemasOutcome SchemasClient::SearchSchemas(const SearchSchemasRequest& request) const
@@ -974,18 +837,12 @@ SearchSchemasOutcome SchemasClient::SearchSchemas(const SearchSchemasRequest& re
 
 SearchSchemasOutcomeCallable SchemasClient::SearchSchemasCallable(const SearchSchemasRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchSchemasOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchSchemas(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::SearchSchemas, this, request, m_executor.get());
 }
 
 void SchemasClient::SearchSchemasAsync(const SearchSchemasRequest& request, const SearchSchemasResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchSchemas(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::SearchSchemas, this, request, handler, context, m_executor.get());
 }
 
 StartDiscovererOutcome SchemasClient::StartDiscoverer(const StartDiscovererRequest& request) const
@@ -1006,18 +863,12 @@ StartDiscovererOutcome SchemasClient::StartDiscoverer(const StartDiscovererReque
 
 StartDiscovererOutcomeCallable SchemasClient::StartDiscovererCallable(const StartDiscovererRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartDiscovererOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartDiscoverer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::StartDiscoverer, this, request, m_executor.get());
 }
 
 void SchemasClient::StartDiscovererAsync(const StartDiscovererRequest& request, const StartDiscovererResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartDiscoverer(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::StartDiscoverer, this, request, handler, context, m_executor.get());
 }
 
 StopDiscovererOutcome SchemasClient::StopDiscoverer(const StopDiscovererRequest& request) const
@@ -1038,18 +889,12 @@ StopDiscovererOutcome SchemasClient::StopDiscoverer(const StopDiscovererRequest&
 
 StopDiscovererOutcomeCallable SchemasClient::StopDiscovererCallable(const StopDiscovererRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopDiscovererOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopDiscoverer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::StopDiscoverer, this, request, m_executor.get());
 }
 
 void SchemasClient::StopDiscovererAsync(const StopDiscovererRequest& request, const StopDiscovererResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopDiscoverer(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::StopDiscoverer, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome SchemasClient::TagResource(const TagResourceRequest& request) const
@@ -1069,18 +914,12 @@ TagResourceOutcome SchemasClient::TagResource(const TagResourceRequest& request)
 
 TagResourceOutcomeCallable SchemasClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::TagResource, this, request, m_executor.get());
 }
 
 void SchemasClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome SchemasClient::UntagResource(const UntagResourceRequest& request) const
@@ -1105,18 +944,12 @@ UntagResourceOutcome SchemasClient::UntagResource(const UntagResourceRequest& re
 
 UntagResourceOutcomeCallable SchemasClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::UntagResource, this, request, m_executor.get());
 }
 
 void SchemasClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateDiscovererOutcome SchemasClient::UpdateDiscoverer(const UpdateDiscovererRequest& request) const
@@ -1136,18 +969,12 @@ UpdateDiscovererOutcome SchemasClient::UpdateDiscoverer(const UpdateDiscovererRe
 
 UpdateDiscovererOutcomeCallable SchemasClient::UpdateDiscovererCallable(const UpdateDiscovererRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateDiscovererOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateDiscoverer(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::UpdateDiscoverer, this, request, m_executor.get());
 }
 
 void SchemasClient::UpdateDiscovererAsync(const UpdateDiscovererRequest& request, const UpdateDiscovererResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateDiscoverer(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::UpdateDiscoverer, this, request, handler, context, m_executor.get());
 }
 
 UpdateRegistryOutcome SchemasClient::UpdateRegistry(const UpdateRegistryRequest& request) const
@@ -1167,18 +994,12 @@ UpdateRegistryOutcome SchemasClient::UpdateRegistry(const UpdateRegistryRequest&
 
 UpdateRegistryOutcomeCallable SchemasClient::UpdateRegistryCallable(const UpdateRegistryRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRegistryOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRegistry(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::UpdateRegistry, this, request, m_executor.get());
 }
 
 void SchemasClient::UpdateRegistryAsync(const UpdateRegistryRequest& request, const UpdateRegistryResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRegistry(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::UpdateRegistry, this, request, handler, context, m_executor.get());
 }
 
 UpdateSchemaOutcome SchemasClient::UpdateSchema(const UpdateSchemaRequest& request) const
@@ -1205,17 +1026,11 @@ UpdateSchemaOutcome SchemasClient::UpdateSchema(const UpdateSchemaRequest& reque
 
 UpdateSchemaOutcomeCallable SchemasClient::UpdateSchemaCallable(const UpdateSchemaRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSchemaOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSchema(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &SchemasClient::UpdateSchema, this, request, m_executor.get());
 }
 
 void SchemasClient::UpdateSchemaAsync(const UpdateSchemaRequest& request, const UpdateSchemaResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSchema(request), context);
-    } );
+  MakeAsyncOperation(&SchemasClient::UpdateSchema, this, request, handler, context, m_executor.get());
 }
 

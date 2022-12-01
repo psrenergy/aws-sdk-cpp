@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -202,18 +203,12 @@ ConfigureLogsForPlaybackConfigurationOutcome MediaTailorClient::ConfigureLogsFor
 
 ConfigureLogsForPlaybackConfigurationOutcomeCallable MediaTailorClient::ConfigureLogsForPlaybackConfigurationCallable(const ConfigureLogsForPlaybackConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ConfigureLogsForPlaybackConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ConfigureLogsForPlaybackConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ConfigureLogsForPlaybackConfiguration, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ConfigureLogsForPlaybackConfigurationAsync(const ConfigureLogsForPlaybackConfigurationRequest& request, const ConfigureLogsForPlaybackConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ConfigureLogsForPlaybackConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ConfigureLogsForPlaybackConfiguration, this, request, handler, context, m_executor.get());
 }
 
 CreateChannelOutcome MediaTailorClient::CreateChannel(const CreateChannelRequest& request) const
@@ -233,18 +228,12 @@ CreateChannelOutcome MediaTailorClient::CreateChannel(const CreateChannelRequest
 
 CreateChannelOutcomeCallable MediaTailorClient::CreateChannelCallable(const CreateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::CreateChannel, this, request, m_executor.get());
 }
 
 void MediaTailorClient::CreateChannelAsync(const CreateChannelRequest& request, const CreateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateChannel(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::CreateChannel, this, request, handler, context, m_executor.get());
 }
 
 CreateLiveSourceOutcome MediaTailorClient::CreateLiveSource(const CreateLiveSourceRequest& request) const
@@ -271,18 +260,12 @@ CreateLiveSourceOutcome MediaTailorClient::CreateLiveSource(const CreateLiveSour
 
 CreateLiveSourceOutcomeCallable MediaTailorClient::CreateLiveSourceCallable(const CreateLiveSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateLiveSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateLiveSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::CreateLiveSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::CreateLiveSourceAsync(const CreateLiveSourceRequest& request, const CreateLiveSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateLiveSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::CreateLiveSource, this, request, handler, context, m_executor.get());
 }
 
 CreatePrefetchScheduleOutcome MediaTailorClient::CreatePrefetchSchedule(const CreatePrefetchScheduleRequest& request) const
@@ -308,18 +291,12 @@ CreatePrefetchScheduleOutcome MediaTailorClient::CreatePrefetchSchedule(const Cr
 
 CreatePrefetchScheduleOutcomeCallable MediaTailorClient::CreatePrefetchScheduleCallable(const CreatePrefetchScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePrefetchScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePrefetchSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::CreatePrefetchSchedule, this, request, m_executor.get());
 }
 
 void MediaTailorClient::CreatePrefetchScheduleAsync(const CreatePrefetchScheduleRequest& request, const CreatePrefetchScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePrefetchSchedule(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::CreatePrefetchSchedule, this, request, handler, context, m_executor.get());
 }
 
 CreateProgramOutcome MediaTailorClient::CreateProgram(const CreateProgramRequest& request) const
@@ -346,18 +323,12 @@ CreateProgramOutcome MediaTailorClient::CreateProgram(const CreateProgramRequest
 
 CreateProgramOutcomeCallable MediaTailorClient::CreateProgramCallable(const CreateProgramRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProgramOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProgram(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::CreateProgram, this, request, m_executor.get());
 }
 
 void MediaTailorClient::CreateProgramAsync(const CreateProgramRequest& request, const CreateProgramResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProgram(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::CreateProgram, this, request, handler, context, m_executor.get());
 }
 
 CreateSourceLocationOutcome MediaTailorClient::CreateSourceLocation(const CreateSourceLocationRequest& request) const
@@ -377,18 +348,12 @@ CreateSourceLocationOutcome MediaTailorClient::CreateSourceLocation(const Create
 
 CreateSourceLocationOutcomeCallable MediaTailorClient::CreateSourceLocationCallable(const CreateSourceLocationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSourceLocationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSourceLocation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::CreateSourceLocation, this, request, m_executor.get());
 }
 
 void MediaTailorClient::CreateSourceLocationAsync(const CreateSourceLocationRequest& request, const CreateSourceLocationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSourceLocation(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::CreateSourceLocation, this, request, handler, context, m_executor.get());
 }
 
 CreateVodSourceOutcome MediaTailorClient::CreateVodSource(const CreateVodSourceRequest& request) const
@@ -415,18 +380,12 @@ CreateVodSourceOutcome MediaTailorClient::CreateVodSource(const CreateVodSourceR
 
 CreateVodSourceOutcomeCallable MediaTailorClient::CreateVodSourceCallable(const CreateVodSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateVodSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateVodSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::CreateVodSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::CreateVodSourceAsync(const CreateVodSourceRequest& request, const CreateVodSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateVodSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::CreateVodSource, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelOutcome MediaTailorClient::DeleteChannel(const DeleteChannelRequest& request) const
@@ -446,18 +405,12 @@ DeleteChannelOutcome MediaTailorClient::DeleteChannel(const DeleteChannelRequest
 
 DeleteChannelOutcomeCallable MediaTailorClient::DeleteChannelCallable(const DeleteChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeleteChannel, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeleteChannelAsync(const DeleteChannelRequest& request, const DeleteChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannel(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeleteChannel, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelPolicyOutcome MediaTailorClient::DeleteChannelPolicy(const DeleteChannelPolicyRequest& request) const
@@ -478,18 +431,12 @@ DeleteChannelPolicyOutcome MediaTailorClient::DeleteChannelPolicy(const DeleteCh
 
 DeleteChannelPolicyOutcomeCallable MediaTailorClient::DeleteChannelPolicyCallable(const DeleteChannelPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannelPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeleteChannelPolicy, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeleteChannelPolicyAsync(const DeleteChannelPolicyRequest& request, const DeleteChannelPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannelPolicy(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeleteChannelPolicy, this, request, handler, context, m_executor.get());
 }
 
 DeleteLiveSourceOutcome MediaTailorClient::DeleteLiveSource(const DeleteLiveSourceRequest& request) const
@@ -516,18 +463,12 @@ DeleteLiveSourceOutcome MediaTailorClient::DeleteLiveSource(const DeleteLiveSour
 
 DeleteLiveSourceOutcomeCallable MediaTailorClient::DeleteLiveSourceCallable(const DeleteLiveSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteLiveSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteLiveSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeleteLiveSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeleteLiveSourceAsync(const DeleteLiveSourceRequest& request, const DeleteLiveSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteLiveSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeleteLiveSource, this, request, handler, context, m_executor.get());
 }
 
 DeletePlaybackConfigurationOutcome MediaTailorClient::DeletePlaybackConfiguration(const DeletePlaybackConfigurationRequest& request) const
@@ -547,18 +488,12 @@ DeletePlaybackConfigurationOutcome MediaTailorClient::DeletePlaybackConfiguratio
 
 DeletePlaybackConfigurationOutcomeCallable MediaTailorClient::DeletePlaybackConfigurationCallable(const DeletePlaybackConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePlaybackConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePlaybackConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeletePlaybackConfiguration, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeletePlaybackConfigurationAsync(const DeletePlaybackConfigurationRequest& request, const DeletePlaybackConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePlaybackConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeletePlaybackConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeletePrefetchScheduleOutcome MediaTailorClient::DeletePrefetchSchedule(const DeletePrefetchScheduleRequest& request) const
@@ -584,18 +519,12 @@ DeletePrefetchScheduleOutcome MediaTailorClient::DeletePrefetchSchedule(const De
 
 DeletePrefetchScheduleOutcomeCallable MediaTailorClient::DeletePrefetchScheduleCallable(const DeletePrefetchScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePrefetchScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePrefetchSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeletePrefetchSchedule, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeletePrefetchScheduleAsync(const DeletePrefetchScheduleRequest& request, const DeletePrefetchScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePrefetchSchedule(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeletePrefetchSchedule, this, request, handler, context, m_executor.get());
 }
 
 DeleteProgramOutcome MediaTailorClient::DeleteProgram(const DeleteProgramRequest& request) const
@@ -622,18 +551,12 @@ DeleteProgramOutcome MediaTailorClient::DeleteProgram(const DeleteProgramRequest
 
 DeleteProgramOutcomeCallable MediaTailorClient::DeleteProgramCallable(const DeleteProgramRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteProgramOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteProgram(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeleteProgram, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeleteProgramAsync(const DeleteProgramRequest& request, const DeleteProgramResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteProgram(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeleteProgram, this, request, handler, context, m_executor.get());
 }
 
 DeleteSourceLocationOutcome MediaTailorClient::DeleteSourceLocation(const DeleteSourceLocationRequest& request) const
@@ -653,18 +576,12 @@ DeleteSourceLocationOutcome MediaTailorClient::DeleteSourceLocation(const Delete
 
 DeleteSourceLocationOutcomeCallable MediaTailorClient::DeleteSourceLocationCallable(const DeleteSourceLocationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSourceLocationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSourceLocation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeleteSourceLocation, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeleteSourceLocationAsync(const DeleteSourceLocationRequest& request, const DeleteSourceLocationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSourceLocation(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeleteSourceLocation, this, request, handler, context, m_executor.get());
 }
 
 DeleteVodSourceOutcome MediaTailorClient::DeleteVodSource(const DeleteVodSourceRequest& request) const
@@ -691,18 +608,12 @@ DeleteVodSourceOutcome MediaTailorClient::DeleteVodSource(const DeleteVodSourceR
 
 DeleteVodSourceOutcomeCallable MediaTailorClient::DeleteVodSourceCallable(const DeleteVodSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVodSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVodSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DeleteVodSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DeleteVodSourceAsync(const DeleteVodSourceRequest& request, const DeleteVodSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVodSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DeleteVodSource, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelOutcome MediaTailorClient::DescribeChannel(const DescribeChannelRequest& request) const
@@ -722,18 +633,12 @@ DescribeChannelOutcome MediaTailorClient::DescribeChannel(const DescribeChannelR
 
 DescribeChannelOutcomeCallable MediaTailorClient::DescribeChannelCallable(const DescribeChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DescribeChannel, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DescribeChannelAsync(const DescribeChannelRequest& request, const DescribeChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannel(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DescribeChannel, this, request, handler, context, m_executor.get());
 }
 
 DescribeLiveSourceOutcome MediaTailorClient::DescribeLiveSource(const DescribeLiveSourceRequest& request) const
@@ -760,18 +665,12 @@ DescribeLiveSourceOutcome MediaTailorClient::DescribeLiveSource(const DescribeLi
 
 DescribeLiveSourceOutcomeCallable MediaTailorClient::DescribeLiveSourceCallable(const DescribeLiveSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeLiveSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeLiveSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DescribeLiveSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DescribeLiveSourceAsync(const DescribeLiveSourceRequest& request, const DescribeLiveSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeLiveSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DescribeLiveSource, this, request, handler, context, m_executor.get());
 }
 
 DescribeProgramOutcome MediaTailorClient::DescribeProgram(const DescribeProgramRequest& request) const
@@ -798,18 +697,12 @@ DescribeProgramOutcome MediaTailorClient::DescribeProgram(const DescribeProgramR
 
 DescribeProgramOutcomeCallable MediaTailorClient::DescribeProgramCallable(const DescribeProgramRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeProgramOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeProgram(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DescribeProgram, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DescribeProgramAsync(const DescribeProgramRequest& request, const DescribeProgramResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeProgram(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DescribeProgram, this, request, handler, context, m_executor.get());
 }
 
 DescribeSourceLocationOutcome MediaTailorClient::DescribeSourceLocation(const DescribeSourceLocationRequest& request) const
@@ -829,18 +722,12 @@ DescribeSourceLocationOutcome MediaTailorClient::DescribeSourceLocation(const De
 
 DescribeSourceLocationOutcomeCallable MediaTailorClient::DescribeSourceLocationCallable(const DescribeSourceLocationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeSourceLocationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeSourceLocation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DescribeSourceLocation, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DescribeSourceLocationAsync(const DescribeSourceLocationRequest& request, const DescribeSourceLocationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeSourceLocation(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DescribeSourceLocation, this, request, handler, context, m_executor.get());
 }
 
 DescribeVodSourceOutcome MediaTailorClient::DescribeVodSource(const DescribeVodSourceRequest& request) const
@@ -867,18 +754,12 @@ DescribeVodSourceOutcome MediaTailorClient::DescribeVodSource(const DescribeVodS
 
 DescribeVodSourceOutcomeCallable MediaTailorClient::DescribeVodSourceCallable(const DescribeVodSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeVodSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeVodSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::DescribeVodSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::DescribeVodSourceAsync(const DescribeVodSourceRequest& request, const DescribeVodSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeVodSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::DescribeVodSource, this, request, handler, context, m_executor.get());
 }
 
 GetChannelPolicyOutcome MediaTailorClient::GetChannelPolicy(const GetChannelPolicyRequest& request) const
@@ -899,18 +780,12 @@ GetChannelPolicyOutcome MediaTailorClient::GetChannelPolicy(const GetChannelPoli
 
 GetChannelPolicyOutcomeCallable MediaTailorClient::GetChannelPolicyCallable(const GetChannelPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetChannelPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetChannelPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::GetChannelPolicy, this, request, m_executor.get());
 }
 
 void MediaTailorClient::GetChannelPolicyAsync(const GetChannelPolicyRequest& request, const GetChannelPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetChannelPolicy(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::GetChannelPolicy, this, request, handler, context, m_executor.get());
 }
 
 GetChannelScheduleOutcome MediaTailorClient::GetChannelSchedule(const GetChannelScheduleRequest& request) const
@@ -931,18 +806,12 @@ GetChannelScheduleOutcome MediaTailorClient::GetChannelSchedule(const GetChannel
 
 GetChannelScheduleOutcomeCallable MediaTailorClient::GetChannelScheduleCallable(const GetChannelScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetChannelScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetChannelSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::GetChannelSchedule, this, request, m_executor.get());
 }
 
 void MediaTailorClient::GetChannelScheduleAsync(const GetChannelScheduleRequest& request, const GetChannelScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetChannelSchedule(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::GetChannelSchedule, this, request, handler, context, m_executor.get());
 }
 
 GetPlaybackConfigurationOutcome MediaTailorClient::GetPlaybackConfiguration(const GetPlaybackConfigurationRequest& request) const
@@ -962,18 +831,12 @@ GetPlaybackConfigurationOutcome MediaTailorClient::GetPlaybackConfiguration(cons
 
 GetPlaybackConfigurationOutcomeCallable MediaTailorClient::GetPlaybackConfigurationCallable(const GetPlaybackConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPlaybackConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPlaybackConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::GetPlaybackConfiguration, this, request, m_executor.get());
 }
 
 void MediaTailorClient::GetPlaybackConfigurationAsync(const GetPlaybackConfigurationRequest& request, const GetPlaybackConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPlaybackConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::GetPlaybackConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetPrefetchScheduleOutcome MediaTailorClient::GetPrefetchSchedule(const GetPrefetchScheduleRequest& request) const
@@ -999,18 +862,12 @@ GetPrefetchScheduleOutcome MediaTailorClient::GetPrefetchSchedule(const GetPrefe
 
 GetPrefetchScheduleOutcomeCallable MediaTailorClient::GetPrefetchScheduleCallable(const GetPrefetchScheduleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPrefetchScheduleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPrefetchSchedule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::GetPrefetchSchedule, this, request, m_executor.get());
 }
 
 void MediaTailorClient::GetPrefetchScheduleAsync(const GetPrefetchScheduleRequest& request, const GetPrefetchScheduleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPrefetchSchedule(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::GetPrefetchSchedule, this, request, handler, context, m_executor.get());
 }
 
 ListAlertsOutcome MediaTailorClient::ListAlerts(const ListAlertsRequest& request) const
@@ -1029,18 +886,12 @@ ListAlertsOutcome MediaTailorClient::ListAlerts(const ListAlertsRequest& request
 
 ListAlertsOutcomeCallable MediaTailorClient::ListAlertsCallable(const ListAlertsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAlertsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAlerts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListAlerts, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListAlertsAsync(const ListAlertsRequest& request, const ListAlertsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAlerts(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListAlerts, this, request, handler, context, m_executor.get());
 }
 
 ListChannelsOutcome MediaTailorClient::ListChannels(const ListChannelsRequest& request) const
@@ -1054,18 +905,12 @@ ListChannelsOutcome MediaTailorClient::ListChannels(const ListChannelsRequest& r
 
 ListChannelsOutcomeCallable MediaTailorClient::ListChannelsCallable(const ListChannelsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannels(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListChannels, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListChannelsAsync(const ListChannelsRequest& request, const ListChannelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannels(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListChannels, this, request, handler, context, m_executor.get());
 }
 
 ListLiveSourcesOutcome MediaTailorClient::ListLiveSources(const ListLiveSourcesRequest& request) const
@@ -1086,18 +931,12 @@ ListLiveSourcesOutcome MediaTailorClient::ListLiveSources(const ListLiveSourcesR
 
 ListLiveSourcesOutcomeCallable MediaTailorClient::ListLiveSourcesCallable(const ListLiveSourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListLiveSourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListLiveSources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListLiveSources, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListLiveSourcesAsync(const ListLiveSourcesRequest& request, const ListLiveSourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListLiveSources(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListLiveSources, this, request, handler, context, m_executor.get());
 }
 
 ListPlaybackConfigurationsOutcome MediaTailorClient::ListPlaybackConfigurations(const ListPlaybackConfigurationsRequest& request) const
@@ -1111,18 +950,12 @@ ListPlaybackConfigurationsOutcome MediaTailorClient::ListPlaybackConfigurations(
 
 ListPlaybackConfigurationsOutcomeCallable MediaTailorClient::ListPlaybackConfigurationsCallable(const ListPlaybackConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPlaybackConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPlaybackConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListPlaybackConfigurations, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListPlaybackConfigurationsAsync(const ListPlaybackConfigurationsRequest& request, const ListPlaybackConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPlaybackConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListPlaybackConfigurations, this, request, handler, context, m_executor.get());
 }
 
 ListPrefetchSchedulesOutcome MediaTailorClient::ListPrefetchSchedules(const ListPrefetchSchedulesRequest& request) const
@@ -1142,18 +975,12 @@ ListPrefetchSchedulesOutcome MediaTailorClient::ListPrefetchSchedules(const List
 
 ListPrefetchSchedulesOutcomeCallable MediaTailorClient::ListPrefetchSchedulesCallable(const ListPrefetchSchedulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPrefetchSchedulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPrefetchSchedules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListPrefetchSchedules, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListPrefetchSchedulesAsync(const ListPrefetchSchedulesRequest& request, const ListPrefetchSchedulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPrefetchSchedules(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListPrefetchSchedules, this, request, handler, context, m_executor.get());
 }
 
 ListSourceLocationsOutcome MediaTailorClient::ListSourceLocations(const ListSourceLocationsRequest& request) const
@@ -1167,18 +994,12 @@ ListSourceLocationsOutcome MediaTailorClient::ListSourceLocations(const ListSour
 
 ListSourceLocationsOutcomeCallable MediaTailorClient::ListSourceLocationsCallable(const ListSourceLocationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSourceLocationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSourceLocations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListSourceLocations, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListSourceLocationsAsync(const ListSourceLocationsRequest& request, const ListSourceLocationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSourceLocations(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListSourceLocations, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome MediaTailorClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -1198,18 +1019,12 @@ ListTagsForResourceOutcome MediaTailorClient::ListTagsForResource(const ListTags
 
 ListTagsForResourceOutcomeCallable MediaTailorClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListVodSourcesOutcome MediaTailorClient::ListVodSources(const ListVodSourcesRequest& request) const
@@ -1230,18 +1045,12 @@ ListVodSourcesOutcome MediaTailorClient::ListVodSources(const ListVodSourcesRequ
 
 ListVodSourcesOutcomeCallable MediaTailorClient::ListVodSourcesCallable(const ListVodSourcesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVodSourcesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVodSources(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::ListVodSources, this, request, m_executor.get());
 }
 
 void MediaTailorClient::ListVodSourcesAsync(const ListVodSourcesRequest& request, const ListVodSourcesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVodSources(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::ListVodSources, this, request, handler, context, m_executor.get());
 }
 
 PutChannelPolicyOutcome MediaTailorClient::PutChannelPolicy(const PutChannelPolicyRequest& request) const
@@ -1262,18 +1071,12 @@ PutChannelPolicyOutcome MediaTailorClient::PutChannelPolicy(const PutChannelPoli
 
 PutChannelPolicyOutcomeCallable MediaTailorClient::PutChannelPolicyCallable(const PutChannelPolicyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutChannelPolicyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutChannelPolicy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::PutChannelPolicy, this, request, m_executor.get());
 }
 
 void MediaTailorClient::PutChannelPolicyAsync(const PutChannelPolicyRequest& request, const PutChannelPolicyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutChannelPolicy(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::PutChannelPolicy, this, request, handler, context, m_executor.get());
 }
 
 PutPlaybackConfigurationOutcome MediaTailorClient::PutPlaybackConfiguration(const PutPlaybackConfigurationRequest& request) const
@@ -1287,18 +1090,12 @@ PutPlaybackConfigurationOutcome MediaTailorClient::PutPlaybackConfiguration(cons
 
 PutPlaybackConfigurationOutcomeCallable MediaTailorClient::PutPlaybackConfigurationCallable(const PutPlaybackConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutPlaybackConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutPlaybackConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::PutPlaybackConfiguration, this, request, m_executor.get());
 }
 
 void MediaTailorClient::PutPlaybackConfigurationAsync(const PutPlaybackConfigurationRequest& request, const PutPlaybackConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutPlaybackConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::PutPlaybackConfiguration, this, request, handler, context, m_executor.get());
 }
 
 StartChannelOutcome MediaTailorClient::StartChannel(const StartChannelRequest& request) const
@@ -1319,18 +1116,12 @@ StartChannelOutcome MediaTailorClient::StartChannel(const StartChannelRequest& r
 
 StartChannelOutcomeCallable MediaTailorClient::StartChannelCallable(const StartChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::StartChannel, this, request, m_executor.get());
 }
 
 void MediaTailorClient::StartChannelAsync(const StartChannelRequest& request, const StartChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartChannel(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::StartChannel, this, request, handler, context, m_executor.get());
 }
 
 StopChannelOutcome MediaTailorClient::StopChannel(const StopChannelRequest& request) const
@@ -1351,18 +1142,12 @@ StopChannelOutcome MediaTailorClient::StopChannel(const StopChannelRequest& requ
 
 StopChannelOutcomeCallable MediaTailorClient::StopChannelCallable(const StopChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::StopChannel, this, request, m_executor.get());
 }
 
 void MediaTailorClient::StopChannelAsync(const StopChannelRequest& request, const StopChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopChannel(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::StopChannel, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome MediaTailorClient::TagResource(const TagResourceRequest& request) const
@@ -1382,18 +1167,12 @@ TagResourceOutcome MediaTailorClient::TagResource(const TagResourceRequest& requ
 
 TagResourceOutcomeCallable MediaTailorClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::TagResource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome MediaTailorClient::UntagResource(const UntagResourceRequest& request) const
@@ -1418,18 +1197,12 @@ UntagResourceOutcome MediaTailorClient::UntagResource(const UntagResourceRequest
 
 UntagResourceOutcomeCallable MediaTailorClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::UntagResource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateChannelOutcome MediaTailorClient::UpdateChannel(const UpdateChannelRequest& request) const
@@ -1449,18 +1222,12 @@ UpdateChannelOutcome MediaTailorClient::UpdateChannel(const UpdateChannelRequest
 
 UpdateChannelOutcomeCallable MediaTailorClient::UpdateChannelCallable(const UpdateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::UpdateChannel, this, request, m_executor.get());
 }
 
 void MediaTailorClient::UpdateChannelAsync(const UpdateChannelRequest& request, const UpdateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateChannel(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::UpdateChannel, this, request, handler, context, m_executor.get());
 }
 
 UpdateLiveSourceOutcome MediaTailorClient::UpdateLiveSource(const UpdateLiveSourceRequest& request) const
@@ -1487,18 +1254,12 @@ UpdateLiveSourceOutcome MediaTailorClient::UpdateLiveSource(const UpdateLiveSour
 
 UpdateLiveSourceOutcomeCallable MediaTailorClient::UpdateLiveSourceCallable(const UpdateLiveSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateLiveSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateLiveSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::UpdateLiveSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::UpdateLiveSourceAsync(const UpdateLiveSourceRequest& request, const UpdateLiveSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateLiveSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::UpdateLiveSource, this, request, handler, context, m_executor.get());
 }
 
 UpdateSourceLocationOutcome MediaTailorClient::UpdateSourceLocation(const UpdateSourceLocationRequest& request) const
@@ -1518,18 +1279,12 @@ UpdateSourceLocationOutcome MediaTailorClient::UpdateSourceLocation(const Update
 
 UpdateSourceLocationOutcomeCallable MediaTailorClient::UpdateSourceLocationCallable(const UpdateSourceLocationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSourceLocationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSourceLocation(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::UpdateSourceLocation, this, request, m_executor.get());
 }
 
 void MediaTailorClient::UpdateSourceLocationAsync(const UpdateSourceLocationRequest& request, const UpdateSourceLocationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSourceLocation(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::UpdateSourceLocation, this, request, handler, context, m_executor.get());
 }
 
 UpdateVodSourceOutcome MediaTailorClient::UpdateVodSource(const UpdateVodSourceRequest& request) const
@@ -1556,17 +1311,11 @@ UpdateVodSourceOutcome MediaTailorClient::UpdateVodSource(const UpdateVodSourceR
 
 UpdateVodSourceOutcomeCallable MediaTailorClient::UpdateVodSourceCallable(const UpdateVodSourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateVodSourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateVodSource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &MediaTailorClient::UpdateVodSource, this, request, m_executor.get());
 }
 
 void MediaTailorClient::UpdateVodSourceAsync(const UpdateVodSourceRequest& request, const UpdateVodSourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateVodSource(request), context);
-    } );
+  MakeAsyncOperation(&MediaTailorClient::UpdateVodSource, this, request, handler, context, m_executor.get());
 }
 

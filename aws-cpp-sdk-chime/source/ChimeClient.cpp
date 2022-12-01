@@ -7,6 +7,7 @@
 #include <aws/core/auth/AWSAuthSigner.h>
 #include <aws/core/client/CoreErrors.h>
 #include <aws/core/client/RetryStrategy.h>
+#include <aws/core/client/AWSAsyncOperationTemplate.h>
 #include <aws/core/http/HttpClient.h>
 #include <aws/core/http/HttpResponse.h>
 #include <aws/core/http/HttpClientFactory.h>
@@ -370,18 +371,12 @@ AssociatePhoneNumberWithUserOutcome ChimeClient::AssociatePhoneNumberWithUser(co
 
 AssociatePhoneNumberWithUserOutcomeCallable ChimeClient::AssociatePhoneNumberWithUserCallable(const AssociatePhoneNumberWithUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociatePhoneNumberWithUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociatePhoneNumberWithUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::AssociatePhoneNumberWithUser, this, request, m_executor.get());
 }
 
 void ChimeClient::AssociatePhoneNumberWithUserAsync(const AssociatePhoneNumberWithUserRequest& request, const AssociatePhoneNumberWithUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociatePhoneNumberWithUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::AssociatePhoneNumberWithUser, this, request, handler, context, m_executor.get());
 }
 
 AssociatePhoneNumbersWithVoiceConnectorOutcome ChimeClient::AssociatePhoneNumbersWithVoiceConnector(const AssociatePhoneNumbersWithVoiceConnectorRequest& request) const
@@ -404,18 +399,12 @@ AssociatePhoneNumbersWithVoiceConnectorOutcome ChimeClient::AssociatePhoneNumber
 
 AssociatePhoneNumbersWithVoiceConnectorOutcomeCallable ChimeClient::AssociatePhoneNumbersWithVoiceConnectorCallable(const AssociatePhoneNumbersWithVoiceConnectorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociatePhoneNumbersWithVoiceConnectorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociatePhoneNumbersWithVoiceConnector(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::AssociatePhoneNumbersWithVoiceConnector, this, request, m_executor.get());
 }
 
 void ChimeClient::AssociatePhoneNumbersWithVoiceConnectorAsync(const AssociatePhoneNumbersWithVoiceConnectorRequest& request, const AssociatePhoneNumbersWithVoiceConnectorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociatePhoneNumbersWithVoiceConnector(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::AssociatePhoneNumbersWithVoiceConnector, this, request, handler, context, m_executor.get());
 }
 
 AssociatePhoneNumbersWithVoiceConnectorGroupOutcome ChimeClient::AssociatePhoneNumbersWithVoiceConnectorGroup(const AssociatePhoneNumbersWithVoiceConnectorGroupRequest& request) const
@@ -438,18 +427,12 @@ AssociatePhoneNumbersWithVoiceConnectorGroupOutcome ChimeClient::AssociatePhoneN
 
 AssociatePhoneNumbersWithVoiceConnectorGroupOutcomeCallable ChimeClient::AssociatePhoneNumbersWithVoiceConnectorGroupCallable(const AssociatePhoneNumbersWithVoiceConnectorGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociatePhoneNumbersWithVoiceConnectorGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociatePhoneNumbersWithVoiceConnectorGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::AssociatePhoneNumbersWithVoiceConnectorGroup, this, request, m_executor.get());
 }
 
 void ChimeClient::AssociatePhoneNumbersWithVoiceConnectorGroupAsync(const AssociatePhoneNumbersWithVoiceConnectorGroupRequest& request, const AssociatePhoneNumbersWithVoiceConnectorGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociatePhoneNumbersWithVoiceConnectorGroup(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::AssociatePhoneNumbersWithVoiceConnectorGroup, this, request, handler, context, m_executor.get());
 }
 
 AssociateSigninDelegateGroupsWithAccountOutcome ChimeClient::AssociateSigninDelegateGroupsWithAccount(const AssociateSigninDelegateGroupsWithAccountRequest& request) const
@@ -477,18 +460,12 @@ AssociateSigninDelegateGroupsWithAccountOutcome ChimeClient::AssociateSigninDele
 
 AssociateSigninDelegateGroupsWithAccountOutcomeCallable ChimeClient::AssociateSigninDelegateGroupsWithAccountCallable(const AssociateSigninDelegateGroupsWithAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< AssociateSigninDelegateGroupsWithAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->AssociateSigninDelegateGroupsWithAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::AssociateSigninDelegateGroupsWithAccount, this, request, m_executor.get());
 }
 
 void ChimeClient::AssociateSigninDelegateGroupsWithAccountAsync(const AssociateSigninDelegateGroupsWithAccountRequest& request, const AssociateSigninDelegateGroupsWithAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, AssociateSigninDelegateGroupsWithAccount(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::AssociateSigninDelegateGroupsWithAccount, this, request, handler, context, m_executor.get());
 }
 
 BatchCreateAttendeeOutcome ChimeClient::BatchCreateAttendee(const BatchCreateAttendeeRequest& request) const
@@ -512,18 +489,12 @@ BatchCreateAttendeeOutcome ChimeClient::BatchCreateAttendee(const BatchCreateAtt
 
 BatchCreateAttendeeOutcomeCallable ChimeClient::BatchCreateAttendeeCallable(const BatchCreateAttendeeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchCreateAttendeeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchCreateAttendee(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchCreateAttendee, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchCreateAttendeeAsync(const BatchCreateAttendeeRequest& request, const BatchCreateAttendeeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchCreateAttendee(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchCreateAttendee, this, request, handler, context, m_executor.get());
 }
 
 BatchCreateChannelMembershipOutcome ChimeClient::BatchCreateChannelMembership(const BatchCreateChannelMembershipRequest& request) const
@@ -549,18 +520,12 @@ BatchCreateChannelMembershipOutcome ChimeClient::BatchCreateChannelMembership(co
 
 BatchCreateChannelMembershipOutcomeCallable ChimeClient::BatchCreateChannelMembershipCallable(const BatchCreateChannelMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchCreateChannelMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchCreateChannelMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchCreateChannelMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchCreateChannelMembershipAsync(const BatchCreateChannelMembershipRequest& request, const BatchCreateChannelMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchCreateChannelMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchCreateChannelMembership, this, request, handler, context, m_executor.get());
 }
 
 BatchCreateRoomMembershipOutcome ChimeClient::BatchCreateRoomMembership(const BatchCreateRoomMembershipRequest& request) const
@@ -596,18 +561,12 @@ BatchCreateRoomMembershipOutcome ChimeClient::BatchCreateRoomMembership(const Ba
 
 BatchCreateRoomMembershipOutcomeCallable ChimeClient::BatchCreateRoomMembershipCallable(const BatchCreateRoomMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchCreateRoomMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchCreateRoomMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchCreateRoomMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchCreateRoomMembershipAsync(const BatchCreateRoomMembershipRequest& request, const BatchCreateRoomMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchCreateRoomMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchCreateRoomMembership, this, request, handler, context, m_executor.get());
 }
 
 BatchDeletePhoneNumberOutcome ChimeClient::BatchDeletePhoneNumber(const BatchDeletePhoneNumberRequest& request) const
@@ -624,18 +583,12 @@ BatchDeletePhoneNumberOutcome ChimeClient::BatchDeletePhoneNumber(const BatchDel
 
 BatchDeletePhoneNumberOutcomeCallable ChimeClient::BatchDeletePhoneNumberCallable(const BatchDeletePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchDeletePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchDeletePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchDeletePhoneNumber, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchDeletePhoneNumberAsync(const BatchDeletePhoneNumberRequest& request, const BatchDeletePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchDeletePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchDeletePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 BatchSuspendUserOutcome ChimeClient::BatchSuspendUser(const BatchSuspendUserRequest& request) const
@@ -664,18 +617,12 @@ BatchSuspendUserOutcome ChimeClient::BatchSuspendUser(const BatchSuspendUserRequ
 
 BatchSuspendUserOutcomeCallable ChimeClient::BatchSuspendUserCallable(const BatchSuspendUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchSuspendUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchSuspendUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchSuspendUser, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchSuspendUserAsync(const BatchSuspendUserRequest& request, const BatchSuspendUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchSuspendUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchSuspendUser, this, request, handler, context, m_executor.get());
 }
 
 BatchUnsuspendUserOutcome ChimeClient::BatchUnsuspendUser(const BatchUnsuspendUserRequest& request) const
@@ -704,18 +651,12 @@ BatchUnsuspendUserOutcome ChimeClient::BatchUnsuspendUser(const BatchUnsuspendUs
 
 BatchUnsuspendUserOutcomeCallable ChimeClient::BatchUnsuspendUserCallable(const BatchUnsuspendUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchUnsuspendUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchUnsuspendUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchUnsuspendUser, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchUnsuspendUserAsync(const BatchUnsuspendUserRequest& request, const BatchUnsuspendUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchUnsuspendUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchUnsuspendUser, this, request, handler, context, m_executor.get());
 }
 
 BatchUpdatePhoneNumberOutcome ChimeClient::BatchUpdatePhoneNumber(const BatchUpdatePhoneNumberRequest& request) const
@@ -732,18 +673,12 @@ BatchUpdatePhoneNumberOutcome ChimeClient::BatchUpdatePhoneNumber(const BatchUpd
 
 BatchUpdatePhoneNumberOutcomeCallable ChimeClient::BatchUpdatePhoneNumberCallable(const BatchUpdatePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchUpdatePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchUpdatePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchUpdatePhoneNumber, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchUpdatePhoneNumberAsync(const BatchUpdatePhoneNumberRequest& request, const BatchUpdatePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchUpdatePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchUpdatePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 BatchUpdateUserOutcome ChimeClient::BatchUpdateUser(const BatchUpdateUserRequest& request) const
@@ -769,18 +704,12 @@ BatchUpdateUserOutcome ChimeClient::BatchUpdateUser(const BatchUpdateUserRequest
 
 BatchUpdateUserOutcomeCallable ChimeClient::BatchUpdateUserCallable(const BatchUpdateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< BatchUpdateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->BatchUpdateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::BatchUpdateUser, this, request, m_executor.get());
 }
 
 void ChimeClient::BatchUpdateUserAsync(const BatchUpdateUserRequest& request, const BatchUpdateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, BatchUpdateUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::BatchUpdateUser, this, request, handler, context, m_executor.get());
 }
 
 CreateAccountOutcome ChimeClient::CreateAccount(const CreateAccountRequest& request) const
@@ -794,18 +723,12 @@ CreateAccountOutcome ChimeClient::CreateAccount(const CreateAccountRequest& requ
 
 CreateAccountOutcomeCallable ChimeClient::CreateAccountCallable(const CreateAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateAccount, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateAccountAsync(const CreateAccountRequest& request, const CreateAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAccount(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateAccount, this, request, handler, context, m_executor.get());
 }
 
 CreateAppInstanceOutcome ChimeClient::CreateAppInstance(const CreateAppInstanceRequest& request) const
@@ -821,18 +744,12 @@ CreateAppInstanceOutcome ChimeClient::CreateAppInstance(const CreateAppInstanceR
 
 CreateAppInstanceOutcomeCallable ChimeClient::CreateAppInstanceCallable(const CreateAppInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAppInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAppInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateAppInstance, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateAppInstanceAsync(const CreateAppInstanceRequest& request, const CreateAppInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAppInstance(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateAppInstance, this, request, handler, context, m_executor.get());
 }
 
 CreateAppInstanceAdminOutcome ChimeClient::CreateAppInstanceAdmin(const CreateAppInstanceAdminRequest& request) const
@@ -855,18 +772,12 @@ CreateAppInstanceAdminOutcome ChimeClient::CreateAppInstanceAdmin(const CreateAp
 
 CreateAppInstanceAdminOutcomeCallable ChimeClient::CreateAppInstanceAdminCallable(const CreateAppInstanceAdminRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAppInstanceAdminOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAppInstanceAdmin(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateAppInstanceAdmin, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateAppInstanceAdminAsync(const CreateAppInstanceAdminRequest& request, const CreateAppInstanceAdminResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAppInstanceAdmin(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateAppInstanceAdmin, this, request, handler, context, m_executor.get());
 }
 
 CreateAppInstanceUserOutcome ChimeClient::CreateAppInstanceUser(const CreateAppInstanceUserRequest& request) const
@@ -882,18 +793,12 @@ CreateAppInstanceUserOutcome ChimeClient::CreateAppInstanceUser(const CreateAppI
 
 CreateAppInstanceUserOutcomeCallable ChimeClient::CreateAppInstanceUserCallable(const CreateAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateAppInstanceUserAsync(const CreateAppInstanceUserRequest& request, const CreateAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 CreateAttendeeOutcome ChimeClient::CreateAttendee(const CreateAttendeeRequest& request) const
@@ -914,18 +819,12 @@ CreateAttendeeOutcome ChimeClient::CreateAttendee(const CreateAttendeeRequest& r
 
 CreateAttendeeOutcomeCallable ChimeClient::CreateAttendeeCallable(const CreateAttendeeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateAttendeeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateAttendee(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateAttendee, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateAttendeeAsync(const CreateAttendeeRequest& request, const CreateAttendeeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateAttendee(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateAttendee, this, request, handler, context, m_executor.get());
 }
 
 CreateBotOutcome ChimeClient::CreateBot(const CreateBotRequest& request) const
@@ -951,18 +850,12 @@ CreateBotOutcome ChimeClient::CreateBot(const CreateBotRequest& request) const
 
 CreateBotOutcomeCallable ChimeClient::CreateBotCallable(const CreateBotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateBotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateBot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateBot, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateBotAsync(const CreateBotRequest& request, const CreateBotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateBot(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateBot, this, request, handler, context, m_executor.get());
 }
 
 CreateChannelOutcome ChimeClient::CreateChannel(const CreateChannelRequest& request) const
@@ -978,18 +871,12 @@ CreateChannelOutcome ChimeClient::CreateChannel(const CreateChannelRequest& requ
 
 CreateChannelOutcomeCallable ChimeClient::CreateChannelCallable(const CreateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateChannel, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateChannelAsync(const CreateChannelRequest& request, const CreateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateChannel(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateChannel, this, request, handler, context, m_executor.get());
 }
 
 CreateChannelBanOutcome ChimeClient::CreateChannelBan(const CreateChannelBanRequest& request) const
@@ -1012,18 +899,12 @@ CreateChannelBanOutcome ChimeClient::CreateChannelBan(const CreateChannelBanRequ
 
 CreateChannelBanOutcomeCallable ChimeClient::CreateChannelBanCallable(const CreateChannelBanRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateChannelBanOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateChannelBan(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateChannelBan, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateChannelBanAsync(const CreateChannelBanRequest& request, const CreateChannelBanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateChannelBan(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateChannelBan, this, request, handler, context, m_executor.get());
 }
 
 CreateChannelMembershipOutcome ChimeClient::CreateChannelMembership(const CreateChannelMembershipRequest& request) const
@@ -1046,18 +927,12 @@ CreateChannelMembershipOutcome ChimeClient::CreateChannelMembership(const Create
 
 CreateChannelMembershipOutcomeCallable ChimeClient::CreateChannelMembershipCallable(const CreateChannelMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateChannelMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateChannelMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateChannelMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateChannelMembershipAsync(const CreateChannelMembershipRequest& request, const CreateChannelMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateChannelMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateChannelMembership, this, request, handler, context, m_executor.get());
 }
 
 CreateChannelModeratorOutcome ChimeClient::CreateChannelModerator(const CreateChannelModeratorRequest& request) const
@@ -1080,18 +955,12 @@ CreateChannelModeratorOutcome ChimeClient::CreateChannelModerator(const CreateCh
 
 CreateChannelModeratorOutcomeCallable ChimeClient::CreateChannelModeratorCallable(const CreateChannelModeratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateChannelModeratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateChannelModerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateChannelModerator, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateChannelModeratorAsync(const CreateChannelModeratorRequest& request, const CreateChannelModeratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateChannelModerator(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateChannelModerator, this, request, handler, context, m_executor.get());
 }
 
 CreateMediaCapturePipelineOutcome ChimeClient::CreateMediaCapturePipeline(const CreateMediaCapturePipelineRequest& request) const
@@ -1105,18 +974,12 @@ CreateMediaCapturePipelineOutcome ChimeClient::CreateMediaCapturePipeline(const 
 
 CreateMediaCapturePipelineOutcomeCallable ChimeClient::CreateMediaCapturePipelineCallable(const CreateMediaCapturePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateMediaCapturePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateMediaCapturePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateMediaCapturePipeline, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateMediaCapturePipelineAsync(const CreateMediaCapturePipelineRequest& request, const CreateMediaCapturePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateMediaCapturePipeline(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateMediaCapturePipeline, this, request, handler, context, m_executor.get());
 }
 
 CreateMeetingOutcome ChimeClient::CreateMeeting(const CreateMeetingRequest& request) const
@@ -1130,18 +993,12 @@ CreateMeetingOutcome ChimeClient::CreateMeeting(const CreateMeetingRequest& requ
 
 CreateMeetingOutcomeCallable ChimeClient::CreateMeetingCallable(const CreateMeetingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateMeetingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateMeeting(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateMeeting, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateMeetingAsync(const CreateMeetingRequest& request, const CreateMeetingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateMeeting(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateMeeting, this, request, handler, context, m_executor.get());
 }
 
 CreateMeetingDialOutOutcome ChimeClient::CreateMeetingDialOut(const CreateMeetingDialOutRequest& request) const
@@ -1162,18 +1019,12 @@ CreateMeetingDialOutOutcome ChimeClient::CreateMeetingDialOut(const CreateMeetin
 
 CreateMeetingDialOutOutcomeCallable ChimeClient::CreateMeetingDialOutCallable(const CreateMeetingDialOutRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateMeetingDialOutOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateMeetingDialOut(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateMeetingDialOut, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateMeetingDialOutAsync(const CreateMeetingDialOutRequest& request, const CreateMeetingDialOutResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateMeetingDialOut(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateMeetingDialOut, this, request, handler, context, m_executor.get());
 }
 
 CreateMeetingWithAttendeesOutcome ChimeClient::CreateMeetingWithAttendees(const CreateMeetingWithAttendeesRequest& request) const
@@ -1190,18 +1041,12 @@ CreateMeetingWithAttendeesOutcome ChimeClient::CreateMeetingWithAttendees(const 
 
 CreateMeetingWithAttendeesOutcomeCallable ChimeClient::CreateMeetingWithAttendeesCallable(const CreateMeetingWithAttendeesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateMeetingWithAttendeesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateMeetingWithAttendees(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateMeetingWithAttendees, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateMeetingWithAttendeesAsync(const CreateMeetingWithAttendeesRequest& request, const CreateMeetingWithAttendeesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateMeetingWithAttendees(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateMeetingWithAttendees, this, request, handler, context, m_executor.get());
 }
 
 CreatePhoneNumberOrderOutcome ChimeClient::CreatePhoneNumberOrder(const CreatePhoneNumberOrderRequest& request) const
@@ -1215,18 +1060,12 @@ CreatePhoneNumberOrderOutcome ChimeClient::CreatePhoneNumberOrder(const CreatePh
 
 CreatePhoneNumberOrderOutcomeCallable ChimeClient::CreatePhoneNumberOrderCallable(const CreatePhoneNumberOrderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreatePhoneNumberOrderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreatePhoneNumberOrder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreatePhoneNumberOrder, this, request, m_executor.get());
 }
 
 void ChimeClient::CreatePhoneNumberOrderAsync(const CreatePhoneNumberOrderRequest& request, const CreatePhoneNumberOrderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreatePhoneNumberOrder(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreatePhoneNumberOrder, this, request, handler, context, m_executor.get());
 }
 
 CreateProxySessionOutcome ChimeClient::CreateProxySession(const CreateProxySessionRequest& request) const
@@ -1247,18 +1086,12 @@ CreateProxySessionOutcome ChimeClient::CreateProxySession(const CreateProxySessi
 
 CreateProxySessionOutcomeCallable ChimeClient::CreateProxySessionCallable(const CreateProxySessionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateProxySessionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateProxySession(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateProxySession, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateProxySessionAsync(const CreateProxySessionRequest& request, const CreateProxySessionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateProxySession(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateProxySession, this, request, handler, context, m_executor.get());
 }
 
 CreateRoomOutcome ChimeClient::CreateRoom(const CreateRoomRequest& request) const
@@ -1284,18 +1117,12 @@ CreateRoomOutcome ChimeClient::CreateRoom(const CreateRoomRequest& request) cons
 
 CreateRoomOutcomeCallable ChimeClient::CreateRoomCallable(const CreateRoomRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRoomOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRoom(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateRoom, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateRoomAsync(const CreateRoomRequest& request, const CreateRoomResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRoom(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateRoom, this, request, handler, context, m_executor.get());
 }
 
 CreateRoomMembershipOutcome ChimeClient::CreateRoomMembership(const CreateRoomMembershipRequest& request) const
@@ -1328,18 +1155,12 @@ CreateRoomMembershipOutcome ChimeClient::CreateRoomMembership(const CreateRoomMe
 
 CreateRoomMembershipOutcomeCallable ChimeClient::CreateRoomMembershipCallable(const CreateRoomMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateRoomMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateRoomMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateRoomMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateRoomMembershipAsync(const CreateRoomMembershipRequest& request, const CreateRoomMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateRoomMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateRoomMembership, this, request, handler, context, m_executor.get());
 }
 
 CreateSipMediaApplicationOutcome ChimeClient::CreateSipMediaApplication(const CreateSipMediaApplicationRequest& request) const
@@ -1353,18 +1174,12 @@ CreateSipMediaApplicationOutcome ChimeClient::CreateSipMediaApplication(const Cr
 
 CreateSipMediaApplicationOutcomeCallable ChimeClient::CreateSipMediaApplicationCallable(const CreateSipMediaApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSipMediaApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSipMediaApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateSipMediaApplication, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateSipMediaApplicationAsync(const CreateSipMediaApplicationRequest& request, const CreateSipMediaApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSipMediaApplication(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateSipMediaApplication, this, request, handler, context, m_executor.get());
 }
 
 CreateSipMediaApplicationCallOutcome ChimeClient::CreateSipMediaApplicationCall(const CreateSipMediaApplicationCallRequest& request) const
@@ -1385,18 +1200,12 @@ CreateSipMediaApplicationCallOutcome ChimeClient::CreateSipMediaApplicationCall(
 
 CreateSipMediaApplicationCallOutcomeCallable ChimeClient::CreateSipMediaApplicationCallCallable(const CreateSipMediaApplicationCallRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSipMediaApplicationCallOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSipMediaApplicationCall(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateSipMediaApplicationCall, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateSipMediaApplicationCallAsync(const CreateSipMediaApplicationCallRequest& request, const CreateSipMediaApplicationCallResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSipMediaApplicationCall(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateSipMediaApplicationCall, this, request, handler, context, m_executor.get());
 }
 
 CreateSipRuleOutcome ChimeClient::CreateSipRule(const CreateSipRuleRequest& request) const
@@ -1410,18 +1219,12 @@ CreateSipRuleOutcome ChimeClient::CreateSipRule(const CreateSipRuleRequest& requ
 
 CreateSipRuleOutcomeCallable ChimeClient::CreateSipRuleCallable(const CreateSipRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateSipRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateSipRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateSipRule, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateSipRuleAsync(const CreateSipRuleRequest& request, const CreateSipRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateSipRule(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateSipRule, this, request, handler, context, m_executor.get());
 }
 
 CreateUserOutcome ChimeClient::CreateUser(const CreateUserRequest& request) const
@@ -1450,18 +1253,12 @@ CreateUserOutcome ChimeClient::CreateUser(const CreateUserRequest& request) cons
 
 CreateUserOutcomeCallable ChimeClient::CreateUserCallable(const CreateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateUser, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateUserAsync(const CreateUserRequest& request, const CreateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateUser, this, request, handler, context, m_executor.get());
 }
 
 CreateVoiceConnectorOutcome ChimeClient::CreateVoiceConnector(const CreateVoiceConnectorRequest& request) const
@@ -1475,18 +1272,12 @@ CreateVoiceConnectorOutcome ChimeClient::CreateVoiceConnector(const CreateVoiceC
 
 CreateVoiceConnectorOutcomeCallable ChimeClient::CreateVoiceConnectorCallable(const CreateVoiceConnectorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateVoiceConnectorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateVoiceConnector(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateVoiceConnector, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateVoiceConnectorAsync(const CreateVoiceConnectorRequest& request, const CreateVoiceConnectorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateVoiceConnector(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateVoiceConnector, this, request, handler, context, m_executor.get());
 }
 
 CreateVoiceConnectorGroupOutcome ChimeClient::CreateVoiceConnectorGroup(const CreateVoiceConnectorGroupRequest& request) const
@@ -1500,18 +1291,12 @@ CreateVoiceConnectorGroupOutcome ChimeClient::CreateVoiceConnectorGroup(const Cr
 
 CreateVoiceConnectorGroupOutcomeCallable ChimeClient::CreateVoiceConnectorGroupCallable(const CreateVoiceConnectorGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< CreateVoiceConnectorGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->CreateVoiceConnectorGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::CreateVoiceConnectorGroup, this, request, m_executor.get());
 }
 
 void ChimeClient::CreateVoiceConnectorGroupAsync(const CreateVoiceConnectorGroupRequest& request, const CreateVoiceConnectorGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, CreateVoiceConnectorGroup(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::CreateVoiceConnectorGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteAccountOutcome ChimeClient::DeleteAccount(const DeleteAccountRequest& request) const
@@ -1536,18 +1321,12 @@ DeleteAccountOutcome ChimeClient::DeleteAccount(const DeleteAccountRequest& requ
 
 DeleteAccountOutcomeCallable ChimeClient::DeleteAccountCallable(const DeleteAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteAccount, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteAccountAsync(const DeleteAccountRequest& request, const DeleteAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAccount(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteAccount, this, request, handler, context, m_executor.get());
 }
 
 DeleteAppInstanceOutcome ChimeClient::DeleteAppInstance(const DeleteAppInstanceRequest& request) const
@@ -1569,18 +1348,12 @@ DeleteAppInstanceOutcome ChimeClient::DeleteAppInstance(const DeleteAppInstanceR
 
 DeleteAppInstanceOutcomeCallable ChimeClient::DeleteAppInstanceCallable(const DeleteAppInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAppInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAppInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteAppInstance, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteAppInstanceAsync(const DeleteAppInstanceRequest& request, const DeleteAppInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAppInstance(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteAppInstance, this, request, handler, context, m_executor.get());
 }
 
 DeleteAppInstanceAdminOutcome ChimeClient::DeleteAppInstanceAdmin(const DeleteAppInstanceAdminRequest& request) const
@@ -1609,18 +1382,12 @@ DeleteAppInstanceAdminOutcome ChimeClient::DeleteAppInstanceAdmin(const DeleteAp
 
 DeleteAppInstanceAdminOutcomeCallable ChimeClient::DeleteAppInstanceAdminCallable(const DeleteAppInstanceAdminRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAppInstanceAdminOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAppInstanceAdmin(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteAppInstanceAdmin, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteAppInstanceAdminAsync(const DeleteAppInstanceAdminRequest& request, const DeleteAppInstanceAdminResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAppInstanceAdmin(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteAppInstanceAdmin, this, request, handler, context, m_executor.get());
 }
 
 DeleteAppInstanceStreamingConfigurationsOutcome ChimeClient::DeleteAppInstanceStreamingConfigurations(const DeleteAppInstanceStreamingConfigurationsRequest& request) const
@@ -1641,18 +1408,12 @@ DeleteAppInstanceStreamingConfigurationsOutcome ChimeClient::DeleteAppInstanceSt
 
 DeleteAppInstanceStreamingConfigurationsOutcomeCallable ChimeClient::DeleteAppInstanceStreamingConfigurationsCallable(const DeleteAppInstanceStreamingConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAppInstanceStreamingConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAppInstanceStreamingConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteAppInstanceStreamingConfigurations, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteAppInstanceStreamingConfigurationsAsync(const DeleteAppInstanceStreamingConfigurationsRequest& request, const DeleteAppInstanceStreamingConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAppInstanceStreamingConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteAppInstanceStreamingConfigurations, this, request, handler, context, m_executor.get());
 }
 
 DeleteAppInstanceUserOutcome ChimeClient::DeleteAppInstanceUser(const DeleteAppInstanceUserRequest& request) const
@@ -1674,18 +1435,12 @@ DeleteAppInstanceUserOutcome ChimeClient::DeleteAppInstanceUser(const DeleteAppI
 
 DeleteAppInstanceUserOutcomeCallable ChimeClient::DeleteAppInstanceUserCallable(const DeleteAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteAppInstanceUserAsync(const DeleteAppInstanceUserRequest& request, const DeleteAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 DeleteAttendeeOutcome ChimeClient::DeleteAttendee(const DeleteAttendeeRequest& request) const
@@ -1712,18 +1467,12 @@ DeleteAttendeeOutcome ChimeClient::DeleteAttendee(const DeleteAttendeeRequest& r
 
 DeleteAttendeeOutcomeCallable ChimeClient::DeleteAttendeeCallable(const DeleteAttendeeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteAttendeeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteAttendee(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteAttendee, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteAttendeeAsync(const DeleteAttendeeRequest& request, const DeleteAttendeeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteAttendee(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteAttendee, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelOutcome ChimeClient::DeleteChannel(const DeleteChannelRequest& request) const
@@ -1745,18 +1494,12 @@ DeleteChannelOutcome ChimeClient::DeleteChannel(const DeleteChannelRequest& requ
 
 DeleteChannelOutcomeCallable ChimeClient::DeleteChannelCallable(const DeleteChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteChannel, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteChannelAsync(const DeleteChannelRequest& request, const DeleteChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannel(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteChannel, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelBanOutcome ChimeClient::DeleteChannelBan(const DeleteChannelBanRequest& request) const
@@ -1785,18 +1528,12 @@ DeleteChannelBanOutcome ChimeClient::DeleteChannelBan(const DeleteChannelBanRequ
 
 DeleteChannelBanOutcomeCallable ChimeClient::DeleteChannelBanCallable(const DeleteChannelBanRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelBanOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannelBan(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteChannelBan, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteChannelBanAsync(const DeleteChannelBanRequest& request, const DeleteChannelBanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannelBan(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteChannelBan, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelMembershipOutcome ChimeClient::DeleteChannelMembership(const DeleteChannelMembershipRequest& request) const
@@ -1825,18 +1562,12 @@ DeleteChannelMembershipOutcome ChimeClient::DeleteChannelMembership(const Delete
 
 DeleteChannelMembershipOutcomeCallable ChimeClient::DeleteChannelMembershipCallable(const DeleteChannelMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannelMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteChannelMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteChannelMembershipAsync(const DeleteChannelMembershipRequest& request, const DeleteChannelMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannelMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteChannelMembership, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelMessageOutcome ChimeClient::DeleteChannelMessage(const DeleteChannelMessageRequest& request) const
@@ -1865,18 +1596,12 @@ DeleteChannelMessageOutcome ChimeClient::DeleteChannelMessage(const DeleteChanne
 
 DeleteChannelMessageOutcomeCallable ChimeClient::DeleteChannelMessageCallable(const DeleteChannelMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannelMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteChannelMessage, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteChannelMessageAsync(const DeleteChannelMessageRequest& request, const DeleteChannelMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannelMessage(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteChannelMessage, this, request, handler, context, m_executor.get());
 }
 
 DeleteChannelModeratorOutcome ChimeClient::DeleteChannelModerator(const DeleteChannelModeratorRequest& request) const
@@ -1905,18 +1630,12 @@ DeleteChannelModeratorOutcome ChimeClient::DeleteChannelModerator(const DeleteCh
 
 DeleteChannelModeratorOutcomeCallable ChimeClient::DeleteChannelModeratorCallable(const DeleteChannelModeratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteChannelModeratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteChannelModerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteChannelModerator, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteChannelModeratorAsync(const DeleteChannelModeratorRequest& request, const DeleteChannelModeratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteChannelModerator(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteChannelModerator, this, request, handler, context, m_executor.get());
 }
 
 DeleteEventsConfigurationOutcome ChimeClient::DeleteEventsConfiguration(const DeleteEventsConfigurationRequest& request) const
@@ -1949,18 +1668,12 @@ DeleteEventsConfigurationOutcome ChimeClient::DeleteEventsConfiguration(const De
 
 DeleteEventsConfigurationOutcomeCallable ChimeClient::DeleteEventsConfigurationCallable(const DeleteEventsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteEventsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteEventsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteEventsConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteEventsConfigurationAsync(const DeleteEventsConfigurationRequest& request, const DeleteEventsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteEventsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteEventsConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeleteMediaCapturePipelineOutcome ChimeClient::DeleteMediaCapturePipeline(const DeleteMediaCapturePipelineRequest& request) const
@@ -1980,18 +1693,12 @@ DeleteMediaCapturePipelineOutcome ChimeClient::DeleteMediaCapturePipeline(const 
 
 DeleteMediaCapturePipelineOutcomeCallable ChimeClient::DeleteMediaCapturePipelineCallable(const DeleteMediaCapturePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteMediaCapturePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteMediaCapturePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteMediaCapturePipeline, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteMediaCapturePipelineAsync(const DeleteMediaCapturePipelineRequest& request, const DeleteMediaCapturePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteMediaCapturePipeline(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteMediaCapturePipeline, this, request, handler, context, m_executor.get());
 }
 
 DeleteMeetingOutcome ChimeClient::DeleteMeeting(const DeleteMeetingRequest& request) const
@@ -2011,18 +1718,12 @@ DeleteMeetingOutcome ChimeClient::DeleteMeeting(const DeleteMeetingRequest& requ
 
 DeleteMeetingOutcomeCallable ChimeClient::DeleteMeetingCallable(const DeleteMeetingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteMeetingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteMeeting(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteMeeting, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteMeetingAsync(const DeleteMeetingRequest& request, const DeleteMeetingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteMeeting(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteMeeting, this, request, handler, context, m_executor.get());
 }
 
 DeletePhoneNumberOutcome ChimeClient::DeletePhoneNumber(const DeletePhoneNumberRequest& request) const
@@ -2042,18 +1743,12 @@ DeletePhoneNumberOutcome ChimeClient::DeletePhoneNumber(const DeletePhoneNumberR
 
 DeletePhoneNumberOutcomeCallable ChimeClient::DeletePhoneNumberCallable(const DeletePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeletePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeletePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeletePhoneNumber, this, request, m_executor.get());
 }
 
 void ChimeClient::DeletePhoneNumberAsync(const DeletePhoneNumberRequest& request, const DeletePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeletePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeletePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 DeleteProxySessionOutcome ChimeClient::DeleteProxySession(const DeleteProxySessionRequest& request) const
@@ -2080,18 +1775,12 @@ DeleteProxySessionOutcome ChimeClient::DeleteProxySession(const DeleteProxySessi
 
 DeleteProxySessionOutcomeCallable ChimeClient::DeleteProxySessionCallable(const DeleteProxySessionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteProxySessionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteProxySession(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteProxySession, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteProxySessionAsync(const DeleteProxySessionRequest& request, const DeleteProxySessionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteProxySession(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteProxySession, this, request, handler, context, m_executor.get());
 }
 
 DeleteRoomOutcome ChimeClient::DeleteRoom(const DeleteRoomRequest& request) const
@@ -2123,18 +1812,12 @@ DeleteRoomOutcome ChimeClient::DeleteRoom(const DeleteRoomRequest& request) cons
 
 DeleteRoomOutcomeCallable ChimeClient::DeleteRoomCallable(const DeleteRoomRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRoomOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRoom(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteRoom, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteRoomAsync(const DeleteRoomRequest& request, const DeleteRoomResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRoom(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteRoom, this, request, handler, context, m_executor.get());
 }
 
 DeleteRoomMembershipOutcome ChimeClient::DeleteRoomMembership(const DeleteRoomMembershipRequest& request) const
@@ -2173,18 +1856,12 @@ DeleteRoomMembershipOutcome ChimeClient::DeleteRoomMembership(const DeleteRoomMe
 
 DeleteRoomMembershipOutcomeCallable ChimeClient::DeleteRoomMembershipCallable(const DeleteRoomMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteRoomMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteRoomMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteRoomMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteRoomMembershipAsync(const DeleteRoomMembershipRequest& request, const DeleteRoomMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteRoomMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteRoomMembership, this, request, handler, context, m_executor.get());
 }
 
 DeleteSipMediaApplicationOutcome ChimeClient::DeleteSipMediaApplication(const DeleteSipMediaApplicationRequest& request) const
@@ -2204,18 +1881,12 @@ DeleteSipMediaApplicationOutcome ChimeClient::DeleteSipMediaApplication(const De
 
 DeleteSipMediaApplicationOutcomeCallable ChimeClient::DeleteSipMediaApplicationCallable(const DeleteSipMediaApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSipMediaApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSipMediaApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteSipMediaApplication, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteSipMediaApplicationAsync(const DeleteSipMediaApplicationRequest& request, const DeleteSipMediaApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSipMediaApplication(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteSipMediaApplication, this, request, handler, context, m_executor.get());
 }
 
 DeleteSipRuleOutcome ChimeClient::DeleteSipRule(const DeleteSipRuleRequest& request) const
@@ -2235,18 +1906,12 @@ DeleteSipRuleOutcome ChimeClient::DeleteSipRule(const DeleteSipRuleRequest& requ
 
 DeleteSipRuleOutcomeCallable ChimeClient::DeleteSipRuleCallable(const DeleteSipRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteSipRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteSipRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteSipRule, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteSipRuleAsync(const DeleteSipRuleRequest& request, const DeleteSipRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteSipRule(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteSipRule, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorOutcome ChimeClient::DeleteVoiceConnector(const DeleteVoiceConnectorRequest& request) const
@@ -2266,18 +1931,12 @@ DeleteVoiceConnectorOutcome ChimeClient::DeleteVoiceConnector(const DeleteVoiceC
 
 DeleteVoiceConnectorOutcomeCallable ChimeClient::DeleteVoiceConnectorCallable(const DeleteVoiceConnectorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnector(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnector, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorAsync(const DeleteVoiceConnectorRequest& request, const DeleteVoiceConnectorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnector(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnector, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorEmergencyCallingConfigurationOutcome ChimeClient::DeleteVoiceConnectorEmergencyCallingConfiguration(const DeleteVoiceConnectorEmergencyCallingConfigurationRequest& request) const
@@ -2298,18 +1957,12 @@ DeleteVoiceConnectorEmergencyCallingConfigurationOutcome ChimeClient::DeleteVoic
 
 DeleteVoiceConnectorEmergencyCallingConfigurationOutcomeCallable ChimeClient::DeleteVoiceConnectorEmergencyCallingConfigurationCallable(const DeleteVoiceConnectorEmergencyCallingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorEmergencyCallingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnectorEmergencyCallingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnectorEmergencyCallingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorEmergencyCallingConfigurationAsync(const DeleteVoiceConnectorEmergencyCallingConfigurationRequest& request, const DeleteVoiceConnectorEmergencyCallingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnectorEmergencyCallingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnectorEmergencyCallingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorGroupOutcome ChimeClient::DeleteVoiceConnectorGroup(const DeleteVoiceConnectorGroupRequest& request) const
@@ -2329,18 +1982,12 @@ DeleteVoiceConnectorGroupOutcome ChimeClient::DeleteVoiceConnectorGroup(const De
 
 DeleteVoiceConnectorGroupOutcomeCallable ChimeClient::DeleteVoiceConnectorGroupCallable(const DeleteVoiceConnectorGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnectorGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnectorGroup, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorGroupAsync(const DeleteVoiceConnectorGroupRequest& request, const DeleteVoiceConnectorGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnectorGroup(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnectorGroup, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorOriginationOutcome ChimeClient::DeleteVoiceConnectorOrigination(const DeleteVoiceConnectorOriginationRequest& request) const
@@ -2361,18 +2008,12 @@ DeleteVoiceConnectorOriginationOutcome ChimeClient::DeleteVoiceConnectorOriginat
 
 DeleteVoiceConnectorOriginationOutcomeCallable ChimeClient::DeleteVoiceConnectorOriginationCallable(const DeleteVoiceConnectorOriginationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorOriginationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnectorOrigination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnectorOrigination, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorOriginationAsync(const DeleteVoiceConnectorOriginationRequest& request, const DeleteVoiceConnectorOriginationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnectorOrigination(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnectorOrigination, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorProxyOutcome ChimeClient::DeleteVoiceConnectorProxy(const DeleteVoiceConnectorProxyRequest& request) const
@@ -2393,18 +2034,12 @@ DeleteVoiceConnectorProxyOutcome ChimeClient::DeleteVoiceConnectorProxy(const De
 
 DeleteVoiceConnectorProxyOutcomeCallable ChimeClient::DeleteVoiceConnectorProxyCallable(const DeleteVoiceConnectorProxyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorProxyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnectorProxy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnectorProxy, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorProxyAsync(const DeleteVoiceConnectorProxyRequest& request, const DeleteVoiceConnectorProxyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnectorProxy(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnectorProxy, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorStreamingConfigurationOutcome ChimeClient::DeleteVoiceConnectorStreamingConfiguration(const DeleteVoiceConnectorStreamingConfigurationRequest& request) const
@@ -2425,18 +2060,12 @@ DeleteVoiceConnectorStreamingConfigurationOutcome ChimeClient::DeleteVoiceConnec
 
 DeleteVoiceConnectorStreamingConfigurationOutcomeCallable ChimeClient::DeleteVoiceConnectorStreamingConfigurationCallable(const DeleteVoiceConnectorStreamingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorStreamingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnectorStreamingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnectorStreamingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorStreamingConfigurationAsync(const DeleteVoiceConnectorStreamingConfigurationRequest& request, const DeleteVoiceConnectorStreamingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnectorStreamingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnectorStreamingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorTerminationOutcome ChimeClient::DeleteVoiceConnectorTermination(const DeleteVoiceConnectorTerminationRequest& request) const
@@ -2457,18 +2086,12 @@ DeleteVoiceConnectorTerminationOutcome ChimeClient::DeleteVoiceConnectorTerminat
 
 DeleteVoiceConnectorTerminationOutcomeCallable ChimeClient::DeleteVoiceConnectorTerminationCallable(const DeleteVoiceConnectorTerminationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorTerminationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnectorTermination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnectorTermination, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorTerminationAsync(const DeleteVoiceConnectorTerminationRequest& request, const DeleteVoiceConnectorTerminationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnectorTermination(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnectorTermination, this, request, handler, context, m_executor.get());
 }
 
 DeleteVoiceConnectorTerminationCredentialsOutcome ChimeClient::DeleteVoiceConnectorTerminationCredentials(const DeleteVoiceConnectorTerminationCredentialsRequest& request) const
@@ -2492,18 +2115,12 @@ DeleteVoiceConnectorTerminationCredentialsOutcome ChimeClient::DeleteVoiceConnec
 
 DeleteVoiceConnectorTerminationCredentialsOutcomeCallable ChimeClient::DeleteVoiceConnectorTerminationCredentialsCallable(const DeleteVoiceConnectorTerminationCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DeleteVoiceConnectorTerminationCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DeleteVoiceConnectorTerminationCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DeleteVoiceConnectorTerminationCredentials, this, request, m_executor.get());
 }
 
 void ChimeClient::DeleteVoiceConnectorTerminationCredentialsAsync(const DeleteVoiceConnectorTerminationCredentialsRequest& request, const DeleteVoiceConnectorTerminationCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DeleteVoiceConnectorTerminationCredentials(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DeleteVoiceConnectorTerminationCredentials, this, request, handler, context, m_executor.get());
 }
 
 DescribeAppInstanceOutcome ChimeClient::DescribeAppInstance(const DescribeAppInstanceRequest& request) const
@@ -2525,18 +2142,12 @@ DescribeAppInstanceOutcome ChimeClient::DescribeAppInstance(const DescribeAppIns
 
 DescribeAppInstanceOutcomeCallable ChimeClient::DescribeAppInstanceCallable(const DescribeAppInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAppInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAppInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeAppInstance, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeAppInstanceAsync(const DescribeAppInstanceRequest& request, const DescribeAppInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAppInstance(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeAppInstance, this, request, handler, context, m_executor.get());
 }
 
 DescribeAppInstanceAdminOutcome ChimeClient::DescribeAppInstanceAdmin(const DescribeAppInstanceAdminRequest& request) const
@@ -2565,18 +2176,12 @@ DescribeAppInstanceAdminOutcome ChimeClient::DescribeAppInstanceAdmin(const Desc
 
 DescribeAppInstanceAdminOutcomeCallable ChimeClient::DescribeAppInstanceAdminCallable(const DescribeAppInstanceAdminRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAppInstanceAdminOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAppInstanceAdmin(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeAppInstanceAdmin, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeAppInstanceAdminAsync(const DescribeAppInstanceAdminRequest& request, const DescribeAppInstanceAdminResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAppInstanceAdmin(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeAppInstanceAdmin, this, request, handler, context, m_executor.get());
 }
 
 DescribeAppInstanceUserOutcome ChimeClient::DescribeAppInstanceUser(const DescribeAppInstanceUserRequest& request) const
@@ -2598,18 +2203,12 @@ DescribeAppInstanceUserOutcome ChimeClient::DescribeAppInstanceUser(const Descri
 
 DescribeAppInstanceUserOutcomeCallable ChimeClient::DescribeAppInstanceUserCallable(const DescribeAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeAppInstanceUserAsync(const DescribeAppInstanceUserRequest& request, const DescribeAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelOutcome ChimeClient::DescribeChannel(const DescribeChannelRequest& request) const
@@ -2631,18 +2230,12 @@ DescribeChannelOutcome ChimeClient::DescribeChannel(const DescribeChannelRequest
 
 DescribeChannelOutcomeCallable ChimeClient::DescribeChannelCallable(const DescribeChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeChannel, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeChannelAsync(const DescribeChannelRequest& request, const DescribeChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannel(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeChannel, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelBanOutcome ChimeClient::DescribeChannelBan(const DescribeChannelBanRequest& request) const
@@ -2671,18 +2264,12 @@ DescribeChannelBanOutcome ChimeClient::DescribeChannelBan(const DescribeChannelB
 
 DescribeChannelBanOutcomeCallable ChimeClient::DescribeChannelBanCallable(const DescribeChannelBanRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelBanOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannelBan(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeChannelBan, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeChannelBanAsync(const DescribeChannelBanRequest& request, const DescribeChannelBanResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannelBan(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeChannelBan, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelMembershipOutcome ChimeClient::DescribeChannelMembership(const DescribeChannelMembershipRequest& request) const
@@ -2711,18 +2298,12 @@ DescribeChannelMembershipOutcome ChimeClient::DescribeChannelMembership(const De
 
 DescribeChannelMembershipOutcomeCallable ChimeClient::DescribeChannelMembershipCallable(const DescribeChannelMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannelMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeChannelMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeChannelMembershipAsync(const DescribeChannelMembershipRequest& request, const DescribeChannelMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannelMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeChannelMembership, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelMembershipForAppInstanceUserOutcome ChimeClient::DescribeChannelMembershipForAppInstanceUser(const DescribeChannelMembershipForAppInstanceUserRequest& request) const
@@ -2752,18 +2333,12 @@ DescribeChannelMembershipForAppInstanceUserOutcome ChimeClient::DescribeChannelM
 
 DescribeChannelMembershipForAppInstanceUserOutcomeCallable ChimeClient::DescribeChannelMembershipForAppInstanceUserCallable(const DescribeChannelMembershipForAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelMembershipForAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannelMembershipForAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeChannelMembershipForAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeChannelMembershipForAppInstanceUserAsync(const DescribeChannelMembershipForAppInstanceUserRequest& request, const DescribeChannelMembershipForAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannelMembershipForAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeChannelMembershipForAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelModeratedByAppInstanceUserOutcome ChimeClient::DescribeChannelModeratedByAppInstanceUser(const DescribeChannelModeratedByAppInstanceUserRequest& request) const
@@ -2793,18 +2368,12 @@ DescribeChannelModeratedByAppInstanceUserOutcome ChimeClient::DescribeChannelMod
 
 DescribeChannelModeratedByAppInstanceUserOutcomeCallable ChimeClient::DescribeChannelModeratedByAppInstanceUserCallable(const DescribeChannelModeratedByAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelModeratedByAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannelModeratedByAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeChannelModeratedByAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeChannelModeratedByAppInstanceUserAsync(const DescribeChannelModeratedByAppInstanceUserRequest& request, const DescribeChannelModeratedByAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannelModeratedByAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeChannelModeratedByAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 DescribeChannelModeratorOutcome ChimeClient::DescribeChannelModerator(const DescribeChannelModeratorRequest& request) const
@@ -2833,18 +2402,12 @@ DescribeChannelModeratorOutcome ChimeClient::DescribeChannelModerator(const Desc
 
 DescribeChannelModeratorOutcomeCallable ChimeClient::DescribeChannelModeratorCallable(const DescribeChannelModeratorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DescribeChannelModeratorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DescribeChannelModerator(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DescribeChannelModerator, this, request, m_executor.get());
 }
 
 void ChimeClient::DescribeChannelModeratorAsync(const DescribeChannelModeratorRequest& request, const DescribeChannelModeratorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DescribeChannelModerator(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DescribeChannelModerator, this, request, handler, context, m_executor.get());
 }
 
 DisassociatePhoneNumberFromUserOutcome ChimeClient::DisassociatePhoneNumberFromUser(const DisassociatePhoneNumberFromUserRequest& request) const
@@ -2879,18 +2442,12 @@ DisassociatePhoneNumberFromUserOutcome ChimeClient::DisassociatePhoneNumberFromU
 
 DisassociatePhoneNumberFromUserOutcomeCallable ChimeClient::DisassociatePhoneNumberFromUserCallable(const DisassociatePhoneNumberFromUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociatePhoneNumberFromUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociatePhoneNumberFromUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DisassociatePhoneNumberFromUser, this, request, m_executor.get());
 }
 
 void ChimeClient::DisassociatePhoneNumberFromUserAsync(const DisassociatePhoneNumberFromUserRequest& request, const DisassociatePhoneNumberFromUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociatePhoneNumberFromUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DisassociatePhoneNumberFromUser, this, request, handler, context, m_executor.get());
 }
 
 DisassociatePhoneNumbersFromVoiceConnectorOutcome ChimeClient::DisassociatePhoneNumbersFromVoiceConnector(const DisassociatePhoneNumbersFromVoiceConnectorRequest& request) const
@@ -2913,18 +2470,12 @@ DisassociatePhoneNumbersFromVoiceConnectorOutcome ChimeClient::DisassociatePhone
 
 DisassociatePhoneNumbersFromVoiceConnectorOutcomeCallable ChimeClient::DisassociatePhoneNumbersFromVoiceConnectorCallable(const DisassociatePhoneNumbersFromVoiceConnectorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociatePhoneNumbersFromVoiceConnectorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociatePhoneNumbersFromVoiceConnector(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DisassociatePhoneNumbersFromVoiceConnector, this, request, m_executor.get());
 }
 
 void ChimeClient::DisassociatePhoneNumbersFromVoiceConnectorAsync(const DisassociatePhoneNumbersFromVoiceConnectorRequest& request, const DisassociatePhoneNumbersFromVoiceConnectorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociatePhoneNumbersFromVoiceConnector(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DisassociatePhoneNumbersFromVoiceConnector, this, request, handler, context, m_executor.get());
 }
 
 DisassociatePhoneNumbersFromVoiceConnectorGroupOutcome ChimeClient::DisassociatePhoneNumbersFromVoiceConnectorGroup(const DisassociatePhoneNumbersFromVoiceConnectorGroupRequest& request) const
@@ -2947,18 +2498,12 @@ DisassociatePhoneNumbersFromVoiceConnectorGroupOutcome ChimeClient::Disassociate
 
 DisassociatePhoneNumbersFromVoiceConnectorGroupOutcomeCallable ChimeClient::DisassociatePhoneNumbersFromVoiceConnectorGroupCallable(const DisassociatePhoneNumbersFromVoiceConnectorGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociatePhoneNumbersFromVoiceConnectorGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociatePhoneNumbersFromVoiceConnectorGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DisassociatePhoneNumbersFromVoiceConnectorGroup, this, request, m_executor.get());
 }
 
 void ChimeClient::DisassociatePhoneNumbersFromVoiceConnectorGroupAsync(const DisassociatePhoneNumbersFromVoiceConnectorGroupRequest& request, const DisassociatePhoneNumbersFromVoiceConnectorGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociatePhoneNumbersFromVoiceConnectorGroup(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DisassociatePhoneNumbersFromVoiceConnectorGroup, this, request, handler, context, m_executor.get());
 }
 
 DisassociateSigninDelegateGroupsFromAccountOutcome ChimeClient::DisassociateSigninDelegateGroupsFromAccount(const DisassociateSigninDelegateGroupsFromAccountRequest& request) const
@@ -2986,18 +2531,12 @@ DisassociateSigninDelegateGroupsFromAccountOutcome ChimeClient::DisassociateSign
 
 DisassociateSigninDelegateGroupsFromAccountOutcomeCallable ChimeClient::DisassociateSigninDelegateGroupsFromAccountCallable(const DisassociateSigninDelegateGroupsFromAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< DisassociateSigninDelegateGroupsFromAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->DisassociateSigninDelegateGroupsFromAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::DisassociateSigninDelegateGroupsFromAccount, this, request, m_executor.get());
 }
 
 void ChimeClient::DisassociateSigninDelegateGroupsFromAccountAsync(const DisassociateSigninDelegateGroupsFromAccountRequest& request, const DisassociateSigninDelegateGroupsFromAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, DisassociateSigninDelegateGroupsFromAccount(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::DisassociateSigninDelegateGroupsFromAccount, this, request, handler, context, m_executor.get());
 }
 
 GetAccountOutcome ChimeClient::GetAccount(const GetAccountRequest& request) const
@@ -3022,18 +2561,12 @@ GetAccountOutcome ChimeClient::GetAccount(const GetAccountRequest& request) cons
 
 GetAccountOutcomeCallable ChimeClient::GetAccountCallable(const GetAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetAccount, this, request, m_executor.get());
 }
 
 void ChimeClient::GetAccountAsync(const GetAccountRequest& request, const GetAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccount(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetAccount, this, request, handler, context, m_executor.get());
 }
 
 GetAccountSettingsOutcome ChimeClient::GetAccountSettings(const GetAccountSettingsRequest& request) const
@@ -3059,18 +2592,12 @@ GetAccountSettingsOutcome ChimeClient::GetAccountSettings(const GetAccountSettin
 
 GetAccountSettingsOutcomeCallable ChimeClient::GetAccountSettingsCallable(const GetAccountSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAccountSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAccountSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetAccountSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::GetAccountSettingsAsync(const GetAccountSettingsRequest& request, const GetAccountSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAccountSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetAccountSettings, this, request, handler, context, m_executor.get());
 }
 
 GetAppInstanceRetentionSettingsOutcome ChimeClient::GetAppInstanceRetentionSettings(const GetAppInstanceRetentionSettingsRequest& request) const
@@ -3093,18 +2620,12 @@ GetAppInstanceRetentionSettingsOutcome ChimeClient::GetAppInstanceRetentionSetti
 
 GetAppInstanceRetentionSettingsOutcomeCallable ChimeClient::GetAppInstanceRetentionSettingsCallable(const GetAppInstanceRetentionSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAppInstanceRetentionSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAppInstanceRetentionSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetAppInstanceRetentionSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::GetAppInstanceRetentionSettingsAsync(const GetAppInstanceRetentionSettingsRequest& request, const GetAppInstanceRetentionSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAppInstanceRetentionSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetAppInstanceRetentionSettings, this, request, handler, context, m_executor.get());
 }
 
 GetAppInstanceStreamingConfigurationsOutcome ChimeClient::GetAppInstanceStreamingConfigurations(const GetAppInstanceStreamingConfigurationsRequest& request) const
@@ -3125,18 +2646,12 @@ GetAppInstanceStreamingConfigurationsOutcome ChimeClient::GetAppInstanceStreamin
 
 GetAppInstanceStreamingConfigurationsOutcomeCallable ChimeClient::GetAppInstanceStreamingConfigurationsCallable(const GetAppInstanceStreamingConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAppInstanceStreamingConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAppInstanceStreamingConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetAppInstanceStreamingConfigurations, this, request, m_executor.get());
 }
 
 void ChimeClient::GetAppInstanceStreamingConfigurationsAsync(const GetAppInstanceStreamingConfigurationsRequest& request, const GetAppInstanceStreamingConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAppInstanceStreamingConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetAppInstanceStreamingConfigurations, this, request, handler, context, m_executor.get());
 }
 
 GetAttendeeOutcome ChimeClient::GetAttendee(const GetAttendeeRequest& request) const
@@ -3163,18 +2678,12 @@ GetAttendeeOutcome ChimeClient::GetAttendee(const GetAttendeeRequest& request) c
 
 GetAttendeeOutcomeCallable ChimeClient::GetAttendeeCallable(const GetAttendeeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetAttendeeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetAttendee(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetAttendee, this, request, m_executor.get());
 }
 
 void ChimeClient::GetAttendeeAsync(const GetAttendeeRequest& request, const GetAttendeeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetAttendee(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetAttendee, this, request, handler, context, m_executor.get());
 }
 
 GetBotOutcome ChimeClient::GetBot(const GetBotRequest& request) const
@@ -3206,18 +2715,12 @@ GetBotOutcome ChimeClient::GetBot(const GetBotRequest& request) const
 
 GetBotOutcomeCallable ChimeClient::GetBotCallable(const GetBotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetBotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetBot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetBot, this, request, m_executor.get());
 }
 
 void ChimeClient::GetBotAsync(const GetBotRequest& request, const GetBotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetBot(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetBot, this, request, handler, context, m_executor.get());
 }
 
 GetChannelMessageOutcome ChimeClient::GetChannelMessage(const GetChannelMessageRequest& request) const
@@ -3246,18 +2749,12 @@ GetChannelMessageOutcome ChimeClient::GetChannelMessage(const GetChannelMessageR
 
 GetChannelMessageOutcomeCallable ChimeClient::GetChannelMessageCallable(const GetChannelMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetChannelMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetChannelMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetChannelMessage, this, request, m_executor.get());
 }
 
 void ChimeClient::GetChannelMessageAsync(const GetChannelMessageRequest& request, const GetChannelMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetChannelMessage(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetChannelMessage, this, request, handler, context, m_executor.get());
 }
 
 GetEventsConfigurationOutcome ChimeClient::GetEventsConfiguration(const GetEventsConfigurationRequest& request) const
@@ -3290,18 +2787,12 @@ GetEventsConfigurationOutcome ChimeClient::GetEventsConfiguration(const GetEvent
 
 GetEventsConfigurationOutcomeCallable ChimeClient::GetEventsConfigurationCallable(const GetEventsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetEventsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetEventsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetEventsConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::GetEventsConfigurationAsync(const GetEventsConfigurationRequest& request, const GetEventsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetEventsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetEventsConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetGlobalSettingsOutcome ChimeClient::GetGlobalSettings() const
@@ -3347,18 +2838,12 @@ GetMediaCapturePipelineOutcome ChimeClient::GetMediaCapturePipeline(const GetMed
 
 GetMediaCapturePipelineOutcomeCallable ChimeClient::GetMediaCapturePipelineCallable(const GetMediaCapturePipelineRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetMediaCapturePipelineOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetMediaCapturePipeline(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetMediaCapturePipeline, this, request, m_executor.get());
 }
 
 void ChimeClient::GetMediaCapturePipelineAsync(const GetMediaCapturePipelineRequest& request, const GetMediaCapturePipelineResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetMediaCapturePipeline(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetMediaCapturePipeline, this, request, handler, context, m_executor.get());
 }
 
 GetMeetingOutcome ChimeClient::GetMeeting(const GetMeetingRequest& request) const
@@ -3378,18 +2863,12 @@ GetMeetingOutcome ChimeClient::GetMeeting(const GetMeetingRequest& request) cons
 
 GetMeetingOutcomeCallable ChimeClient::GetMeetingCallable(const GetMeetingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetMeetingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetMeeting(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetMeeting, this, request, m_executor.get());
 }
 
 void ChimeClient::GetMeetingAsync(const GetMeetingRequest& request, const GetMeetingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetMeeting(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetMeeting, this, request, handler, context, m_executor.get());
 }
 
 GetMessagingSessionEndpointOutcome ChimeClient::GetMessagingSessionEndpoint(const GetMessagingSessionEndpointRequest& request) const
@@ -3405,18 +2884,12 @@ GetMessagingSessionEndpointOutcome ChimeClient::GetMessagingSessionEndpoint(cons
 
 GetMessagingSessionEndpointOutcomeCallable ChimeClient::GetMessagingSessionEndpointCallable(const GetMessagingSessionEndpointRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetMessagingSessionEndpointOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetMessagingSessionEndpoint(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetMessagingSessionEndpoint, this, request, m_executor.get());
 }
 
 void ChimeClient::GetMessagingSessionEndpointAsync(const GetMessagingSessionEndpointRequest& request, const GetMessagingSessionEndpointResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetMessagingSessionEndpoint(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetMessagingSessionEndpoint, this, request, handler, context, m_executor.get());
 }
 
 GetPhoneNumberOutcome ChimeClient::GetPhoneNumber(const GetPhoneNumberRequest& request) const
@@ -3436,18 +2909,12 @@ GetPhoneNumberOutcome ChimeClient::GetPhoneNumber(const GetPhoneNumberRequest& r
 
 GetPhoneNumberOutcomeCallable ChimeClient::GetPhoneNumberCallable(const GetPhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetPhoneNumber, this, request, m_executor.get());
 }
 
 void ChimeClient::GetPhoneNumberAsync(const GetPhoneNumberRequest& request, const GetPhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetPhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 GetPhoneNumberOrderOutcome ChimeClient::GetPhoneNumberOrder(const GetPhoneNumberOrderRequest& request) const
@@ -3467,18 +2934,12 @@ GetPhoneNumberOrderOutcome ChimeClient::GetPhoneNumberOrder(const GetPhoneNumber
 
 GetPhoneNumberOrderOutcomeCallable ChimeClient::GetPhoneNumberOrderCallable(const GetPhoneNumberOrderRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetPhoneNumberOrderOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetPhoneNumberOrder(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetPhoneNumberOrder, this, request, m_executor.get());
 }
 
 void ChimeClient::GetPhoneNumberOrderAsync(const GetPhoneNumberOrderRequest& request, const GetPhoneNumberOrderResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetPhoneNumberOrder(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetPhoneNumberOrder, this, request, handler, context, m_executor.get());
 }
 
 GetPhoneNumberSettingsOutcome ChimeClient::GetPhoneNumberSettings() const
@@ -3531,18 +2992,12 @@ GetProxySessionOutcome ChimeClient::GetProxySession(const GetProxySessionRequest
 
 GetProxySessionOutcomeCallable ChimeClient::GetProxySessionCallable(const GetProxySessionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetProxySessionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetProxySession(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetProxySession, this, request, m_executor.get());
 }
 
 void ChimeClient::GetProxySessionAsync(const GetProxySessionRequest& request, const GetProxySessionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetProxySession(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetProxySession, this, request, handler, context, m_executor.get());
 }
 
 GetRetentionSettingsOutcome ChimeClient::GetRetentionSettings(const GetRetentionSettingsRequest& request) const
@@ -3568,18 +3023,12 @@ GetRetentionSettingsOutcome ChimeClient::GetRetentionSettings(const GetRetention
 
 GetRetentionSettingsOutcomeCallable ChimeClient::GetRetentionSettingsCallable(const GetRetentionSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRetentionSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRetentionSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetRetentionSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::GetRetentionSettingsAsync(const GetRetentionSettingsRequest& request, const GetRetentionSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRetentionSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetRetentionSettings, this, request, handler, context, m_executor.get());
 }
 
 GetRoomOutcome ChimeClient::GetRoom(const GetRoomRequest& request) const
@@ -3611,18 +3060,12 @@ GetRoomOutcome ChimeClient::GetRoom(const GetRoomRequest& request) const
 
 GetRoomOutcomeCallable ChimeClient::GetRoomCallable(const GetRoomRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetRoomOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetRoom(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetRoom, this, request, m_executor.get());
 }
 
 void ChimeClient::GetRoomAsync(const GetRoomRequest& request, const GetRoomResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetRoom(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetRoom, this, request, handler, context, m_executor.get());
 }
 
 GetSipMediaApplicationOutcome ChimeClient::GetSipMediaApplication(const GetSipMediaApplicationRequest& request) const
@@ -3642,18 +3085,12 @@ GetSipMediaApplicationOutcome ChimeClient::GetSipMediaApplication(const GetSipMe
 
 GetSipMediaApplicationOutcomeCallable ChimeClient::GetSipMediaApplicationCallable(const GetSipMediaApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSipMediaApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSipMediaApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetSipMediaApplication, this, request, m_executor.get());
 }
 
 void ChimeClient::GetSipMediaApplicationAsync(const GetSipMediaApplicationRequest& request, const GetSipMediaApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSipMediaApplication(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetSipMediaApplication, this, request, handler, context, m_executor.get());
 }
 
 GetSipMediaApplicationLoggingConfigurationOutcome ChimeClient::GetSipMediaApplicationLoggingConfiguration(const GetSipMediaApplicationLoggingConfigurationRequest& request) const
@@ -3674,18 +3111,12 @@ GetSipMediaApplicationLoggingConfigurationOutcome ChimeClient::GetSipMediaApplic
 
 GetSipMediaApplicationLoggingConfigurationOutcomeCallable ChimeClient::GetSipMediaApplicationLoggingConfigurationCallable(const GetSipMediaApplicationLoggingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSipMediaApplicationLoggingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSipMediaApplicationLoggingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetSipMediaApplicationLoggingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::GetSipMediaApplicationLoggingConfigurationAsync(const GetSipMediaApplicationLoggingConfigurationRequest& request, const GetSipMediaApplicationLoggingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSipMediaApplicationLoggingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetSipMediaApplicationLoggingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetSipRuleOutcome ChimeClient::GetSipRule(const GetSipRuleRequest& request) const
@@ -3705,18 +3136,12 @@ GetSipRuleOutcome ChimeClient::GetSipRule(const GetSipRuleRequest& request) cons
 
 GetSipRuleOutcomeCallable ChimeClient::GetSipRuleCallable(const GetSipRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetSipRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetSipRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetSipRule, this, request, m_executor.get());
 }
 
 void ChimeClient::GetSipRuleAsync(const GetSipRuleRequest& request, const GetSipRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetSipRule(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetSipRule, this, request, handler, context, m_executor.get());
 }
 
 GetUserOutcome ChimeClient::GetUser(const GetUserRequest& request) const
@@ -3748,18 +3173,12 @@ GetUserOutcome ChimeClient::GetUser(const GetUserRequest& request) const
 
 GetUserOutcomeCallable ChimeClient::GetUserCallable(const GetUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetUser, this, request, m_executor.get());
 }
 
 void ChimeClient::GetUserAsync(const GetUserRequest& request, const GetUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetUser, this, request, handler, context, m_executor.get());
 }
 
 GetUserSettingsOutcome ChimeClient::GetUserSettings(const GetUserSettingsRequest& request) const
@@ -3792,18 +3211,12 @@ GetUserSettingsOutcome ChimeClient::GetUserSettings(const GetUserSettingsRequest
 
 GetUserSettingsOutcomeCallable ChimeClient::GetUserSettingsCallable(const GetUserSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetUserSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetUserSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetUserSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::GetUserSettingsAsync(const GetUserSettingsRequest& request, const GetUserSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetUserSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetUserSettings, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorOutcome ChimeClient::GetVoiceConnector(const GetVoiceConnectorRequest& request) const
@@ -3823,18 +3236,12 @@ GetVoiceConnectorOutcome ChimeClient::GetVoiceConnector(const GetVoiceConnectorR
 
 GetVoiceConnectorOutcomeCallable ChimeClient::GetVoiceConnectorCallable(const GetVoiceConnectorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnector(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnector, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorAsync(const GetVoiceConnectorRequest& request, const GetVoiceConnectorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnector(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnector, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorEmergencyCallingConfigurationOutcome ChimeClient::GetVoiceConnectorEmergencyCallingConfiguration(const GetVoiceConnectorEmergencyCallingConfigurationRequest& request) const
@@ -3855,18 +3262,12 @@ GetVoiceConnectorEmergencyCallingConfigurationOutcome ChimeClient::GetVoiceConne
 
 GetVoiceConnectorEmergencyCallingConfigurationOutcomeCallable ChimeClient::GetVoiceConnectorEmergencyCallingConfigurationCallable(const GetVoiceConnectorEmergencyCallingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorEmergencyCallingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorEmergencyCallingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorEmergencyCallingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorEmergencyCallingConfigurationAsync(const GetVoiceConnectorEmergencyCallingConfigurationRequest& request, const GetVoiceConnectorEmergencyCallingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorEmergencyCallingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorEmergencyCallingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorGroupOutcome ChimeClient::GetVoiceConnectorGroup(const GetVoiceConnectorGroupRequest& request) const
@@ -3886,18 +3287,12 @@ GetVoiceConnectorGroupOutcome ChimeClient::GetVoiceConnectorGroup(const GetVoice
 
 GetVoiceConnectorGroupOutcomeCallable ChimeClient::GetVoiceConnectorGroupCallable(const GetVoiceConnectorGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorGroup, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorGroupAsync(const GetVoiceConnectorGroupRequest& request, const GetVoiceConnectorGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorGroup(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorGroup, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorLoggingConfigurationOutcome ChimeClient::GetVoiceConnectorLoggingConfiguration(const GetVoiceConnectorLoggingConfigurationRequest& request) const
@@ -3918,18 +3313,12 @@ GetVoiceConnectorLoggingConfigurationOutcome ChimeClient::GetVoiceConnectorLoggi
 
 GetVoiceConnectorLoggingConfigurationOutcomeCallable ChimeClient::GetVoiceConnectorLoggingConfigurationCallable(const GetVoiceConnectorLoggingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorLoggingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorLoggingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorLoggingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorLoggingConfigurationAsync(const GetVoiceConnectorLoggingConfigurationRequest& request, const GetVoiceConnectorLoggingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorLoggingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorLoggingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorOriginationOutcome ChimeClient::GetVoiceConnectorOrigination(const GetVoiceConnectorOriginationRequest& request) const
@@ -3950,18 +3339,12 @@ GetVoiceConnectorOriginationOutcome ChimeClient::GetVoiceConnectorOrigination(co
 
 GetVoiceConnectorOriginationOutcomeCallable ChimeClient::GetVoiceConnectorOriginationCallable(const GetVoiceConnectorOriginationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorOriginationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorOrigination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorOrigination, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorOriginationAsync(const GetVoiceConnectorOriginationRequest& request, const GetVoiceConnectorOriginationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorOrigination(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorOrigination, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorProxyOutcome ChimeClient::GetVoiceConnectorProxy(const GetVoiceConnectorProxyRequest& request) const
@@ -3982,18 +3365,12 @@ GetVoiceConnectorProxyOutcome ChimeClient::GetVoiceConnectorProxy(const GetVoice
 
 GetVoiceConnectorProxyOutcomeCallable ChimeClient::GetVoiceConnectorProxyCallable(const GetVoiceConnectorProxyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorProxyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorProxy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorProxy, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorProxyAsync(const GetVoiceConnectorProxyRequest& request, const GetVoiceConnectorProxyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorProxy(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorProxy, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorStreamingConfigurationOutcome ChimeClient::GetVoiceConnectorStreamingConfiguration(const GetVoiceConnectorStreamingConfigurationRequest& request) const
@@ -4014,18 +3391,12 @@ GetVoiceConnectorStreamingConfigurationOutcome ChimeClient::GetVoiceConnectorStr
 
 GetVoiceConnectorStreamingConfigurationOutcomeCallable ChimeClient::GetVoiceConnectorStreamingConfigurationCallable(const GetVoiceConnectorStreamingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorStreamingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorStreamingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorStreamingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorStreamingConfigurationAsync(const GetVoiceConnectorStreamingConfigurationRequest& request, const GetVoiceConnectorStreamingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorStreamingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorStreamingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorTerminationOutcome ChimeClient::GetVoiceConnectorTermination(const GetVoiceConnectorTerminationRequest& request) const
@@ -4046,18 +3417,12 @@ GetVoiceConnectorTerminationOutcome ChimeClient::GetVoiceConnectorTermination(co
 
 GetVoiceConnectorTerminationOutcomeCallable ChimeClient::GetVoiceConnectorTerminationCallable(const GetVoiceConnectorTerminationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorTerminationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorTermination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorTermination, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorTerminationAsync(const GetVoiceConnectorTerminationRequest& request, const GetVoiceConnectorTerminationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorTermination(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorTermination, this, request, handler, context, m_executor.get());
 }
 
 GetVoiceConnectorTerminationHealthOutcome ChimeClient::GetVoiceConnectorTerminationHealth(const GetVoiceConnectorTerminationHealthRequest& request) const
@@ -4078,18 +3443,12 @@ GetVoiceConnectorTerminationHealthOutcome ChimeClient::GetVoiceConnectorTerminat
 
 GetVoiceConnectorTerminationHealthOutcomeCallable ChimeClient::GetVoiceConnectorTerminationHealthCallable(const GetVoiceConnectorTerminationHealthRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< GetVoiceConnectorTerminationHealthOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->GetVoiceConnectorTerminationHealth(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::GetVoiceConnectorTerminationHealth, this, request, m_executor.get());
 }
 
 void ChimeClient::GetVoiceConnectorTerminationHealthAsync(const GetVoiceConnectorTerminationHealthRequest& request, const GetVoiceConnectorTerminationHealthResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, GetVoiceConnectorTerminationHealth(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::GetVoiceConnectorTerminationHealth, this, request, handler, context, m_executor.get());
 }
 
 InviteUsersOutcome ChimeClient::InviteUsers(const InviteUsersRequest& request) const
@@ -4118,18 +3477,12 @@ InviteUsersOutcome ChimeClient::InviteUsers(const InviteUsersRequest& request) c
 
 InviteUsersOutcomeCallable ChimeClient::InviteUsersCallable(const InviteUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< InviteUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->InviteUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::InviteUsers, this, request, m_executor.get());
 }
 
 void ChimeClient::InviteUsersAsync(const InviteUsersRequest& request, const InviteUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, InviteUsers(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::InviteUsers, this, request, handler, context, m_executor.get());
 }
 
 ListAccountsOutcome ChimeClient::ListAccounts(const ListAccountsRequest& request) const
@@ -4143,18 +3496,12 @@ ListAccountsOutcome ChimeClient::ListAccounts(const ListAccountsRequest& request
 
 ListAccountsOutcomeCallable ChimeClient::ListAccountsCallable(const ListAccountsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAccountsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAccounts(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListAccounts, this, request, m_executor.get());
 }
 
 void ChimeClient::ListAccountsAsync(const ListAccountsRequest& request, const ListAccountsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAccounts(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListAccounts, this, request, handler, context, m_executor.get());
 }
 
 ListAppInstanceAdminsOutcome ChimeClient::ListAppInstanceAdmins(const ListAppInstanceAdminsRequest& request) const
@@ -4177,18 +3524,12 @@ ListAppInstanceAdminsOutcome ChimeClient::ListAppInstanceAdmins(const ListAppIns
 
 ListAppInstanceAdminsOutcomeCallable ChimeClient::ListAppInstanceAdminsCallable(const ListAppInstanceAdminsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAppInstanceAdminsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAppInstanceAdmins(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListAppInstanceAdmins, this, request, m_executor.get());
 }
 
 void ChimeClient::ListAppInstanceAdminsAsync(const ListAppInstanceAdminsRequest& request, const ListAppInstanceAdminsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAppInstanceAdmins(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListAppInstanceAdmins, this, request, handler, context, m_executor.get());
 }
 
 ListAppInstanceUsersOutcome ChimeClient::ListAppInstanceUsers(const ListAppInstanceUsersRequest& request) const
@@ -4209,18 +3550,12 @@ ListAppInstanceUsersOutcome ChimeClient::ListAppInstanceUsers(const ListAppInsta
 
 ListAppInstanceUsersOutcomeCallable ChimeClient::ListAppInstanceUsersCallable(const ListAppInstanceUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAppInstanceUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAppInstanceUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListAppInstanceUsers, this, request, m_executor.get());
 }
 
 void ChimeClient::ListAppInstanceUsersAsync(const ListAppInstanceUsersRequest& request, const ListAppInstanceUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAppInstanceUsers(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListAppInstanceUsers, this, request, handler, context, m_executor.get());
 }
 
 ListAppInstancesOutcome ChimeClient::ListAppInstances(const ListAppInstancesRequest& request) const
@@ -4236,18 +3571,12 @@ ListAppInstancesOutcome ChimeClient::ListAppInstances(const ListAppInstancesRequ
 
 ListAppInstancesOutcomeCallable ChimeClient::ListAppInstancesCallable(const ListAppInstancesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAppInstancesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAppInstances(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListAppInstances, this, request, m_executor.get());
 }
 
 void ChimeClient::ListAppInstancesAsync(const ListAppInstancesRequest& request, const ListAppInstancesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAppInstances(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListAppInstances, this, request, handler, context, m_executor.get());
 }
 
 ListAttendeeTagsOutcome ChimeClient::ListAttendeeTags(const ListAttendeeTagsRequest& request) const
@@ -4275,18 +3604,12 @@ ListAttendeeTagsOutcome ChimeClient::ListAttendeeTags(const ListAttendeeTagsRequ
 
 ListAttendeeTagsOutcomeCallable ChimeClient::ListAttendeeTagsCallable(const ListAttendeeTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAttendeeTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAttendeeTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListAttendeeTags, this, request, m_executor.get());
 }
 
 void ChimeClient::ListAttendeeTagsAsync(const ListAttendeeTagsRequest& request, const ListAttendeeTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAttendeeTags(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListAttendeeTags, this, request, handler, context, m_executor.get());
 }
 
 ListAttendeesOutcome ChimeClient::ListAttendees(const ListAttendeesRequest& request) const
@@ -4307,18 +3630,12 @@ ListAttendeesOutcome ChimeClient::ListAttendees(const ListAttendeesRequest& requ
 
 ListAttendeesOutcomeCallable ChimeClient::ListAttendeesCallable(const ListAttendeesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListAttendeesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListAttendees(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListAttendees, this, request, m_executor.get());
 }
 
 void ChimeClient::ListAttendeesAsync(const ListAttendeesRequest& request, const ListAttendeesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListAttendees(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListAttendees, this, request, handler, context, m_executor.get());
 }
 
 ListBotsOutcome ChimeClient::ListBots(const ListBotsRequest& request) const
@@ -4344,18 +3661,12 @@ ListBotsOutcome ChimeClient::ListBots(const ListBotsRequest& request) const
 
 ListBotsOutcomeCallable ChimeClient::ListBotsCallable(const ListBotsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListBotsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListBots(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListBots, this, request, m_executor.get());
 }
 
 void ChimeClient::ListBotsAsync(const ListBotsRequest& request, const ListBotsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListBots(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListBots, this, request, handler, context, m_executor.get());
 }
 
 ListChannelBansOutcome ChimeClient::ListChannelBans(const ListChannelBansRequest& request) const
@@ -4378,18 +3689,12 @@ ListChannelBansOutcome ChimeClient::ListChannelBans(const ListChannelBansRequest
 
 ListChannelBansOutcomeCallable ChimeClient::ListChannelBansCallable(const ListChannelBansRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelBansOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannelBans(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListChannelBans, this, request, m_executor.get());
 }
 
 void ChimeClient::ListChannelBansAsync(const ListChannelBansRequest& request, const ListChannelBansResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannelBans(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListChannelBans, this, request, handler, context, m_executor.get());
 }
 
 ListChannelMembershipsOutcome ChimeClient::ListChannelMemberships(const ListChannelMembershipsRequest& request) const
@@ -4412,18 +3717,12 @@ ListChannelMembershipsOutcome ChimeClient::ListChannelMemberships(const ListChan
 
 ListChannelMembershipsOutcomeCallable ChimeClient::ListChannelMembershipsCallable(const ListChannelMembershipsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelMembershipsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannelMemberships(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListChannelMemberships, this, request, m_executor.get());
 }
 
 void ChimeClient::ListChannelMembershipsAsync(const ListChannelMembershipsRequest& request, const ListChannelMembershipsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannelMemberships(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListChannelMemberships, this, request, handler, context, m_executor.get());
 }
 
 ListChannelMembershipsForAppInstanceUserOutcome ChimeClient::ListChannelMembershipsForAppInstanceUser(const ListChannelMembershipsForAppInstanceUserRequest& request) const
@@ -4442,18 +3741,12 @@ ListChannelMembershipsForAppInstanceUserOutcome ChimeClient::ListChannelMembersh
 
 ListChannelMembershipsForAppInstanceUserOutcomeCallable ChimeClient::ListChannelMembershipsForAppInstanceUserCallable(const ListChannelMembershipsForAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelMembershipsForAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannelMembershipsForAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListChannelMembershipsForAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::ListChannelMembershipsForAppInstanceUserAsync(const ListChannelMembershipsForAppInstanceUserRequest& request, const ListChannelMembershipsForAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannelMembershipsForAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListChannelMembershipsForAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 ListChannelMessagesOutcome ChimeClient::ListChannelMessages(const ListChannelMessagesRequest& request) const
@@ -4476,18 +3769,12 @@ ListChannelMessagesOutcome ChimeClient::ListChannelMessages(const ListChannelMes
 
 ListChannelMessagesOutcomeCallable ChimeClient::ListChannelMessagesCallable(const ListChannelMessagesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelMessagesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannelMessages(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListChannelMessages, this, request, m_executor.get());
 }
 
 void ChimeClient::ListChannelMessagesAsync(const ListChannelMessagesRequest& request, const ListChannelMessagesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannelMessages(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListChannelMessages, this, request, handler, context, m_executor.get());
 }
 
 ListChannelModeratorsOutcome ChimeClient::ListChannelModerators(const ListChannelModeratorsRequest& request) const
@@ -4510,18 +3797,12 @@ ListChannelModeratorsOutcome ChimeClient::ListChannelModerators(const ListChanne
 
 ListChannelModeratorsOutcomeCallable ChimeClient::ListChannelModeratorsCallable(const ListChannelModeratorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelModeratorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannelModerators(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListChannelModerators, this, request, m_executor.get());
 }
 
 void ChimeClient::ListChannelModeratorsAsync(const ListChannelModeratorsRequest& request, const ListChannelModeratorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannelModerators(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListChannelModerators, this, request, handler, context, m_executor.get());
 }
 
 ListChannelsOutcome ChimeClient::ListChannels(const ListChannelsRequest& request) const
@@ -4542,18 +3823,12 @@ ListChannelsOutcome ChimeClient::ListChannels(const ListChannelsRequest& request
 
 ListChannelsOutcomeCallable ChimeClient::ListChannelsCallable(const ListChannelsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannels(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListChannels, this, request, m_executor.get());
 }
 
 void ChimeClient::ListChannelsAsync(const ListChannelsRequest& request, const ListChannelsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannels(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListChannels, this, request, handler, context, m_executor.get());
 }
 
 ListChannelsModeratedByAppInstanceUserOutcome ChimeClient::ListChannelsModeratedByAppInstanceUser(const ListChannelsModeratedByAppInstanceUserRequest& request) const
@@ -4572,18 +3847,12 @@ ListChannelsModeratedByAppInstanceUserOutcome ChimeClient::ListChannelsModerated
 
 ListChannelsModeratedByAppInstanceUserOutcomeCallable ChimeClient::ListChannelsModeratedByAppInstanceUserCallable(const ListChannelsModeratedByAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListChannelsModeratedByAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListChannelsModeratedByAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListChannelsModeratedByAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::ListChannelsModeratedByAppInstanceUserAsync(const ListChannelsModeratedByAppInstanceUserRequest& request, const ListChannelsModeratedByAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListChannelsModeratedByAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListChannelsModeratedByAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 ListMediaCapturePipelinesOutcome ChimeClient::ListMediaCapturePipelines(const ListMediaCapturePipelinesRequest& request) const
@@ -4597,18 +3866,12 @@ ListMediaCapturePipelinesOutcome ChimeClient::ListMediaCapturePipelines(const Li
 
 ListMediaCapturePipelinesOutcomeCallable ChimeClient::ListMediaCapturePipelinesCallable(const ListMediaCapturePipelinesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMediaCapturePipelinesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMediaCapturePipelines(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListMediaCapturePipelines, this, request, m_executor.get());
 }
 
 void ChimeClient::ListMediaCapturePipelinesAsync(const ListMediaCapturePipelinesRequest& request, const ListMediaCapturePipelinesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMediaCapturePipelines(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListMediaCapturePipelines, this, request, handler, context, m_executor.get());
 }
 
 ListMeetingTagsOutcome ChimeClient::ListMeetingTags(const ListMeetingTagsRequest& request) const
@@ -4629,18 +3892,12 @@ ListMeetingTagsOutcome ChimeClient::ListMeetingTags(const ListMeetingTagsRequest
 
 ListMeetingTagsOutcomeCallable ChimeClient::ListMeetingTagsCallable(const ListMeetingTagsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMeetingTagsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMeetingTags(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListMeetingTags, this, request, m_executor.get());
 }
 
 void ChimeClient::ListMeetingTagsAsync(const ListMeetingTagsRequest& request, const ListMeetingTagsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMeetingTags(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListMeetingTags, this, request, handler, context, m_executor.get());
 }
 
 ListMeetingsOutcome ChimeClient::ListMeetings(const ListMeetingsRequest& request) const
@@ -4654,18 +3911,12 @@ ListMeetingsOutcome ChimeClient::ListMeetings(const ListMeetingsRequest& request
 
 ListMeetingsOutcomeCallable ChimeClient::ListMeetingsCallable(const ListMeetingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListMeetingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListMeetings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListMeetings, this, request, m_executor.get());
 }
 
 void ChimeClient::ListMeetingsAsync(const ListMeetingsRequest& request, const ListMeetingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListMeetings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListMeetings, this, request, handler, context, m_executor.get());
 }
 
 ListPhoneNumberOrdersOutcome ChimeClient::ListPhoneNumberOrders(const ListPhoneNumberOrdersRequest& request) const
@@ -4679,18 +3930,12 @@ ListPhoneNumberOrdersOutcome ChimeClient::ListPhoneNumberOrders(const ListPhoneN
 
 ListPhoneNumberOrdersOutcomeCallable ChimeClient::ListPhoneNumberOrdersCallable(const ListPhoneNumberOrdersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPhoneNumberOrdersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPhoneNumberOrders(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListPhoneNumberOrders, this, request, m_executor.get());
 }
 
 void ChimeClient::ListPhoneNumberOrdersAsync(const ListPhoneNumberOrdersRequest& request, const ListPhoneNumberOrdersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPhoneNumberOrders(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListPhoneNumberOrders, this, request, handler, context, m_executor.get());
 }
 
 ListPhoneNumbersOutcome ChimeClient::ListPhoneNumbers(const ListPhoneNumbersRequest& request) const
@@ -4704,18 +3949,12 @@ ListPhoneNumbersOutcome ChimeClient::ListPhoneNumbers(const ListPhoneNumbersRequ
 
 ListPhoneNumbersOutcomeCallable ChimeClient::ListPhoneNumbersCallable(const ListPhoneNumbersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListPhoneNumbersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListPhoneNumbers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListPhoneNumbers, this, request, m_executor.get());
 }
 
 void ChimeClient::ListPhoneNumbersAsync(const ListPhoneNumbersRequest& request, const ListPhoneNumbersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListPhoneNumbers(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListPhoneNumbers, this, request, handler, context, m_executor.get());
 }
 
 ListProxySessionsOutcome ChimeClient::ListProxySessions(const ListProxySessionsRequest& request) const
@@ -4736,18 +3975,12 @@ ListProxySessionsOutcome ChimeClient::ListProxySessions(const ListProxySessionsR
 
 ListProxySessionsOutcomeCallable ChimeClient::ListProxySessionsCallable(const ListProxySessionsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListProxySessionsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListProxySessions(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListProxySessions, this, request, m_executor.get());
 }
 
 void ChimeClient::ListProxySessionsAsync(const ListProxySessionsRequest& request, const ListProxySessionsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListProxySessions(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListProxySessions, this, request, handler, context, m_executor.get());
 }
 
 ListRoomMembershipsOutcome ChimeClient::ListRoomMemberships(const ListRoomMembershipsRequest& request) const
@@ -4780,18 +4013,12 @@ ListRoomMembershipsOutcome ChimeClient::ListRoomMemberships(const ListRoomMember
 
 ListRoomMembershipsOutcomeCallable ChimeClient::ListRoomMembershipsCallable(const ListRoomMembershipsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRoomMembershipsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRoomMemberships(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListRoomMemberships, this, request, m_executor.get());
 }
 
 void ChimeClient::ListRoomMembershipsAsync(const ListRoomMembershipsRequest& request, const ListRoomMembershipsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRoomMemberships(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListRoomMemberships, this, request, handler, context, m_executor.get());
 }
 
 ListRoomsOutcome ChimeClient::ListRooms(const ListRoomsRequest& request) const
@@ -4817,18 +4044,12 @@ ListRoomsOutcome ChimeClient::ListRooms(const ListRoomsRequest& request) const
 
 ListRoomsOutcomeCallable ChimeClient::ListRoomsCallable(const ListRoomsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListRoomsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListRooms(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListRooms, this, request, m_executor.get());
 }
 
 void ChimeClient::ListRoomsAsync(const ListRoomsRequest& request, const ListRoomsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListRooms(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListRooms, this, request, handler, context, m_executor.get());
 }
 
 ListSipMediaApplicationsOutcome ChimeClient::ListSipMediaApplications(const ListSipMediaApplicationsRequest& request) const
@@ -4842,18 +4063,12 @@ ListSipMediaApplicationsOutcome ChimeClient::ListSipMediaApplications(const List
 
 ListSipMediaApplicationsOutcomeCallable ChimeClient::ListSipMediaApplicationsCallable(const ListSipMediaApplicationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSipMediaApplicationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSipMediaApplications(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListSipMediaApplications, this, request, m_executor.get());
 }
 
 void ChimeClient::ListSipMediaApplicationsAsync(const ListSipMediaApplicationsRequest& request, const ListSipMediaApplicationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSipMediaApplications(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListSipMediaApplications, this, request, handler, context, m_executor.get());
 }
 
 ListSipRulesOutcome ChimeClient::ListSipRules(const ListSipRulesRequest& request) const
@@ -4867,18 +4082,12 @@ ListSipRulesOutcome ChimeClient::ListSipRules(const ListSipRulesRequest& request
 
 ListSipRulesOutcomeCallable ChimeClient::ListSipRulesCallable(const ListSipRulesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSipRulesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSipRules(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListSipRules, this, request, m_executor.get());
 }
 
 void ChimeClient::ListSipRulesAsync(const ListSipRulesRequest& request, const ListSipRulesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSipRules(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListSipRules, this, request, handler, context, m_executor.get());
 }
 
 ListSupportedPhoneNumberCountriesOutcome ChimeClient::ListSupportedPhoneNumberCountries(const ListSupportedPhoneNumberCountriesRequest& request) const
@@ -4897,18 +4106,12 @@ ListSupportedPhoneNumberCountriesOutcome ChimeClient::ListSupportedPhoneNumberCo
 
 ListSupportedPhoneNumberCountriesOutcomeCallable ChimeClient::ListSupportedPhoneNumberCountriesCallable(const ListSupportedPhoneNumberCountriesRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListSupportedPhoneNumberCountriesOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListSupportedPhoneNumberCountries(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListSupportedPhoneNumberCountries, this, request, m_executor.get());
 }
 
 void ChimeClient::ListSupportedPhoneNumberCountriesAsync(const ListSupportedPhoneNumberCountriesRequest& request, const ListSupportedPhoneNumberCountriesResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListSupportedPhoneNumberCountries(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListSupportedPhoneNumberCountries, this, request, handler, context, m_executor.get());
 }
 
 ListTagsForResourceOutcome ChimeClient::ListTagsForResource(const ListTagsForResourceRequest& request) const
@@ -4927,18 +4130,12 @@ ListTagsForResourceOutcome ChimeClient::ListTagsForResource(const ListTagsForRes
 
 ListTagsForResourceOutcomeCallable ChimeClient::ListTagsForResourceCallable(const ListTagsForResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListTagsForResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListTagsForResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListTagsForResource, this, request, m_executor.get());
 }
 
 void ChimeClient::ListTagsForResourceAsync(const ListTagsForResourceRequest& request, const ListTagsForResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListTagsForResource(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListTagsForResource, this, request, handler, context, m_executor.get());
 }
 
 ListUsersOutcome ChimeClient::ListUsers(const ListUsersRequest& request) const
@@ -4964,18 +4161,12 @@ ListUsersOutcome ChimeClient::ListUsers(const ListUsersRequest& request) const
 
 ListUsersOutcomeCallable ChimeClient::ListUsersCallable(const ListUsersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListUsersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListUsers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListUsers, this, request, m_executor.get());
 }
 
 void ChimeClient::ListUsersAsync(const ListUsersRequest& request, const ListUsersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListUsers(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListUsers, this, request, handler, context, m_executor.get());
 }
 
 ListVoiceConnectorGroupsOutcome ChimeClient::ListVoiceConnectorGroups(const ListVoiceConnectorGroupsRequest& request) const
@@ -4989,18 +4180,12 @@ ListVoiceConnectorGroupsOutcome ChimeClient::ListVoiceConnectorGroups(const List
 
 ListVoiceConnectorGroupsOutcomeCallable ChimeClient::ListVoiceConnectorGroupsCallable(const ListVoiceConnectorGroupsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVoiceConnectorGroupsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVoiceConnectorGroups(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListVoiceConnectorGroups, this, request, m_executor.get());
 }
 
 void ChimeClient::ListVoiceConnectorGroupsAsync(const ListVoiceConnectorGroupsRequest& request, const ListVoiceConnectorGroupsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVoiceConnectorGroups(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListVoiceConnectorGroups, this, request, handler, context, m_executor.get());
 }
 
 ListVoiceConnectorTerminationCredentialsOutcome ChimeClient::ListVoiceConnectorTerminationCredentials(const ListVoiceConnectorTerminationCredentialsRequest& request) const
@@ -5021,18 +4206,12 @@ ListVoiceConnectorTerminationCredentialsOutcome ChimeClient::ListVoiceConnectorT
 
 ListVoiceConnectorTerminationCredentialsOutcomeCallable ChimeClient::ListVoiceConnectorTerminationCredentialsCallable(const ListVoiceConnectorTerminationCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVoiceConnectorTerminationCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVoiceConnectorTerminationCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListVoiceConnectorTerminationCredentials, this, request, m_executor.get());
 }
 
 void ChimeClient::ListVoiceConnectorTerminationCredentialsAsync(const ListVoiceConnectorTerminationCredentialsRequest& request, const ListVoiceConnectorTerminationCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVoiceConnectorTerminationCredentials(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListVoiceConnectorTerminationCredentials, this, request, handler, context, m_executor.get());
 }
 
 ListVoiceConnectorsOutcome ChimeClient::ListVoiceConnectors(const ListVoiceConnectorsRequest& request) const
@@ -5046,18 +4225,12 @@ ListVoiceConnectorsOutcome ChimeClient::ListVoiceConnectors(const ListVoiceConne
 
 ListVoiceConnectorsOutcomeCallable ChimeClient::ListVoiceConnectorsCallable(const ListVoiceConnectorsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ListVoiceConnectorsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ListVoiceConnectors(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ListVoiceConnectors, this, request, m_executor.get());
 }
 
 void ChimeClient::ListVoiceConnectorsAsync(const ListVoiceConnectorsRequest& request, const ListVoiceConnectorsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ListVoiceConnectors(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ListVoiceConnectors, this, request, handler, context, m_executor.get());
 }
 
 LogoutUserOutcome ChimeClient::LogoutUser(const LogoutUserRequest& request) const
@@ -5092,18 +4265,12 @@ LogoutUserOutcome ChimeClient::LogoutUser(const LogoutUserRequest& request) cons
 
 LogoutUserOutcomeCallable ChimeClient::LogoutUserCallable(const LogoutUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< LogoutUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->LogoutUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::LogoutUser, this, request, m_executor.get());
 }
 
 void ChimeClient::LogoutUserAsync(const LogoutUserRequest& request, const LogoutUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, LogoutUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::LogoutUser, this, request, handler, context, m_executor.get());
 }
 
 PutAppInstanceRetentionSettingsOutcome ChimeClient::PutAppInstanceRetentionSettings(const PutAppInstanceRetentionSettingsRequest& request) const
@@ -5126,18 +4293,12 @@ PutAppInstanceRetentionSettingsOutcome ChimeClient::PutAppInstanceRetentionSetti
 
 PutAppInstanceRetentionSettingsOutcomeCallable ChimeClient::PutAppInstanceRetentionSettingsCallable(const PutAppInstanceRetentionSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutAppInstanceRetentionSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutAppInstanceRetentionSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutAppInstanceRetentionSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::PutAppInstanceRetentionSettingsAsync(const PutAppInstanceRetentionSettingsRequest& request, const PutAppInstanceRetentionSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutAppInstanceRetentionSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutAppInstanceRetentionSettings, this, request, handler, context, m_executor.get());
 }
 
 PutAppInstanceStreamingConfigurationsOutcome ChimeClient::PutAppInstanceStreamingConfigurations(const PutAppInstanceStreamingConfigurationsRequest& request) const
@@ -5158,18 +4319,12 @@ PutAppInstanceStreamingConfigurationsOutcome ChimeClient::PutAppInstanceStreamin
 
 PutAppInstanceStreamingConfigurationsOutcomeCallable ChimeClient::PutAppInstanceStreamingConfigurationsCallable(const PutAppInstanceStreamingConfigurationsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutAppInstanceStreamingConfigurationsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutAppInstanceStreamingConfigurations(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutAppInstanceStreamingConfigurations, this, request, m_executor.get());
 }
 
 void ChimeClient::PutAppInstanceStreamingConfigurationsAsync(const PutAppInstanceStreamingConfigurationsRequest& request, const PutAppInstanceStreamingConfigurationsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutAppInstanceStreamingConfigurations(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutAppInstanceStreamingConfigurations, this, request, handler, context, m_executor.get());
 }
 
 PutEventsConfigurationOutcome ChimeClient::PutEventsConfiguration(const PutEventsConfigurationRequest& request) const
@@ -5202,18 +4357,12 @@ PutEventsConfigurationOutcome ChimeClient::PutEventsConfiguration(const PutEvent
 
 PutEventsConfigurationOutcomeCallable ChimeClient::PutEventsConfigurationCallable(const PutEventsConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutEventsConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutEventsConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutEventsConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::PutEventsConfigurationAsync(const PutEventsConfigurationRequest& request, const PutEventsConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutEventsConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutEventsConfiguration, this, request, handler, context, m_executor.get());
 }
 
 PutRetentionSettingsOutcome ChimeClient::PutRetentionSettings(const PutRetentionSettingsRequest& request) const
@@ -5239,18 +4388,12 @@ PutRetentionSettingsOutcome ChimeClient::PutRetentionSettings(const PutRetention
 
 PutRetentionSettingsOutcomeCallable ChimeClient::PutRetentionSettingsCallable(const PutRetentionSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutRetentionSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutRetentionSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutRetentionSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::PutRetentionSettingsAsync(const PutRetentionSettingsRequest& request, const PutRetentionSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutRetentionSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutRetentionSettings, this, request, handler, context, m_executor.get());
 }
 
 PutSipMediaApplicationLoggingConfigurationOutcome ChimeClient::PutSipMediaApplicationLoggingConfiguration(const PutSipMediaApplicationLoggingConfigurationRequest& request) const
@@ -5271,18 +4414,12 @@ PutSipMediaApplicationLoggingConfigurationOutcome ChimeClient::PutSipMediaApplic
 
 PutSipMediaApplicationLoggingConfigurationOutcomeCallable ChimeClient::PutSipMediaApplicationLoggingConfigurationCallable(const PutSipMediaApplicationLoggingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutSipMediaApplicationLoggingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutSipMediaApplicationLoggingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutSipMediaApplicationLoggingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::PutSipMediaApplicationLoggingConfigurationAsync(const PutSipMediaApplicationLoggingConfigurationRequest& request, const PutSipMediaApplicationLoggingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutSipMediaApplicationLoggingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutSipMediaApplicationLoggingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 PutVoiceConnectorEmergencyCallingConfigurationOutcome ChimeClient::PutVoiceConnectorEmergencyCallingConfiguration(const PutVoiceConnectorEmergencyCallingConfigurationRequest& request) const
@@ -5303,18 +4440,12 @@ PutVoiceConnectorEmergencyCallingConfigurationOutcome ChimeClient::PutVoiceConne
 
 PutVoiceConnectorEmergencyCallingConfigurationOutcomeCallable ChimeClient::PutVoiceConnectorEmergencyCallingConfigurationCallable(const PutVoiceConnectorEmergencyCallingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVoiceConnectorEmergencyCallingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVoiceConnectorEmergencyCallingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutVoiceConnectorEmergencyCallingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::PutVoiceConnectorEmergencyCallingConfigurationAsync(const PutVoiceConnectorEmergencyCallingConfigurationRequest& request, const PutVoiceConnectorEmergencyCallingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVoiceConnectorEmergencyCallingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutVoiceConnectorEmergencyCallingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 PutVoiceConnectorLoggingConfigurationOutcome ChimeClient::PutVoiceConnectorLoggingConfiguration(const PutVoiceConnectorLoggingConfigurationRequest& request) const
@@ -5335,18 +4466,12 @@ PutVoiceConnectorLoggingConfigurationOutcome ChimeClient::PutVoiceConnectorLoggi
 
 PutVoiceConnectorLoggingConfigurationOutcomeCallable ChimeClient::PutVoiceConnectorLoggingConfigurationCallable(const PutVoiceConnectorLoggingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVoiceConnectorLoggingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVoiceConnectorLoggingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutVoiceConnectorLoggingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::PutVoiceConnectorLoggingConfigurationAsync(const PutVoiceConnectorLoggingConfigurationRequest& request, const PutVoiceConnectorLoggingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVoiceConnectorLoggingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutVoiceConnectorLoggingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 PutVoiceConnectorOriginationOutcome ChimeClient::PutVoiceConnectorOrigination(const PutVoiceConnectorOriginationRequest& request) const
@@ -5367,18 +4492,12 @@ PutVoiceConnectorOriginationOutcome ChimeClient::PutVoiceConnectorOrigination(co
 
 PutVoiceConnectorOriginationOutcomeCallable ChimeClient::PutVoiceConnectorOriginationCallable(const PutVoiceConnectorOriginationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVoiceConnectorOriginationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVoiceConnectorOrigination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutVoiceConnectorOrigination, this, request, m_executor.get());
 }
 
 void ChimeClient::PutVoiceConnectorOriginationAsync(const PutVoiceConnectorOriginationRequest& request, const PutVoiceConnectorOriginationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVoiceConnectorOrigination(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutVoiceConnectorOrigination, this, request, handler, context, m_executor.get());
 }
 
 PutVoiceConnectorProxyOutcome ChimeClient::PutVoiceConnectorProxy(const PutVoiceConnectorProxyRequest& request) const
@@ -5399,18 +4518,12 @@ PutVoiceConnectorProxyOutcome ChimeClient::PutVoiceConnectorProxy(const PutVoice
 
 PutVoiceConnectorProxyOutcomeCallable ChimeClient::PutVoiceConnectorProxyCallable(const PutVoiceConnectorProxyRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVoiceConnectorProxyOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVoiceConnectorProxy(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutVoiceConnectorProxy, this, request, m_executor.get());
 }
 
 void ChimeClient::PutVoiceConnectorProxyAsync(const PutVoiceConnectorProxyRequest& request, const PutVoiceConnectorProxyResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVoiceConnectorProxy(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutVoiceConnectorProxy, this, request, handler, context, m_executor.get());
 }
 
 PutVoiceConnectorStreamingConfigurationOutcome ChimeClient::PutVoiceConnectorStreamingConfiguration(const PutVoiceConnectorStreamingConfigurationRequest& request) const
@@ -5431,18 +4544,12 @@ PutVoiceConnectorStreamingConfigurationOutcome ChimeClient::PutVoiceConnectorStr
 
 PutVoiceConnectorStreamingConfigurationOutcomeCallable ChimeClient::PutVoiceConnectorStreamingConfigurationCallable(const PutVoiceConnectorStreamingConfigurationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVoiceConnectorStreamingConfigurationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVoiceConnectorStreamingConfiguration(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutVoiceConnectorStreamingConfiguration, this, request, m_executor.get());
 }
 
 void ChimeClient::PutVoiceConnectorStreamingConfigurationAsync(const PutVoiceConnectorStreamingConfigurationRequest& request, const PutVoiceConnectorStreamingConfigurationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVoiceConnectorStreamingConfiguration(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutVoiceConnectorStreamingConfiguration, this, request, handler, context, m_executor.get());
 }
 
 PutVoiceConnectorTerminationOutcome ChimeClient::PutVoiceConnectorTermination(const PutVoiceConnectorTerminationRequest& request) const
@@ -5463,18 +4570,12 @@ PutVoiceConnectorTerminationOutcome ChimeClient::PutVoiceConnectorTermination(co
 
 PutVoiceConnectorTerminationOutcomeCallable ChimeClient::PutVoiceConnectorTerminationCallable(const PutVoiceConnectorTerminationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVoiceConnectorTerminationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVoiceConnectorTermination(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutVoiceConnectorTermination, this, request, m_executor.get());
 }
 
 void ChimeClient::PutVoiceConnectorTerminationAsync(const PutVoiceConnectorTerminationRequest& request, const PutVoiceConnectorTerminationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVoiceConnectorTermination(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutVoiceConnectorTermination, this, request, handler, context, m_executor.get());
 }
 
 PutVoiceConnectorTerminationCredentialsOutcome ChimeClient::PutVoiceConnectorTerminationCredentials(const PutVoiceConnectorTerminationCredentialsRequest& request) const
@@ -5498,18 +4599,12 @@ PutVoiceConnectorTerminationCredentialsOutcome ChimeClient::PutVoiceConnectorTer
 
 PutVoiceConnectorTerminationCredentialsOutcomeCallable ChimeClient::PutVoiceConnectorTerminationCredentialsCallable(const PutVoiceConnectorTerminationCredentialsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< PutVoiceConnectorTerminationCredentialsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->PutVoiceConnectorTerminationCredentials(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::PutVoiceConnectorTerminationCredentials, this, request, m_executor.get());
 }
 
 void ChimeClient::PutVoiceConnectorTerminationCredentialsAsync(const PutVoiceConnectorTerminationCredentialsRequest& request, const PutVoiceConnectorTerminationCredentialsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, PutVoiceConnectorTerminationCredentials(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::PutVoiceConnectorTerminationCredentials, this, request, handler, context, m_executor.get());
 }
 
 RedactChannelMessageOutcome ChimeClient::RedactChannelMessage(const RedactChannelMessageRequest& request) const
@@ -5541,18 +4636,12 @@ RedactChannelMessageOutcome ChimeClient::RedactChannelMessage(const RedactChanne
 
 RedactChannelMessageOutcomeCallable ChimeClient::RedactChannelMessageCallable(const RedactChannelMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RedactChannelMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RedactChannelMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::RedactChannelMessage, this, request, m_executor.get());
 }
 
 void ChimeClient::RedactChannelMessageAsync(const RedactChannelMessageRequest& request, const RedactChannelMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RedactChannelMessage(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::RedactChannelMessage, this, request, handler, context, m_executor.get());
 }
 
 RedactConversationMessageOutcome ChimeClient::RedactConversationMessage(const RedactConversationMessageRequest& request) const
@@ -5594,18 +4683,12 @@ RedactConversationMessageOutcome ChimeClient::RedactConversationMessage(const Re
 
 RedactConversationMessageOutcomeCallable ChimeClient::RedactConversationMessageCallable(const RedactConversationMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RedactConversationMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RedactConversationMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::RedactConversationMessage, this, request, m_executor.get());
 }
 
 void ChimeClient::RedactConversationMessageAsync(const RedactConversationMessageRequest& request, const RedactConversationMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RedactConversationMessage(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::RedactConversationMessage, this, request, handler, context, m_executor.get());
 }
 
 RedactRoomMessageOutcome ChimeClient::RedactRoomMessage(const RedactRoomMessageRequest& request) const
@@ -5647,18 +4730,12 @@ RedactRoomMessageOutcome ChimeClient::RedactRoomMessage(const RedactRoomMessageR
 
 RedactRoomMessageOutcomeCallable ChimeClient::RedactRoomMessageCallable(const RedactRoomMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RedactRoomMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RedactRoomMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::RedactRoomMessage, this, request, m_executor.get());
 }
 
 void ChimeClient::RedactRoomMessageAsync(const RedactRoomMessageRequest& request, const RedactRoomMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RedactRoomMessage(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::RedactRoomMessage, this, request, handler, context, m_executor.get());
 }
 
 RegenerateSecurityTokenOutcome ChimeClient::RegenerateSecurityToken(const RegenerateSecurityTokenRequest& request) const
@@ -5693,18 +4770,12 @@ RegenerateSecurityTokenOutcome ChimeClient::RegenerateSecurityToken(const Regene
 
 RegenerateSecurityTokenOutcomeCallable ChimeClient::RegenerateSecurityTokenCallable(const RegenerateSecurityTokenRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RegenerateSecurityTokenOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RegenerateSecurityToken(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::RegenerateSecurityToken, this, request, m_executor.get());
 }
 
 void ChimeClient::RegenerateSecurityTokenAsync(const RegenerateSecurityTokenRequest& request, const RegenerateSecurityTokenResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RegenerateSecurityToken(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::RegenerateSecurityToken, this, request, handler, context, m_executor.get());
 }
 
 ResetPersonalPINOutcome ChimeClient::ResetPersonalPIN(const ResetPersonalPINRequest& request) const
@@ -5739,18 +4810,12 @@ ResetPersonalPINOutcome ChimeClient::ResetPersonalPIN(const ResetPersonalPINRequ
 
 ResetPersonalPINOutcomeCallable ChimeClient::ResetPersonalPINCallable(const ResetPersonalPINRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ResetPersonalPINOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ResetPersonalPIN(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ResetPersonalPIN, this, request, m_executor.get());
 }
 
 void ChimeClient::ResetPersonalPINAsync(const ResetPersonalPINRequest& request, const ResetPersonalPINResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ResetPersonalPIN(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ResetPersonalPIN, this, request, handler, context, m_executor.get());
 }
 
 RestorePhoneNumberOutcome ChimeClient::RestorePhoneNumber(const RestorePhoneNumberRequest& request) const
@@ -5773,18 +4838,12 @@ RestorePhoneNumberOutcome ChimeClient::RestorePhoneNumber(const RestorePhoneNumb
 
 RestorePhoneNumberOutcomeCallable ChimeClient::RestorePhoneNumberCallable(const RestorePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< RestorePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->RestorePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::RestorePhoneNumber, this, request, m_executor.get());
 }
 
 void ChimeClient::RestorePhoneNumberAsync(const RestorePhoneNumberRequest& request, const RestorePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, RestorePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::RestorePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 SearchAvailablePhoneNumbersOutcome ChimeClient::SearchAvailablePhoneNumbers(const SearchAvailablePhoneNumbersRequest& request) const
@@ -5801,18 +4860,12 @@ SearchAvailablePhoneNumbersOutcome ChimeClient::SearchAvailablePhoneNumbers(cons
 
 SearchAvailablePhoneNumbersOutcomeCallable ChimeClient::SearchAvailablePhoneNumbersCallable(const SearchAvailablePhoneNumbersRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SearchAvailablePhoneNumbersOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SearchAvailablePhoneNumbers(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::SearchAvailablePhoneNumbers, this, request, m_executor.get());
 }
 
 void ChimeClient::SearchAvailablePhoneNumbersAsync(const SearchAvailablePhoneNumbersRequest& request, const SearchAvailablePhoneNumbersResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SearchAvailablePhoneNumbers(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::SearchAvailablePhoneNumbers, this, request, handler, context, m_executor.get());
 }
 
 SendChannelMessageOutcome ChimeClient::SendChannelMessage(const SendChannelMessageRequest& request) const
@@ -5835,18 +4888,12 @@ SendChannelMessageOutcome ChimeClient::SendChannelMessage(const SendChannelMessa
 
 SendChannelMessageOutcomeCallable ChimeClient::SendChannelMessageCallable(const SendChannelMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< SendChannelMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->SendChannelMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::SendChannelMessage, this, request, m_executor.get());
 }
 
 void ChimeClient::SendChannelMessageAsync(const SendChannelMessageRequest& request, const SendChannelMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, SendChannelMessage(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::SendChannelMessage, this, request, handler, context, m_executor.get());
 }
 
 StartMeetingTranscriptionOutcome ChimeClient::StartMeetingTranscription(const StartMeetingTranscriptionRequest& request) const
@@ -5870,18 +4917,12 @@ StartMeetingTranscriptionOutcome ChimeClient::StartMeetingTranscription(const St
 
 StartMeetingTranscriptionOutcomeCallable ChimeClient::StartMeetingTranscriptionCallable(const StartMeetingTranscriptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StartMeetingTranscriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StartMeetingTranscription(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::StartMeetingTranscription, this, request, m_executor.get());
 }
 
 void ChimeClient::StartMeetingTranscriptionAsync(const StartMeetingTranscriptionRequest& request, const StartMeetingTranscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StartMeetingTranscription(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::StartMeetingTranscription, this, request, handler, context, m_executor.get());
 }
 
 StopMeetingTranscriptionOutcome ChimeClient::StopMeetingTranscription(const StopMeetingTranscriptionRequest& request) const
@@ -5905,18 +4946,12 @@ StopMeetingTranscriptionOutcome ChimeClient::StopMeetingTranscription(const Stop
 
 StopMeetingTranscriptionOutcomeCallable ChimeClient::StopMeetingTranscriptionCallable(const StopMeetingTranscriptionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< StopMeetingTranscriptionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->StopMeetingTranscription(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::StopMeetingTranscription, this, request, m_executor.get());
 }
 
 void ChimeClient::StopMeetingTranscriptionAsync(const StopMeetingTranscriptionRequest& request, const StopMeetingTranscriptionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, StopMeetingTranscription(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::StopMeetingTranscription, this, request, handler, context, m_executor.get());
 }
 
 TagAttendeeOutcome ChimeClient::TagAttendee(const TagAttendeeRequest& request) const
@@ -5947,18 +4982,12 @@ TagAttendeeOutcome ChimeClient::TagAttendee(const TagAttendeeRequest& request) c
 
 TagAttendeeOutcomeCallable ChimeClient::TagAttendeeCallable(const TagAttendeeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagAttendeeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagAttendee(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::TagAttendee, this, request, m_executor.get());
 }
 
 void ChimeClient::TagAttendeeAsync(const TagAttendeeRequest& request, const TagAttendeeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagAttendee(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::TagAttendee, this, request, handler, context, m_executor.get());
 }
 
 TagMeetingOutcome ChimeClient::TagMeeting(const TagMeetingRequest& request) const
@@ -5982,18 +5011,12 @@ TagMeetingOutcome ChimeClient::TagMeeting(const TagMeetingRequest& request) cons
 
 TagMeetingOutcomeCallable ChimeClient::TagMeetingCallable(const TagMeetingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagMeetingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagMeeting(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::TagMeeting, this, request, m_executor.get());
 }
 
 void ChimeClient::TagMeetingAsync(const TagMeetingRequest& request, const TagMeetingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagMeeting(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::TagMeeting, this, request, handler, context, m_executor.get());
 }
 
 TagResourceOutcome ChimeClient::TagResource(const TagResourceRequest& request) const
@@ -6010,18 +5033,12 @@ TagResourceOutcome ChimeClient::TagResource(const TagResourceRequest& request) c
 
 TagResourceOutcomeCallable ChimeClient::TagResourceCallable(const TagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< TagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->TagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::TagResource, this, request, m_executor.get());
 }
 
 void ChimeClient::TagResourceAsync(const TagResourceRequest& request, const TagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, TagResource(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::TagResource, this, request, handler, context, m_executor.get());
 }
 
 UntagAttendeeOutcome ChimeClient::UntagAttendee(const UntagAttendeeRequest& request) const
@@ -6052,18 +5069,12 @@ UntagAttendeeOutcome ChimeClient::UntagAttendee(const UntagAttendeeRequest& requ
 
 UntagAttendeeOutcomeCallable ChimeClient::UntagAttendeeCallable(const UntagAttendeeRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagAttendeeOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagAttendee(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UntagAttendee, this, request, m_executor.get());
 }
 
 void ChimeClient::UntagAttendeeAsync(const UntagAttendeeRequest& request, const UntagAttendeeResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagAttendee(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UntagAttendee, this, request, handler, context, m_executor.get());
 }
 
 UntagMeetingOutcome ChimeClient::UntagMeeting(const UntagMeetingRequest& request) const
@@ -6087,18 +5098,12 @@ UntagMeetingOutcome ChimeClient::UntagMeeting(const UntagMeetingRequest& request
 
 UntagMeetingOutcomeCallable ChimeClient::UntagMeetingCallable(const UntagMeetingRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagMeetingOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagMeeting(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UntagMeeting, this, request, m_executor.get());
 }
 
 void ChimeClient::UntagMeetingAsync(const UntagMeetingRequest& request, const UntagMeetingResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagMeeting(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UntagMeeting, this, request, handler, context, m_executor.get());
 }
 
 UntagResourceOutcome ChimeClient::UntagResource(const UntagResourceRequest& request) const
@@ -6115,18 +5120,12 @@ UntagResourceOutcome ChimeClient::UntagResource(const UntagResourceRequest& requ
 
 UntagResourceOutcomeCallable ChimeClient::UntagResourceCallable(const UntagResourceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UntagResourceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UntagResource(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UntagResource, this, request, m_executor.get());
 }
 
 void ChimeClient::UntagResourceAsync(const UntagResourceRequest& request, const UntagResourceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UntagResource(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UntagResource, this, request, handler, context, m_executor.get());
 }
 
 UpdateAccountOutcome ChimeClient::UpdateAccount(const UpdateAccountRequest& request) const
@@ -6151,18 +5150,12 @@ UpdateAccountOutcome ChimeClient::UpdateAccount(const UpdateAccountRequest& requ
 
 UpdateAccountOutcomeCallable ChimeClient::UpdateAccountCallable(const UpdateAccountRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccountOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccount(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateAccount, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateAccountAsync(const UpdateAccountRequest& request, const UpdateAccountResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccount(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateAccount, this, request, handler, context, m_executor.get());
 }
 
 UpdateAccountSettingsOutcome ChimeClient::UpdateAccountSettings(const UpdateAccountSettingsRequest& request) const
@@ -6188,18 +5181,12 @@ UpdateAccountSettingsOutcome ChimeClient::UpdateAccountSettings(const UpdateAcco
 
 UpdateAccountSettingsOutcomeCallable ChimeClient::UpdateAccountSettingsCallable(const UpdateAccountSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAccountSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAccountSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateAccountSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateAccountSettingsAsync(const UpdateAccountSettingsRequest& request, const UpdateAccountSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAccountSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateAccountSettings, this, request, handler, context, m_executor.get());
 }
 
 UpdateAppInstanceOutcome ChimeClient::UpdateAppInstance(const UpdateAppInstanceRequest& request) const
@@ -6221,18 +5208,12 @@ UpdateAppInstanceOutcome ChimeClient::UpdateAppInstance(const UpdateAppInstanceR
 
 UpdateAppInstanceOutcomeCallable ChimeClient::UpdateAppInstanceCallable(const UpdateAppInstanceRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAppInstanceOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAppInstance(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateAppInstance, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateAppInstanceAsync(const UpdateAppInstanceRequest& request, const UpdateAppInstanceResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAppInstance(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateAppInstance, this, request, handler, context, m_executor.get());
 }
 
 UpdateAppInstanceUserOutcome ChimeClient::UpdateAppInstanceUser(const UpdateAppInstanceUserRequest& request) const
@@ -6254,18 +5235,12 @@ UpdateAppInstanceUserOutcome ChimeClient::UpdateAppInstanceUser(const UpdateAppI
 
 UpdateAppInstanceUserOutcomeCallable ChimeClient::UpdateAppInstanceUserCallable(const UpdateAppInstanceUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateAppInstanceUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateAppInstanceUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateAppInstanceUser, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateAppInstanceUserAsync(const UpdateAppInstanceUserRequest& request, const UpdateAppInstanceUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateAppInstanceUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateAppInstanceUser, this, request, handler, context, m_executor.get());
 }
 
 UpdateBotOutcome ChimeClient::UpdateBot(const UpdateBotRequest& request) const
@@ -6297,18 +5272,12 @@ UpdateBotOutcome ChimeClient::UpdateBot(const UpdateBotRequest& request) const
 
 UpdateBotOutcomeCallable ChimeClient::UpdateBotCallable(const UpdateBotRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateBotOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateBot(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateBot, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateBotAsync(const UpdateBotRequest& request, const UpdateBotResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateBot(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateBot, this, request, handler, context, m_executor.get());
 }
 
 UpdateChannelOutcome ChimeClient::UpdateChannel(const UpdateChannelRequest& request) const
@@ -6330,18 +5299,12 @@ UpdateChannelOutcome ChimeClient::UpdateChannel(const UpdateChannelRequest& requ
 
 UpdateChannelOutcomeCallable ChimeClient::UpdateChannelCallable(const UpdateChannelRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateChannelOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateChannel(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateChannel, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateChannelAsync(const UpdateChannelRequest& request, const UpdateChannelResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateChannel(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateChannel, this, request, handler, context, m_executor.get());
 }
 
 UpdateChannelMessageOutcome ChimeClient::UpdateChannelMessage(const UpdateChannelMessageRequest& request) const
@@ -6370,18 +5333,12 @@ UpdateChannelMessageOutcome ChimeClient::UpdateChannelMessage(const UpdateChanne
 
 UpdateChannelMessageOutcomeCallable ChimeClient::UpdateChannelMessageCallable(const UpdateChannelMessageRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateChannelMessageOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateChannelMessage(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateChannelMessage, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateChannelMessageAsync(const UpdateChannelMessageRequest& request, const UpdateChannelMessageResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateChannelMessage(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateChannelMessage, this, request, handler, context, m_executor.get());
 }
 
 UpdateChannelReadMarkerOutcome ChimeClient::UpdateChannelReadMarker(const UpdateChannelReadMarkerRequest& request) const
@@ -6404,18 +5361,12 @@ UpdateChannelReadMarkerOutcome ChimeClient::UpdateChannelReadMarker(const Update
 
 UpdateChannelReadMarkerOutcomeCallable ChimeClient::UpdateChannelReadMarkerCallable(const UpdateChannelReadMarkerRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateChannelReadMarkerOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateChannelReadMarker(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateChannelReadMarker, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateChannelReadMarkerAsync(const UpdateChannelReadMarkerRequest& request, const UpdateChannelReadMarkerResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateChannelReadMarker(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateChannelReadMarker, this, request, handler, context, m_executor.get());
 }
 
 UpdateGlobalSettingsOutcome ChimeClient::UpdateGlobalSettings(const UpdateGlobalSettingsRequest& request) const
@@ -6429,18 +5380,12 @@ UpdateGlobalSettingsOutcome ChimeClient::UpdateGlobalSettings(const UpdateGlobal
 
 UpdateGlobalSettingsOutcomeCallable ChimeClient::UpdateGlobalSettingsCallable(const UpdateGlobalSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateGlobalSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateGlobalSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateGlobalSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateGlobalSettingsAsync(const UpdateGlobalSettingsRequest& request, const UpdateGlobalSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateGlobalSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateGlobalSettings, this, request, handler, context, m_executor.get());
 }
 
 UpdatePhoneNumberOutcome ChimeClient::UpdatePhoneNumber(const UpdatePhoneNumberRequest& request) const
@@ -6460,18 +5405,12 @@ UpdatePhoneNumberOutcome ChimeClient::UpdatePhoneNumber(const UpdatePhoneNumberR
 
 UpdatePhoneNumberOutcomeCallable ChimeClient::UpdatePhoneNumberCallable(const UpdatePhoneNumberRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePhoneNumberOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePhoneNumber(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdatePhoneNumber, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdatePhoneNumberAsync(const UpdatePhoneNumberRequest& request, const UpdatePhoneNumberResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePhoneNumber(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdatePhoneNumber, this, request, handler, context, m_executor.get());
 }
 
 UpdatePhoneNumberSettingsOutcome ChimeClient::UpdatePhoneNumberSettings(const UpdatePhoneNumberSettingsRequest& request) const
@@ -6485,18 +5424,12 @@ UpdatePhoneNumberSettingsOutcome ChimeClient::UpdatePhoneNumberSettings(const Up
 
 UpdatePhoneNumberSettingsOutcomeCallable ChimeClient::UpdatePhoneNumberSettingsCallable(const UpdatePhoneNumberSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdatePhoneNumberSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdatePhoneNumberSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdatePhoneNumberSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdatePhoneNumberSettingsAsync(const UpdatePhoneNumberSettingsRequest& request, const UpdatePhoneNumberSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdatePhoneNumberSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdatePhoneNumberSettings, this, request, handler, context, m_executor.get());
 }
 
 UpdateProxySessionOutcome ChimeClient::UpdateProxySession(const UpdateProxySessionRequest& request) const
@@ -6523,18 +5456,12 @@ UpdateProxySessionOutcome ChimeClient::UpdateProxySession(const UpdateProxySessi
 
 UpdateProxySessionOutcomeCallable ChimeClient::UpdateProxySessionCallable(const UpdateProxySessionRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateProxySessionOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateProxySession(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateProxySession, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateProxySessionAsync(const UpdateProxySessionRequest& request, const UpdateProxySessionResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateProxySession(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateProxySession, this, request, handler, context, m_executor.get());
 }
 
 UpdateRoomOutcome ChimeClient::UpdateRoom(const UpdateRoomRequest& request) const
@@ -6566,18 +5493,12 @@ UpdateRoomOutcome ChimeClient::UpdateRoom(const UpdateRoomRequest& request) cons
 
 UpdateRoomOutcomeCallable ChimeClient::UpdateRoomCallable(const UpdateRoomRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoomOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoom(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateRoom, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateRoomAsync(const UpdateRoomRequest& request, const UpdateRoomResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoom(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateRoom, this, request, handler, context, m_executor.get());
 }
 
 UpdateRoomMembershipOutcome ChimeClient::UpdateRoomMembership(const UpdateRoomMembershipRequest& request) const
@@ -6616,18 +5537,12 @@ UpdateRoomMembershipOutcome ChimeClient::UpdateRoomMembership(const UpdateRoomMe
 
 UpdateRoomMembershipOutcomeCallable ChimeClient::UpdateRoomMembershipCallable(const UpdateRoomMembershipRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateRoomMembershipOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateRoomMembership(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateRoomMembership, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateRoomMembershipAsync(const UpdateRoomMembershipRequest& request, const UpdateRoomMembershipResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateRoomMembership(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateRoomMembership, this, request, handler, context, m_executor.get());
 }
 
 UpdateSipMediaApplicationOutcome ChimeClient::UpdateSipMediaApplication(const UpdateSipMediaApplicationRequest& request) const
@@ -6647,18 +5562,12 @@ UpdateSipMediaApplicationOutcome ChimeClient::UpdateSipMediaApplication(const Up
 
 UpdateSipMediaApplicationOutcomeCallable ChimeClient::UpdateSipMediaApplicationCallable(const UpdateSipMediaApplicationRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSipMediaApplicationOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSipMediaApplication(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateSipMediaApplication, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateSipMediaApplicationAsync(const UpdateSipMediaApplicationRequest& request, const UpdateSipMediaApplicationResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSipMediaApplication(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateSipMediaApplication, this, request, handler, context, m_executor.get());
 }
 
 UpdateSipMediaApplicationCallOutcome ChimeClient::UpdateSipMediaApplicationCall(const UpdateSipMediaApplicationCallRequest& request) const
@@ -6685,18 +5594,12 @@ UpdateSipMediaApplicationCallOutcome ChimeClient::UpdateSipMediaApplicationCall(
 
 UpdateSipMediaApplicationCallOutcomeCallable ChimeClient::UpdateSipMediaApplicationCallCallable(const UpdateSipMediaApplicationCallRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSipMediaApplicationCallOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSipMediaApplicationCall(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateSipMediaApplicationCall, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateSipMediaApplicationCallAsync(const UpdateSipMediaApplicationCallRequest& request, const UpdateSipMediaApplicationCallResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSipMediaApplicationCall(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateSipMediaApplicationCall, this, request, handler, context, m_executor.get());
 }
 
 UpdateSipRuleOutcome ChimeClient::UpdateSipRule(const UpdateSipRuleRequest& request) const
@@ -6716,18 +5619,12 @@ UpdateSipRuleOutcome ChimeClient::UpdateSipRule(const UpdateSipRuleRequest& requ
 
 UpdateSipRuleOutcomeCallable ChimeClient::UpdateSipRuleCallable(const UpdateSipRuleRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateSipRuleOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateSipRule(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateSipRule, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateSipRuleAsync(const UpdateSipRuleRequest& request, const UpdateSipRuleResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateSipRule(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateSipRule, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserOutcome ChimeClient::UpdateUser(const UpdateUserRequest& request) const
@@ -6759,18 +5656,12 @@ UpdateUserOutcome ChimeClient::UpdateUser(const UpdateUserRequest& request) cons
 
 UpdateUserOutcomeCallable ChimeClient::UpdateUserCallable(const UpdateUserRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUser(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateUser, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateUserAsync(const UpdateUserRequest& request, const UpdateUserResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUser(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateUser, this, request, handler, context, m_executor.get());
 }
 
 UpdateUserSettingsOutcome ChimeClient::UpdateUserSettings(const UpdateUserSettingsRequest& request) const
@@ -6803,18 +5694,12 @@ UpdateUserSettingsOutcome ChimeClient::UpdateUserSettings(const UpdateUserSettin
 
 UpdateUserSettingsOutcomeCallable ChimeClient::UpdateUserSettingsCallable(const UpdateUserSettingsRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateUserSettingsOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateUserSettings(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateUserSettings, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateUserSettingsAsync(const UpdateUserSettingsRequest& request, const UpdateUserSettingsResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateUserSettings(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateUserSettings, this, request, handler, context, m_executor.get());
 }
 
 UpdateVoiceConnectorOutcome ChimeClient::UpdateVoiceConnector(const UpdateVoiceConnectorRequest& request) const
@@ -6834,18 +5719,12 @@ UpdateVoiceConnectorOutcome ChimeClient::UpdateVoiceConnector(const UpdateVoiceC
 
 UpdateVoiceConnectorOutcomeCallable ChimeClient::UpdateVoiceConnectorCallable(const UpdateVoiceConnectorRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateVoiceConnectorOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateVoiceConnector(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateVoiceConnector, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateVoiceConnectorAsync(const UpdateVoiceConnectorRequest& request, const UpdateVoiceConnectorResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateVoiceConnector(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateVoiceConnector, this, request, handler, context, m_executor.get());
 }
 
 UpdateVoiceConnectorGroupOutcome ChimeClient::UpdateVoiceConnectorGroup(const UpdateVoiceConnectorGroupRequest& request) const
@@ -6865,18 +5744,12 @@ UpdateVoiceConnectorGroupOutcome ChimeClient::UpdateVoiceConnectorGroup(const Up
 
 UpdateVoiceConnectorGroupOutcomeCallable ChimeClient::UpdateVoiceConnectorGroupCallable(const UpdateVoiceConnectorGroupRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< UpdateVoiceConnectorGroupOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->UpdateVoiceConnectorGroup(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::UpdateVoiceConnectorGroup, this, request, m_executor.get());
 }
 
 void ChimeClient::UpdateVoiceConnectorGroupAsync(const UpdateVoiceConnectorGroupRequest& request, const UpdateVoiceConnectorGroupResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, UpdateVoiceConnectorGroup(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::UpdateVoiceConnectorGroup, this, request, handler, context, m_executor.get());
 }
 
 ValidateE911AddressOutcome ChimeClient::ValidateE911Address(const ValidateE911AddressRequest& request) const
@@ -6890,17 +5763,11 @@ ValidateE911AddressOutcome ChimeClient::ValidateE911Address(const ValidateE911Ad
 
 ValidateE911AddressOutcomeCallable ChimeClient::ValidateE911AddressCallable(const ValidateE911AddressRequest& request) const
 {
-  auto task = Aws::MakeShared< std::packaged_task< ValidateE911AddressOutcome() > >(ALLOCATION_TAG, [this, request](){ return this->ValidateE911Address(request); } );
-  auto packagedFunction = [task]() { (*task)(); };
-  m_executor->Submit(packagedFunction);
-  return task->get_future();
+  return MakeCallableOperation(ALLOCATION_TAG, &ChimeClient::ValidateE911Address, this, request, m_executor.get());
 }
 
 void ChimeClient::ValidateE911AddressAsync(const ValidateE911AddressRequest& request, const ValidateE911AddressResponseReceivedHandler& handler, const std::shared_ptr<const Aws::Client::AsyncCallerContext>& context) const
 {
-  m_executor->Submit( [this, request, handler, context]()
-    {
-      handler(this, request, ValidateE911Address(request), context);
-    } );
+  MakeAsyncOperation(&ChimeClient::ValidateE911Address, this, request, handler, context, m_executor.get());
 }
 
